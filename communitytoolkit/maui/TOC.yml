@@ -1,0 +1,6 @@
+- name: MAUI Community Toolkit Documentation
+  href: index.md
+- name: "Setup"
+  items:
+    - name: "Getting Started with the MAUI Community Toolkit"
+      href: get-started.md

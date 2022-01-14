@@ -1,2 +1,8 @@
-- name: Index
+- name: Community Toolkits Documentation
   href: index.md
+- name: .NET
+  href: https://docs.microsoft.com/en-gb/windows/communitytoolkit/
+- name: Windows
+  href: https://docs.microsoft.com/en-gb/windows/communitytoolkit/
+- name: MAUI
+  href: maui/index.md

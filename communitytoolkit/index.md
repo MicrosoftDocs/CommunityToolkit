@@ -12,8 +12,14 @@ The Community Toolkits offer a collection of reusable implementations that aim t
 
 Learn how to use these .NET Toolkits, view sample code and more.
 
-- ## [.NET Community Toolkit](https://docs.microsoft.com/en-gb/windows/communitytoolkit/)
+## [.NET Community Toolkit](/windows/communitytoolkit/)
 
-- ## [Windows Community Toolkit](https://docs.microsoft.com/en-gb/windows/communitytoolkit/)
+The tookit can be used to build any appplication using **.NET**.
 
-- ## [MAUI Community Toolkit](maui/index.md)
+## [Windows Community Toolkit](/windows/communitytoolkit/)
+
+The toolkit can be used to build applications using **UWP**.
+
+## [MAUI Community Toolkit](maui/index.md)
+
+The toolkit can be used to build applications using **.NET MAUI**.

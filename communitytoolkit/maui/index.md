@@ -16,7 +16,7 @@ You can also preview the capabilities of the toolkit by running the sample app a
 
 Feel free to browse the documentation using the table of contents on the left side of this page.
 
-[maui-url]: https://docs.microsoft.com/en-us/dotnet/maui/ "Microsoft MAUI documentation"
+[maui-url]: /dotnet/maui/ "Microsoft MAUI documentation"
 
 ## [Get started][get-started]
 
@@ -28,6 +28,6 @@ Follow the [Getting started guide][get-started] to install the **CommunityToolki
 
 The MAUI Community Toolkit is built as a set of open source projects hosted on GitHub by the community:
 
-- ### [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui)
+- [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui)
 
-- ### [CommunityToolkit.Maui.Markup](https://github.com/CommunityToolkit/Maui.Markup)
+- [CommunityToolkit.Maui.Markup](https://github.com/CommunityToolkit/Maui.Markup)

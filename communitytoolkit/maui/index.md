@@ -1,12 +1,12 @@
 ---
-title: MAUI Community Toolkit Documentation
+title: MAUI Community Toolkit
 author: bijington
 ms.author: bramin
 description: The MAUI Community Toolkit is a collection of reusable elements for application development with .NET MAUI, including animations, behaviors, converters, effects, and helpers.
 ms.date: 01/14/2022
 ---
 
-# MAUI Community Toolkit Documentation
+# MAUI Community Toolkit
 
 The MAUI Community Toolkit is a collection of reusable elements for application development with [.NET MAUI][maui-url], including animations, behaviors, converters, effects, and helpers. It simplifies and demonstrates common developer tasks when building iOS, Android, macOS and WinUI applications using [.NET MAUI][maui-url].
 

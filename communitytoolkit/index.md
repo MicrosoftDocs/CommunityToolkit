@@ -1,12 +1,12 @@
 ---
-title: Community Toolkits Documentation
+title: Community Toolkits
 author: bijington
 ms.author: bramin
 description: The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
 ms.date: 01/14/2022
 ---
 
-# Community Toolkits Documentation
+# Community Toolkits
 
 The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
 

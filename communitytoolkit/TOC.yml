@@ -1,5 +1,5 @@
-- name: Community Toolkits Documentation
-  href: index.md
+- name: .NET Community Toolkits
+  href: index.yml
 - name: .NET Community Toolkit
   href: /windows/communitytoolkit/
 - name: Windows Community Toolkit

@@ -1,0 +1,34 @@
+### YamlMime:Landing
+
+title: .NET Community Toolkits
+summary: The home for .NET based Community Toolkits which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
+
+metadata:
+  title: .NET Community Toolkits
+  description: The home for .NET based Community Toolkits which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
+  ms.topic: landing-page
+  ms.date: 01/27/2022
+
+landingContent:
+  - title: .NET Community Toolkit
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is the .NET Community Toolkit?
+            url: /windows/communitytoolkit/
+  - title: Windows Community Toolkit
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is the Windows Community Toolkit?
+            url: /windows/communitytoolkit/
+  - title: MAUI Community Toolkit
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is the MAUI Community Toolkit?
+            url: maui/index.md
+      - linkListType: how-to-guide
+        links:
+          - text: Installation
+            url: maui/get-started.md

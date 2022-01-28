@@ -24,7 +24,10 @@
       {
         "files": [
           "**/*.png",
-          "**/*.jpg"
+          "**/*.jpg",
+          "**/*.jpeg",
+          "**/*.gif",
+          "**/*.svg"
         ],
         "exclude": [
           "**/obj/**",
@@ -39,9 +42,18 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "author": "brminnick"
       "breadcrumb_path": "/communitytoolkit/breadcrumb/toc.json",
       "extendBreadcrumb": true,
-      "feedback_system": "None"
+      "feedback_system": "GitHub",
+      "feedback_github_repo": "MicrosoftDocs/CommunityToolkit",
+      "feedback_product_url": "https://developercommunity.visualstudio.com/",
+      "feedback_product_url": "https://github.com/CommunityToolkit/",
+      "ms.author": "Brandon",
+      "ms.prod": "dotnet-mobile",
+      "ms.technology": "dotnet-maui-community-toolkit",
+      "titleSuffix": ".NET Community Toolkit",
+      "searchScope": [ ".NET Community Toolkit" ]
     },
     "fileMetadata": {},
     "template": [],

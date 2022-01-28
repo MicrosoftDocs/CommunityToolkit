@@ -42,7 +42,7 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "author": "brminnick"
+      "author": "brminnick",
       "breadcrumb_path": "/communitytoolkit/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "GitHub",

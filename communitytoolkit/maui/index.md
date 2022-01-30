@@ -1,17 +1,17 @@
 ---
-title: MAUI Community Toolkit
+title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 ms.author: bramin
-description: The MAUI Community Toolkit is a collection of reusable elements for application development with .NET MAUI, including animations, behaviors, converters, effects, and helpers.
+description: The .NET MAUI Community Toolkit is a collection of reusable elements for application development with .NET MAUI, including animations, behaviors, converters, effects, and helpers.
 ms.date: 01/14/2022
 ---
 
-# MAUI Community Toolkit
+# .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 
-The MAUI Community Toolkit is a collection of reusable elements for application development with [.NET MAUI][maui-url], including animations, behaviors, converters, effects, and helpers. It simplifies and demonstrates common developer tasks when building iOS, Android, macOS and WinUI applications using [.NET MAUI][maui-url].
+The .NET MAUI Community Toolkit is a collection of reusable elements for application development with [.NET MAUI][maui-url], including animations, behaviors, converters, effects, and helpers. It simplifies and demonstrates common developer tasks when building iOS, Android, macOS and WinUI applications using [.NET MAUI][maui-url].
 
 > [!IMPORTANT]
-> The MAUI Community Toolkit is currently in preview.
+> The .NET MAUI Community Toolkit is currently in preview.
 >
 > This content relates to a pre-release product that may be substantially modified before it's released.
 
@@ -21,7 +21,7 @@ You can also preview the capabilities of the toolkit by running the sample app a
 
 Feel free to browse the documentation using the table of contents on the left side of this page.
 
-[maui-url]: /dotnet/maui/ "Microsoft MAUI documentation"
+[maui-url]: /dotnet/maui/ "Microsoft .NET MAUI documentation"
 
 ## [Get started][get-started]
 
@@ -31,7 +31,7 @@ Follow the [Getting started guide][get-started] to install the **CommunityToolki
 
 ## Open source
 
-The MAUI Community Toolkit is built as a set of open source projects hosted on GitHub by the community:
+The .NET MAUI Community Toolkit is built as a set of open source projects hosted on GitHub by the community:
 
 - [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui)
 

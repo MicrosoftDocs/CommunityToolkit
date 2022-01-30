@@ -1,21 +1,21 @@
 ---
-title: Getting Started with the MAUI Community Toolkit
+title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 ms.author: bramin
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
 ms.date: 01/14/2022
 ---
 
-# Getting Started with the MAUI Community Toolkit
+# Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 
 The toolkit is available as a set of NuGet packages that can be added to any existing or new project using Visual Studio.
 
 > [!IMPORTANT]
-> The MAUI Community Toolkit is currently in preview.
+> The .NET MAUI Community Toolkit is currently in preview.
 >
 > This content relates to a pre-release product that may be substantially modified before it's released.
 
-1. Open an existing project, or create a new project as per the [MAUI setup documentation](/dotnet/maui/get-started/first-app)
+1. Open an existing project, or create a new project as per the [.NET MAUI setup documentation](/dotnet/maui/get-started/first-app)
 
 2. In the Solution Explorer panel, right click on your project name and select **Manage NuGet Packages**. Search for **CommunityToolkit.Maui**, and choose the desired NuGet Package from the list.
 
@@ -39,7 +39,7 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 
 ## NuGet packages
 
-The MAUI Community Toolkit comprises of 3 separate packages:
+The .NET MAUI Community Toolkit comprises of 3 separate packages:
 
 ### CommunityToolkit.Maui
 
@@ -85,8 +85,8 @@ This package is a set of fluent helper methods and classes to simplify building 
 
 ## Other resources
 
-Download the [MAUI Community Toolkit Sample App](https://github.com/CommunityToolkit/Maui) from the repository to see how to use the toolkit within an actual application.
+Download the [.NET MAUI Community Toolkit Sample App](https://github.com/CommunityToolkit/Maui) from the repository to see how to use the toolkit within an actual application.
 
-We recommend developers who are new to MAUI to visit the [.NET MAUI](/dotnet/maui/) documentation.
+We recommend developers who are new to .NET MAUI to visit the [.NET MAUI](/dotnet/maui/) documentation.
 
-Visit the [MAUI Community Toolkit GitHub Repository](https://github.com/CommunityToolkit/Maui) to see the current source code, what is coming next, and clone the repository.  Community contributions are welcome!
+Visit the [.NET MAUI Community Toolkit GitHub Repository](https://github.com/CommunityToolkit/Maui) to see the current source code, what is coming next, and clone the repository.  Community contributions are welcome!

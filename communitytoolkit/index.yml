@@ -10,25 +10,33 @@ metadata:
   ms.date: 01/27/2022
 
 landingContent:
-  - title: .NET Community Toolkit
+  - title: .NET Community Toolkit documentation
     linkLists:
       - linkListType: overview
         links:
           - text: What is the .NET Community Toolkit?
             url: /windows/communitytoolkit/
+      - linkListType: get-started
+        links:
+          - text: Installation
+            url: windows/communitytoolkit/getting-started
   - title: Windows Community Toolkit
     linkLists:
       - linkListType: overview
         links:
           - text: What is the Windows Community Toolkit?
             url: /windows/communitytoolkit/
+      - linkListType: get-started
+        links:
+          - text: Installation
+            url: windows/communitytoolkit/getting-started
   - title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit
     linkLists:
       - linkListType: overview
         links:
           - text: What is the .NET MAUI Community Toolkit?
             url: maui/index.md
-      - linkListType: how-to-guide
+      - linkListType: get-started
         links:
           - text: Installation
             url: maui/get-started.md

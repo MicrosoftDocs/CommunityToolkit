@@ -15,6 +15,9 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 >
 > This content relates to a pre-release product that may be substantially modified before it's released.
 
+> [!NOTE]
+> This documentation is currently a work in progress and therefore may be subject to change.
+
 1. Open an existing project, or create a new project as per the [.NET MAUI setup documentation](/dotnet/maui/get-started/first-app)
 
 2. In the Solution Explorer panel, right click on your project name and select **Manage NuGet Packages**. Search for **CommunityToolkit.Maui**, and choose the desired NuGet Package from the list.

@@ -15,6 +15,9 @@ The .NET MAUI Community Toolkit is a collection of reusable elements for applica
 >
 > This content relates to a pre-release product that may be substantially modified before it's released.
 
+> [!NOTE]
+> This documentation is currently a work in progress and therefore may be subject to change.
+
 The MAUI Community Toolkit is available as a set of NuGet Packages for new or existing [.NET MAUI][maui-url] projects.
 
 You can also preview the capabilities of the toolkit by running the sample app available in the MAUI Community Toolkit repo.

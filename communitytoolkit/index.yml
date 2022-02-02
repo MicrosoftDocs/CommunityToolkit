@@ -19,7 +19,7 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Installation
-            url: windows/communitytoolkit/getting-started
+            url: /windows/communitytoolkit/getting-started
   - title: Windows Community Toolkit
     linkLists:
       - linkListType: overview
@@ -29,7 +29,7 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Installation
-            url: windows/communitytoolkit/getting-started
+            url: /windows/communitytoolkit/getting-started
   - title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit
     linkLists:
       - linkListType: overview

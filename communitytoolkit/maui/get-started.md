@@ -10,7 +10,7 @@ ms.date: 01/14/2022
 
 The toolkit is available as a set of NuGet packages that can be added to any existing or new project using Visual Studio.
 
-[!INCLUDE [docs under construction](~/includes/preview-note.md)]
+[!INCLUDE [docs under construction](includes/preview-note.md)]
 
 1. Open an existing project, or create a new project as per the [.NET MAUI setup documentation](/dotnet/maui/get-started/first-app)
 

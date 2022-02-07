@@ -10,13 +10,7 @@ ms.date: 01/14/2022
 
 The .NET MAUI Community Toolkit is a collection of reusable elements for application development with [.NET MAUI][maui-url], including animations, behaviors, converters, effects, and helpers. It simplifies and demonstrates common developer tasks when building iOS, Android, macOS and WinUI applications using [.NET MAUI][maui-url].
 
-> [!IMPORTANT]
-> The .NET MAUI Community Toolkit is currently in preview.
->
-> This content relates to a pre-release product that may be substantially modified before it's released.
-
-> [!NOTE]
-> This documentation is currently a work in progress and therefore may be subject to change.
+[!INCLUDE [docs under construction](~/includes/preview-note.md)]
 
 The MAUI Community Toolkit is available as a set of NuGet Packages for new or existing [.NET MAUI][maui-url] projects.
 

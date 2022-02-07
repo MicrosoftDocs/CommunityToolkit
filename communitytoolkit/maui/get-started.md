@@ -16,7 +16,7 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 
 2. In the Solution Explorer panel, right click on your project name and select **Manage NuGet Packages**. Search for **CommunityToolkit.Maui**, and choose the desired NuGet Package from the list.
 
-    ![Manage NuGet Packages...](images/get-started/manage-nuget.png "Manage NuGet Package Image")
+    ![Manage NuGet Packages...](images/get-started/manage-nuget.png "Right click on the solution and select 'Manage NuGet Packages...'")
 
 3. To add the namespace to the toolkit:
 

@@ -2,12 +2,17 @@
   "docsets_to_publish": [
     {
       "docset_name": "CommunityToolkit",
-      "build_source_folder": "communitytoolkit",
+      "build_source_folder": "docs",
       "build_output_subfolder": "CommunityToolkit",
       "locale": "en-us",
       "monikers": [],
       "moniker_ranges": [],
       "open_to_public_contributors": true,
+      "xref_query_tags": [
+        "/dotnet",
+        "/uwp/api",
+        "/windows/winui/api"
+      ],
       "type_mapping": {
         "Conceptual": "Content"
       },
@@ -20,6 +25,8 @@
   ],
   "sync_notification_subscribers": [],
   "branches_to_filter": [],
+  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/CommunityToolkit",
+  "git_repository_branch_open_to_public_contributors": "main",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
   "contribution_branch_mappings": {},

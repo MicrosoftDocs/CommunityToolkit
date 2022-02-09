@@ -50,12 +50,14 @@
       "feedback_product_url": "https://developercommunity.visualstudio.com/",
       "feedback_product_url": "https://github.com/CommunityToolkit/",
       "ms.author": "bramin",
-      "ms.prod": "dotnet-mobile",
-      "ms.technology": "dotnet-maui-community-toolkit",
+      "ms.prod": "dotnet-communitytoolkit",
       "titleSuffix": ".NET Community Toolkit",
       "searchScope": [ ".NET Community Toolkit" ]
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "communitytoolkit/maui/**/**.md": "dotnet-maui-community-toolkit",
+      "communitytoolkit/windows/**/**.md": "windows-community-toolkit"
+    },
     "template": [],
     "dest": "CommunityToolkit"
   }

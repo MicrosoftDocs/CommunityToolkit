@@ -55,8 +55,10 @@
       "searchScope": [ ".NET Community Toolkit" ]
     },
     "fileMetadata": {
-      "communitytoolkit/maui/**/**.md": "dotnet-maui-community-toolkit",
-      "communitytoolkit/windows/**/**.md": "windows-community-toolkit"
+      "ms.technology": {
+        "communitytoolkit/maui/**/**.md": "dotnet-maui-community-toolkit",
+        "communitytoolkit/windows/**/**.md": "windows-community-toolkit"      
+      }
     },
     "template": [],
     "dest": "CommunityToolkit"

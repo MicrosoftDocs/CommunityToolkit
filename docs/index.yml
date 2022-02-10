@@ -11,6 +11,7 @@ metadata:
 
 landingContent:
   - title: .NET Community Toolkit
+    linkLists:  
       - linkListType: overview
         links:
           - text: What is the .NET Community Toolkit?

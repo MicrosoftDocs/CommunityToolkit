@@ -43,7 +43,7 @@
     "externalReference": [],
     "globalMetadata": {
       "author": "brminnick",
-      "breadcrumb_path": "/communitytoolkit/breadcrumb/toc.json",
+      "breadcrumb_path": "/dotnet/communitytoolkit/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "GitHub",
       "feedback_github_repo": "MicrosoftDocs/CommunityToolkit",
@@ -57,7 +57,7 @@
     "fileMetadata": {
       "ms.technology": {
         "communitytoolkit/maui/**/**.md": "dotnet-maui-community-toolkit",
-        "communitytoolkit/windows/**/**.md": "windows-community-toolkit"      
+        "communitytoolkit/windows/**/**.md": "windows-community-toolkit"
       }
     },
     "template": [],

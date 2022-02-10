@@ -1,3 +1,11 @@
 - name: Docs
   tocHref: /
   topicHref: /
+  items:
+  - name: .NET
+    tocHref: /dotnet/
+    topicHref: /dotnet/index
+    items:
+    - name: .NET Community Toolkit
+      tocHref: /dotnet/communitytoolkit
+      topicHref: /dotnet/communitytoolkit/index

@@ -1,5 +1,5 @@
 ---
-title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit documentation
+title: .NET MAUI Community Toolkit documentation
 author: bijington
 description: The .NET MAUI Community Toolkit is a collection of reusable elements for application development with .NET MAUI, including animations, behaviors, converters, effects, and helpers.
 ms.date: 01/14/2022

@@ -1,9 +1,9 @@
-items:
 - name: .NET Community Toolkits
   href: index.yml
-- name: .NET Community Toolkit
-  href: /windows/communitytoolkit/
-- name: Windows Community Toolkit
-  href: /windows/communitytoolkit/
-- name: .NET MAUI Community Toolkit
-  href: maui/index.md
+  items:
+    - name: .NET Community Toolkit
+      href: /windows/communitytoolkit/
+    - name: Windows Community Toolkit
+      href: /windows/communitytoolkit/
+    - name: .NET MAUI Community Toolkit
+      href: maui/index.md

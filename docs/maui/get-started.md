@@ -1,7 +1,6 @@
 ---
 title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
-ms.author: bramin
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
 ms.date: 01/14/2022
 ---

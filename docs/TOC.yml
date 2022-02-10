@@ -3,6 +3,7 @@
   items:
     - name: Toolkits
       expanded: true
+      items:
         - name: .NET Community Toolkit
           href: /windows/communitytoolkit/
         - name: Windows Community Toolkit

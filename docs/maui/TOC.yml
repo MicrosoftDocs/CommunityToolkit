@@ -1,6 +1,6 @@
 items:
 - name: .NET MAUI Community Toolkit documentation
-  href: mauitoolkit.md
+  href: index.md
 - name: "Setup"
   items:
     - name: "Getting Started with the .NET MAUI Community Toolkit"

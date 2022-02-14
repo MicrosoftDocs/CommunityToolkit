@@ -54,33 +54,50 @@ This example creates a `Grid` object, with child `Label` and `Entry` objects. Th
 C# Markup enables this code to be re-written using its fluent API:
 
 ```csharp
-Content = new Grid
-{
-    Children =
-    {
-        new Label { Text = "Code:" }
-            .Column(0)
-            .Row(0),
+using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
-        new Entry
+class SampleContentPage : ContentPage
+{
+    public SampleContentPage()
+    {
+        Content = new Grid
+        {
+            Children =
             {
-                Placeholder = "Enter number",
-                Keyboard = Keyboard.Numeric,
-                BackgroundColor = Colors.AliceBlue,
-                TextColor = Colors.Black
+                RowDefinitions = Rows.Define(
+                    (Row.TextEntry, Auto)),
+
+                ColumnDefinitions = Columns.Define(
+                    (Column.Description, Star),
+                    (Column.Input, Stars(2))),
+
+                new Label { Text = "Code:" }
+                    .Row(Row.TextEntry).Column(Column.Description),
+
+                new Entry
+                {
+                    Placeholder = "Enter number",
+                    Keyboard = Keyboard.Numeric,
+                    BackgroundColor = Colors.AliceBlue,
+                    TextColor = Colors.Black
+                }.Row(Row.TextEntry).Column(Column.Input)
+                 .FontSize(15)
+                 .Height(44)
+                 .Margin(5, 5)
+                 .Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
             }
-            .FontSize(15)
-            .Height(44)
-            .Margin(5, 5)
-            .Column(1)
-            .Row(0)
-            .Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
+        };
     }
-};
+
+    enum Row { TextEntry }
+    enum Column { Description, Input }
+}
 ```
 
-This example is identical to the previous example, but the C# Markup fluent API simplifies the process of building the UI in C#.
+This example is identical to the previous example, but the C# Markup fluent API simplifies the process of building the UI in C#. 
+
+C# Markup extensions also allow developers to use an `enum` to define names for Columns and Rows (e.g. `Column.Input`).
 
 
 > [!NOTE]
-> C# Markup includes extension methods that set specific view properties. These extension methods are not meant to replace all property setters. Instead, they are designed to improve code readability, and can be used in combination with property setters. It's recommended to always use an extension method when one exists for a property, but you can choose your preferred balance.
+> C# Markup includes extension methods that set specific view properties. They are designed to improve code readability, and can be used in combination with property setters. It's recommended to always use an extension method when one exists for a property, but you can choose your preferred balance.

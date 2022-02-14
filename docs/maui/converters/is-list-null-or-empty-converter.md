@@ -13,7 +13,7 @@ The `IsListNullOrEmptyConverter` is a one way converter that converts `IEnumerab
 
 The `Convert` method returns `true` when `null` or an empty `IEnumerable` is passed in or `false` otherwise.
 
-The `ConvertBack` method is not supported. For the opposite behavior see the [`IsListNotNullOrEmptyConverter`](is-list-not-null-or-empty-converter.md).
+The `ConvertBack` method is not supported. For the opposite behavior see the [`IsListNotNullOrEmptyConverter`](../is-list-not-null-or-empty-converter.md).
 
 ## Syntax
 

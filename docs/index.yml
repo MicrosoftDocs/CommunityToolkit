@@ -10,8 +10,8 @@ metadata:
   ms.date: 01/27/2022
 
 landingContent:
-  - title: .NET Community Toolkit documentation
-    linkLists:
+  - title: .NET Community Toolkit
+    linkLists:  
       - linkListType: overview
         links:
           - text: What is the .NET Community Toolkit?

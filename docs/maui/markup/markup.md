@@ -21,7 +21,7 @@ The C# Markup package can be included in your project(s) as decribed in our [Get
 
 ## Example
 
-The following example shows setting the page content to a new [`Grid`](xref:Microsoft.Maui.Controls.Grid) containing a [`Label`](xref:Microsoft.Maui.Controls.Label) and an [`Entry`](xref:Microsoft.Maui.Controls.Entry), in C#:
+The following example shows setting the page content to a new `Grid` containing a `Label` and an `Entry`, in C#:
 
 ```csharp
 Grid grid = new Grid();
@@ -49,7 +49,7 @@ entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCo
 Content = grid;
 ```
 
-This example creates a [`Grid`](xref:Microsoft.Maui.Controls.Grid) object, with child [`Label`](xref:Microsoft.Maui.Controls.Label) and [`Entry`](xref:Microsoft.Maui.Controls.Entry) objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. Finally, the `Page.Content` property is set to the `Grid` object.
+This example creates a `Grid` object, with child `Label` and `Entry` objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. Finally, the `Page.Content` property is set to the `Grid` object.
 
 C# Markup enables this code to be re-written using its fluent API:
 

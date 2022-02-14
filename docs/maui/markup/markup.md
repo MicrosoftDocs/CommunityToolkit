@@ -9,7 +9,7 @@ ms.date: 02/13/2022
 
 C# Markup is a set of fluent helper methods and classes designed to simplify the process of building declarative .NET Multi-platform App UI (.NET MAUI) user interfaces in code. The fluent API provided by C# Markup is available in the `CommunityToolkit.Maui.Markup` namespace.
 
-[!INCLUDE [docs under construction](includes/preview-note.md)]
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
 
 Just as with XAML, C# Markup enables a clean separation between UI markup and UI logic. This can be achieved by separating UI markup and UI logic into distinct partial class files. For example, for a login page the UI markup would be in a file named `LoginPage.cs`, while the UI logic would be in a file named `LoginPage.logic.cs`.
 

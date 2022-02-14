@@ -7,6 +7,8 @@ ms.date: 02/13/2022
 
 # C# Markup
 
+## Overview
+
 C# Markup is a set of fluent helper methods and classes designed to simplify the process of building declarative .NET Multi-platform App UI (.NET MAUI) user interfaces in code. The fluent API provided by C# Markup is available in the `CommunityToolkit.Maui.Markup` namespace.
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
@@ -24,41 +26,47 @@ The C# Markup package can be included in your project(s) as decribed in our [Get
 The following example shows setting the page content to a new `Grid` containing a `Label` and an `Entry`, in C#:
 
 ```csharp
-Grid grid = new Grid
+class SampleContentPage : ContentPage
 {
-    RowDefinitions =
+    public SampleContentPage()
     {
-        new RowDefinition { Height = new GridLength(36, GridUnitType.Absolute) }
-    },
+        Grid grid = new Grid
+        {
+            RowDefinitions =
+            {
+                new RowDefinition { Height = new GridLength(36, GridUnitType.Absolute) }
+            },
 
-    ColumnDefinitions =
-    {
-        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }
+            ColumnDefinitions =
+            {
+                new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }
+            }
+        }
+
+        Label label = new Label { Text = "Code: " };
+        grid.Children.Add(label);
+        GridLayout.SetColumn(label, 0);
+        GridLayout.SetRow(label, 0);
+
+        Entry entry = new Entry
+        {
+            Placeholder = "Enter number",
+            Keyboard = Keyboard.Numeric,
+            BackgroundColor = Colors.AliceBlue,
+            TextColor = Colors.Black,
+            FontSize = 15,
+            HeightRequest = 44,
+            Margin = new Thickness(5)
+        };
+        grid.Children.Add(entry);
+        GridLayout.SetColumn(label, 1);
+        GridLayout.SetRow(label, 0);
+        entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCode));
+
+        Content = grid;
     }
 }
-
-Label label = new Label { Text = "Code: " };
-grid.Children.Add(label);
-GridLayout.SetColumn(label, 0);
-GridLayout.SetRow(label, 0);
-
-Entry entry = new Entry
-{
-    Placeholder = "Enter number",
-    Keyboard = Keyboard.Numeric,
-    BackgroundColor = Colors.AliceBlue,
-    TextColor = Colors.Black,
-    FontSize = 15,
-    HeightRequest = 44,
-    Margin = new Thickness(5)
-};
-grid.Children.Add(entry);
-GridLayout.SetColumn(label, 1);
-GridLayout.SetRow(label, 0);
-entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCode));
-
-Content = grid;
 ```
 
 This example creates a `Grid` object, with child `Label` and `Entry` objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. Finally, the `Page.Content` property is set to the `Grid` object.

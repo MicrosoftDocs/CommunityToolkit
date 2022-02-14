@@ -11,7 +11,7 @@ C# Markup is a set of fluent helper methods and classes designed to simplify the
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-Just as with XAML, C# Markup enables a clean separation between UI markup and UI logic. This can be achieved by separating UI markup and UI logic into distinct partial class files. For example, for a login page the UI markup would be in a file named `LoginPage.cs`, while the UI logic would be in a file named `LoginPage.logic.cs`.
+Just as with XAML, C# Markup enables a clean separation between UI (View)) and Business Logic (View Model).
 
 C# Markup is available on all platforms supported by .NET MAUI.
 
@@ -24,7 +24,19 @@ The C# Markup package can be included in your project(s) as decribed in our [Get
 The following example shows setting the page content to a new `Grid` containing a `Label` and an `Entry`, in C#:
 
 ```csharp
-Grid grid = new Grid();
+Grid grid = new Grid
+{
+    RowDefinitions =
+    {
+        new RowDefinition { Height = new GridLength(36, GridUnitType.Absolute) }
+    },
+
+    ColumnDefinitions =
+    {
+        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }
+    }
+}
 
 Label label = new Label { Text = "Code: " };
 grid.Children.Add(label);
@@ -62,15 +74,15 @@ class SampleContentPage : ContentPage
     {
         Content = new Grid
         {
+            RowDefinitions = Rows.Define(
+                (Row.TextEntry, 36)),
+
+            ColumnDefinitions = Columns.Define(
+                (Column.Description, Star),
+                (Column.Input, Stars(2))),
+
             Children =
             {
-                RowDefinitions = Rows.Define(
-                    (Row.TextEntry, 36)),
-
-                ColumnDefinitions = Columns.Define(
-                    (Column.Description, Star),
-                    (Column.Input, Stars(2))),
-
                 new Label { Text = "Code:" }
                     .Row(Row.TextEntry).Column(Column.Description),
 

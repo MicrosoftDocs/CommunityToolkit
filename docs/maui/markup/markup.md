@@ -65,7 +65,7 @@ class SampleContentPage : ContentPage
             Children =
             {
                 RowDefinitions = Rows.Define(
-                    (Row.TextEntry, Auto)),
+                    (Row.TextEntry, 36)),
 
                 ColumnDefinitions = Columns.Define(
                     (Column.Description, Star),

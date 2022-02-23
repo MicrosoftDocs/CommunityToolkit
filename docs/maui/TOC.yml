@@ -1,13 +1,13 @@
 items:
-- name: .NET MAUI Community Toolkit documentation
+- name: .NET MAUI Community Toolkit
   href: index.md
-- name: "Setup"
+- name: Setup
   items:
-    - name: "Getting Started with the .NET MAUI Community Toolkit"
+    - name: Get started
       href: get-started.md
 - name: "Converters"
   items:
     - name: "IsListNotNullOrEmptyConverter"
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"
-      href: converters/is-list-null-or-empty-converter.md
+      href: converters/is-list-null-or-empty-converter.m

@@ -7,7 +7,7 @@ ms.date: 02/11/2022
 
 # IsListNullOrEmptyConverter
 
-[!INCLUDE [docs under construction](includes/preview-note.md)]
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
 
 The `IsListNullOrEmptyConverter` is a one way converter that converts `IEnumerable` to a `bool` value. 
 
@@ -16,6 +16,9 @@ The `Convert` method returns `true` when `null` or an empty `IEnumerable` is pas
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsListNotNullOrEmptyConverter`](../is-list-not-null-or-empty-converter.md).
 
 ## Syntax
+
+### XAML
+The `IsListNullOrEmptyConverter` can be used as follows in XAML:
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -29,14 +32,48 @@ The `ConvertBack` method is not supported. For the opposite behavior see the [`I
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <VerticalStackLayout>
-
-        <Label Text="{Binding StringItemSource, Converter={StaticResource IsListNullOrEmptyConverter}}"
-               TextColor="Black" />
-
-    </VerticalStackLayout>
+    <Label Text="The list is empty"
+            IsVisible="{Binding MyList, Converter={StaticResource IsListNullOrEmptyConverter}}" />
 
 </ContentPage>
+```
+
+### C#
+
+The `IsListNullOrEmptyConverter` can be used as follows in C#:
+
+```csharp
+
+class IsListNullOrEmptyConverterPage : ContentPage
+{
+    public IsListNullOrEmptyConverterPage()
+    {
+        var label = new Label { Text = "The list is not empty" };
+
+		label.SetBinding(
+			Label.IsVisibleProperty,
+			new Binding(nameof(ViewModels.MyList), converter: new new IsListNullOrEmptyConverter());
+
+		Content = label;
+    }
+}
+```
+
+### C# Markup
+
+Our [`CommunityToolkit.Maui.Markup`](markup/markup.md) package provides a much more concise way to use this converter in C#.
+
+```csharp
+using CommunityToolkit.Maui.Markup;
+
+class IsListNullOrEmptyConverterPage : ContentPage
+{
+    public IsListNullOrEmptyConverterPage()
+    {
+        Content = new Label { Text = "The list is not empty" }
+            .Bind(Label.IsVisible, nameof(ViewModel.MyList), converter: new IsListNullOrEmptyConverter();
+    }
+}
 ```
 
 ## Examples

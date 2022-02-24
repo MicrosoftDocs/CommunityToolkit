@@ -5,7 +5,7 @@ items:
   items:
     - name: Get started
       href: get-started.md
-- name: Markup
+- name: C# Markup
   items:
-    - name: C# Markup
+    - name: Overview
       href: markup/markup.md

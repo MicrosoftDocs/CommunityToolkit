@@ -1,0 +1,12 @@
+- name: .NET Community Toolkits
+  href: index.yml
+  items:
+    - name: Toolkits
+      expanded: true
+      items:
+        - name: .NET Community Toolkit
+          href: /windows/communitytoolkit/
+        - name: Windows Community Toolkit
+          href: /windows/communitytoolkit/
+        - name: .NET MAUI Community Toolkit
+          href: maui/index.md

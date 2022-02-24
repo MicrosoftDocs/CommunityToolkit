@@ -24,7 +24,10 @@
       {
         "files": [
           "**/*.png",
-          "**/*.jpg"
+          "**/*.jpg",
+          "**/*.jpeg",
+          "**/*.gif",
+          "**/*.svg"
         ],
         "exclude": [
           "**/obj/**",
@@ -39,11 +42,24 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/communitytoolkit/breadcrumb/toc.json",
+      "author": "brminnick",
+      "breadcrumb_path": "/dotnet/communitytoolkit/breadcrumb/toc.json",
       "extendBreadcrumb": true,
-      "feedback_system": "None"
+      "feedback_system": "GitHub",
+      "feedback_github_repo": "MicrosoftDocs/CommunityToolkit",
+      "feedback_product_url": "https://developercommunity.visualstudio.com/",
+      "feedback_product_url": "https://github.com/CommunityToolkit/",
+      "ms.author": "bramin",
+      "ms.prod": "dotnet-communitytoolkit",
+      "titleSuffix": ".NET Community Toolkit",
+      "searchScope": [ ".NET Community Toolkit" ]
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "ms.technology": {
+        "communitytoolkit/maui/**/**.md": "dotnet-maui-community-toolkit",
+        "communitytoolkit/windows/**/**.md": "windows-community-toolkit"
+      }
+    },
     "template": [],
     "dest": "CommunityToolkit"
   }

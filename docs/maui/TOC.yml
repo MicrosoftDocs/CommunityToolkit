@@ -1,7 +1,0 @@
-items:
-- name: .NET MAUI Community Toolkit
-  href: index.md
-- name: Setup
-  items:
-    - name: Get started
-      href: get-started.md

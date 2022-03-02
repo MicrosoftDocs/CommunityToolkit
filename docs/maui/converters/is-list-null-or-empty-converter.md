@@ -52,7 +52,7 @@ class IsListNullOrEmptyConverterPage : ContentPage
 
 		label.SetBinding(
 			Label.IsVisibleProperty,
-			new Binding(nameof(ViewModels.MyList), converter: new IsListNullOrEmptyConverter());
+			new Binding(nameof(ViewModels.MyList), converter: new IsListNullOrEmptyConverter()));
 
 		Content = label;
     }
@@ -71,7 +71,7 @@ class IsListNullOrEmptyConverterPage : ContentPage
     public IsListNullOrEmptyConverterPage()
     {
         Content = new Label { Text = "The list is not empty" }
-            .Bind(Label.IsVisible, nameof(ViewModel.MyList), converter: new IsListNullOrEmptyConverter();
+            .Bind(Label.IsVisible, nameof(ViewModel.MyList), converter: new IsListNullOrEmptyConverter());
     }
 }
 ```

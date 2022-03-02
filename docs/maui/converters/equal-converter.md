@@ -53,7 +53,7 @@ class EqualConverterPage : ContentPage
 
 		label.SetBinding(
 			Label.IsVisibleProperty,
-			new Binding(nameof(ViewModels.MyValue), converter: new EqualConverter());
+			new Binding(nameof(ViewModels.MyValue), converter: new EqualConverter()));
 
 		Content = label;
     }

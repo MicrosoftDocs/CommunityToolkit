@@ -24,12 +24,12 @@ The `NotEqualConverter` can be used as follows in XAML:
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.NotEqualConverterPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <mct:NotEqualConverter x:Key="NotEqualConverter" />
+            <toolkit:NotEqualConverter x:Key="NotEqualConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

@@ -53,7 +53,10 @@ class EqualConverterPage : ContentPage
 
 		label.SetBinding(
 			Label.IsVisibleProperty,
-			new Binding(nameof(ViewModels.MyValue), converter: new EqualConverter()));
+			new Binding(
+				nameof(ViewModels.MyValue),
+				converter: new EqualConverter(),
+				converterParameter: 100));
 
 		Content = label;
     }
@@ -72,7 +75,11 @@ class EqualConverterPage : ContentPage
     public EqualConverterPage()
     {
         Content = new Label { Text = "The value is equal to 100" }
-            .Bind(Label.IsVisible, nameof(ViewModel.MyValue), converter: new EqualConverter();
+            .Bind(
+                Label.IsVisible,
+                nameof(ViewModel.MyValue),
+                converter: new EqualConverter(),
+                converterParameter: 100);
     }
 }
 ```

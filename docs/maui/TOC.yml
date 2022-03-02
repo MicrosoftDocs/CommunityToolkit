@@ -7,10 +7,14 @@ items:
       href: get-started.md
 - name: "Converters"
   items:
+    - name: "EqualConverter"
+      href: converters/equal-converter.md
     - name: "IsListNotNullOrEmptyConverter"
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"
       href: converters/is-list-null-or-empty-converter.md
+    - name: "NotEqualConverter"
+      href: converters/not-equal-converter.md
 - name: C# Markup
   items:
     - name: Overview

@@ -1,0 +1,103 @@
+---
+title: .NET MAUI MaxLengthReachedBehavior
+author: bijington
+description: "The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`."
+ms.date: 03/02/2022
+---
+
+# MaxLengthReachedBehavior
+
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
+
+The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. It can either trigger a `Command` or an event depending on the user's preferred scenario. Both the `Command` and event will include the resulting text of the `InputView`.
+
+Additionally it is possible to dismiss the keyboard when the maximum length is reached via the `ShouldDismissKeyboardAutomatically` property which defaults to `false`.
+
+## Syntax
+
+### XAML
+
+The `MaxLengthReachedBehavior` can be used as follows in XAML:
+
+```xaml
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.MaxLengthReachedBehaviorPage">
+
+    <Entry Placeholder="Start typing until MaxLength is reached..."
+           MaxLength="100">
+        <Entry.Behaviors>
+            <toolkit:MaxLengthReachedBehavior 
+                Command="{Binding MaxLengthReachedCommand}" />
+        </Entry.Behaviors>
+    </Entry>
+
+</ContentPage>
+```
+
+### C#
+
+The `MaxLengthReachedBehavior` can be used as follows in C#:
+
+```csharp
+
+class MaxLengthReachedBehaviorPage : ContentPage
+{
+    public MaxLengthReachedBehaviorPage()
+    {
+        var entry = new Entry
+        {
+            Placeholder = "Start typing until MaxLength is reached...",
+            MaxLength = 100
+        };
+
+        var behavior = new MaxLengthReachedBehavior();
+        behavior.SetBinding(
+            MaxLengthReachedBehavior.CommandProperty,
+            new Binding(
+                nameof(ViewModel.MaxLengthReachedCommand)
+            )
+        );
+
+        entry.Behaviors.Add(behavior);
+
+        Content = entry;
+    }
+}
+```
+
+### C# Markup
+
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+
+```csharp
+using CommunityToolkit.Maui.Markup;
+
+class MaxLengthReachedBehaviorPage : ContentPage
+{
+    public MaxLengthReachedBehaviorPage()
+    {
+        var entry = new Entry
+        {
+            Placeholder = "Start typing until MaxLength is reached...",
+            MaxLength = 100
+        };
+
+        entry.Behaviors.Add(
+            new MaxLengthReachedBehavior().Bind(
+                MaxLengthReachedBehavior.CommandProperty,
+                nameof(ViewModel.MaxLengthReachedCommand)));
+
+        Content = entry;
+    }
+}
+```
+
+## Examples
+
+You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/MaxLengthReachedBehaviorPage.xaml).
+
+## API
+
+You can find the source code for `MaxLengthReachedBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/MaxLengthReachedBehavior.cs).

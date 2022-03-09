@@ -76,7 +76,7 @@ class EqualConverterPage : ContentPage
     {
         Content = new Label { Text = "The value is equal to 100" }
             .Bind(
-                Label.IsVisible,
+                Label.IsVisibleProperty,
                 nameof(ViewModel.MyValue),
                 converter: new EqualConverter(),
                 converterParameter: 100);

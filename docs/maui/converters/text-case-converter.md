@@ -5,7 +5,7 @@ description: "The `TextCaseConverter` is a one way converter that allows users t
 ms.date: 03/02/2022
 ---
 
-# EqualConverter
+# TextCaseConverter
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 

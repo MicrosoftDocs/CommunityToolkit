@@ -94,6 +94,19 @@ class MaxLengthReachedBehaviorPage : ContentPage
 }
 ```
 
+## Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| `Command` | [ICommand](xref:System.Windows.Input.ICommand) | The command that is executed when the user has reached the maximum length. The parameter of the command will contain the `Text` of the `InputView`. |
+| `ShouldDismissKeyboardAutomatically` | `bool` | Indicates whether or not the keyboard should be dismissed automatically when the maximum length is reached. |
+
+## Events
+
+|Event | Description  |
+|---------|---------|
+| `MaxLengthReached` | The event that is raised when the user has reached the maximum length. The event args will contain the `Text` of the `InputView`. |
+
 ## Examples
 
 You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/MaxLengthReachedBehaviorPage.xaml).

@@ -5,6 +5,10 @@ items:
   items:
     - name: Get started
       href: get-started.md
+- name: "Behaviors"
+  items:
+    - name: "MaxLengthReachedBehavior"
+      href: behaviors/maximum-length-reached-behavior.md
 - name: "Converters"
   items:
     - name: "EqualConverter"

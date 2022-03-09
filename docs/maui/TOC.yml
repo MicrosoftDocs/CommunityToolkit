@@ -11,6 +11,8 @@ items:
       href: behaviors/maximum-length-reached-behavior.md
 - name: "Converters"
   items:
+    - name: "DoubleToIntConverter"
+      href: converters/double-to-int-converter.md
     - name: "EqualConverter"
       href: converters/equal-converter.md
     - name: "IsListNotNullOrEmptyConverter"

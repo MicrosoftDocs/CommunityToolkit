@@ -11,6 +11,8 @@ items:
       href: behaviors/maximum-length-reached-behavior.md
 - name: "Converters"
   items:
+    - name: Converters
+      href: index.md
     - name: "EqualConverter"
       href: converters/equal-converter.md
     - name: "IsListNotNullOrEmptyConverter"

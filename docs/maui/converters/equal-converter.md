@@ -1,7 +1,7 @@
 ---
-title: .NET MAUI EqualConverter
+title: EqualConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The EqualConverter is a one way converter that returns a `bool` indicating whether the binding value is equal to another specified value."
+description: "The EqualConverter is a one way converter that returns a bool indicating whether the binding value is equal to another specified value."
 ms.date: 03/02/2022
 ---
 

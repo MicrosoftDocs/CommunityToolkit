@@ -1,7 +1,7 @@
 ---
-title: .NET MAUI TextCaseConverter
+title: TextCaseConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The `TextCaseConverter` is a one way converter that allows users to convert the casing of an incoming `string` type binding."
+description: "The TextCaseConverter is a one way converter that allows users to convert the casing of an incoming string type binding."
 ms.date: 03/02/2022
 ---
 

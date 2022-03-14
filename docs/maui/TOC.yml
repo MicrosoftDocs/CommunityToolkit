@@ -11,8 +11,10 @@ items:
       href: behaviors/maximum-length-reached-behavior.md
 - name: "Converters"
   items:
-    - name: Converters
+    - name: Overview
       href: index.md
+    - name: "DoubleToIntConverter"
+      href: converters/double-to-int-converter.md
     - name: "EqualConverter"
       href: converters/equal-converter.md
     - name: "IsListNotNullOrEmptyConverter"
@@ -21,6 +23,8 @@ items:
       href: converters/is-list-null-or-empty-converter.md
     - name: "NotEqualConverter"
       href: converters/not-equal-converter.md
+    - name: "TextCaseConverter"
+      href: converters/text-case-converter.md
 - name: C# Markup
   items:
     - name: Overview

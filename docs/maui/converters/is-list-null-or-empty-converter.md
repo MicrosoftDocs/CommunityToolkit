@@ -1,5 +1,5 @@
 ---
-title: .NET MAUI IsListNullOrEmptyConverter
+title: IsListNullOrEmptyConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The IsListNullOrEmptyConverter is a one way converter that converts IEnumerable to a bool value."
 ms.date: 02/11/2022
@@ -71,7 +71,7 @@ class IsListNullOrEmptyConverterPage : ContentPage
     public IsListNullOrEmptyConverterPage()
     {
         Content = new Label { Text = "The list is not empty" }
-            .Bind(Label.IsVisible, nameof(ViewModel.MyList), converter: new IsListNullOrEmptyConverter());
+            .Bind(Label.IsVisibleProperty, nameof(ViewModel.MyList), converter: new IsListNullOrEmptyConverter());
     }
 }
 ```

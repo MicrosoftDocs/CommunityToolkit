@@ -1,7 +1,7 @@
 ---
-title: .NET MAUI DoubleToIntConverter
+title: DoubleToIntConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The DoubleToIntConverter is a converter that allows users to convert an incoming `double` value to an `int` and vice-versa."
+description: "The DoubleToIntConverter is a converter that allows users to convert an incoming double value to an int and vice-versa."
 ms.date: 03/09/2022
 ---
 

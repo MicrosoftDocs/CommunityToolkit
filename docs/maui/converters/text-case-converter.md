@@ -78,7 +78,7 @@ class TextCaseConverterPage : ContentPage
     {
         Content = new Label()
             .Bind(
-                Label.Text,
+                Label.TextProperty,
                 nameof(ViewModel.MyValue),
                 converter: new TextCaseConverter { Type = TextCaseType.Upper });
     }

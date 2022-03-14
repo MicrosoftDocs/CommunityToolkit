@@ -1,7 +1,7 @@
 ---
-title: .NET MAUI NotEqualConverter
+title: NotEqualConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The NotEqualConverter is a one way converter that returns a `bool` indicating whether the binding value is not equal to another specified value."
+description: "The NotEqualConverter is a one way converter that returns a bool indicating whether the binding value is not equal to another specified value."
 ms.date: 03/02/2022
 ---
 
@@ -76,7 +76,7 @@ class NotEqualConverterPage : ContentPage
     {
         Content = new Label { Text = "The value is not equal to 100" }
             .Bind(
-                Label.IsVisible,
+                Label.IsVisibleProperty,
                 nameof(ViewModel.MyValue),
                 converter: new EqualConverter(),
                 converterParameter: 100);

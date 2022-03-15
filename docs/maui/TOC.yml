@@ -12,7 +12,7 @@ items:
 - name: "Converters"
   items:
     - name: Overview
-      href: index.md
+      href: converters/index.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
     - name: "EqualConverter"

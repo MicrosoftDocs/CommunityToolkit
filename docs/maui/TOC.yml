@@ -5,3 +5,31 @@ items:
   items:
     - name: Get started
       href: get-started.md
+- name: "Behaviors"
+  items:
+    - name: "MaxLengthReachedBehavior"
+      href: behaviors/maximum-length-reached-behavior.md
+- name: "Converters"
+  items:
+    - name: Overview
+      href: converters/index.md
+    - name: "DoubleToIntConverter"
+      href: converters/double-to-int-converter.md
+    - name: "EqualConverter"
+      href: converters/equal-converter.md
+    - name: "IntToBoolConverter"
+      href: converters/int-to-bool-converter.md
+    - name: "InvertedBoolConverter"
+      href: converters/inverted-bool-converter.md
+    - name: "IsListNotNullOrEmptyConverter"
+      href: converters/is-list-not-null-or-empty-converter.md
+    - name: "IsListNullOrEmptyConverter"
+      href: converters/is-list-null-or-empty-converter.md
+    - name: "NotEqualConverter"
+      href: converters/not-equal-converter.md
+    - name: "TextCaseConverter"
+      href: converters/text-case-converter.md
+- name: C# Markup
+  items:
+    - name: Overview
+      href: markup/markup.md

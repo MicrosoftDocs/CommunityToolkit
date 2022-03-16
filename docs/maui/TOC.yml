@@ -19,6 +19,8 @@ items:
       href: converters/equal-converter.md
     - name: "IntToBoolConverter"
       href: converters/int-to-bool-converter.md
+    - name: "InvertedBoolConverter"
+      href: converters/inverted-bool-converter.md
     - name: "IsListNotNullOrEmptyConverter"
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"

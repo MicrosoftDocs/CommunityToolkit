@@ -90,4 +90,4 @@ You can find an example of this converter in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `EqualConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/EqualConverter.cs).
+You can find the source code for `EqualConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/EqualConverter.shared.cs).

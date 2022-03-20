@@ -133,7 +133,7 @@ C# Markup includes a series of layout extension methods that support positioning
 
 #AbsoluteLayout LayoutBounds
 
-One or a combination of `double`, `Point` `Size` and `Rect` can be used to define the `LayoutBounds` property of [AbsoluteLayout](https://docs.microsoft.com/en-us/dotnet/maui/user-interface/layouts/absolutelayout). The following code shows an example of how to define and consume AbsoluteLayout markup extension methods. 
+One or a combination of `double`, `Point` `Size` and `Rect` can be used to define the `LayoutBounds` property of [AbsoluteLayout](https://docs.microsoft.com/dotnet/maui/user-interface/layouts/absolutelayout). The following code shows an example of how to define and consume AbsoluteLayout markup extension methods. 
 
 ```
 {

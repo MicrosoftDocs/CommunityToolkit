@@ -121,3 +121,68 @@ C# Markup extensions also allow developers to use an `enum` to define names for 
 
 > [!NOTE]
 > C# Markup includes extension methods that set specific view properties. They are designed to improve code readability, and can be used in combination with property setters. It's recommended to always use an extension method when one exists for a property, but you can choose your preferred balance.
+
+
+## Layout
+
+C# Markup includes a series of layout extension methods that support positioning views in layouts, and content in views:
+
+| Type | Extension methods |
+| ----------- | ----------- |
+| `AbsoluteLayout` | `LayoutFlags`, `LayoutBounds` |
+
+#AbsoluteLayout LayoutBounds
+
+One or a combination of `double`, `Point` `Size` and `Rect` can be used to define the `LayoutBounds` property of [AbsoluteLayout](https://docs.microsoft.com/en-us/dotnet/maui/user-interface/layouts/absolutelayout). The following code shows an example of how to define and consume AbsoluteLayout markup extension methods. 
+
+```
+{
+    using CommunityToolkit.Maui.Markup;
+    using Microsoft.Maui.Layouts;
+    public class AbsoluteLayoutSamplePage : ContentPage
+    {
+        public AbsoluteLayoutSamplePage()
+        {
+            Content = new AbsoluteLayout
+            {
+                Children =
+                {
+                    new BoxView
+                    {
+                        Color = Colors.Blue,
+                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                    .LayoutBounds(0.5,0,100,25),
+
+                    new BoxView
+                    {
+                        Color = Colors.Green,
+                        WidthRequest = 25,
+                        HeightRequest = 100,
+                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                    .LayoutBounds(0,0.5),
+
+                    new BoxView
+                    {
+                        Color = Colors.Red,
+                        WidthRequest = 25,
+                        HeightRequest = 100,
+                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                    .LayoutBounds(new Point(1,0.5)),
+
+                    new BoxView
+                    {
+                        Color = Colors.Grey,
+                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                    .LayoutBounds(new Point(0.5,1), new Size(100,25)),
+
+                    new BoxView
+                    {
+                        Color = Colors.Tan,
+                    }.LayoutFlags(AbsoluteLayoutFlags.All)
+                    .LayoutBounds(new Rect(0.5,0.5,1d/3d, 1d/3d))
+                }
+            };
+        }
+    }
+}
+```

@@ -13,7 +13,7 @@ C# Markup is a set of fluent helper methods and classes designed to simplify the
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-Just as with XAML, C# Markup enables a clean separation between UI (View)) and Business Logic (View Model).
+Just as with XAML, C# Markup enables a clean separation between UI (View) and Business Logic (View Model).
 
 C# Markup is available on all platforms supported by .NET MAUI.
 
@@ -131,58 +131,57 @@ C# Markup includes a series of layout extension methods that support positioning
 | ----------- | ----------- |
 | `AbsoluteLayout` | `LayoutFlags`, `LayoutBounds` |
 
-#AbsoluteLayout LayoutBounds
+## AbsoluteLayout LayoutBounds
 
-One or a combination of `double`, `Point` `Size` and `Rect` can be used to define the `LayoutBounds` property of [AbsoluteLayout](https://docs.microsoft.com/dotnet/maui/user-interface/layouts/absolutelayout). The following code shows an example of how to define and consume AbsoluteLayout markup extension methods. 
+One or a combination of `double`, `Point` `Size` and `Rect` can be used to define the `LayoutBounds` property of [AbsoluteLayout](/dotnet/maui/user-interface/layouts/absolutelayout). The following code shows an example of how to define and consume AbsoluteLayout markup extension methods. 
 
-```
+```csharp
+using CommunityToolkit.Maui.Markup;
+using Microsoft.Maui.Layouts;
+
+public class AbsoluteLayoutSamplePage : ContentPage
 {
-    using CommunityToolkit.Maui.Markup;
-    using Microsoft.Maui.Layouts;
-    public class AbsoluteLayoutSamplePage : ContentPage
+    public AbsoluteLayoutSamplePage()
     {
-        public AbsoluteLayoutSamplePage()
+        Content = new AbsoluteLayout
         {
-            Content = new AbsoluteLayout
+            Children =
             {
-                Children =
+                new BoxView
                 {
-                    new BoxView
-                    {
-                        Color = Colors.Blue,
-                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                    .LayoutBounds(0.5,0,100,25),
+                    Color = Colors.Blue,
+                }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                .LayoutBounds(0.5, 0, 100, 25),
 
-                    new BoxView
-                    {
-                        Color = Colors.Green,
-                        WidthRequest = 25,
-                        HeightRequest = 100,
-                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                    .LayoutBounds(0,0.5),
+                new BoxView
+                {
+                    Color = Colors.Green,
+                    WidthRequest = 25,
+                    HeightRequest = 100,
+                }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                .LayoutBounds(0, 0.5),
 
-                    new BoxView
-                    {
-                        Color = Colors.Red,
-                        WidthRequest = 25,
-                        HeightRequest = 100,
-                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                    .LayoutBounds(new Point(1,0.5)),
+                new BoxView
+                {
+                    Color = Colors.Red,
+                    WidthRequest = 25,
+                    HeightRequest = 100,
+                }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                .LayoutBounds(new Point(1, 0.5)),
 
-                    new BoxView
-                    {
-                        Color = Colors.Grey,
-                    }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                    .LayoutBounds(new Point(0.5,1), new Size(100,25)),
+                new BoxView
+                {
+                    Color = Colors.Grey,
+                }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
+                .LayoutBounds(new Point(0.5, 1), new Size(100, 25)),
 
-                    new BoxView
-                    {
-                        Color = Colors.Tan,
-                    }.LayoutFlags(AbsoluteLayoutFlags.All)
-                    .LayoutBounds(new Rect(0.5,0.5,1d/3d, 1d/3d))
-                }
-            };
-        }
+                new BoxView
+                {
+                    Color = Colors.Tan,
+                }.LayoutFlags(AbsoluteLayoutFlags.All)
+                .LayoutBounds(new Rect(0.5, 0.5, 1d/3d, 1d/3d))
+            }
+        };
     }
 }
 ```

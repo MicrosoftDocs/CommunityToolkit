@@ -13,8 +13,12 @@ items:
   items:
     - name: Overview
       href: converters/index.md
+    - name: "DateTimeOffsetConverter"
+      href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
+    - name: "EnumToIntConverter"
+      href: converters/enumtointconverter.md
     - name: "EqualConverter"
       href: converters/equal-converter.md
     - name: "IntToBoolConverter"
@@ -29,10 +33,6 @@ items:
       href: converters/not-equal-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
-    - name: "DateTimeOffsetConverter"
-      href: converters/datetimeoffsetconverter.md
-    - name: "EnumToIntConverter"
-      href: converters/enumtointconverter.md
 - name: C# Markup
   items:
     - name: Overview

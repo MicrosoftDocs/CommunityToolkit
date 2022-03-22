@@ -29,7 +29,7 @@ The `DateTimeOffsetConverter` can be used as follows in XAML:
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-            <Label Text="The DatePicker bellow is bound to a Property of type DateTimeOffset."
+            <Label Text="The DatePicker below is bound to a Property of type DateTimeOffset."
                    Margin="16"
                    HorizontalOptions="Center"
                    FontAttributes="Bold" />

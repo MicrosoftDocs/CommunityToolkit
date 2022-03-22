@@ -33,3 +33,5 @@ items:
   items:
     - name: Overview
       href: markup/markup.md
+    - name: "View in AbsoluteLayout extensions"
+      href: markup/extensions/view-in-absolute-layout-extensions.md

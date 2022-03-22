@@ -13,7 +13,7 @@ C# Markup is a set of fluent helper methods and classes designed to simplify the
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-Just as with XAML, C# Markup enables a clean separation between UI (View)) and Business Logic (View Model).
+Just as with XAML, C# Markup enables a clean separation between UI (View) and Business Logic (View Model).
 
 C# Markup is available on all platforms supported by .NET MAUI.
 

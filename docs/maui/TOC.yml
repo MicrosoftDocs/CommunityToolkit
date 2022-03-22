@@ -29,6 +29,8 @@ items:
       href: converters/not-equal-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+    - name: "DateTimeOffsetConverter"
+      href: converters/datetimeoffsetconverter.md
 - name: C# Markup
   items:
     - name: Overview

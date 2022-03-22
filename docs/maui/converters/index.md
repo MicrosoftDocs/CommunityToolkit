@@ -25,3 +25,4 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`IsListNullOrEmptyConverter`](is-list-null-or-empty-converter.md) | The `IsListNullOrEmptyConverter` is a one way converter that converts `IEnumerable` to a `bool` value. |
 | [`NotEqualConverter`](not-equal-converter.md) | The `NotEqualConverter` is a one way converter that returns a `bool` indicating whether the binding value is not equal to another specified value. |
 | [`TextCaseConverter`](text-case-converter.md) | The `TextCaseConverter` is a one way converter that allows users to convert the casing of an incoming `string` type binding. The `Type` property is used to define what kind of casing will be applied to the string. |
+| [`DateTimeOffsetConverter`](datetimeoffsetconverter.md) | The `DateTimeOffsetConverter` is a converter that allows users to convert a `DateTimeOffset` to a `DateTime`

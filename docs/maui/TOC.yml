@@ -31,6 +31,8 @@ items:
       href: converters/text-case-converter.md
     - name: "DateTimeOffsetConverter"
       href: converters/datetimeoffsetconverter.md
+    - name: "EnumToIntConverter"
+      href: converters/enumtointconverter.md
 - name: C# Markup
   items:
     - name: Overview

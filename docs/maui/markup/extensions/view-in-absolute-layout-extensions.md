@@ -80,6 +80,6 @@ You can find an example of these extension methods in action in the [.NET MAUI C
 
 ## API
 
-You can find the source code for `ViewInAbsoluteLayout` extension methods over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/ViewInAbsoluteLayoutExtensions.cs).
+You can find the source code for the `AbsoluteLayout` extension methods over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/AbsoluteLayoutExtensions.cs).
 
 

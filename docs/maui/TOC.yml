@@ -15,18 +15,18 @@ items:
       href: converters/index.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
-    - name: "EqualConverter"
-      href: converters/equal-converter.md
     - name: "IntToBoolConverter"
       href: converters/int-to-bool-converter.md
     - name: "InvertedBoolConverter"
       href: converters/inverted-bool-converter.md
+    - name: "IsEqualConverter"
+      href: converters/is-equal-converter.md
     - name: "IsListNotNullOrEmptyConverter"
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"
       href: converters/is-list-null-or-empty-converter.md
-    - name: "NotEqualConverter"
-      href: converters/not-equal-converter.md
+    - name: "IsNotEqualConverter"
+      href: converters/is-not-equal-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
     - name: "DateTimeOffsetConverter"

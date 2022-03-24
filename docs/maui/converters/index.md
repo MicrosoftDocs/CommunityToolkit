@@ -17,6 +17,10 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 
 | Converter | Description |
 | --------- | ----------- |
+| [`ColorToBlackOrWhiteConverter`](color-to-black-or-white-converter.md) | The `ColorToBlackOrWhiteConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White`. |
+| [`ColorToColorForTextConverter`](color-to-color-for-text-converter.md) | The `ColorToColorForTextConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White` based on whether it is determined as being dark for the human eye. |
+| [`ColorToGrayScaleColorConverter`](color-to-gray-scale-color-converter.md) | The `ColorToGrayScaleColorConverter` is a one way converter that allows users to convert an incoming `Color` to a grayscale `Color`. |
+| [`ColorToInverseColorConverter`](color-to-inverse-color-converter.md) | The `ColorToInverseColorConverter` is a one way converter that allows users to convert an incoming `Color` to its inverse. |
 | [`DoubleToIntConverter`](double-to-int-converter.md) | The `DoubleToIntConverter` is a converter that allows users to convert an incoming `double` value to an `int` and vice-versa. Optionally the user can provide a multiplier to the conversion through the `Ratio` property. |
 | [`IntToBoolConverter`](int-to-bool-converter.md) | The `IntToBoolConverter` is a converter that allows users to convert an incoming `int` value to a `bool` and vice-versa. |
 | [`InvertedBoolConverter`](inverted-bool-converter.md) | The `InvertedBoolConverter` is a converter that allows users to convert a `bool` to its inverse - `true` becomes `false` and vice-versa. |

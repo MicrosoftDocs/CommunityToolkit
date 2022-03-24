@@ -5,7 +5,7 @@ description: "The ColorToGrayScaleColorConverter is a one way converter that all
 ms.date: 03/24/2022
 ---
 
-# ColorToBlackOrWhiteConverter
+# ColorToGrayScaleColorConverter
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 

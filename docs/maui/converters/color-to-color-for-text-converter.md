@@ -5,7 +5,7 @@ description: "The ColorToColorForTextConverter is a one way converter that allow
 ms.date: 03/24/2022
 ---
 
-# ColorToBlackOrWhiteConverter
+# ColorToColorForTextConverter
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 

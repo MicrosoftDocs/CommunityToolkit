@@ -1,11 +1,11 @@
 ---
-title: ColorToGrayScaleColorConverter - .NET MAUI Community Toolkit
+title: ColorToInverseColorConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToInverseColorConverter is a one way converter that allows users to convert an incoming Color to its inverse."
 ms.date: 03/24/2022
 ---
 
-# ColorToBlackOrWhiteConverter
+# ColorToInverseColorConverter
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 

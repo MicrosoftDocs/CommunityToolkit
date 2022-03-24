@@ -25,6 +25,8 @@ items:
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"
       href: converters/is-list-null-or-empty-converter.md
+    - name: "ItemTappedEventArgsConverter"
+      href: converters/itemtappedeventargsconverter.md
     - name: "NotEqualConverter"
       href: converters/not-equal-converter.md
     - name: "TextCaseConverter"

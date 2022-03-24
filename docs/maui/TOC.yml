@@ -55,8 +55,12 @@ items:
       href: converters/is-string-null-or-empty-converter.md
     - name: "IsStringNullOrWhiteSpaceConverter"
       href: converters/is-string-null-or-whitespace-converter.md
+    - name: "ItemTappedEventArgsConverter"
+      href: converters/itemtappedeventargsconverter.md
     - name: "ListToStringConverter"
       href: converters/list-to-string-converter.md
+    - name: "NotEqualConverter"
+      href: converters/not-equal-converter.md
     - name: "StringToListConverter"
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"

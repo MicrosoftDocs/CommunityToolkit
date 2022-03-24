@@ -96,11 +96,9 @@ class DateTimeOffsetConverterPage : ContentPage
 {
     public DateTimeOffsetConverterPage()
     {
-        Content = new Label()
-            .Bind(
-                Label.TextProperty,
-                nameof(ViewModel.MyValue),
-                converter: new DateTimeOffsetConverterPage());
+        Content = new ListView{HasUnevenRows = true}
+                        .Bind(ListView.ItemsSource, nameof(ViewModel.Items))
+                        
     }
 }
 ```

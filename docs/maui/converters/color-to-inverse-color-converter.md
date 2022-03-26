@@ -34,7 +34,7 @@ The `ColorToInverseColorConverter` can be used as follows in XAML:
     </ContentPage.Resources>
 
     <Label Text="This Text is the inverse of the Background"
-           TextColor="{Binding BackgroundColor, Converter={StaticResource ColorToInverseColorConverter}}" />
+           TextColor="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BackgroundColor, Converter={StaticResource ColorToInverseColorConverter}}" />
 
 </ContentPage>
 ```
@@ -53,8 +53,9 @@ class ColorToInverseColorConverterPage : ContentPage
 		label.SetBinding(
 			Label.TextColorProperty,
 			new Binding(
-				nameof(ViewModels.BackgroundColor),
-				converter: new ColorToInverseColorConverter()));
+				nameof(ContentPage.BackgroundColor),
+				converter: new ColorToInverseColorConverter(),
+                source: this));
 
 		Content = label;
     }
@@ -75,8 +76,9 @@ class ColorToInverseColorConverterPage : ContentPage
         Content = new Label { Text = "This Text is the inverse of the Background" }
             .Bind(
                 Label.TextColorProperty,
-                nameof(ViewModel.BackgroundColor),
-                converter: new ColorToInverseColorConverter());
+                nameof(ContentPage.BackgroundColor),
+                converter: new ColorToInverseColorConverter(),
+                source: this);
     }
 }
 ```

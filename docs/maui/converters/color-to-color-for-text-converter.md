@@ -34,7 +34,7 @@ The `ColorToColorForTextConverter` can be used as follows in XAML:
     </ContentPage.Resources>
 
     <Label Text="The Text is showing in an optimum color against the background"
-           TextColor="{Binding BackgroundColor, Converter={StaticResource ColorToColorForTextConverter}}" />
+           TextColor="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BackgroundColor, Converter={StaticResource ColorToColorForTextConverter}}" />
 
 </ContentPage>
 ```
@@ -53,8 +53,9 @@ class ColorToColorForTextConverterPage : ContentPage
 		label.SetBinding(
 			Label.TextColorProperty,
 			new Binding(
-				nameof(ViewModels.BackgroundColor),
-				converter: new ColorToColorForTextConverter()));
+				nameof(ContentPage.BackgroundColor),
+				converter: new ColorToColorForTextConverter(),
+				source: this));
 
 		Content = label;
     }
@@ -73,10 +74,11 @@ class ColorToColorForTextConverterPage : ContentPage
     public ColorToColorForTextConverterPage()
     {
         Content = new Label { Text = "The Text is showing in an optimum color against the background" }
-            .Bind(
-                Label.TextColorProperty,
-                nameof(ViewModel.BackgroundColor),
-                converter: new ColorToColorForTextConverter());
+			.Bind(
+				Label.TextColorProperty,
+				nameof(ContentPage.BackgroundColor),
+				converter: new ColorToColorForTextConverter(),
+				source: this);
     }
 }
 ```

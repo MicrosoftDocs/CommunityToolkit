@@ -25,7 +25,7 @@ The `ColorToInverseColorConverter` can be used as follows in XAML:
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.ColorToGrayScaleColorConverterPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters. ColorToInverseColorConverterPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -89,4 +89,4 @@ You can find an example of this converter in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `ColorToGrayScaleColorConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/ColorToColorConverters.shared.cs).
+You can find the source code for `ColorToInverseColorConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/ColorToColorConverters.shared.cs).

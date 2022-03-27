@@ -35,5 +35,7 @@ items:
   items:
     - name: Overview
       href: markup/markup.md
-    - name: "View in AbsoluteLayout extensions"
-      href: markup/extensions/view-in-absolute-layout-extensions.md
+    - name: "AbsoluteLayout extensions"
+      href: markup/extensions/absolute-layout-extensions.md
+    - name: "BindableObject extensions"
+      href: markup/extensions/bindable-object-extensions.md

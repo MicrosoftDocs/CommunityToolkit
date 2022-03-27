@@ -21,6 +21,34 @@ C# Markup is available on all platforms supported by .NET MAUI.
 
 The C# Markup package can be included in your project(s) as decribed in our [Getting started](../get-started.md#communitytoolkitmauimarkup) guide.
 
+## Examples
+
+Here are some brief examples showing how common tasks can be achieved through the use of the Markup package.
+
+### Bindings
+
+First let's take a look at how a Binding could be defined without the Markup package:
+
+```csharp
+var entry = new Entry();
+entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCode));
+```
+
+Markup allows us to define the binding fluently and therefore chain multiple methods together to reduce the verbosity of our code:
+
+```csharp
+new Entry().Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
+```
+
+For further details on the possible options for the `Bind` method refer to the [`BindableObject` extensions documentation](extensions/bindable-object-extensions.md).
+
+## Extensions
+
+| Extension | Description |
+| --------- | ----------- |
+| [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+| [`BindableObject`](extensions/bindable-object-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+
 ## Example
 
 The following example shows setting the page content to a new `Grid` containing a `Label` and an `Entry`, in C#:

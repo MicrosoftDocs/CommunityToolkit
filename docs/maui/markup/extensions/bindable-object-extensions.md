@@ -5,7 +5,7 @@ description: The BindableObject extensions provide a series of extension methods
 ms.date: 03/27/2022
 ---
 
-# AbsoluteLayout extensions
+# BindableObject extensions
 
 The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`.
 

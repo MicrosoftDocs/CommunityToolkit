@@ -97,3 +97,11 @@ The follow example will create an `Entry` and add a [`MaxLengthReachedBehavior`]
 ```csharp
 new Entry().Behaviors(new MaxLengthReachedBehavior());
 ```
+
+## Examples
+
+You can find an example of these extension methods in action throughout the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/).
+
+## API
+
+You can find the source code for the `VisualElement` extension methods over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/VisualElementExtensions.cs).

@@ -43,7 +43,7 @@ items:
   items:
     - name: Overview
       href: markup/markup.md
-    - name: "View in AbsoluteLayout extensions"
-      href: markup/extensions/view-in-absolute-layout-extensions.md
-    - name: "VisualElement extensions"
+    - name: "AbsoluteLayout Extensions"
+      href: markup/extensions/absolute-layout-extensions.md
+    - name: "VisualElement Extensions"
       href: markup/extensions/visual-element-extensions.md

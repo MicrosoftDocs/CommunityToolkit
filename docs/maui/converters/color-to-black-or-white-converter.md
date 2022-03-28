@@ -1,7 +1,7 @@
 ---
 title: ColorToBlackOrWhiteConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The ColorToBlackOrWhiteConverter is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either Colors.Black or Colors.White."
+description: "The ColorToBlackOrWhiteConverter is a one way converter that allows users to convert an incoming Color to a monochrome value of either Colors.Black or Colors.White."
 ms.date: 03/24/2022
 ---
 

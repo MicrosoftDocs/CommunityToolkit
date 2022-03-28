@@ -7,4 +7,4 @@ This repository houses documentation for multiple toolkits so please choose the 
 ## .NET MAUI Community Toolkit
 
 The contributing guidelines for the .NET MAUI Community Toolkit can be found at:
-- [Contributing guidelines](docs/maui/CONTRIBUTING.md)
+- [Contributing guidelines](contributing/contributing-maui.md)

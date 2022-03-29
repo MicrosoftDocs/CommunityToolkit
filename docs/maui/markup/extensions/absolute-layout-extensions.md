@@ -1,11 +1,11 @@
 ---
-title: View in AbsoluteLayout - .NET MAUI Community Toolkit
+title: AbsoluteLayout Extensions - .NET MAUI Community Toolkit
 author: bijington
 description: The View in AbsoluteLayout extensions provide a series of extension methods that support positioning Views in AbsoluteLayouts.
 ms.date: 03/21/2022
 ---
 
-# View in AbsoluteLayout extensions
+# AbsoluteLayout Extensions
 
 The View in AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s.
 
@@ -76,7 +76,7 @@ public class AbsoluteLayoutSamplePage : ContentPage
 
 ## Examples
 
-You can find an example of these extension methods in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/Pages/AbsoluteLayoutSamplePage.cs).
+You can find an example of these extension methods in action throughout the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/).
 
 ## API
 

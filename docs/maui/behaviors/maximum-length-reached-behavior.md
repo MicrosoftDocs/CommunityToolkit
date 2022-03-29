@@ -78,18 +78,14 @@ class MaxLengthReachedBehaviorPage : ContentPage
 {
     public MaxLengthReachedBehaviorPage()
     {
-        var entry = new Entry
+        Content = new Entry
         {
             Placeholder = "Start typing until MaxLength is reached...",
             MaxLength = 100
-        };
-
-        entry.Behaviors.Add(
+        }.Behaviors(
             new MaxLengthReachedBehavior().Bind(
                 MaxLengthReachedBehavior.CommandProperty,
                 nameof(ViewModel.MaxLengthReachedCommand)));
-
-        Content = entry;
     }
 }
 ```

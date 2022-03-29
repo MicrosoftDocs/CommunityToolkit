@@ -15,7 +15,15 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is the .NET Community Toolkit?
-            url: /windows/communitytoolkit/
+            url: dotnet/index.md
+      - linkListType: reference
+        links:
+          - text: Introduction to the MVVM Toolkit
+            url: /windows/communitytoolkit/mvvm/introduction
+          - text: Introduction to the Diagnostics Package
+            url: /windows/communitytoolkit/diagnostics/introduction
+          - text: Introduction to the High Performance Package
+            url: /windows/communitytoolkit/high-performance/introduction
       - linkListType: get-started
         links:
           - text: Installation
@@ -26,10 +34,20 @@ landingContent:
         links:
           - text: What is the Windows Community Toolkit?
             url: /windows/communitytoolkit/
+      - linkListType: quickstart
+        links:
+          - text: Windows Community Toolkit Sample App
+            url: https://aka.ms/windowstoolkitapp
+      - linkListType: reference
+        links:
+          - text: Graph Helpers and Controls
+            url: /windows/communitytoolkit/graph/overview
       - linkListType: get-started
         links:
           - text: Installation
             url: /windows/communitytoolkit/getting-started
+          - text: Using with WinUI 3/Windows App SDK
+            url: https://aka.ms/wct-winui3
   - title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit
     linkLists:
       - linkListType: overview

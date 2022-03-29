@@ -16,6 +16,8 @@ landingContent:
         links:
           - text: What is the .NET Community Toolkit?
             url: dotnet/index.md
+      - linkListType: reference
+        links:
           - text: Introduction to the MVVM Toolkit
             url: /windows/communitytoolkit/mvvm/introduction
           - text: Introduction to the Diagnostics Package

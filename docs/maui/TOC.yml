@@ -7,6 +7,8 @@ items:
       href: get-started.md
 - name: "Behaviors"
   items:
+    - name: Overview
+      href: behaviors/index.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
 - name: "Converters"

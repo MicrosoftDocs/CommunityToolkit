@@ -1,7 +1,7 @@
 ---
-title: .NET MAUI MaxLengthReachedBehavior
+title: MaxLengthReachedBehavior - .NET MAUI Community Toolkit
 author: bijington
-description: "The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`."
+description: "The MaxLengthReachedBehavior is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an InputView."
 ms.date: 03/02/2022
 ---
 

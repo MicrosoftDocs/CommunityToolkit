@@ -39,8 +39,12 @@ items:
       href: converters/is-not-equal-converter.md
     - name: "IsStringNotNullOrEmptyConverter"
       href: converters/is-string-not-null-or-empty-converter.md
+    - name: "IsStringNotNullOrWhiteSpaceConverter"
+      href: converters/is-string-not-null-or-whitespace-converter.md
     - name: "IsStringNullOrEmptyConverter"
       href: converters/is-string-null-or-empty-converter.md
+    - name: "IsStringNullOrWhiteSpaceConverter"
+      href: converters/is-string-null-or-whitespace-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
 - name: C# Markup

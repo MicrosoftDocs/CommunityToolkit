@@ -5,7 +5,10 @@
       expanded: true
       items:
         - name: .NET Community Toolkit
-          href: /windows/communitytoolkit/
+          href: dotnet/index.md
+          items:
+            - name: MVVM Toolkit
+              href: /windows/communitytoolkit/mvvm/introduction
         - name: Windows Community Toolkit
           href: /windows/communitytoolkit/
         - name: .NET MAUI Community Toolkit

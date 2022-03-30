@@ -76,7 +76,7 @@ public class AbsoluteLayoutSamplePage : ContentPage
 
 ## Examples
 
-You can find an example of these extension methods in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/Pages/AbsoluteLayoutSamplePage.cs).
+You can find an example of these extension methods in action throughout the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/).
 
 ## API
 

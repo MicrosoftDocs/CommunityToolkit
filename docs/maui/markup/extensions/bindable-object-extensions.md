@@ -7,7 +7,7 @@ ms.date: 03/27/2022
 
 # BindableObject extensions
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
+[!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
 The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`.
 

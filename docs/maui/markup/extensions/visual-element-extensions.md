@@ -7,7 +7,7 @@ ms.date: 03/28/2022
 
 # VisualElement extensions
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
+[!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
 The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`.
 

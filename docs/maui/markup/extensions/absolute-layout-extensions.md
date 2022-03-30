@@ -7,6 +7,8 @@ ms.date: 03/21/2022
 
 # AbsoluteLayout extensions
 
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
+
 The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s.
 
 The extensions offer the following methods:

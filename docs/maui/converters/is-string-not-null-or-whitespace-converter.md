@@ -11,7 +11,7 @@ ms.date: 03/30/2022
 
 The `IsStringNotNullOrWhiteSpaceConverter` is a one way converter that returns a `bool` indicating whether the binding value is not null, not an `string.Empty` and does not contain whitespace characters only.
 
-The `Convert` method returns `true` when the binding `value` is **equal** to the supplied `ConverterParameter`.
+The `Convert` method returns `true` when the binding `value` is **not** `null`, **not** an `string.Empty` and **does not** contain whitespace characters only.
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsStringNullOrWhitespaceConverter`](is-string-null-or-whitespace-converter.md).
 

@@ -21,7 +21,46 @@ C# Markup is available on all platforms supported by .NET MAUI.
 
 The C# Markup package can be included in your project(s) as decribed in our [Getting started](../get-started.md#communitytoolkitmauimarkup) guide.
 
-## Example
+## Examples
+
+Here are some brief examples showing how common tasks can be achieved through the use of the Markup package.
+
+### Bindings
+
+First let's take a look at how a Binding could be defined without the Markup package:
+
+```csharp
+var entry = new Entry();
+entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCode));
+```
+
+Markup allows us to define the binding fluently and therefore chain multiple methods together to reduce the verbosity of our code:
+
+```csharp
+new Entry().Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
+```
+
+For further details on the possible options for the `Bind` method refer to the [`BindableObject` extensions documentation](extensions/bindable-object-extensions.md).
+
+### Sizing
+
+First let's take a look at how an `Entry` could be sized without the Markup package:
+
+```csharp
+var entry = new Entry();
+entry.WidthRequest = 200;
+entry.HeightRequest = 40;
+```
+
+Markup allows us to define the sizing fluently and therefore chain multiple methods together to reduce the verbosity of our code:
+
+```csharp
+new Entry().Size(200, 40);
+```
+
+For further details on the possible options for the `Bind` method refer to the [`VisualElement` extensions documentation](extensions/visual-element-extensions.md).
+
+### In-depth example
 
 The following example shows setting the page content to a new `Grid` containing a `Label` and an `Entry`, in C#:
 
@@ -118,6 +157,13 @@ This example is identical to the previous example, but the C# Markup fluent API 
 
 C# Markup extensions also allow developers to use an `enum` to define names for Columns and Rows (e.g. `Column.Input`).
 
+## Extensions
 
 > [!NOTE]
 > C# Markup includes extension methods that set specific view properties. They are designed to improve code readability, and can be used in combination with property setters. It's recommended to always use an extension method when one exists for a property, but you can choose your preferred balance.
+
+| Extension | Description |
+| --------- | ----------- |
+| [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+| [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
+| [`VisualElement`](extensions/visual-element-extensions.md) | The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`. |

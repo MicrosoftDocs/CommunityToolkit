@@ -7,6 +7,8 @@ items:
       href: get-started.md
 - name: "Behaviors"
   items:
+    - name: Overview
+      href: behaviors/index.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
 - name: "Converters"
@@ -21,6 +23,8 @@ items:
       href: converters/color-to-gray-scale-color-converter.md
     - name: "ColorToInverseColorConverter"
       href: converters/color-to-inverse-color-converter.md
+    - name: "DateTimeOffsetConverter"
+      href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
     - name: "IntToBoolConverter"
@@ -35,15 +39,23 @@ items:
       href: converters/is-list-null-or-empty-converter.md
     - name: "IsNotEqualConverter"
       href: converters/is-not-equal-converter.md
+    - name: "IsStringNotNullOrEmptyConverter"
+      href: converters/is-string-not-null-or-empty-converter.md
+    - name: "IsStringNotNullOrWhiteSpaceConverter"
+      href: converters/is-string-not-null-or-whitespace-converter.md
+    - name: "IsStringNullOrEmptyConverter"
+      href: converters/is-string-null-or-empty-converter.md
+    - name: "IsStringNullOrWhiteSpaceConverter"
+      href: converters/is-string-null-or-whitespace-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
-    - name: "DateTimeOffsetConverter"
-      href: converters/datetimeoffsetconverter.md
 - name: C# Markup
   items:
     - name: Overview
       href: markup/markup.md
-    - name: "AbsoluteLayout Extensions"
+    - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
+    - name: "BindableObject extensions"
+      href: markup/extensions/bindable-object-extensions.md
     - name: "VisualElement Extensions"
       href: markup/extensions/visual-element-extensions.md

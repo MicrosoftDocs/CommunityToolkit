@@ -21,11 +21,11 @@ To display `Toast` you need to create it, using the static method `Make`:
 
 ```csharp
 using CommunityToolkit.Maui.Alerts;
-var toast = Toast.Make(message, duration, fontSize);
+var toast = Toast.Make(text, duration, fontSize);
 await toast.Show(cancellationToken);
 ```
 
-where message is your text, and duration is the enum of `ToastDuration`. The default duration is Short. `FontSize` is optional and equals 14 by default.
+`Text` is required for the `Toast`. All other parameters are optional. Duration is the enum of `ToastDuration`. The default duration is Short. `FontSize` is double and equals 14 by default.
 
 ## Properties
 

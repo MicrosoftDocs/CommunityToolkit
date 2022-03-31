@@ -13,5 +13,5 @@ The .NET MAUI Community Toolkit extends the list of .NET MAUI alerts. Here are t
 
 | Alert | Description |
 | --------- | ----------- |
-| [`Toast`](toast.md) | The `Toast` is a timed alert that appears at the bottom of the screen by default. It is dismissed after a configurable duration of time. |
 | [`Snackbar`](snackbar.md) | The `Snackbar` is a timed alert that appears at the bottom of the screen by default. It is dismissed after a configurable duration of time. `Snackbar` is fully customizable and can be anchored to any `IView`. |
+| [`Toast`](toast.md) | The `Toast` is a timed alert that appears at the bottom of the screen by default. It is dismissed after a configurable duration of time. |

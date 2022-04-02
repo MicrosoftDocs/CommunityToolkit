@@ -18,8 +18,6 @@ The `Convert` method returns a set of substrings by splitting the input string b
 > 1. as the `ConverterParameter` in the converter binding; this supersedes both `Separators` and `Separator` properties
 > 2. as the `Separators` property on the converter; this supersedes the `Separator` property
 > 3. as the `Separator` property on the converter.
-> 
-> Note that the `ConverterParameter` option will take precedence over the `Separators` property.
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`ListToStringConverter`](list-to-string-converter.md).
 

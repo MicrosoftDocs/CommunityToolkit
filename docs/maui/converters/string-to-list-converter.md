@@ -124,7 +124,7 @@ class StringToListConverterPage : ContentPage
             Children =    
             {
                 new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" }
-				.Bind(Entry.TextProperty, path: nameof(ViewModel.MyValue)),
+                    .Bind(Entry.TextProperty, path: nameof(ViewModel.MyValue)),
 
                 new CollectionView
     			{

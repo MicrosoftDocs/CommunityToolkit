@@ -5,6 +5,14 @@ items:
   items:
     - name: Get started
       href: get-started.md
+- name: "Alerts"
+  items:   
+    - name: Overview
+      href: alerts/index.md
+    - name: "Snackbar"
+      href: alerts/snackbar.md
+    - name: "Toast"
+      href: alerts/toast.md
 - name: "Behaviors"
   items:
     - name: Overview

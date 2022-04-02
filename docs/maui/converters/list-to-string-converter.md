@@ -15,10 +15,10 @@ The `Convert` method returns a concatenation of the members of a collection, usi
 
 > [!NOTE]
 > Note that the separators can be supplied in the following ways:
-> 1. as the `ConverterParameter` in the converter binding,
-> 1. as the `Seperator` property on the converter.
+> 1. As the `ConverterParameter` in the converter binding
+> 2. As the `Separator` property on the converter
 > 
-> Note that the `ConverterParameter` option will take precedence over the `Seperator` property.
+> Note that the `ConverterParameter` option will take precedence over the `Separator` property.
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`StringToListConverter`](string-to-list-converter.md).
 
@@ -82,7 +82,8 @@ class ListToStringConverterPage : ContentPage
             .Bind(
                 Label.TextProperty,
                 nameof(ViewModel.MyListValue),
-                converter: new new ListToStringConverter() { Separator = "," });
+                converter: new ListToStringConverter(),
+                converterParameter: ",");
     }
 }
 ```
@@ -91,7 +92,7 @@ class ListToStringConverterPage : ContentPage
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| Seperator | `string` | The separator that should be between each item in the collection. |
+| Separator | `string` | The value that separates each item in the collection. This value is superseded by the ConverterParameter, if provided. If ConverterParameter is null, this Separator property will be used. |
 
 ## Examples
 

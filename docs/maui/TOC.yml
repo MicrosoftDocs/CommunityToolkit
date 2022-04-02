@@ -55,6 +55,10 @@ items:
       href: converters/is-string-null-or-empty-converter.md
     - name: "IsStringNullOrWhiteSpaceConverter"
       href: converters/is-string-null-or-whitespace-converter.md
+    - name: "ListToStringConverter"
+      href: converters/list-to-string-converter.md
+    - name: "StringToListConverter"
+      href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
 - name: C# Markup

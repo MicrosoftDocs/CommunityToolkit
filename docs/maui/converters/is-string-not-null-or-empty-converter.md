@@ -11,7 +11,7 @@ ms.date: 03/30/2022
 
 The `IsStringNotNullOrEmptyConverter` is a one way converter that returns a `bool` indicating whether the binding value is not null and not an `string.Empty`.
 
-The `Convert` method returns `true` when the binding `value` is **equal** to the supplied `ConverterParameter`.
+The `Convert` method returns `true` when the binding `value` is **not** `null` and **not** an `string.Empty`.
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsStringNullOrEmptyConverter`](is-string-null-or-empty-converter.md).
 

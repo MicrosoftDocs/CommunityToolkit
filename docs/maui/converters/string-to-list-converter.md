@@ -14,12 +14,12 @@ The `StringToListConverter` is a one way converter that returns a set of substri
 The `Convert` method returns a set of substrings by splitting the input string based on one or more separators.
 
 > [!NOTE]
-> Note that the separators can be supplied in the following ways:
-> 1. as the `ConverterParameter` in the converter binding,
-> 1. as the `Seperators` property on the converter.
-> 1. as the `Seperator` property on the converter.
+> Note that the separators can be supplied in the following order of precedence:
+> 1. as the `ConverterParameter` in the converter binding; this supersedes both `Separators` and `Separator` properties
+> 2. as the `Separators` property on the converter; this supersedes the `Separator` property
+> 3. as the `Separator` property on the converter.
 > 
-> Note that the `ConverterParameter` option will take precedence over the `Seperators` property.
+> Note that the `ConverterParameter` option will take precedence over the `Separators` property.
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`ListToStringConverter`](list-to-string-converter.md).
 
@@ -73,10 +73,14 @@ class StringToListConverterPage : ContentPage
 {
     public StringToListConverterPage()
     {
-        var panel = new VerticalStackLayout();
-
 		var entry = new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" };
 		entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.MyValue)));
+
+		var stringToListConverter = new StringToListConverter
+		{
+			SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
+			Separators = new [] { ",", ".", ";" }
+		};
 
 		var collectionView = new CollectionView
 		{
@@ -88,24 +92,20 @@ class StringToListConverterPage : ContentPage
 			})
 		};
 
-		var stringToListConverter = new StringToListConverter
-		{
-			SplitOptions = System.StringSplitOptions.RemoveEmptyEntries
-		};
-		stringToListConverter.Separators.Add(",");
-		stringToListConverter.Separators.Add(".");
-		stringToListConverter.Separators.Add(";");
-
 		collectionView.SetBinding(
 			CollectionView.ItemsSourceProperty,
 			new Binding(
 				nameof(ViewModel.MyValue),
 				converter: stringToListConverter));
 
-		panel.Children.Add(entry);
-		panel.Children.Add(collectionView);
-
-		Content = panel;
+		Content = new VerticalStackLayout
+        {
+            Children =    
+            {
+                entry,
+                collectionView
+            }
+        };
     }
 }
 ```
@@ -121,31 +121,25 @@ class StringToListConverterPage : ContentPage
 {
     public StringToListConverterPage()
     {
-        var stringToListConverter = new StringToListConverter
-		{
-			SplitOptions = System.StringSplitOptions.RemoveEmptyEntries
-		};
-		stringToListConverter.Separators.Add(",");
-		stringToListConverter.Separators.Add(".");
-		stringToListConverter.Separators.Add(";");
+		Content = new VerticalStackLayout
+        {
+            Children =    
+            {
+                new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" }
+				.Bind(Entry.TextProperty, path: nameof(ViewModel.MyValue)),
 
-		var panel = new VerticalStackLayout();
-
-		panel.Children.Add(
-			new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" }
-				.Bind(Entry.TextProperty, path: nameof(ViewModel.MyValue)));
-
-		panel.Children.Add(
-			new CollectionView
-			{
-				ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: "."))
-			}
-			.Bind(
-				CollectionView.ItemsSourceProperty,
-				nameof(ViewModel.MyValue),
-				converter: stringToListConverter));
-
-		Content = panel;
+                new CollectionView
+    			{
+    				ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: "."))
+    			}.Bind(CollectionView.ItemsSourceProperty,
+                        nameof(ViewModel.MyValue),    
+				        converter: new StringToListConverter
+                		{
+                			SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
+                            Separators = new [] { ",", ".", ";" }
+                		})
+            }
+        };
     }
 }
 ```
@@ -154,8 +148,8 @@ class StringToListConverterPage : ContentPage
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| Seperator | `string` | The string that delimits the substrings in the incoming string. |
-| Seperators | `IList<string>` | The strings that delimits the substrings in the incoming string. |
+| Separator | `string` | The string that delimits the substrings in the incoming string. This value is superseded by both `ConverterParameter` and `Separators`. If `ConverterParameter` is `null` and `Separators` is empty, this value will be used.  |
+| Separators | `IList<string>` | The strings that delimits the substrings in the incoming string. This value is superseded by `ConverterParameter`. If `ConverterParameter` is `null` this value will be used. |
 | SplitOptions | `StringSplitOptions` | A bitwise combination of the enumeration values that specifies whether to trim substrings and include empty substrings. |
 
 ## Examples

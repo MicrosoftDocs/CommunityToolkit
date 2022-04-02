@@ -15,13 +15,18 @@ The `Snackbar` informs users of a process that an app has performed or will perf
 
 ## Syntax
 
+The `Snackbar` is invoked using C#.
+
 ### C#
 
 To display `Snackbar` you need to create it, using the static method `Make`:
 
 ```csharp
 using CommunityToolkit.Maui.Alerts;
-var options = new SnackbarOptions
+
+CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+var snackbarOptions = new SnackbarOptions
 {
     BackgroundColor = Colors.Red,
     TextColor = Colors.Green,
@@ -31,25 +36,31 @@ var options = new SnackbarOptions
     ActionButtonFont = Font.SystemFontOfSize(14),
     CharacterSpacing = 0.5
 };
-var snackbar = Snackbar.Make(text, action, actionButtonText, duration, visualOptions, anchorVisualElement);
-await snackbar.Show(token);
+
+string text = "This is a Snackbar";
+string actionButtonText = "Click Here to Dismiss";
+Action action = async () => await DisplayAlert("Snackbar ActionButton Tapped", "The user has tapped the Snackbar ActionButton", "OK");
+TimeSpan duration = TimeSpan.FromSeconds(3);
+
+var snackbar = Snackbar.Make(text, action, actionButtonText, duration, snackbarOptions);
+
+await snackbar.Show(cancellationTokenSource.Token);
 ```
 
-`Text` is required for the `Snackbar`. All other parameters are optional.
+When calling `Snackbar.Make()`, its parameter `string text` is required. All other parameters are optional.
 
-There is also an extension method, which allows anchor the `Snackbar` to any `VisualElement`:
+There is also an extension method, which will anchor the `Snackbar` to any `VisualElement`:
 
 ```csharp
-await MyVisualElement.DisplaySnackbar(
-    "Snackbar is awesome. It is anchored to my visual element",
-    RunAwesomeAction,
-    "Make snackbar even better",
-    TimeSpan.FromSeconds(5),
-    options,
-    CancellationToken.None);
-```	
+await MyVisualElement.DisplaySnackbar("Snackbar is awesome. It is anchored to MyVisualElement");
+```
 
-It is also possible to subscribe to the `SnackBar` events: `Shown` and `Dismissed` and check if SnackBar is shown with static `IsShown` property.
+`SnackBar` contains two events:
+
+- `public static event EventHandler Shown`
+- `public static event EventHandler Dismissed`
+
+It also contains the property `public static bool IsShown { get; }`.
 
 ```csharp
 Snackbar.Shown += (s, e) => { Console.WriteLine(Snackbar.IsShown); };
@@ -63,7 +74,7 @@ Snackbar.Dismissed += (s, e) => { Console.WriteLine(Snackbar.IsShown); };
 | Text | `string` | Text message. **Required** |
 | Action | `Action` | Action to invoke on action button click. |
 | ActionButtonText | `string` | Action button text. |
-| Anchor | `IView` | `Snackbar` anchor. `Snackbar` appears near this view. Can be `null`. |
+| Anchor | `IView` | `Snackbar` anchor. `Snackbar` appears near this view. When `null`, the `Snackbar` will appear at the bottom of the screen. |
 | Duration | `TimeSpan` | `Snackbar` duration. |
 | VisualOptions | `SnackbarOptions` | `Snackbar` visual options. |
 
@@ -75,23 +86,23 @@ The `SnackbarOptions` allows customize the default `Snackbar` style.
 
 |Property  |Type  |Description  |Default value
 |---------|---------|---------|---------|
-| CharacterSpacing | `double` | Message character spacing. | 0.0d |
-| Font | `Font` | Message font. | Default system font of size 14 |
-| TextColor | `Color` | Message text color. | Black |
-| ActionButtonFont | `Font` | Action button font. | Default system font of size 14 |
-| ActionButtonTextColor | `Color` | Action button text color. | Black |
-| BackgroundColor | `Color` | Background color. | LightGray |
-| CornerRadius | `CornerRadius` | Corner radius. | (4, 4, 4, 4) |
+| CharacterSpacing | `double` | Message character spacing. | `0.0d` |
+| Font | `Font` | Message font. | `Font.SystemFontOfSize(14)` |
+| TextColor | `Color` | Message text color. | `Colors.Black` |
+| ActionButtonFont | `Font` | Action button font. | `Font.SystemFontOfSize(14)` |
+| ActionButtonTextColor | `Color` | Action button text color. | `Colors.Black` |
+| BackgroundColor | `Color` | Background color. | `Colors.LightGray` |
+| CornerRadius | `CornerRadius` | Corner radius. | `new CornerRadius(4, 4, 4, 4)` |
 
 ## Methods
 
 |Method  |Description  |
 |---------|---------|
-| Show | Dismiss all shown snackbars and display the new one. |
-| Dismiss | Dismiss the current snackbar. |
+| Show | Display the requested `Snackbar`. This will dismiss any currently displayed `Snackbar`|
+| Dismiss | Dismiss the requested `Snackbar`. |
 
 > [!NOTE]
-> You can display only 1 `Snackbar` at the same time. If you call the `Show` method a second time, the first `Snackbar` will be dismissed.
+> You can display only 1 `Snackbar` at the same time. If you call the `Show` method a second time, the first `Snackbar` will automatically be dismissed before the second `Snackbar` is shown.
 
 ## Examples
 
@@ -104,5 +115,5 @@ You can find the source code for `Snackbar` over on the [.NET MAUI Community Too
 ## Details of implementation and limitation for different platforms
 
 1. The API allows override existing methods with your own implementation or even create your own Snackbar, by implementing `ISnackbar` interface.
-1. "Native" Snackbar is available only on Android and created by Google. Other platforms use "Container" (`UIView` for iOS and MacCatalyst, `ToastNotification` on Windows).
-1. `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.
+2. "Native" Snackbar is available only on Android and created by Google. Other platforms use "Container" (`UIView` for iOS and MacCatalyst, `ToastNotification` on Windows).
+3. `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.

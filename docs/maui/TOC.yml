@@ -65,11 +65,11 @@ items:
   items:
     - name: Overview
       href: markup/markup.md
-    - name: "AbsoluteLayout Extensions"
+    - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
-    - name: "BindableObject Extensions"
+    - name: "BindableObject extensions"
       href: markup/extensions/bindable-object-extensions.md
-    - name: "Element Extensions"
+    - name: "Element extensions"
       href: markup/extensions/element-extensions.md
-    - name: "VisualElement Extensions"
+    - name: "VisualElement extensions"
       href: markup/extensions/visual-element-extensions.md

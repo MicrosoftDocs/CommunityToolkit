@@ -5,7 +5,7 @@ description: The Element extensions provide a series of extension methods that s
 ms.date: 03/28/2022
 ---
 
-# Element Extensions
+# Element extensions
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 

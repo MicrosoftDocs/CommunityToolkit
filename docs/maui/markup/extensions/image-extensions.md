@@ -9,7 +9,7 @@ ms.date: 03/28/2022
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
-The `Image` extensions provide a series of extension methods that support support configuring `IImage` controls.
+The `Image` extensions provide a series of extension methods that support configuring `IImage` controls.
 
 The extensions offer the following methods:
 

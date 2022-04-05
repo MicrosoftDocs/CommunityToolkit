@@ -27,12 +27,16 @@ new Entry().PlaceholderColor(Colors.Red);
 
 The `Placeholder` methods sets the `Placeholder` property on an `IPlaceholder` element.
 
-There is a second, overloaded, method for `Placeholder` that will set both the `Placeholder` and `PlaceholderColor` properties on an `IPlaceholder` element
-
-The following examples sets the `Placeholder` to `"Enter Text"` and the `PlaceholderColor` to `Colors.Grey`:
+The following example sets the `Placeholder` to `"Enter Text"`:
 
 ```csharp
-new Editor().Placeholder("Enter Text");
+new Entry().Placeholder("Enter Text");
+```
 
-new Entry().Placeholder("Enter Text", Colors.Grey);
+There is a second, overloaded, method for `Placeholder` that will set both the `Placeholder` and `PlaceholderColor` properties on an `IPlaceholder` element.
+
+The following example sets the `Placeholder` to `"Address, City, State"` and the `PlaceholderColor` to `Colors.Grey`:
+
+```csharp
+new Editor().Placeholder("Address, City, State", Colors.Grey);
 ```

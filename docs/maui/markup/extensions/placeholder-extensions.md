@@ -25,7 +25,7 @@ new Entry().PlaceholderColor(Colors.Red);
 
 ## Placeholder
 
-The `Placeholder` methods sets the `Placeholder` property on an `IPlaceholder` element.
+The `Placeholder` method sets the `Placeholder` property on an `IPlaceholder` element.
 
 The following example sets the `Placeholder` to `"Enter Text"`:
 

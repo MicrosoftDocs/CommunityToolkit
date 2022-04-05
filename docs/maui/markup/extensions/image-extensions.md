@@ -27,7 +27,7 @@ new Image().Source("dotnet_bot");
 
 The `Aspect` method sets the `Aspect` property on an `IImage` element.
 
-The following example sets the `Aspect` to `"Aspect.AspectFill"`:
+The following example sets the `Aspect` to `Aspect.AspectFill`:
 
 ```csharp
 new Image().Aspect(Aspect.AspectFill);

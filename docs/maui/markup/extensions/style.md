@@ -5,7 +5,7 @@ description: Style<T> provides a series of fluent extension methods that support
 ms.date: 03/28/2022
 ---
 
-# Style<T>
+# Style\<T\>
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 

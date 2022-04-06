@@ -8,7 +8,7 @@ items:
 - name: MVVM Toolkit
   items:
     - name: Introduction
-      href: /windows/communitytoolkit/mvvm/introduction
+      href: mvvm/introduction
     - name: Samples
       href: https://aka.ms/mvvmtoolkit/samples
 - name: Diagnostics

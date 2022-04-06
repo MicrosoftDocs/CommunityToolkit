@@ -25,7 +25,7 @@ To install the package from within Visual Studio:
 
 1. In Solution Explorer, right-click on the project and select **Manage NuGet Packages**. Search for **Microsoft.Toolkit.Mvvm** and install it.
 
-    ![NuGet Packages](../resources/images/ManageNugetPackages.png "Manage NuGet Packages Image")
+    ![NuGet Packages](../images/get-started/manage-nuget-packages.png "Manage NuGet Packages Image")
 
 2. Add a using or Imports directive to use the new APIs:
 

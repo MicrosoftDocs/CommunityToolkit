@@ -9,7 +9,7 @@ ms.date: 03/28/2022
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
-`Style<T>` provide a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`.
+`Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`.
 
 ## Constructors
 
@@ -94,8 +94,8 @@ It can be used like so:
 ```csharp
 new Label
 {
-  Style = new Style<Label>(Label.TextColorProperty, Colors.Red)
-                .AppleToDerivedTypes(true);
+    Style = new Style<Label>(Label.TextColorProperty, Colors.Red)
+                .ApplyToDerivedTypes(true);
 }
 ```
 
@@ -117,7 +117,7 @@ new VerticalStackLayout
         new Label
         {
             Style = new Style<Label>(Label.TextColorProperty, Colors.Red)
-        }.Assign(out var redTextLabel),
+        }.Assign(out Label redTextLabel),
 
         new Label
         {

@@ -190,7 +190,7 @@ This would display a grouped list of contacts, with each group using the initial
 
 When run, the snippet above results in the following UI, from the MVVM Toolkit Sample App:
 
-![](https://user-images.githubusercontent.com/10199417/161963806-d7fecadf-1603-4e06-91eb-b1ed72aafc41.png)
+![Contacts view sample](https://user-images.githubusercontent.com/10199417/161963806-d7fecadf-1603-4e06-91eb-b1ed72aafc41.png "A sample of a grouped contacts view where the user can scroll, select and delete contacts, and load new ones")
 
 ## Examples
 

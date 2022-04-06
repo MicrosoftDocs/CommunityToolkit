@@ -7,11 +7,15 @@ dev_langs:
   - csharp
 ---
 
-# ObservableGroup&lt;TKey, TElement> and ReadOnlyObservableGroup&lt;TKey, TElement>
+# Observable grouped collection APIs
+
+The MVVM Toolkit features several observable grouped collection and a group of helper APIs, to facilitate working with grouped collection of items that can then be bound to the UI. This can be useful when constructing UIs such as grouped lists of contacts, or any kind of grouped collection of items that the user can then interact with.
+
+> **Platform APIs:** [`ObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroup-2), [`ReadOnlyObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ReadOnlyObservableGroup-2), [`IReadOnlyObservableGroup`](/dotnet/api/communitytoolkit.mvvm.collections.IReadOnlyObservableGroup), [`IReadOnlyObservableGroup<TKey>`](/dotnet/api/communitytoolkit.mvvm.collections.IReadOnlyObservableGroup-1), [`IReadOnlyObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.IReadOnlyObservableGroup-2), [`ObservableGroupedCollection<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroupedCollection-2), [`ReadOnlyObservableGroupedCollection<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ReadOnlyObservableGroup-2), [`ObservableGroupedCollectionExtensions`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroupedCollectionExtensions).
+
+## ObservableGroup&lt;TKey, TElement> and ReadOnlyObservableGroup&lt;TKey, TElement>
 
 The [`ObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroup-2) and [`ReadOnlyObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ReadOnlyObservableGroup-2) types are custom observable collection types inheriting from [`ObservableCollection<T>`](/dotnet/api/system.collections.objectmodel.ObservableCollection-1) and [`ReadOnlyObservableCollection<T>`](/dotnet/api/system.collections.objectmodel.ReadOnlyObservableCollection-1) that also provide grouping support. This is particularly useful when binding a grouped collection of items to the UI, such as to display a list of contacts.
-
-> **Platform APIs:** [`ObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroup-2), [`ReadOnlyObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ReadOnlyObservableGroup-2), [`IReadOnlyObservableGroup`](/dotnet/api/communitytoolkit.mvvm.collections.IReadOnlyObservableGroup), [`IReadOnlyObservableGroup<TKey>`](/dotnet/api/communitytoolkit.mvvm.collections.IReadOnlyObservableGroup-1), [`IReadOnlyObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.IReadOnlyObservableGroup-2)
 
 ## ObservableGroup&lt;TKey, TElement> features
 
@@ -21,11 +25,9 @@ The [`ObservableGroup<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collec
 - They also implement the [`IGrouping<TKey, TElement>`](/dotnet/api/system.linq.IGrouping-2) interface, allowing instances to be used as arguments for all existing LINQ extensions working on instances of this interface.
 - They implement several interfaces from the MVVM Toolkit (`IReadOnlyObservableGroup`, `IReadOnlyObservableGroup<TKey>` and `IReadOnlyObservableGroup<TKey, TElement>`) that enable different level of abstraction over instances of these two collection types. This can be especially useful in data templates, where only partial type information is available or can be used.
 
-# ObservableGroupedCollection&lt;TKey, TElement> and ReadOnlyObservableGroupedCollection&lt;TKey, TElement>
+## ObservableGroupedCollection&lt;TKey, TElement> and ReadOnlyObservableGroupedCollection&lt;TKey, TElement>
 
 The [`ObservableGroupedCollection<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroupedCollection-2) and [`ReadOnlyObservableGroupedCollection<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ReadOnlyObservableGroup-2) are observable collection types where each item is a grouped collection type (either `ObservableGroup<TKey, TElement>` or `ReadOnlyObservableGroup<TKey, TElement>`), that also implement [`ILookup<TKey, TElement>`](/dotnet/api/System.Linq.ILookup-2).
-
-> **Platform APIs:** [`ObservableGroupedCollection<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroupedCollection-2), [`ReadOnlyObservableGroupedCollection<TKey, TElement>`](/dotnet/api/communitytoolkit.mvvm.collections.ReadOnlyObservableGroup-2), [`ObservableGroupedCollectionExtensions`](/dotnet/api/communitytoolkit.mvvm.collections.ObservableGroupedCollectionExtensions).
 
 ## ObservableGroupedCollection&lt;TKey, TElement> features
 

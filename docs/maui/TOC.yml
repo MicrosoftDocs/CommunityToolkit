@@ -71,6 +71,8 @@ items:
       href: markup/extensions/bindable-object-extensions.md
     - name: "Element extensions"
       href: markup/extensions/element-extensions.md
+    - name: "Image extensions"
+      href: markup/extensions/image-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"

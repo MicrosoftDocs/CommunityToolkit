@@ -73,7 +73,7 @@ The `Add` methods can be used like so:
 ```csharp
 new Label
 {
-    Style = new Stye<Label>()
+    Style = new Style<Label>()
                 .Add(Label.TextColorProperty, Colors.Red)
                 .Add((Label.BackgroundColorProperty, Colors.White), (Label.FontAttributesProperty, FontAttributes.Bold))
                 .Add(new NumericValidationBehavior())

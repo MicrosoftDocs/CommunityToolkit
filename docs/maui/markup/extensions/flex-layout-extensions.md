@@ -27,7 +27,7 @@ The `Grow` extension method specifies the amount of available spacea `View` in `
 
 ## Order
 
-The `Order` extension method allows you to change the order that the children of the FlexLayout are arranged.  Setting this property overrides the order that it appears in the `Children` collection. For further detail refer to the[Microsoft documentation](/dotnet/maui/user-interface/layouts/flexlayout#order).
+The `Order` extension method allows you to change the order that the children of the FlexLayout are arranged.  Setting this property overrides the order that it appears in the `Children` collection. For further detail refer to the [Microsoft documentation](/dotnet/maui/user-interface/layouts/flexlayout#order).
 
 ## Shrink
 

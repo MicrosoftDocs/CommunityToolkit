@@ -1,11 +1,11 @@
 ---
-title: .NET Community Toolkit documentation
+title: .NET Community Toolkit Introduction
 author: Sergio0694
 description: The .NET Community Toolkit is a collection of helpers and APIs that work for all .NET developers and are agnostic of any specific UI platform. The toolkit is maintained and published by Microsoft, and part of the .NET Foundation.
 ms.date: 03/29/2022
 ---
 
-# .NET Community Toolkit documentation
+# .NET Community Toolkit Introduction
 
 [.NET Community Toolkit][repo-url] is a collection of helpers and APIs that work for all [.NET developers](/dotnet/) and are agnostic of any specific UI platform. The toolkit is maintained and published by Microsoft, and part of the [.NET Foundation][dotnet-foundation].
 

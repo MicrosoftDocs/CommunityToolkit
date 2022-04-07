@@ -32,7 +32,7 @@ The `Order` extension method allows you to change the order that the children of
 ## Shrink
 
 The `Shrink` extension method allows you to indicate which `View` in `FlexLayout` is given priority in being displayed at their full sizes when the aggregate size of `Children` is greater than 
-on the main axis. For further detail refer to the[Microsoft documentation](/dotnet/maui/user-interface/layouts/flexlayout#shrink).
+on the main axis. For further detail refer to the [Microsoft documentation](/dotnet/maui/user-interface/layouts/flexlayout#shrink).
 
 
 ## Syntax

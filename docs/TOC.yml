@@ -5,10 +5,21 @@
       expanded: true
       items:
         - name: .NET Community Toolkit
-          href: dotnet/index.md
           items:
+            - name: Introduction
+              href: introduction.md
+            - name: Getting Started
+              href: /windows/communitytoolkit/getting-started
             - name: MVVM Toolkit
-              href: /windows/communitytoolkit/mvvm/introduction
+              items:
+                - name: Introduction
+                  href: mvvm/introduction.md
+                - name: Samples
+                  href: https://aka.ms/mvvmtoolkit/samples
+            - name: Diagnostics
+              href: /windows/communitytoolkit/diagnostics/introduction
+            - name: High Performance
+              href: /windows/communitytoolkit/high-performance/introduction          
         - name: Windows Community Toolkit
           href: /windows/communitytoolkit/
         - name: .NET MAUI Community Toolkit

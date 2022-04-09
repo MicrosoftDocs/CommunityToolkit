@@ -1,11 +1,11 @@
 ---
-title: .NET Community Toolkit documentation
+title: .NET Community Toolkit Introduction
 author: Sergio0694
 description: The .NET Community Toolkit is a collection of helpers and APIs that work for all .NET developers and are agnostic of any specific UI platform. The toolkit is maintained and published by Microsoft, and part of the .NET Foundation.
 ms.date: 03/29/2022
 ---
 
-# .NET Community Toolkit documentation
+# .NET Community Toolkit Introduction
 
 [.NET Community Toolkit][repo-url] is a collection of helpers and APIs that work for all [.NET developers](/dotnet/) and are agnostic of any specific UI platform. The toolkit is maintained and published by Microsoft, and part of the [.NET Foundation][dotnet-foundation].
 
@@ -26,9 +26,9 @@ Feel free to browse the documentation using the table of contents on the left si
 [repo-url]: https://aka.ms/toolkit/dotnet ".NET Community Toolkit GitHub Repository"
 [dotnet-foundation]: https://www.dotnetfoundation.org/ ".NET Foundation Home Page"
 [windows-community-toolkit]: /windows/communitytoolkit/ "Windows Community Toolkit Documentation"
-[mvvm-toolkit-intro]: /windows/communitytoolkit/mvvm/introduction "MVVM Toolkit Introduction"
+[mvvm-toolkit-intro]: mvvm/introduction.md "MVVM Toolkit Introduction"
 [mvvm-toolkit-samples]: https://aka.ms/mvvmtoolkit/samples "MVVM Toolkit Samples"
-[mvvmlight-migration]: /windows/communitytoolkit/mvvm/migratingfrommvvmlight "MVVMLight Migration Documentation"
+[mvvmlight-migration]: mvvm/migratingfrommvvmlight.md "MVVMLight Migration Documentation"
 [diagnostics-intro]: /windows/communitytoolkit/diagnostics/introduction "Diagnostics Package Introduction"
 [hp-intro]: /windows/communitytoolkit/high-performance/introduction "High Performance Package Introduction"
 [hp-memory2d]: /windows/communitytoolkit/high-performance/memory2d "Memory2D&lt;T&gt; Documentation"

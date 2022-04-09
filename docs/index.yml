@@ -15,11 +15,11 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is the .NET Community Toolkit?
-            url: dotnet/index.md
+            url: introduction.md
       - linkListType: reference
         links:
           - text: Introduction to the MVVM Toolkit
-            url: /windows/communitytoolkit/mvvm/introduction
+            url: mvvm/introduction.md
           - text: Introduction to the Diagnostics Package
             url: /windows/communitytoolkit/diagnostics/introduction
           - text: Introduction to the High Performance Package

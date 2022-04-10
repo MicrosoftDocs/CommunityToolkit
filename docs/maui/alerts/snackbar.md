@@ -117,3 +117,103 @@ You can find the source code for `Snackbar` over on the [.NET MAUI Community Too
 1. The API allows override existing methods with your own implementation or even create your own Snackbar, by implementing `ISnackbar` interface.
 2. "Native" Snackbar is available only on Android and created by Google. Other platforms use "Container" (`UIView` for iOS and MacCatalyst, `ToastNotification` on Windows).
 3. `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.
+
+### WinUI specifics
+
+`ToastNotification` which is used to show `Snackbar` on Windows has 2 types of activation: foreground and background.
+
+Foreground activation type is used in `CommunityToolkit.Maui` library. That means the new instance of application is executed. It is up to the developer how to handle such situation. There are some proposals:
+
+1. Use Single Application Instance.
+
+Add the next code to `Platform\Windows\App.xaml.cs`:
+
+```csharp
+static Mutex? mutex;
+
+protected override void OnLaunched(LaunchActivatedEventArgs args)
+{
+    if (!IsSingleInstance())
+    {
+        Process.GetCurrentProcess().Kill();
+    }
+    else
+    {
+        base.OnLaunched(args);
+    }
+}
+
+static bool IsSingleInstance()
+{
+    const string applicationId = "YOUR_APP_ID_FROM_CSPROJ";
+    mutex = new Mutex(false, applicationId);
+    GC.KeepAlive(mutex);
+
+    try
+    {
+        return mutex.WaitOne(0, false);
+    }
+    catch (AbandonedMutexException)
+    {
+        mutex.ReleaseMutex();
+        return mutex.WaitOne(0, false);
+    }
+}
+```
+
+2. Using external NuGet package.
+    1. Install `CommunityToolkit.WinUI.Notifications`.
+    2. Add the next code to `Platform\Windows\App.xaml.cs`:
+
+    ```csharp
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+        ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
+        base.OnLaunched(args);
+    }
+
+    void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
+    {
+        // Handle ToastNotificationEvent.
+    }
+    ```
+
+    3. Update `Platform\Windows\Package.appxmanifest`:
+    
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <Package
+    xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+    xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+    xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" 
+    xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+    IgnorableNamespaces="uap rescap com desktop">
+
+    ...
+
+    <Applications>
+        <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+        <uap:VisualElements />
+        <Extensions>
+
+            <!-- Specify which CLSID to activate when toast clicked -->
+            <desktop:Extension Category="windows.toastNotificationActivation">
+                <desktop:ToastNotificationActivation ToastActivatorCLSID="YOUR_APP_ID_FROM_CSPROJ" /> 
+            </desktop:Extension>
+
+            <!--Register COM CLSID LocalServer32 registry key-->
+            <com:Extension Category="windows.comServer">
+                <com:ComServer>
+                    <com:ExeServer Executable="YOUR_APP_NAME.exe" Arguments="-ToastActivated" DisplayName="Toast activator">
+                        <com:Class Id="YOUR_APP_ID_FROM_CSPROJ" DisplayName="Toast activator"/>
+                    </com:ExeServer>
+                </com:ComServer>
+            </com:Extension>
+
+        </Extensions>
+        </Application>
+    </Applications>
+
+    </Package>
+    ```

@@ -13,7 +13,7 @@
             - name: MVVM Toolkit
               items:
                 - name: Introduction
-                  href: mvvm/introduction.md
+                  href: mvvm/index.md
                 - name: Samples
                   href: https://aka.ms/mvvmtoolkit/samples
             - name: Diagnostics

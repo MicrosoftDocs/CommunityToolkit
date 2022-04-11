@@ -6,7 +6,7 @@
       "redirect_document_id": true
     },
     {
-      "source_path": "/mvvm/index.md",
+      "source_path": "mvvm/index.md",
       "redirect_url": "/mvvm/introduction",
       "redirect_document_id": true
     }

@@ -6,6 +6,16 @@
     tocHref: /dotnet/
     topicHref: /dotnet/index
     items:
-    - name: .NET Community Toolkit
-      tocHref: /dotnet/communitytoolkit
+    - name: Community Toolkits
+      tocHref: /dotnet/communitytoolkit/
       topicHref: /dotnet/communitytoolkit/index
+      items:
+        - name: .NET Community Toolkit Introduction
+          tocHref: /dotnet/communitytoolkit/
+          topicHref: /dotnet/communitytoolkit/introduction
+        - name: MVVM Toolkit
+          tocHref: /dotnet/communitytoolkit/mvvm/
+          topicHref: /dotnet/communitytoolkit/mvvm/index
+        - name: MAUI Community Toolkit
+          tocHref: /dotnet/communitytoolkit/maui/
+          topicHref: /dotnet/communitytoolkit/maui/index

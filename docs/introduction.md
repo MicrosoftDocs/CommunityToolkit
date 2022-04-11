@@ -26,7 +26,7 @@ Feel free to browse the documentation using the table of contents on the left si
 [repo-url]: https://aka.ms/toolkit/dotnet ".NET Community Toolkit GitHub Repository"
 [dotnet-foundation]: https://www.dotnetfoundation.org/ ".NET Foundation Home Page"
 [windows-community-toolkit]: /windows/communitytoolkit/ "Windows Community Toolkit Documentation"
-[mvvm-toolkit-intro]: mvvm/introduction.md "MVVM Toolkit Introduction"
+[mvvm-toolkit-intro]: mvvm/index.md "MVVM Toolkit Introduction"
 [mvvm-toolkit-samples]: https://aka.ms/mvvmtoolkit/samples "MVVM Toolkit Samples"
 [mvvmlight-migration]: mvvm/migratingfrommvvmlight.md "MVVMLight Migration Documentation"
 [diagnostics-intro]: /windows/communitytoolkit/diagnostics/introduction "Diagnostics Package Introduction"

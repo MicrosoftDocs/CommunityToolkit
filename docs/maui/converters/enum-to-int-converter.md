@@ -89,7 +89,7 @@ class EnumToIntConverterPage : ContentPage
             .Bind(Picker.SelectedIndexProperty, nameof(ViewModel.SelectedState),
 
           new Label()
-            .Bind(Label.TextPropoerty, nameof(ViewModel.SelectedState), converter: new EnumToIntConverter()),
+            .Bind(Label.TextProperty, nameof(ViewModel.SelectedState), converter: new EnumToIntConverter()),
         }
     }
 }

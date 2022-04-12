@@ -122,7 +122,7 @@ You can find the source code for `Snackbar` over on the [.NET MAUI Community Too
 
 `ToastNotification` which is used to show `Snackbar` on Windows has 2 types of activation: foreground and background.
 
-Foreground activation type is used in `CommunityToolkit.Maui` library. That means the new instance of application is executed. It is up to the developer how to handle such situation. There are some proposals:
+Foreground activation type is used in `CommunityToolkit.Maui` library. That means, whenever a notification is shown a new instance of application is executed. It is up to the developer how to handle such situations. Here are a few suggestions:
 
 1. Use Single Application Instance.
 

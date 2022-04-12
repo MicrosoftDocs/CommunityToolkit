@@ -2,7 +2,7 @@
 title: ItemTappedEventArgsConverter - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The ItemTappedEventArgsConverter is a converter that allows users to extract the Item value from an ItemTappedEventArgs object."
-ms.date: 03/22/2022
+ms.date: 04/12/2022
 ---
 
 # ItemTappedEventArgsConverter
@@ -92,13 +92,21 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class DateTimeOffsetConverterPage : ContentPage
+class ItemTappedEventArgsConverterPage : ContentPage
 {
-    public DateTimeOffsetConverterPage()
+    public ItemTappedEventArgsConverterPage()
     {
-        Content = new ListView{HasUnevenRows = true}
-                        .Bind(ListView.ItemsSource, nameof(ViewModel.Items))
-                        
+        Content = new ListView
+            {
+                HasUnevenRows = true
+            }.Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+            .Behaviors(new EventToCommandBehavior
+            {
+                EventName = nameof(ListView.ItemTapped),
+                EventArgsConverter = new ItemTappedEventArgsConverter()
+            }.Bind(
+                EventToCommandBehavior.CommandProperty, 
+                nameof(ViewModel.ItemTappedCommand)));                   
     }
 }
 ```

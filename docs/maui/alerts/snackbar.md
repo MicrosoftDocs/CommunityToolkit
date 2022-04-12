@@ -122,46 +122,53 @@ You can find the source code for `Snackbar` over on the [.NET MAUI Community Too
 
 `ToastNotification` which is used to show `Snackbar` on Windows has 2 types of activation: foreground and background.
 
+More info about handling activation: [Send a local toast notification from C# apps](https://docs.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation) 
+
 Foreground activation type is used in `CommunityToolkit.Maui` library. That means, whenever a notification is shown a new instance of application is executed. It is up to the developer how to handle such situations. Here are a few suggestions:
 
 1. Use Single Application Instance.
 
-Add the next code to `Platform\Windows\App.xaml.cs`:
+    That means, whenever the user clicks on the `ToastNotification`, the new instance of the application (new process) checks if there is already a process running for our app and if any, the new process that was created by the notification is killed.
 
-```csharp
-static Mutex? mutex;
+    Add the next code to `Platform\Windows\App.xaml.cs`:
 
-protected override void OnLaunched(LaunchActivatedEventArgs args)
-{
-    if (!IsSingleInstance())
-    {
-        Process.GetCurrentProcess().Kill();
-    }
-    else
-    {
-        base.OnLaunched(args);
-    }
-}
+    ```csharp
+    static Mutex? mutex;
 
-static bool IsSingleInstance()
-{
-    const string applicationId = "YOUR_APP_ID_FROM_CSPROJ";
-    mutex = new Mutex(false, applicationId);
-    GC.KeepAlive(mutex);
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+        if (!IsSingleInstance())
+        {
+            Process.GetCurrentProcess().Kill();
+        }
+        else
+        {
+            base.OnLaunched(args);
+        }
+    }
 
-    try
+    static bool IsSingleInstance()
     {
-        return mutex.WaitOne(0, false);
+        const string applicationId = "YOUR_APP_ID_FROM_CSPROJ";
+        mutex = new Mutex(false, applicationId);
+        GC.KeepAlive(mutex);
+
+        try
+        {
+            return mutex.WaitOne(0, false);
+        }
+        catch (AbandonedMutexException)
+        {
+            mutex.ReleaseMutex();
+            return mutex.WaitOne(0, false);
+        }
     }
-    catch (AbandonedMutexException)
-    {
-        mutex.ReleaseMutex();
-        return mutex.WaitOne(0, false);
-    }
-}
-```
+    ```
 
 2. Using external NuGet package.
+
+    With this approach application registers new service which monitors `ToastNotification` activation. Works with Windows 10.0.18362 and later.
+
     1. Install `CommunityToolkit.WinUI.Notifications`.
     2. Add the next code to `Platform\Windows\App.xaml.cs`:
 

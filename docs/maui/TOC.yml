@@ -35,6 +35,8 @@ items:
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
+    - name: "EnumToIntConverter"
+      href: converters/enum-to-int-converter.md
     - name: "IntToBoolConverter"
       href: converters/int-to-bool-converter.md
     - name: "InvertedBoolConverter"

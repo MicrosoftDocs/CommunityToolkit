@@ -2,7 +2,7 @@
 title: EnumToIntConverter - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The EnumToIntConverter is a converter that allows you to convert a standard Enum (extending int) to its underlying primitive int type."
-ms.date: 03/22/2022
+ms.date: 04/12/2022
 ---
 
 # EnumToIntConverter
@@ -46,8 +46,6 @@ The `EnumToIntConverter` can be used as follows in XAML:
 </ContentPage>
 ```
 
-
-
 ### C#
 
 The `EnumToIntConverter` can be used as follows in C#:
@@ -57,18 +55,18 @@ class EnumToIntConverterPage : ContentPage
 {
     public EnumToIntConverterPage()
     {
-        Content = new StackLayout
-    {
-      Children = 
-      {
-        new Picker()
-          .Bind(Picker.ItemSource, nameof(ViewModel.AllStates)
-          .Bind(Picker.SelectedIndex, nameof(ViewModel.SelectedState),
+      Picker picker = new Picker { Title="EnumToIntConverter"};
+      picker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.AllStates));
+      picker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.SelectedState));
 
-          new Label()
-            .Bind(Label.TextPropoerty, nameof(ViewModel.SelectedState), converter: new EnumToIntConverter()),
-      };
-    }
+      Content = new StackLayout
+			{
+				Margin = new Thickness(20),
+				Children = {
+					new Label { Text = "The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.", FontAttributes = FontAttributes.Bold, HorizontalOptions = LayoutOptions.Center },
+					picker
+				}
+			};
 }
 ```
 

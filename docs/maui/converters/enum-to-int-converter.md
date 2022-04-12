@@ -63,9 +63,11 @@ class EnumToIntConverterPage : ContentPage
 			{
 				Margin = new Thickness(20),
 				Children = {
-					new Label { Text = "The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.",
+					new Label {
+						Text = "The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.",
 					FontAttributes = FontAttributes.Bold,
-					HorizontalOptions = LayoutOptions.Center },
+					HorizontalOptions = LayoutOptions.Center 
+				},
 					picker
 				}
 			};

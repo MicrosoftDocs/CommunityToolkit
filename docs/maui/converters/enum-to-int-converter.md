@@ -55,7 +55,7 @@ class EnumToIntConverterPage : ContentPage
 {
     public EnumToIntConverterPage()
     {
-      Picker picker = new Picker { Title="EnumToIntConverter"};
+      Picker picker = new Picker { Title = "EnumToIntConverter" };
       picker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.AllStates));
       picker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.SelectedState));
 

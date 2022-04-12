@@ -85,7 +85,7 @@ class EnumToIntConverterPage : ContentPage
     {
         Content = new StackLayout {
           new Picker()
-            .Bind(Picker.ItemSource, nameof(ViewModel.AllStates)
+            .Bind(Picker.ItemSourceProperty, nameof(ViewModel.AllStates)
             .Bind(Picker.SelectedIndex, nameof(ViewModel.SelectedState),
 
           new Label()

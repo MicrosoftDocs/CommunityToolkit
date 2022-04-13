@@ -20,3 +20,4 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable beh
 | Converter | Description |
 | --------- | ----------- |
 | [`MaxLengthReachedBehavior`](maximum-length-reached-behavior.md) | The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. |
+| [`UserStoppedTypingBehavior`](user-stopped-typing-behavior.md) | The `UserStoppedTypingBehavior` is a behavior that allows the user to trigger an action when a user has stopped data input an `Entry`. |

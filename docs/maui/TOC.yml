@@ -19,6 +19,8 @@ items:
       href: behaviors/index.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
+    - name: "UserStoppedTypingBehavior"
+      href: behaviors/user-stopped-typing-behavior.md
 - name: "Converters"
   items:
     - name: Overview

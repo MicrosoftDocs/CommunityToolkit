@@ -7,7 +7,7 @@ ms.date: 04/12/2022
 
 # Popup
 
-[!INCLUDE [docs under construction](includes/preview-note.md)]
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
 
 Popups are a very common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance. 
 
@@ -183,11 +183,11 @@ public class MyPage : ContentPage
 |---------|---------|---------|
 | `Anchor` | `View` | Gets or sets the `View` anchor. The Anchor is where the Popup will render closest to. When an Anchor is configured the popup will appear centered over that control or as close as possible. |
 | `CanBeDismissedByTappingOutsideOfPopup` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the Popup. On Android - when false the hardware back button is disabled. |
-| `Color` | `Color` | Gets or sets the <see cref="Color"/> of the Popup. This color sets the native background color of the `Popup`, which is independent of any background color configured in the actual `Content`. |
+| `Color` | `Color` | Gets or sets the `Color` of the Popup. This color sets the native background color of the `Popup`, which is independent of any background color configured in the actual `Content`. |
 | `Content` | `View` | Gets or sets the `View` content to render in the `Popup`. |
 | `HorizontalOptions` | `LayoutAlignment` | Gets or sets the `LayoutAlignment` for positioning the `Popup` horizontally on the screen. |
 | `Result` | `Task<object?>` | Gets the final result of the dismissed `Popup`. |
-| `Size` | `Size` | Gets or sets the <see cref="Size"/> of the Popup Display. The Popup will always try to constrain the actual size of the `Popup` to the size of the View unless a `Size` is specified. If the `Popup` uses the `HorizontalOptions` or `VerticalOptions` properties that are not the defaults then this `Size` property is required. |
+| `Size` | `Size` | Gets or sets the `Size` of the Popup Display. The Popup will always try to constrain the actual size of the `Popup` to the size of the View unless a `Size` is specified. If the `Popup` uses the `HorizontalOptions` or `VerticalOptions` properties that are not the defaults then this `Size` property is required. |
 | `VerticalOptions` | `LayoutAlignment` | Gets or sets the `LayoutAlignment` for positioning the `Popup` vertically on the screen. |
 
 ## Events

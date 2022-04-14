@@ -9,7 +9,7 @@ ms.date: 04/13/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `UserStoppedTypingBehavior` is a `Behavior` that allows the user to trigger an action when a user has stopped data input an `Entry`. Examples of its usage include triggering a search when a user has stopped entering their search query.
+The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when a user has stopped data input on controls for example `Entry`, `SearchBar` and `Editor`. Examples of its usage include triggering a search when a user has stopped entering their search query.
 
 ## Syntax
 
@@ -50,7 +50,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
             MinimumLengthThreshold = 3,
             ShouldDismissKeyboardAutomatically = true
         };
-        behavior.SetBinding(UserStoppedTypingBehavior.CommandProperty, nameof(ViewModel. SearchCommand);
+        behavior.SetBinding(UserStoppedTypingBehavior.CommandProperty, 
+        nameof(ViewModel. SearchCommand);
 
         var entry = new Entry
         {
@@ -63,7 +64,7 @@ class UserStoppedTypingBehaviorPage : ContentPage
 
 ### C# Markup
 
-Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this behavior in C#.
 
 ```csharp
 using CommunityToolkit.Maui.Markup;
@@ -73,17 +74,18 @@ class UserStoppedTypingBehaviorPage : ContentPage
     public UserStoppedTypingBehaviorPage()
     {
         Content = new Entry
-            {
-                Placeholder = "Start typing when you stop the behavior will trigger..."
-            }
-            .Behaviors(new UserStoppedTypingBehavior
-            {
-                StoppedTypingTimeThreshold = 1000,
-                MinimumLengthThreshold = 3,
-                ShouldDismissKeyboardAutomatically = true
-            }.Bind(
+        {
+            Placeholder = "Start typing when you stop the behavior will trigger..."
+        }
+        .Behaviors(new UserStoppedTypingBehavior
+        {
+            StoppedTypingTimeThreshold = 1000,
+            MinimumLengthThreshold = 3,
+            ShouldDismissKeyboardAutomatically = true
+        }
+        .Bind(
                 UserStoppedTypingBehavior.CommandProperty, 
-                nameof(ViewModel. SearchCommand));                   
+                nameof(ViewModel. SearchCommand));                    
     }
 }
 ```

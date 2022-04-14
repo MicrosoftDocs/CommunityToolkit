@@ -9,7 +9,7 @@ ms.date: 04/13/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `ItemTappedEventArgsConverter` is a converter that allows users to extract the Item value from an `ItemTappedEventArgs` object. It can subsequently be used in combination with EventToCommandBehavior.
+The `ItemTappedEventArgsConverter` is a converter that allows users to extract the Item value from an `ItemTappedEventArgs` object. It can subsequently be used in combination with [EventToCommandBehavior](../behaviors/event-to-command-behavior.md).
 
 ## Syntax
 
@@ -70,13 +70,17 @@ class ItemTappedEventArgsConverterPage : ContentPage
     public ItemTappedEventArgsConverterPage()
     {
         var behavior = new EventToCommandBehavior
-                           {
-                               EventName = nameof(ListView.ItemTapped),
-                               EventArgsConverter = new ItemTappedEventArgsConverter()
-                           };
+        {
+            EventName = nameof(ListView.ItemTapped),
+            EventArgsConverter = new ItemTappedEventArgsConverter()
+        };
         behavior.SetBinding(EventToCommandBehavior.CommandProperty, nameof(ViewModel.ItemTappedCommand);
 
-        var listView = new ListView { HasUnevenRows = true }.Bind(ListView.ItemsSource, nameof(ViewModel.Items));
+        var listView = new ListView 
+        { 
+            HasUnevenRows = true 
+        };
+        listView.SetBinding(ListView.ItemsSource, nameof(ViewModel.Items));
         listView.Behaviors.Add(behavior);
 
         Content = listView;
@@ -98,12 +102,14 @@ class ItemTappedEventArgsConverterPage : ContentPage
         Content = new ListView
             {
                 HasUnevenRows = true
-            }.Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+            }
+            .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
             .Behaviors(new EventToCommandBehavior
             {
                 EventName = nameof(ListView.ItemTapped),
                 EventArgsConverter = new ItemTappedEventArgsConverter()
-            }.Bind(
+            }
+            .Bind(
                 EventToCommandBehavior.CommandProperty, 
                 nameof(ViewModel.ItemTappedCommand)));                   
     }

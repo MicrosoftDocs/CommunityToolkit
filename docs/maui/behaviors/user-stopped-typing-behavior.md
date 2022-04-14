@@ -76,17 +76,18 @@ class UserStoppedTypingBehaviorPage : ContentPage
     public UserStoppedTypingBehaviorPage()
     {
         Content = new Entry
-            {
-                Placeholder = "Start typing when you stop the behavior will trigger..."
-            }
-            .Behaviors(new UserStoppedTypingBehavior
-            {
-                StoppedTypingTimeThreshold = 1000,
-                MinimumLengthThreshold = 3,
-                ShouldDismissKeyboardAutomatically = true
-            }.Bind(
-                UserStoppedTypingBehavior.CommandProperty, 
-                nameof(ViewModel. SearchCommand));                   
+        {
+            Placeholder = "Start typing when you stop the behavior will trigger..."
+        }
+        .Behaviors(new UserStoppedTypingBehavior
+        {
+            StoppedTypingTimeThreshold = 1000,
+            MinimumLengthThreshold = 3,
+            ShouldDismissKeyboardAutomatically = true
+        }
+        .Bind(
+            UserStoppedTypingBehavior.CommandProperty, 
+            nameof(ViewModel. SearchCommand));                    
     }
 }
 ```

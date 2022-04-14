@@ -9,7 +9,7 @@ ms.date: 03/28/2022
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
-The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls like `CarouselView` and `CollectionView`
+The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`
 
 The extensions offer the following methods:
 
@@ -93,7 +93,7 @@ The following example sets the `RemainingItemsThresholdReachedCommand` to a new 
 new CollectionView().RemainingItemsThresholdReachedCommand(new Command(async () => await DisplayAlert("Threshold Reached", "", "OK")));
 ```
 
-The `RemainingItemsThresholdReachedCommand` method also contains an overload which sets both the `RemainingItemsThresholdReachedCommand` property and the `RemainingItemsThresholdReachedCommandParameter` property.
+Theere is a second overload that sets both the `RemainingItemsThresholdReachedCommand` property and the `RemainingItemsThresholdReachedCommandParameter` property.
 
 The following example sets the `RemainingItemsThresholdReachedCommand` to a new `Command<string>` and sets the `RemainingItemsThresholdReachedCommandParameter` to `"No Items Remaining"`:
 

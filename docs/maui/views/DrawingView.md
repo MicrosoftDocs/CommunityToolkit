@@ -2,7 +2,7 @@
 title: DrawingView - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The DrawingView allows to draw lines, save the image and restore it by settings the list of lines."
-ms.date: 03/30/2022
+ms.date: 04/14/2022
 ---
 
 # DrawingView
@@ -10,9 +10,6 @@ ms.date: 03/30/2022
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
 The `DrawingView` allows to draw lines, save the image and restore it by settings the list of lines.
-
-> [!NOTE]
-> The `DrawingView` is not supported on Windows until InkCanvas is migrated to WinUI 3.
 
 ## Syntax
 
@@ -47,30 +44,30 @@ var drawingView = new DrawingView
     Lines = new ObservableCollection<DrawingLine>(),
     MultiLineMode = true,
     ClearOnFinish = false,
-    DrawingLineCompletedCommand = new Command<DrawingLine>(line =>
+    DrawingLineCompletedCommand = new Command<DrawingLine>(async (line) =>
     {
-        var stream = line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
         gestureImage.Source = ImageSource.FromStream(() => stream);
     }),
     LineColor = Colors.Red,
     LineWidth = 5,
     BackgroundColor = Colors.Red
 };
-drawingView.DrawingLineCompleted += (s, e) =>
+drawingView.DrawingLineCompleted += async (s, e) =>
 {
-    var stream = e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 
 // get stream from lines collection
 var lines = new List<DrawingLine>();
-var stream1 = DrawingView.GetImageStream(
+var stream1 = await DrawingView.GetImageStream(
                 lines,
                 new Size(gestureImage.Width, gestureImage.Height),
                 Colors.Black);
 
 // get steam from the current DrawingView
-var stream2 = drawingView.GetImageStream(gestureImage.Width, gestureImage.Height);
+var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height);
 ```
 
 ## Properties

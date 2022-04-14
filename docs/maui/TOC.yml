@@ -87,6 +87,8 @@ items:
       href: markup/extensions/element-extensions.md
     - name: "Image extensions"
       href: markup/extensions/image-extensions.md
+    - name: "ItemsView extensions"
+      href: markup/extensions/itemsview-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"

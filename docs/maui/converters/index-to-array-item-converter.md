@@ -37,7 +37,7 @@ The `IndexToArrayItemConverter` can be used as follows in XAML:
 
     <StackLayout>
 
-        <Label IsVisible="{Binding MyIntegerValue, Converter={StaticResource IndexToArrayItemConverter}, ConverterParameter={StaticResource MyArray}}" />
+        <Label Text="{Binding MyIntegerValue, Converter={StaticResource IndexToArrayItemConverter}, ConverterParameter={StaticResource MyArray}}" />
 
     </StackLayout>
 </ContentPage>
@@ -57,7 +57,7 @@ class IndexToArrayItemConverter : ContentPage
         var label = new Label();
 
         label.SetBinding(
-            Label.IsVisibleProperty, 
+            Label.TextProperty, 
             new Binding(
                 nameof(ViewModel.MyIntegerValue), 
                 converter: new IndexToArrayItemConverter(), 
@@ -83,7 +83,7 @@ class IndexToArrayItemConverter : ContentPage
 
         Content = new Label()
             .Bind(
-                Label.IsVisibleProperty, 
+                Label.TextProperty, 
                 nameof(ViewModel.MyIntegerValue), 
                 converter: new IndexToArrayItemConverter 
                 ConverterParameter: array); 

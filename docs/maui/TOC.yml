@@ -39,6 +39,8 @@ items:
       href: converters/double-to-int-converter.md
     - name: "EnumToIntConverter"
       href: converters/enum-to-int-converter.md
+    - name: "IndexToArrayItemConverter"
+      href: converters/index-to-array-item-converter.md
     - name: "IntToBoolConverter"
       href: converters/int-to-bool-converter.md
     - name: "InvertedBoolConverter"

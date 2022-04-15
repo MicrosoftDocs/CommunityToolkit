@@ -69,6 +69,8 @@ items:
       href: converters/color-to-hsla-string-converter.md
     - name: "ColorToInverseColorConverter"
       href: converters/color-to-inverse-color-converter.md
+    - name: "ColorToPercentCyanConverter"
+      href: converters/color-to-percent-cyan-converter.md
     - name: "ColorToRgbStringConverter"
       href: converters/color-to-rgb-string-converter.md
     - name: "ColorToRgbaStringConverter"

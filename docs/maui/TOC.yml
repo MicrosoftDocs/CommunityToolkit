@@ -33,6 +33,8 @@ items:
       href: converters/color-to-black-or-white-converter.md
     - name: "ColorToByteAlphaConverter"
       href: converters/color-to-byte-alpha-converter.md
+    - name: "ColorToByteGreenConverter"
+      href: converters/color-to-byte-green-converter.md
     - name: "ColorToByteRedConverter"
       href: converters/color-to-byte-red-converter.md
     - name: "ColorToCmykStringConverter"

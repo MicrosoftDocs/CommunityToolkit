@@ -37,6 +37,8 @@ items:
       href: converters/color-to-inverse-color-converter.md
     - name: "ColorToRgbStringConverter"
       href: converters/color-to-rgb-string-converter.md
+    - name: "ColorToRgbaStringConverter"
+      href: converters/color-to-rgba-string-converter.md
     - name: "DateTimeOffsetConverter"
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"

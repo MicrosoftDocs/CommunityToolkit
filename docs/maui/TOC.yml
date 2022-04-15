@@ -73,6 +73,8 @@ items:
       href: converters/color-to-percent-cyan-converter.md
     - name: "ColorToPercentMagentaConverter"
       href: converters/color-to-percent-magenta-converter.md
+    - name: "ColorToPercentYellowConverter"
+      href: converters/color-to-percent-yellow-converter.md
     - name: "ColorToRgbStringConverter"
       href: converters/color-to-rgb-string-converter.md
     - name: "ColorToRgbaStringConverter"

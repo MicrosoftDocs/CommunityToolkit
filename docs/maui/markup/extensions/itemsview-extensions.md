@@ -9,7 +9,7 @@ ms.date: 03/28/2022
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
-The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`
+The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`.
 
 The extensions offer the following methods:
 

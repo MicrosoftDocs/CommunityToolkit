@@ -61,6 +61,8 @@ items:
       href: converters/color-to-inverse-color-converter.md
     - name: "ColorToPercentCyanConverter"
       href: converters/color-to-percent-cyan-converter.md
+    - name: "ColorToPercentKeyConverter"
+      href: converters/color-to-percent-key-converter.md
     - name: "ColorToPercentMagentaConverter"
       href: converters/color-to-percent-magenta-converter.md
     - name: "ColorToPercentYellowConverter"

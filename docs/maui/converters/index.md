@@ -20,6 +20,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | Converter | Description |
 | --------- | ----------- |
 | [`BoolToObjectConverter`](bool-to-object-converter.md) | The `BoolToObjectConverter` is a converter that allows users to convert a `bool` value binding to a specific object. |
+| [`ByteArrayToImageSourceConverter`](byte-array-to-image-source-converter.md) | The `ByteArrayToImageSourceConverter` is a converter that allows the user to convert an incoming value from a `byte` array and returns an `ImageSource`. |
 | [`ColorToBlackOrWhiteConverter`](color-to-black-or-white-converter.md) | The `ColorToBlackOrWhiteConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White`. |
 | [`ColorToColorForTextConverter`](color-to-color-for-text-converter.md) | The `ColorToColorForTextConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White` based on whether it is determined as being dark for the human eye. |
 | [`ColorToGrayScaleColorConverter`](color-to-gray-scale-color-converter.md) | The `ColorToGrayScaleColorConverter` is a one way converter that allows users to convert an incoming `Color` to a grayscale `Color`. |

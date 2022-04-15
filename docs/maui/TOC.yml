@@ -33,6 +33,8 @@ items:
       href: converters/color-to-black-or-white-converter.md
     - name: "ColorToCmykStringConverter"
       href: converters/color-to-cmyk-string-converter.md
+    - name: "ColorToCmykaStringConverter"
+      href: converters/color-to-cmyka-string-converter.md
     - name: "ColorToColorForTextConverter"
       href: converters/color-to-color-for-text-converter.md
     - name: "ColorToGrayScaleColorConverter"

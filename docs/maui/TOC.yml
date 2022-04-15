@@ -43,6 +43,8 @@ items:
       href: converters/color-to-hex-rgba-string-converter.md
     - name: "ColorToHslStringConverter"
       href: converters/color-to-hsl-string-converter.md
+    - name: "ColorToHslaStringConverter"
+      href: converters/color-to-hsla-string-converter.md
     - name: "ColorToInverseColorConverter"
       href: converters/color-to-inverse-color-converter.md
     - name: "ColorToRgbStringConverter"

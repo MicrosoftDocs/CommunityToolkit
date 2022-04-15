@@ -17,7 +17,7 @@ The `ConvertBack` method is not supported.
 
 ## Syntax
 
-The following examples will show how to use the `ColorToHslStringConverter` to display the CMYK equivalent string of a specific `Color`.
+The following examples will show how to use the `ColorToHslStringConverter` to display the HSL equivalent string of a specific `Color`.
 
 ### XAML
 

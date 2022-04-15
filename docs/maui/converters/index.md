@@ -35,6 +35,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`ColorToHslStringConverter`](color-to-hsl-string-converter.md) | The `ColorToHslStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSL `string` equivalent. |
 | [`ColorToHslaStringConverter`](color-to-hsla-string-converter.md) | The `ColorToHslaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSLA `string` equivalent. |
 | [`ColorToInverseColorConverter`](color-to-inverse-color-converter.md) | The `ColorToInverseColorConverter` is a one way converter that allows users to convert an incoming `Color` to its inverse. |
+| [`ColorToPercentCyanConverter`](color-to-percent-cyan-converter.md) | The `ColorToPercentCyanConverter` is a one way converter that allows users to convert an incoming `Color` to the **cyan** component as a value between 0 and 1. |
 | [`ColorToRgbStringConverter`](color-to-rgb-string-converter.md) | The `ColorToRgbStringConverter` is a one way converter that allows users to convert a `Color` value binding to its RGB `string` equivalent. |
 | [`ColorToRgbaStringConverter`](color-to-rgba-string-converter.md) | The `ColorToRgbaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its RGBA `string` equivalent. |
 | [`DateTimeOffsetConverter`](datetimeoffsetconverter.md) | The `DateTimeOffsetConverter` is a converter that allows users to convert a `DateTimeOffset` to a `DateTime` |

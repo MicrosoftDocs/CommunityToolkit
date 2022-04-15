@@ -35,6 +35,8 @@ items:
       href: converters/color-to-gray-scale-color-converter.md
     - name: "ColorToHexRgbStringConverter"
       href: converters/color-to-hex-rgb-string-converter.md
+    - name: "ColorToHexRgbaStringConverter"
+      href: converters/color-to-hex-rgba-string-converter.md
     - name: "ColorToInverseColorConverter"
       href: converters/color-to-inverse-color-converter.md
     - name: "ColorToRgbStringConverter"

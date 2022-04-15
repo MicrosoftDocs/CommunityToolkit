@@ -31,6 +31,8 @@ items:
       href: converters/byte-array-to-image-source-converter.md
     - name: "ColorToBlackOrWhiteConverter"
       href: converters/color-to-black-or-white-converter.md
+    - name: "ColorToByteAlphaConverter"
+      href: converters/color-to-byte-alpha-converter.md
     - name: "ColorToCmykStringConverter"
       href: converters/color-to-cmyk-string-converter.md
     - name: "ColorToCmykaStringConverter"

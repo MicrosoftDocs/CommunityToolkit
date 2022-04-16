@@ -1,15 +1,15 @@
 ---
-title: ColorToPercentKeyConverter - .NET MAUI Community Toolkit
+title: ColorToPercentBlackKeyConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The ColorToPercentKeyConverter is a one way converter that allows users to convert an incoming Color to the black key component as a value between 0 and 1."
+description: "The ColorToPercentBlackKeyConverter is a one way converter that allows users to convert an incoming Color to the black key component as a value between 0 and 1."
 ms.date: 04/15/2022
 ---
 
-# ColorToPercentKeyConverter
+# ColorToPercentBlackKeyConverter
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `ColorToPercentKeyConverter` is a one way converter that allows users to convert an incoming `Color` to the **key** component as a value between 0 and 1.
+The `ColorToPercentBlackKeyConverter` is a one way converter that allows users to convert an incoming `Color` to the **key** component as a value between 0 and 1.
 
 The `Convert` method returns the **key** component as a value between 0 and 1 from the supplied `value`.
 
@@ -17,28 +17,28 @@ The `ConvertBack` method is not supported.
 
 ## Syntax
 
-The following examples will show how to use the `ColorToPercentKeyConverter` to display the **key** component of a specific `Color`.
+The following examples will show how to use the `ColorToPercentBlackKeyConverter` to display the **key** component of a specific `Color`.
 
 ### XAML
 
-The `ColorToPercentKeyConverter` can be used as follows in XAML:
+The `ColorToPercentBlackKeyConverter` can be used as follows in XAML:
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.ColorToPercentKeyConverterPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.ColorToPercentBlackKeyConverterPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <toolkit:ColorToPercentKeyConverter x:Key="ColorToPercentKeyConverter" />
+            <toolkit:ColorToPercentBlackKeyConverter x:Key="ColorToPercentBlackKeyConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <VerticalStackLayout>
          <Label Text="The key component is:" />
 
-         <Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToPercentKeyConverter}}" />
+         <Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToPercentBlackKeyConverter}}" />
      </VerticalStackLayout>
 
 </ContentPage>
@@ -46,12 +46,12 @@ The `ColorToPercentKeyConverter` can be used as follows in XAML:
 
 ### C#
 
-The `ColorToPercentKeyConverter` can be used as follows in C#:
+The `ColorToPercentBlackKeyConverter` can be used as follows in C#:
 
 ```csharp
-class ColorToPercentKeyConverterPage : ContentPage
+class ColorToPercentBlackKeyConverterPage : ContentPage
 {
-    public ColorToPercentKeyConverterPage()
+    public ColorToPercentBlackKeyConverterPage()
     {
         var label = new Label();
 
@@ -59,7 +59,7 @@ class ColorToPercentKeyConverterPage : ContentPage
  			Label.TextProperty,
  			new Binding(
  				nameof(ViewModel.MyFavoriteColor),
- 				converter: new ColorToPercentKeyConverter()));
+ 				converter: new ColorToPercentBlackKeyConverter()));
 
  		Content = new VerticalStackLayout
  		{
@@ -80,9 +80,9 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class ColorToPercentKeyConverterPage : ContentPage
+class ColorToPercentBlackKeyConverterPage : ContentPage
 {
-    public ColorToPercentKeyConverterPage()
+    public ColorToPercentBlackKeyConverterPage()
     {
         Content = new VerticalStackLayout
  		{
@@ -94,7 +94,7 @@ class ColorToPercentKeyConverterPage : ContentPage
  					.Bind(
  						Label.TextProperty,
  						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentKeyConverter())
+ 						converter: new ColorToPercentBlackKeyConverter())
  			}
  		};
     }
@@ -107,4 +107,4 @@ You can find an example of this converter in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `ColorToPercentKeyConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/ColorToComponentConverter.shared.cs).
+You can find the source code for `ColorToPercentBlackKeyConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/ColorToComponentConverter.shared.cs).

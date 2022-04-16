@@ -105,7 +105,7 @@ class MaxLengthReachedBehaviorPage : ContentPage
 
 ## Examples
 
-You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/MaxLengthReachedBehaviorPage.xaml).
+You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/MaxLengthReachedBehaviorPage.xaml).
 
 ## API
 

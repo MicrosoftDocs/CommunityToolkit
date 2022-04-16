@@ -1,4 +1,6 @@
-### Common Validation Properties
+### ValidationBehavior Properties
+
+The following properties are implemented in `public abstract class ValidationBehavior`:
 
 |Property  |Type  |Description  |
 |---------|---------|---------|

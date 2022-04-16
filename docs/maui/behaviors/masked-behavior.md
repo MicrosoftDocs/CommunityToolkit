@@ -75,11 +75,10 @@ class MaskedBehaviorPage : ContentPage
         Content = new Entry
         {
             Keyboard = Keyboard.Numeric
-        }.Behaviors(
-            new MaskedBehavior
-            {
-                Mask = "XXXX XXXX XXXX XXXX"
-            });
+        }.Behaviors(new MaskedBehavior
+        {
+            Mask = "XXXX XXXX XXXX XXXX"
+        });
     }
 }
 ```

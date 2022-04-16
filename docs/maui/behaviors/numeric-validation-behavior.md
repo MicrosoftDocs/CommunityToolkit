@@ -108,16 +108,15 @@ class NumericValidationBehaviorPage : ContentPage
         Content = new Entry
         {
             Keyboard = Keyboard.Numeric
-        }.Behaviors(
-            new NumericValidationBehavior
-            {
-                InvalidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Red),
-                ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
-                Flags = ValidationFlags.ValidateOnValueChanged,
-                MinimumValue = 1.0,
-                MaximumValue = 100.0,
-                MaximumDecimalPlaces = 2
-            });
+        }.Behaviors(new NumericValidationBehavior
+        {
+            InvalidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Red),
+            ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
+            Flags = ValidationFlags.ValidateOnValueChanged,
+            MinimumValue = 1.0,
+            MaximumValue = 100.0,
+            MaximumDecimalPlaces = 2
+        });
     }
 }
 ```

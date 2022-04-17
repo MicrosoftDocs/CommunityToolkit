@@ -64,7 +64,7 @@ These values adhere to the constants defined in the [`android.widget.Toast` API]
 
 ## Examples
 
-You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Alerts/ToastPage.xaml.cs).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Alerts/ToastPage.xaml.cs).
 
 ## API
 

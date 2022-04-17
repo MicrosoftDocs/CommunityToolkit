@@ -19,10 +19,14 @@ items:
       href: behaviors/index.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
+    - name: "UserStoppedTypingBehavior"
+      href: behaviors/user-stopped-typing-behavior.md
 - name: "Converters"
   items:
     - name: Overview
       href: converters/index.md
+    - name: "BoolToObjectConverter"
+      href: converters/bool-to-object-converter.md
     - name: "ColorToBlackOrWhiteConverter"
       href: converters/color-to-black-or-white-converter.md
     - name: "ColorToColorForTextConverter"
@@ -37,6 +41,8 @@ items:
       href: converters/double-to-int-converter.md
     - name: "EnumToIntConverter"
       href: converters/enum-to-int-converter.md
+    - name: "IndexToArrayItemConverter"
+      href: converters/index-to-array-item-converter.md
     - name: "IntToBoolConverter"
       href: converters/int-to-bool-converter.md
     - name: "InvertedBoolConverter"
@@ -63,6 +69,12 @@ items:
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+- name: "Views"
+  items:
+    - name: Overview
+      href: views/index.md
+    - name: "Popup"
+      href: views/popup.md
 - name: C# Markup
   items:
     - name: Overview
@@ -77,6 +89,8 @@ items:
       href: markup/extensions/element-extensions.md
     - name: "Image extensions"
       href: markup/extensions/image-extensions.md
+    - name: "ItemsView extensions"
+      href: markup/extensions/itemsview-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"

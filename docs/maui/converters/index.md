@@ -19,6 +19,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 
 | Converter | Description |
 | --------- | ----------- |
+| [`BoolToObjectConverter`](bool-to-object-converter.md) | The `BoolToObjectConverter` is a converter that allows users to convert a `bool` value binding to a specific object. |
 | [`ColorToBlackOrWhiteConverter`](color-to-black-or-white-converter.md) | The `ColorToBlackOrWhiteConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White`. |
 | [`ColorToColorForTextConverter`](color-to-color-for-text-converter.md) | The `ColorToColorForTextConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White` based on whether it is determined as being dark for the human eye. |
 | [`ColorToGrayScaleColorConverter`](color-to-gray-scale-color-converter.md) | The `ColorToGrayScaleColorConverter` is a one way converter that allows users to convert an incoming `Color` to a grayscale `Color`. |
@@ -26,6 +27,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`DateTimeOffsetConverter`](datetimeoffsetconverter.md) | The `DateTimeOffsetConverter` is a converter that allows users to convert a `DateTimeOffset` to a `DateTime` |
 | [`DoubleToIntConverter`](double-to-int-converter.md) | The `DoubleToIntConverter` is a converter that allows users to convert an incoming `double` value to an `int` and vice-versa. Optionally the user can provide a multiplier to the conversion through the `Ratio` property. |
 | [`EnumToIntConverter`](enum-to-int-converter.md) | The `EnumToIntConverter` is a converter that allows you to convert a standard `Enum` (extending int) to its underlying primitive `int` type. It is useful when binding a collection of values representing an enumeration type with default numbering to a control such as a `Picker`. |
+| [`IndexToArrayItemConverter`](index-to-array-item-converter.md) | The `IndexToArrayItemConverter` is a converter that allows users to convert an `int` value binding to an item in an array. The `int` value being data bound represents the indexer used to access the array. The array is passed in through the `ConverterParameter`. |
 | [`IntToBoolConverter`](int-to-bool-converter.md) | The `IntToBoolConverter` is a converter that allows users to convert an incoming `int` value to a `bool` and vice-versa. |
 | [`InvertedBoolConverter`](inverted-bool-converter.md) | The `InvertedBoolConverter` is a converter that allows users to convert a `bool` to its inverse - `true` becomes `false` and vice-versa. |
 | [`IsEqualConverter`](is-equal-converter.md) | The `IsEqualConverter` is a one way converter that returns a `bool` indicating whether the binding value is equal to another specified value. |

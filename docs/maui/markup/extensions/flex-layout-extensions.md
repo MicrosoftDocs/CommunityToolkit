@@ -9,7 +9,7 @@ ms.date: 04/06/2022
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
-The FlexLayout extensions provide a series of extension methods that support positioning `View`s in `FlexLayout`s.
+The FlexLayout extensions provide a series of extension methods that support positioning a `View` in a `FlexLayout`.
 
 The extensions offer the following methods:
 

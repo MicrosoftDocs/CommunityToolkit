@@ -17,7 +17,7 @@ For further information on Behaviors please refer to the [.NET MAUI documentatio
 
 The .NET MAUI Community Toolkit provides a collection of pre-built, reusable behaviors to make developers lives easier. Here are the behaviors provided by the toolkit:
 
-| Converter | Description |
+| Behavior | Description |
 | --------- | ----------- |
 | [`CharactersValidationBehavior`](characters-validation-behavior.md) | The `CharactersValidationBehavior` is a `Behavior` that allows the user to validate text input depending on specified parameters. |
 | [`EmailValidationBehavior`](email-validation-behavior.md) | The `EmailValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid e-mail address. |

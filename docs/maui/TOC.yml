@@ -97,6 +97,8 @@ items:
       href: markup/markup.md
     - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
+    - name: "FlexLayout extensions"
+      href: markup/extensions/flex-layout-extensions.md
     - name: "BindableObject extensions"
       href: markup/extensions/bindable-object-extensions.md
     - name: "Element extensions"

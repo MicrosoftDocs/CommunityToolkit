@@ -9,14 +9,39 @@ ms.date: 04/14/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `DrawingView` allows to draw lines, save the image and restore it by settings the list of lines.
+The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image.
+A common use case for this is to provide a signature box in an application.
 
 ## Syntax
 
-The `DrawingView` is invoked using C#.
-
 ### XAML
 
+Basic usage:
+```xml
+<views:DrawingView
+            Lines="{Binding MyLines}"
+            LineColor="Red"
+            LineWidth="5" />
+```
+
+
+MultiLine usage:
+```xml
+<views:DrawingView
+            Lines="{Binding MyLines}"
+            IsMultiLineModeEnabled="true"
+            ShouldClearOnFinish="false" />
+```
+
+Handle event when DrawingLineCompleted:
+```xml
+<views:DrawingView
+            Lines="{Binding MyLines}"
+            DrawingLineCompletedCommand="{Binding DrawingLineCompletedCommand}"
+            DrawingLineCompleted="OnDrawingLineCompletedEvent" />
+```
+
+Advanced usage:
 ```xml
 <views:DrawingView
             x:Name="DrawingViewControl"
@@ -31,7 +56,6 @@ The `DrawingView` is invoked using C#.
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand" />
 ```
-
 
 ### C#
 
@@ -99,13 +123,33 @@ The `DrawingLine` contains the list of points and allows configuring each line s
 #### Custom IDrawingLine
 
 There are 2 steps to replace the default `DrawingLine` with the custom implementation:
-1. Create custom class which implements `IDrawingLine`.
+1. Create custom class which implements `IDrawingLine`:
+    ```csharp
+    public class MyDrawingLine : IDrawingLine
+    {
+        public ObservableCollection<PointF> Points { get; } = new();
+        ...
+    }
+    ```
 1. Create custom class which implements `IDrawingLineAdapter`.
+    ```csharp
+    public class MyDrawingLineAdapter : IDrawingLineAdapter
+    {
+        public IDrawingLine(MauiDrawingLine mauiDrawingLine)
+        {
+            return new MyDrawingLine
+            {
+                Points = mauiDrawingLine.Points,
+                ...
+            }
+        }
+    }
+    ```
 1. Set custom `IDrawingLineAdapter` in `IDrawingViewHandler`:
-```csharp
-var myDrawingLineAdapter = new MyDrawingLineAdapter();
-drawingViewHandler.SetDrawingLineAdapter(myDrawingLineAdapter);
-```
+    ```csharp
+    var myDrawingLineAdapter = new MyDrawingLineAdapter();
+    drawingViewHandler.SetDrawingLineAdapter(myDrawingLineAdapter);
+    ```
 
 ### DrawingLineCompletedEventArgs
 
@@ -126,7 +170,7 @@ Event argument which contains last drawing line.
 
 ## Examples
 
-You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/DrawingViewPage.xaml.cs).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/DrawingViewPage.xaml.cs).
 
 ## API
 

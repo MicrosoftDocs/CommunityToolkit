@@ -9,7 +9,7 @@ ms.date: 03/02/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. It can either trigger a `Command` or an event depending on the user's preferred scenario. Both the `Command` and event will include the resulting text of the `InputView`.
+The `MaxLengthReachedBehavior` is a `Behavior` that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. It can either trigger a `Command` or an event depending on the user's preferred scenario. Both the `Command` and event will include the resulting text of the `InputView`.
 
 Additionally it is possible to dismiss the keyboard when the maximum length is reached via the `ShouldDismissKeyboardAutomatically` property which defaults to `false`.
 

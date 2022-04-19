@@ -63,7 +63,7 @@ class MaskedBehaviorPage : ContentPage
 
 ### C# Markup
 
-Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this behavior in C#.
 
 ```csharp
 using CommunityToolkit.Maui.Markup;

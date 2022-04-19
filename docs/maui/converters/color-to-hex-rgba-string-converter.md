@@ -55,20 +55,20 @@ class ColorToHexRgbaStringConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModel.MyFavoriteColor),
-				converter: new ColorToHexRgbaStringConverter()));
+	label.SetBinding(
+		Label.TextProperty,
+		new Binding(
+			nameof(ViewModel.MyFavoriteColor),
+			converter: new ColorToHexRgbaStringConverter()));
 
-		Content = new VerticalStackLayout
+	Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label { Text = "My favourite Color is:" },
-				label
-			}
-		};
+			new Label { Text = "My favourite Color is:" },
+			label
+		}
+	};
     }
 }
 ```
@@ -85,18 +85,18 @@ class ColorToHexRgbaStringConverterPage : ContentPage
     public ColorToHexRgbaStringConverterPage()
     {
         Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label()
-					.Text("My favourite Color is:"),
-				new Label()
-					.Bind(
-						Label.TextProperty,
-						nameof(ViewModel.MyFavoriteColor),
-						converter: new ColorToHexRgbaStringConverter())
-			}
-		};
+			new Label()
+				.Text("My favourite Color is:"),
+			new Label()
+				.Bind(
+					Label.TextProperty,
+					nameof(ViewModel.MyFavoriteColor),
+					converter: new ColorToHexRgbaStringConverter())
+		}
+	};
     }
 }
 ```

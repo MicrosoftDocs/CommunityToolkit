@@ -1,6 +1,6 @@
 ### ValidationBehavior Properties
 
-The following properties are implemented in `public abstract class ValidationBehavior`:
+The following properties are implemented in the base class, `public abstract class ValidationBehavior`:
 
 |Property  |Type  |Description  |
 |---------|---------|---------|

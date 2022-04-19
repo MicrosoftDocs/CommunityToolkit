@@ -55,20 +55,20 @@ class ColorToRgbStringConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModel.MyFavoriteColor),
-				converter: new ColorToRgbStringConverter()));
+	label.SetBinding(
+		Label.TextProperty,
+		new Binding(
+			nameof(ViewModel.MyFavoriteColor),
+			converter: new ColorToRgbStringConverter()));
 
-		Content = new VerticalStackLayout
+	Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label { Text = "My favourite Color is:" },
-				label
-			}
-		};
+			new Label { Text = "My favourite Color is:" },
+			label
+		}
+	};
     }
 }
 ```
@@ -85,18 +85,18 @@ class ColorToRgbStringConverterPage : ContentPage
     public ColorToRgbStringConverterPage()
     {
         Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label()
-					.Text("My favourite Color is:"),
-				new Label()
-					.Bind(
-						Label.TextProperty,
-						nameof(ViewModel.MyFavoriteColor),
-						converter: new ColorToRgbStringConverter())
-			}
-		};
+			new Label()
+				.Text("My favourite Color is:"),
+			new Label()
+				.Bind(
+					Label.TextProperty,
+					nameof(ViewModel.MyFavoriteColor),
+					converter: new ColorToRgbStringConverter())
+		}
+	};
     }
 }
 ```

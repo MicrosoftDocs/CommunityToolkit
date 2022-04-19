@@ -55,20 +55,20 @@ class ColorToRgbaStringConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModel.MyFavoriteColor),
-				converter: new ColorToRgbaStringConverter()));
+	label.SetBinding(
+		Label.TextProperty,
+		new Binding(
+			nameof(ViewModel.MyFavoriteColor),
+			converter: new ColorToRgbaStringConverter()));
 
-		Content = new VerticalStackLayout
+	Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label { Text = "My favourite Color is:" },
-				label
-			}
-		};
+			new Label { Text = "My favourite Color is:" },
+			label
+		}
+	};
     }
 }
 ```
@@ -85,18 +85,18 @@ class ColorToRgbaStringConverterPage : ContentPage
     public ColorToRgbaStringConverterPage()
     {
         Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label()
-					.Text("My favourite Color is:"),
-				new Label()
-					.Bind(
-						Label.TextProperty,
-						nameof(ViewModel.MyFavoriteColor),
-						converter: new ColorToRgbaStringConverter())
-			}
-		};
+			new Label()
+				.Text("My favourite Color is:"),
+			new Label()
+				.Bind(
+					Label.TextProperty,
+					nameof(ViewModel.MyFavoriteColor),
+					converter: new ColorToRgbaStringConverter())
+		}
+	};
     }
 }
 ```

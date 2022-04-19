@@ -55,20 +55,20 @@ class ColorToCmykaStringConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModel.MyFavoriteColor),
-				converter: new ColorToCmykaStringConverter()));
+	label.SetBinding(
+		Label.TextProperty,
+		new Binding(
+			nameof(ViewModel.MyFavoriteColor),
+			converter: new ColorToCmykaStringConverter()));
 
-		Content = new VerticalStackLayout
+	Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label { Text = "My favourite Color is:" },
-				label
-			}
-		};
+			new Label { Text = "My favourite Color is:" },
+			label
+		}
+	};
     }
 }
 ```
@@ -85,18 +85,18 @@ class ColorToCmykaStringConverterPage : ContentPage
     public ColorToCmykaStringConverterPage()
     {
         Content = new VerticalStackLayout
+	{
+		Children =
 		{
-			Children =
-			{
-				new Label()
-					.Text("My favourite Color is:"),
-				new Label()
-					.Bind(
-						Label.TextProperty,
-						nameof(ViewModel.MyFavoriteColor),
-						converter: new ColorToCmykaStringConverter())
-			}
-		};
+			new Label()
+				.Text("My favourite Color is:"),
+			new Label()
+				.Bind(
+					Label.TextProperty,
+					nameof(ViewModel.MyFavoriteColor),
+					converter: new ColorToCmykaStringConverter())
+		}
+	};
     }
 }
 ```

@@ -27,6 +27,8 @@ items:
       href: converters/index.md
     - name: "BoolToObjectConverter"
       href: converters/bool-to-object-converter.md
+    - name: "ByteArrayToImageSourceConverter"
+      href: converters/byte-array-to-image-source-converter.md
     - name: "ColorToBlackOrWhiteConverter"
       href: converters/color-to-black-or-white-converter.md
     - name: "ColorToCmykStringConverter"

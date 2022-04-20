@@ -19,6 +19,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable beh
 
 | Converter | Description |
 | --------- | ----------- |
+| [`EmailValidationBehavior`](email-validation-behavior.md) | The `EmailValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid e-mail address. |
 | [`MaxLengthReachedBehavior`](maximum-length-reached-behavior.md) | The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. |
 | [`NumericValidationBehavior`](numeric-validation-behavior.md) | The `NumericValidationBehavior` is a `Behavior` that allows the user to determine if text input is a valid numeric value. |
 | [`RequiredStringValidationBehavior`](required-string-validation-behavior.md) | The `RequiredStringValidationBehavior` is a `Behavior` that allows the user to determine if text input is equal to specific text. |

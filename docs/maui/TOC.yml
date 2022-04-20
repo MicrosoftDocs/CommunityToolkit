@@ -21,6 +21,8 @@ items:
       href: behaviors/maximum-length-reached-behavior.md
     - name: "NumericValidationBehavior"
       href: behaviors/numeric-validation-behavior.md
+    - name: "RequiredStringValidationBehavior"
+      href: behaviors/required-string-validation-behavior.md
     - name: "UserStoppedTypingBehavior"
       href: behaviors/user-stopped-typing-behavior.md
 - name: "Converters"

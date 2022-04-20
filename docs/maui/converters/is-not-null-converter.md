@@ -11,7 +11,7 @@ ms.date: 04/18/2022
 
 The `IsNotNullConverter` is a one way converter that converts `Object?` to a `bool` value. 
 
-The `Convert` method returns `true` when the binded object is `null` or `false` otherwise.
+The `Convert` method returns `false` when the binded object is `null` or `true` otherwise.
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsNullConverter`](is-null-converter.md).
 

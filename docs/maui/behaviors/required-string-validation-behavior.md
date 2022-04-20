@@ -34,7 +34,7 @@ The `RequiredStringValidationBehavior` can be used as follows in XAML:
         </Style>
     </ContentPage.Resources>
 
-    <Entry Keyboard="Numeric">
+    <Entry>
         <Entry.Behaviors>
             <toolkit:RequiredStringValidationBehavior 
                 InvalidStyle="{StaticResource InvalidEntryStyle}"
@@ -56,10 +56,7 @@ class RequiredStringValidationBehaviorPage : ContentPage
 {
     public RequiredStringValidationBehaviorPage()
     {
-        var entry = new Entry
-        {
-            Keyboard = Keyboard.Numeric
-        };
+        var entry = new Entry();
 
         var validStyle = new Style(typeof(Entry));
         validStyle.Setters.Add(new Setter
@@ -101,16 +98,14 @@ class RequiredStringValidationBehaviorPage : ContentPage
 {
     public RequiredStringValidationBehaviorPage()
     {
-        Content = new Entry
-        {
-            Keyboard = Keyboard.Numeric
-        }.Behaviors(new RequiredStringValidationBehavior
-        {
-            InvalidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Red),
-            ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
-            Flags = ValidationFlags.ValidateOnValueChanged,
-            RequiredString = "MAGIC ANSWER"
-        });
+        Content = new Entry()
+            .Behaviors(new RequiredStringValidationBehavior
+            {
+                InvalidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Red),
+                ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
+                Flags = ValidationFlags.ValidateOnValueChanged,
+                RequiredString = "MAGIC ANSWER"
+            });
     }
 }
 ```

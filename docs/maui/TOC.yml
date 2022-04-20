@@ -17,6 +17,8 @@ items:
   items:
     - name: Overview
       href: behaviors/index.md
+    - name: "EmailValidationBehavior"
+      href: behaviors/email-validation-behavior.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
     - name: "NumericValidationBehavior"

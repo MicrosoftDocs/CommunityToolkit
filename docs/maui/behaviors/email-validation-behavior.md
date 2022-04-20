@@ -71,14 +71,14 @@ class EmailValidationBehaviorPage : ContentPage
             Value = Colors.Red
         });
 
-        var EmailValidationBehavior = new EmailValidationBehavior
+        var emailValidationBehavior = new EmailValidationBehavior
         {
             InvalidStyle = invalidStyle,
             ValidStyle = validStyle,
             Flags = ValidationFlags.ValidateOnValueChanged
         };
 
-        entry.Behaviors.Add(EmailValidationBehavior);
+        entry.Behaviors.Add(emailValidationBehavior);
 
         Content = entry;
     }

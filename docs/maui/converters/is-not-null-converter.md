@@ -50,11 +50,11 @@ class IsNotNullConverterPage : ContentPage
     {
         var label = new Label { Text = "Object is not null" };
 
-	label.SetBinding(
-		Label.IsVisibleProperty,
-		new Binding(nameof(ViewModels.MyObject), converter: new IsNotNullConverter()));
+		label.SetBinding(
+			Label.IsVisibleProperty,
+			new Binding(nameof(ViewModels.MyObject), converter: new IsNotNullConverter()));
 
-	Content = label;
+		Content = label;
     }
 }
 ```

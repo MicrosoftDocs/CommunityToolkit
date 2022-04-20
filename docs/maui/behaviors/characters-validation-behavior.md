@@ -1,29 +1,29 @@
 ---
-title: TextValidationBehavior - .NET MAUI Community Toolkit
+title: CharactersValidationBehavior - .NET MAUI Community Toolkit
 author: bijington
-description: "The TextValidationBehavior is a Behavior that allows the user to validate a given text depending on specified parameters."
+description: "The CharactersValidationBehavior is a Behavior that allows the user to validate text input depending on specified parameters."
 ms.date: 04/20/2022
 ---
 
-# TextValidationBehavior
+# CharactersValidationBehavior
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `TextValidationBehavior` is a `Behavior` that allows the user to validate a given text depending on specified parameters. By adding this behavior to any `InputView` control it can be styled differently depending on whether a valid or an invalid text value is provided. It offers various built-in checks such as checking for a certain length or whether or not the input value matches a specific regular expression.
+The `CharactersValidationBehavior` is a `Behavior` that allows the user to validate text input depending on specified parameters. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid text value is provided. This behavior includes built-in checks such as checking for a certain number of digits or alphanumeric characters. 
 
 ## Syntax
 
-The following examples show how to add the `TextValidationBehavior` to an `Entry` and change the `TextColor` based on whether the entered text is between 1 and 10 characters long.
+The following examples show how to add the `CharactersValidationBehavior` to an `Entry` and change the `TextColor` based on whether the entered text only contains numbers and have at least 2 numbers.
 
 ### XAML
 
-The `TextValidationBehavior` can be used as follows in XAML:
+The `CharactersValidationBehavior` can be used as follows in XAML:
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.TextValidationBehaviorPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.CharactersValidationBehaviorPage">
 
     <ContentPage.Resources>
         <Style x:Key="InvalidEntryStyle" TargetType="Entry">
@@ -36,12 +36,12 @@ The `TextValidationBehavior` can be used as follows in XAML:
 
     <Entry>
         <Entry.Behaviors>
-            <toolkit:TextValidationBehavior 
+            <toolkit:CharactersValidationBehavior 
                 InvalidStyle="{StaticResource InvalidEntryStyle}"
                 ValidStyle="{StaticResource ValidEntryStyle}"
                 Flags="ValidateOnValueChanged"
-                MinimumLength="1"
-                MaximumLength="10" />
+                CharacterType="Digit"
+                MinimumCharacterCount="2" />
         </Entry.Behaviors>
     </Entry>
 
@@ -50,12 +50,12 @@ The `TextValidationBehavior` can be used as follows in XAML:
 
 ### C#
 
-The `TextValidationBehavior` can be used as follows in C#:
+The `CharactersValidationBehavior` can be used as follows in C#:
 
 ```csharp
-class TextValidationBehaviorPage : ContentPage
+class CharactersValidationBehaviorPage : ContentPage
 {
-    public TextValidationBehaviorPage()
+    public CharactersValidationBehaviorPage()
     {
         var entry = new Entry();
 
@@ -73,16 +73,16 @@ class TextValidationBehaviorPage : ContentPage
             Value = Colors.Red
         });
 
-        var textValidationBehavior = new TextValidationBehavior
+        var charactersValidationBehavior = new CharactersValidationBehavior
         {
             InvalidStyle = invalidStyle,
             ValidStyle = validStyle,
             Flags = ValidationFlags.ValidateOnValueChanged,
-            MinimumLength = 1,
-            MaximumLength = 10
+            CharacterType = CharacterType.Digit,
+            MinimumCharacterCount = 2
         };
 
-        entry.Behaviors.Add(textValidationBehavior);
+        entry.Behaviors.Add(charactersValidationBehavior);
 
         Content = entry;
     }
@@ -96,18 +96,18 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class TextValidationBehaviorPage : ContentPage
+class CharactersValidationBehaviorPage : ContentPage
 {
-    public TextValidationBehaviorPage()
+    public CharactersValidationBehaviorPage()
     {
         Content = new Entry()
-            .Behaviors(new TextValidationBehavior
+            .Behaviors(new CharactersValidationBehavior
             {
                 InvalidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Red),
                 ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
                 Flags = ValidationFlags.ValidateOnValueChanged,
-                MinimumLength = 1,
-                MaximumLength = 10
+                CharacterType = CharacterType.Digit,
+                MinimumCharacterCount = 2
             });
     }
 }
@@ -117,8 +117,11 @@ class TextValidationBehaviorPage : ContentPage
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
+| `CharacterType` | `CharacterType` | Provides an enumerated value to use to set how to handle comparisons. |
 | `DecorationFlags` | `TextDecorationFlags` | Provides enumerated value to use to set how to handle white spaces. |
+| `MaximumCharacterTypeCount` | `int` | The maximum number of `CharacterType` characters required. |
 | `MaximumLength` | `int` | The maximum length of the value that will be allowed. |
+| `MinimumCharacterTypeCount` | `int` | The minimum number of `CharacterType` characters required. |
 | `MinimumLength` | `int` | The minimum length of the value that will be allowed. |
 | `RegexOptions` | `RegexOptions` | Provides enumerated values to use to set regular expression options. |
 | `RegexPattern` | `string` | The regular expression pattern which the value will have to match before it will be allowed. |
@@ -127,8 +130,8 @@ class TextValidationBehaviorPage : ContentPage
 
 ## Examples
 
-You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/TextValidationBehaviorPage.xaml).
+You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/CharactersValidationBehaviorPage.xaml).
 
 ## API
 
-You can find the source code for `TextValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/TextValidationBehavior.cs).
+You can find the source code for `CharactersValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/CharactersValidationBehavior.cs).

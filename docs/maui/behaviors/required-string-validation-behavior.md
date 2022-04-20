@@ -72,7 +72,7 @@ class RequiredStringValidationBehaviorPage : ContentPage
             Value = Colors.Red
         });
 
-        var RequiredStringValidationBehavior = new RequiredStringValidationBehavior
+        var requiredStringValidationBehavior = new RequiredStringValidationBehavior
         {
             InvalidStyle = invalidStyle,
             ValidStyle = validStyle,
@@ -80,7 +80,7 @@ class RequiredStringValidationBehaviorPage : ContentPage
             RequiredString = "MAGIC ANSWER"
         };
 
-        entry.Behaviors.Add(RequiredStringValidationBehavior);
+        entry.Behaviors.Add(requiredStringValidationBehavior);
 
         Content = entry;
     }

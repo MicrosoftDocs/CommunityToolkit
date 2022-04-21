@@ -43,12 +43,22 @@ items:
       href: converters/byte-array-to-image-source-converter.md
     - name: "ColorToBlackOrWhiteConverter"
       href: converters/color-to-black-or-white-converter.md
+    - name: "ColorToByteAlphaConverter"
+      href: converters/color-to-byte-alpha-converter.md
+    - name: "ColorToByteBlueConverter"
+      href: converters/color-to-byte-blue-converter.md
+    - name: "ColorToByteGreenConverter"
+      href: converters/color-to-byte-green-converter.md
+    - name: "ColorToByteRedConverter"
+      href: converters/color-to-byte-red-converter.md
     - name: "ColorToCmykStringConverter"
       href: converters/color-to-cmyk-string-converter.md
     - name: "ColorToCmykaStringConverter"
       href: converters/color-to-cmyka-string-converter.md
     - name: "ColorToColorForTextConverter"
       href: converters/color-to-color-for-text-converter.md
+    - name: "ColorToDegreeHueConverter"
+      href: converters/color-to-degree-hue-converter.md
     - name: "ColorToGrayScaleColorConverter"
       href: converters/color-to-gray-scale-color-converter.md
     - name: "ColorToHexRgbStringConverter"
@@ -61,6 +71,14 @@ items:
       href: converters/color-to-hsla-string-converter.md
     - name: "ColorToInverseColorConverter"
       href: converters/color-to-inverse-color-converter.md
+    - name: "ColorToPercentBlackKeyConverter"
+      href: converters/color-to-percent-black-key-converter.md
+    - name: "ColorToPercentCyanConverter"
+      href: converters/color-to-percent-cyan-converter.md
+    - name: "ColorToPercentMagentaConverter"
+      href: converters/color-to-percent-magenta-converter.md
+    - name: "ColorToPercentYellowConverter"
+      href: converters/color-to-percent-yellow-converter.md
     - name: "ColorToRgbStringConverter"
       href: converters/color-to-rgb-string-converter.md
     - name: "ColorToRgbaStringConverter"

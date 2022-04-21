@@ -1,7 +1,7 @@
 ---
 title: UserStoppedTypingBehavior - .NET MAUI Community Toolkit
 author: cliffagius
-description: "The UserStoppedTypingBehavior is a Behavior that allows the user to trigger an action when a user has stopped data input an Entry. Examples of its usage include triggering a search when a user has stopped entering their search query."
+description: "The UserStoppedTypingBehavior is a Behavior that will trigger an action when a user has stopped data input on controls for example Entry, SearchBar and Editor. Examples of its usage include triggering a search when a user has stopped entering their search query."
 ms.date: 04/13/2022
 ---
 
@@ -50,6 +50,7 @@ class UserStoppedTypingBehaviorPage : ContentPage
             MinimumLengthThreshold = 3,
             ShouldDismissKeyboardAutomatically = true
         };
+
         behavior.SetBinding(UserStoppedTypingBehavior.CommandProperty, 
         nameof(ViewModel. SearchCommand);
 
@@ -57,6 +58,7 @@ class UserStoppedTypingBehaviorPage : ContentPage
         {
             Placeholder = "Start typing when you stop the behavior will trigger..."
         };
+
         entry.Behaviors.Add(behavior);
     }
 }
@@ -84,8 +86,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
             ShouldDismissKeyboardAutomatically = true
         }
         .Bind(
-                UserStoppedTypingBehavior.CommandProperty, 
-                nameof(ViewModel. SearchCommand));                    
+            UserStoppedTypingBehavior.CommandProperty, 
+            nameof(ViewModel. SearchCommand));                    
     }
 }
 ```

@@ -19,5 +19,5 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 
 | View | Description |
 | --------- | ----------- |
-| [`DrawingView`](DrawingView.md) | The `DrawingView` allows to draw lines, save the image and restore it by settings the list of lines. |
+| [`DrawingView`](DrawingView.md) | The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image. |
 | [`Popup`](popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |

@@ -21,6 +21,8 @@ items:
       href: behaviors/characters-validation-behavior.md
     - name: "EmailValidationBehavior"
       href: behaviors/email-validation-behavior.md
+    - name: MaskedBehavior
+      href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
     - name: "NumericValidationBehavior"

@@ -58,7 +58,7 @@ Markup allows us to define the sizing fluently and therefore chain multiple meth
 new Entry().Size(200, 40);
 ```
 
-For further details on the possible options for the `Bind` method refer to the [`VisualElement` extensions documentation](extensions/visual-element-extensions.md).
+For further details on the possible options for the `Size` method refer to the [`VisualElement` extensions documentation](extensions/visual-element-extensions.md).
 
 ### In-depth example
 
@@ -166,4 +166,9 @@ C# Markup extensions also allow developers to use an `enum` to define names for 
 | --------- | ----------- |
 | [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
 | [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
+| [`Element`](extensions/element-extensions.md) | The `Element` extensions provide a series of extension methods that support configuring the padding, effects, font attributes, dynamic resources, text, and text color of an `Element`. |
+| [`Image`](extensions/image-extensions.md) | The `Image` extensions provide a series of extension methods that support configuring `IImage` controls. |
+| [`ItemsView`](extensions/itemsview-extensions.md) | The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`. |
+| [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring `IPlaceholder` controls. |
+| [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
 | [`VisualElement`](extensions/visual-element-extensions.md) | The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`. |

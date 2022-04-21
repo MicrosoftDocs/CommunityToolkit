@@ -17,26 +17,80 @@ items:
   items:
     - name: Overview
       href: behaviors/index.md
+    - name: "CharactersValidationBehavior"
+      href: behaviors/characters-validation-behavior.md
+    - name: "EmailValidationBehavior"
+      href: behaviors/email-validation-behavior.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
+    - name: "NumericValidationBehavior"
+      href: behaviors/numeric-validation-behavior.md
+    - name: "RequiredStringValidationBehavior"
+      href: behaviors/required-string-validation-behavior.md
+    - name: "TextValidationBehavior"
+      href: behaviors/text-validation-behavior.md
+    - name: "UriValidationBehavior"
+      href: behaviors/uri-validation-behavior.md
+    - name: "UserStoppedTypingBehavior"
+      href: behaviors/user-stopped-typing-behavior.md
 - name: "Converters"
   items:
     - name: Overview
       href: converters/index.md
+    - name: "BoolToObjectConverter"
+      href: converters/bool-to-object-converter.md
+    - name: "ByteArrayToImageSourceConverter"
+      href: converters/byte-array-to-image-source-converter.md
     - name: "ColorToBlackOrWhiteConverter"
       href: converters/color-to-black-or-white-converter.md
+    - name: "ColorToByteAlphaConverter"
+      href: converters/color-to-byte-alpha-converter.md
+    - name: "ColorToByteBlueConverter"
+      href: converters/color-to-byte-blue-converter.md
+    - name: "ColorToByteGreenConverter"
+      href: converters/color-to-byte-green-converter.md
+    - name: "ColorToByteRedConverter"
+      href: converters/color-to-byte-red-converter.md
+    - name: "ColorToCmykStringConverter"
+      href: converters/color-to-cmyk-string-converter.md
+    - name: "ColorToCmykaStringConverter"
+      href: converters/color-to-cmyka-string-converter.md
     - name: "ColorToColorForTextConverter"
       href: converters/color-to-color-for-text-converter.md
+    - name: "ColorToDegreeHueConverter"
+      href: converters/color-to-degree-hue-converter.md
     - name: "ColorToGrayScaleColorConverter"
       href: converters/color-to-gray-scale-color-converter.md
+    - name: "ColorToHexRgbStringConverter"
+      href: converters/color-to-hex-rgb-string-converter.md
+    - name: "ColorToHexRgbaStringConverter"
+      href: converters/color-to-hex-rgba-string-converter.md
+    - name: "ColorToHslStringConverter"
+      href: converters/color-to-hsl-string-converter.md
+    - name: "ColorToHslaStringConverter"
+      href: converters/color-to-hsla-string-converter.md
     - name: "ColorToInverseColorConverter"
       href: converters/color-to-inverse-color-converter.md
+    - name: "ColorToPercentBlackKeyConverter"
+      href: converters/color-to-percent-black-key-converter.md
+    - name: "ColorToPercentCyanConverter"
+      href: converters/color-to-percent-cyan-converter.md
+    - name: "ColorToPercentMagentaConverter"
+      href: converters/color-to-percent-magenta-converter.md
+    - name: "ColorToPercentYellowConverter"
+      href: converters/color-to-percent-yellow-converter.md
+    - name: "ColorToRgbStringConverter"
+      href: converters/color-to-rgb-string-converter.md
+    - name: "ColorToRgbaStringConverter"
+      href: converters/color-to-rgba-string-converter.md
     - name: "DateTimeOffsetConverter"
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
     - name: "EnumToIntConverter"
       href: converters/enum-to-int-converter.md
+    - name: "IndexToArrayItemConverter"
+      href: converters/index-to-array-item-converter.md
     - name: "IntToBoolConverter"
       href: converters/int-to-bool-converter.md
     - name: "InvertedBoolConverter"
@@ -65,18 +119,28 @@ items:
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+- name: "Views"
+  items:
+    - name: Overview
+      href: views/index.md
+    - name: "Popup"
+      href: views/popup.md
 - name: C# Markup
   items:
     - name: Overview
       href: markup/markup.md
     - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
+    - name: "FlexLayout extensions"
+      href: markup/extensions/flex-layout-extensions.md
     - name: "BindableObject extensions"
       href: markup/extensions/bindable-object-extensions.md
     - name: "Element extensions"
       href: markup/extensions/element-extensions.md
     - name: "Image extensions"
       href: markup/extensions/image-extensions.md
+    - name: "ItemsView extensions"
+      href: markup/extensions/itemsview-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"

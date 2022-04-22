@@ -1,0 +1,16 @@
+---
+title: Layouts - .NET MAUI Community Toolkit
+author: VladislavAntonyuk
+description: The .NET MAUI Community Toolkit extends .NET MAUI layouts.
+ms.date: 04/21/2022
+---
+
+# Layouts
+
+## .NET MAUI Community Toolkit Layouts
+
+The .NET MAUI Community Toolkit extends the list of .NET MAUI layouts. Here are the layouts provided by the toolkit:
+
+| View | Description |
+| --------- | ----------- |
+| [`UniformItemsLayout`](UniformItemsLayout.md) | The `UniformItemsLayout` is a layout where all rows and columns have the same size. |

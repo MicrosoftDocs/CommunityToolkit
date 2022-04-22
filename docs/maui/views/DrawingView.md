@@ -12,11 +12,12 @@ ms.date: 04/14/2022
 The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image.
 A common use case for this is to provide a signature box in an application.
 
-## Syntax
+## Basic usage
+
+`DrawingView` allows to set line color, line width and bind to the collection of lines.
 
 ### XAML
 
-Basic usage:
 ```xml
 <views:DrawingView
             Lines="{Binding MyLines}"
@@ -24,8 +25,25 @@ Basic usage:
             LineWidth="5" />
 ```
 
+### C#
 
-MultiLine usage:
+```csharp
+using CommunityToolkit.Maui.Views;
+
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection<IDrawingLine>(),
+    LineColor = Colors.Red,
+    LineWidth = 5
+};
+```
+
+## MultiLine usage
+
+By default `DrawingView` supports only 1 line. To enable `MultiLine` set `IsMultiLineModeEnabled` to true. Make sure `ShouldClearOnFinish` is false.
+
+### XAML
+
 ```xml
 <views:DrawingView
             Lines="{Binding MyLines}"
@@ -33,7 +51,25 @@ MultiLine usage:
             ShouldClearOnFinish="false" />
 ```
 
-Handle event when DrawingLineCompleted:
+### C#
+
+```csharp
+using CommunityToolkit.Maui.Views;
+
+var gestureImage = new Image();
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection<IDrawingLine>(),
+    IsMultiLineModeEnabled = true,
+    ShouldClearOnFinish = false,
+};
+```
+
+## Handle event when DrawingLineCompleted
+
+`DrawingView` allows to subscribe to the events like `DrawingLineCompleted`. The corresponding command `DrawingLineCompletedCommand` is also available.
+
+### XAML
 ```xml
 <views:DrawingView
             Lines="{Binding MyLines}"
@@ -41,7 +77,33 @@ Handle event when DrawingLineCompleted:
             DrawingLineCompleted="OnDrawingLineCompletedEvent" />
 ```
 
-Advanced usage:
+### C#
+
+```csharp
+using CommunityToolkit.Maui.Views;
+
+var gestureImage = new Image();
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection<IDrawingLine>(),
+    DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
+    {
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+        gestureImage.Source = ImageSource.FromStream(() => stream);
+    })
+};
+drawingView.DrawingLineCompleted += async (s, e) =>
+{
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+    gestureImage.Source = ImageSource.FromStream(() => stream);
+};
+```
+
+## Advanced usage
+
+To get the full benefits, the `DrawingView` provides the methods to get the image stream of the drawing lines.
+### XAML
+
 ```xml
 <views:DrawingView
             x:Name="DrawingViewControl"

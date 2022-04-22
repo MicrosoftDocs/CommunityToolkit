@@ -133,6 +133,10 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
+- name: "Layouts"
+  items:
+    - name: "UniformItemsLayout"
+      href: views/UniformItemsLayout.md
 - name: "Views"
   items:
     - name: Overview

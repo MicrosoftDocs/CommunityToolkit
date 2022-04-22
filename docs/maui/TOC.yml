@@ -129,6 +129,8 @@ items:
   items:
     - name: Overview
       href: views/index.md
+    - name: "DrawingView"
+      href: views/DrawingView.md
     - name: "Popup"
       href: views/popup.md
 - name: C# Markup

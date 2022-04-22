@@ -1,6 +1,6 @@
 ---
 title: Views - .NET MAUI Community Toolkit
-author: bijington
+author: VladislavAntonyuk
 description: The .NET MAUI Community Toolkit extends .NET MAUI controls.
 ms.date: 04/12/2022
 ---
@@ -21,4 +21,5 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 
 | View | Description |
 | --------- | ----------- |
+| [`DrawingView`](DrawingView.md) | The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image. |
 | [`Popup`](popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |

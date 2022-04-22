@@ -9,7 +9,7 @@ ms.date: 03/30/2022
 
 Alerts provide a way of notifying users about information. Common use cases include providing a message when an operation succeeds or fails.
 
-[!INCLUDE [docs under construction](includes/preview-note.md)]
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
 
 ## .NET MAUI Community Toolkit Alerts
 

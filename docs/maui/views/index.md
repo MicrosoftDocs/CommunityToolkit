@@ -7,7 +7,7 @@ ms.date: 04/12/2022
 
 # Views
 
-[!INCLUDE [docs under construction](includes/preview-note.md)]
+[!INCLUDE [docs under construction](../includes/preview-note.md)]
 
 The user interface of a .NET Multi-platform App UI (.NET MAUI) app is constructed of objects that map to the native controls of each target platform.
 

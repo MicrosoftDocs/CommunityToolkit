@@ -136,7 +136,7 @@ items:
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"
-      href: views/UniformItemsLayout.md
+      href: layouts/UniformItemsLayout.md
 - name: "Views"
   items:
     - name: Overview

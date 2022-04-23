@@ -113,6 +113,8 @@ items:
       href: converters/is-string-null-or-empty-converter.md
     - name: "IsStringNullOrWhiteSpaceConverter"
       href: converters/is-string-null-or-whitespace-converter.md
+    - name: "ItemSelectedEventArgsConverter"
+      href: converters/item-selected-eventargs-converter.md
     - name: "ListToStringConverter"
       href: converters/list-to-string-converter.md
     - name: "StringToListConverter"

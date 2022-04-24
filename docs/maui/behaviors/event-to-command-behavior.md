@@ -13,7 +13,7 @@ The `EventToCommandBehavior` is a `behavior` that allows the user to invoke a `C
 
 When using this `behavior` with selection or tap events exposed by `ListView` an additional converter is required. This converter converts the event arguments to a command parameter which is then passed onto the Command. They are also available in the Maui Community Toolkit:
 
-* [ItemSelectedEventArgsConverter](../converters/item-selected-eventarg-converter.md)
+* [ItemSelectedEventArgsConverter](../converters/item-selected-eventargs-converter.md)
 * [ItemTappedEventArgsConverter](../converters/item-tapped-eventargs-converter.md)
 
 ## Syntax

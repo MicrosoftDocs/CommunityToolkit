@@ -28,33 +28,33 @@ The `ItemTappedEventArgsConverter` can be used as follows in XAML:
          </ResourceDictionary>
     </ContentPage.Resources>
 
-     <VerticalStackLayout Padding="10">
+    <VerticalStackLayout Padding="10">
 
-            <Label
-            Text="The ItemSelectedEventArgsConverter is a converter that allows users to extract the SelectedItem value from an SelectedItemChangedEventArgs object. It can subsequently be used in combination with EventToCommandBehavior."
+        <Label
+            Text="The ItemTappedEventArgsConverter is a converter that allows users to extract the Item value from an ItemTappedEventArgs object. It can subsequently be used in combination with EventToCommandBehavior."
             TextColor="{StaticResource NormalLabelTextColor}"
             Margin="0, 0, 0, 20" />
 
-            <ListView
-                BackgroundColor="Transparent"
-                ItemsSource="{Binding Items}"
-                SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <VerticalStackLayout Margin="6">
-                                <Label Text="{Binding Name, StringFormat='Name: {0}'}"/>
-                            </VerticalStackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Behaviors>
-                    <toolkit:EventToCommandBehavior EventName="ItemTapped"
-                                                    Command="{Binding ItemTappedCommand}"
-                                                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}" />
-                </ListView.Behaviors>
-            </ListView>
-        </VerticalStackLayout>
+        <ListView
+            BackgroundColor="Transparent"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Margin="6">
+                            <Label Text="{Binding Name, StringFormat='Name: {0}'}"/>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior EventName="ItemTapped"
+                                                Command="{Binding ItemTappedCommand}"
+                                                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}" />
+            </ListView.Behaviors>
+        </ListView>
+    </VerticalStackLayout>
 </ContentPage>
 ```
 
@@ -100,11 +100,12 @@ class ItemTappedEventArgsConverterPage : ContentPage
     public ItemTappedEventArgsConverterPage()
     {
         Content = new ListView
-            {
-                HasUnevenRows = true
-            }
-            .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
-            .Behaviors(new EventToCommandBehavior
+        {
+            HasUnevenRows = true
+        }
+        .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+        .Behaviors(
+            new EventToCommandBehavior
             {
                 EventName = nameof(ListView.ItemTapped),
                 EventArgsConverter = new ItemTappedEventArgsConverter()

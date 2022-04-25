@@ -13,8 +13,8 @@ The `EventToCommandBehavior` is a `behavior` that allows the user to invoke a `C
 
 When using this `behavior` with selection or tap events exposed by `ListView` an additional converter is required. This converter converts the event arguments to a command parameter which is then passed onto the Command. They are also available in the Maui Community Toolkit:
 
-* [ItemSelectedEventArgsConverter](../converters/item-selected-eventargs-converter.md)
 * [ItemTappedEventArgsConverter](../converters/item-tapped-eventargs-converter.md)
+* [SelectedItemEventArgsConverter](../converters/selected-item-eventargs-converter.md)
 
 ## Syntax
 
@@ -27,12 +27,14 @@ The `EventToCommandBehavior` can be used as follows in XAML:
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MyLittleApp.MainPage">
-     
-            <Button.Behaviors>
-                <toolkit:EventToCommandBehavior
-                    EventName="Clicked"
-                    Command="{Binding MyCustomCommand}" />
-            </Button.Behaviors>
+    
+    <Button>
+        <Button.Behaviors>
+            <toolkit:EventToCommandBehavior
+                EventName="Clicked"
+                Command="{Binding MyCustomCommand}" />
+        </Button.Behaviors>
+    </Button>
 </ContentPage>
 ```
 
@@ -88,7 +90,7 @@ class EventToCommandBehaviorPage : ContentPage
 | EventName | string | The name of the event that should be associated with a `Command`. |
 | Command | [ICommand](xref:System.Windows.Input.ICommand) | The `Command` that should be executed. |
 | CommandParameter | object | An optional parameter to forward to the `Command`. |
-| EventArgsConverter | [IValueConverter](xref:Xamarin.Forms.IValueConverter) | An optional `IValueConverter` that can be used to convert `EventArgs` values to values passed into the `Command`. |
+| EventArgsConverter | IValueConverter | An optional `IValueConverter` that can be used to convert `EventArgs` values to values passed into the `Command`. |
 
 ## Examples
 

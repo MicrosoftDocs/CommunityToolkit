@@ -125,6 +125,12 @@ items:
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+- name: Extensions
+  items:
+    - name: Overview
+      href: extensions/index.md
+    - name: ColorAnimationExtensions
+      href: extensions/color-animation-extensions.md
 - name: "Views"
   items:
     - name: Overview

@@ -21,6 +21,8 @@ items:
       href: behaviors/characters-validation-behavior.md
     - name: "EmailValidationBehavior"
       href: behaviors/email-validation-behavior.md
+    - name: "EventToCommandBehavior"
+      href: behaviors/event-to-command-behavior.md
     - name: MaskedBehavior
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
@@ -113,8 +115,12 @@ items:
       href: converters/is-string-null-or-empty-converter.md
     - name: "IsStringNullOrWhiteSpaceConverter"
       href: converters/is-string-null-or-whitespace-converter.md
+    - name: "ItemTappedEventArgsConverter"
+      href: converters/item-tapped-eventargs-converter.md    
     - name: "ListToStringConverter"
       href: converters/list-to-string-converter.md
+    - name: "SelectedItemEventArgsConverter"
+      href: converters/selected-item-eventargs-converter.md
     - name: "StringToListConverter"
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"

@@ -11,6 +11,12 @@ ms.date: 04/22/2022
 
 The `ColorAnimationExtensions` provide a series of extension methods that support animating the `Color` related properties of a `VisualElement`.
 
+The `ColorAnimationExtensions can be found under the `CommunityToolkit.Maui.Extensions` namespace so just add the following line to get started:
+
+```csharp
+using CommunityToolkit.Maui.Extensions;
+```
+
 ## BackgroundColorTo
 
 The `BackgroundColorTo` method allows you to animate the `BackgroundColor` change of a `VisualElement`.

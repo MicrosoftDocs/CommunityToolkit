@@ -116,7 +116,7 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             LineWidth="5"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
-            <mct:DrawingView.Background>
+            <views:DrawingView.Background>
                     <LinearGradientBrush StartPoint="0,0"
                                          EndPoint="0,1">
                         <GradientStop Color="Blue"
@@ -124,7 +124,7 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
                         <GradientStop Color="Yellow"
                                       Offset="1"/>
                     </LinearGradientBrush>
-            </mct:DrawingView.Background>
+            </views:DrawingView.Background>
 </views:DrawingView>
 ```
 

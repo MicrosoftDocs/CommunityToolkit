@@ -88,13 +88,13 @@ var drawingView = new DrawingView
     Lines = new ObservableCollection<IDrawingLine>(),
     DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
     {
-        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
         gestureImage.Source = ImageSource.FromStream(() => stream);
     })
 };
 drawingView.DrawingLineCompleted += async (s, e) =>
 {
-    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 ```
@@ -114,9 +114,18 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             DrawingLineCompleted="OnDrawingLineCompletedEvent"
             LineColor="Red"
             LineWidth="5"
-            BackgroundColor="DarkGray"
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand" />
+            VerticalOptions="FillAndExpand">
+            <mct:DrawingView.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="0,1">
+                        <GradientStop Color="Blue"
+                                      Offset="0"/>
+                        <GradientStop Color="Yellow"
+                                      Offset="1"/>
+                    </LinearGradientBrush>
+            </mct:DrawingView.Background>
+</views:DrawingView>
 ```
 
 ### C#
@@ -132,16 +141,16 @@ var drawingView = new DrawingView
     ShouldClearOnFinish = false,
     DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
     {
-        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
         gestureImage.Source = ImageSource.FromStream(() => stream);
     }),
     LineColor = Colors.Red,
     LineWidth = 5,
-    BackgroundColor = Colors.Red
+    Background = Brush.Red
 };
 drawingView.DrawingLineCompleted += async (s, e) =>
 {
-    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray);
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 

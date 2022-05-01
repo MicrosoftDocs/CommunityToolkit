@@ -29,6 +29,8 @@ items:
       href: behaviors/maximum-length-reached-behavior.md
     - name: "NumericValidationBehavior"
       href: behaviors/numeric-validation-behavior.md
+    - name: "ProgressBarAnimationBehavior"
+      href: behaviors/progressbar-animation-behavior.md
     - name: "RequiredStringValidationBehavior"
       href: behaviors/required-string-validation-behavior.md
     - name: "TextValidationBehavior"

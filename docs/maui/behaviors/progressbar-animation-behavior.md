@@ -87,7 +87,7 @@ class ProgressBarAnimationBehaviorPage : ContentPage
 |---------|---------|---------|
 | Progress | Double  | New Progress value to animate to as a percentage with 1 being 100% so 0.75 is 75% |
 | Length | uint | Duration in miliseconds |
-| Easing | enum | `enum` that controls the `Easing`, allows you to specify a transfer function that controls how animations speed up or slow down. You can find more details on [Easing here](/xamarin/xamarin-forms/user-interface/animation/easing) |
+| Easing | enum | `enum` that controls the `Easing`, allows you to specify a transfer function that controls how animations speed up or slow down. You can find more details on [Easing here](/dotnet/maui/user-interface/animation/easing) |
 
 ## Examples
 

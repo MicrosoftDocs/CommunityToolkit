@@ -2,14 +2,14 @@
 title: ProgressBarAnimationBehavior - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The ProgressBar Animation Behavior animates a ProgressBar from its current Progress value to a provided value over time."
-ms.date: 04/29/2022
+ms.date: 05/02/2022
 ---
 
 # ProgressBarAnimationBehavior
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The ProgressBar Animation Behavior animates a `ProgressBar` from its current Progress value to a provided value over time. The method accepts a `Double` progress value, a `uint` duration in milliseconds, an `Easing` enum value.
+The ProgressBar Animation Behavior animates a `ProgressBar` from its current Progress value to a provided value over time. The method accepts a `Double` progress value, a `uint` duration in milliseconds and an `Easing` enum value.
 
 ## Syntax
 
@@ -85,9 +85,9 @@ class ProgressBarAnimationBehaviorPage : ContentPage
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| Progress | Double  | New Progress value to animate to. |
+| Progress | Double  | New Progress value to animate to as a percentage with 1 being 100% so 0.75 is 75% |
 | Length | uint | Duration in miliseconds |
-| Easing | enum | `enum` that controls the `Easing`, allows you to specify a transfer function that controls how animations speed up or slow down. You can find more details on [Easing here](https://docs.microsoft.com/xamarin/xamarin-forms/user-interface/animation/easing) |
+| Easing | enum | `enum` that controls the `Easing`, allows you to specify a transfer function that controls how animations speed up or slow down. You can find more details on [Easing here](/xamarin/xamarin-forms/user-interface/animation/easing) |
 
 ## Examples
 

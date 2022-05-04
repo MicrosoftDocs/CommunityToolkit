@@ -5,7 +5,7 @@ description: "The ImageResourceConverter is a converter that converts embedded i
 ms.date: 05/04/2022
 ---
 
-# IntToBoolConverter
+# ImageResourceConverter
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 

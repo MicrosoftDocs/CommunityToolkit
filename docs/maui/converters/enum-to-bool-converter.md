@@ -62,7 +62,7 @@ It is also possible to pass the converter parameter:
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| TrueValues | `IList<Enum>` | Enum values, that converts to <c>true</c> (optional).  |
+| TrueValues | `IList<Enum>` | Enum values, that converts to `true` (optional).  |
 
 
 ## Examples

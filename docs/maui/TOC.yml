@@ -93,6 +93,8 @@ items:
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
       href: converters/double-to-int-converter.md
+    - name: "EnumToBoolConverter"
+      href: converters/enum-to-bool-converter.md
     - name: "EnumToIntConverter"
       href: converters/enum-to-int-converter.md
     - name: "ImageResourceConverter"

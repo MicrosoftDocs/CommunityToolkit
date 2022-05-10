@@ -8,6 +8,10 @@ Documentation is **required** when completed a proposal as part of our [proposal
 
 You will need to fork this repository. We strongly recommend that you create a branch from your `main` branch so that it will reduce any complications when submitting your Pull Request.
 
+## Recommended tooling
+
+We recommend that you use Visual Studio Code for the editing of documentation files along with the [Docs Authoring Pack](https://marketplace.visualstudio.com/items?itemName=docsmsft.docs-authoring-pack) extension. This helps with validating code example formatting and also spell checking among other rules, for more information check out the documentation at: https://docs.microsoft.com/contribute/how-to-write-docs-auth-pack
+
 ## Making your changes
 
 This is where you get to add your content.

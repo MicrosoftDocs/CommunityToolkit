@@ -71,7 +71,7 @@ The `convert` parameter is a `Func` that is required to convert the multiple bin
 
 ```csharp
 new Label()
-    .Bind<Label, bool, int, string>(
+    .Bind(
         Label.TextProperty,
         binding1: new Binding(nameof(ViewModel.IsBusy)),
         binding2: new Binding(nameof(ViewModel.LabelText)),

@@ -63,11 +63,26 @@ new Entry()
         convert: (string? text) => text?.ToUpperInvariant());
 ```
 
+#### Multiple Bindings
+
+Multiple Bindings can be aggregated together leveraging the `IMultiValueConverter`.
+
+The `convert` parameter is a `Func` that is required to convert the multiple bindings to the required result.
+
+```csharp
+new Label()
+    .Bind<Label, bool, int, string>(
+        Label.TextProperty,
+        binding1: new Binding(nameof(ViewModel.IsBusy)),
+        binding2: new Binding(nameof(ViewModel.LabelText)),
+        convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
+```
+
 ## BindCommand
 
 The `BindCommand` method provides a helpful way of configuring a binding to a default provided by the library with the full list at the [GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/523ff96160889f0806f7686e25c5d651fa7d8b7e/src/CommunityToolkit.Maui.Markup/DefaultBindableProperties.cs).
 
-The default command to bind for an `Button` is the `Command` propeerty. So the following example sets up a binding to that property.
+The default command to bind for an `Button` is the `Command` property. So the following example sets up a binding to that property.
 
 ```csharp
 new Button().BindCommand(nameof(ViewModel.SubmitCommand));
@@ -87,7 +102,7 @@ new Button()
 
 ## Assign
 
-The `Assign` method makes it possible to refer to the `BindableObject` being fluently built within the calls. This is extremly useful for setting up a `RelativeSource` to `Self` binding.
+The `Assign` method makes it possible to refer to the `BindableObject` being fluently built within the calls. This is extremely useful for setting up a `RelativeSource` to `Self` binding.
 
 This example binds the `TextColor` of the `Label` to inverse of it's `BackgroundColor`:
 

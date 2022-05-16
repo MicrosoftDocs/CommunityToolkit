@@ -41,10 +41,10 @@ new VerticalStackLayout().EmptyViewTemplate(() => new Label().Text("No Items Fou
 
 The `ItemsSource` method sets the `ItemsSource` property on an `ILayout`.
 
-The following example sets the `EmptyView` to `new Label().Text("No Items Found")`:
+The following example sets the `EmptyView` to `new Label().Bind(Label.TextProperty, "."))`:
 
 ```csharp
-new VerticalStackLayout().ItemsSource(new Label().Text("No Items Found"));
+new VerticalStackLayout().ItemsSource(new Label().Bind(Label.TextProperty, "."));
 ```
 
 ## ItemTemplate

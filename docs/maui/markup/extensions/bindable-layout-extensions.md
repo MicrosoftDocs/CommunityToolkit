@@ -67,7 +67,7 @@ new VerticalStackLayout().ItemTemplate(() => new Label().Bind(Label.TextProperty
 
 The `ItemTemplateSelector` method sets the `ItemTemplateSelector` property on an `ILayout`.
 
-The following example sets the `ItemTemplateSelector` to `new DataTemplateSelector(() => new Label().Text("No Items Found"))`:
+The following example sets the `ItemTemplateSelector` to `new CustomDataTemplateSelector()`:
 
 ```csharp
 new VerticalStackLayout().ItemTemplateSelector(new CustomDataTemplateSelector())

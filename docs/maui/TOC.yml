@@ -123,6 +123,10 @@ items:
       href: converters/item-tapped-eventargs-converter.md    
     - name: "ListToStringConverter"
       href: converters/list-to-string-converter.md
+    - name: "MathExpressionConverter"
+      href: converters/math-expression-converter.md
+    - name: "MultiMathExpressionConverter"
+      href: converters/multi-math-expression-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
     - name: "StringToListConverter"

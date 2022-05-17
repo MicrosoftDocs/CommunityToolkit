@@ -59,7 +59,7 @@ class DoubleToIntConverterPage : ContentPage
 		label.SetBinding(
 			Label.TextProperty,
 			new Binding(
-				nameof(ViewModels.MyValue),
+				nameof(ViewModel.MyValue),
 				converter: new DoubleToIntConverter()));
 
 		Content = label;

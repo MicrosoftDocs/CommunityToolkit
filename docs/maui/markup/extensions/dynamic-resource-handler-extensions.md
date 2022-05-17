@@ -17,7 +17,7 @@ The extensions offer the following methods:
 
 The `DynamicResource` method sets the `DynamicResource` property on a control implementing `IDynamicResourceHandler`.
 
-The following example binds `Label.TextColorProperty` to the `DynamicResource`, [ResourceDictionary](dotnet/maui/fundamentals/resource-dictionaries) key `TextColor`:
+The following example binds `Label.TextColorProperty` to the `DynamicResource`, [ResourceDictionary](/dotnet/maui/fundamentals/resource-dictionaries) key `TextColor`:
 
 ```csharp
 new Label().DynamicResource(Label.TextColorProperty, "TextColor");
@@ -27,7 +27,7 @@ new Label().DynamicResource(Label.TextColorProperty, "TextColor");
 
 The `DynamicResources` method sets multiple `DynamicResource` properties on a control implementing `IDynamicResourceHandler`.
 
-The following example binds `Label.TextColorProperty` to the [ResourceDictionary](dotnet/maui/fundamentals/resource-dictionaries) key `TextColor`, and binds `Label.FontFamilyProperty` to the [ResourceDictionary](dotnet/maui/fundamentals/resource-dictionaries) key `FontFamily`,
+The following example binds `Label.TextColorProperty` to the [ResourceDictionary](/dotnet/maui/fundamentals/resource-dictionaries) key `TextColor`, and binds `Label.FontFamilyProperty` to the [ResourceDictionary](/dotnet/maui/fundamentals/resource-dictionaries) key `FontFamily`,
 
 ```csharp
 new Label().DynamicResources(Label.TextColorProperty, "TextColor", 

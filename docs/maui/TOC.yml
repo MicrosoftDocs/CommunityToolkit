@@ -153,6 +153,8 @@ items:
       href: markup/markup.md
     - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
+    - name: "DynamicResourceHandler extensions"
+      href: markup/extensions/dynamic-resource-handler-extensions.md
     - name: "FlexLayout extensions"
       href: markup/extensions/flex-layout-extensions.md
     - name: "BindableObject extensions"

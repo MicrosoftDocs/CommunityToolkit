@@ -31,5 +31,5 @@ The following example binds `Label.TextColorProperty` to the [ResourceDictionary
 
 ```csharp
 new Label().DynamicResources(Label.TextColorProperty, "TextColor", 
-                                Label.FontFamilyProperty, "FontFamily", );
+                                Label.FontFamilyProperty, "FontFamily");
 ```

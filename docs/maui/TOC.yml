@@ -97,6 +97,8 @@ items:
       href: converters/enum-to-bool-converter.md
     - name: "EnumToIntConverter"
       href: converters/enum-to-int-converter.md
+    - name: "ImageResourceConverter"
+      href: converters/image-resource-converter.md
     - name: "IndexToArrayItemConverter"
       href: converters/index-to-array-item-converter.md
     - name: "IntToBoolConverter"

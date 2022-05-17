@@ -85,8 +85,8 @@ class IndexToArrayItemConverter : ContentPage
             .Bind(
                 Label.TextProperty, 
                 nameof(ViewModel.MyIntegerValue), 
-                converter: new IndexToArrayItemConverter 
-                ConverterParameter: array); 
+                converter: new IndexToArrayItemConverter(),
+                converterParameter: array); 
     }
 }
 ```

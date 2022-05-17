@@ -9,7 +9,7 @@ ms.date: 03/16/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `MultiMathExpressionConverter` is a converter for multiple math expressions.
+The `MultiMathExpressionConverter` is a converter that allows users to perform various math operations with multiple values through using a `MultiBinding`.
 
 The `Convert` calculates the incoming expression string with multiple variables and returns a `double` result.
 

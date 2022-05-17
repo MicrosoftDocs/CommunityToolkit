@@ -9,9 +9,13 @@ ms.date: 03/02/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `MultiConverter` converts an incoming value using all of the incoming converters in sequence.
+The `MultiConverter` converts an incoming value using all of the incoming converters in sequence. The order in which the converters are used is based on the order they are defined.
 
 ## Syntax
+
+This sample demonstrates how to use the `MultiConverter` with the [`IsEqualConverter`](is-equal-converter.md) and the [`TextCaseConverter`](text-case-converter.md). It converts the entered text to **upper case** and then checks that it is **equal** to the string 'MAUI', this will result in a `boolean` value and is bound to the `IsVisible` property on a `Label` control.
+
+This example makes use of the `MultiConverterParameter` which allows for the ConverterParameter to be defined for the type of converter the `MultiConverterParameter` is set to.
 
 ### XAML
 
@@ -27,7 +31,7 @@ The `MultiConverter` can be used as follows in XAML:
         <ResourceDictionary>
             <toolkit:MultiConverter x:Key="MyMultiConverter">
                 <toolkit:TextCaseConverter />
-                <toolkit:IsNotEqualConverter />
+                <toolkit:IsEqualConverter />
             </toolkit:MultiConverter>
             <x:Array x:Key="MultiParams"
                      Type="{x:Type toolkit:MultiConverterParameter}">
@@ -35,19 +39,84 @@ The `MultiConverter` can be used as follows in XAML:
                     ConverterType="{x:Type toolkit:TextCaseConverter}"
                     Value="{x:Static toolkit:TextCaseType.Upper}" />
                 <toolkit:MultiConverterParameter
-                    ConverterType="{x:Type toolkit:IsNotEqualConverter}"
+                    ConverterType="{x:Type toolkit:IsEqualConverter}"
                     Value="MAUI" />
             </x:Array>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Label Text="{Binding EnteredName, Converter={StaticResource MyMultiConverter}, ConverterParameter={StaticResource MultiParams}, Mode=OneWay}" />
+    <Label IsVisible="{Binding EnteredName, Converter={StaticResource MyMultiConverter}, ConverterParameter={StaticResource MultiParams}, Mode=OneWay}" 
+           Text="Well done you guessed the magic word!"/>
 
 </ContentPage>
 ```
 
-This sample demonstrates how to use the `MultiConverter` with the [`IsNotEqualConverter`](is-not-equal-converter.md) and the [`TextCaseConverter`](text-case-converter.md). It converts the entered text to Upper Case and checks that it is Not Equal to the string 'MAUI'.
-            
+### C#
+
+The `MultiConverter` can be used as follows in C#:
+
+```csharp
+class MultiConverterPage : ContentPage
+{
+    public MultiConverterPage()
+    {
+        var label = new Label { Text = "Well done you guessed the magic word!" };
+
+        var converter = new MultiConverter
+        {
+            new TextCaseConverter(),
+            new IsEqualConverter()
+        };
+
+        var parameters = new List<MultiConverterParameter>
+        {
+            new MultiConverterParameter { ConverterType = typeof(TextCaseConverter), Value = TextCaseType.Upper },
+            new MultiConverterParameter { ConverterType = typeof(IsEqualConverter), Value = "MAUI" },
+        };
+
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                nameof(ViewModels.EnteredName),
+                converter: converter,
+                converterParameter: parameters));
+
+        Content = label;
+    }
+}
+```
+
+### C# Markup
+
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+
+```csharp
+class MultiConverterPage : ContentPage
+{
+    public MultiConverterPage()
+    {
+        var converter = new MultiConverter
+        {
+            new TextCaseConverter(),
+            new IsEqualConverter()
+        };
+
+        var parameters = new List<MultiConverterParameter>
+        {
+            new MultiConverterParameter { ConverterType = typeof(TextCaseConverter), Value = TextCaseType.Upper },
+            new MultiConverterParameter { ConverterType = typeof(IsEqualConverter), Value = "MAUI" },
+        };
+
+        Content = new Label()
+            .Text("Well done you guessed the magic word!")
+            .Bind(
+                Label.IsVisibleProperty,
+                nameof(ViewModels.EnteredName),
+                converter: converter,
+                converterParameter: parameters);
+    }
+}
+```
 
 ## Examples
 

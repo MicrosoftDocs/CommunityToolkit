@@ -9,7 +9,13 @@ ms.date: 05/04/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `ImageResourceConverter` is a converter that converts embedded image resource ID to its ImageSource.
+The `ImageResourceConverter` is a converter that converts embedded image resource ID to its ImageSource. An embedded image resource is when an image has been added to a project with the **Build Action** set to **Embedded Resource**. It's ID is it's fully qualified name; so the namespace of the project + the resource name. In the example of a project named `CommunityToolkit.Maui.Sample`, a set of nested folders of `Resources/Embedded` and an image named `dotnetbot.png` the ID would be generated with:
+
+`CommunityToolkit.Maui.Sample` + `Resources.Embedded` + `dotnetbot.png`
+
+which results in:
+
+`CommunityToolkit.Maui.Sample.Resources.Embedded.dotnetbot.png`
 
 ## Syntax
 
@@ -34,7 +40,47 @@ The `ImageResourceConverter` can be used as follows in XAML:
 </ContentPage>
 ```
 
-`MyImageResource` may look like this: `MyAssemblyName.Resources.Embedded.Image.png`
+### C#
+
+The `ImageResourceConverter` can be used as follows in C#:
+
+```csharp
+class ImageResourceConverterPage : ContentPage
+{
+    public ImageResourceConverterPage()
+    {
+        var image = new Image();
+
+        image.SetBinding(
+            Image.SourceProperty, 
+            new Binding(
+                nameof(ViewModel.MyImageResource), 
+                converter: new ImageResourceConverter())); 
+
+        Content = label;        
+    }
+}
+```
+
+### C# Markup
+
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+
+```csharp
+using CommunityToolkit.Maui.Markup;
+
+class ImageResourceConverterPage : ContentPage
+{
+    public ImageResourceConverterPage()
+    {
+        Content = new Image()
+            .Bind(
+                Label.SourceProperty, 
+                nameof(ViewModel.MyImageResource), 
+                converter: new ImageResourceConverter()); 
+    }
+}
+```
 
 ## Examples
 

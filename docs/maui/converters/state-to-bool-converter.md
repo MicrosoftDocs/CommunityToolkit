@@ -30,7 +30,7 @@ The `ConvertBack` method is not supported.
 
 ## Syntax
 
-The following example shows how to use the converter to change the visibility of a `Label` control based on the `LayoutState` property which is modified on a `Button` `Command`.ß
+The following example shows how to use the converter to change the visibility of a `Label` control based on the `LayoutState` property which is modified on a `Button` `Command`.
 
 ### XAML
 

@@ -59,7 +59,7 @@ class SetFocusOnEntryCompletedBehaviorPage : ContentPage
 
         var lastName = new Entry();
 
-        SetFocusOnEntryCompletedBehavior.NextElement = lastName;
+        SetFocusOnEntryCompletedBehavior.SetNextElement(firstName, lastName);
 
         Content = new VerticalStackLayout
         {

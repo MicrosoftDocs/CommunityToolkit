@@ -26,7 +26,7 @@ using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 After adding the above `using static` directive, we can then define our Row + Column sizes using the following values to set the `GridLength`:
 
-| `Microsoft.Maui.GridLength` | XAML | `CommunityToolkit.Maui.Markup.GridRowsColumns` |
+| Microsoft.Maui.GridLength | XAML | CommunityToolkit.Maui.Markup.GridRowsColumns |
 | --- | -- | -- |
 | `GridLength.Auto` | `Auto` | `Auto` |
 | `GridLength.Star` | `*` | `Star` |

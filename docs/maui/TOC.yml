@@ -171,6 +171,8 @@ items:
       href: markup/extensions/element-extensions.md
     - name: "FlexLayout extensions"
       href: markup/extensions/flex-layout-extensions.md
+    - name: "Grid extensions"
+      href: markup/extensions/grid-extensions.md
     - name: "Image extensions"
       href: markup/extensions/image-extensions.md
     - name: "ItemsView extensions"

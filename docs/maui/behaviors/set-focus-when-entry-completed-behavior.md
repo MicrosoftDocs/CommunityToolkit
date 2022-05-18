@@ -91,6 +91,7 @@ class SetFocusOnEntryCompletedBehaviorPage : ContentPage
             Children = 
             {
                 new Entry { ReturnType = ReturnType.Next }
+                    .Assign(out var firstName)
                     .Placeholder("Entry 1 (Tap `Next` on the keyboard when finished)"),
 
                 new Entry()

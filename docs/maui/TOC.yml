@@ -89,6 +89,8 @@ items:
       href: converters/color-to-rgb-string-converter.md
     - name: "ColorToRgbaStringConverter"
       href: converters/color-to-rgba-string-converter.md
+    - name: "CompareConverter"
+      href: converters/compare-converter.md
     - name: "DateTimeOffsetConverter"
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"

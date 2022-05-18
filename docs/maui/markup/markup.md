@@ -167,6 +167,7 @@ C# Markup extensions also allow developers to use an `enum` to define names for 
 | [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
 | [`BindableLayout`](extensions/bindable-layout-extensions.md) | The `BindableLayout` extensions provide a series of extension methods that support configuring its `EmptyView`, `ItemSource` and `ItemTemplate`. |
 | [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
+| [`DynamicResourceHandler`](extensions/dynamic-resource-handler-extensions.md) | The `DynamicResourceHandler` extensions provide a series of extension methods that support configuring `IDynamicResourceHandler` which can be used to theme an App. |
 | [`Element`](extensions/element-extensions.md) | The `Element` extensions provide a series of extension methods that support configuring the padding, effects, font attributes, dynamic resources, text, and text color of an `Element`. |
 | [`FlexLayout`](extensions/flex-layout-extensions.md) | The FlexLayout extensions provide a series of extension methods that support positioning a `View` in a `FlexLayout`. |
 | [`Image`](extensions/image-extensions.md) | The `Image` extensions provide a series of extension methods that support configuring `IImage` controls. |

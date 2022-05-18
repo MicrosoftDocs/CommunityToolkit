@@ -89,6 +89,8 @@ items:
       href: converters/color-to-rgb-string-converter.md
     - name: "ColorToRgbaStringConverter"
       href: converters/color-to-rgba-string-converter.md
+    - name: "CompareConverter"
+      href: converters/compare-converter.md
     - name: "DateTimeOffsetConverter"
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
@@ -129,6 +131,8 @@ items:
       href: converters/multi-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
+    - name: "StateToBoolConverter"
+      href: converters/state-to-bool-converter.md
     - name: "StringToListConverter"
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"

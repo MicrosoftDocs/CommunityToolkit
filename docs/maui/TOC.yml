@@ -131,6 +131,8 @@ items:
       href: converters/multi-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
+    - name: "StateToBoolConverter"
+      href: converters/state-to-bool-converter.md
     - name: "StringToListConverter"
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"

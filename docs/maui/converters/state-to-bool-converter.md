@@ -44,7 +44,7 @@ The `StateToBooleanConverter` can be used as follows in XAML:
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <mct:StateToBooleanConverter x:Key="StateToBooleanConverter" StateToCompare="Success" />
+            <toolkit:StateToBooleanConverter x:Key="StateToBooleanConverter" StateToCompare="Success" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

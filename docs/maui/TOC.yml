@@ -124,7 +124,9 @@ items:
     - name: "ItemTappedEventArgsConverter"
       href: converters/item-tapped-eventargs-converter.md    
     - name: "ListToStringConverter"
-      href: converters/list-to-string-converter.md
+      href: converters/list-to-string-converter.md 
+    - name: "MultiConverter"
+      href: converters/multi-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
     - name: "StateToBoolConverter"
@@ -157,12 +159,16 @@ items:
       href: markup/markup.md
     - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
-    - name: "FlexLayout extensions"
-      href: markup/extensions/flex-layout-extensions.md
+    - name: "BindableLayout extensions"
+      href: markup/extensions/bindable-layout-extensions.md
     - name: "BindableObject extensions"
       href: markup/extensions/bindable-object-extensions.md
+    - name: "DynamicResourceHandler extensions"
+      href: markup/extensions/dynamic-resource-handler-extensions.md
     - name: "Element extensions"
       href: markup/extensions/element-extensions.md
+    - name: "FlexLayout extensions"
+      href: markup/extensions/flex-layout-extensions.md
     - name: "Image extensions"
       href: markup/extensions/image-extensions.md
     - name: "ItemsView extensions"

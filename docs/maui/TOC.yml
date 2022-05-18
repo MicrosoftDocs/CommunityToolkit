@@ -27,6 +27,8 @@ items:
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
+    - name: "MultiValidationBehavior"
+      href: behaviors/multi-validation-behavior.md
     - name: "NumericValidationBehavior"
       href: behaviors/numeric-validation-behavior.md
     - name: "ProgressBarAnimationBehavior"

@@ -125,4 +125,4 @@ You can find an example of this behavior in action in the [.NET MAUI Community T
 
 ## API
 
-You can find the source code for `EmailValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/EmailValidationBehavior.cs).
+You can find the source code for `EmailValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/Validators/EmailValidationBehavior.shared.cs).

@@ -99,7 +99,7 @@ class SetFocusOnEntryCompletedBehaviorPage : ContentPage
             }
         };
 
-        SetFocusOnEntryCompletedBehavior.NextElement = lastName;
+        SetFocusOnEntryCompletedBehavior.SetNextElement(firstName, lastName);
     }
 }
 ```

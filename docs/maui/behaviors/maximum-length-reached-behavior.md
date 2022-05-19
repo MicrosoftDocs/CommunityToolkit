@@ -23,7 +23,7 @@ The `MaxLengthReachedBehavior` can be used as follows in XAML:
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.MaxLengthReachedBehaviorPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.MaxLengthReachedBehaviorPage">
 
     <Entry Placeholder="Start typing until MaxLength is reached..."
            MaxLength="100">
@@ -69,7 +69,7 @@ class MaxLengthReachedBehaviorPage : ContentPage
 
 ### C# Markup
 
-Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this `Behavior` in C#.
 
 ```csharp
 using CommunityToolkit.Maui.Markup;

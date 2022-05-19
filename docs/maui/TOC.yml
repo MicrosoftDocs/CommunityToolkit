@@ -35,6 +35,8 @@ items:
       href: behaviors/progressbar-animation-behavior.md
     - name: "RequiredStringValidationBehavior"
       href: behaviors/required-string-validation-behavior.md
+    - name: "SetFocusOnEntryCompletedBehavior"
+      href: behaviors/set-focus-when-entry-completed-behavior.md
     - name: "TextValidationBehavior"
       href: behaviors/text-validation-behavior.md
     - name: "UriValidationBehavior"
@@ -145,6 +147,8 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
+    - name: ColorConversionExtensions
+      href: extensions/color-conversion-extensions.md
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"

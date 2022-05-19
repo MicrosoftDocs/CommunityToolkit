@@ -62,7 +62,7 @@ class ProgressBarAnimationBehaviorPage : ContentPage
 
 ### C# Markup
 
-Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this behavior in C#.
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this `Behavior` in C#.
 
 ```csharp
 using CommunityToolkit.Maui.Markup;
@@ -86,7 +86,7 @@ class ProgressBarAnimationBehaviorPage : ContentPage
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | Progress | Double  | New Progress value to animate to as a percentage with 1 being 100% so 0.75 is 75% |
-| Length | uint | Duration in miliseconds |
+| Length | uint | Duration in milliseconds |
 | Easing | enum | `enum` that controls the `Easing`, allows you to specify a transfer function that controls how animations speed up or slow down. You can find more details on [Easing here](/dotnet/maui/user-interface/animation/easing) |
 
 ## Examples

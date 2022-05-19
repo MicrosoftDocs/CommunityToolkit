@@ -181,10 +181,14 @@ items:
       href: markup/extensions/image-extensions.md
     - name: "ItemsView extensions"
       href: markup/extensions/itemsview-extensions.md
+    - name: "Label extensions"
+      href: markup/extensions/label-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"
       href: markup/extensions/style.md
+    - name: "TextAlignment extensions"
+      href: markup/extensions/text-alignment-extensions.md
     - name: "View extensions"
       href: markup/extensions/view-extensions.md
     - name: "VisualElement extensions"

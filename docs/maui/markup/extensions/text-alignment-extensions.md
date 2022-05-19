@@ -83,7 +83,7 @@ new Label().TextCenter()
 
 ## LeftToRight
 
-The `LeftToRight` namespace contain two extension methods `TextLeft` and `TextRight` which align to left-to-right script.
+The `LeftToRight` namespace contains two extension methods `TextLeft` and `TextRight` which align to left-to-right script.
 
 To use the `LeftToRight` extensions, we first need to add the following `using` directive:
 
@@ -121,7 +121,7 @@ new Label().TextRight()
 
 ## RightToLeft
 
-The `RightToLeft` namespace contain two extension methods `TextLeft` and `TextRight` which align to right-to-left script.
+The `RightToLeft` namespace contains two extension methods `TextLeft` and `TextRight` which align to right-to-left script.
 
 To use the `LeftToRight` extensions, we first need to add the following `using` directive:
 

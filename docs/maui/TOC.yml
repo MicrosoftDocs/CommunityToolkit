@@ -187,5 +187,7 @@ items:
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"
       href: markup/extensions/style.md
+    - name: "TextAlignment extensions"
+      href: markup/extensions/text-alignment-extensions.md
     - name: "VisualElement extensions"
       href: markup/extensions/visual-element-extensions.md

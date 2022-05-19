@@ -184,4 +184,4 @@ items:
     - name: "VisualElement extensions"
       href: markup/extensions/visual-element-extensions.md
     - name: "View extensions"
-      href: markup/extensions/view-element-extensions.md
+      href: markup/extensions/view-extensions.md

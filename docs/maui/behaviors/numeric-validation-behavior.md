@@ -138,4 +138,4 @@ You can find an example of this behavior in action in the [.NET MAUI Community T
 
 ## API
 
-You can find the source code for `NumericValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/NumericValidationBehavior.cs).
+You can find the source code for `NumericValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/Validators/NumericValidationBehavior.shared.cs).

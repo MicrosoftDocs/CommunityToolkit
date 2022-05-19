@@ -43,6 +43,32 @@ The full argument list for the `BackgroundColorTo` method is:
 - `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
 - `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.
 
+## TextColorTo
+
+The `TextColorTo` method allows you to animate the `TextColor` change of an `ITextStyle` implementation.
+
+```csharp
+using CommunityToolkit.Maui.Extensions;
+
+var label = new Label
+{
+    TextColor = Colors.Green
+};
+
+await label.TextColorTo(Colors.Red);
+```
+
+The full argument list for the `TextColorTo` method is:
+
+- `color`, of type `Color`, is the target color to animate the `VisualElement`'s `BackgroundColor` to.
+- `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16.
+- `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
+- `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.
+
+> [!NOTE]
+> The `TextColorTo` method is generated at compilation time through the use of Source Generators. This is due to the fact that `ITextStyle.TextColor` is readonly.
+> You can find the source code for the Source Generator on our [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.SourceGenerators/Generators/TextColorToGenerator.cs)
+
 ## Examples
 
 You can find an example of this extension in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Extensions/ColorAnimationExtensionsPage.xaml).

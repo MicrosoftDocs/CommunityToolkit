@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to the .NET MAUI Community Toolkit documentation.
 
-Documentation is **required** when completed a proposal as part of our [proposal workflow](https://github.com/CommunityToolkit/Maui/projects). 
+Documentation is **required** when completing a proposal as part of our [proposal workflow](https://github.com/CommunityToolkit/Maui/projects). 
 
 ## Starting your changes
 
@@ -10,7 +10,7 @@ You will need to fork this repository. We strongly recommend that you create a b
 
 ## Recommended tooling
 
-We recommend that you use Visual Studio Code for the editing of documentation files along with the [Docs Authoring Pack](https://marketplace.visualstudio.com/items?itemName=docsmsft.docs-authoring-pack) extension. This helps with validating code example formatting and also spell checking among other rules, for more information check out the documentation at: https://docs.microsoft.com/contribute/how-to-write-docs-auth-pack
+We recommend that you use Visual Studio Code for the editing of documentation files along with the [Docs Authoring Pack](https://marketplace.visualstudio.com/items?itemName=docsmsft.docs-authoring-pack) extension. This helps with validating code example formatting and also spell checking among other rules, for more information check out the [Microsoft documentation](https://docs.microsoft.com/contribute/how-to-write-docs-auth-pack)
 
 ## Making your changes
 

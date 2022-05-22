@@ -7,8 +7,6 @@ ms.date: 04/20/2022
 
 # EmailValidationBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `EmailValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid e-mail address. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid e-mail address is provided. The validation is achieved through a regular expression that is used to verify whether or not the text input is a valid e-mail address.
 
 ## Syntax

@@ -7,8 +7,6 @@ ms.date: 03/16/2022
 
 # IntToBoolConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IntToBoolConverter` is a converter that allows users to convert an incoming `int` value to a `bool` and vice-versa.
 
 The `Convert` method returns `false` if the supplied `value` is equal to `0` and `true` otherwise.

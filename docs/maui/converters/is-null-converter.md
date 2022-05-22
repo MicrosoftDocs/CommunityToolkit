@@ -7,8 +7,6 @@ ms.date: 04/18/2022
 
 # IsNullConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IsNullConverter` is a one way converter that converts `Object?` to a `bool` value. 
 
 The `Convert` method returns `true` when the binded object is `null` or `false` otherwise.

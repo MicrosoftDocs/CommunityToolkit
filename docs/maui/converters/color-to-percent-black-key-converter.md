@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToPercentBlackKeyConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToPercentBlackKeyConverter` is a one way converter that allows users to convert an incoming `Color` to the **key** component as a value between 0 and 1.
 
 The `Convert` method returns the **key** component as a value between 0 and 1 from the supplied `value`.

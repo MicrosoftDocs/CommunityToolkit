@@ -7,9 +7,7 @@ ms.date: 04/12/2022
 
 # Popup
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
-Popups are a very common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance. 
+Popups are a very common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance.
 
 > [!NOTE]
 > If you wish to present something to the user that is more subtle then checkout our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.

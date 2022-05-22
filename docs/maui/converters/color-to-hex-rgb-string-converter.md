@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToHexRgbStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToHexRgbStringConverter` is a that allows users to convert a `Color` value binding to its RGB hexadecimal `string` equivalent in the format: **#redgreenblue** where **red**, **green** and **blue** will be a value between 0 and FF (e.g. **#FF0000** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its RGB hexadecimal `string` equivalent.

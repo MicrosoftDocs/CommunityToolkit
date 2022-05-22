@@ -7,8 +7,6 @@ ms.date: 04/20/2022
 
 # CharactersValidationBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `CharactersValidationBehavior` is a `Behavior` that allows the user to validate text input depending on specified parameters. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid text value is provided. This behavior includes built-in checks such as checking for a certain number of digits or alphanumeric characters. 
 
 ## Syntax

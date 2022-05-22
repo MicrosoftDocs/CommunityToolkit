@@ -7,8 +7,6 @@ ms.date: 03/09/2022
 
 # DoubleToIntConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `DoubleToIntConverter` is a converter that allows users to convert an incoming `double` value to an `int` and vice-versa. Optionally the user can provide a multiplier to the conversion through the `Ratio` property.
 
 The `Convert` method returns the supplied `value` converted to an `int` and multiplied by a ratio.

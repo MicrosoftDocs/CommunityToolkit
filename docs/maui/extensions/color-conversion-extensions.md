@@ -7,8 +7,6 @@ ms.date: 05/18/2022
 
 # ColorConversionExtensions
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorConversionExtensions` provide a series of extension methods that support converting, modifying or inspecting `Color`s.
 
 The `ColorConversionExtensions` can be found under the `CommunityToolkit.Maui.Core.Extensions` namespace so just add the following line to get started:

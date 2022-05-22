@@ -7,8 +7,6 @@ ms.date: 04/20/2022
 
 # UriValidationBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `UriValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid URI. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid URI is provided.
 
 ## Syntax

@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToRgbStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToRgbStringConverter` is a one way converter that allows users to convert a `Color` value binding to its RGB `string` equivalent in the format: **RGB(red,green,blue)** where **red**, **green** and **blue** will be a value between 0 and 255 (e.g. **RGB(255,0,0)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its RGB `string` equivalent.

@@ -7,8 +7,6 @@ ms.date: 03/24/2022
 
 # ColorToGrayScaleColorConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToGrayScaleColorConverter` is a one way converter that allows users to convert an incoming `Color` to a grayscale `Color`.
 
 The `Convert` method returns the supplied `value` converted to a grayscale `Color`.

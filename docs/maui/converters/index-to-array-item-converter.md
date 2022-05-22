@@ -7,8 +7,6 @@ ms.date: 04/14/2022
 
 # IndexToArrayItemConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IndexToArrayItemConverter` is a converter that allows users to convert an `int` value binding to an item in an array. The `int` value being data bound represents the indexer used to access the array. The array is passed in through the `ConverterParameter`.
 
 ## Syntax

@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # IsStringNotNullOrWhiteSpaceConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IsStringNotNullOrWhiteSpaceConverter` is a one way converter that returns a `bool` indicating whether the binding value is not null, not an `string.Empty` and does not contain whitespace characters only.
 
 The `Convert` method returns `true` when the binding `value` is **not** `null`, **not** an `string.Empty` and **does not** contain whitespace characters only.

@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # IsStringNotNullOrEmptyConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IsStringNotNullOrEmptyConverter` is a one way converter that returns a `bool` indicating whether the binding value is not null and not an `string.Empty`.
 
 The `Convert` method returns `true` when the binding `value` is **not** `null` and **not** an `string.Empty`.

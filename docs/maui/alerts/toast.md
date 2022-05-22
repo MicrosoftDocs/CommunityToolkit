@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # Toast
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 `Toast` is a timed alert that appears at the bottom of the screen. It is automatically dismissed after a configurable duration of time.
 
 It provides simple feedback to the user about an operation in a small alert.

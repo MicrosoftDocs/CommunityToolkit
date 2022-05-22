@@ -7,8 +7,6 @@ ms.date: 05/02/2022
 
 # ProgressBarAnimationBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The ProgressBar Animation Behavior animates a `ProgressBar` from its current Progress value to a provided value over time. The method accepts a `Double` progress value, a `uint` duration in milliseconds and an `Easing` enum value.
 
 ## Syntax

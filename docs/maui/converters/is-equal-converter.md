@@ -7,8 +7,6 @@ ms.date: 03/02/2022
 
 # IsEqualConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IsEqualConverter` is a one way converter that returns a `bool` indicating whether the binding value is equal to another specified value.
 
 The `Convert` method returns `true` when the binding `value` is **equal** to the supplied `ConverterParameter`.

@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToCmykStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToCmykStringConverter` is a one way converter that allows users to convert a `Color` value binding to its CMYK `string` equivalent in the format: **CMYK(cyan,magenta,yellow,key)** where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100% (e.g. **CMYK(0%,100%,100%,0%)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its CMYK `string` equivalent.

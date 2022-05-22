@@ -7,8 +7,6 @@ ms.date: 05/17/2022
 
 # StateToBoolConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `StateToBoolConverter` is a one way converter that returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`.
 
 The `Convert` method returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`. The `LayoutState` enum is provided by the toolkit and offers the possible values:

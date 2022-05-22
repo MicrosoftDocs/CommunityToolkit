@@ -7,8 +7,6 @@ ms.date: 05/04/2022
 
 # ImageResourceConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ImageResourceConverter` is a converter that converts embedded image resource ID to its ImageSource. An embedded image resource is when an image has been added to a project with the **Build Action** set to **Embedded Resource**. It's ID is it's fully qualified name; so the namespace of the project + the resource name. In the example of a project named `CommunityToolkit.Maui.Sample`, a set of nested folders of `Resources/Embedded` and an image named `dotnetbot.png` the ID would be generated with:
 
 `CommunityToolkit.Maui.Sample` + `Resources.Embedded` + `dotnetbot.png`

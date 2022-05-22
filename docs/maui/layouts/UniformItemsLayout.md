@@ -7,8 +7,6 @@ ms.date: 04/12/2022
 
 # UniformItemsLayout
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `UniformItemsLayout` is a layout where all rows and columns have the same size.
 
 ## Building an UniformItemsLayout

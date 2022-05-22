@@ -7,8 +7,6 @@ ms.date: 03/24/2022
 
 # ColorToColorForTextConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToColorForTextConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White` based on whether it is determined as being dark for the human eye.
 
 The `Convert` method returns the supplied `value` converted to either `Colors.Black` or `Colors.White` based on whether the supplied `value` is considered dark for the human eye or not.

@@ -9,11 +9,15 @@ ms.date: 03/16/2022
 
 [!INCLUDE [docs under construction](../includes/preview-note.md)]
 
-The `MathExpressionConverter` is a converter that allows users to perform various math operations. This works with a single binding value, if you require multiple values through a `MultiBinding` then see [`MultiMathExpressionConverter`](multi-math-expression-converter.md)
+The `MathExpressionConverter` is a converter that allows users to perform various math operations. This works with a single `Binding` value, if you require multiple values through a `MultiBinding` then see [`MultiMathExpressionConverter`](multi-math-expression-converter.md)
 
-The `Convert` calculates the incoming expression string with one variable and returns a `double` result.
+The `Convert` calculates the expression string defined in the `ConverterParameter` with one variable and returns a `double` result.
+
+The value that is passed in to the converter will be named `x`. In order to refer to this value inside the expression you must use `x` (e.g. `x / 2` will divide the incoming value by 2). Any other variable names in the expression will be ignored.
 
 ## Syntax
+
+The following examples show how to add a `Label` that will show the result of `x / 2` where `x` will have the value of `MyValue`.
 
 ### XAML
 
@@ -47,14 +51,14 @@ class MathExpressionConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new MathExpressionConverter(),
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                nameof(ViewModels.MyValue),
+                converter: new MathExpressionConverter(),
                 converterParameter: "x/2"));
 
-		Content = label;
+        Content = label;
     }
 }
 ```
@@ -80,40 +84,7 @@ class MathExpressionConverterPage : ContentPage
 }
 ```
 
-## Available operations
-
-- "+"
-- "-"
-- "*"
-- "/"
-- "%"
-- "abs"
-- "acos"
-- "asin"
-- "atan"
-- "atan2"
-- "ceiling"
-- "cos"
-- "cosh"
-- "exp"
-- "floor"
-- "ieeeremainder"
-- "log"
-- "log10"
-- "max"
-- "min"
-- "pow"
-- "round"
-- "sign"
-- "sin"
-- "sinh"
-- "sqrt"
-- "tan"
-- "tanh"
-- "truncate"
-- "^"
-- "pi"
-- "e"
+[!INCLUDE [Math Expression operations](../includes/math-expression-operations.md)]
 
 ## Examples
 

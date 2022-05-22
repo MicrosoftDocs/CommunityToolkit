@@ -11,9 +11,22 @@ ms.date: 03/16/2022
 
 The `MultiMathExpressionConverter` is a converter that allows users to perform various math operations with multiple values through using a `MultiBinding`.
 
-The `Convert` calculates the incoming expression string with multiple variables and returns a `double` result.
+The `Convert` calculates the expression string defined in the `ConverterParameter` with multiple variables and returns a `double` result.
+
+The values that are passed in to the converter will be named `x?` where ? is the order in which it is defined in the `MultiBinding`, any other variable names in the expression will be ignored. For example to express the calculation of `P = V * I` (power = volts * amps) the following can be written:
+
+```xaml
+<Label.Text>
+    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1">
+        <Binding Path="Volts" />
+        <Binding Path="Amps" />
+    </MultiBinding>
+</Label.Text>
+```
 
 ## Syntax
+
+The following examples show how to add a `Label` that will show the result of `x0 + x1 + x2` where the `x` values will be supplied in the order of the `MultiBinding` definitions.
 
 ### XAML
 
@@ -31,21 +44,14 @@ The `MultiMathExpressionConverter` can be used as follows in XAML:
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Label HorizontalOptions="Center" >
-        <Label.FormattedText>
-            <FormattedString>
-                <Span Text="x0 + x1 + x2 = "/>
-                <Span>
-                    <Span.Text>
-                        <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 + x1 + x2">
-                            <Binding Path="X0" />
-                            <Binding Path="X1" />
-                            <Binding Path="X2" />
-                        </MultiBinding>
-                    </Span.Text>
-                </Span>
-            </FormattedString>
-        </Label.FormattedText>
+    <Label HorizontalOptions="Center">
+        <Label.Text>
+            <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 + x1 + x2">
+                <Binding Path="X0" />
+                <Binding Path="X1" />
+                <Binding Path="X2" />
+            </MultiBinding>
+        </Label.Text>
     </Label>
 
 </ContentPage>
@@ -60,61 +66,56 @@ class MultiMathExpressionConverterPage : ContentPage
 {
     public MultiMathExpressionConverterPage()
     {
-        var label = new Label();
+        var label = new Label
+        {
+            HorizontalOptions = LayoutOptions.Center
+        };
 
-		label.SetBinding(
-			Label.TextProperty,
-			new MultiBinding()
-			{
-				Converter = new MultiMathExpressionConverter(),
-				ConverterParameter = "x0 + x1 + x2",
-				Bindings = new List<BindingBase>()
-				{
-					new Binding("X0"),
-					new Binding("X1"),
-					new Binding("X2")
-				}
-			});
+        label.SetBinding(
+            Label.TextProperty,
+            new MultiBinding
+            {
+                Converter = new MultiMathExpressionConverter(),
+                ConverterParameter = "x0 + x1 + x2",
+                Bindings = new List<BindingBase>
+                {
+                    new Binding(nameof(ViewModel.X0)),
+                    new Binding(nameof(ViewModel.X1)),
+                    new Binding(nameof(ViewModel.X2))
+                }
+            });
 
-		Content = label;
+        Content = label;
     }
 }
 ```
 
-## Available operations
+### C# Markup
 
-- "+"
-- "-"
-- "*"
-- "/"
-- "%"
-- "abs"
-- "acos"
-- "asin"
-- "atan"
-- "atan2"
-- "ceiling"
-- "cos"
-- "cosh"
-- "exp"
-- "floor"
-- "ieeeremainder"
-- "log"
-- "log10"
-- "max"
-- "min"
-- "pow"
-- "round"
-- "sign"
-- "sin"
-- "sinh"
-- "sqrt"
-- "tan"
-- "tanh"
-- "truncate"
-- "^"
-- "pi"
-- "e"
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+
+```csharp
+class MultiMathExpressionConverterPage : ContentPage
+{
+    public MultiMathExpressionConverterPage()
+    {
+        Content = new Label()
+            .CenterHorizontal()
+            .Bind(
+                Label.TextProperty,
+                new List<BindingBase>
+                {
+                    new Binding(nameof(ViewModel.X0)),
+                    new Binding(nameof(ViewModel.X1)),
+                    new Binding(nameof(ViewModel.X2))
+                },
+                converter: new MultiMathExpressionConverter(),
+                converterParameter: "x0 + x1 + x2");
+    }
+}
+```
+
+[!INCLUDE [Math Expression operations](../includes/math-expression-operations.md)]
 
 ## Examples
 

@@ -5,7 +5,7 @@ description: The FuncMultiConverter provides the ability to define an IMultiValu
 ms.date: 05/22/2022
 ---
 
-# FuncConverter
+# FuncMultiConverter
 
 [!INCLUDE [docs under construction](../../includes/preview-note.md)]
 
@@ -23,7 +23,7 @@ The `FuncMultiConverter<TSource1, TSource2, TDest>` implementation allows you to
 The following example shows how to build a converter that will convert 2 incoming `string`s in to a semi-colon separated `string`:
 
 ```csharp
-var converter = new FuncConverter<string, string, string>(
+var converter = new FuncMultiConverter<string, string, string>(
     convert: ((string First, string Second) lines) => string.Join(';', lines.First, lines.Second),
     convertBack: (text) =>
     {
@@ -38,14 +38,14 @@ Both the `convert` and `convertBack` parameters are optional to allow developers
 > [!NOTE]
 > `FuncMultiConverter` supports up to 4 typed incoming values.
 
-## FuncConverter&lt;TSource1, TSource2, TDest, TParam>
+## FuncMultiConverter&lt;TSource1, TSource2, TDest, TParam>
 
 The `FuncMultiConverter<TSource1, TSource2, TDest>` implementation allows you to define a conversion process that provides type safe incoming values, a type safe return value and a type safe `ConverterParameter`. This implementation expects **exactly 2** incoming values.
 
 The following example shows how to build a converter that will convert 2 incoming `string`s in to a character supplied by the `ConverterParameter` separated `string`:
 
 ```csharp
-var converter = new FuncConverter<string, string, string, char>(
+var converter = new FuncMultiConverter<string, string, string, char>(
     convert: ((string First, string Second) lines, char separator) => string.Join(separator, lines.First, lines.Second),
     convertBack: (text, char separator) =>
     {

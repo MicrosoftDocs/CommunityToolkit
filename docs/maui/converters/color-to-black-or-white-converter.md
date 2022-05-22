@@ -7,8 +7,6 @@ ms.date: 03/24/2022
 
 # ColorToBlackOrWhiteConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToBlackOrWhiteConverter` is a one way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White`.
 
 The `Convert` method returns the supplied `value` converted to either `Colors.Black` or `Colors.White` based on whether the supplied `value` is considered dark or not. A `Color` is considered when its red, green and blue components each average less than 127.

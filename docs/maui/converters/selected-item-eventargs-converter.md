@@ -7,8 +7,6 @@ ms.date: 04/23/2022
 
 # SelectedItemEventArgsConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `SelectedItemEventArgsConverter` is a converter that allows users to extract the SelectedItem value from an `SelectedItemChangedEventArgs` object. It can subsequently be used in combination with [EventToCommandBehavior](../behaviors/event-to-command-behavior.md).
 
 ## Syntax

@@ -7,8 +7,6 @@ ms.date: 03/02/2022
 
 # TextCaseConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `TextCaseConverter` is a one way converter that allows users to convert the casing of an incoming `string` type binding. The `Type` property is used to define what kind of casing will be applied to the string.
 
 The `Convert` method returns the supplied `value` converted to the defined `TextCaseType`. Note that the `TextCaseType` can be supplied in the following ways:

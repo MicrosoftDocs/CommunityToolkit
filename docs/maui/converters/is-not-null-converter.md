@@ -7,8 +7,6 @@ ms.date: 04/18/2022
 
 # IsNotNullConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IsNotNullConverter` is a one way converter that converts `Object?` to a `bool` value. 
 
 The `Convert` method returns `false` when the binded object is `null` or `true` otherwise.

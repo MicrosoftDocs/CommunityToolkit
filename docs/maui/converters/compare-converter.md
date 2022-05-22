@@ -7,8 +7,6 @@ ms.date: 05/17/2022
 
 # CompareConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `CompareConverter` is a one way converter that take an incoming value implementing `IComparable`, compares to a specified value, and returns the comparison result. The result will default to a `bool` if no objects were specified through the `TrueObject` and/or `FalseObject` properties. If values are assigned to the `TrueObject` and/or `FalseObject` properties, the CompareConverter returns the respective object assigned.
 
 > [!NOTE]

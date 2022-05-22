@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # StringToListConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `StringToListConverter` is a one way converter that returns a set of substrings by splitting the input string based on one or more separators.
 
 The `Convert` method returns a set of substrings by splitting the input string based on one or more separators.

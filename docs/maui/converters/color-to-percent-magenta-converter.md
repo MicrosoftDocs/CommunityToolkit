@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToPercentMagentaConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToPercentMagentaConverter` is a one way converter that allows users to convert an incoming `Color` to the **magenta** component as a value between 0 and 1.
 
 The `Convert` method returns the **magenta** component as a value between 0 and 1 from the supplied `value`.

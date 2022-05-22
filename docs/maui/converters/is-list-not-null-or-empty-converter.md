@@ -7,8 +7,6 @@ ms.date: 02/11/2022
 
 # IsListNotNullOrEmptyConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `IsListNotNullOrEmptyConverter` is a one way converter that converts `IEnumerable` to a `bool` value. 
 
 The `Convert` method returns `false` when `null` or an empty `IEnumerable` is passed in or `true` otherwise.

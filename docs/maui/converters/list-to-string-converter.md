@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # ListToStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ListToStringConverter` is a one way converter that returns a concatenation of the members of a collection, using the specified separator between each member.
 
 The `Convert` method returns a concatenation of the members of a collection, using the specified separator between each member.

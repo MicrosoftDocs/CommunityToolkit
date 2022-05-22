@@ -7,8 +7,6 @@ ms.date: 05/18/2022
 
 # Label extensions
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 The `Label` extensions provide a series of extension methods that support configuring a `Label`.
 
 ## FormattedText

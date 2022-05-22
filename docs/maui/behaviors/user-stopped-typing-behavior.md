@@ -7,8 +7,6 @@ ms.date: 04/13/2022
 
 # UserStoppedTypingBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when a user has stopped data input on controls for example `Entry`, `SearchBar` and `Editor`. Examples of its usage include triggering a search when a user has stopped entering their search query.
 
 ## Syntax

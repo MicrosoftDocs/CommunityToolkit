@@ -7,8 +7,6 @@ ms.date: 03/28/2022
 
 # Style\<T\>
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`.
 
 ## Constructors

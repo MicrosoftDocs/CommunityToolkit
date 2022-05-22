@@ -7,8 +7,6 @@ ms.date: 04/20/2022
 
 # RequiredStringValidationBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `RequiredStringValidationBehavior` is a `Behavior` that allows the user to determine if text input is equal to specific text. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid text input is provided.
 
 ## Syntax

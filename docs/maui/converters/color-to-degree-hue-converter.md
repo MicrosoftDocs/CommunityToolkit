@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToDegreeHueConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToDegreeHueConverter` is a one way converter that allows users to convert an incoming `Color` to the **hue** component as a value between 0 and 360. Hue is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.
 
 The `Convert` method returns the **hue** component as a value between 0 and 360 from the supplied `value`.

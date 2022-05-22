@@ -7,8 +7,6 @@ ms.date: 04/12/2022
 
 # EnumToIntConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `EnumToIntConverter` is a converter that allows you to convert a standard `Enum` (extending int) to its underlying primitive `int` type. It is useful when binding a collection of values representing an enumeration type with default numbering to a control such as a `Picker`.
 
 For localization purposes or due to other requirements, the enum values often need to be converted to a human-readable string. In this case, when the user selects a value, the resulting `SelectedIndex` can easily be converted to the underlying `enum` value without requiring additional work in the associated ViewModel.

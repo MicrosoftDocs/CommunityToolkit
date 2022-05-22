@@ -7,8 +7,6 @@ ms.date: 03/16/2022
 
 # InvertedBoolConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `InvertedBoolConverter` is a converter that allows users to convert a `bool` to its inverse - `true` becomes `false` and vice-versa.
 
 The `Convert` method returns `false` if the supplied `value` is equal to `true` and `true` otherwise.

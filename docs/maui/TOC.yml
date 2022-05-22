@@ -33,6 +33,8 @@ items:
       href: behaviors/progressbar-animation-behavior.md
     - name: "RequiredStringValidationBehavior"
       href: behaviors/required-string-validation-behavior.md
+    - name: "SetFocusOnEntryCompletedBehavior"
+      href: behaviors/set-focus-when-entry-completed-behavior.md
     - name: "TextValidationBehavior"
       href: behaviors/text-validation-behavior.md
     - name: "UriValidationBehavior"
@@ -89,6 +91,8 @@ items:
       href: converters/color-to-rgb-string-converter.md
     - name: "ColorToRgbaStringConverter"
       href: converters/color-to-rgba-string-converter.md
+    - name: "CompareConverter"
+      href: converters/compare-converter.md
     - name: "DateTimeOffsetConverter"
       href: converters/datetimeoffsetconverter.md
     - name: "DoubleToIntConverter"
@@ -97,6 +101,8 @@ items:
       href: converters/enum-to-bool-converter.md
     - name: "EnumToIntConverter"
       href: converters/enum-to-int-converter.md
+    - name: "ImageResourceConverter"
+      href: converters/image-resource-converter.md
     - name: "IndexToArrayItemConverter"
       href: converters/index-to-array-item-converter.md
     - name: "IntToBoolConverter"
@@ -125,10 +131,14 @@ items:
       href: converters/list-to-string-converter.md
     - name: "MathExpressionConverter"
       href: converters/math-expression-converter.md
+    - name: "MultiConverter"
+      href: converters/multi-converter.md
     - name: "MultiMathExpressionConverter"
       href: converters/multi-math-expression-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
+    - name: "StateToBoolConverter"
+      href: converters/state-to-bool-converter.md
     - name: "StringToListConverter"
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
@@ -139,6 +149,8 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
+    - name: ColorConversionExtensions
+      href: extensions/color-conversion-extensions.md
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"
@@ -157,19 +169,31 @@ items:
       href: markup/markup.md
     - name: "AbsoluteLayout extensions"
       href: markup/extensions/absolute-layout-extensions.md
-    - name: "FlexLayout extensions"
-      href: markup/extensions/flex-layout-extensions.md
+    - name: "BindableLayout extensions"
+      href: markup/extensions/bindable-layout-extensions.md
     - name: "BindableObject extensions"
       href: markup/extensions/bindable-object-extensions.md
+    - name: "DynamicResourceHandler extensions"
+      href: markup/extensions/dynamic-resource-handler-extensions.md
     - name: "Element extensions"
       href: markup/extensions/element-extensions.md
+    - name: "FlexLayout extensions"
+      href: markup/extensions/flex-layout-extensions.md
+    - name: "Grid extensions"
+      href: markup/extensions/grid-extensions.md
     - name: "Image extensions"
       href: markup/extensions/image-extensions.md
     - name: "ItemsView extensions"
       href: markup/extensions/itemsview-extensions.md
+    - name: "Label extensions"
+      href: markup/extensions/label-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"
       href: markup/extensions/style.md
+    - name: "TextAlignment extensions"
+      href: markup/extensions/text-alignment-extensions.md
+    - name: "View extensions"
+      href: markup/extensions/view-extensions.md
     - name: "VisualElement extensions"
       href: markup/extensions/visual-element-extensions.md

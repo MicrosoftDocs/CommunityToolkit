@@ -23,7 +23,7 @@ The `CharactersValidationBehavior` can be used as follows in XAML:
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.CharactersValidationBehaviorPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.CharactersValidationBehaviorPage">
 
     <ContentPage.Resources>
         <Style x:Key="InvalidEntryStyle" TargetType="Entry">
@@ -91,7 +91,7 @@ class CharactersValidationBehaviorPage : ContentPage
 
 ### C# Markup
 
-Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
+Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this `Behavior` in C#.
 
 ```csharp
 using CommunityToolkit.Maui.Markup;
@@ -134,4 +134,4 @@ You can find an example of this behavior in action in the [.NET MAUI Community T
 
 ## API
 
-You can find the source code for `CharactersValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/CharactersValidationBehavior.cs).
+You can find the source code for `CharactersValidationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/Validators/CharactersValidationBehavior.shared.cs).

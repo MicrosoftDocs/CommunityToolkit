@@ -18,7 +18,7 @@ The converter offers many different ways of defining your conversion based on ho
 
 ## FuncConverter&lt;TSource>
 
-The `FunConverter<TSource>` implementation allows you to define a conversion process that provides **only** a type safe incoming value.
+The `FuncConverter<TSource>` implementation allows you to define a conversion process that provides **only** a type safe incoming value.
 
 The following example shows how to build a converter that will convert between a `TimeSpan` and a `double` expressed in seconds:
 
@@ -34,7 +34,7 @@ You will notice that the the `convertBack` method does not appear type safe here
 
 ## FuncConverter&lt;TSource, TDest>
 
-The `FunConverter<TSource, TDest>` implementation allows you to define a conversion process that provides a type safe incoming value and a type safe return value.
+The `FuncConverter<TSource, TDest>` implementation allows you to define a conversion process that provides a type safe incoming value and a type safe return value.
 
 Using the same example as above we can make the `convertBack` implementation type safe and easier to read:
 
@@ -48,7 +48,7 @@ Both the `convert` and `convertBack` parameters are optional to allow developers
 
 ## FuncConverter&lt;TSource, TDest, TParam>
 
-The `FunConverter<TSource, TDest, TParam>` implementation allows you to define a conversion process that provides a type safe incoming value, a type safe return value and a type safe `ConverterParameter`.
+The `FuncConverter<TSource, TDest, TParam>` implementation allows you to define a conversion process that provides a type safe incoming value, a type safe return value and a type safe `ConverterParameter`.
 
 Using the same example as above we can include the `ConverterParameter` from the `Binding`:
 

@@ -139,6 +139,8 @@ items:
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+    - name: "VariableMultiValueConverter"
+      href: converters/variable-multi-value-converter.md
 - name: Extensions
   items:
     - name: Overview

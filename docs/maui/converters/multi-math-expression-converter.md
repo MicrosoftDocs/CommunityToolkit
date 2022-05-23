@@ -2,7 +2,7 @@
 title: MultiMathExpressionConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The MultiMathExpressionConverter is a converter for multiple math expressions."
-ms.date: 03/16/2022
+ms.date: 05/16/2022
 ---
 
 # MultiMathExpressionConverter

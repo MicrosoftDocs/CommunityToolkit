@@ -130,9 +130,13 @@ items:
     - name: "ItemTappedEventArgsConverter"
       href: converters/item-tapped-eventargs-converter.md    
     - name: "ListToStringConverter"
-      href: converters/list-to-string-converter.md 
+      href: converters/list-to-string-converter.md
+    - name: "MathExpressionConverter"
+      href: converters/math-expression-converter.md
     - name: "MultiConverter"
       href: converters/multi-converter.md
+    - name: "MultiMathExpressionConverter"
+      href: converters/multi-math-expression-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
     - name: "StateToBoolConverter"

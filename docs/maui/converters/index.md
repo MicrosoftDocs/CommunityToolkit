@@ -65,7 +65,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`ListToStringConverter`](list-to-string-converter.md) | The `ListToStringConverter` is a one way converter that returns a concatenation of the members of a collection, using the specified separator between each member. |
 | [`MathExpressionConverter`](math-expression-converter.md) | The `MathExpressionConverter` is a converter that allows users to perform various math operations. |
 | [`MultiConverter`](multi-converter.md) | The `MultiConverter` converts an incoming value using all of the incoming converters in sequence. |
-| [`MultiMathExpressionConverter`](multi-math-expression-converter.md) | The `MultiMathExpressionConverter` is a converter for multiple math e
+| [`MultiMathExpressionConverter`](multi-math-expression-converter.md) | The `MultiMathExpressionConverter` is a converter that allows users to perform various math operations with multiple values through using a `MultiBinding`. |
 | [`SelectedItemEventArgsConverter`](selected-item-eventargs-converter.md) | The `SelectedItemEventArgsConverter` is a converter that allows users to extract the Item value from an `SelectedItemEventArgs` object. It can subsequently be used in combination with [EventToCommandBehavior](../behaviors/event-to-command-behavior.md). |
 | [`StateToBoolConverter`](state-to-bool-converter.md) | The `StateToBoolConverter` is a one way converter that returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`. |
 | [`StringToListConverter`](string-to-list-converter.md) | The `StringToListConverter` is a one way converter that returns a set of substrings by splitting the input string based on one or more separators. |

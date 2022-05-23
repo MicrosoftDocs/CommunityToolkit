@@ -7,8 +7,6 @@ ms.date: 05/22/2022
 
 # FuncMultiConverter
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 The `FuncMultiConverter` provides the ability to define an `IMultiValueConverter` implementation inline when build your UI. An additional benefit of using the `FuncMultiConverter` implementation is that it provides a type safe way of performing your conversions. The C# Markup package uses the `FuncMultiConverter` internally for the [multiple bindings option](../extensions/bindable-object-extensions.md#multiple-bindings) in the `Bind` extension method.
 
 > [!NOTE]

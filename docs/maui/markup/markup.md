@@ -158,6 +158,15 @@ This example is identical to the previous example, but the C# Markup fluent API 
 
 C# Markup extensions also allow developers to use an `enum` to define names for Columns and Rows (e.g. `Column.Input`).
 
+## Converters
+
+The C# Markup package provides the ability to define `IValueConverter` and `IMultiValueConverter` implementations inline when building your applications UI.
+
+| Converter | Description |
+| --------- | ----------- |
+| [`FuncConverter`](converters/func-converter.md) | The `FuncConverter` provides the ability to define an `IValueConverter` implementation inline when build your UI. |
+| [`FuncMultiConverter`](converters/func-multi-converter.md) | The `FuncMultiConverter` provides the ability to define an `IMultiValueConverter` implementation inline when build your UI. |
+
 ## Extensions
 
 > [!NOTE]
@@ -174,6 +183,9 @@ C# Markup extensions also allow developers to use an `enum` to define names for 
 | [`Grid`](extensions/grid-extensions.md) | The Grid extensions provide a series of extension methods that support configuring a Grid. |
 | [`Image`](extensions/image-extensions.md) | The `Image` extensions provide a series of extension methods that support configuring `IImage` controls. |
 | [`ItemsView`](extensions/itemsview-extensions.md) | The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`. |
+| [`Label`](extensions/label-extensions.md) | The `Label` extensions provide a series of extension methods that support configuring `Label` controls. |
 | [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring `IPlaceholder` controls. |
 | [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
+| [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing `ITextAlignment`. |
+| [`View`](extensions/visual-element-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |
 | [`VisualElement`](extensions/visual-element-extensions.md) | The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`. |

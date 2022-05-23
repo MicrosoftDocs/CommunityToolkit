@@ -2,7 +2,7 @@
 title: MathExpressionConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The MathExpressionConverter is a converter that allows users to perform various math operations."
-ms.date: 03/16/2022
+ms.date: 05/16/2022
 ---
 
 # MathExpressionConverter

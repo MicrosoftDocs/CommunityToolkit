@@ -68,3 +68,4 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`StateToBoolConverter`](state-to-bool-converter.md) | The `StateToBoolConverter` is a one way converter that returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`. |
 | [`StringToListConverter`](string-to-list-converter.md) | The `StringToListConverter` is a one way converter that returns a set of substrings by splitting the input string based on one or more separators. |
 | [`TextCaseConverter`](text-case-converter.md) | The `TextCaseConverter` is a one way converter that allows users to convert the casing of an incoming `string` type binding. The `Type` property is used to define what kind of casing will be applied to the string. |
+| [`VariableMultiValueConverter`](variable-multi-value-converter.md) | The `VariableMultiValueConverter` is a converter that allows users to convert `bool` values via a `MultiBinding` to a single `bool`. |

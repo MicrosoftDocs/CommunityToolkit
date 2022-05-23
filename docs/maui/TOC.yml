@@ -143,6 +143,8 @@ items:
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+    - name: "VariableMultiValueConverter"
+      href: converters/variable-multi-value-converter.md
 - name: Extensions
   items:
     - name: Overview
@@ -179,6 +181,10 @@ items:
       href: markup/extensions/element-extensions.md
     - name: "FlexLayout extensions"
       href: markup/extensions/flex-layout-extensions.md
+    - name: FuncConverter
+      href: markup/converters/func-converter.md
+    - name: FuncMultiConverter
+      href: markup/converters/func-multi-converter.md
     - name: "Grid extensions"
       href: markup/extensions/grid-extensions.md
     - name: "Image extensions"

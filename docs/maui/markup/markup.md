@@ -158,6 +158,15 @@ This example is identical to the previous example, but the C# Markup fluent API 
 
 C# Markup extensions also allow developers to use an `enum` to define names for Columns and Rows (e.g. `Column.Input`).
 
+## Converters
+
+The C# Markup package provides the ability to define `IValueConverter` and `IMultiValueConverter` implementations inline when building your applications UI.
+
+| Converter | Description |
+| --------- | ----------- |
+| [`FuncConverter`](converters/func-converter.md) | The `FuncConverter` provides the ability to define an `IValueConverter` implementation inline when build your UI. |
+| [`FuncMultiConverter`](converters/func-multi-converter.md) | The `FuncMultiConverter` provides the ability to define an `IMultiValueConverter` implementation inline when build your UI. |
+
 ## Extensions
 
 > [!NOTE]

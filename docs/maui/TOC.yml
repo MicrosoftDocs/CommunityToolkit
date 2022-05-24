@@ -27,6 +27,8 @@ items:
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
       href: behaviors/maximum-length-reached-behavior.md
+    - name: "MultiValidationBehavior"
+      href: behaviors/multi-validation-behavior.md
     - name: "NumericValidationBehavior"
       href: behaviors/numeric-validation-behavior.md
     - name: "ProgressBarAnimationBehavior"
@@ -128,9 +130,13 @@ items:
     - name: "ItemTappedEventArgsConverter"
       href: converters/item-tapped-eventargs-converter.md    
     - name: "ListToStringConverter"
-      href: converters/list-to-string-converter.md 
+      href: converters/list-to-string-converter.md
+    - name: "MathExpressionConverter"
+      href: converters/math-expression-converter.md
     - name: "MultiConverter"
       href: converters/multi-converter.md
+    - name: "MultiMathExpressionConverter"
+      href: converters/multi-math-expression-converter.md
     - name: "SelectedItemEventArgsConverter"
       href: converters/selected-item-eventargs-converter.md
     - name: "StateToBoolConverter"
@@ -139,6 +145,8 @@ items:
       href: converters/string-to-list-converter.md
     - name: "TextCaseConverter"
       href: converters/text-case-converter.md
+    - name: "VariableMultiValueConverter"
+      href: converters/variable-multi-value-converter.md
 - name: Extensions
   items:
     - name: Overview
@@ -175,6 +183,10 @@ items:
       href: markup/extensions/element-extensions.md
     - name: "FlexLayout extensions"
       href: markup/extensions/flex-layout-extensions.md
+    - name: FuncConverter
+      href: markup/converters/func-converter.md
+    - name: FuncMultiConverter
+      href: markup/converters/func-multi-converter.md
     - name: "Grid extensions"
       href: markup/extensions/grid-extensions.md
     - name: "Image extensions"

@@ -7,8 +7,6 @@ ms.date: 03/24/2022
 
 # ColorToInverseColorConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToInverseColorConverter` is a one way converter that allows users to convert an incoming `Color` to its inverse.
 
 The `Convert` method returns the supplied `value` converted to its inverse.

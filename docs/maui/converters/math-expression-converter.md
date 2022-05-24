@@ -7,8 +7,6 @@ ms.date: 05/16/2022
 
 # MathExpressionConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `MathExpressionConverter` is a converter that allows users to perform various math operations. This works with a single `Binding` value, if you require multiple values through a `MultiBinding` then see [`MultiMathExpressionConverter`](multi-math-expression-converter.md)
 
 The `Convert` calculates the expression string defined in the `ConverterParameter` with one variable and returns a `double` result.

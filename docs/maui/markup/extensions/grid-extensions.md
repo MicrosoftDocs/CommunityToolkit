@@ -7,8 +7,6 @@ ms.date: 05/17/2022
 
 # Grid extensions
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 The `Grid` extensions provide a series of extension methods that support configuring a `Grid`.
 
 ## Defining Rows + Columns

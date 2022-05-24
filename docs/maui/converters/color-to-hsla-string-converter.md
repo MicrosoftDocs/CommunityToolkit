@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToHslaStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToHslaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSLA `string` equivalent in the format: **HSLA(hue,saturation,lightness,alpha)** where **hue** will be a value between 0 and 360, **saturation** and **lightness** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. **HSLA(0,100%,50%,1)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its HSLA `string` equivalent.

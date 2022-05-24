@@ -7,8 +7,6 @@ ms.date: 05/18/2022
 
 # SetFocusOnEntryCompletedBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `SetFocusOnEntryCompletedBehavior` is a `Behavior` that gives focus to a specified `VisualElement` when an `Entry` is completed. For example, a page might have several `Entry`s in sequence, and this makes it convenient to the user if completing an `Entry` automatically switched focus to the next `Entry`.
 
 ## Syntax

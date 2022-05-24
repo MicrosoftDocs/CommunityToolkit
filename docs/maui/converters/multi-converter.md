@@ -7,8 +7,6 @@ ms.date: 03/02/2022
 
 # MultiConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `MultiConverter` converts an incoming value using all of the incoming converters in sequence. The order in which the converters are used is based on the order they are defined.
 
 ## Syntax

@@ -9,8 +9,6 @@ ms.date: 01/14/2022
 
 The toolkit is available as a set of NuGet packages that can be added to any existing or new project using Visual Studio.
 
-[!INCLUDE [docs under construction](includes/preview-note.md)]
-
 1. Open an existing project, or create a new project as per the [.NET MAUI setup documentation](/dotnet/maui/get-started/first-app)
 
 2. In the Solution Explorer panel, right click on your project name and select **Manage NuGet Packages**. Search for **CommunityToolkit.Maui**, and choose the desired NuGet Package from the list.

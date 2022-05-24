@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # Snackbar
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `Snackbar` is a timed alert that appears at the bottom of the screen by default. It is dismissed after a configurable duration of time. `Snackbar` is fully customizable and can be anchored to any `IView`.
 
 The `Snackbar` informs users of a process that an app has performed or will perform. It appears temporarily, towards the bottom of the screen.

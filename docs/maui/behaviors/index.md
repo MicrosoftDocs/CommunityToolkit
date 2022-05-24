@@ -7,8 +7,6 @@ ms.date: 03/30/2022
 
 # Behaviors
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 .NET Multi-platform App UI (.NET MAUI) behaviors let you add functionality to user interface controls without having to subclass them. Instead, the functionality is implemented in a behavior class and attached to the control as if it was part of the control itself.
 
 For further information on Behaviors please refer to the [.NET MAUI documentation](/dotnet/maui/fundamentals/behaviors).

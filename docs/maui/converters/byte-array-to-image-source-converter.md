@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ByteArrayToImageSourceConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ByteArrayToImageSourceConverter` is a converter that allows the user to convert an incoming value from a `byte` array and returns an `ImageSource`. This object can then be used as the `Source` of an `Image` control.
 
 The `Convert` method returns the supplied `byte[]` `value` converted to an `ImageSource`.

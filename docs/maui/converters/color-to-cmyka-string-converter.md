@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToCmykaStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToCmykaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its CMYKA `string` equivalent in the format: **CMYKA(cyan,magenta,yellow,key,alpha)** where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between o and 1 (e.g. **CMYKA(0%,100%,100%,0%,1)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its CMYKA `string` equivalent.

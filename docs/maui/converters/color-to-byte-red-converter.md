@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToByteRedConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToByteRedConverter` is a one way converter that allows users to convert an incoming `Color` to the **red** component as a value between 0 and 255.
 
 The `Convert` method returns the **red** component as a value between 0 and 255 from the supplied `value`.

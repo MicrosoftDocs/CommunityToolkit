@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # ColorToHslStringConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorToHslStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSL `string` equivalent in the format: **HSL(hue,saturation,lightness)** where **hue** will be a value between 0 and 360, and **saturation** and **lightness** will be a value between 0% and 100% (e.g. **HSL(0,100%,50%)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its HSL `string` equivalent.

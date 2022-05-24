@@ -7,8 +7,6 @@ ms.date: 04/15/2022
 
 # BoolToObjectConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `BoolToObjectConverter` is a converter that allows users to convert a `bool` value binding to a specific object. By providing both a TrueObject and a FalseObject in the converter the appropriate object will be returned depending on the value of the binding.
 
 The `Convert` method returns the `TrueObject` if the supplied `value` is `true` or the `FalseObject` otherwise.

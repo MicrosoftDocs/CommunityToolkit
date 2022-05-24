@@ -7,8 +7,6 @@ ms.date: 04/22/2022
 
 # ColorAnimationExtensions
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ColorAnimationExtensions` provide a series of extension methods that support animating the `Color` related properties of a `VisualElement`.
 
 The `ColorAnimationExtensions` can be found under the `CommunityToolkit.Maui.Extensions` namespace so just add the following line to get started:

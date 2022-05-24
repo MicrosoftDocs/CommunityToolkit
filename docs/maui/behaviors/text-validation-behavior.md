@@ -7,8 +7,6 @@ ms.date: 04/20/2022
 
 # TextValidationBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `TextValidationBehavior` is a `Behavior` that allows the user to validate a given text depending on specified parameters. By adding this behavior to any `InputView` control it can be styled differently depending on whether a valid or an invalid text value is provided. It offers various built-in checks such as checking for a certain length or whether or not the input value matches a specific regular expression.
 
 ## Syntax

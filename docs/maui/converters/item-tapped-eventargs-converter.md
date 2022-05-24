@@ -7,8 +7,6 @@ ms.date: 04/13/2022
 
 # ItemTappedEventArgsConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `ItemTappedEventArgsConverter` is a converter that allows users to extract the Item value from an `ItemTappedEventArgs` object. It can subsequently be used in combination with [EventToCommandBehavior](../behaviors/event-to-command-behavior.md).
 
 ## Syntax

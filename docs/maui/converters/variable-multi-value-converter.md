@@ -7,8 +7,6 @@ ms.date: 05/22/2022
 
 # VariableMultiValueConverter
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `VariableMultiValueConverter` is a converter that allows users to convert `bool` values via a `MultiBinding` to a single `bool`. It does this by enabling them to specify whether All, Any, None or a specific number of values are true as specified in ConditionType.
 
 The `Convert` method returns the supplied `values` converted to an overall `bool` result based on the `ConditionType` defined.

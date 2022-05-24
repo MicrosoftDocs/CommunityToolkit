@@ -7,8 +7,6 @@ ms.date: 05/18/2022
 
 # View extensions
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`.
 
 ## Start

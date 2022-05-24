@@ -7,8 +7,6 @@ ms.date: 04/23/2022
 
 # EventToCommandBehavior
 
-[!INCLUDE [docs under construction](../includes/preview-note.md)]
-
 The `EventToCommandBehavior` is a `behavior` that allows the user to invoke a `Command` through an `Event`. It is designed to associate Commands to events exposed by controls that were not designed to support Commands. It allows you to map any arbitrary event on a control to a Command.
 
 When using this `behavior` with selection or tap events exposed by `ListView` an additional converter is required. This converter converts the event arguments to a command parameter which is then passed onto the Command. They are also available in the Maui Community Toolkit:

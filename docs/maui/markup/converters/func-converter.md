@@ -7,8 +7,6 @@ ms.date: 05/22/2022
 
 # FuncConverter
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 The `FuncConverter` provides the ability to define an `IValueConverter` implementation inline when build your UI. An additional benefit of using the `FuncConverter` implementation is that it provides a type safe way of performing your conversions. The C# Markup package uses the `FuncConverter` internally for the [inline conversion option](../extensions/bindable-object-extensions.md#inline-conversion) in the `Bind` extension method.
 
 > [!NOTE]

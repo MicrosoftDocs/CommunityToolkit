@@ -7,8 +7,6 @@ ms.date: 05/16/2022
 
 # DynamicResourceHandler extensions
 
-[!INCLUDE [docs under construction](../../includes/preview-note.md)]
-
 The `DynamicResourceHandler` extensions provide a series of extension methods that support configuring `IDynamicResourceHandler` which can be used to [Theme an App](/dotnet/maui/user-interface/theming).
 
 The extensions offer the following methods:

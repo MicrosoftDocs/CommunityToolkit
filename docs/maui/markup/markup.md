@@ -58,7 +58,7 @@ Markup allows us to define the sizing fluently and therefore chain multiple meth
 new Entry().Size(200, 40);
 ```
 
-For further details on the possible options for the `Bind` method refer to the [`VisualElement` extensions documentation](extensions/visual-element-extensions.md).
+For further details on the possible options for the `Size` method refer to the [`VisualElement` extensions documentation](extensions/visual-element-extensions.md).
 
 ### In-depth example
 
@@ -130,17 +130,18 @@ class SampleContentPage : ContentPage
 
             Children =
             {
-                new Label { Text = "Code:" }
+                new Label()
+                    .Text("Code:")
                     .Row(Row.TextEntry).Column(Column.Description),
 
                 new Entry
                 {
-                    Placeholder = "Enter number",
                     Keyboard = Keyboard.Numeric,
                     BackgroundColor = Colors.AliceBlue,
-                    TextColor = Colors.Black
                 }.Row(Row.TextEntry).Column(Column.Input)
                  .FontSize(15)
+                 .Placeholder("Enter number")
+                 .TextColor(Colors.Black)
                  .Height(44)
                  .Margin(5, 5)
                  .Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
@@ -153,9 +154,18 @@ class SampleContentPage : ContentPage
 }
 ```
 
-This example is identical to the previous example, but the C# Markup fluent API simplifies the process of building the UI in C#. 
+This example is identical to the previous example, but the C# Markup fluent API simplifies the process of building the UI in C#.
 
 C# Markup extensions also allow developers to use an `enum` to define names for Columns and Rows (e.g. `Column.Input`).
+
+## Converters
+
+The C# Markup package provides the ability to define `IValueConverter` and `IMultiValueConverter` implementations inline when building your applications UI.
+
+| Converter | Description |
+| --------- | ----------- |
+| [`FuncConverter`](converters/func-converter.md) | The `FuncConverter` provides the ability to define an `IValueConverter` implementation inline when build your UI. |
+| [`FuncMultiConverter`](converters/func-multi-converter.md) | The `FuncMultiConverter` provides the ability to define an `IMultiValueConverter` implementation inline when build your UI. |
 
 ## Extensions
 
@@ -165,5 +175,17 @@ C# Markup extensions also allow developers to use an `enum` to define names for 
 | Extension | Description |
 | --------- | ----------- |
 | [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+| [`BindableLayout`](extensions/bindable-layout-extensions.md) | The `BindableLayout` extensions provide a series of extension methods that support configuring its `EmptyView`, `ItemSource` and `ItemTemplate`. |
 | [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
+| [`DynamicResourceHandler`](extensions/dynamic-resource-handler-extensions.md) | The `DynamicResourceHandler` extensions provide a series of extension methods that support configuring `IDynamicResourceHandler` which can be used to theme an App. |
+| [`Element`](extensions/element-extensions.md) | The `Element` extensions provide a series of extension methods that support configuring the padding, effects, font attributes, dynamic resources, text, and text color of an `Element`. |
+| [`FlexLayout`](extensions/flex-layout-extensions.md) | The FlexLayout extensions provide a series of extension methods that support positioning a `View` in a `FlexLayout`. |
+| [`Grid`](extensions/grid-extensions.md) | The Grid extensions provide a series of extension methods that support configuring a Grid. |
+| [`Image`](extensions/image-extensions.md) | The `Image` extensions provide a series of extension methods that support configuring `IImage` controls. |
+| [`ItemsView`](extensions/itemsview-extensions.md) | The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`. |
+| [`Label`](extensions/label-extensions.md) | The `Label` extensions provide a series of extension methods that support configuring `Label` controls. |
+| [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring `IPlaceholder` controls. |
+| [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
+| [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing `ITextAlignment`. |
+| [`View`](extensions/visual-element-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |
 | [`VisualElement`](extensions/visual-element-extensions.md) | The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`. |

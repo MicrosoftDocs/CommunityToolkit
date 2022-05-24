@@ -28,7 +28,7 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
     * In your XAML page, add the namespace attribute:
 
         ```xaml
-        xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/tookit"
+        xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         ```
 
 4. Check out the rest of the documentation to learn more about implementing specific features.

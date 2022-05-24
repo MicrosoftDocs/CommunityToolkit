@@ -1,0 +1,33 @@
+items:
+- name: MVVM Toolkit Introduction
+  href: index.md
+- name: Observable Objects
+  items:   
+    - name: ObservableObject
+      href: ObservableObject.md
+    - name: ObservableRecipient
+      href: ObservableRecipient.md
+    - name: ObservableValidator
+      href: ObservableValidator.md
+- name: Commanding
+  items:
+    - name: RelayCommand and RelayCommand<T>
+      href: RelayCommand.md
+    - name: AsyncRelayCommand and AsyncRelayCommand<T>
+      href: AsyncRelayCommand.md
+- name: Dependency Injection
+  items:
+    - name: Inversion of Control
+      href: Ioc.md
+- name: Messenger
+  href: Messenger.md
+- name: Putting things together
+  href: PuttingThingsTogether.md
+- name: Migrating to the MVVM Toolkit
+  items:
+    - name: Migrating from MVVMLight
+      href: MigratingFromMvvmLight.md
+    - name: Migrating from MVVMBasic (Windows Template Studio)
+      href: MigratingFromMvvmBasic.md
+- name: Samples
+  href: https://aka.ms/mvvmtoolkit/samples

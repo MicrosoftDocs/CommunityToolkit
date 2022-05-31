@@ -69,7 +69,7 @@ public class MyPage : ContentPage
     {
         var popup = new SimplePopup();
 
-        ShowPopup(popup);
+        this.ShowPopup(popup);
     }
 }
 ```
@@ -155,7 +155,7 @@ public class MyPage : ContentPage
     {
         var popup = new SimplePopup();
 
-        var result = await ShowPopupAsync(popup);
+        var result = await this.ShowPopupAsync(popup);
 
         if (result is bool boolResult)
         {

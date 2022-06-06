@@ -16,6 +16,6 @@
         - name: MVVM Toolkit
           tocHref: /dotnet/communitytoolkit/mvvm/
           topicHref: /dotnet/communitytoolkit/mvvm/index
-        - name: MAUI Community Toolkit
+        - name: .NET MAUI Community Toolkit
           tocHref: /dotnet/communitytoolkit/maui/
           topicHref: /dotnet/communitytoolkit/maui/index

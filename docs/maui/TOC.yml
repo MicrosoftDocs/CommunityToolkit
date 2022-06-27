@@ -23,6 +23,8 @@ items:
       href: behaviors/email-validation-behavior.md
     - name: "EventToCommandBehavior"
       href: behaviors/event-to-command-behavior.md
+    - name: "IconTintColorBehavior"
+      href: behaviors/icon-tint-effect-behavior.md
     - name: MaskedBehavior
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"

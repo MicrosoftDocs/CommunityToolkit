@@ -24,7 +24,7 @@ items:
     - name: "EventToCommandBehavior"
       href: behaviors/event-to-command-behavior.md
     - name: "IconTintColorBehavior"
-      href: behaviors/icon-tint-effect-behavior.md
+      href: behaviors/icon-tint-color-behavior.md
     - name: MaskedBehavior
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"

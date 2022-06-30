@@ -26,6 +26,11 @@ The `IconTintColorBehavior` can be used as follows in XAML:
             <toolkit:IconTintColorBehavior TintColor="Red" />
         </Image.Behaviors>
     </Image>
+
+    <!-- Or -->
+
+    <Image Source="shield.png" toolkit:IconTintColorBehavior.TintColor="Red" />
+
 </ContentPage>
 ```
 
@@ -77,7 +82,6 @@ class IconTintColorBehaviorPage : ContentPage
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | TintColor | Color | The `Color` name from the Microsoft.Maui.Graphics namespace. |
-| Command | [ICommand](xref:System.Windows.Input.ICommand) | The `Command` that should be executed. |
 
 ## Examples
 

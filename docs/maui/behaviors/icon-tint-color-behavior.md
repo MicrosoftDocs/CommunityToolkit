@@ -7,7 +7,7 @@ ms.date: 06/27/2022
 
 # IconTintColorBehavior
 
-The `IconTintColorBehavior` is a `behavior` allows you to tint an image with an attached property.
+The `IconTintColorBehavior` is a `behavior` allows you to tint an image.
 
 ## Syntax
 
@@ -26,10 +26,6 @@ The `IconTintColorBehavior` can be used as follows in XAML:
             <toolkit:IconTintColorBehavior TintColor="Red" />
         </Image.Behaviors>
     </Image>
-
-    <!-- Or -->
-
-    <Image Source="shield.png" toolkit:IconTintColorBehavior.TintColor="Red" />
 
 </ContentPage>
 ```

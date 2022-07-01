@@ -1,7 +1,7 @@
 ---
 title: IconTintColorBehavior - .NET MAUI Community Toolkit
 author: vhugogarcia
-description: "The IconTintColorBehavior allows you to tint an image with an attached property."
+description: "The IconTintColorBehavior is a behavior allows you to tint an image."
 ms.date: 06/27/2022
 ---
 

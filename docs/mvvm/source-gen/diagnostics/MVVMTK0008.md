@@ -13,7 +13,8 @@ The source generator features from the MVVM Toolkit require consuming projects t
 
 To learn more about how to enable a newer C# version on older frameworks, [see this blog post](https://sergiopedri.medium.com/enabling-and-using-c-9-features-on-older-and-unsupported-runtimes-ce384d8debb).
 
-> **NOTE:** while this will generally work with no issues as the compiler has to be resilient to missing types and runtime features for all sorts of reasons, using a newer C# version that the default one for a given framework/runtime is not officially supported. Make sure to test your application properly if you decide to manually override the language version in your projects.
+> [!NOTE]
+> While updating the C# language version will generally work with no issues, as the compiler has to be resilient to missing types and runtime features, using a newer C# version than the default one for a given framework/runtime is not officially supported. Make sure to test your application properly if you decide to manually override the language version in your projects.
 
 The following sample generates MVVMTK0008:
 

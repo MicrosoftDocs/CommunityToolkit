@@ -20,14 +20,14 @@ namespace MyApp;
 
 public partial class SampleViewModel : ObservableObject
 {
-    // The target property name is invalid (cannot be null)
+    // The containing type has no property named "FooBar"
     [ObservableProperty]
-    [NotifyPropertyChangedFor(null)]
+    [NotifyPropertyChangedFor("FooBar")]
     private string name;
 }
 ```
 
-The same applies to properties that do not exist:
+The same applies if the property name is just `null`:
 
 ```csharp
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -36,9 +36,9 @@ namespace MyApp;
 
 public partial class SampleViewModel : ObservableObject
 {
-    // The containing type has no property named "FooBar"
+    // The target property name is invalid (cannot be null)
     [ObservableProperty]
-    [NotifyPropertyChangedFor("FooBar")]
+    [NotifyPropertyChangedFor(null)]
     private string name;
 }
 ```

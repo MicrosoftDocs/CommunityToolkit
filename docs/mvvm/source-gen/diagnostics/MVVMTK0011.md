@@ -22,7 +22,7 @@ public partial class SampleViewModel
 {
     private bool Foo { set { } }
 
-    // The target property "Foo" does not have a setter
+    // The target property "Foo" does not have a getter
     [RelayCommand(CanExecute = nameof(Foo))]
     private void GreetUser()
     {

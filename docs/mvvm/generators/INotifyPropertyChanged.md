@@ -18,7 +18,7 @@ The [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.
 
 ## How to use them
 
-Using any of these attributes is pretty straightforward: just add them to a [partial class](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods) and all the code from the corresponding types will automatically be generated into that type. For instance, consider this:
+Using any of these attributes is pretty straightforward: just add them to a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods) and all the code from the corresponding types will automatically be generated into that type. For instance, consider this:
 
 ```csharp
 [INotifyPropertyChanged]

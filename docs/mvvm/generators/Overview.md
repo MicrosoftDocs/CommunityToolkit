@@ -11,7 +11,7 @@ dev_langs:
 
 Starting with version 8.0, the MVVM Toolkit includes brand new Roslyn source generators that will help greatly reduce boilerplate when writing code using the MVVM architecture. They can simplify scenarios where you need to setup observable properties, commands and more. If you're not familiar with source generators, you can read more about them [here](/dotnet/csharp/roslyn-sdk/source-generators-overview). This is a simplified view of how they work:
 
-![Roslyn source generators](/dotnet/csharp/roslyn-sdk/media/source-generators/source-generator-visualization.png "A diagram showing the architecture of Roslyn source generators, and the fact they generate code based on user code and add that to the existing compilation")
+![Roslyn source generators](../../images/source-generator-visualization.png "A diagram showing the architecture of Roslyn source generators, and the fact they generate code based on user code and add that to the existing compilation")
 
 This means that as you're writing code, the MVVM Toolkit generator will now take care of generating additional code for you behind the scenes, so you don't have to worry about it. This code will then be compiled and included in your application, so the end result is exactly the same as if you had written all that extra code manually, but without having to do all of that extra work! 🎉
 

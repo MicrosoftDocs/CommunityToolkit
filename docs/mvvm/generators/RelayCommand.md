@@ -11,7 +11,7 @@ dev_langs:
 
 The [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute) type is an attribute that allows generating relay command properties for annotated methods. Its purpose is to completely eliminate the boilerplate that is needed to define commands wrapping private methods in a viewmodel. In order to work, annotated methods need to be in a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
 
-> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
+> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
 
 ## How it works
 
@@ -38,7 +38,7 @@ public IRelayCommand GreetUserCommand => greetUserCommand ??= new RelayCommand(G
 
 ## Command parameters
 
-The `[RelayCommand]` attribute supports creating commands for methods with a parameter. In that case, it will automatically change the generated command to be an [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1) instead, accepting a parameter of the same type:
+The `[RelayCommand]` attribute supports creating commands for methods with a parameter. In that case, it will automatically change the generated command to be an [`IRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand-1) instead, accepting a parameter of the same type:
 
 ```csharp
 [RelayCommand]
@@ -60,7 +60,7 @@ The resulting command will automatically use the type of the argument as its typ
 
 ## Asynchronous commands
 
-The `[RelayCommand]` command also supports wrapping asynchronous methods, via the [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand) and [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1) interfaces. This is handled automatically whenever a method returns a [`Task`](/dotnet/api/system.threading.tasks.task) type. For instance:
+The `[RelayCommand]` command also supports wrapping asynchronous methods, via the [`IAsyncRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand) and [`IAsyncRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand-1) interfaces. This is handled automatically whenever a method returns a [`Task`](/dotnet/api/system.threading.tasks.task) type. For instance:
 
 ```csharp
 [RelayCommand]

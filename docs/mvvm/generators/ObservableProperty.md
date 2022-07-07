@@ -1,5 +1,5 @@
 ---
-title: ObservableProperty
+title: ObservableProperty attribute
 author: Sergio0694
 description: An attribute to generate observable properties
 keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, mvvm, componentmodel, property changed, notification, binding, net core, net standard
@@ -7,11 +7,11 @@ dev_langs:
   - csharp
 ---
 
-# ObservableProperty
+# ObservableProperty attribute
 
-The [`ObservableProperty`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableProperty) type is an attribute that allows generating observable properties from annotated fields. Its purpose is to greatly reduce the amount of boilerplate that is needed to define observable properties. In order to work, annotated fields need to be in a [partial class](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods) with the necessary `INotifyPropertyChanged` infrastructure.
+The [`ObservableProperty`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservablePropertyAttribute) type is an attribute that allows generating observable properties from annotated fields. Its purpose is to greatly reduce the amount of boilerplate that is needed to define observable properties. In order to work, annotated fields need to be in a [partial class](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods) with the necessary `INotifyPropertyChanged` infrastructure.
 
-> **Platform APIs:** [`ObservableProperty`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableProperty), [`NotifyPropertyChangedFor`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedFor), [`NotifyCanExecuteChangedFor`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyCanExecuteChangedFor), [`NotifyDataErrorInfo`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyDataErrorInfo), [`NotifyPropertyChangedRecipients`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedRecipients), [`ICommand`](https://docs.microsoft.com/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [ObservableValidator](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableValidator), [`PropertyChangedMessage<T>`](https://docs.microsoft.com/dotnet/api/communitytoolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1), [`IMessenger`](/dotnet/api/communitytoolkit.mvvm.Messaging.IMessenger)
+> **Platform APIs:** [`ObservableProperty`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservablePropertyAttribute), [`NotifyPropertyChangedFor`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedForAttribute), [`NotifyCanExecuteChangedFor`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyCanExecuteChangedForAttribute), [`NotifyDataErrorInfo`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyDataErrorInfoAttribute), [`NotifyPropertyChangedRecipients`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedRecipientsAttribute), [`ICommand`](https://docs.microsoft.com/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [ObservableValidator](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableValidator), [`PropertyChangedMessage<T>`](https://docs.microsoft.com/dotnet/api/communitytoolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1), [`IMessenger`](/dotnet/api/communitytoolkit.mvvm.Messaging.IMessenger)
 
 ## How it works
 
@@ -34,7 +34,8 @@ public string? Name
 
 It will also do so with an optimized implementation, so the end result will be even faster.
 
-The name of the generated property will be created based on the field name. The generator assumes the field is named either `lowerCamel`, `_lowerCamel` or `m_lowerCamel`, and it will transform that to be `UpperCamel` to follow proper .NET naming conventions. The resulting property will always have public accessors, but the field can be declared with any visibility (`private` is recommended).
+> [!NOTE]
+> The name of the generated property will be created based on the field name. The generator assumes the field is named either `lowerCamel`, `_lowerCamel` or `m_lowerCamel`, and it will transform that to be `UpperCamel` to follow proper .NET naming conventions. The resulting property will always have public accessors, but the field can be declared with any visibility (`private` is recommended).
 
 ## Running code upon changes
 

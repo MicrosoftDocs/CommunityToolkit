@@ -5,8 +5,10 @@ items:
   items:   
     - name: Overview
       href: generators/Overview.md
-    - name: ObservableProperty
+    - name: ObservableProperty attribute
       href: generators/ObservableProperty.md
+    - name: RelayCommand attribute
+      href: generators/RelayCommand.md
 - name: Observable Objects
   items:   
     - name: ObservableObject

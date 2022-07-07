@@ -5,6 +5,8 @@ items:
   items:   
     - name: Overview
       href: generators/Overview.md
+    - name: ObservableProperty
+      href: generators/ObservableProperty.md
 - name: Observable Objects
   items:   
     - name: ObservableObject

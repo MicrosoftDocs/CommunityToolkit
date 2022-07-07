@@ -1,6 +1,10 @@
 items:
 - name: MVVM Toolkit Introduction
   href: index.md
+- name: Source generators
+  items:   
+    - name: Overview
+      href: generators/Overview.md
 - name: Observable Objects
   items:   
     - name: ObservableObject

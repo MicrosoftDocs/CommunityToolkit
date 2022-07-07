@@ -9,9 +9,9 @@ dev_langs:
 
 # RelayCommand attribute
 
-The [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute) type is an attribute that allows generating relay command properties for annotated methods. Its purpose is to completely eliminate the boilerplate that is needed to define commands wrapping private methods in a viewmodel. In order to work, annotated methods need to be in a [partial class](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
+The [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute) type is an attribute that allows generating relay command properties for annotated methods. Its purpose is to completely eliminate the boilerplate that is needed to define commands wrapping private methods in a viewmodel. In order to work, annotated methods need to be in a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
 
-> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](https://docs.microsoft.com/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task), [`CancellationToken`](https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken)
+> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
 
 ## How it works
 
@@ -60,7 +60,7 @@ The resulting command will automatically use the type of the argument as its typ
 
 ## Asynchronous commands
 
-The `[RelayCommand]` command also supports wrapping asynchronous methods, via the [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand) and [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1) interfaces. This is handled automatically whenever a method returns a [`Task`](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task) type. For instance:
+The `[RelayCommand]` command also supports wrapping asynchronous methods, via the [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand) and [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1) interfaces. This is handled automatically whenever a method returns a [`Task`](/dotnet/api/system.threading.tasks.task) type. For instance:
 
 ```csharp
 [RelayCommand]
@@ -82,7 +82,7 @@ public IAsyncRelayCommand GreetUserCommand => greetUserCommand ??= new AsyncRela
 
 If the method takes a parameter, the resulting command will also be generic.
 
-There is a special case when the method has a [`CancellationToken`](https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken), as that will be propagated to the command to enable cancellation. That is, a method like this:
+There is a special case when the method has a [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken), as that will be propagated to the command to enable cancellation. That is, a method like this:
 
 ```csharp
 [RelayCommand]
@@ -100,7 +100,7 @@ private async Task GreetUserAsync(CancellationToken token)
 }
 ```
 
-Will result in the generated command passing a token to the wrapped method. This allows consumers to just call [`IAsyncRelayCommand.Cancel`](https://docs.microsoft.com/dotnet/api/communitytoolkit.mvvm.input.iasyncrelaycommand.cancel) to signal that token, and to allow pending operations to be stopped correctly.
+Will result in the generated command passing a token to the wrapped method. This allows consumers to just call [`IAsyncRelayCommand.Cancel`](/dotnet/api/communitytoolkit.mvvm.input.iasyncrelaycommand.cancel) to signal that token, and to allow pending operations to be stopped correctly.
 
 ## Enabling and disabling commands
 
@@ -119,7 +119,7 @@ private bool CanGreetUser(User? user)
 }
 ```
 
-This way, `CanGreetUser` is invoked when the button is first bound to the UI (eg. to a button), and then it is invoked again every time [`IRelayCommand.NotifyCanExecuteChanged`](https://docs.microsoft.com/dotnet/api/communitytoolkit.mvvm.input.irelaycommand.notifycanexecutechanged) is invoked on the command.
+This way, `CanGreetUser` is invoked when the button is first bound to the UI (eg. to a button), and then it is invoked again every time [`IRelayCommand.NotifyCanExecuteChanged`](/dotnet/api/communitytoolkit.mvvm.input.irelaycommand.notifycanexecutechanged) is invoked on the command.
 
 > [!NOTE]
 > The command will **not** automatically be aware of when the return value for the `CanExecute` method or property has changed. It is up to the developer to call `IRelayCommand.NotifyCanExecuteChanged` to invalidate the command and request the linked `CanExecute` method to be evaluated again to then update the visual state of the control bound to the command.
@@ -134,7 +134,7 @@ Note that if a command accepts a cancellation token, a token will also be cancel
 
 There are two different ways async relay commands handle exceptions:
 - When the command awaits the completion of an invocation, any exceptions will naturally be thrown on the same synchronization context. That usually means that exceptions being thrown would just crash the app, which is a behavior consistent with that of synchronous commands (where exceptions being thrown will also crash the app).
-- If a command is configured to flow exceptions to the task scheduler, exceptions being thrown will not crash the app, but instead they will both become available through the exposed [`IAsyncRelayCommand.ExecutionTask`](https://docs.microsoft.com/dotnet/api/communitytoolkit.mvvm.input.iasyncrelaycommand.executiontask) as well as bubbling up to the [`TaskScheduler.UnobservedTaskException`](https://docs.microsoft.com/dotnet/api/system.threading.tasks.taskscheduler.unobservedtaskexception). This enables more advanced scenarios (such as having UI components bind to the task and display different results based on the outcome of the operation), but it is more complex to use correctly.
+- If a command is configured to flow exceptions to the task scheduler, exceptions being thrown will not crash the app, but instead they will both become available through the exposed [`IAsyncRelayCommand.ExecutionTask`](/dotnet/api/communitytoolkit.mvvm.input.iasyncrelaycommand.executiontask) as well as bubbling up to the [`TaskScheduler.UnobservedTaskException`](/dotnet/api/system.threading.tasks.taskscheduler.unobservedtaskexception). This enables more advanced scenarios (such as having UI components bind to the task and display different results based on the outcome of the operation), but it is more complex to use correctly.
 
 The default behavior is having commands await and rethrow exceptions. This can be configured via the `FlowExceptionsToTaskScheduler` property:
 

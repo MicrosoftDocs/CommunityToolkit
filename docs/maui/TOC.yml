@@ -167,6 +167,8 @@ items:
   items:
     - name: Overview
       href: views/index.md
+    - name: "AvatarView"
+      href: views/AvatarView.md
     - name: "DrawingView"
       href: views/DrawingView.md
     - name: "Popup"

@@ -1,6 +1,16 @@
 items:
 - name: MVVM Toolkit Introduction
   href: index.md
+- name: Source generators
+  items:   
+    - name: Overview
+      href: generators/Overview.md
+    - name: ObservableProperty attribute
+      href: generators/ObservableProperty.md
+    - name: RelayCommand attribute
+      href: generators/RelayCommand.md
+    - name: INotifyPropertyChanged attributes
+      href: generators/INotifyPropertyChanged.md
 - name: Observable Objects
   items:   
     - name: ObservableObject

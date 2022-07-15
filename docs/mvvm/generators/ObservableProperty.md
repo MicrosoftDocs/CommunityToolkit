@@ -84,6 +84,9 @@ partial void OnNameChanged(string? value)
 
 You're free to only implement one of these two methods, or neither. If they are not implemented (or if only one is), the entire call(s) will just be removed by the compiler, so there will be no performance hit at all for cases where this additional functionality is not required.
 
+> [!NOTE]
+> The generated methods are [partial methods](/dotnet/csharp/language-reference/keywords/partial-method) with no implementation, meaning that if you choose to implement them, you cannot specify an explicit accessibility for them. That is, implementations of these methods should also be declared as just `partial` methods, and they will always implicitly have private accessibility. Trying to add an explicit accessibility (eg. adding `public` or `private`) will result in an error, as that is not allowed in C#.
+
 ## Notifying dependent properties
 
 Imagine you had a `FullName` property you wanted to raise a notification for whenever `Name` changes. You can do that by using the `NotifyPRopertyChangedFor` attribute, like so:

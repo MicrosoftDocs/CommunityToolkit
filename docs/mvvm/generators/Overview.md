@@ -27,7 +27,7 @@ public string? Name
 }
 ```
 
-You could just have a simple annotated field to express the same?
+You could just have a simple [annotated field](ObservableProperty.md) to express the same?
 
 ```csharp
 [ObservableProperty]
@@ -47,7 +47,7 @@ private ICommand? sayHelloCommand;
 public ICommand SayHelloCommand => sayHelloCommand ??= new RelayCommand(SayHello);
 ```
 
-What if we could just have our method, and nothing else?
+What if we could [just have our method](RelayCommand.md), and nothing else?
 
 ```csharp
 [RelayCommand]
@@ -59,7 +59,16 @@ private void SayHello()
 
 With the new MVVM source generators, all of this is possible, and much more! 🙌
 
-These docs will go over exactly what features are included with the MVVM generators and how to use them.
+> [!NOTE]
+> Source generators can be used independently from other existing features in the MVVM Toolkit, and you're free to mix and match using source generators with previous APIs as needed. That is, you're free to just gradually start using source generators in new files and eventually migrating older files to use them to reduce verbosity, but there is no obligation to always use either approach in a whole project or application.
+
+These docs will go over exactly what features are included with the MVVM generators and how to use them:
+
+- **CommunityToolkit.Mvvm.ComponentModel**
+  - [`ObservableProperty`](ObservableProperty.md)
+  - [`INotifyPropertyChanged`](INotifyPropertyChanged.md)
+- **CommunityToolkit.Mvvm.Input**
+  - [`RelayCommand`](RelayCommand.md)
 
 ## Examples
 

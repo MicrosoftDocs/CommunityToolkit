@@ -5,6 +5,8 @@ description: "The ServiceCollectionExtensions provide a series of extension meth
 ms.date: 04/22/2022
 ---
 
+<!-- markdownlint-configure-file { "MD024": { "allow_different_nesting": true } } -->
+
 # ServiceCollectionExtensions
 
 The `ServiceCollectionExtensions` provide a series of extension methods that simplify registering Views and their associated ViewModels within the .NET MAUI `IServiceCollection`.

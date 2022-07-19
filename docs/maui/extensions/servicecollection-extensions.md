@@ -313,4 +313,4 @@ A reference to this instance after the operation has completed.
 
 ## API
 
-You can find the source code for `ServiceCollectionExtensions` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Extensions/ServiceCollectionExtensions.shared.cs).
+You can find the source code for `ServiceCollectionExtensions` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Extensions/ServiceCollectionExtensions.shared.cs).

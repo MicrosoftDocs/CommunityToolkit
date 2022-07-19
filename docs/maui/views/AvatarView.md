@@ -1,7 +1,7 @@
 ---
 title: AvatarView - .NET MAUI Community Toolkit
 author: GeorgeLeithead
-description: "AvatarView is a control for displaying an image or user's initials avatar."
+description: "AvatarView is a control for displaying a user's avatar image or their initials."
 ms.date: 07/11/2022
 ---
 

@@ -17,6 +17,10 @@ The `ServiceCollectionExtensions` can be found under the `CommunityToolkit.Maui`
 using CommunityToolkit.Maui;
 ```
 
+> NOTE: These extension methods only register the View and ViewModels in the `IServiceCollection`. Developers are still responsible for assigning the injected instance of the ViewModel to the `BindingContext` property of the View.
+>
+> Additionally, these extension methods assume there is a one-to-one relationship between View and ViewModel and that both share the same lifetime. Developers will need to revert to registering Views and ViewModels individually in order to specify differing lifetimes or to handle scenarios in which multiple Views  use the same ViewModel.
+
 ## Register Views and ViewModels
 
 The following methods allow you to register Views and ViewModels within the .NET MAUI `IServiceCollection`.

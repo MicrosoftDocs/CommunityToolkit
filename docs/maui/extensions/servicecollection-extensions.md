@@ -2,7 +2,7 @@
 title: ServiceCollectionExtensions - .NET MAUI Community Toolkit
 author: rjygraham
 description: "The ServiceCollectionExtensions provide a series of extension methods that simplify registering Views and ViewModels within a .NET MAUI  IServiceCollection."
-ms.date: 04/22/2022
+ms.date: 07/19/2022
 ---
 
 <!-- markdownlint-configure-file { "MD024": { "allow_different_nesting": true } } -->

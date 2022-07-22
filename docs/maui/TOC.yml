@@ -157,6 +157,8 @@ items:
       href: extensions/color-animation-extensions.md
     - name: ColorConversionExtensions
       href: extensions/color-conversion-extensions.md
+    - name: ServiceCollectionExtensions
+      href: extensions/servicecollection-extensions.md
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"

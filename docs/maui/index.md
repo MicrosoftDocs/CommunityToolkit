@@ -17,6 +17,10 @@ Feel free to browse the documentation using the table of contents on the left si
 
 [maui-url]: /dotnet/maui/ "Microsoft .NET MAUI documentation"
 
+## Supported versions
+
+The .NET MAUI Community Toolkit supports the platforms and minimum versions that [.NET MAUI supports](/dotnet/maui/supported-platforms).
+
 ## [Get started][get-started]
 
 Follow the [Getting started guide][get-started] to install the **CommunityToolkit.Maui** NuGet packages into your existing or new [.NET MAUI][maui-url] projects.

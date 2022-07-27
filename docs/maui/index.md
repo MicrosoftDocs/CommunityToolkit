@@ -17,6 +17,18 @@ Feel free to browse the documentation using the table of contents on the left si
 
 [maui-url]: /dotnet/maui/ "Microsoft .NET MAUI documentation"
 
+## Supported versions
+
+The .NET MAUI Community Toolkit supports the platforms officially supported by [Microsoft](/dotnet/maui/supported-platforms):
+
+* Android 5.0 (API 21) or higher.
+* iOS 10 or higher.
+* macOS 10.15 or higher, using Mac Catalyst.
+* Windows 11 and Windows 10 version 1809 or higher, using [Windows UI Library (WinUI) 3](/windows/apps/winui/winui3/).
+
+> [!NOTE]
+> While there is support for Tizen (provided by Samsung) in .NET MAUI, the .NET MAUI Community Toolkit does not currently support it.
+
 ## [Get started][get-started]
 
 Follow the [Getting started guide][get-started] to install the **CommunityToolkit.Maui** NuGet packages into your existing or new [.NET MAUI][maui-url] projects.
@@ -27,6 +39,6 @@ Follow the [Getting started guide][get-started] to install the **CommunityToolki
 
 The .NET MAUI Community Toolkit is built as a set of open source projects hosted on GitHub by the community:
 
-- [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui)
+* [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui)
 
-- [CommunityToolkit.Maui.Markup](https://github.com/CommunityToolkit/Maui.Markup)
+* [CommunityToolkit.Maui.Markup](https://github.com/CommunityToolkit/Maui.Markup)

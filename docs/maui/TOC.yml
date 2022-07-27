@@ -31,6 +31,8 @@ items:
       href: behaviors/email-validation-behavior.md
     - name: "EventToCommandBehavior"
       href: behaviors/event-to-command-behavior.md
+    - name: "IconTintColorBehavior"
+      href: behaviors/icon-tint-color-behavior.md
     - name: MaskedBehavior
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
@@ -163,6 +165,8 @@ items:
       href: extensions/color-animation-extensions.md
     - name: ColorConversionExtensions
       href: extensions/color-conversion-extensions.md
+    - name: ServiceCollectionExtensions
+      href: extensions/servicecollection-extensions.md
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"
@@ -171,6 +175,8 @@ items:
   items:
     - name: Overview
       href: views/index.md
+    - name: "AvatarView"
+      href: views/AvatarView.md
     - name: "DrawingView"
       href: views/DrawingView.md
     - name: "Popup"

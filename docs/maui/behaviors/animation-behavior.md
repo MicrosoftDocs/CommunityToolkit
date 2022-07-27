@@ -230,5 +230,5 @@ You can find the source code for `AnimationBehavior` over on the [.NET MAUI Comm
 
 ## Useful links
 
-- [.NET MAUI Community Toolkit Behaviors](../animations/index.md#net-maui-community-toolkit-behaviors)
-- [Creating custom animations](../animations/index.md#creating-your-own-animation)
+- [.NET MAUI Community Toolkit Behaviors](../animations/index.md)
+- [Creating custom animations](../animations/index.md#creating-custom-animations)

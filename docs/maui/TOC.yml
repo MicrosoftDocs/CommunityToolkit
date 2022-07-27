@@ -13,10 +13,18 @@ items:
       href: alerts/snackbar.md
     - name: "Toast"
       href: alerts/toast.md
+- name: "Animations"
+  items:   
+    - name: Overview
+      href: animations/index.md
+    - name: FadeAnimation
+      href: animations/fade-animation.md
 - name: "Behaviors"
   items:
     - name: Overview
       href: behaviors/index.md
+    - name: "AnimationBehavior"
+      href: behaviors/animation-behavior.md
     - name: "CharactersValidationBehavior"
       href: behaviors/characters-validation-behavior.md
     - name: "EmailValidationBehavior"

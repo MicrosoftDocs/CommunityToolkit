@@ -28,12 +28,15 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
         ```xaml
         xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         ```
-    * In your MauiProgram.cs after `` .UseMauiApp<App>()`` add ``.UseMauiCommunityToolkit()`` 
-        ```cs
-        var builder = MauiApp.CreateBuilder();
+	
+    * In your MauiProgram.cs after `.UseMauiApp<App>()` add `.UseMauiCommunityToolkit()`
+    
+        ```csharp
+		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>().UseMauiCommunityToolkit()
-            ...
+			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
+			// ... The rest of your code
         ```
 
 4. Enable Toolkit in `MauiProgram.cs`:

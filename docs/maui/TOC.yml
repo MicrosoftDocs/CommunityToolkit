@@ -171,6 +171,8 @@ items:
       href: views/AvatarView.md
     - name: "DrawingView"
       href: views/DrawingView.md
+    - name: "GravatarImageSource"
+      href: views/GravatarImageSource.md
     - name: "Popup"
       href: views/popup.md
 - name: C# Markup

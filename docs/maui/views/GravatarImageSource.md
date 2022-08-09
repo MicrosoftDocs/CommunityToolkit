@@ -1,7 +1,7 @@
 ---
 title: GravatarImageSource - .NET MAUI Community Toolkit
 author: GeorgeLeithead
-description: "The `AvatarView` is a control for displaying a user's avatar image or their initials."
+description: "`GravatarImageSource` allows you to use as an Image source, a users Gravatar registered image via their email address."
 ms.date: 08/05/2022
 ---
 
@@ -62,14 +62,14 @@ partial class MyPage : ContentPage
 |---|---|---|
 | CacheValidity | `TimeSpan` | The `CacheValidity` property, of type `TimeSpan`, specifies how long the image will be stored locally for. The default value of this property is 1 day. |
 | CachingEnabled | `bool` | The `CachingEnabled` property, of type `bool`, defines whether image caching is enabled. The default value of this property is `true`. |
-| Email | `string?` | The `Email` property, of type `string?`, specifies the gravitar account email address.  If unset, the image will render the Gravatar image. If set and not found on Gravatar, the image will render from the `Image` property. |
+| Email | `string?` | The `Email` property, of type `string?`, specifies the gravatar account email address.  If unset, the Gravatar image is rendered. If set and not found on Gravatar, the `Image` property image will be rendered. |
 | Image | `DefaultImage` | The `Image` property, of type `DefaultImage` is an enumeration that is used to specify the default image if the `email` is not found on Gravatar. |
 
 These properties are backed by `BindableProperty` objects, which means that they can be targets of data bindings and styled.
 
 ## Set cache validity
 
-The `CacheValidity` property is a `TimeSpan` that specifies how long the image will be stored locally for..
+The `CacheValidity` property is a `TimeSpan` that specifies how long the image will be stored locally for.
 
 The following example sets the cache validity of a `GravatarImageSource`:
 
@@ -93,9 +93,103 @@ Image myImage = new()
 };
 ```
 
+## Set caching enabled
+
+The `CachingEnabled` property is a `bool` that defines whether image caching is enabled.
+
+The following example sets caching to enabled for a `GravatarImageSource`:
+
+```xaml
+<Image>
+    <Image.Source>
+        <toolkit:GravatarImageSource CachingEnabled="True" />
+    </Image.Source>
+</Image>
+```
+
+The equivalent C# code is:
+
+```csharp
+Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        CachingEnabled = true,
+    },
+};
+```
+
+## Set email
+
+The `Email` property is a nullable `string`. If the property is null or empty, the default Gravatar image is rendered. If the email address has no matching Gravatar image, the `Image` property image is rendered.
+
+The following example sets an email address that has a matching Gravatar image:
+
+```xaml
+<Image>
+    <Image.Source>
+        <toolkit:GravatarImageSource Email="dsiegel@avantipoint.com" />
+    </Image.Source>
+</Image>
+```
+
+The equivalent C# code is:
+
+```csharp
+Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = "dsiegel@avantipoint.com",
+    },
+};
+```
+
+The following example does not set an email address and will thus display the default Gravatar image.
+
+
+```xaml
+<Image>
+    <Image.Source>
+        <toolkit:GravatarImageSource />
+    </Image.Source>
+</Image>
+```
+
+The equivalent C# code is:
+
+```csharp
+Image myImage = new()
+{
+    Source = new GravatarImageSource(),
+};
+```
+
+The following example sets an email address that has no matching Gravatar image and will thus display the default `Image` image.
+
+
+```xaml
+<Image>
+    <Image.Source>
+        <toolkit:GravatarImageSource Email="notregistered@emailongravitar" />
+    </Image.Source>
+</Image>
+```
+
+The equivalent C# code is:
+
+```csharp
+Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = "notregistered@emailongravitar",
+    },
+};
+```
 ## Set default image
 
-The `Image` property is an enumeration that is used to spedify the default image if the `email` is not found on Gravatar.  The available options are:
+The `Image` property is an enumeration that is used to specify the default image if the `email` address has no matching Gravatar image.  The available options are:
 
 - MysteryPerson (default) - A simple, cartoon-style silhouetted outline of a person (does not vary by email hash)
 - FileNotFound - Do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found response.
@@ -129,6 +223,33 @@ Image myImage = new()
 };
 ```
 
+## Set image size
+
+By default, `GravatarImageSource` images are presented at 80px by 80px.  Image sizes can be between *1px and 2048px* and are taken from their parent view size properties.  Gravatar images are square, and the larger of the size properties defined will be taken.
+
+The following example sets the size of the image control and thus the size of the Gravatar image requested will be 73px.
+
+```xaml
+<Image WidthRequest="72" HeightRequest="73">
+    <Image.Source>
+        <toolkit:GravatarImageSource Email="dsiegel@avantipoint.com" />
+    </Image.Source>
+</Image>
+```
+
+The equivalent C# code is:
+
+```csharp
+Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = "dsiegel@avantipoint.com",
+    },
+    HeightRequest = 72,
+    HeightRequest = 73,
+};
+```
 
 ## Examples
 

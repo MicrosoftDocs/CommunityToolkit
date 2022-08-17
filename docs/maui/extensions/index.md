@@ -17,3 +17,4 @@ The .NET MAUI Community Toolkit provides a collection of extension methods to ma
 | --------- | ----------- |
 | [`ColorAnimationExtensions`](color-animation-extensions.md) | The `ColorAnimationExtensions` provide a series of extension methods that support animating the `Color` related properties of a `VisualElement`. |
 | [`ColorConversionExtensions`](color-conversion-extensions.md) | The `ColorConversionExtensions` provide a series of extension methods that support converting, modifying or inspecting `Color`s. |
+| [`ServiceCollectionExtensions`](servicecollection-extensions.md) | The `ServiceCollectionExtensions` provide a series of extension methods that simplify registering Views and their associated ViewModels within the .NET MAUI `IServiceCollection`. |

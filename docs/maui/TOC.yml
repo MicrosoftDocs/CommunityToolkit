@@ -159,6 +159,12 @@ items:
       href: extensions/color-conversion-extensions.md
     - name: ServiceCollectionExtensions
       href: extensions/servicecollection-extensions.md
+- name: ImageSources
+  items:
+    - name: Overview
+      href: imagesources/index.md
+    - name: "GravatarImageSource"
+      href: imagesources/GravatarImageSource.md
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"
@@ -171,8 +177,6 @@ items:
       href: views/AvatarView.md
     - name: "DrawingView"
       href: views/DrawingView.md
-    - name: "GravatarImageSource"
-      href: views/GravatarImageSource.md
     - name: "Popup"
       href: views/popup.md
 - name: C# Markup

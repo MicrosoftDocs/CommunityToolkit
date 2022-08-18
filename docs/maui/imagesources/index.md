@@ -1,7 +1,7 @@
 ---
 title: ImageSources - .NET MAUI Community Toolkit
 author: GeorgeLeithead
-description: The .NET MAUI Community Toolkit extends .NET MAUI controls.
+description: The .NET MAUI Community Toolkit extends .NET MAUI ImageSources.
 ms.date: 08/18/2022
 ---
 

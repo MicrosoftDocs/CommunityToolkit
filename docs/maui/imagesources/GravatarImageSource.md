@@ -35,7 +35,7 @@ The following example shows how to use `GravatarImageSource`:
 The equivalent C# code is:
 
 ```csharp
-using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Maui.ImageSources;
 
 partial class MyPage : ContentPage
 {
@@ -253,8 +253,8 @@ Image myImage = new()
 
 ## Examples
 
-You can find examples of this control in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/GravatarImageSourcePage.xaml).
+You can find examples of this control in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml).
 
 ## API
 
-You can find the source code for `GravatarImageSource` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Views/GravatarImageSource.shared.cs).
+You can find the source code for `GravatarImageSource` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/ImageSources/GravatarImageSource.shared.cs).

@@ -9,6 +9,10 @@ ms.date: 04/20/2022
 
 The `EmailValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid e-mail address. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid e-mail address is provided. The validation is achieved through a regular expression that is used to verify whether or not the text input is a valid e-mail address.
 
+When attached to an `InputView` (e.g. `Entry`, `Editor`, etc.), `EmailValidationBehavior` will change the default Keyboard, `Keyboard.Default`, to `Keyboard.Email`. If a non-default `Keyboard` has been specified for the `InputView`, `EmailValidationBehavior` will not change the `Keyboard`.
+
+When detached from an `InputView`, `EmailValidationBehavior` will change `Keyboard.Email` back to `Keyboard.Default`. If a `Keyboard` other than `Keyboard.Email` has been specified for the `InputView`, `EmailValidationBehavior`, will not change the `Keyboard` when detaching.
+
 ## Syntax
 
 The following examples show how to add the `EmailValidationBehavior` to an `Entry` and change the `TextColor` based on whether the entered text is a valid email address.

@@ -15,7 +15,7 @@ For further information on Behaviors please refer to the [.NET MAUI documentatio
 
 The .NET Multi-platform App UI (.NET MAUI) Image displays an `image` that can be loaded from a local file, a URI, an embedded resource, or a stream. The standard platform image formats are supported, including animated GIFs, and local Scalable Vector Graphics (SVG) files are also supported.  For more information about the `Image` control, see [Image](/dotnet/maui/user-interface/controls/image).
 
-`Images` defin a `Source` property, of type `ImageSource`, which specifies the source of the image.  The `ImageSource` class defines the following methods that can be used to load an image from different sources:
+`Images` define a `Source` property, of type `ImageSource`, which specifies the source of the image.  The `ImageSource` class defines the following methods that can be used to load an image from different sources:
 
 - `FromFile` returns a `FileImageSource` that reads an image from a local file.
 - `FromUri` returns an `UriImageSource` that downloads and reads an image from a specified URI.

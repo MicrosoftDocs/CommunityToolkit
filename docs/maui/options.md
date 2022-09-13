@@ -1,7 +1,7 @@
 ---
 title: CommunityToolkit.Maui.Options
 author: VladislavAntonyuk
-description: `CommunityToolkit.Maui.Options` allows to customize the `CommunityToolkit.Maui`.
+description: CommunityToolkit.Maui.Options allows to customize the CommunityToolkit.Maui.
 ms.date: 09/14/2022
 ---
 

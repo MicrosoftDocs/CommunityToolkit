@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `byte[]` `value` converted to an `Imag
 
 The `ConvertBack` method returns the supplied `ImageSource` `value` converted to a `byte[]`.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

@@ -13,6 +13,8 @@ The `Convert` method returns the **magenta** component as a value between 0 and 
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToPercentMagentaConverter` to display the **magenta** component of a specific `Color`.

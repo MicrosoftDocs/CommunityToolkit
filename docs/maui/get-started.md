@@ -29,7 +29,26 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
         xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         ```
 
-4. Check out the rest of the documentation to learn more about implementing specific features.
+4. Enable Toolkit in `MauiProgram.cs`:
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder.UseMauiApp<App>();
+builder.UseMauiCommunityToolkit();
+```
+
+4.1. For advanced settings set [CommunityToolkit.Maui.Options](./options.md):
+
+```csharp
+builder.UseMauiCommunityToolkit(options =>
+{
+    options.SetShouldSuppressExceptionsInConverters(false);
+    options.SetShouldSuppressExceptionsInBehaviors(false);
+    options.SetShouldSuppressExceptionsInAnimations(false);
+});
+```
+
+5. Check out the rest of the documentation to learn more about implementing specific features.
 
 ## NuGet packages
 

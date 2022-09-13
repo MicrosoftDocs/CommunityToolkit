@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `Color` `value` converted to its CMYKA
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToCmykaStringConverter` to display the CMYKA equivalent string of a specific `Color`.

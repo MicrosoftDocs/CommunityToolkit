@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `Color` `value` converted to its HSL `
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToHslStringConverter` to display the HSL equivalent string of a specific `Color`.

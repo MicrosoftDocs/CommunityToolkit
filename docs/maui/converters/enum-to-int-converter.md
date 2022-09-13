@@ -11,6 +11,8 @@ The `EnumToIntConverter` is a converter that allows you to convert a standard `E
 
 For localization purposes or due to other requirements, the enum values often need to be converted to a human-readable string. In this case, when the user selects a value, the resulting `SelectedIndex` can easily be converted to the underlying `enum` value without requiring additional work in the associated ViewModel.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

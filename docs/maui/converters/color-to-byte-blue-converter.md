@@ -13,6 +13,8 @@ The `Convert` method returns the **blue** component as a value between 0 and 255
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToByteBlueConverter` to display the **blue** component of a specific `Color`.

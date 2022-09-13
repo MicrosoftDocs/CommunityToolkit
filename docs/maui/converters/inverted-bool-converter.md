@@ -13,6 +13,8 @@ The `Convert` method returns `false` if the supplied `value` is equal to `true` 
 
 The `ConvertBack` method returns `false` if the supplied `value` is `true` and `true` otherwise.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

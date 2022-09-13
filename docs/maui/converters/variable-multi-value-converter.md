@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `values` converted to an overall `bool
 
 The `ConvertBack` method will only return a result if the `ConditionType` is set to `MultiBindingCondition.All`.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples show how to make a `Label` invisible based when at least 2 of the values in a `MultiBinding` evaluate to true.

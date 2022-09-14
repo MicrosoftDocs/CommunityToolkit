@@ -98,6 +98,16 @@ The follow example will create an `Entry` and add a [`MaxLengthReachedBehavior`]
 new Entry().Behaviors(new MaxLengthReachedBehavior());
 ```
 
+## AutomationId
+
+The `AutomationId` method sets the `AutomationId` property for the supplied `VisualElement`.
+
+The follow example will create an `Entry` and set the `AutomationId` to "PasswordEntry":
+
+```csharp
+new Entry().AutomationId("PasswordEntry");
+```
+
 ## Examples
 
 You can find an example of these extension methods in action throughout the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/).

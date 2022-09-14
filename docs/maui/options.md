@@ -23,9 +23,9 @@ builder.UseMauiCommunityToolkit(options =>
 
 ## SetShouldSuppressExceptionsInConverters
 
-When set to true, if a converter implementing `CommunityToolkit.Maui.Converters.BaseConverter` throws an Exception, the Exception will be caught, logged via `Debug.WriteLine()`, and a predetermined default value will be returned.
+When set to `true`, if a converter implementing `CommunityToolkit.Maui.Converters.BaseConverter` throws an `Exception`, the `Exception` will be caught, logged via `Debug.WriteLine()`, and a predetermined default value will be returned.
 
-Default value is false.
+Default value is `false`.
 
 ### Example
 This option is enabled when calling `.UseMauiCommunityToolkit()`:
@@ -39,16 +39,16 @@ builder.UseMauiCommunityToolkit(options =>
 ```
 
 ### Default Return Values
-When set to true, a default value will be returned when a Converter throws an Exception.
+When set to `true`, a default value will be returned when a `Converter` throws an `Exception`.
 
 Two default values are included:
 
 - `public object? ICommunityToolkitValueConverter.DefaultConvertReturnValue { get; set; }`
-   - `Default value returned when Convert(object? value, Type targetType, object? parameter, CultureInfo? culture)` throws an Exception
+   - `Default value returned when Convert(object? value, Type targetType, object? parameter, CultureInfo? culture)` throws an `Exception`
 - `public object ICommunityToolkitValueConverter.DefaultConvertBackReturnValue { get; set; }`
-   - `Default value returned when ConvertBack(object? value, Type targetType, object? parameter, CultureInfo? culture)` throws an Exception
+   - `Default value returned when ConvertBack(object? value, Type targetType, object? parameter, CultureInfo? culture)` throws an `Exception`
 
-Here is an example setting the default values for BoolToObjectConverter:
+Here is an example setting the default values for `BoolToObjectConverter`:
 
 XAML
 ```xml
@@ -75,9 +75,9 @@ var boolToColorBrushConverter = new BoolToObjectConverter
 ```
 
 ## SetShouldSuppressExceptionsInAnimations
-When set to true, if an Animation implementing `CommunityToolkit.Maui.Behaviors.AnimationBehavior` throws an Exception, the Exception will be caught and will be logged via `Debug.WriteLine()`.
+When set to `true`, if an `Animation` implementing `CommunityToolkit.Maui.Behaviors.AnimationBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Debug.WriteLine()`.
 
-Default value is false.
+Default value is `false`.
 
 ### Example
 This option is enabled when calling `.UseMauiCommunityToolkit()`:
@@ -92,9 +92,9 @@ builder.UseMauiCommunityToolkit(options =>
 
 ## SetShouldSuppressExceptionsInBehaviors
 
-When set to true, if a Behavior implementing `CommunityToolkit.Maui.Behaviors.BaseBehavior` throws an Exception, the Exception will be caught and will be logged via `Debug.WriteLine()`.
+When set to `true`, if a `Behavior` implementing `CommunityToolkit.Maui.Behaviors.BaseBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Debug.WriteLine()`.
 
-Default value is false.
+Default value is `false`.
 
 ### Example
 This option is enabled when calling `.UseMauiCommunityToolkit()`:

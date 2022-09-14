@@ -27,7 +27,7 @@ new Entry().SemanticDescription("Enter your username.");
 
 ## SemanticHeadingLevel
 
-The `SemanticDescription` method sets a heading level to enable the`BindableObject` to be marked as a heading to organize the UI and make it easier to navigate.
+The `SemanticDescription` method sets a heading level to enable the `BindableObject` to be marked as a heading to organize the UI and make it easier to navigate for the platform's screen reader.
 
 The following example demonstrates how to set the heading level on a new `Entry`:
 

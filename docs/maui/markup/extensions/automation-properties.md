@@ -27,7 +27,7 @@ new VerticalStackLayout().AutomationExcludedWithChildren(true);
 
 ## AutomationIsInAccessibleTree
 
-The `AutomationIsInAccessibleTree` method Sets a value determining if the `BindableObject` is visible to screen readers.
+The `AutomationIsInAccessibleTree` method sets a value determining if the `BindableObject` is visible to screen readers.
 
 The following example demonstrates how to exclude a new `VerticalStackLayout` from the accessibility tree:
 

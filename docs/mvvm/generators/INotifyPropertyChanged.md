@@ -31,7 +31,7 @@ public partial class MyViewModel : SomeOtherType
 ```
 
 This will generate a complete `INotifyPropertyChanged` implementation into the `MyViewModel` type, complete with additional helpers (such as `SetProperty`) that can be used to reduce verbosity. Here is a brief summary of the various attributes:
-- [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute): implements the interface and adds helper methods to set properties and raise the veents.
+- [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute): implements the interface and adds helper methods to set properties and raise the events.
 - [`ObservableObject`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableObjectAttribute): adds all the code from the `ObservableObject` type. It is conceptually equivalent to `INotifyPropertyChanged`, with the main difference being that it also implements `INotifyPropertyChanging`.
 - [`ObservableRecipient`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableRecipientdAttribute): adds all the code from the `ObservableRecipient` type. In particular, this can be added to a type inheriting from `ObservableValidator` to combine the two.
 

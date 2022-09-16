@@ -1,8 +1,8 @@
 ---
-title: Aniations - .NET MAUI Community Toolkit
+title: Animations - .NET MAUI Community Toolkit
 author: bijington
 description: The .NET MAUI Community Toolkit provides a collection of pre-built, reusable animations to make developers lives easier.
-ms.date: 07/27/2022
+ms.date: 09/16/2022
 ---
 
 # Animations

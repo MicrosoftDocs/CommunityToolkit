@@ -1,5 +1,5 @@
 ---
-title: CommunityToolkit.Maui.Options
+title: Options - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: CommunityToolkit.Maui.Options allows to customize the CommunityToolkit.Maui.
 ms.date: 09/14/2022

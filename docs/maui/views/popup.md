@@ -20,7 +20,11 @@ A `Popup` can be created in XAML or C#:
 
 ### XAML
 
-```xml
+Please note that if a `Popup` is created in XAML it must have a C# code behind file as well. To understand why this is required please refer to this [.NET MAUI documentation page](/dotnet/maui/xaml/runtime-load).
+
+The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML)` to your project and then change each of the files to the following:
+
+```xaml
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -32,6 +36,19 @@ A `Popup` can be created in XAML or C#:
     
 </toolkit:Popup>
 ```
+
+```csharp
+public partial class SimplePopup : Popup
+{
+    public SimplePopup()
+    {
+        InitializeComponent();
+    }
+}
+```
+
+> [!IMPORTANT]
+> If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
 
 ### C#
 

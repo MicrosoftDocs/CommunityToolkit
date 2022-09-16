@@ -102,7 +102,7 @@ new Entry().Behaviors(new MaxLengthReachedBehavior());
 
 The `AutomationId` method sets the `AutomationId` property for the supplied `VisualElement`.
 
-The follow example will create an `Entry` and set the `AutomationId` to "PasswordEntry":
+The following example will create an `Entry` and set the `AutomationId` to "PasswordEntry":
 
 ```csharp
 new Entry().AutomationId("PasswordEntry");

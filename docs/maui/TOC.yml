@@ -167,6 +167,12 @@ items:
       href: extensions/color-conversion-extensions.md
     - name: ServiceCollectionExtensions
       href: extensions/servicecollection-extensions.md
+- name: ImageSources
+  items:
+    - name: Overview
+      href: imagesources/index.md
+    - name: "GravatarImageSource"
+      href: imagesources/GravatarImageSource.md
 - name: "Layouts"
   items:
     - name: "UniformItemsLayout"

@@ -2,12 +2,12 @@
 title: ImageSources - .NET MAUI Community Toolkit
 author: GeorgeLeithead
 description: The .NET MAUI Community Toolkit extends .NET MAUI ImageSources.
-ms.date: 08/18/2022
+ms.date: 09/16/2022
 ---
 
 # ImageSources
 
-The .NET Multi-platform App UI (.NET MAUI) Image displays an `image` that can be loaded from a local file, a URI, an embedded resource, or a stream. The standard platform image formats are supported, including animated GIFs, and local Scalable Vector Graphics (SVG) files are also supported.  For more information about the `Image` control, see [Image](/dotnet/maui/user-interface/controls/image).
+The .NET Multi-platform App UI (.NET MAUI) `Image` displays an image that can be loaded from a local file, a URI, an embedded resource, or a stream. The standard platform image formats are supported, including animated GIFs, and local Scalable Vector Graphics (SVG) files are also supported.  For more information about the `Image` control, see [Image](/dotnet/maui/user-interface/controls/image).
 
 Any control that has a property of type `ImageSource`, can specify the source of an image.  The `ImageSource` property has the following methods that can be used to load an image from different sources:
 

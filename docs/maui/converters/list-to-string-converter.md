@@ -20,6 +20,8 @@ The `Convert` method returns a concatenation of the members of a collection, usi
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`StringToListConverter`](string-to-list-converter.md).
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

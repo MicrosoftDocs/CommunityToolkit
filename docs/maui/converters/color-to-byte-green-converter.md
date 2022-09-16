@@ -13,6 +13,8 @@ The `Convert` method returns the **green** component as a value between 0 and 25
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToByteGreenConverter` to display the **green** component of a specific `Color`.

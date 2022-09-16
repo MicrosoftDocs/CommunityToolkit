@@ -17,6 +17,8 @@ Note that the `ConverterParameter` option will take precedence over the `Type` p
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

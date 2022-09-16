@@ -14,6 +14,8 @@ The `CompareConverter` is a one way converter that take an incoming value implem
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

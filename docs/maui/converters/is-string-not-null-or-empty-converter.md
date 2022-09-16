@@ -13,6 +13,8 @@ The `Convert` method returns `true` when the binding `value` is **not** `null` a
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsStringNullOrEmptyConverter`](is-string-null-or-empty-converter.md).
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

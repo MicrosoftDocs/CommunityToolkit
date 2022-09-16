@@ -173,6 +173,7 @@ The C# Markup package provides the ability to define `IValueConverter` and `IMul
 | Extension | Description |
 | --------- | ----------- |
 | [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+| [`AutomationProperties`](extensions/automation-properties.md) | The `AutomationProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
 | [`BindableLayout`](extensions/bindable-layout-extensions.md) | The `BindableLayout` extensions provide a series of extension methods that support configuring its `EmptyView`, `ItemSource` and `ItemTemplate`. |
 | [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
 | [`DynamicResourceHandler`](extensions/dynamic-resource-handler-extensions.md) | The `DynamicResourceHandler` extensions provide a series of extension methods that support configuring `IDynamicResourceHandler` which can be used to theme an App. |
@@ -183,6 +184,7 @@ The C# Markup package provides the ability to define `IValueConverter` and `IMul
 | [`ItemsView`](extensions/itemsview-extensions.md) | The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`. |
 | [`Label`](extensions/label-extensions.md) | The `Label` extensions provide a series of extension methods that support configuring `Label` controls. |
 | [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring `IPlaceholder` controls. |
+| [`SemanticProperties`](extensions/semantic-properties.md) | The `SemanticProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
 | [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
 | [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing `ITextAlignment`. |
 | [`View`](extensions/visual-element-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |

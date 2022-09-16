@@ -13,6 +13,8 @@ The `Convert` method returns `true` when the binding `value` is **equal** to the
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsNotEqualConverter`](is-not-equal-converter.md).
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

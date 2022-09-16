@@ -2,7 +2,7 @@
 title: AnimationBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: The AnimationBehavior is a Behavior that provides the ability to animation any VisualElement it is attached to.
-ms.date: 07/27/2022
+ms.date: 09/16/2022
 ---
 
 # AnimationBehavior
@@ -21,7 +21,7 @@ The following examples show how to add the `AnimationBehavior` to a `Label` and 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorBehaviorPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorPage">
 
     <Label Text="Click this Label">
         <Label.Behaviors>
@@ -222,7 +222,7 @@ The following example shows how we can assign two `AnimationBehavior` instances 
 
 ## Examples
 
-You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/AnimationBehaviorBehaviorPage.xaml).
+You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/AnimationBehaviorPage.xaml).
 
 ## API
 

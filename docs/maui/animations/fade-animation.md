@@ -2,7 +2,7 @@
 title: FadeAnimation - .NET MAUI Community Toolkit
 author: bijington
 description: The FadeAnimation provides the ability to animate the opacity of a VisualElement from it's original opacity, to a specified new opacity and then back to the original.
-ms.date: 07/27/2022
+ms.date: 09/16/2022
 ---
 
 # FadeAnimation
@@ -32,7 +32,7 @@ public async void Animate()
 
 ## Examples
 
-You can find an example of this animation in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/AnimationBehaviorBehaviorPage.xaml).
+You can find an example of this animation in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/AnimationBehaviorPage.xaml).
 
 ## API
 

@@ -2,7 +2,7 @@
 title: GravatarImageSource - .NET MAUI Community Toolkit
 author: GeorgeLeithead
 description: "`GravatarImageSource` allows you to use as an Image source, a users Gravatar registered image via their email address."
-ms.date: 08/05/2022
+ms.date: 09/16/2022
 ---
 
 # GravatarImageSource
@@ -24,7 +24,7 @@ The following example shows how to use `GravatarImageSource`:
                 <toolkit:GravatarImageSource
                     CacheValidity="1"
                     CachingEnabled="True"
-                    Email="youremail@here"
+                    Email="youremail@here.com"
                     Image="MysteryPerson" />
             </Image.Source>
         </Image>
@@ -47,7 +47,7 @@ partial class MyPage : ContentPage
             {
                 CacheValidity = TimeSpan.FromDays(1),
                 CachingEnabled = true,
-                Email = "youremail@here",
+                Email = "youremail@here.com",
                 Image= DefaultImage.MysteryPerson
             },
         };
@@ -171,7 +171,7 @@ The following example sets an email address that has no matching Gravatar image 
 ```xaml
 <Image>
     <Image.Source>
-        <toolkit:GravatarImageSource Email="notregistered@emailongravitar" />
+        <toolkit:GravatarImageSource Email="notregistered@emailongravitar.com" />
     </Image.Source>
 </Image>
 ```
@@ -183,7 +183,7 @@ Image myImage = new()
 {
     Source = new GravatarImageSource()
     {
-        Email = "notregistered@emailongravitar",
+        Email = "notregistered@emailongravitar.com",
     },
 };
 ```
@@ -191,21 +191,21 @@ Image myImage = new()
 
 The `Image` property is an enumeration that is used to specify the default image if the `email` address has no matching Gravatar image.  The available options are:
 
-- MysteryPerson (default) - A simple, cartoon-style silhouetted outline of a person (does not vary by email hash)
-- FileNotFound - Do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found response.
-- Identicon - A geometric pattern based on an email hash.
-- MonsterId - A generated 'monster' with different colours, faces, etc.
-- Wavatar - Generated faces with differing features and backgrounds.
-- Retro - Awesome generated, 8-bit arcade-style pixilated faces.
-- Robohash - A generated robot with different colours, faces, etc.
-- Blank - A transparent PNG image.
+- `MysteryPerson` (default) - A simple, cartoon-style silhouetted outline of a person (does not vary by email hash)
+- `FileNotFound` - Do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found) response.
+- `Identicon` - A geometric pattern based on an email hash.
+- `MonsterId` - A generated 'monster' with different colours, faces, etc.
+- `Wavatar` - Generated faces with differing features and backgrounds.
+- `Retro` - Awesome generated, 8-bit arcade-style pixilated faces.
+- `Robohash` - A generated robot with different colours, faces, etc.
+- `Blank` - A transparent PNG image.
 
 The following example sets the default image of a `GravatarImageSource`:
 
 ```xaml
 <Image>
     <Image.Source>
-        <toolkit:GravatarImageSource Email="notregistered@emailongravitar" Image="Retro" />
+        <toolkit:GravatarImageSource Email="notregistered@emailongravitar.com" Image="Retro" />
     </Image.Source>
 </Image>
 ```
@@ -217,7 +217,7 @@ Image myImage = new()
 {
     Source = new GravatarImageSource()
     {
-        Email = "notregistered@emailongravitar",
+        Email = "notregistered@emailongravitar.com",
         Image = DefaultImage.Retro
     },
 };

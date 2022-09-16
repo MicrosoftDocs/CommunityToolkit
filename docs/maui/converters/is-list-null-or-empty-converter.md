@@ -13,6 +13,8 @@ The `Convert` method returns `true` when `null` or an empty `IEnumerable` is pas
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`IsListNotNullOrEmptyConverter`](is-list-not-null-or-empty-converter.md).
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

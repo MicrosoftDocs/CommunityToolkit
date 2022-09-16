@@ -15,6 +15,8 @@ which results in:
 
 `CommunityToolkit.Maui.Sample.Resources.Embedded.dotnetbot.png`
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

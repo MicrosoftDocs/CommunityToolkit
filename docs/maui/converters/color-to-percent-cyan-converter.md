@@ -13,6 +13,8 @@ The `Convert` method returns the **cyan** component as a value between 0 and 1 f
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToPercentCyanConverter` to display the **cyan** component of a specific `Color`.

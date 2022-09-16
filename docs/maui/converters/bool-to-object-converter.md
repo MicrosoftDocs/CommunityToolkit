@@ -13,6 +13,8 @@ The `Convert` method returns the `TrueObject` if the supplied `value` is `true` 
 
 The `ConvertBack` method returns `true` if the supplied `value` is equal to the `TrueObject` or `false` otherwise.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `BoolToObjectConverter` to change the visibility of a `Label` control based on the specific value of a bound property `MyValue`.

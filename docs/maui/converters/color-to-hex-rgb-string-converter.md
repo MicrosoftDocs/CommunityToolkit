@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `Color` `value` converted to its RGB h
 
 The `ConvertBack` method returns the RGB hexadecimal `string` `value` converted to a `Color`.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToHexRgbStringConverter` to display the RGB hexadecimal equivalent string of a specific `Color`.

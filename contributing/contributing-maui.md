@@ -39,7 +39,7 @@ This should be simpler than adding a new file:
 
 - Links to Microsoft documentation pages should not include locale information and they should be relative. For example:
 
-  `https://docs.microsoft.com/en-us/dotnet/maui/`
+  `https://learn.microsoft.com/dotnet/maui/`
 
 should be shortened to:
 

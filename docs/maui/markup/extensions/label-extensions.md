@@ -19,6 +19,6 @@ The following example demonstrates how to add multiple `Span`s to a `Label` usin
 new Label().FormattedText(new[] 
 {
     new Span { Text = "Here is a link to the docs: " },
-    new Span { Text = "https://docs.microsoft.com/", TextDecorations = TextDecorations.Underline, TextColor = Colors.Blue }
+    new Span { Text = "https://learn.microsoft.com/", TextDecorations = TextDecorations.Underline, TextColor = Colors.Blue }
 });
 ```

@@ -88,7 +88,7 @@ class EventToCommandBehaviorPage : ContentPage
 | EventName | string | The name of the event that should be associated with a `Command`. |
 | Command | [ICommand](xref:System.Windows.Input.ICommand) | The `Command` that should be executed. |
 | CommandParameter | object | An optional parameter to forward to the `Command`. |
-| EventArgsConverter | IValueConverter | An optional `IValueConverter` that can be used to convert `EventArgs` values to values passed into the `Command`. |
+| EventArgsConverter | IValueConverter | An optional `IValueConverter` that can be used to convert `EventArgs` values to values passed into the `Command`. This must be specified for `EventArgs` to be passed into the `Command`. |
 
 ## Examples
 

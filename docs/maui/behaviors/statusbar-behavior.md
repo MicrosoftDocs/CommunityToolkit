@@ -1,6 +1,6 @@
 ---
 title: StatusbarBehavior - .NET MAUI Community Toolkit
-author: pedrojesus
+author: pictos
 description: "The StatusbarBehavior is a behavior allows you to control the statusbar's style."
 ms.date: 09/27/2022
 ---

@@ -1,19 +1,19 @@
 ---
-title: StatusbarBehavior - .NET MAUI Community Toolkit
+title: StatusBarBehavior - .NET MAUI Community Toolkit
 author: pictos
-description: "The StatusbarBehavior is a behavior allows you to control the statusbar's style."
+description: "The StatusBarBehavior is a behavior allows you to control the statusbar's style."
 ms.date: 09/27/2022
 ---
 
-# StatusbarBehavior
+# StatusBarBehavior
 
-The `StatusbarBehavior` allows you to customize the color and style of yours device statusbar.
+The `StatusBarBehavior` allows you to customize the color and style of yours device statusbar.
 
 ## Syntax
 
 ### XAML
 
-The `StatusbarBehavior` can be used as follows in XAML:
+The `StatusBarBehavior` can be used as follows in XAML:
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -22,7 +22,7 @@ The `StatusbarBehavior` can be used as follows in XAML:
              x:Class="MyLittleApp.MainPage">
     
     <ContentPage.Behaviors>
-        <toolkit:StatusbarBehavior StatusBarColor="Fuchsia" StatusBarStyle="LightContent" />
+        <toolkit:StatusBarBehavior StatusBarColor="Fuchsia" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
 
 </ContentPage>
@@ -30,14 +30,14 @@ The `StatusbarBehavior` can be used as follows in XAML:
 
 ### C#
 
-The `StatusbarBehavior` can be used as follows in C#:
+The `StatusBarBehavior` can be used as follows in C#:
 
 ```csharp
 class MyPage : ContentPage
 {
     public MyPage()
     {
-        this.Behaviors(new StatusbarBehavior
+        this.Behaviors(new StatusBarBehavior
         {
             StatusBarColor = Colors.Red,
             StatusBarStyle = StatusBarStyle.LightContent
@@ -55,7 +55,7 @@ class MyPage : ContentPage
     {
         base.OnNavigatedTo(args);
         CommunityToolkit.Maui.Core.Platform.StatusBar.SetColor(statusBarColor);
-        CommunityToolkit.Maui.Core.Platform.StatusBar.SetStlyle(StatusBarStyle.LightContent);
+        CommunityToolkit.Maui.Core.Platform.StatusBar.SetStyle(StatusBarStyle.LightContent);
     }
 }
 ```
@@ -82,7 +82,7 @@ In the _Platforms/iOS/Info.plist_ file, add the following key and value:
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | StatusBarColor | Color | The `Color` name from the Microsoft.Maui.Graphics namespace. |
-| StatusBarStyle | StatusBarStyle | The style used by statusbar, can be LightContent, DarkContnet or default. |
+| StatusBarStyle | StatusBarStyle | The style used by statusbar, can be LightContent, DarkContent or Default. |
 
 ## Examples
 

@@ -25,7 +25,23 @@
                 - name: ThrowHelper
                   href: diagnostics/ThrowHelper.md
             - name: High Performance
-              href: /windows/communitytoolkit/high-performance/introduction          
+              items:
+                - name: Introduction
+                  href: high-performance/Introduction.md
+                - name: Span2D<T>
+                  href: high-performance/Span2D.md
+                - name: Memory2D<T>
+                  href: high-performance/Memory2D.md
+                - name: SpanOwner<T>
+                  href: high-performance/SpanOwner.md
+                - name: MemoryOwner<T>
+                  href: high-performance/MemoryOwner.md
+                - name: StringPool
+                  href: high-performance/StringPool.md
+                - name: ParallelHelper
+                  href: high-performance/ParallelHelper.md
+                - name: Ref<T>
+                  href: high-performance/Ref.md
         - name: Windows Community Toolkit
           href: /windows/communitytoolkit/
         - name: .NET MAUI Community Toolkit

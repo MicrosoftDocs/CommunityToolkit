@@ -151,4 +151,4 @@ We can see that the resulting assembly is much smaller than before. We basically
 
 ## Examples
 
-- You can find more examples in the [unit tests](https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Diagnostics.UnitTests).
+You can find more examples in the [unit tests](https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Diagnostics.UnitTests).

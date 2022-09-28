@@ -125,4 +125,4 @@ There are dozens of different APIs and overloads in the `Guard` class, here are 
 
 ## Examples
 
-- You can find more examples in the [unit tests](https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Diagnostics.UnitTests).
+You can find more examples in the [unit tests](https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Diagnostics.UnitTests).

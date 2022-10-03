@@ -154,7 +154,7 @@ class LoginPage : ContentPage
                     .Placeholder("Password")
                     .Row(Row.Password).Column(Column.UserInput),
     
-                new Buton()
+                new Button()
                     .Text("Submit")
                     .Row(Row.Password).RowSpan(All<Column>())
             }

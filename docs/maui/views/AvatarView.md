@@ -58,9 +58,9 @@ partial class MyPage : ContentPage
 
 These properties are backed by `BindableProperty` objects, which means that they can be targets of data bindings and styled.
 
-For information about specifying fonts on an `AvatarView`, see [Fonts](/dotnet/maui/user-interface/fonts.md).
+For information about specifying fonts on an `AvatarView`, see [Fonts](/dotnet/maui/user-interface/fonts).
 
-For information about specifying shadows on an `AvatarView`, see [Shadows](/dotnet/maui/user-interface/shadow.md)
+For information about specifying shadows on an `AvatarView`, see [Shadows](/dotnet/maui/user-interface/shadow)
 
 
 > [!IMPORTANT]
@@ -86,7 +86,7 @@ AvatarView avatarView = new()
 };
 ```
 
-For more information about colors, see [Colors](/dotnet/maui/user-interface/graphics/colors.md).
+For more information about colors, see [Colors](/dotnet/maui/user-interface/graphics/colors).
 
 ## Set border color
 
@@ -108,7 +108,7 @@ AvatarView avatarView = new()
 };
 ```
 
-For more information about colors, see [Colors](/dotnet/maui/user-interface/graphics/colors.md).
+For more information about colors, see [Colors](/dotnet/maui/user-interface/graphics/colors).
 
 ## Set border width
 
@@ -265,7 +265,7 @@ AvatarView avatarView = new()
 };
 ```
 
-For more information about colors, see [Colors](/dotnet/maui/user-interface/graphics/colors.md).
+For more information about colors, see [Colors](/dotnet/maui/user-interface/graphics/colors).
 
 ## Examples
 

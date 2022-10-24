@@ -91,7 +91,7 @@ The StateContainer properties can be used on any `Layout` inheriting element.
 
 | Property | Type | Description |
 |--------------------------|-------------|--------------------------------------------------------------------------------------|
-| StateViews | `IList<View>` | The available `View` elements to be used as templates for a state. |
+| StateViews | `IList<View>` | The available `View` elements to be used as state templates. |
 | CurrentState | `string` | Determines which `View` element with the corresponding `StateKey` should be displayed. |
 | ShouldAnimateOnStateChange | `bool` | Specifies if a fade out/in animation should display when switching between states. |
 

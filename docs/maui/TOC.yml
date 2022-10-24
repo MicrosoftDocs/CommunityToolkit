@@ -177,6 +177,8 @@ items:
       href: imagesources/GravatarImageSource.md
 - name: "Layouts"
   items:
+    - name: 'StateContainer'
+      href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md
 - name: "Views"

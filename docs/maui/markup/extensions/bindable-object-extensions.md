@@ -125,6 +125,19 @@ new CollectionView()
     .Invoke(collectionView => collectionView.SelectionChanged += HandleSelectionChanged);
 ```
 
+## AppThemeBinding
+
+The `AppThemeBinding` method allows for a light and dark value to assigned to a `BindableProperty` so that when the applications `AppTheme` is modified the appropriate value will be used for that theme.
+
+The following example will assign the color black to the `Text` property of the `Label` control if the application is running in light theme and white in dark theme.
+
+```csharp
+new Label().AppThemeBinding(Label.TextColorProperty, Colors.Black, Colors.White);
+```
+
+> [!NOTE]
+> There is a more specific method when dealing with `Color` properties. `AppThemeColorBinding` will perform the same underlying behavior as `AppThemeBinding` but it requires a set of `Color` parameters.
+
 ## Examples
 
 You can find an example of these extension methods in action throughout the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/).
@@ -132,5 +145,3 @@ You can find an example of these extension methods in action throughout the [.NE
 ## API
 
 You can find the source code for the `BindableObject` extension methods over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/BindableObjectExtensions.cs).
-
-

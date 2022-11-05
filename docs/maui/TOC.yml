@@ -219,6 +219,8 @@ items:
       href: markup/extensions/itemsview-extensions.md
     - name: "Label extensions"
       href: markup/extensions/label-extensions.md
+    - name: "Object extensions"
+      href: markup/extensions/object-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"

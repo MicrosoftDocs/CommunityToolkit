@@ -15,7 +15,7 @@ The extensions offer the following methods:
 
 The `Assign` method makes it possible to assign a variable fluently. This is extremely useful for setting up a view-to-view binding.
 
-This example binds the `TextColor` of the `Label` to inverse of it's `BackgroundColor`:
+This example binds the `TextColor` of the `Label` to be the inverse of its `BackgroundColor`:
 
 ```csharp
 Content = new Label()

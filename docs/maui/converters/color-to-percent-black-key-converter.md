@@ -13,6 +13,8 @@ The `Convert` method returns the **key** component as a value between 0 and 1 fr
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToPercentBlackKeyConverter` to display the **key** component of a specific `Color`.

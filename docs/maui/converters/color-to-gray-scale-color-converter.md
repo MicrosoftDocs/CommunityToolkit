@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `value` converted to a grayscale `Colo
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

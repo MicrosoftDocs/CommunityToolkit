@@ -19,6 +19,8 @@ The `Convert` method returns a set of substrings by splitting the input string b
 
 The `ConvertBack` method is not supported. For the opposite behavior see the [`ListToStringConverter`](list-to-string-converter.md).
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

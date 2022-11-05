@@ -9,6 +9,8 @@ ms.date: 04/23/2022
 
 The `SelectedItemEventArgsConverter` is a converter that allows users to extract the SelectedItem value from an `SelectedItemChangedEventArgs` object. It can subsequently be used in combination with [EventToCommandBehavior](../behaviors/event-to-command-behavior.md).
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

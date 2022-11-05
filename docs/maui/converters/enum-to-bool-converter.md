@@ -20,6 +20,8 @@ The `ConvertBack` method is not supported.
 > 
 > Note that the `TrueValues` property will take precedence over the `ConverterParameter` option.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 Each of the following examples make use of the following enum definition:

@@ -13,10 +13,18 @@ items:
       href: alerts/snackbar.md
     - name: "Toast"
       href: alerts/toast.md
+- name: "Animations"
+  items:   
+    - name: Overview
+      href: animations/index.md
+    - name: FadeAnimation
+      href: animations/fade-animation.md
 - name: "Behaviors"
   items:
     - name: Overview
       href: behaviors/index.md
+    - name: "AnimationBehavior"
+      href: behaviors/animation-behavior.md
     - name: "CharactersValidationBehavior"
       href: behaviors/characters-validation-behavior.md
     - name: "EmailValidationBehavior"
@@ -39,6 +47,8 @@ items:
       href: behaviors/required-string-validation-behavior.md
     - name: "SetFocusOnEntryCompletedBehavior"
       href: behaviors/set-focus-when-entry-completed-behavior.md
+    - name: "StatusBarBehavior"
+      href: behaviors/statusbar-behavior.md
     - name: "TextValidationBehavior"
       href: behaviors/text-validation-behavior.md
     - name: "UriValidationBehavior"
@@ -159,8 +169,16 @@ items:
       href: extensions/color-conversion-extensions.md
     - name: ServiceCollectionExtensions
       href: extensions/servicecollection-extensions.md
+- name: ImageSources
+  items:
+    - name: Overview
+      href: imagesources/index.md
+    - name: "GravatarImageSource"
+      href: imagesources/GravatarImageSource.md
 - name: "Layouts"
   items:
+    - name: 'StateContainer'
+      href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md
 - name: "Views"

@@ -7,6 +7,10 @@ ms.date: 01/14/2022
 
 # Get started
 
+This article covers how to get started using the packages provided as part of the .NET MAUI Community Toolkit project.
+
+## Adding the NuGet package(s)
+
 The toolkit is available as a set of NuGet packages that can be added to any existing or new project using Visual Studio.
 
 1. Open an existing project, or create a new project as per the [.NET MAUI setup documentation](/dotnet/maui/get-started/first-app)
@@ -15,67 +19,74 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 
     ![Manage NuGet Packages...](images/get-started/manage-nuget.png "Right click on the solution and select 'Manage NuGet Packages...'")
 
-3. To add the namespace to the toolkit:
+3. Choose the toolkit(s) that are most appropriate for your needs from:
+    1. [`CommunityToolkit.Maui`](#communitytoolkitmaui)
+    1. [`CommunityToolkit.Maui.Markup`](#communitytoolkitmauimarkup)
 
-    * In your C# page, add:
+## Using the NuGet package(s)
 
-        ```c#
-        using CommunityToolkit.Maui;
-        ```
+4. Enable Toolkit in `MauiProgram.cs`:
 
-    * In your XAML page, add the namespace attribute:
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder.UseMauiApp<App>();
+builder.UseMauiCommunityToolkit();
+```
 
-        ```xaml
-        xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-        ```
+4.1. For advanced settings set [CommunityToolkit.Maui.Options](./options.md):
 
-4. Check out the rest of the documentation to learn more about implementing specific features.
+```csharp
+builder.UseMauiCommunityToolkit(options =>
+{
+    options.SetShouldSuppressExceptionsInConverters(false);
+    options.SetShouldSuppressExceptionsInBehaviors(false);
+    options.SetShouldSuppressExceptionsInAnimations(false);
+});
+```
 
-## NuGet packages
+5. Check out the rest of the documentation to learn more about implementing specific features.
 
-The .NET MAUI Community Toolkit comprises of 3 separate packages:
+### `CommunityToolkit.Maui`
 
-### CommunityToolkit.Maui
+This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.
 
 **Package name:** `CommunityToolkit.Maui`
 
 **Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui
 
-**Using:**
+#### Initializing the package
 
-```c#
-using CommunityToolkit.Maui;
+In order to use the toolkit correctly the `UseMauiCommunityToolkit` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkit()
 ```
 
-This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### CommunityToolkit.Maui.Core
+### `CommunityToolkit.Maui.Markup`
 
-**Package name:** `CommunityToolkit.Maui.Core`
-
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Core
-
-**Using:**
-
-```c#
-using CommunityToolkit.Maui.Core;
-```
-
-This package includes the core library definitions for community toolkits using .NET MAUI.
-
-### CommunityToolkit.Maui.Markup
+This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
 
 **Package name:** `CommunityToolkit.Maui.Markup`
 
 **Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Markup
 
-**Using:**
+#### Initializing the package
 
-```c#
-using CommunityToolkit.Maui.Markup;
+In order to use the toolkit correctly the `UseMauiCommunityToolkitMarkup` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMarkup()
 ```
 
-This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
 ## Other resources
 

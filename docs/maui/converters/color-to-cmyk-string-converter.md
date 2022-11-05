@@ -13,6 +13,8 @@ The `Convert` method returns the supplied `Color` `value` converted to its CMYK 
 
 The `ConvertBack` method is not supported.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples will show how to use the `ColorToCmykStringConverter` to display the CMYK equivalent string of a specific `Color`.

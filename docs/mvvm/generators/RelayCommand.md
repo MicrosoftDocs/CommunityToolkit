@@ -128,7 +128,7 @@ For instance, this is how a command can be bound to a property to control its st
 
 ```csharp
 [ObservableProperty]
-[NotifyCanExecuteChangedFor(nameof(SelectedUser))]
+[NotifyCanExecuteChangedFor(nameof(GreetUserCommand))]
 private User? selectedUser;
 ```
 ```xml

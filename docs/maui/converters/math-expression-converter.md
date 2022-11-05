@@ -13,6 +13,8 @@ The `Convert` calculates the expression string defined in the `ConverterParamete
 
 The value that is passed in to the converter will be named `x`. In order to refer to this value inside the expression you must use `x` (e.g. `x / 2` will divide the incoming value by 2). Any other variable names in the expression will be ignored.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 The following examples show how to add a `Label` that will show the result of `x / 2` where `x` will have the value of `MyValue`.

@@ -20,6 +20,8 @@ The `ConvertBack` method returns the supplied `value` converted to a `double` an
 > 
 > Note that the `ConverterParameter` option will take precedence over the `Ratio` property.
 
+[!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
 ## Syntax
 
 ### XAML

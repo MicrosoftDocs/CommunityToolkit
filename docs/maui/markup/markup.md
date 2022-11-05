@@ -60,55 +60,11 @@ For further details on the possible options for the `Size` method refer to the [
 
 ### In-depth example
 
-The following example shows setting the page content to a new `Grid` containing a `Label` and an `Entry`, in C#:
+This example creates a `Grid` object, with child `Label` and `Entry` objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. 
 
-```csharp
-class SampleContentPage : ContentPage
-{
-    public SampleContentPage()
-    {
-        Grid grid = new Grid
-        {
-            RowDefinitions =
-            {
-                new RowDefinition { Height = new GridLength(36, GridUnitType.Absolute) }
-            },
+C# Markup extensions also allow developers to define names for Columns and Rows (e.g. `Column.Input`) using an `enum`.
 
-            ColumnDefinitions =
-            {
-                new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }
-            }
-        }
-
-        Label label = new Label { Text = "Code: " };
-        grid.Children.Add(label);
-        GridLayout.SetColumn(label, 0);
-        GridLayout.SetRow(label, 0);
-
-        Entry entry = new Entry
-        {
-            Placeholder = "Enter number",
-            Keyboard = Keyboard.Numeric,
-            BackgroundColor = Colors.AliceBlue,
-            TextColor = Colors.Black,
-            FontSize = 15,
-            HeightRequest = 44,
-            Margin = new Thickness(5)
-        };
-        grid.Children.Add(entry);
-        GridLayout.SetColumn(label, 1);
-        GridLayout.SetRow(label, 0);
-        entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCode));
-
-        Content = grid;
-    }
-}
-```
-
-This example creates a `Grid` object, with child `Label` and `Entry` objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. Finally, the `Page.Content` property is set to the `Grid` object.
-
-C# Markup enables this code to be re-written using its fluent API:
+C# Markup enables this to be defined using its fluent API:
 
 ```csharp
 using static CommunityToolkit.Maui.Markup.GridRowsColumns;
@@ -152,10 +108,6 @@ class SampleContentPage : ContentPage
 }
 ```
 
-This example is identical to the previous example, but the C# Markup fluent API simplifies the process of building the UI in C#.
-
-C# Markup extensions also allow developers to use an `enum` to define names for Columns and Rows (e.g. `Column.Input`).
-
 ## Converters
 
 The C# Markup package provides the ability to define `IValueConverter` and `IMultiValueConverter` implementations inline when building your applications UI.
@@ -173,6 +125,7 @@ The C# Markup package provides the ability to define `IValueConverter` and `IMul
 | Extension | Description |
 | --------- | ----------- |
 | [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+| [`AutomationProperties`](extensions/automation-properties.md) | The `AutomationProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
 | [`BindableLayout`](extensions/bindable-layout-extensions.md) | The `BindableLayout` extensions provide a series of extension methods that support configuring its `EmptyView`, `ItemSource` and `ItemTemplate`. |
 | [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
 | [`DynamicResourceHandler`](extensions/dynamic-resource-handler-extensions.md) | The `DynamicResourceHandler` extensions provide a series of extension methods that support configuring `IDynamicResourceHandler` which can be used to theme an App. |
@@ -183,6 +136,7 @@ The C# Markup package provides the ability to define `IValueConverter` and `IMul
 | [`ItemsView`](extensions/itemsview-extensions.md) | The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`. |
 | [`Label`](extensions/label-extensions.md) | The `Label` extensions provide a series of extension methods that support configuring `Label` controls. |
 | [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring `IPlaceholder` controls. |
+| [`SemanticProperties`](extensions/semantic-properties.md) | The `SemanticProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
 | [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
 | [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing `ITextAlignment`. |
 | [`View`](extensions/visual-element-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |

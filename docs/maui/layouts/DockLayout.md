@@ -115,7 +115,7 @@ If `DockLayout` is used in a spatially constrainted place (especially with a siz
 
 ## Examples
 
-You can find an example of the `DockLayout` feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Layouts/).
+You can find an example of the `DockLayout` feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Layouts/DockLayoutPage.xaml).
 
 ## API
 

@@ -1,7 +1,7 @@
 ---
 title: DockLayout - .NET MAUI Community Toolkit
 author: profix898
-description: The `DockLayout` is a layout where views can be docked to the sides (top, left, right, bottom) of the layout container.
+description: The DockLayout is a layout where views can be docked to the sides (top, left, right, bottom) of the layout container.
 ms.date: 11/04/2022
 ---
 

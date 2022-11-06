@@ -111,7 +111,7 @@ A `DockLayout` container supports arbitrary `Padding` as well as several `DockLa
 
 ## Additional Notes
 
-If `DockLayout` is used in a spatially constrainted place (especially with a size specified via `HeightRequest` or `WidthRequest` on the container), precedence is given by the order in which the child views are added to the `DockLayout` container. Consequently, whenever there is not enough space for all child views to be rendered, the least precedented ones (which were added last) will be removed upon layouting. For that reason, you should always check that the size of the container covers at least the minimum size of all its child views.
+If `DockLayout` is used in a spatially constrained place (especially with a size specified via `HeightRequest` or `WidthRequest` on the container), precedence is given by the order in which the child views are added to the `DockLayout` container. Consequently, whenever there is not enough space for all child views to be rendered, the least precedented ones (which were added last) will be removed upon rendering. For that reason, you should always check that the size of the container covers at least the minimum size of all its child views.
 
 ## Examples
 

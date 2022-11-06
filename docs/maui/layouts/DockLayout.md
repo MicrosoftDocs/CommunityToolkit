@@ -36,7 +36,7 @@ A basic `DockLayout` can be created in XAML as shown here:
 </ContentPage>
 ```
 
-For *Left* / *Right* docking, a `WidthRequest` should be specified. For *Top* / *Bottom* docking, a `HeightRequest` defines the size of the child view along the docking direction. The orthogonal directions are always calculated implictly by the `DockLayout` manager.
+For *Left* / *Right* docking, a `WidthRequest` should be specified. For *Top* / *Bottom* docking, a `HeightRequest` defines the size of the child view along the docking direction. The orthogonal directions are always calculated implicitly by the `DockLayout` manager.
 
 ### C#
 

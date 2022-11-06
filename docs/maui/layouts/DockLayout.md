@@ -103,11 +103,10 @@ A `DockLayout` container supports arbitrary `Padding` as well as several `DockLa
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | `Padding` | `Thickness` | Gets or sets the padding around the layout container (inherited from `Layout`). |
-| `VerticalSpacing` | `double` | Gets or sets the **vertical** spacing between docked views. |
 | `HorizontalSpacing` | `double` | Gets or sets the **horizontal** spacing between docked views. |
+| `VerticalSpacing` | `double` | Gets or sets the **vertical** spacing between docked views. |
+| <td colspan=2>`HorizontalSpacing` and `VerticalSpacing` is applied between neighboring views in the `DockLayout`. For example, `HorizontalSpacing` is added between *Left*, *None*, and *Right* views, but also between neighboring views in the same `DockPosition` such as multiple views docked to the *Left*. `VerticalSpacing` is rendered between vertically stacked views in *Top*, *None*, and *Bottom* positions.</td> |
 | `ShouldExpandLastChild` | `bool` | If true, the last child is expanded to fill the remaining space (default: `true`). |
-
-`VerticalSpacing` and `HorizontalSpacing` is applied between neighboring views in the `DockLayout`. For example, `HorizontalSpacing` is added between *Left*, *None*, and *Right* views, but also between neighboring views in the same `DockPosition` such as multiple views docked to the *Left*. `VerticalSpacing` is rendered between vertically stacked views in *Top*, *None*, and *Bottom* positions.
 
 ## Additional Notes
 

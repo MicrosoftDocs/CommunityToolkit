@@ -131,6 +131,10 @@ items:
       href: converters/is-list-null-or-empty-converter.md
     - name: "IsNotEqualConverter"
       href: converters/is-not-equal-converter.md
+    - name: "IsNotNullConverter"
+      href: converters/is-not-null-converter.md
+    - name: "IsNullConverter"
+      href: converters/is-null-converter.md
     - name: "IsStringNotNullOrEmptyConverter"
       href: converters/is-string-not-null-or-empty-converter.md
     - name: "IsStringNotNullOrWhiteSpaceConverter"

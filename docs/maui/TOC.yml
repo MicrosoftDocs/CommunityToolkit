@@ -131,6 +131,10 @@ items:
       href: converters/is-list-null-or-empty-converter.md
     - name: "IsNotEqualConverter"
       href: converters/is-not-equal-converter.md
+    - name: "IsNotNullConverter"
+      href: converters/is-not-null-converter.md
+    - name: "IsNullConverter"
+      href: converters/is-null-converter.md
     - name: "IsStringNotNullOrEmptyConverter"
       href: converters/is-string-not-null-or-empty-converter.md
     - name: "IsStringNotNullOrWhiteSpaceConverter"
@@ -177,6 +181,8 @@ items:
       href: imagesources/GravatarImageSource.md
 - name: "Layouts"
   items:
+    - name: 'StateContainer'
+      href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md
 - name: "Views"
@@ -217,6 +223,8 @@ items:
       href: markup/extensions/itemsview-extensions.md
     - name: "Label extensions"
       href: markup/extensions/label-extensions.md
+    - name: "Object extensions"
+      href: markup/extensions/object-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
     - name: "Style<T>"

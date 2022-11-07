@@ -61,7 +61,9 @@ public Microsoft.Maui.Controls.Style MauiStyle { get; }
 
 ```csharp
 public Style<T> Add(BindableProperty property, object value);
+public Style<T> AddAppThemeBinding(BindableProperty property, object light, object dark);
 public Style<T> Add(params (BindableProperty Property, object Value)[] setters);
+public Style<T> AddAppThemeBindings(params (BindableProperty Property, object Light, object Dark)[] setters);
 public Style<T> Add(params Behavior[] behaviors);
 public Style<T> Add(params TriggerBase[] triggers);
 ```
@@ -72,7 +74,7 @@ The `Add` methods can be used like so:
 new Label
 {
     Style = new Style<Label>()
-                .Add(Label.TextColorProperty, Colors.Red)
+                .AddAppThemeBinding(Label.TextColorProperty, Colors.Red, Colors.Orange)
                 .Add((Label.BackgroundColorProperty, Colors.White), (Label.FontAttributesProperty, FontAttributes.Bold))
                 .Add(new NumericValidationBehavior())
                 .Add(new EventTrigger { Event = nameof(Label.Focused) });

@@ -98,32 +98,18 @@ new Button()
         nameof(ViewModel.SubmitCommand));
 ```
 
-## Assign
+## AppThemeBinding
 
-The `Assign` method makes it possible to refer to the `BindableObject` being fluently built within the calls. This is extremely useful for setting up a `RelativeSource` to `Self` binding.
+The `AppThemeBinding` method allows for a light and dark value to assigned to a `BindableProperty` so that when the applications `AppTheme` is modified the appropriate value will be used for that theme.
 
-This example binds the `TextColor` of the `Label` to inverse of it's `BackgroundColor`:
-
-```csharp
-Content = new Label()
-    .Assign(out var self)
-    .Bind(
-        Label.TextColorProperty,
-        path: nameof(Label.BackgroundColor),
-        source: self,
-        converter: new ColorToInverseColorConverter());
-```
-
-## Invoke
-
-The `Invoke` method allows you to perform an action against the `BindableObject`. This effectively allows you to fluently hook up event handlers or configure other parts of your application.
-
-This example hooks up to the `SelectionChanged` event on the `CollectionView`.
+The following example will assign the color black to the `Text` property of the `Label` control if the application is running in light theme and white in dark theme.
 
 ```csharp
-new CollectionView()
-    .Invoke(collectionView => collectionView.SelectionChanged += HandleSelectionChanged);
+new Label().AppThemeBinding(Label.TextColorProperty, Colors.Black, Colors.White);
 ```
+
+> [!NOTE]
+> There is a more specific method when dealing with `Color` properties. `AppThemeColorBinding` will perform the same underlying behavior as `AppThemeBinding` but it requires a set of `Color` parameters.
 
 ## Examples
 
@@ -132,5 +118,3 @@ You can find an example of these extension methods in action throughout the [.NE
 ## API
 
 You can find the source code for the `BindableObject` extension methods over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/BindableObjectExtensions.cs).
-
-

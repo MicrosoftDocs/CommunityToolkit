@@ -11,7 +11,7 @@ ms.date: 11/04/2022
 
 The image below shows how a `DockLayout` is conceptually structured. Child views are docked at one of 4 possible docking positions: *Top*, *Bottom*, *Left* or *Right* (equivalent to `DockPosition.Top`, `DockPosition.Bottom`, `DockPosition.Left`, and `DockPosition.Right`). Views that are not explicitly docked (or with `DockPosition.None`) are displayed at the center (or between *Top* / *Bottom* and *Left* / *Right* positions).
 
-![DockLayout concept](./../../images/layouts/DockLayout.svg)
+![DockLayout concept](../images/layouts/DockLayout.svg)
 
 ## Building a DockLayout
 

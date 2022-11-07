@@ -47,7 +47,7 @@ var button = new Button { Text = "Top", HeightRequest = 50 };
 DockLayout.SetDockPosition(button, DockPosition.Top);
 ```
 
-Alternatively, `DockLayout` contains a fluent-style `Add(IView, DockPosition)` method that adds a child view to the layout container and sets it's docking position.
+Alternatively, `DockLayout` contains a fluent-style `Add(IView, DockPosition)` method that adds a child view to the layout container and sets its docking position.
 
 ```csharp
 var dockLayout = new DockLayout();

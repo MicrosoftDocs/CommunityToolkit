@@ -102,7 +102,7 @@ The following example shows how to use the generic implementation to pass the `W
 
 ### 2. Use the Converter property
 
-When using this `behavior` with selection or tap events exposed by `ListView` an additional converter is required. This converter converts the event arguments to a command parameter which is then passed onto the Command. They are also available in the .NET MAUI Community Toolkit:
+When using this `behavior` with selection or tap events exposed by `ListView` an additional converter is required. This converter converts the event arguments to a command parameter which is then passed onto the `Command`. They are also available in the .NET MAUI Community Toolkit:
 
 * [ItemTappedEventArgsConverter](../converters/item-tapped-eventargs-converter.md)
 * [SelectedItemEventArgsConverter](../converters/selected-item-eventargs-converter.md)

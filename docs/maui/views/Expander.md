@@ -7,7 +7,13 @@ ms.date: 11/08/2022
 
 # Expander
 
-The `Expander` control provides an expandable container to host any content. The control has a header and content, and the content is shown or hidden by tapping the `Expander` header. When only the `Expander` header is shown, the `Expander` is *collapsed*. When the `Expander` content is visible the `Expander` is *expanded*.
+The `Expander` control provides an expandable container to host any content. The control has two main properties to store your content:
+- `Header` 
+- `Content` 
+
+`Expander.Content` is shown or hidden when the user taps on `Expander.Header`. 
+
+When `Expander.Content` is hidden, and only `Expander.Header` is shown, the `Expander` is  considered *collapsed*. When `Expander.Content` is visible the `Expander` is *expanded*.
 
 > [!NOTE]
 > `Expander` is not supported inside `CollectionView` or `ListView`

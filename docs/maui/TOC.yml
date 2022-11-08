@@ -193,6 +193,8 @@ items:
       href: views/AvatarView.md
     - name: "DrawingView"
       href: views/DrawingView.md
+    - name: "Expander"
+      href: views/Expander.md
     - name: "Popup"
       href: views/popup.md
 - name: C# Markup

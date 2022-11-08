@@ -10,7 +10,7 @@ ms.date: 11/08/2022
 The `Expander` control provides an expandable container to host any content. The control has a header and content, and the content is shown or hidden by tapping the `Expander` header. When only the `Expander` header is shown, the `Expander` is *collapsed*. When the `Expander` content is visible the `Expander` is *expanded*.
 
 > [!NOTE]
-> The `Expander` control is known to show unwanted behavior when used in a `ListView` on iOS/MacCatalyst or `CollectionView` on Windows.
+> `Expander` is not supported inside `CollectionView` or `ListView`
 
 ![Screenshot of an Expander in collapsed and expanded states](../images/views/Expander.gif "Expander on Android")
 

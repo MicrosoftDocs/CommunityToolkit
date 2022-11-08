@@ -106,8 +106,8 @@ The `ExpandDirection` enumeration defines the following members:
 
 |Value  |Description  |
 |---------|---------|
-`Down` | Indicates that the `Expander` content is under the header.
-`Up` | Indicates that the `Expander` content is above the header.
+| `Down` | Indicates that the `Expander` content is under the header. |
+| `Up` | Indicates that the `Expander` content is above the header. |
 
 The `Expander` control also defines a `ExpandedChanged` event that's fired when the `Expander` header is tapped.
 

@@ -25,10 +25,7 @@ The .NET MAUI Community Toolkit supports the platforms officially supported by [
 * iOS 10 or higher.
 * macOS 10.15 or higher, using Mac Catalyst.
 * Windows 11 and Windows 10 version 1809 or higher, using [Windows UI Library (WinUI) 3](/windows/apps/winui/winui3/).
-
-## Additional platform support
-
-.NET MAUI Community Toolkit also includes Tizen support, which is provided by Samsung.
+* Tizen 7.0 or higher.
 
 ## [Get started][get-started]
 

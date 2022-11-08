@@ -99,7 +99,7 @@ expander.Content = grid;
 `CommandParameter` | `object` | The parameter that's passed to `Command`.
 `Direction` | `ExpandDirection` | Defines the expander direction.
 `Content` | `IView?` | Defines the content to be displayed when the `Expander` expands.
-`Header` | `IView` | Defines the header content.
+`Header` | `IView?` | Defines the header content.
 `IsExpanded` | `bool` | Determines if the `Expander` is expanded. This property uses the `TwoWay` binding mode, and has a default value of `false`.
 
 The `ExpandDirection` enumeration defines the following members:

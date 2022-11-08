@@ -96,7 +96,7 @@ expander.Content = grid;
 |Property  |Type  |Description  |
 |---------|---------|---------|
 `Command` | `ICommand` | Executes when the `Expander` header is tapped.
-`CommandParameter` | `object` | The parameter that's passed to the `Command`.
+`CommandParameter` | `object` | The parameter that's passed to `Command`.
 `Direction` | `ExpandDirection` | Defines the expander direction.
 `Content` | `View` | Defines the content to be displayed when the `Expander` expands.
 `Header` | `IView` | Defines the header content.

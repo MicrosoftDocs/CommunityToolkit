@@ -91,6 +91,33 @@ grid.Children.Add(new Label
 expander.Content = grid;
 ```
 
+### C# Markup
+
+```csharp
+using CommunityToolkit.Maui.Views;
+
+Content = new Expander
+				{
+					Header = new Label()
+								.Text("Baboon")
+								.Font(bold: true, size: 18),
+
+					Content = new VerticalStackLayout()
+					{
+						new Image()
+							.Source("http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg")
+							.Size(120)
+							.Aspect(Aspect.AspectFill),
+
+						new Label()
+							.Text("Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.")
+							.Font(italic: true)
+
+					}.Padding(10)
+
+				}.CenterHorizontal();
+```
+
 ## Properties
 
 |Property  |Type  |Description  |

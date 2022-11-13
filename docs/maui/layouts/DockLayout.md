@@ -22,16 +22,16 @@ A basic `DockLayout` can be created in XAML as shown here:
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MyProject.MyContentPage">
 
-    <mct:DockLayout>
-        <Button mct:DockLayout.DockPosition="Top" Text="Top" HeightRequest="50" />
-        <Button mct:DockLayout.DockPosition="Bottom" Text="Bottom" HeightRequest="70" />
-        <Button mct:DockLayout.DockPosition="Left" Text="Left" WidthRequest="80" />
-        <Button mct:DockLayout.DockPosition="Right" Text="Right" WidthRequest="90" />
+    <toolkit:DockLayout>
+        <Button toolkit:DockLayout.DockPosition="Top" Text="Top" HeightRequest="50" />
+        <Button toolkit:DockLayout.DockPosition="Bottom" Text="Bottom" HeightRequest="70" />
+        <Button toolkit:DockLayout.DockPosition="Left" Text="Left" WidthRequest="80" />
+        <Button toolkit:DockLayout.DockPosition="Right" Text="Right" WidthRequest="90" />
         <Button Text="Center" />
-    </mct:DockLayout>
+    </toolkit:DockLayout>
     
 </ContentPage>
 ```
@@ -40,39 +40,34 @@ For *Left* / *Right* docking, a `WidthRequest` should be specified. For *Top* / 
 
 ### C#
 
-To set the docking position from C#, use `DockLayout.SetDockPosition(IView, DockPosition)` to apply the attached `DockPosition` property.
-
-```csharp
-var button = new Button { Text = "Top", HeightRequest = 50 };
-DockLayout.SetDockPosition(button, DockPosition.Top);
-```
-
-Alternatively, `DockLayout` contains a fluent-style `Add(IView, DockPosition)` method that adds a child view to the layout container and sets its docking position.
-
-```csharp
-var dockLayout = new DockLayout();
-var button = dockLayout.Add(new Button { Text = "Top", HeightRequest = 50 }, DockPosition.Top);
-```
-
-Using the overload, a `DockLayout` can be constructed conveniently in C# as shown here:
+A `DockLayout` can be constructed conveniently in C# as shown here:
 
 ```csharp
 using CommunityToolkit.Maui.Layouts;
 
 var page = new ContentPage
 {
-	Content = new DockLayout
-	{
-		{ new Button { Text = "Top", HeightRequest = 50 }, DockPosition.Top },
-		{ new Button { Text = "Bottom", HeightRequest = 70 }, DockPosition.Bottom },
-		{ new Button { Text = "Left", WidthRequest = 80 }, DockPosition.Left },
-		{ new Button { Text = "Right", WidthRequest = 90 }, DockPosition.Right },
+    Content = new DockLayout
+    {
+        { new Button { Text = "Top", HeightRequest = 50 }, DockPosition.Top },
+        { new Button { Text = "Bottom", HeightRequest = 70 }, DockPosition.Bottom },
+        { new Button { Text = "Left", WidthRequest = 80 }, DockPosition.Left },
+        { new Button { Text = "Right", WidthRequest = 90 }, DockPosition.Right },
         { new Button { Text = "Center" } },
-	}
+    }
 };
 ```
 
 Note: `DockPosition.None` is the default and can be omitted.
+
+## Setting the dock position
+
+To set the docking position from C#, use `DockLayout.SetDockPosition(IView, DockPosition)` to apply the attached `DockPosition` property.
+
+```csharp
+var button = new Button { Text = "Top", HeightRequest = 50 };
+DockLayout.SetDockPosition(button, DockPosition.Top);
+```
 
 ## Customizing a DockLayout
 
@@ -83,17 +78,17 @@ A `DockLayout` container supports arbitrary `Padding` as well as several `DockLa
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MyProject.MyContentPage">
 
-    <mct:DockLayout HeightRequest="400"
+    <toolkit:DockLayout HeightRequest="400"
                     WidthRequest="600"
                     Padding="10,20,30,40"
                     VerticalSpacing="10"
                     HorizontalSpacing="15"
                     ShouldExpandLastChild="False">
         ...
-    </mct:DockLayout>
+    </toolkit:DockLayout>
     
 </ContentPage>
 ```
@@ -110,7 +105,7 @@ A `DockLayout` container supports arbitrary `Padding` as well as several `DockLa
 
 ## Additional Notes
 
-If `DockLayout` is used in a spatially constrained place (especially with a size specified via `HeightRequest` or `WidthRequest` on the container), precedence is given by the order in which the child views are added to the `DockLayout` container. Consequently, whenever there is not enough space for all child views to be rendered, the least precedented ones (which were added last) will be removed upon rendering. For that reason, you should always check that the size of the container covers at least the minimum size of all its child views.
+If `DockLayout` is used in a spatially constrained place (especially with a size specified via `HeightRequest` or `WidthRequest` on the container), precedence is given by the order in which the child views are added to the `DockLayout` container. Consequently, whenever there is not enough space for all child views to be rendered, the lowest priority children (which were added last) will be removed upon rendering. For that reason, you should always check that the size of the container covers at least the minimum size of all its child views.
 
 ## Examples
 

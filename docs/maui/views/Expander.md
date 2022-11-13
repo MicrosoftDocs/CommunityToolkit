@@ -27,7 +27,7 @@ This is the main content that will show when the `Header` property is interacted
 
 ## Basic usage
 
-The following examples show how to use the `Expander` view by setting the `Header` property to be a `Label` control and the `Content` to be a `Grid` with an `Image` and a `Label` inside.
+The following examples show how to use the `Expander` view by setting the `Header` property to be a `Label` control and the `Content` to be a `HorizontalStackLayout` with an `Image` and a `Label` inside.
 
 ### XAML
 

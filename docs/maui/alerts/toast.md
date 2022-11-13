@@ -72,3 +72,4 @@ You can find the source code for `Toast` over on the [.NET MAUI Community Toolki
 
 1. The API allows override existing methods with your own implementation or creating your own Toast, by implementing `IToast` interface.
 2. Toast is implemented on Android, created by Google. Other platforms use a custom-implemented container (`UIView` for iOS and MacCatalyst, `ToastNotification` on Windows).
+3. Toast on Tizen can't be customized with its `Duration` and `TextSize` properties.

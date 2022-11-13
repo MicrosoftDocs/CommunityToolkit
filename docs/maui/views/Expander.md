@@ -1,19 +1,24 @@
 ---
 title: Expander - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
-description: "The Expander allows collapse and expand content."
+description: "The Expander control provides an expandable container to host any content."
 ms.date: 11/08/2022
 ---
 
 # Expander
 
 The `Expander` control provides an expandable container to host any content. The control has two main properties to store your content:
-- `Header` 
-- `Content` 
 
-`Expander.Content` is shown or hidden when the user taps on `Expander.Header`. 
+## Header
 
-When `Expander.Content` is hidden, and only `Expander.Header` is shown, the `Expander` is  considered *collapsed*. When `Expander.Content` is visible the `Expander` is *expanded*.
+This `Header` property can be provided with any view to allow for full customization. The `Header` will always be visible and interacting with it (clicking or tapping) will show/collapse the `Content`.
+
+> [!NOTE]
+> It is not recommended to place controls inside the header that allow user interaction.
+
+## Content
+
+This is the main content that will show when the `Header` property is interacted with it (clicked or tapped) or the `IsExpanded` property is modified.
 
 > [!NOTE]
 > `Expander` is not supported inside `CollectionView` or `ListView`
@@ -22,9 +27,11 @@ When `Expander.Content` is hidden, and only `Expander.Header` is shown, the `Exp
 
 ## Basic usage
 
-The following example shows how to instantiate an `Expander`.
+The following examples show how to use the `Expander` view by setting the `Header` property to be a `Label` control and the `Content` to be a `Grid` with an `Image` and a `Label` inside.
 
 ### XAML
+
+The following example shows how to add an `Expander` view in XAML.
 
 ```xml
 <Expander>
@@ -33,23 +40,20 @@ The following example shows how to instantiate an `Expander`.
                FontAttributes="Bold"
                FontSize="Medium" />
     </Expander.Header>
-    <Grid Padding="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <HorizontalStackLayout Padding="10">
         <Image Source="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg"
                Aspect="AspectFill"
                HeightRequest="120"
                WidthRequest="120" />
-        <Label Grid.Column="1"
-               Text="Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae."
+        <Label Text="Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae."
                FontAttributes="Italic" />
     </Grid>
 </Expander>
 ```
 
 ### C#
+
+The following example shows how to add an `Expander` view in C#.
 
 ```csharp
 using CommunityToolkit.Maui.Views;
@@ -64,31 +68,27 @@ var expander = new Expander
     }
 };
 
-var grid = new Grid
+expander.Content = new HorizontalStackLayout
 {
     Padding = new Thickness(10),
-    ColumnDefinitions =
+
+    Children =
     {
-        new ColumnDefinition { Width = GridLength.Auto },
-        new ColumnDefinition { Width = GridLength.Auto }
+        new Image
+        {
+            Source = "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg",
+            Aspect = Aspect.AspectFill,
+            HeightRequest = 120,
+            WidthRequest = 120
+        },
+
+        new Label
+        {
+            Text = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
+            FontAttributes = FontAttributes.Italic
+        }
     }
 };
-
-grid.Children.Add(new Image
-{
-    Source = "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg",
-    Aspect = Aspect.AspectFill,
-    HeightRequest = 120,
-    WidthRequest = 120
-});
-
-grid.Children.Add(new Label
-{
-    Text = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
-    FontAttributes = FontAttributes.Italic
-}, 1, 0);
-
-expander.Content = grid;
 ```
 
 ### C# Markup
@@ -97,25 +97,25 @@ expander.Content = grid;
 using CommunityToolkit.Maui.Views;
 
 Content = new Expander
-				{
-					Header = new Label()
-								.Text("Baboon")
-								.Font(bold: true, size: 18),
+{
+    Header = new Label()
+        .Text("Baboon")
+        .Font(bold: true, size: 18),
 
-					Content = new VerticalStackLayout()
-					{
-						new Image()
-							.Source("http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg")
-							.Size(120)
-							.Aspect(Aspect.AspectFill),
+    Content = new HorizontalStackLayout
+    {
+        new Image()
+            .Source("http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg")
+            .Size(120)
+            .Aspect(Aspect.AspectFill),
 
-						new Label()
-							.Text("Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.")
-							.Font(italic: true)
+        new Label()
+            .Text("Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.")
+            .Font(italic: true)
 
-					}.Padding(10)
+    }.Padding(10)
 
-				}.CenterHorizontal();
+}.CenterHorizontal();
 ```
 
 ## Properties

@@ -309,7 +309,7 @@ new Label().TranslationY(2.0);
 
 The `ZIndex` method sets the `ZIndex` property for the supplied `VisualElement`.
 
-The following example will create a `Label` and scale the ZIndex to the value of 100:
+The following example will create a `Label` and set the ZIndex to the value of 100:
 
 ```csharp
 new Label().ZIndex(100);

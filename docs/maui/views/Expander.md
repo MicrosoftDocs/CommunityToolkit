@@ -47,7 +47,7 @@ The following example shows how to add an `Expander` view in XAML.
                WidthRequest="120" />
         <Label Text="Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae."
                FontAttributes="Italic" />
-    </Grid>
+    </HorizontalStackLayout>
 </Expander>
 ```
 

@@ -15,9 +15,11 @@ The image below shows how a `DockLayout` is conceptually structured. Child views
 
 ## Building a DockLayout
 
-A basic `DockLayout` can be created in XAML as shown here:
+The following sections cover how to use a `DockLayout` in both C# and XAML.
 
 ### XAML
+
+A basic `DockLayout` can be created in XAML as shown here:
 
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -72,8 +74,6 @@ DockLayout.SetDockPosition(button, DockPosition.Top);
 ## Customizing a DockLayout
 
 A `DockLayout` container supports arbitrary `Padding` as well as several `DockLayout`-specific properties for customization. An example in XAML with all available options is given here:
-
-### XAML
 
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"

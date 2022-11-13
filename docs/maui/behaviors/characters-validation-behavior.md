@@ -39,7 +39,7 @@ The `CharactersValidationBehavior` can be used as follows in XAML:
                 ValidStyle="{StaticResource ValidEntryStyle}"
                 Flags="ValidateOnValueChanged"
                 CharacterType="Digit"
-                MinimumCharacterCount="2" />
+                MinimumCharacterTypeCount="2" />
         </Entry.Behaviors>
     </Entry>
 
@@ -77,7 +77,7 @@ class CharactersValidationBehaviorPage : ContentPage
             ValidStyle = validStyle,
             Flags = ValidationFlags.ValidateOnValueChanged,
             CharacterType = CharacterType.Digit,
-            MinimumCharacterCount = 2
+            MinimumCharacterTypeCount = 2
         };
 
         entry.Behaviors.Add(charactersValidationBehavior);
@@ -105,7 +105,7 @@ class CharactersValidationBehaviorPage : ContentPage
                 ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
                 Flags = ValidationFlags.ValidateOnValueChanged,
                 CharacterType = CharacterType.Digit,
-                MinimumCharacterCount = 2
+                MinimumCharacterTypeCount = 2
             });
     }
 }

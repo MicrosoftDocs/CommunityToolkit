@@ -55,8 +55,8 @@ The `EnumToBoolConverter` can be used as follows in XAML:
                 <toolkit:EnumToBoolConverter.TrueValues>
                     <mylittleapp:MyDevicePlatform>Android</mylittleapp:MyDevicePlatform>
                     <mylittleapp:MyDevicePlatform>iOS</mylittleapp:MyDevicePlatform>
-                </mct:EnumToBoolConverter.TrueValues>
-            </mct:EnumToBoolConverter>
+                </toolkit:EnumToBoolConverter.TrueValues>
+            </toolkit:EnumToBoolConverter>
          </ResourceDictionary>
     </ContentPage.Resources>
 

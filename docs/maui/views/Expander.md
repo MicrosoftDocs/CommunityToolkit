@@ -23,7 +23,7 @@ This is the main content that will show when the `Header` property is interacted
 > [!NOTE]
 > `Expander` is not supported inside `CollectionView` or `ListView`
 
-![Screenshot of an Expander in collapsed and expanded states](../images/views/Expander.gif "Expander on Android")
+![Screenshot of an Expander in collapsed and expanded states](../images/views/Expander.gif "Expander showing in MacCatalyst")
 
 ## Basic usage
 

@@ -150,7 +150,7 @@ Event argument which contains `Expander` `IsExpanded` state.
 
 ## Examples
 
-You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/ExpanderPage.xaml.cs).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/Expander/).
 
 ## API
 

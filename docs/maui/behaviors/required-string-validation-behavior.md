@@ -108,6 +108,9 @@ class RequiredStringValidationBehaviorPage : ContentPage
 }
 ```
 
+The following screenshot shows the resulting RequiredStringValidationBehavior on Android:
+![Screenshot of an RequiredStringValidationBehavior on Android](../images/behaviors/required-string--validation-behavior-android.png "RequiredStringValidationBehavior on Android")
+
 ## Properties
 
 |Property  |Type  |Description  |

@@ -81,6 +81,9 @@ class MaskedBehaviorPage : ContentPage
 }
 ```
 
+The following screenshot shows the resulting MaskedBehavior on Android:
+![Screenshot of an MaskedBehavior on Android](../images/behaviors/masked-behavior-android.png "MaskedBehavior on Android")
+
 ## Custom prompt character
 
 It is possible to override the character in the `Mask` property that will be visible to the user. This can be changed by setting the `UnmaskedCharacter` property which defaults to `'X'`. So for example if an `X` was required to be displayed in between each group of 4 digits in our 16 digit credit card entry the following could be used:

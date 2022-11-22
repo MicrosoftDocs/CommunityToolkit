@@ -47,6 +47,15 @@ await snackbar.Show(cancellationTokenSource.Token);
 
 When calling `Snackbar.Make()`, its parameter `string text` is required. All other parameters are optional.
 
+The following screenshot shows the resulting Snackbar:
+# [Android](#tab/android)
+
+![Screenshot of an Snackbar on Android](../images/alerts/snackbar-android.gif "Snackbar on Android")
+
+# [iOS](#tab/ios)
+
+![Screenshot of an Snackbar on iOS](../images/alerts/snackbar-ios.gif "Snackbar on iOS")
+
 There is also an extension method, which will anchor the `Snackbar` to any `VisualElement`:
 
 ```csharp

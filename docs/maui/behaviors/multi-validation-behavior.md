@@ -225,6 +225,9 @@ class MultiValidationBehaviorPage : ContentPage
 }
 ```
 
+The following screenshot shows the resulting MultiValidationBehavior on Android:
+![Screenshot of an MultiValidationBehavior on Android](../images/behaviors/multi-validation-behavior-android.gif "MultiValidationBehavior on Android")
+
 ## Properties
 
 The `MultiValidationBehavior` provides the common validation properties as below.

@@ -36,6 +36,9 @@ var drawingView = new DrawingView
 };
 ```
 
+The following screenshot shows the resulting DrawingView on Android:
+![Screenshot of an DrawingView on Android](../images/views/drawingview-android.gif "DrawingView on Android")
+
 ## MultiLine usage
 
 By default `DrawingView` supports only 1 line. To enable `MultiLine` set `IsMultiLineModeEnabled` to true. Make sure `ShouldClearOnFinish` is false.
@@ -62,6 +65,9 @@ var drawingView = new DrawingView
     ShouldClearOnFinish = false,
 };
 ```
+
+The following screenshot shows the resulting DrawingView on Android:
+![Screenshot of an DrawingView with multi-line on Android](../images/views/drawingview-multiline-android.gif "DrawingView on Android")
 
 ## Handle event when DrawingLineCompleted
 

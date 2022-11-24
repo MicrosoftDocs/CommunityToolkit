@@ -112,7 +112,7 @@ class CharactersValidationBehaviorPage : ContentPage
 ```
 
 The following screenshot shows the resulting CharactersValidationBehavior on Android:
-![Screenshot of an CharactersValidationBehavior on Android](../images/behaviors/character-validation-behavior-android.png "CharactersValidationBehavior on Android")
+![Screenshot of an CharactersValidationBehavior on Android](../images/behaviors/character-validation-behavior-android.gif "CharactersValidationBehavior on Android")
 
 ## Properties
 

@@ -90,7 +90,7 @@ class AnimationBehaviorBehaviorPage : ContentPage
 ```
 
 The following screenshot shows the resulting AnimationBehavior on Android:
-![Screenshot of an AnimationBehavior on Android](../images/behaviors/animation-behavior-android.png "AnimationBehavior on Android")
+![Screenshot of an AnimationBehavior on Android](../images/behaviors/animation-behavior-android.gif "AnimationBehavior on Android")
 
 ## Additional examples
 

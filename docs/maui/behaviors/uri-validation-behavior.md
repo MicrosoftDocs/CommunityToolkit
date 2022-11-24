@@ -109,7 +109,7 @@ class UriValidationBehaviorPage : ContentPage
 ```
 
 The following screenshot shows the resulting UriValidationBehavior on Android:
-![Screenshot of an UriValidationBehavior on Android](../images/behaviors/uri-validation-behavior-android.png "UriValidationBehavior on Android")
+![Screenshot of an UriValidationBehavior on Android](../images/behaviors/uri-validation-behavior-android.gif "UriValidationBehavior on Android")
 
 ## Properties
 

@@ -67,7 +67,7 @@ var drawingView = new DrawingView
 ```
 
 The following screenshot shows the resulting DrawingView on Android:
-![Screenshot of an DrawingView on Android](../images/views/drawingview-multiline-android.gif "DrawingView on Android")
+![Screenshot of an DrawingView with multi-line on Android](../images/views/drawingview-multiline-android.gif "DrawingView on Android")
 
 ## Handle event when DrawingLineCompleted
 

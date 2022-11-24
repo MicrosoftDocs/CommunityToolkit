@@ -82,7 +82,7 @@ class MaskedBehaviorPage : ContentPage
 ```
 
 The following screenshot shows the resulting MaskedBehavior on Android:
-![Screenshot of an MaskedBehavior on Android](../images/behaviors/masked-behavior-android.png "MaskedBehavior on Android")
+![Screenshot of an MaskedBehavior on Android](../images/behaviors/masked-behavior-android.gif "MaskedBehavior on Android")
 
 ## Custom prompt character
 

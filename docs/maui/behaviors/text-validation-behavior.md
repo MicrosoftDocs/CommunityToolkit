@@ -112,7 +112,7 @@ class TextValidationBehaviorPage : ContentPage
 ```
 
 The following screenshot shows the resulting TextValidationBehavior on Android:
-![Screenshot of an TextValidationBehavior on Android](../images/behaviors/text-validation-behavior-android.png "TextValidationBehavior on Android")
+![Screenshot of an TextValidationBehavior on Android](../images/behaviors/text-validation-behavior-android.gif "TextValidationBehavior on Android")
 
 ## Properties
 

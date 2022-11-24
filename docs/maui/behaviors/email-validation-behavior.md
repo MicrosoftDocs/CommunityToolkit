@@ -110,7 +110,7 @@ class EmailValidationBehaviorPage : ContentPage
 ```
 
 The following screenshot shows the resulting EmailValidationBehavior on Android:
-![Screenshot of an EmailValidationBehavior on Android](../images/behaviors/email-validation-behavior-android.png "EmailValidationBehavior on Android")
+![Screenshot of an EmailValidationBehavior on Android](../images/behaviors/email-validation-behavior-android.gif "EmailValidationBehavior on Android")
 
 ## Properties
 

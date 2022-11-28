@@ -183,7 +183,7 @@ items:
   items:
     - name: "DockLayout"
       href: layouts/DockLayout.md
-    - name: 'StateContainer'
+    - name: "StateContainer"
       href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md

@@ -82,9 +82,9 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class CompareConverterPage : ContentPage
+class IsInRangeConverterPage : ContentPage
 {
-    public CompareConverterPage()
+    public IsInRangeConverterPage()
     {
         Content = new Label()
             .Text("The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red.")

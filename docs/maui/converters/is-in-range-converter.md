@@ -26,7 +26,7 @@ The `IsInRangeConverter` can be used as follows in XAML:
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.CompareConverterPage">
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Converters.IsInRangeConverterPage">
         <ResourceDictionary>
             <x:String x:Key="MinValue">Hello</x:String>
             <x:String x:Key="MaxValue">World</x:String>

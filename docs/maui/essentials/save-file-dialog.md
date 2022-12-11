@@ -1,13 +1,13 @@
 ---
 title: SaveFileDialog - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
-description: The FolderPicker provides the ability to select target folder and save files to the file system.
+description: The SaveFileDialog provides the ability to select target folder and save files to the file system.
 ms.date: 12/11/2022
 ---
 
 # SaveFileDialog
 
-The `FolderPicker` provides the ability to select target folder and save files to the file system.
+The `SaveFileDialog` provides the ability to select target folder and save files to the file system.
 
 ![Screenshot of an SaveFileDialog on macOS](../images/essentials/save-file-dialog-mac.png "SaveFileDialog on macOS")
 

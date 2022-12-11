@@ -1,5 +1,5 @@
 ---
-title: Essenatials - .NET MAUI Community Toolkit
+title: Essentials - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The .NET MAUI Community Toolkit Essentials provides developers with cross-platform APIs for their applications.
 ms.date: 12/11/2022

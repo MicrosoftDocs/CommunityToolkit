@@ -63,7 +63,7 @@ The `Folder` record represents a folder in the file system. It defines the follo
 
 ## Examples
 
-You can find an example of `FolderPicker` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essenatials/FolderPickerPage.xaml).
+You can find an example of `FolderPicker` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/FolderPickerPage.xaml).
 
 ## API
 

@@ -11,7 +11,7 @@ Android, iOS, MacCatalyst, Windows, and Tizen offer unique operating system and 
 
 ## .NET MAUI Community Toolkit Essentials
 
-The .NET MAUI Community Toolkit provides a collection of cross-platform APIs for their applications.. Here are the APIs provided by the toolkit:
+The .NET MAUI Community Toolkit provides a collection of cross-platform APIs for their applications. Here are the APIs provided by the toolkit:
 
 | Essential | Description |
 | --------- | ----------- |

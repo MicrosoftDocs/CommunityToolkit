@@ -60,7 +60,7 @@ async Task SaveFile(CancellationToken cancellationToken)
 
 ## Examples
 
-You can find an example of `SaveFileDialog` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essenatials/SaveFileDialogPage.xaml).
+You can find an example of `SaveFileDialog` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/SaveFileDialogPage.xaml).
 
 ## API
 

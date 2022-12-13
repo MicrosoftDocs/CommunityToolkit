@@ -39,7 +39,7 @@ The `CharactersValidationBehavior` can be used as follows in XAML:
                 ValidStyle="{StaticResource ValidEntryStyle}"
                 Flags="ValidateOnValueChanged"
                 CharacterType="Digit"
-                MinimumCharacterCount="2" />
+                MinimumCharacterTypeCount="3" />
         </Entry.Behaviors>
     </Entry>
 
@@ -77,7 +77,7 @@ class CharactersValidationBehaviorPage : ContentPage
             ValidStyle = validStyle,
             Flags = ValidationFlags.ValidateOnValueChanged,
             CharacterType = CharacterType.Digit,
-            MinimumCharacterCount = 2
+            MinimumCharacterTypeCount = 3
         };
 
         entry.Behaviors.Add(charactersValidationBehavior);
@@ -105,11 +105,14 @@ class CharactersValidationBehaviorPage : ContentPage
                 ValidStyle = new Style<Entry>(Entry.TextColorProperty, Colors.Green),
                 Flags = ValidationFlags.ValidateOnValueChanged,
                 CharacterType = CharacterType.Digit,
-                MinimumCharacterCount = 2
+                MinimumCharacterTypeCount = 3
             });
     }
 }
 ```
+
+The following screenshot shows the resulting CharactersValidationBehavior on Android:
+![Screenshot of an CharactersValidationBehavior on Android](../images/behaviors/character-validation-behavior-android.gif "CharactersValidationBehavior on Android")
 
 ## Properties
 

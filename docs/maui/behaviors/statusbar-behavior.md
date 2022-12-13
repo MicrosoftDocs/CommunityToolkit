@@ -60,6 +60,10 @@ class MyPage : ContentPage
 }
 ```
 
+> [!WARNING]
+> If you want to add this code the `MainPage`'s constructor, `OnAppearing` or `OnNavigatedTo` methods, please use the `Behavior` instead.
+> Using directly on these places can crash your application since the platform-specific components may not be initialized.
+
 ## Configuration
 
 # [Android](#tab/android)

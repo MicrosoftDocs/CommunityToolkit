@@ -1,8 +1,8 @@
 ---
 title: StateContainer - .NET MAUI Community Toolkit
-author: nicjay, brminnick
+author: nicjay
 description: StateContainer bindable properties enable any Layout derived element to become state-aware
-ms.date: 12/12/2022
+ms.date: 10/24/2022
 ---
 
 # StateContainer
@@ -11,7 +11,7 @@ Displaying a specific view when your app is in a specific state is a common patt
 
 ## Getting Started
 
-The `StateContainer` attached properties enables the user to turn any layout element like a `VerticalStackLayout`, `HorizontalStackLayout`, or `Grid` into a state-aware layout. Each state-aware layout contains a collection of View derived elements. These elements can be used as templates for different states defined by the user. Whenever the `CurrentState` string property is set to a value that matches the `StateKey` property of one of the View elements, its contents will be displayed instead of the main content. When `CurrentState` is set to `null` or empty string, the main content is displayed.
+The `StateContainer` attached properties enables the user to turn any layout element like a `VerticalStackLayout`, `HorizontalStackLayout`, or `Grid` into a state-aware layout. Each state-aware layout contains a collection of View derived elements. These elements can be used as templates for different states defined by the user. Whenever the `CurrentState` string property is set to a value that matches the `StateKey` property of one of the View elements, its contents will be displayed instead of the main content. When `CurrentState` is set to null or empty string, the main content is displayed.
 
 > [!NOTE]
 > When using `StateContainer` with a `Grid`, any defined states inside it will automatically span every row and column of the `Grid`.
@@ -22,18 +22,13 @@ The `StateContainer` attached properties enables the user to turn any layout ele
 
 ### XAML
 
-Below is an example UI created using XAML. This sample UI is connected to the below ViewModel, `StateContainerViewModel`.
-
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MyProject.MyStatePage"
-             BindingContext="StateContainerViewModel">
+             x:Class="MyProject.MyStatePage">
 
-    <VerticalStackLayout 
-        toolkit:StateContainer.CurrentState="{Binding CurrentState}"
-        toolkit:StateContainer.CanStateChange="{Binding CanStateChange}">
+    <VerticalStackLayout toolkit:StateContainer.CurrentState="{Binding MyCurrentState}">
 
         <toolkit:StateContainer.StateViews>
             <VerticalStackLayout toolkit:StateView.StateKey="Loading">
@@ -44,91 +39,49 @@ Below is an example UI created using XAML. This sample UI is connected to the be
         </toolkit:StateContainer.StateViews>
 
         <Label Text="Default Content" />
-        <Button Text="Change State" Command="{Binding ChangeStateCommand">
 
     </VerticalStackLayout>
 
 </ContentPage>
 ```
 
-### C# Markup
-
-Below is the same UI as the XAML, above, created using [C# Markup](https://learn.microsoft.com/dotnet/communitytoolkit/maui/markup/markup).
-
-This sample UI is connected to the below ViewModel, `StateContainerViewModel`.
+### C#
 
 ```csharp
 using CommunityToolkit.Maui.Layouts;
-using CommunityToolkit.Maui.Markup;
-
-BindingContext = new StateContainerViewModel();
-
-Content = new VerticalStackLayout()
-{
-    new Label()
-        .Text("Default Content"),
-    
-    new Button()
-        .Text("Change State")
-        .Bind(Button.CommandProperty, nameof(StateContainerViewModel.ChangeStateCommand))
-}.Bind(StateContainer.CurrentStateProperty, nameof(StateContainerViewModel.CurrentState))
- .Bind(StateContainer.CanStateChange, nameof(StateContainerViewModel.CanStateChange))
- .Assign(out VerticalStackLayout layout);
 
 var stateViews = new List<View>()
 {
-    //States.Loading
     new VerticalStackLayout()
     {
-        new ActivityIndicator() { IsRunning = true },
-        new Label().Text("Loading Content")
+        Children =
+        {
+            new ActivityIndicator() { IsRunning = true },
+            new Label() { Text = "Loading Content" }
+        }
     },
-
-    //States.Success
-    new Label().Text("Success!")
+    new Label() { Text = "Success!" }
 };
 
-StateView.SetStateKey(stateViews[0], States.Loading);
-StateView.SetStateKey(stateViews[1], States.Success);
+StateView.SetStateKey(stateViews[0], "Loading");
+StateView.SetStateKey(stateViews[1], "Success");
 
+var layout = new VerticalStackLayout()
+{
+    Children =
+    {
+        new Label() { Text = "Default Content" }
+    }
+};
+
+layout.SetBinding(StateContainer.CurrentStateProperty, "MyCurrentState");
 StateContainer.SetStateViews(layout, stateViews);
 
-static class States
-{
-    public const string Loading = nameof(Loading);
-    public const string Success = nameof(Success);
-}
+Content = layout;
 ```
 
-### ViewModel
-
-When using an `ICommand` to change `CurrentState` (e.g. when using `Button.Command` to change states),
-we recommended using `CanStateBeChanged` for `ICommand.CanExecute()`. 
-
-Below is an MVVM example using the [MVVM Community Toolkit](https://learn.microsoft.com/windows/communitytoolkit/mvvm/introduction):
-
-```cs
-[INotifyPropertyChanged]
-public partial class StateContainerViewModel
-{
-    [ObservableProperty]
-    bool canStateChange;
-
-    [ObservableProperty]
-    string currentState = States.Loading;
-
-    [RelayCommand(CanExecute = nameof(CanStateChange))]
-    void ChangeState()
-    {
-        CurrentState = States.Success;
-    }
-
-    partial void OnCanStateChangeChanged(bool value)
-	{
-		ChangeStateCommand.NotifyCanExecuteChanged();
-	}
-}
-```
+> [!IMPORTANT]
+> The preceding examples assume a user-defined `MyCurrentState` string property is present in either a viewmodel or code-behind in order to determine the active state.
 
 ## Properties
 
@@ -139,9 +92,8 @@ The StateContainer properties can be used on any `Layout` inheriting element.
 | Property | Type | Description |
 |--------------------------|-------------|--------------------------------------------------------------------------------------|
 | StateViews | `IList<View>` | The available `View` elements to be used as state templates. |
-| CurrentState | `string` | Determines which `View` element with the corresponding `StateKey` should be displayed. <br/><br/> **Warning**: `CurrentState` cannot be changed while a state change is in progress |
-| CanStateChange | `bool` | When `true`, the `CurrentState` property can be changed. When `false`, cannot be changed because it is currently changing. <br/><br/> **Warning**: If `CurrentState` is changed when `CanStateChanged` is `false`, a `StateContainerException` is thrown. |
-| ShouldAnimateOnStateChange | `bool` | Specifies if a fade out/in animation should display when switching between states. Defaults to `false`. <br/><br/>**Warning**: When `true`, a `StateContainerException` may be thrown when `CurrentState` is changed while an animation is in progress. To ensure `StateContainer` does not throw a `StateContainerException` due to active animations, first verify `CanStateChange` is `true` before changing `CurrentStateProperty` |
+| CurrentState | `string` | Determines which `View` element with the corresponding `StateKey` should be displayed. |
+| ShouldAnimateOnStateChange | `bool` | Specifies if a fade out/in animation should display when switching between states. |
 
 ### StateView
 

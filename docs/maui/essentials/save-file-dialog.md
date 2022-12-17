@@ -21,6 +21,14 @@ Add permissions to `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
+# [iOS/MacCatalyst](#tab/ios)
+
+Nothing is needed.
+
+# [Windows](#tab/windows)
+
+Nothing is needed.
+
 # [Tizen](#tab/tizen)
 
 Add permissions to `tizen-manifest.xml`:
@@ -42,7 +50,7 @@ async Task SaveFile(CancellationToken cancellationToken)
     using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
     try
     {
-        var fileLocation = await SaveFileDialog.SaveAsync("test.txt", stream, cancellationToken);
+        var fileLocation = await SaveFileDialog.Default.SaveAsync("test.txt", stream, cancellationToken);
         await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
     }
     catch (Exception ex)
@@ -57,6 +65,49 @@ async Task SaveFile(CancellationToken cancellationToken)
 |Method  |Description  |
 |---------|---------|
 | SaveAsync | Asks for permission, allows selecting a folder and saving file to the file system. |
+
+## Dependency Registration
+
+In case you want to inject service, you first need to register it.
+Update `MauiProgram.cs` with the next changes:
+
+```csharp
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+			.UseMauiCommunityToolkit();
+
+		builder.Services.AddSingleton<ISaveFileDialog>(SaveFileDialog.Default);
+        return builder.Build();
+    }
+}
+```
+
+Now you can inject the service like this:
+
+```csharp
+public partial class MainPage : ContentPage
+{
+    private readonly ISaveFileDialog saveFileDialog;
+
+	public MainPage(ISaveFileDialog saveFileDialog)
+	{
+		InitializeComponent();
+        this.saveFileDialog = saveFileDialog;
+	}
+	
+	public async void SaveFile(object sender, EventArgs args)
+	{
+		using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
+        var fileLocation = await saveFileDialog.SaveAsync("test.txt", stream, cancellationToken);
+        await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
+	}
+}
+```
 
 ## Examples
 

@@ -18,6 +18,14 @@ Add permissions to `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 ```
 
+# [iOS/MacCatalyst](#tab/ios)
+
+Nothing is needed.
+
+# [Windows](#tab/windows)
+
+Nothing is needed.
+
 # [Tizen](#tab/tizen)
 
 Add permissions to `tizen-manifest.xml`:
@@ -60,6 +68,48 @@ The `Folder` record represents a folder in the file system. It defines the follo
 |Method  |Description  |
 |---------|---------|
 | PickAsync | Asks for permission and allows selecting a folder in the file system. |
+
+## Dependency Registration
+
+In case you want to inject service, you first need to register it.
+Update `MauiProgram.cs` with the next changes:
+
+```csharp
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+			.UseMauiCommunityToolkit();
+
+		builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        return builder.Build();
+    }
+}
+```
+
+Now you can inject the service like this:
+
+```csharp
+public partial class MainPage : ContentPage
+{
+    private readonly IFolderPicker folderPicker;
+
+	public MainPage(IFolderPicker folderPicker)
+	{
+		InitializeComponent();
+        this.folderPicker = folderPicker;
+	}
+	
+	public async void Pick(object sender, EventArgs args)
+	{
+		var folder = await folderPicker.PickAsync(cancellationToken);
+        await Toast.Make($"Folder picked: Name - {folder.Name}, Path - {folder.Path}", ToastDuration.Long).Show(cancellationToken);
+	}
+}
+```
 
 ## Examples
 

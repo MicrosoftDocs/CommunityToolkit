@@ -53,52 +53,23 @@ class IsInRangeConverterPage : ContentPage
 {
     public IsInRangeConverterPage()
     {
-		var label = new Label
-		{
-			Text = "The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red."
-		};
-
-		label.SetBinding(
-			Label.BackgroundColorProperty,
-			new Binding(
-				nameof(viewModel.MyValue),
-				converter: new IsInRangeConverter
-				{
-					MinValue = "Hello",
-					MaxValue = "World",
-					TrueObject = Colors.Green,
-					FalseObject = Colors.Red
-				}));
-
-		Content = label;
-    }
-}
-```
-
-### C# Markup
-
-Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a much more concise way to use this converter in C#.
-
-```csharp
-using CommunityToolkit.Maui.Markup;
-
-class IsInRangeConverterPage : ContentPage
-{
-    public IsInRangeConverterPage()
-    {
-        Content = new Label()
+		Content = new Label()
             .Text("The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red.")
-            .Bind(
-                Label.BackgroundColorProperty,
-                nameof(viewModel.MyValue),
-                converter: new IsInRangeConverter
-                {
-					MinValue = "Hello",
-					MaxValue = "World",
-					TrueObject = Colors.Green,
-					FalseObject = Colors.Red
-                });
+            .Bind(Label.StyleProperty,
+                    nameof(Label.Text),
+                    BindingMode.OneWay,
+                    new IsInRangeConverter
+                    {
+                        TrueObject = GetTrueLabelStyle(),
+                        FalseObject = GetFalseLabelStyle(),
+                        MinValue = "Hello",
+                        MaxValue = "World"
+                    },
+                    source: MyValue),
     }
+
+	static Style<Label> GetTrueLabelStyle() => new((Label.BackgroundColorProperty, Colors.Green));
+	static Style<Label> GetFalseLabelStyle() => new((Label.BackgroundColorProperty, Colors.Red));
 }
 ```
 

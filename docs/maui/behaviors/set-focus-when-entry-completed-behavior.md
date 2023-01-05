@@ -93,7 +93,7 @@ class SetFocusOnEntryCompletedBehaviorPage : ContentPage
                     .Placeholder("Entry 1 (Tap `Next` on the keyboard when finished)"),
 
                 new Entry()
-                    .Assign(out lastName)
+                    .Assign(out var lastName)
             }
         };
 

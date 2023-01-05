@@ -34,7 +34,7 @@ The `IsInRangeConverter` can be used as follows in XAML:
             <Color x:Key="FalseColor">Red</Color>
         </ResourceDictionary>
 
-    <Label BackgroundColor="{Binding MyValue, Converter={mct:IsInRangeConverter TrueObject={StaticResource TrueColor}, FalseObject={StaticResource FalseColor}, MinValue={StaticResource MinValue}, MaxValue={StaticResource MaxValue}}}" Text="The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red." />
+    <Label BackgroundColor="{Binding MyValue, Converter={toolkit:IsInRangeConverter TrueObject={StaticResource TrueColor}, FalseObject={StaticResource FalseColor}, MinValue={StaticResource MinValue}, MaxValue={StaticResource MaxValue}}}" Text="The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red." />
 
 </ContentPage>
 ```

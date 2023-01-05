@@ -30,15 +30,11 @@ The `IsInRangeConverter` can be used as follows in XAML:
         <ResourceDictionary>
             <x:String x:Key="MinValue">Hello</x:String>
             <x:String x:Key="MaxValue">World</x:String>
-            <Style x:Key="MyValueIsInRangeTrue" TargetType="Label">
-                <Setter Property="BackgroundColor" Value="Green" />
-            </Style>
-            <Style x:Key="MyValueIsInRangeFalse" TargetType="Label">
-                <Setter Property="BackgroundColor" Value="Red" />
-            </Style>
+            <Color x:Key="TrueColor">Green</Color>
+            <Color x:Key="FalseColor">Red</Color>
         </ResourceDictionary>
 
-    <Label Style="{Binding MyValue, Converter={toolkit:IsInRangeConverter TrueObject={StaticResource MyValueIsInRangeTrue}, FalseObject={StaticResource MyValueIsInRangeFalse}, MinValue={StaticResource MinValue}, MaxValue={StaticResource MaxValue}}}" Text="The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red." />
+    <Label BackgroundColor="{Binding MyValue, Converter={mct:IsInRangeConverter TrueObject={StaticResource TrueColor}, FalseObject={StaticResource FalseColor}, MinValue={StaticResource MinValue}, MaxValue={StaticResource MaxValue}}}" Text="The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red." />
 
 </ContentPage>
 ```
@@ -53,23 +49,19 @@ class IsInRangeConverterPage : ContentPage
 {
     public IsInRangeConverterPage()
     {
-		Content = new Label()
+        Content = new Label()
             .Text("The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red.")
-            .Bind(Label.StyleProperty,
-                    nameof(Label.Text),
-                    BindingMode.OneWay,
-                    new IsInRangeConverter
-                    {
-                        TrueObject = GetTrueLabelStyle(),
-                        FalseObject = GetFalseLabelStyle(),
+            .Bind(
+                Label.BackgroundColorProperty,
+                nameof(ViewModel.MyValue),
+                converter: new IsInRangeConverter
+                {
+                        TrueObject = Colors.Green,
+                        FalseObject = Colors.Red,
                         MinValue = "Hello",
                         MaxValue = "World"
-                    },
-                    source: MyValue),
+                });
     }
-
-	static Style<Label> GetTrueLabelStyle() => new((Label.BackgroundColorProperty, Colors.Green));
-	static Style<Label> GetFalseLabelStyle() => new((Label.BackgroundColorProperty, Colors.Red));
 }
 ```
 

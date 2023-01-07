@@ -76,7 +76,7 @@ class IsInRangeConverterPage : ContentPage
 
 ## Examples
 
-You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/IsInRangeConverterPage.xaml).
+You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/IsInRangeConverterPage.cs).
 
 ## API
 

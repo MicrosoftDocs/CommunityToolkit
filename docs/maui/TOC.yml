@@ -171,8 +171,8 @@ items:
       href: essentials/index.md
     - name: FolderPicker
       href: essentials/folder-picker.md
-    - name: SaveFileDialog
-      href: essentials/save-file-dialog.md
+    - name: FileSaver
+      href: essentials/file-saver.md
 - name: Extensions
   items:
     - name: Overview

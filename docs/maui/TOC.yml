@@ -125,6 +125,8 @@ items:
       href: converters/inverted-bool-converter.md
     - name: "IsEqualConverter"
       href: converters/is-equal-converter.md
+    - name: "IsInRangeConverter"
+      href: converters/is-in-range-converter.md
     - name: "IsListNotNullOrEmptyConverter"
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"

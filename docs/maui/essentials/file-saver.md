@@ -1,17 +1,17 @@
 ---
-title: SaveFileDialog - .NET MAUI Community Toolkit
+title: FileSaver - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
-description: The SaveFileDialog provides the ability to select target folder and save files to the file system.
+description: The FileSaver provides the ability to select target folder and save files to the file system.
 ms.date: 12/11/2022
 ---
 
-# SaveFileDialog
+# FileSaver
 
-The `SaveFileDialog` provides the ability to select target folder and save files to the file system.
+The `FileSaver` provides the ability to select target folder and save files to the file system.
 
-![Screenshot of an SaveFileDialog on macOS](../images/essentials/save-file-dialog-mac.png "SaveFileDialog on macOS")
+![Screenshot of an FileSaver on macOS](../images/essentials/file-saver-mac.png "FileSaver on macOS")
 
-The following preconditions required for the `SaveFileDialog`:
+The following preconditions required for the `FileSaver`:
 # [Android](#tab/android)
 
 Add permissions to `AndroidManifest.xml`:
@@ -42,7 +42,7 @@ Add permissions to `tizen-manifest.xml`:
 
 ### C#
 
-The `SaveFileDialog` can be used as follows in C#:
+The `FileSaver` can be used as follows in C#:
 
 ```csharp
 async Task SaveFile(CancellationToken cancellationToken)
@@ -50,7 +50,7 @@ async Task SaveFile(CancellationToken cancellationToken)
     using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
     try
     {
-        var fileLocation = await SaveFileDialog.Default.SaveAsync("test.txt", stream, cancellationToken);
+        var fileLocation = await FileSaver.Default.SaveAsync("test.txt", stream, cancellationToken);
         await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
     }
     catch (Exception ex)
@@ -81,7 +81,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
 			.UseMauiCommunityToolkit();
 
-		builder.Services.AddSingleton<ISaveFileDialog>(SaveFileDialog.Default);
+		builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         return builder.Build();
     }
 }
@@ -92,18 +92,18 @@ Now you can inject the service like this:
 ```csharp
 public partial class MainPage : ContentPage
 {
-    private readonly ISaveFileDialog saveFileDialog;
+    private readonly IFileSaver fileSaver;
 
-	public MainPage(ISaveFileDialog saveFileDialog)
+	public MainPage(IFileSaver fileSaver)
 	{
 		InitializeComponent();
-        this.saveFileDialog = saveFileDialog;
+        this.fileSaver = fileSaver;
 	}
 	
 	public async void SaveFile(object sender, EventArgs args)
 	{
 		using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-        var fileLocation = await saveFileDialog.SaveAsync("test.txt", stream, cancellationToken);
+        var fileLocation = await fileSaver.SaveAsync("test.txt", stream, cancellationToken);
         await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
 	}
 }
@@ -111,8 +111,8 @@ public partial class MainPage : ContentPage
 
 ## Examples
 
-You can find an example of `SaveFileDialog` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/SaveFileDialogPage.xaml).
+You can find an example of `FileSaver` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/FileSaverPage.xaml).
 
 ## API
 
-You can find the source code for `SaveFileDialog` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/ISaveFileDialog.shared.cs).
+You can find the source code for `FileSaver` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/IFileSaver.shared.cs).

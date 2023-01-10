@@ -16,4 +16,4 @@ The .NET MAUI Community Toolkit provides a collection of cross-platform APIs for
 | Essential | Description |
 | --------- | ----------- |
 | [`FolderPicker`](../essentials/folder-picker.md) | The `FolderPicker` allows picking a folder from the file system. |
-| [`SaveFileDialog`](../essentials/save-file-dialog.md) | The `SaveFileDialog` provides the ability to select target folder and save files to the file system. |
+| [`FileSaver`](../essentials/file-saver.md) | The `FileSaver` provides the ability to select target folder and save files to the file system. |

@@ -55,7 +55,7 @@ XAML
 <ContentPage.Resources>
     <SolidColorBrush x:Key="TrueColorBrush">Green</SolidColorBrush>
     <SolidColorBrush x:Key="FalseColorBrush">Red</SolidColorBrush>
-    <mct:BoolToObjectConverter x:Key="BoolToColorBrushConverter" 
+    <toolkit:BoolToObjectConverter x:Key="BoolToColorBrushConverter" 
                                 TrueObject="{StaticResource TrueColorBrush}" 
                                 FalseObject="{StaticResource FalseColorBrush}"
                                 DefaultConvertReturnValue="{StaticResource FalseColorBrush}"

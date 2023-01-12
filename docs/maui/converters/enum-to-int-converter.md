@@ -9,6 +9,9 @@ ms.date: 04/12/2022
 
 The `EnumToIntConverter` is a converter that allows you to convert a standard `Enum` (extending int) to its underlying primitive `int` type. It is useful when binding a collection of values representing an enumeration type with default numbering to a control such as a `Picker`.
 
+> [!NOTE]
+> The `ConverterParameter` property is required and it should be set to the type of the enum to convert back to, when using a `TwoWay` or `OneWayToSource` binding. Otherwise an `ArgumentNullException` will be thrown. This is to allow for validating whether the `int` is a valid value in the enum.
+
 For localization purposes or due to other requirements, the enum values often need to be converted to a human-readable string. In this case, when the user selects a value, the resulting `SelectedIndex` can easily be converted to the underlying `enum` value without requiring additional work in the associated ViewModel.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]

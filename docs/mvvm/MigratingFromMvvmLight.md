@@ -1,8 +1,8 @@
 ---
 title: Migrating from MvvmLight
 author: jamesmcroft
-description: This article describes how to migrate MvvmLight solutions to the Windows Community Toolkit MVVM Toolkit.
-keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, mvvm, mvvmlight, net core, net standard
+description: This article describes how to migrate MvvmLight solutions to the MVVM Toolkit.
+keywords: dotnet, csharp, windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, mvvm, mvvmlight, net core, net standard
 dev_langs:
   - csharp
 ---
@@ -15,25 +15,25 @@ While this article specifically focuses on the migrations from MvvmLight to the 
 
 > **Platform APIs:** [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject), [`ObservableRecipient`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableRecipient), [`RelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.RelayCommand), [`RelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.RelayCommand-1), [`AsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.AsyncRelayCommand), [`AsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.AsyncRelayCommand-1), [`IMessenger`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.IMessenger), [`WeakReferenceMessenger`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.WeakReferenceMessenger), [`StrongReferenceMessenger`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.StrongReferenceMessenger), [`IRecipient<TMessage>`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.irecipient-1), [`MessageHandler<TRecipient, TMessage>`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.messagehandler-2), [`IMessengerExtensions`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.IMessengerExtensions)
 
-## Installing the WCT MVVM Toolkit
+## Installing the MVVM Toolkit
 
-To take advantage of the Windows Community Toolkit MVVM framework, you'll first need to install the latest NuGet package to your existing Windows application.
+To take advantage of the MVVM Toolkit, you'll first need to install the latest NuGet package to your existing .NET application.
 
 ### Install via .NET CLI
 
 ```
-dotnet add package Microsoft.Toolkit.Mvvm --version 7.0.0
+dotnet add package CommunityToolkit.Mvvm --version 8.1.0
 ```
 
 ### Install via PackageReference
 
 ```xml
-<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0" />
+<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 ```
 
 ## Migrating ObservableObject
 
-The following steps focus on migrating your existing components which take advantage of the `ObservableObject` of the MvvmLight Toolkit. The Windows Community Toolkit MVVM framework provides an [`ObservableObject`](ObservableObject.md) type that is similar.
+The following steps focus on migrating your existing components which take advantage of the `ObservableObject` of the MvvmLight Toolkit. The MVVM Toolkit provides an [`ObservableObject`](ObservableObject.md) type that is similar.
 
 The first change here will be swapping using directives in your components.
 
@@ -41,8 +41,8 @@ The first change here will be swapping using directives in your components.
 // MvvmLight
 using GalaSoft.MvvmLight;
 
-// Toolkit.Mvvm
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+// MVVM Toolkit
+using CommunityToolkit.Mvvm.ComponentModel;
 ```
 
 Below are a list of migrations that will need to be performed if being used in your current solution.
@@ -59,7 +59,7 @@ However, `SetProperty(ref T, T, string)` provides the same functionality with ad
 // MvvmLight
 Set(() => MyProperty, ref this.myProperty, value);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 SetProperty(ref this.myProperty, value);
 ```
 
@@ -79,7 +79,7 @@ However, `SetProperty<T>(ref T, T, string)` provides the same functionality with
 // MvvmLight
 Set(nameof(MyProperty), ref this.myProperty, value);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 SetProperty(ref this.myProperty, value);
 ```
 
@@ -91,7 +91,7 @@ SetProperty(ref this.myProperty, value);
 // MvvmLight
 Set(ref this.myProperty, value, nameof(MyProperty));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 SetProperty(ref this.myProperty, value);
 ```
 
@@ -103,7 +103,7 @@ SetProperty(ref this.myProperty, value);
 // MvvmLight
 RaisePropertyChanged(nameof(MyProperty));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 OnPropertyChanged();
 ```
 
@@ -123,7 +123,7 @@ It is recommended for improved performance that you replace `RaisePropertyChange
 // MvvmLight
 RaisePropertyChanged(() => MyProperty);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 OnPropertyChanged(nameof(MyProperty));
 ```
 
@@ -137,7 +137,7 @@ The reason for the omission from the MVVM Toolkit is that using the `nameof` key
 // MvvmLight
 VerifyPropertyName(nameof(MyProperty));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 // No direct replacement, remove
 ```
 
@@ -153,7 +153,7 @@ To raise a property changed event via the `PropertyChanged` event handler, you n
 // MvvmLight
 PropertyChangedEventHandler handler = PropertyChangedHandler;
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 OnPropertyChanged();
 ```
 
@@ -161,7 +161,7 @@ OnPropertyChanged();
 
 The following steps focus on migrating your existing components which take advantage of the `ViewModelBase` of the MvvmLight Toolkit.
 
-The Windows Community Toolkit MVVM framework provides an [`ObservableRecipient`](ObservableRecipient.md) type that provides similar functionality.
+The MVVM Toolkit provides an [`ObservableRecipient`](ObservableRecipient.md) type that provides similar functionality.
 
 Below are a list of migrations that will need to be performed if being used in your current solution.
 
@@ -177,11 +177,11 @@ However, `SetProperty<T>(ref T, T, bool, string)` provides the same functionalit
 // MvvmLight
 Set(nameof(MyProperty), ref this.myProperty, value, true);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 SetProperty(ref this.myProperty, value, true);
 ```
 
-Note, the value and broadcast boolean parameters are not optional in the Toolkit's implementation and must be provided to use this method. The reason for this change is that by omitting the broadcast parameter when calling this method, it will by default call the ObservableObject's `SetProperty` method.
+Note, the value and broadcast boolean parameters are not optional in the MVVM Toolkit's implementation and must be provided to use this method. The reason for this change is that by omitting the broadcast parameter when calling this method, it will by default call the ObservableObject's `SetProperty` method.
 
 Also, the `string` parameter is not required if the method is being called from the property's setter as it is inferred from the caller member name, just like with the methods in the base `ObservableObject` class.
 
@@ -193,7 +193,7 @@ Also, the `string` parameter is not required if the method is being called from 
 // MvvmLight
 Set(ref this.myProperty, value, true, nameof(MyProperty));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 SetProperty(ref this.myProperty, value, true);
 ```
 
@@ -201,13 +201,13 @@ SetProperty(ref this.myProperty, value, true);
 
 `Set<T>(Expression, ref T, T, bool)` does not have a direct replacement.
 
-It is recommended for improved performance that you replace this with the Toolkit's `SetProperty<T>(ref T, T, bool, string)` using the `nameof` keyword instead.
+It is recommended for improved performance that you replace this with the MVVM Toolkit's `SetProperty<T>(ref T, T, bool, string)` using the `nameof` keyword instead.
 
 ```csharp
 // MvvmLight
 Set<MyObject>(() => MyProperty, ref this.myProperty, value, true);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 SetProperty(ref this.myProperty, value, true);
 ```
 
@@ -219,11 +219,11 @@ SetProperty(ref this.myProperty, value, true);
 // MvvmLight
 Broadcast<MyObject>(oldValue, newValue, nameof(MyProperty));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Broadcast(oldValue, newValue, nameof(MyProperty));
 ```
 
-Note, the message sent via the `Messenger` property when calling the `Broadcast` method has a direct replacement for `PropertyChangedMessage` within the Toolkit's MVVM library.
+Note, the message sent via the `Messenger` property when calling the `Broadcast` method has a direct replacement for `PropertyChangedMessage` within the MVVM Toolkit library.
 
 #### `RaisePropertyChanged<T>(string, T, T, bool)`
 
@@ -235,7 +235,7 @@ The simplest alternative is to call `OnPropertyChanged` and subsequently call `B
 // MvvmLight
 RaisePropertyChanged<MyObject>(nameof(MyProperty), oldValue, newValue, true);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 OnPropertyChanged();
 Broadcast(oldValue, newValue, nameof(MyProperty));
 ```
@@ -250,7 +250,7 @@ The simplest alternative is to call `OnPropertyChanged` and subsequently call `B
 // MvvmLight
 RaisePropertyChanged<MyObject>(() => MyProperty, oldValue, newValue, true);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 OnPropertyChanged(nameof(MyProperty));
 Broadcast(oldValue, newValue, nameof(MyProperty));
 ```
@@ -267,7 +267,7 @@ However, the `ObservableRecipient` provides an `OnDeactivated` method which shou
 // MvvmLight
 Cleanup();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 OnDeactivated();
 ```
 
@@ -285,7 +285,7 @@ However, the `ObservableRecipient` exposes an `IsActive` property that also cont
 // MvvmLight
 IMessenger messenger = MessengerInstance;
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 IMessenger messenger = Messenger;
 ```
 
@@ -302,7 +302,7 @@ The reason for the omission from the MVVM Toolkit is that the `IsInDesignMode` p
 // MvvmLight
 var isInDesignMode = IsInDesignMode;
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 // No direct replacement, remove
 ```
 
@@ -318,7 +318,7 @@ The reason for the omission from the MVVM Toolkit is that the `IsInDesignMode` p
 // MvvmLight
 var isInDesignMode = ViewModelBase.IsInDesignModeStatic;
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 // No direct replacement, remove
 ```
 
@@ -326,7 +326,7 @@ var isInDesignMode = ViewModelBase.IsInDesignModeStatic;
 
 The following steps focus on migrating your existing components which take advantage of the `RelayCommand` of the MvvmLight Toolkit.
 
-The Windows Community Toolkit MVVM framework provides a [`RelayCommand`](RelayCommand.md) type that provides like-for-like functionality taking advantage of the `ICommand` System interface.
+The MVVM Toolkit provides a [`RelayCommand`](RelayCommand.md) type that provides like-for-like functionality taking advantage of the `ICommand` System interface.
 
 Below are a list of migrations that will need to be performed if being used in your current solution. Where a method or property isn't listed, there is a direct replacement with the same name in the MVVM Toolkit and there is no change required.
 
@@ -337,8 +337,8 @@ The first change here will be swapping using directives in your components.
 using GalaSoft.MvvmLight.Command;
 using Galasoft.MvvmLight.CommandWpf;
 
-// Toolkit.Mvvm
-using Microsoft.Toolkit.Mvvm.Input;
+// MVVM Toolkit
+using CommunityToolkit.Mvvm.Input;
 ```
 
 > [!NOTE]
@@ -355,7 +355,7 @@ You can simply replace your existing `RelayCommand` with the `AsyncRelayCommand`
 var command = new RelayCommand(() => OnCommandAsync());
 var command = new RelayCommand(async () => await OnCommandAsync());
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 var asyncCommand = new AsyncRelayCommand(OnCommandAsync);
 ```
 
@@ -370,7 +370,7 @@ The functionality of `RaiseCanExecuteChanged()` can be achieved with the MVVM To
 var command = new RelayCommand(OnCommand);
 command.RaiseCanExecuteChanged();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 var command = new RelayCommand(OnCommand);
 command.NotifyCanExecuteChanged();
 ```
@@ -379,7 +379,7 @@ command.NotifyCanExecuteChanged();
 
 The following steps focus on migrating your existing components which take advantage of the `RelayCommand<T>` of the MvvmLight Toolkit.
 
-The Windows Community Toolkit MVVM framework provides a [`RelayCommand<T>`](RelayCommand.md) type that provides like-for-like functionality taking advantage of the `ICommand` System interface.
+The MVVM Toolkit provides a [`RelayCommand<T>`](RelayCommand.md) type that provides like-for-like functionality taking advantage of the `ICommand` System interface.
 
 Below are a list of migrations that will need to be performed if being used in your current solution. Where a method or property isn't listed, there is a direct replacement with the same name in the MVVM Toolkit and there is no change required.
 
@@ -390,8 +390,8 @@ The first change here will be swapping using directives in your components.
 using GalaSoft.MvvmLight.Command;
 using Galasoft.MvvmLight.CommandWpf;
 
-// Toolkit.Mvvm
-using Microsoft.Toolkit.Mvvm.Input;
+// MVVM Toolkit
+using CommunityToolkit.Mvvm.Input;
 ```
 
 ### Using `RelayCommand` with asynchronous actions
@@ -404,7 +404,7 @@ You can simply replace your existing `RelayCommand<T>` with the `AsyncRelayComma
 // MvvmLight
 var command = new RelayCommand<string>(async () => await OnCommandAsync());
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 var asyncCommand = new AsyncRelayCommand<string>(OnCommandAsync);
 ```
 
@@ -419,7 +419,7 @@ The functionality of `RaiseCanExecuteChanged()` can be achieved with the MVVM To
 var command = new RelayCommand<string>(OnCommand);
 command.RaiseCanExecuteChanged();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 var command = new RelayCommand<string>(OnCommand);
 command.NotifyCanExecuteChanged();
 ```
@@ -492,7 +492,7 @@ This attribute will need removing where used, and you will need to use any attri
 
 The following steps focus on migrating your existing components which take advantage of the `Messenger` of the MvvmLight Toolkit.
 
-The Windows Community Toolkit MVVM framework provides two messenger implementations (`WeakReferenceMessenger` and `StrongReferenceMessenger`, see [docs here](Messenger.md)) that provides similar functionality, with some key differences detailed below.
+The MVVM Toolkit provides two messenger implementations (`WeakReferenceMessenger` and `StrongReferenceMessenger`, see [docs here](Messenger.md)) that provides similar functionality, with some key differences detailed below.
 
 Below are a list of migrations that will need to be performed if being used in your current solution.
 
@@ -502,8 +502,8 @@ The first change here will be swapping using directives in your components.
 // MvvmLight
 using GalaSoft.MvvmLight.Messaging;
 
-// Toolkit.Mvvm
-using Microsoft.Toolkit.Mvvm.Messaging;
+// MVVM Toolkit
+using CommunityToolkit.Mvvm.Messaging;
 ```
 
 ### Messenger methods
@@ -516,7 +516,7 @@ The functionality of `Register<TMessage>(object, Action<TMessage>)` can be achie
 // MvvmLight
 Messenger.Default.Register<MyMessage>(this, this.OnMyMessageReceived);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Register<MyViewModel, MyMessage>(this, static (r, m) => r.OnMyMessageReceived(m));
 ```
 
@@ -540,7 +540,7 @@ Alternatively, there are a few options that can be done to achieve this function
 // MvvmLight
 Messenger.Default.Register<MyMessage>(this, true, this.OnMyMessageReceived);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Register<MyViewModel, MyMessage>(this, static (r, m) => r.OnMyMessageReceived(m));
 Messenger.Register<MyViewModel, MyOtherMessage>(this, static (r, m) => r.OnMyMessageReceived(m));
 ```
@@ -553,7 +553,7 @@ The functionality of `Register<TMessage>(object, object, Action<TMessage>)` can 
 // MvvmLight
 Messenger.Default.Register<MyMessage>(this, nameof(MyViewModel), this.OnMyMessageReceived);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Register<MyViewModel, MyMessage, string>(this, nameof(MyViewModel), static (r, m) => r.OnMyMessageReceived(m));
 ```
 
@@ -570,7 +570,7 @@ Alternatively, there are a few options that can be done to achieve this function
 // MvvmLight
 Messenger.Default.Register<MyMessage>(this, nameof(MyViewModel), true, this.OnMyMessageReceived);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Register<MyViewModel, MyMessage, string>(this, nameof(MyViewModel), static (r, m) => r.OnMyMessageReceived(m));
 Messenger.Register<MyViewModel, MyOtherMessage, string>(this, nameof(MyViewModel), static (r, m) => r.OnMyMessageReceived(m));
 ```
@@ -584,14 +584,14 @@ The functionality of `Send<TMessage>(TMessage)` can be achieved with the MVVM To
 Messenger.Default.Send<MyMessage>(new MyMessage());
 Messenger.Default.Send(new MyMessage());
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Send(new MyMessage());
 ```
 
 In the above scenario where the message being sent has a parameterless constructor, the MVVM Toolkit has a simplified extension to send a message in this format.
 
 ```csharp
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Send<MyMessage>();
 ```
 
@@ -604,7 +604,7 @@ The functionality of `Send<TMessage>(TMessage, object)` can be achieved with the
 Messenger.Default.Send<MyMessage>(new MyMessage(), nameof(MyViewModel));
 Messenger.Default.Send(new MyMessage(), nameof(MyViewModel));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Send(new MyMessage(), nameof(MyViewModel));
 ```
 
@@ -616,7 +616,7 @@ The functionality of `Unregister(object)` can be achieved with the MVVM Toolkit'
 // MvvmLight
 Messenger.Default.Unregister(this);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.UnregisterAll(this);
 ```
 
@@ -628,7 +628,7 @@ The functionality of `Unregister<TMessage>(object)` can be achieved with the MVV
 // MvvmLight
 Messenger.Default.Unregister<MyMessage>(this);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Unregister<MyMessage>(this);
 ```
 
@@ -644,7 +644,7 @@ We recommend achieving this functionality with the MVVM Toolkit's `IMessenger` e
 // MvvmLight
 Messenger.Default.Unregister<MyMessage>(this, OnMyMessageReceived);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Unregister<MyMessage>(this);
 ```
 
@@ -656,7 +656,7 @@ The functionality of `Unregister<TMessage>(object, object)` can be achieved with
 // MvvmLight
 Messenger.Default.Unregister<MyMessage>(this, nameof(MyViewModel));
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Unregister<MyMessage, string>(this, nameof(MyViewModel));
 ```
 
@@ -672,7 +672,7 @@ We recommend achieving this functionality with the MVVM Toolkit's `Unregister<TM
 // MvvmLight
 Messenger.Default.Unregister<MyMessage>(this, nameof(MyViewModel), OnMyMessageReceived);
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Unregister<MyMessage, string>(this, nameof(MyViewModel));
 ```
 
@@ -684,7 +684,7 @@ The `Cleanup` method has a direct replacement with the same name in the MVVM Too
 // MvvmLight
 Messenger.Default.Cleanup();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Cleanup();
 ```
 
@@ -698,7 +698,7 @@ Any calls to the `RequestCleanup` method can be removed or replaced with `Cleanu
 // MvvmLight
 Messenger.Default.RequestCleanup();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 // No direct replacement, remove
 ```
 
@@ -712,7 +712,7 @@ Unlike MvvmLight's implementation which nulls out the instance, the MVVM Toolkit
 // MvvmLight
 Messenger.Default.ResetAll();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 Messenger.Reset();
 ```
 
@@ -728,7 +728,7 @@ To use a custom implementation of the `IMessenger`, either registered the custom
 // MvvmLight
 Messenger.OverrideDefault(new Messenger());
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 // No direct replacement
 ```
 
@@ -742,7 +742,7 @@ The same functionality can be achieved by calling the `Reset` method of the stat
 // MvvmLight
 Messenger.Reset();
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 WeakReferenceMessenger.Default.Reset();
 ```
 
@@ -756,7 +756,7 @@ WeakReferenceMessenger.Default.Reset();
 // MvvmLight
 IMessenger messenger = Messenger.Default;
 
-// Toolkit.Mvvm
+// MVVM Toolkit
 IMessenger messenger = WeakReferenceMessenger.Default;
 ```
 
@@ -764,7 +764,7 @@ IMessenger messenger = WeakReferenceMessenger.Default;
 
 The message types provided in the MvvmLight toolkit are designed as a base for you as a developer to work with if needed.
 
-While the MVVM Toolkit provides some alternatives, there are no direct replacement for these message types. We recommend looking at our [available message types](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Mvvm/Messaging/Messages).
+While the MVVM Toolkit provides some alternatives, there are no direct replacement for these message types. We recommend looking at our [available message types](https://github.com/CommunityToolkit/dotnet/tree/main/src/CommunityToolkit.Mvvm/Messaging/Messages).
 
 Alternatively, if your solution takes advantage of the MvvmLight message types, these can easily be ported into your own codebase.
 

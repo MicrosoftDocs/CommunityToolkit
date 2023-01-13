@@ -21,9 +21,9 @@ landingContent:
           - text: Introduction to the MVVM Toolkit
             url: mvvm/index.md
           - text: Introduction to the Diagnostics Package
-            url: /windows/communitytoolkit/diagnostics/introduction
+            url: /diagnostics/Introduction.md
           - text: Introduction to the High Performance Package
-            url: /windows/communitytoolkit/high-performance/introduction
+            url: /high-performance/Introduction.md
       - linkListType: get-started
         links:
           - text: Installation

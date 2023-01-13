@@ -11,12 +11,10 @@ The `CommunityToolkit.HighPerformance` contains helpers and extensions to work i
 
 - .NET Standard 2.0
 - .NET Standard 2.1
-- .NET Core 3.1
 - .NET 6
+- .NET 7
 
-This means that you can use it from anything from UWP or legacy .NET Framework applications, games written in Unity, cross-platform mobile applications using Xamarin, to .NET Standard libraries and modern .NET Core 2.1 or .NET Core 3.1 applications. The API surface is almost identical in all cases, and lots of work has been put into backporting as many features as possible to older targets like .NET Standard 1.4 and .NET Standard 2.0. Except for some minor differences, you can expect the same APIs to be available on all target frameworks.
-
-The reason why multi-targeting has been used is to allow the package to leverage all the latest APIs on modern runtimes (like .NET 5) whenever possible, while still offering most of its functionalities to all target platforms. It also makes it possible for .NET Core 2.1 to use all the APIs that it has in common with .NET Standard 2.1, even though the runtime itself doesn't fully implement .NET Standard 2.1. All of this would not have been possible without multi-targeting to both .NET Standard as well as individual runtimes.
+This means that you can use it from anything from UWP or legacy .NET Framework applications, games written in Unity, cross-platform mobile applications using Xamarin, to .NET Standard libraries and modern .NET 6 and .NET 7 applications. The API surface is almost identical in all cases, and lots of work has been put into backporting as many features as possible to older targets like .NET Standard 2.0. Except for some minor differences, you can expect the same APIs to be available on all target frameworks. The reason why multi-targeting has been used is to allow the package to leverage all the latest APIs on modern runtimes (like .NET 7) whenever possible, while still offering most of its functionalities to all target platforms.
 
 ## Getting started
 

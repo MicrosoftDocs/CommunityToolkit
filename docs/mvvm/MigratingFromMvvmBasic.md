@@ -2,7 +2,7 @@
 title: Migrating from MVVM Basic
 author: mrlacey
 description: This article describes how to migrate MvvmLight solutions to the Windows Community Toolkit MVVM framework.
-keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, mvvm, mvvmbasic, MVVM Basic, net core, net standard, Windows Template Studio, WinTS
+keywords: dotnet, csharp, windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, mvvm, mvvmbasic, MVVM Basic, net core, net standard, Windows Template Studio, WinTS
 dev_langs:
   - csharp
   - vb
@@ -10,26 +10,26 @@ dev_langs:
 
 # Migrating from MVVM Basic
 
-This article explains how to migrate apps built with the [MVVM](https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/UWP/frameworks/mvvmbasic.md) Basic option in [Windows Template Studio](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio) to use the Toolkit MVVM library instead. It applies to both UWP and WPF apps created with Windows Template Studio.
+This article explains how to migrate apps built with the [MVVM](https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/UWP/frameworks/mvvmbasic.md) Basic option in [Windows Template Studio](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio) to use the MVVM Toolkit library instead. It applies to both UWP and WPF apps created with Windows Template Studio.
 
 > **Platform APIs:** [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject), [`RelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.RelayCommand)
 
 This article focuses exclusively on migration and does not cover how to use the additional functionality that the library provides.
 
-## Installing the WCT MVVM Toolkit
+## Installing the MVVM Toolkit
 
-To use the Windows Community Toolkit MVVM framework, you must install the NuGet package into your existing application.
+To use the MVVM Toolkit, you must install the NuGet package into your existing application.
 
 ### Install via .NET CLI
 
 ```
-dotnet add package Microsoft.Toolkit.Mvvm --version 7.0.0
+dotnet add package CommunityToolkit.Mvvm --version 8.1.0
 ```
 
 ### Install via PackageReference
 
 ```xml
-<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0" />
+<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 ```
 
 ## Updating a project
@@ -89,28 +89,28 @@ will become
 
 ### 3. Add new namespace references
 
-Add a reference to the `Microsoft.Toolkit.Mvvm.ComponentModel` namespace in all files where there is a reference to `ObservableObject`.
+Add a reference to the `CommunityToolkit.Mvvm.ComponentModel` namespace in all files where there is a reference to `ObservableObject`.
 
 You can either add the appropriate directive manually, of move the cursor to the `ObservableObject` and press `Ctrl+.` to access the Quick Action menu to add this for you.
 
 ```csharp
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 ```
 
 ```vb
-Imports Microsoft.Toolkit.Mvvm.ComponentModel
+Imports CommunityToolkit.Mvvm.ComponentModel
 ```
 
-Add a reference to the `Microsoft.Toolkit.Mvvm.Input` namespace in all files where there is a reference to [`RelayCommand`](RelayCommand.md).
+Add a reference to the `CommunityToolkit.Mvvm.Input` namespace in all files where there is a reference to [`RelayCommand`](RelayCommand.md).
 
 You can either add the appropriate directive manually, of move the cursor to the `RelayCommand` and press `Ctrl+.` to access the Quick Action menu to add this for you.
 
 ```csharp
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 ```
 
 ```vb
-Imports Microsoft.Toolkit.Mvvm.Input
+Imports CommunityToolkit.Mvvm.Input
 ```
 
 ### 4. Update methods with different names

@@ -17,7 +17,13 @@
                 - name: Samples
                   href: https://aka.ms/mvvmtoolkit/samples
             - name: Diagnostics
-              href: /windows/communitytoolkit/diagnostics/introduction
+              items:
+                - name: Introduction
+                  href: diagnostics/Introduction.md
+                - name: Guard
+                  href: diagnostics/Guard.md
+                - name: ThrowHelper
+                  href: diagnostics/ThrowHelper.md
             - name: High Performance
               href: /windows/communitytoolkit/high-performance/introduction          
         - name: Windows Community Toolkit

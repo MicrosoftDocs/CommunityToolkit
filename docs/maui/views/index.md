@@ -1,8 +1,8 @@
 ---
 title: Views - .NET MAUI Community Toolkit
-author: VladislavAntonyuk
+author: joverslu
 description: The .NET MAUI Community Toolkit extends .NET MAUI controls.
-ms.date: 04/12/2022
+ms.date: 01/17/2023
 ---
 
 # Views
@@ -22,4 +22,5 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 | [`AvatarView`](AvatarView.md) | The `AvatarView` is a control for displaying a user's avatar image or their initials. |
 | [`DrawingView`](DrawingView.md) | The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image. |
 | [`Expander`](Expander.md) | The `Expander` control provides an expandable container to host any content. |
+| [`MediaPlayer`](mediaplayer.md) | The `MediaPlayer` is a view for playing multimedia such as audio and video. |
 | [`Popup`](popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |

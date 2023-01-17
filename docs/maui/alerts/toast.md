@@ -42,6 +42,8 @@ The following screenshot shows the resulting Toast:
 
 ![Screenshot of an Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
 
+---
+
 ## Properties
 
 |Property  |Type  |Description  |Default value

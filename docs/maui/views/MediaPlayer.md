@@ -22,48 +22,21 @@ ms.date: 01/17/2023
 > [!NOTE]
 > `MediaPlayer` is available on iOS, Android, Windows, macOS, and Tizen.
 
-`MediaPlayer` defines the following properties:
-
-- `CurrentState`, of type `MediaPlayerState`, indicates the current status of the control. This is a read-only property, whose default value is `MediaPlayerState.None`.
-- `Duration`, of type `TimeSpan`, indicates the duration of the currently opened media. This is a read-only property whose default value is `TimeSpan.Zero`.
-- `Position`, of type `TimeSpan`, describes the current progress through the media's playback time.  This is a read-only property, whose default value is `TimeSpan.Zero`. If you want to set the `Position` use the `SeekTo()` method.
-- `ShouldAutoPlay`, of type `bool`, indicates whether media playback will begin automatically when the `Source` property is set. The default value of this property is `false`.
-- `ShouldLoopPlayback`, of type `bool`, describes whether the currently loaded media source should resume playback from the start after reaching its end. The default value of this property is `false`.
-- `ShouldKeepScreenOn`, of type `bool`, determines whether the device screen should stay on during media playback. The default value of this property is `false`.
-- `ShouldShowPlaybackControls`, of type `bool`, determines whether the platforms playback controls are displayed. The default value of this property is `true`. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times.
-- `Source`, of type `MediaSource?`, indicates the source of the media loaded into the control.
-- `Speed`, of type `double`, determines the playback speed of the media. The default value of this property is 1.
-- `MediaHeight`, of type `int`, indicates the height of the loaded media in pixels. This is a read-only property.
-- `MediaWidth`, of type `int`, indicates the width of the loaded media in pixels. This is a read-only property.
-- `Volume`, of type `double`, determines the media's volume, which is represented on a linear scale between 0 and 1. This property uses a `TwoWay` binding, and its default value is 1.
-
-All of the properties above, are bindable properties, which means that they can be targets of data bindings, and styled.
-
-The `MediaPlayer` class also defines these events:
-
-- `MediaOpened` occurs when the media stream has been validated and opened.
-- `MediaEnded` occurs when the `MediaPlayer` finishes playing its media.
-- `MediaFailed` occurs when there's an error associated with the media source.
-- `PositionChanged` occurs when the `Position` property value has changed.
-- `SeekCompleted` occurs when the seek point of a requested seek operation is ready for playback.
-
-In addition, `MediaPlayer` includes `Play`, `Pause`, `Stop`, and `SeekTo` methods.
-
-For information about supported media formats on Android, see [Supported media formats](https://developer.android.com/guide/topics/media/media-formats) on developer.android.com. For information about supported media formats on the Universal Windows Platform (UWP), see [Supported codecs](/windows/uwp/audio-video-camera/supported-codecs).
+<!-- TODO: Add info about supported formats. For information about supported media formats on Android, see [Supported media formats](https://developer.android.com/guide/topics/media/media-formats) on developer.android.com. For information about supported media formats on the Universal Windows Platform (UWP), see [Supported codecs](/windows/uwp/audio-video-camera/supported-codecs). -->
 
 ## Play remote media
 
 A `MediaPlayer` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
 
 ```xaml
-<MediaPlayer Source="https://sec.ch9.ms/ch9/5d93/a1eab4bf-3288-4faf-81c4-294402a85d93/XamarinShow_mid.mp4"
-              ShowsPlaybackControls="True" />
+<MediaPlayer Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+             ShouldShowPlaybackControls="True" />
 ```
 
 > [!IMPORTANT]
 > When playing remote sources from HTTP endpoints, you will likely need to disable operating system security measures that prevent access to insecure web endpoints. This is true for at least iOS and Android.
 
-By default, the media that is defined by the `Source` property doesn't immediately start playing after the media is opened. To enable automatic media playback, set the `AutoPlay` property to `true`.
+By default, the media that is defined by the `Source` property doesn't immediately start playing after the media is opened. To enable automatic media playback, set the `ShouldAutoPlay` property to `true`.
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
 
@@ -73,9 +46,7 @@ Local media can be played from the following sources:
 
 - A resource embedded in the platform application, using the `embed://` URI scheme.
 - Files that come from the app's local and temporary data folders, using the `filesystem://` URI scheme.
-- The device's library.
-
-For more information about these URI schemes, see [URI schemes](/windows/uwp/app-resources/uri-schemes).
+<!-- TODO - The device's library. -->
 
 ### Play media embedded in the app package
 
@@ -89,10 +60,10 @@ An example of how to use this syntax in XAML can be seen below.
 
 ```xaml
 <MediaPlayer Source="embed://MyFile.mp4"
-              ShowsPlaybackControls="True" />
+             ShouldShowPlaybackControls="True" />
 ```
 
-When using data binding, a value converter can be used to apply this URI scheme:
+<!-- When using data binding, a value converter can be used to apply this URI scheme:
 
 ```csharp
 public class VideoSourceConverter : IValueConverter
@@ -121,87 +92,7 @@ An instance of the `VideoSourceConverter` can then be used to apply the `ms-appx
               ShowsPlaybackControls="True" />
 ```
 
-For more information about the ms-appx URI scheme, see [ms-appx and ms-appx-web](/windows/uwp/app-resources/uri-schemes#ms-appx-and-ms-appx-web).
-
-### Play media from the app's local and temporary folders
-
-A `MediaPlayer` can play media files that are copied into the app's local or temporary data folders, using the `ms-appdata:///` URI scheme.
-
-The following example shows the `Source` property set to a media file that's stored in the app's local data folder:
-
-```xaml
-<MediaPlayer Source="ms-appdata:///local/XamarinVideo.mp4"
-              ShowsPlaybackControls="True" />
-```
-
-The following example shows the `Source` property to a media file that's stored in the app's temporary data folder:
-
-```xaml
-<MediaPlayer Source="ms-appdata:///temp/XamarinVideo.mp4"
-              ShowsPlaybackControls="True" />
-```
-
-> [!IMPORTANT]
-> In addition to playing media files that are stored in the app's local or temporary data folders, UWP can also play media files that are located in the app's roaming folder. This can be achieved by prefixing the media file with `ms-appdata:///roaming/`.
-
-When using data binding, a value converter can be used to apply this URI scheme:
-
-```csharp
-public class VideoSourceConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (value == null)
-            return null;
-
-        if (string.IsNullOrWhiteSpace(value.ToString()))
-            return null;
-
-        return new Uri($"ms-appdata:///{value}");
-    }
-    // ...
-}
-```
-
-An instance of the `VideoSourceConverter` can then be used to apply the `ms-appdata:///` URI scheme to a media file in the app's local or temporary data folder:
-
-```xaml
-<MediaPlayer Source="{Binding MediaSource, Converter={StaticResource VideoSourceConverter}}"
-              ShowsPlaybackControls="True" />
-```
-
-For more information about the ms-appdata URI scheme, see [ms-appdata](/windows/uwp/app-resources/uri-schemes#ms-appdata).
-
-#### Copying a media file to the app's local or temporary data folder
-
-Playing a media file stored in the app's local or temporary data folder requires the media file to be copied there by the app. This can be accomplished, for example, by copying a media file from the app package:
-
-```csharp
-// This method copies the video from the app package to the app data
-// directory for your app. To copy the video to the temp directory
-// for your app, comment out the first line of code, and uncomment
-// the second line of code.
-public static async Task CopyVideoIfNotExists(string filename)
-{
-    string folder = FileSystem.AppDataDirectory;
-    //string folder = Path.GetTempPath();
-    string videoFile = Path.Combine(folder, "XamarinVideo.mp4");
-
-    if (!File.Exists(videoFile))
-    {
-        using (Stream inputStream = await FileSystem.OpenAppPackageFileAsync(filename))
-        {
-            using (FileStream outputStream = File.Create(videoFile))
-            {
-                await inputStream.CopyToAsync(outputStream);
-            }
-        }
-    }
-}
-```
-
-> [!NOTE]
-> The code example above uses the `FileSystem` class included in .NET MAUI. For more information, see [.NET MAUI File System Helpers](/dotnet/maui/platform-integration/storage/file-system-helpers).
+For more information about the ms-appx URI scheme, see [ms-appx and ms-appx-web](/windows/uwp/app-resources/uri-schemes#ms-appx-and-ms-appx-web). -->
 
 ### Play media from the device library
 
@@ -234,7 +125,7 @@ The `Aspect` property determines how video media will be scaled to fit the displ
 - `AspectFill` indicates that the video will be clipped so that it fills the display area, while preserving the aspect ratio.
 - `Fill` indicates that the video will be stretched to fill the display area.-->
 
-## Binding to the Position property
+<!-- TODO ## Binding to the `Position` property
 
 The property change notification for the `Position` bindable property fire at 200ms intervals while playing. Therefore, the property can be data-bound to a `Slider` control (or similar) to show progress through the media. The CommunityToolkit also provides a [`TimeSpanToDoubleConverter`](xref:Xamarin.CommunityToolkit.Converters.TimeSpanToDoubleConverter) which converts a [`TimeSpan`](xref:System.TimeSpan) into a floating point value representing total seconds elapsed. In this way you can set the Slider `Maximum` to the `Duration` of the media and the `Value` to the `Position` to provide accurate progress:
 
@@ -256,7 +147,7 @@ The property change notification for the `Position` bindable property fire at 20
         </Grid.RowDefinitions>
         <xct:MediaPlayer
             x:Name="mediaElement"
-            Source="https://sec.ch9.ms/ch9/5d93/a1eab4bf-3288-4faf-81c4-294402a85d93/XamarinShow_mid.mp4"
+            Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             ShowsPlaybackControls="True"
             HorizontalOptions="Fill"
             SeekCompleted="OnSeekCompleted" />
@@ -281,29 +172,31 @@ In this example, the `Maximum` property of the `Slider` is data-bound to the `Du
 In addition, a [`DataTrigger`](xref:Microsoft.Maui.Controls.DataTrigger) object is used to disable the `Slider` when the media is buffering. For more information about data triggers, see [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers).
 
 > [!NOTE]
-> On Android, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) only has 1000 discrete steps, regardless of the `Minimum` and `Maximum` settings. If the media length is greater than 1000 seconds, then two different `Position` values would correspond to the same `Value` of the `Slider`. This is why the code above checks that the new position and existing position are greater than one-hundredth of the overall duration.
+> On Android, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) only has 1000 discrete steps, regardless of the `Minimum` and `Maximum` settings. If the media length is greater than 1000 seconds, then two different `Position` values would correspond to the same `Value` of the `Slider`. This is why the code above checks that the new position and existing position are greater than one-hundredth of the overall duration. -->
 
 ## Understand MediaSource types
 
-A `MediaPlayer` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines two static methods:
+A `MediaPlayer` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
 
-- `FromFile`, returns a `MediaSource` instance from a `string` argument.
-- `FromUri`, returns a `MediaSource` instance from a `Uri` argument.
+- `FromFile`, returns a `FileMediaSource` instance from a `string` argument.
+- `FromUri`, returns a `UriMediaSource` instance from a `Uri` argument.
+- `FromResource`, returns a `ResourceMediaSource` instance from a `string` argument.
 
 In addition, the `MediaSource` class also has implicit operators that return `MediaSource` instances from `string` and `Uri` arguments.
 
 > [!NOTE]
 > When the `Source` property is set in XAML, a type converter is invoked to return a `MediaSource` instance from a `string` or `Uri`.
 
-The `MediaSource` class also has two derived classes:
+The `MediaSource` class also has these derived classes:
 
+- `FileMediaSource`, which is used to specify a local media file from a `string`. This class has a `Path` property that can be set to a `string`. In addition, this class has implicit operators to convert a `string` to a `FileMediaSource` object, and a `FileMediaSource` object to a `string`.
 - `UriMediaSource`, which is used to specify a remote media file from a URI. This class has a `Uri` property that can be set to a `Uri`.
-- `FileMediaSource`, which is used to specify a local media file from a `string`. This class has a `File` property that can be set to a `string`. In addition, this class has implicit operators to convert a `string` to a `FileMediaSource` object, and a `FileMediaSource` object to a `string`.
+- `ResourceMediaSource`, which is used to specify an embedded file that is provided through the app's resource files. This class has a `Path` property that can be set to a `string`.
 
 > [!NOTE]
 > When a `FileMediaSource` object is created in XAML, a type converter is invoked to return a `FileMediaSource` instance from a `string`.
 
-## Determine MediaPlayer status
+## Determine `MediaPlayer` status
 
 The `MediaPlayer` class defines a read-only bindable property named `CurrentState`, of type `MediaPlayerState`. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.
 
@@ -314,7 +207,8 @@ The `MediaPlayerState` enumeration defines the following members:
 - `Buffering` indicates that the `MediaPlayer` is loading the media for playback. Its `Position` property does not advance during this state. If the `MediaPlayer` was playing video, it continues to display the last displayed frame.
 - `Playing` indicates that the `MediaPlayer` is playing the media source.
 - `Paused` indicates that the `MediaPlayer` does not advance its `Position` property. If the `MediaPlayer` was playing video, it continues to display the current frame.
-- `Stopped` indicates that the `MediaPlayer` contains media but it is not being played or paused. Its `Position` property is 0 and does not advance. If the loaded media is video, the `MediaPlayer` displays the first frame.
+- `Stopped` indicates that the `MediaPlayer` contains media but it is not being played or paused. Its `Position` property is reset to 0 and does not advance.
+- `Failed` indicates that the `MediaPlayer` failed to load or play the media. This can occur while trying to load a new media item, when attempting to play the media item or when the media playback is interrupted due to a failure. Use the `MediaFailed` event to retrieve additional details.
 
 It's generally not necessary to examine the `CurrentState` property when using the `MediaPlayer` transport controls. However, this property becomes important when implementing your own transport controls.
 
@@ -327,48 +221,49 @@ By default, the `MediaPlayer` playback controls are disabled. This enables you t
 The following XAML example shows a page that contains a `MediaPlayer` and custom transport controls:
 
 ```xaml
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MediaPlayerDemos.CustomTransportPage"
              Title="Custom transport">
     <Grid>
         ...
-        <MediaPlayer x:Name="mediaElement"
-                      AutoPlay="False"
+        <toolkit:MediaPlayer x:Name="mediaPlayer"
+                      ShouldAutoPlay="False"
                       ... />
-        <StackLayout BindingContext="{x:Reference mediaElement}"
+        <HorizontalStackLayout BindingContext="{x:Reference mediaPlayer}"
                      ...>
-            <Button Text="&#x25B6;&#xFE0F; Play"
+            <Button Text="Play"
                     HorizontalOptions="CenterAndExpand"
                     Clicked="OnPlayPauseButtonClicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static MediaPlayerState.Playing}">
+                                 Value="{x:Static toolkit:MediaPlayerState.Playing}">
                         <Setter Property="Text"
-                                Value="&#x23F8; Pause" />
+                                Value="Pause" />
                     </DataTrigger>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static MediaPlayerState.Buffering}">
+                                 Value="{x:Static toolkit:MediaPlayerState.Buffering}">
                         <Setter Property="IsEnabled"
                                 Value="False" />
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
-            <Button Text="&#x23F9; Stop"
+            <Button Text="Stop"
                     HorizontalOptions="CenterAndExpand"
                     Clicked="OnStopButtonClicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static MediaPlayerState.Stopped}">
+                                 Value="{x:Static toolkit:MediaPlayerState.Stopped}">
                         <Setter Property="IsEnabled"
                                 Value="False" />
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
-        </StackLayout>
+        </HorizontalStackLayout>
     </Grid>
 </ContentPage>
 ```
@@ -380,32 +275,24 @@ The code-behind file has the handlers for the [`Clicked`](xref:Microsoft.Maui.Co
 ```csharp
 void OnPlayPauseButtonClicked(object sender, EventArgs args)
 {
-    if (mediaElement.CurrentState == MediaPlayerState.Stopped ||
-        mediaElement.CurrentState == MediaPlayerState.Paused)
+    if (mediaPlayer.CurrentState == MediaPlayerState.Stopped ||
+        mediaPlayer.CurrentState == MediaPlayerState.Paused)
     {
-        mediaElement.Play();
+        mediaPlayer.Play();
     }
-    else if (mediaElement.CurrentState == MediaPlayerState.Playing)
+    else if (mediaPlayer.CurrentState == MediaPlayerState.Playing)
     {
-        mediaElement.Pause();
+        mediaPlayer.Pause();
     }
 }
 
 void OnStopButtonClicked(object sender, EventArgs args)
 {
-    mediaElement.Stop();
+    mediaPlayer.Stop();
 }
 ```
 
-The **Play** button can be pressed, once it becomes enabled, to begin playback:
-
-![Screenshot of a MediaPlayer with custom transport controls, on iOS and Android.](mediaelement-images/custom-transport-playback-large.png#lightbox)
-
-Pressing the **Pause** button results in playback pausing:
-
-![Screenshot of a MediaPlayer with playback paused, on iOS and Android.](mediaelement-images/custom-transport-paused-large.png#lightbox)
-
-Pressing the **Stop** button stops playback and returns the position of the media file to the beginning.
+The **Play** button can be pressed, once it becomes enabled, to begin playback. Pressing the **Pause** button results in playback pausing. Pressing the **Stop** button stops playback and returns the position of the media file to the beginning.
 
 ## Implement a custom volume control
 
@@ -415,8 +302,8 @@ A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Co
 
 ```xaml
 <StackLayout>
-    <MediaPlayer AutoPlay="False"
-                  Source="{StaticResource AdvancedAsync}" />
+    <toolkit:MediaPlayer ShouldAutoPlay="False"
+                         Source="{StaticResource AdvancedAsync}" />
     <Slider Maximum="1.0"
             Minimum="0.0"
             Value="{Binding Volume}"
@@ -431,6 +318,42 @@ In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds 
 > The `Volume` property has a validation callback that ensures that its value is greater than or equal to 0.0, and less than or equal to 1.0.
 
 For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slider) see, [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
+
+## Properties
+
+|Property  |Type  |Description  |Default Value  |
+|---------|---------|---------|---------|
+| CurrentState | `MediaPlayerState` | Indicates the current status of the control. This is a read-only, bindable property. | `MediaPlayerState.None` |
+| Duration | `TimeSpan` | Indicates the duration of the currently opened media. This is a read-only, bindable property. | `TimeSpan.Zero` |
+| Position | `TimeSpan` | Describes the current progress through the media's playback time. This is a read-only, bindable property. If you want to set the `Position` use the `SeekTo()` method. | `TimeSpan.Zero` |
+| ShouldAutoPlay | `bool` | Indicates whether media playback will begin automatically when the `Source` property is set. This is a bindable property. | `false` |
+| ShouldLoopPlayback | `bool` | Describes whether the currently loaded media source should resume playback from the start after reaching its end. This is a bindable property. | `false` |
+| ShouldKeepScreenOn | `bool` | Determines whether the device screen should stay on during media playback. This is a bindable property. | `false` |
+| ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
+| Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
+| Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |
+| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. | `0` |
+| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. | `0` |
+| Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |
+
+## Events
+
+|Event  |Description  |
+|---------|---------|
+| MediaOpened | Occurs when the media stream has been validated and opened. |
+| MediaEnded | Occurs when the `MediaPlayer` finishes playing its media. |
+| MediaFailed | Occurs when there's an error associated with the media source. |
+| PositionChanged | Occurs when the `Position` property value has changed. |
+| SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
+
+## Methods
+
+|Event  |Description  |
+|---------|---------|
+| Play | Starts playing the loaded media. |
+| Pause | Pauses playback of the current media. |
+| Stop | Stops playback and resets the position of the current media. |
+| SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
 
 ## Related links
 

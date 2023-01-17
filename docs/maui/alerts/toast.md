@@ -41,6 +41,7 @@ The following screenshot shows the resulting Toast:
 ### [iOS](#tab/ios)
 
 ![Screenshot of an Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
+---
 
 ## Properties
 

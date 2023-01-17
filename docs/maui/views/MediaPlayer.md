@@ -201,7 +201,7 @@ public static async Task CopyVideoIfNotExists(string filename)
 ```
 
 > [!NOTE]
-> The code example above uses the `FileSystem` class included in Xamarin.Essentials. For more information, see [.NET MAUI File System Helpers](/dotnet/maui/platform-integration/storage/file-system-helpers).
+> The code example above uses the `FileSystem` class included in .NET MAUI. For more information, see [.NET MAUI File System Helpers](/dotnet/maui/platform-integration/storage/file-system-helpers).
 
 ### Play media from the device library
 
@@ -274,14 +274,14 @@ The property change notification for the `Position` bindable property fire at 20
 </pages:BasePage>
 ```
 
-In this example, the `Maximum` property of the `Slider` is data-bound to the `Duration` property of the `MediaPlayer` and the [`Value`](xref:Xamarin.Forms.Slider.Value) property of the [`Slider`](xref:Xamarin.Forms.Slider) is data-bound to the `Position` property of the `MediaPlayer`. Therefore, dragging the `Slider` results in the media playback position changing:
+In this example, the `Maximum` property of the `Slider` is data-bound to the `Duration` property of the `MediaPlayer` and the [`Value`](xref:Microsoft.Maui.Controls.Slider.Value) property of the [`Slider`](xref:Microsoft.Maui.Controls.Slider) is data-bound to the `Position` property of the `MediaPlayer`. Therefore, dragging the `Slider` results in the media playback position changing:
 
 ![Screenshot of a MediaPlayer with a position bar, on iOS and Android.](mediaelement-images/custom-position-bar-large.png#lightbox)
 
-In addition, a [`DataTrigger`](xref:Xamarin.Forms.DataTrigger) object is used to disable the `Slider` when the media is buffering. For more information about data triggers, see [Xamarin.Forms Triggers](/dotnet/maui/fundamentals/triggers).
+In addition, a [`DataTrigger`](xref:Microsoft.Maui.Controls.DataTrigger) object is used to disable the `Slider` when the media is buffering. For more information about data triggers, see [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers).
 
 > [!NOTE]
-> On Android, the [`Slider`](xref:Xamarin.Forms.Slider) only has 1000 discrete steps, regardless of the `Minimum` and `Maximum` settings. If the media length is greater than 1000 seconds, then two different `Position` values would correspond to the same `Value` of the `Slider`. This is why the code above checks that the new position and existing position are greater than one-hundredth of the overall duration.
+> On Android, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) only has 1000 discrete steps, regardless of the `Minimum` and `Maximum` settings. If the media length is greater than 1000 seconds, then two different `Position` values would correspond to the same `Value` of the `Slider`. This is why the code above checks that the new position and existing position are greater than one-hundredth of the overall duration.
 
 ## Understand MediaSource types
 
@@ -373,9 +373,9 @@ The following XAML example shows a page that contains a `MediaPlayer` and custom
 </ContentPage>
 ```
 
-In this example, the custom transport controls are defined as [`Button`](xref:Xamarin.Forms.Button) objects. However, there are only two `Button` objects, with the first `Button` representing **Play** and **Pause**, and the second `Button` representing **Stop**. [`DataTrigger`](xref:Xamarin.Forms.DataTrigger) objects are used to enable and disable the buttons, and to switch the first button between **Play** and **Pause**. For more information about data triggers, see [Xamarin.Forms Triggers](/xamarin/xamarin-forms/app-fundamentals/triggers).
+In this example, the custom transport controls are defined as [`Button`](xref:Microsoft.Maui.Controls.Button) objects. However, there are only two `Button` objects, with the first `Button` representing **Play** and **Pause**, and the second `Button` representing **Stop**. [`DataTrigger`](xref:Microsoft.Maui.Controls.DataTrigger) objects are used to enable and disable the buttons, and to switch the first button between **Play** and **Pause**. For more information about data triggers, see [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers).
 
-The code-behind file has the handlers for the [`Clicked`](xref:Xamarin.Forms.Button.Clicked) events:
+The code-behind file has the handlers for the [`Clicked`](xref:Microsoft.Maui.Controls.Button.Clicked) events:
 
 ```csharp
 void OnPlayPauseButtonClicked(object sender, EventArgs args)
@@ -411,7 +411,7 @@ Pressing the **Stop** button stops playback and returns the position of the medi
 
 Media playback controls implemented by each platform include a volume bar. This bar resembles a slider and shows the volume of the media. In addition, you can manipulate the volume bar to increase or decrease the volume.
 
-A custom volume bar can be implemented using a [`Slider`](xref:Xamarin.Forms.Slider), as shown in the following example:
+A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Controls.Slider), as shown in the following example:
 
 ```xaml
 <StackLayout>
@@ -425,12 +425,12 @@ A custom volume bar can be implemented using a [`Slider`](xref:Xamarin.Forms.Sli
 </StackLayout>
 ```
 
-In this example, the [`Slider`](xref:Xamarin.Forms.Slider) data binds its `Value` property to the `Volume` property of the `MediaPlayer`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.
+In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds its `Value` property to the `Volume` property of the `MediaPlayer`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.
 
 > [!NOTE]
 > The `Volume` property has a validation callback that ensures that its value is greater than or equal to 0.0, and less than or equal to 1.0.
 
-For more information about using a [`Slider`](xref:Xamarin.Forms.Slider) see, [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
+For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slider) see, [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
 
 ## Related links
 

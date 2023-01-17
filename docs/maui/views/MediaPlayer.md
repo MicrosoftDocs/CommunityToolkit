@@ -2,6 +2,7 @@
 title: MediaPlayer - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaPlayer to play video and audio in a .NET MAUI application."
 author: jfversluis
+ms.author: joverslu
 ms.date: 01/17/2023
 ---
 

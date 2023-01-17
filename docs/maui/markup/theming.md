@@ -1,7 +1,7 @@
 ---
 title: Theming - .NET MAUI Community Toolkit
 author: bijington
-description: C# Markup is a set of fluent helper methods and classes designed to simplify the process of building declarative .NET Multi-platform App UI (.NET MAUI) user interfaces in code.
+description: The C# Markup package provides the ability to define property values that will swap based on the systems current theme.
 ms.date: 01/13/2023
 ---
 

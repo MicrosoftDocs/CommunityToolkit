@@ -14,7 +14,7 @@ Classes with no base types should prefer inheriting from `ObservableObject` inst
 The following sample generates MVVMTK0032:
 
 ```csharp
-using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MyApp;
 
@@ -27,7 +27,7 @@ public partial class SampleViewModel
 And you can fix it by updating the code as follows:
 
 ```csharp
-using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MyApp;
 

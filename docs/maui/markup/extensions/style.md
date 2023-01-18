@@ -81,6 +81,8 @@ new Label
 }
 ```
 
+For more information on the use of `AddAppThemeBinding` refer to the [Theming](../theming.md) documentation.
+
 ### ApplyToDerivedTypes
 
 The fluent extension method, `ApplyToDerivedTypes(bool value)`, sets the value of the `AppleToDerivedTypes` property:

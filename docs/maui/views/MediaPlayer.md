@@ -3,12 +3,12 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 01/17/2023
+ms.date: 01/20/2023
 ---
 
 # MediaElement
 
-`MediaElement` is a view for playing video and audio. Media that's supported by the underlying platform can be played from the following sources:
+`MediaElement` is a control for playing video and audio. Media that's supported by the underlying platform can be played from the following sources:
 
 - The web, using a URI (HTTP or HTTPS).
 - A resource embedded in the platform application, using the `embed://` URI scheme.
@@ -20,6 +20,14 @@ ms.date: 01/17/2023
 
 > [!NOTE]
 > `MediaElement` is available on iOS, Android, Windows, macOS, and Tizen.
+
+The `MediaElement` uses the following platform implementations.
+
+|Platform| Platform media player |
+|--------|-----------------------|
+| Android | [ExoPlayer](https://exoplayer.dev) |
+| iOS/macOS | AVPlayer |
+| Windows | MediaPlayer |
 
 <!-- TODO: Add info about supported formats. For information about supported media formats on Android, see [Supported media formats](https://developer.android.com/guide/topics/media/media-formats) on developer.android.com. For information about supported media formats on the Universal Windows Platform (UWP), see [Supported codecs](/windows/uwp/audio-video-camera/supported-codecs). -->
 
@@ -317,6 +325,41 @@ In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds 
 > The `Volume` property has a validation callback that ensures that its value is greater than or equal to 0.0, and less than or equal to 1.0.
 
 For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slider) see, [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
+
+## Clean up MediaElement resources
+
+To prevent memory leaks you will have to free the resources of `MediaElement`. This can be done by disconnecting the handler.
+Where you need to do this is dependant on where and how you use `MediaElement` in your app, but typically if you have a `MediaElement` on a single page and are not playing media in the background, you want to free the resources when the user navigates away from the page.
+
+Below you can find a snippet of sample code which shows how to do this. First, make sure to hook up the `Unloaded` event on your page.
+
+```xaml
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MediaElementDemos.FreeResourcesPage"
+             Title="Free Resources"
+             Unloaded="ContentPage_Unloaded">
+        <toolkit:MediaElement x:Name="mediaElement"
+                      ShouldAutoPlay="False"
+                      ... />
+</ContentPage>
+```
+
+Then in the code-behind, call the method to disconnect the handler.
+
+```csharp
+public partial class FreeResourcesPage : ContentPage
+{
+    void ContentPage_Unloaded(object? sender, EventArgs e)
+    {
+        // Stop and cleanup MediaElement when we navigate away
+        mediaElement.Handler?.DisconnectHandler();
+    }
+}
+```
+
+To read more about handlers, please see the .NET MAUI documentation on [Handlers](/dotnet/maui/user-interface/handlers).
 
 ## Properties
 

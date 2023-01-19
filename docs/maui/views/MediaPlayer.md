@@ -1,36 +1,35 @@
 ---
-title: MediaPlayer - .NET MAUI Community Toolkit
-description: "This article explains how to use MediaPlayer to play video and audio in a .NET MAUI application."
+title: MediaElement - .NET MAUI Community Toolkit
+description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
 ms.date: 01/17/2023
 ---
 
-# MediaPlayer
+# MediaElement
 
-`MediaPlayer` is a view for playing video and audio. Media that's supported by the underlying platform can be played from the following sources:
+`MediaElement` is a view for playing video and audio. Media that's supported by the underlying platform can be played from the following sources:
 
 - The web, using a URI (HTTP or HTTPS).
 - A resource embedded in the platform application, using the `embed://` URI scheme.
 - Files that come from the app's local and temporary data folders, using the `filesystem://` URI scheme.
-- The device's library.
 
-`MediaPlayer` can use the platform playback controls, which are referred to as transport controls. However, they are disabled by default and can be replaced with your own transport controls. The following screenshots show `MediaPlayer` playing a video with the platform transport controls:
+`MediaElement` can use the platform playback controls, which are referred to as transport controls. However, they are disabled by default and can be replaced with your own transport controls. The following screenshots show `MediaElement` playing a video with the platform transport controls:
 
-![Screenshot of a MediaPlayer playing a video, on iOS and Android.](mediaelement-images/playback-controls-large.png#lightbox)
+![Screenshot of a MediaElement playing a video, on iOS and Android.](mediaelement-images/playback-controls-large.png#lightbox)
 
 > [!NOTE]
-> `MediaPlayer` is available on iOS, Android, Windows, macOS, and Tizen.
+> `MediaElement` is available on iOS, Android, Windows, macOS, and Tizen.
 
 <!-- TODO: Add info about supported formats. For information about supported media formats on Android, see [Supported media formats](https://developer.android.com/guide/topics/media/media-formats) on developer.android.com. For information about supported media formats on the Universal Windows Platform (UWP), see [Supported codecs](/windows/uwp/audio-video-camera/supported-codecs). -->
 
 ## Play remote media
 
-A `MediaPlayer` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
+A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
 
 ```xaml
-<MediaPlayer Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-             ShouldShowPlaybackControls="True" />
+<MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              ShouldShowPlaybackControls="True" />
 ```
 
 > [!IMPORTANT]
@@ -50,16 +49,16 @@ Local media can be played from the following sources:
 
 ### Play media embedded in the app package
 
-A `MediaPlayer` can play media files that are embedded in the app package, using the `embed://` URI scheme. Media files are embedded in the app package by placing them in the platform project.
+A `MediaElement` can play media files that are embedded in the app package, using the `embed://` URI scheme. Media files are embedded in the app package by placing them in the platform project.
 
 To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of you .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
 
-You can also place files in subfolders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaPlayer` would be `embed://MyVideos/MyFile.mp4`.
+You can also place files in subfolders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaElement` would be `embed://MyVideos/MyFile.mp4`.
 
 An example of how to use this syntax in XAML can be seen below.
 
 ```xaml
-<MediaPlayer Source="embed://MyFile.mp4"
+<MediaElement Source="embed://MyFile.mp4"
              ShouldShowPlaybackControls="True" />
 ```
 
@@ -88,7 +87,7 @@ public class VideoSourceConverter : IValueConverter
 An instance of the `VideoSourceConverter` can then be used to apply the `ms-appx:///` URI scheme to an embedded media file:
 
 ```xaml
-<MediaPlayer Source="{Binding MediaSource, Converter={StaticResource VideoSourceConverter}}"
+<MediaElement Source="{Binding MediaSource, Converter={StaticResource VideoSourceConverter}}"
               ShowsPlaybackControls="True" />
 ```
 
@@ -96,7 +95,7 @@ For more information about the ms-appx URI scheme, see [ms-appx and ms-appx-web]
 
 ### Play media from the device library
 
-Most modern mobile devices and desktop computers have the ability to record videos and audio using the device's camera and microphone. The media that's created are then stored as files on the device. These files can be retrieved from the library and played by the `MediaPlayer`.
+Most modern mobile devices and desktop computers have the ability to record videos and audio using the device's camera and microphone. The media that's created are then stored as files on the device. These files can be retrieved from the library and played by the `MediaElement`.
 
 Each of the platforms includes a facility that allows the user to select media from the device's library. In Xamarin.Forms, platform projects can invoke this functionality, and it can be called by the [`DependencyService`](xref:Xamarin.Forms.DependencyService) class.
 
@@ -115,7 +114,7 @@ if (!string.IsNullOrWhiteSpace(filename))
 }
 ```
 
-The video picking dependency service is invoked by calling the `DependencyService.Get` method to obtain the implementation of an `IVideoPicker` interface in the platform project. The `GetVideoFileAsync` method is then called on that instance, and the returned filename is used to create a `FileMediaSource` object and to set it to the `Source` property of the `MediaPlayer`.
+The video picking dependency service is invoked by calling the `DependencyService.Get` method to obtain the implementation of an `IVideoPicker` interface in the platform project. The `GetVideoFileAsync` method is then called on that instance, and the returned filename is used to create a `FileMediaSource` object and to set it to the `Source` property of the `MediaElement`.
 
 <!--TODO ## Change video aspect ratio
 
@@ -135,7 +134,7 @@ The property change notification for the `Position` bindable property fire at 20
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                 xmlns:pages="clr-namespace:Xamarin.CommunityToolkit.Sample.Pages"
-                x:Class="Xamarin.CommunityToolkit.Sample.Pages.Views.MediaPlayerPage">
+                x:Class="Xamarin.CommunityToolkit.Sample.Pages.Views.MediaElementPage">
     <pages:BasePage.Resources>
         <xct:TimeSpanToDoubleConverter x:Key="TimeSpanConverter"/>
     </pages:BasePage.Resources>
@@ -145,7 +144,7 @@ The property change notification for the `Position` bindable property fire at 20
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <xct:MediaPlayer
+        <xct:MediaElement
             x:Name="mediaElement"
             Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             ShowsPlaybackControls="True"
@@ -155,7 +154,7 @@ The property change notification for the `Position` bindable property fire at 20
             <Slider.Triggers>
                 <DataTrigger TargetType="Slider"
                      Binding="{Binding CurrentState}"
-                     Value="{x:Static MediaPlayerState.Buffering}">
+                     Value="{x:Static MediaElementState.Buffering}">
                     <Setter Property="IsEnabled" Value="False" />
                 </DataTrigger>
             </Slider.Triggers>
@@ -165,9 +164,9 @@ The property change notification for the `Position` bindable property fire at 20
 </pages:BasePage>
 ```
 
-In this example, the `Maximum` property of the `Slider` is data-bound to the `Duration` property of the `MediaPlayer` and the [`Value`](xref:Microsoft.Maui.Controls.Slider.Value) property of the [`Slider`](xref:Microsoft.Maui.Controls.Slider) is data-bound to the `Position` property of the `MediaPlayer`. Therefore, dragging the `Slider` results in the media playback position changing:
+In this example, the `Maximum` property of the `Slider` is data-bound to the `Duration` property of the `MediaElement` and the [`Value`](xref:Microsoft.Maui.Controls.Slider.Value) property of the [`Slider`](xref:Microsoft.Maui.Controls.Slider) is data-bound to the `Position` property of the `MediaElement`. Therefore, dragging the `Slider` results in the media playback position changing:
 
-![Screenshot of a MediaPlayer with a position bar, on iOS and Android.](mediaelement-images/custom-position-bar-large.png#lightbox)
+![Screenshot of a MediaElement with a position bar, on iOS and Android.](mediaelement-images/custom-position-bar-large.png#lightbox)
 
 In addition, a [`DataTrigger`](xref:Microsoft.Maui.Controls.DataTrigger) object is used to disable the `Slider` when the media is buffering. For more information about data triggers, see [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers).
 
@@ -176,7 +175,7 @@ In addition, a [`DataTrigger`](xref:Microsoft.Maui.Controls.DataTrigger) object 
 
 ## Understand MediaSource types
 
-A `MediaPlayer` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
+A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
 
 - `FromFile`, returns a `FileMediaSource` instance from a `string` argument.
 - `FromUri`, returns a `UriMediaSource` instance from a `Uri` argument.
@@ -196,42 +195,42 @@ The `MediaSource` class also has these derived classes:
 > [!NOTE]
 > When a `FileMediaSource` object is created in XAML, a type converter is invoked to return a `FileMediaSource` instance from a `string`.
 
-## Determine `MediaPlayer` status
+## Determine `MediaElement` status
 
-The `MediaPlayer` class defines a read-only bindable property named `CurrentState`, of type `MediaPlayerState`. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.
+The `MediaElement` class defines a read-only bindable property named `CurrentState`, of type `MediaElementState`. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.
 
-The `MediaPlayerState` enumeration defines the following members:
+The `MediaElementState` enumeration defines the following members:
 
-- `None` indicates that the `MediaPlayer` contains no media.
-- `Opening` indicates that the `MediaPlayer` is validating and attempting to load the specified source.
-- `Buffering` indicates that the `MediaPlayer` is loading the media for playback. Its `Position` property does not advance during this state. If the `MediaPlayer` was playing video, it continues to display the last displayed frame.
-- `Playing` indicates that the `MediaPlayer` is playing the media source.
-- `Paused` indicates that the `MediaPlayer` does not advance its `Position` property. If the `MediaPlayer` was playing video, it continues to display the current frame.
-- `Stopped` indicates that the `MediaPlayer` contains media but it is not being played or paused. Its `Position` property is reset to 0 and does not advance.
-- `Failed` indicates that the `MediaPlayer` failed to load or play the media. This can occur while trying to load a new media item, when attempting to play the media item or when the media playback is interrupted due to a failure. Use the `MediaFailed` event to retrieve additional details.
+- `None` indicates that the `MediaElement` contains no media.
+- `Opening` indicates that the `MediaElement` is validating and attempting to load the specified source.
+- `Buffering` indicates that the `MediaElement` is loading the media for playback. Its `Position` property does not advance during this state. If the `MediaElement` was playing video, it continues to display the last displayed frame.
+- `Playing` indicates that the `MediaElement` is playing the media source.
+- `Paused` indicates that the `MediaElement` does not advance its `Position` property. If the `MediaElement` was playing video, it continues to display the current frame.
+- `Stopped` indicates that the `MediaElement` contains media but it is not being played or paused. Its `Position` property is reset to 0 and does not advance.
+- `Failed` indicates that the `MediaElement` failed to load or play the media. This can occur while trying to load a new media item, when attempting to play the media item or when the media playback is interrupted due to a failure. Use the `MediaFailed` event to retrieve additional details.
 
-It's generally not necessary to examine the `CurrentState` property when using the `MediaPlayer` transport controls. However, this property becomes important when implementing your own transport controls.
+It's generally not necessary to examine the `CurrentState` property when using the `MediaElement` transport controls. However, this property becomes important when implementing your own transport controls.
 
 ## Implement custom transport controls
 
 The transport controls of a media player include the buttons that perform the functions **Play**, **Pause**, and **Stop**. These buttons are generally identified with familiar icons rather than text, and the **Play** and **Pause** functions are generally combined into one button.
 
-By default, the `MediaPlayer` playback controls are disabled. This enables you to control the `MediaPlayer` programmatically, or by supplying your own transport controls. In support of this, `MediaPlayer` includes `Play`, `Pause`, and `Stop` methods.
+By default, the `MediaElement` playback controls are disabled. This enables you to control the `MediaElement` programmatically, or by supplying your own transport controls. In support of this, `MediaElement` includes `Play`, `Pause`, and `Stop` methods.
 
-The following XAML example shows a page that contains a `MediaPlayer` and custom transport controls:
+The following XAML example shows a page that contains a `MediaElement` and custom transport controls:
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MediaPlayerDemos.CustomTransportPage"
+             x:Class="MediaElementDemos.CustomTransportPage"
              Title="Custom transport">
     <Grid>
         ...
-        <toolkit:MediaPlayer x:Name="mediaPlayer"
+        <toolkit:MediaElement x:Name="mediaElement"
                       ShouldAutoPlay="False"
                       ... />
-        <HorizontalStackLayout BindingContext="{x:Reference mediaPlayer}"
+        <HorizontalStackLayout BindingContext="{x:Reference mediaElement}"
                      ...>
             <Button Text="Play"
                     HorizontalOptions="CenterAndExpand"
@@ -239,13 +238,13 @@ The following XAML example shows a page that contains a `MediaPlayer` and custom
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static toolkit:MediaPlayerState.Playing}">
+                                 Value="{x:Static toolkit:MediaElementState.Playing}">
                         <Setter Property="Text"
                                 Value="Pause" />
                     </DataTrigger>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static toolkit:MediaPlayerState.Buffering}">
+                                 Value="{x:Static toolkit:MediaElementState.Buffering}">
                         <Setter Property="IsEnabled"
                                 Value="False" />
                     </DataTrigger>
@@ -257,7 +256,7 @@ The following XAML example shows a page that contains a `MediaPlayer` and custom
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static toolkit:MediaPlayerState.Stopped}">
+                                 Value="{x:Static toolkit:MediaElementState.Stopped}">
                         <Setter Property="IsEnabled"
                                 Value="False" />
                     </DataTrigger>
@@ -275,20 +274,20 @@ The code-behind file has the handlers for the [`Clicked`](xref:Microsoft.Maui.Co
 ```csharp
 void OnPlayPauseButtonClicked(object sender, EventArgs args)
 {
-    if (mediaPlayer.CurrentState == MediaPlayerState.Stopped ||
-        mediaPlayer.CurrentState == MediaPlayerState.Paused)
+    if (mediaElement.CurrentState == MediaElementState.Stopped ||
+        mediaElement.CurrentState == MediaElementState.Paused)
     {
-        mediaPlayer.Play();
+        mediaElement.Play();
     }
-    else if (mediaPlayer.CurrentState == MediaPlayerState.Playing)
+    else if (mediaElement.CurrentState == MediaElementState.Playing)
     {
-        mediaPlayer.Pause();
+        mediaElement.Pause();
     }
 }
 
 void OnStopButtonClicked(object sender, EventArgs args)
 {
-    mediaPlayer.Stop();
+    mediaElement.Stop();
 }
 ```
 
@@ -302,8 +301,8 @@ A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Co
 
 ```xaml
 <StackLayout>
-    <toolkit:MediaPlayer ShouldAutoPlay="False"
-                         Source="{StaticResource AdvancedAsync}" />
+    <toolkit:MediaElement ShouldAutoPlay="False"
+                          Source="{StaticResource AdvancedAsync}" />
     <Slider Maximum="1.0"
             Minimum="0.0"
             Value="{Binding Volume}"
@@ -312,7 +311,7 @@ A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Co
 </StackLayout>
 ```
 
-In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds its `Value` property to the `Volume` property of the `MediaPlayer`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.
+In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds its `Value` property to the `Volume` property of the `MediaElement`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.
 
 > [!NOTE]
 > The `Volume` property has a validation callback that ensures that its value is greater than or equal to 0.0, and less than or equal to 1.0.
@@ -323,7 +322,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 
 |Property  |Type  |Description  |Default Value  |
 |---------|---------|---------|---------|
-| CurrentState | `MediaPlayerState` | Indicates the current status of the control. This is a read-only, bindable property. | `MediaPlayerState.None` |
+| CurrentState | `MediaElementState` | Indicates the current status of the control. This is a read-only, bindable property. | `MediaElementState.None` |
 | Duration | `TimeSpan` | Indicates the duration of the currently opened media. This is a read-only, bindable property. | `TimeSpan.Zero` |
 | Position | `TimeSpan` | Describes the current progress through the media's playback time. This is a read-only, bindable property. If you want to set the `Position` use the `SeekTo()` method. | `TimeSpan.Zero` |
 | ShouldAutoPlay | `bool` | Indicates whether media playback will begin automatically when the `Source` property is set. This is a bindable property. | `false` |
@@ -341,7 +340,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 |Event  |Description  |
 |---------|---------|
 | MediaOpened | Occurs when the media stream has been validated and opened. |
-| MediaEnded | Occurs when the `MediaPlayer` finishes playing its media. |
+| MediaEnded | Occurs when the `MediaElement` finishes playing its media. |
 | MediaFailed | Occurs when there's an error associated with the media source. |
 | PositionChanged | Occurs when the `Position` property value has changed. |
 | SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
@@ -355,10 +354,16 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | Stop | Stops playback and resets the position of the current media. |
 | SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
 
+## Examples
+
+You can find examples of this control in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/MediaElement).
+
+## API
+
+You can find the source code for `MediaElement` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.MediaElement/MediaElement.shared.cs).
+
 ## Related links
 
-- [MediaPlayerDemos (sample)](/samples/xamarin/xamarin-forms-samples/userinterface-mediaelementdemos/)
-- [URI schemes](/windows/uwp/app-resources/uri-schemes)
 - [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers)
 - [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
 - [Android: Supported media formats](https://developer.android.com/guide/topics/media/media-formats)

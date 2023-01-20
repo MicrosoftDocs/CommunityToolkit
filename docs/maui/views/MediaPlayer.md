@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 01/20/2023
+ms.date: 01/23/2023
 ---
 
 # MediaElement
@@ -12,24 +12,36 @@ ms.date: 01/20/2023
 
 - The web, using a URI (HTTP or HTTPS).
 - A resource embedded in the platform application, using the `embed://` URI scheme.
-- Files that come from the app's local and temporary data folders, using the `filesystem://` URI scheme.
+- Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
 
 `MediaElement` can use the platform playback controls, which are referred to as transport controls. However, they are disabled by default and can be replaced with your own transport controls. The following screenshots show `MediaElement` playing a video with the platform transport controls:
 
-![Screenshot of a MediaElement playing a video, on iOS and Android.](mediaelement-images/playback-controls-large.png#lightbox)
+![Screenshot of a MediaElement playing a video, on Android and iOS.](../../images/mediaelement/intro.png#lightbox)
 
 > [!NOTE]
 > `MediaElement` is available on iOS, Android, Windows, macOS, and Tizen.
 
 The `MediaElement` uses the following platform implementations.
 
-|Platform| Platform media player |
+|Platform| Platform media player implementation |
 |--------|-----------------------|
-| Android | [ExoPlayer](https://exoplayer.dev) |
-| iOS/macOS | AVPlayer |
-| Windows | MediaPlayer |
+| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [ExoPlayerXamarin](https://github.com/Baseflow/ExoPlayerXamarin) maintainers! |
+| iOS/macOS | [AVPlayer](xref:AVFoundation.AVPlayer) |
+| Windows | [MediaPlayer](xref:Windows.Media.Playback.MediaPlayer) |
 
-<!-- TODO: Add info about supported formats. For information about supported media formats on Android, see [Supported media formats](https://developer.android.com/guide/topics/media/media-formats) on developer.android.com. For information about supported media formats on the Universal Windows Platform (UWP), see [Supported codecs](/windows/uwp/audio-video-camera/supported-codecs). -->
+## Supported Formats
+
+The supported multimedia formats can be different per platform. In some cases it can even be dependant on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
+
+|Platform| Link | Notes |
+|--------|------|-------|
+| Android | [ExoPlayer Supported Formats](https://exoplayer.dev/supported-formats.html) | |
+| iOS/macOS | [iOS/macOS Supported Formats](https://stackoverflow.com/a/45898816/1506387) | No official documentation on this exists |
+| Windows | [Windows Supported Formats](/windows/uwp/audio-video-camera/supported-codecs) | On Windows the supported formats are very much dependent on what codecs are installed on the user's machine |
+| Tizen | [Tizen Supported Formats](https://docs.tizen.org/application/native/tutorials/feature/app-multimedia-video) | |
+
+> [!IMPORTANT]
+> If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.
 
 ## Play remote media
 
@@ -52,8 +64,7 @@ Platform provided media playback controls are enabled by default, and can be dis
 Local media can be played from the following sources:
 
 - A resource embedded in the platform application, using the `embed://` URI scheme.
-- Files that come from the app's local and temporary data folders, using the `filesystem://` URI scheme.
-<!-- TODO - The device's library. -->
+- Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
 
 ### Play media embedded in the app package
 
@@ -67,119 +78,8 @@ An example of how to use this syntax in XAML can be seen below.
 
 ```xaml
 <MediaElement Source="embed://MyFile.mp4"
-             ShouldShowPlaybackControls="True" />
+              ShouldShowPlaybackControls="True" />
 ```
-
-<!-- When using data binding, a value converter can be used to apply this URI scheme:
-
-```csharp
-public class VideoSourceConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (value == null)
-            return null;
-
-        if (string.IsNullOrWhiteSpace(value.ToString()))
-            return null;
-
-        if (Device.RuntimePlatform == Device.UWP)
-            return new Uri($"ms-appx:///Assets/{value}");
-        else
-            return new Uri($"ms-appx:///{value}");
-    }
-    // ...
-}
-```
-
-An instance of the `VideoSourceConverter` can then be used to apply the `ms-appx:///` URI scheme to an embedded media file:
-
-```xaml
-<MediaElement Source="{Binding MediaSource, Converter={StaticResource VideoSourceConverter}}"
-              ShowsPlaybackControls="True" />
-```
-
-For more information about the ms-appx URI scheme, see [ms-appx and ms-appx-web](/windows/uwp/app-resources/uri-schemes#ms-appx-and-ms-appx-web). -->
-
-### Play media from the device library
-
-Most modern mobile devices and desktop computers have the ability to record videos and audio using the device's camera and microphone. The media that's created are then stored as files on the device. These files can be retrieved from the library and played by the `MediaElement`.
-
-Each of the platforms includes a facility that allows the user to select media from the device's library. In Xamarin.Forms, platform projects can invoke this functionality, and it can be called by the [`DependencyService`](xref:Xamarin.Forms.DependencyService) class.
-
-The video picking dependency service used in the sample application is very similar to one defined in [Picking a Photo from the Picture Library](/xamarin/xamarin-forms/app-fundamentals/dependency-service/photo-picker), except that the picker returns a filename rather than a `Stream` object. The shared code project defines an interface named `IVideoPicker`, that defines a single method named `GetVideoFileAsync`. Each platform then implements this interface in a `VideoPicker` class.
-
-The following code example shows how to retrieve a media file from the device library:
-
-```csharp
-string filename = await DependencyService.Get<IVideoPicker>().GetVideoFileAsync();
-if (!string.IsNullOrWhiteSpace(filename))
-{
-    mediaElement.Source = new FileMediaSource
-    {
-        File = filename
-    };
-}
-```
-
-The video picking dependency service is invoked by calling the `DependencyService.Get` method to obtain the implementation of an `IVideoPicker` interface in the platform project. The `GetVideoFileAsync` method is then called on that instance, and the returned filename is used to create a `FileMediaSource` object and to set it to the `Source` property of the `MediaElement`.
-
-<!--TODO ## Change video aspect ratio
-
-The `Aspect` property determines how video media will be scaled to fit the display area. By default, this property is set to the `AspectFit` enumeration member, but it can be set to any of the [`Aspect`](xref:Xamarin.Forms.Aspect) enumeration members:
-
-- `AspectFit` indicates that the video will be letterboxed, if required, to fit into the display area, while preserving the aspect ratio.
-- `AspectFill` indicates that the video will be clipped so that it fills the display area, while preserving the aspect ratio.
-- `Fill` indicates that the video will be stretched to fill the display area.-->
-
-<!-- TODO ## Binding to the `Position` property
-
-The property change notification for the `Position` bindable property fire at 200ms intervals while playing. Therefore, the property can be data-bound to a `Slider` control (or similar) to show progress through the media. The CommunityToolkit also provides a [`TimeSpanToDoubleConverter`](xref:Xamarin.CommunityToolkit.Converters.TimeSpanToDoubleConverter) which converts a [`TimeSpan`](xref:System.TimeSpan) into a floating point value representing total seconds elapsed. In this way you can set the Slider `Maximum` to the `Duration` of the media and the `Value` to the `Position` to provide accurate progress:
-
-```xaml
-<?xml version="1.0" encoding="UTF-8"?>
-<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-                xmlns:pages="clr-namespace:Xamarin.CommunityToolkit.Sample.Pages"
-                x:Class="Xamarin.CommunityToolkit.Sample.Pages.Views.MediaElementPage">
-    <pages:BasePage.Resources>
-        <xct:TimeSpanToDoubleConverter x:Key="TimeSpanConverter"/>
-    </pages:BasePage.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <xct:MediaElement
-            x:Name="mediaElement"
-            Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            ShowsPlaybackControls="True"
-            HorizontalOptions="Fill"
-            SeekCompleted="OnSeekCompleted" />
-        <Slider Grid.Row="1" BindingContext="{x:Reference mediaElement}" Value="{Binding Position, Converter={StaticResource TimeSpanConverter}}" Maximum="{Binding Duration, Converter={StaticResource TimeSpanConverter}}">
-            <Slider.Triggers>
-                <DataTrigger TargetType="Slider"
-                     Binding="{Binding CurrentState}"
-                     Value="{x:Static MediaElementState.Buffering}">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Slider.Triggers>
-        </Slider>
-        <Button Grid.Row="2" Text="Reset Source (Set Null)" Clicked="OnResetClicked" />
-    </Grid>
-</pages:BasePage>
-```
-
-In this example, the `Maximum` property of the `Slider` is data-bound to the `Duration` property of the `MediaElement` and the [`Value`](xref:Microsoft.Maui.Controls.Slider.Value) property of the [`Slider`](xref:Microsoft.Maui.Controls.Slider) is data-bound to the `Position` property of the `MediaElement`. Therefore, dragging the `Slider` results in the media playback position changing:
-
-![Screenshot of a MediaElement with a position bar, on iOS and Android.](mediaelement-images/custom-position-bar-large.png#lightbox)
-
-In addition, a [`DataTrigger`](xref:Microsoft.Maui.Controls.DataTrigger) object is used to disable the `Slider` when the media is buffering. For more information about data triggers, see [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers).
-
-> [!NOTE]
-> On Android, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) only has 1000 discrete steps, regardless of the `Minimum` and `Maximum` settings. If the media length is greater than 1000 seconds, then two different `Position` values would correspond to the same `Value` of the `Slider`. This is why the code above checks that the new position and existing position are greater than one-hundredth of the overall duration. -->
 
 ## Understand MediaSource types
 
@@ -326,7 +226,7 @@ In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds 
 
 For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slider) see, [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
 
-## Clean up MediaElement resources
+## Clean up `MediaElement` resources
 
 To prevent memory leaks you will have to free the resources of `MediaElement`. This can be done by disconnecting the handler.
 Where you need to do this is dependant on where and how you use `MediaElement` in your app, but typically if you have a `MediaElement` on a single page and are not playing media in the background, you want to free the resources when the user navigates away from the page.
@@ -340,9 +240,10 @@ Below you can find a snippet of sample code which shows how to do this. First, m
              x:Class="MediaElementDemos.FreeResourcesPage"
              Title="Free Resources"
              Unloaded="ContentPage_Unloaded">
-        <toolkit:MediaElement x:Name="mediaElement"
-                      ShouldAutoPlay="False"
-                      ... />
+    
+    <toolkit:MediaElement x:Name="mediaElement"
+                          ShouldAutoPlay="False"
+                          ... />
 </ContentPage>
 ```
 
@@ -409,5 +310,7 @@ You can find the source code for `MediaElement` over on the [.NET MAUI Community
 
 - [.NET MAUI Triggers](/dotnet/maui/fundamentals/triggers)
 - [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
-- [Android: Supported media formats](https://developer.android.com/guide/topics/media/media-formats)
-- [UWP: Supported codecs](/windows/uwp/audio-video-camera/supported-codecs)
+- [Android ExoPlayer: Supported media formats](https://exoplayer.dev/supported-formats.html)
+- [iOS: Supported media formats](https://stackoverflow.com/a/45898816/1506387)
+- [Windows: Supported codecs](/windows/uwp/audio-video-camera/supported-codecs)
+- [Android ExoPlayer Bindings](https://github.com/Baseflow/ExoPlayerXamarin)

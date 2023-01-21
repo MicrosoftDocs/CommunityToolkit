@@ -2,7 +2,7 @@
 title: Views - .NET MAUI Community Toolkit
 author: jfversluis
 description: The .NET MAUI Community Toolkit extends .NET MAUI controls.
-ms.date: 01/17/2023
+ms.date: 01/23/2023
 ---
 
 # Views

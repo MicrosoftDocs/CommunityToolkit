@@ -43,6 +43,10 @@ The supported multimedia formats can be different per platform. In some cases it
 > [!IMPORTANT]
 > If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.
 
+## Setup
+
+Before you are able to use `MediaElement` inside your application you will need to install the NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md) page.
+
 ## Play remote media
 
 A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:

@@ -56,6 +56,8 @@ The following screenshot shows the resulting Snackbar:
 
 ![Screenshot of an Snackbar on iOS](../images/alerts/snackbar-ios.gif "Snackbar on iOS")
 
+---
+
 There is also an extension method, which will anchor the `Snackbar` to any `VisualElement`:
 
 ```csharp

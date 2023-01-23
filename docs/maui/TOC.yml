@@ -125,6 +125,8 @@ items:
       href: converters/inverted-bool-converter.md
     - name: "IsEqualConverter"
       href: converters/is-equal-converter.md
+    - name: "IsInRangeConverter"
+      href: converters/is-in-range-converter.md
     - name: "IsListNotNullOrEmptyConverter"
       href: converters/is-list-not-null-or-empty-converter.md
     - name: "IsListNullOrEmptyConverter"
@@ -163,6 +165,14 @@ items:
       href: converters/text-case-converter.md
     - name: "VariableMultiValueConverter"
       href: converters/variable-multi-value-converter.md
+- name: "Essentials"
+  items:   
+    - name: Overview
+      href: essentials/index.md
+    - name: FolderPicker
+      href: essentials/folder-picker.md
+    - name: FileSaver
+      href: essentials/file-saver.md
 - name: Extensions
   items:
     - name: Overview

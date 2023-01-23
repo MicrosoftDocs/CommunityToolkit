@@ -34,13 +34,15 @@ await toast.Show(cancellationTokenSource.Token);
 When calling `Toast.Make()`, its parameter `string text` is required. All other parameters are optional. Its optional parameter `ToastDuration duration` uses the default duration of `ToastDuration.Short`. Its optional parameter `double fontSize` uses the default value of `14.0`.
 
 The following screenshot shows the resulting Toast:
-# [Android](#tab/android)
+### [Android](#tab/android)
 
 ![Screenshot of an Toast on Android](../images/alerts/toast-android.gif "Toast on Android")
 
-# [iOS](#tab/ios)
+### [iOS](#tab/ios)
 
 ![Screenshot of an Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
+
+---
 
 ## Properties
 

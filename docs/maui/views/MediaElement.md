@@ -107,6 +107,14 @@ The `MediaSource` class also has these derived classes:
 > [!NOTE]
 > When a `FileMediaSource` object is created in XAML, a type converter is invoked to return a `FileMediaSource` instance from a `string`.
 
+## Change video aspect ratio
+
+The `Aspect` property determines how video media will be scaled to fit the display area. By default, this property is set to the `AspectFit` enumeration member, but it can be set to any of the [`Aspect`](xref:Microsoft.Maui.Aspect) enumeration members:
+
+- `AspectFit` indicates that the video will be letterboxed, if required, to fit into the display area, while preserving the aspect ratio.
+- `AspectFill` indicates that the video will be clipped so that it fills the display area, while preserving the aspect ratio.
+- `Fill` indicates that the video will be stretched to fill the display area.
+
 ## Determine `MediaElement` status
 
 The `MediaElement` class defines a read-only bindable property named `CurrentState`, of type `MediaElementState`. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.
@@ -270,6 +278,7 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 
 |Property  |Type  |Description  |Default Value  |
 |---------|---------|---------|---------|
+| Aspect | [Aspect](xref:Microsoft.Maui.Aspect) | Determines the scaling mode for the (visual) media that is currently loaded. This is a bindable property. | `Aspect.AspectFit` |
 | CurrentState | `MediaElementState` | Indicates the current status of the control. This is a read-only, bindable property. | `MediaElementState.None` |
 | Duration | `TimeSpan` | Indicates the duration of the currently opened media. This is a read-only, bindable property. | `TimeSpan.Zero` |
 | Position | `TimeSpan` | Describes the current progress through the media's playback time. This is a read-only, bindable property. If you want to set the `Position` use the `SeekTo()` method. | `TimeSpan.Zero` |

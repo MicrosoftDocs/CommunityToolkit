@@ -165,6 +165,14 @@ items:
       href: converters/text-case-converter.md
     - name: "VariableMultiValueConverter"
       href: converters/variable-multi-value-converter.md
+- name: "Essentials"
+  items:   
+    - name: Overview
+      href: essentials/index.md
+    - name: FolderPicker
+      href: essentials/folder-picker.md
+    - name: FileSaver
+      href: essentials/file-saver.md
 - name: Extensions
   items:
     - name: Overview

@@ -35,6 +35,8 @@ Add permissions to `tizen-manifest.xml`:
 <privilege>http://tizen.org/privilege/externalstorage</privilege>
 ```
 
+--------------
+
 ## Syntax
 
 ### C#

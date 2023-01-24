@@ -10,7 +10,7 @@ dev_langs:
 
 # Introduction to the MVVM Toolkit
 
-The `CommunityToolkit.Mvvm` package (aka MVVM Toolkit, formerly named `Microsoft.Toolkit.Mvvm`) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit and is built around the following principles:
+The `CommunityToolkit.Mvvm` package (aka MVVM Toolkit, formerly named `Microsoft.Toolkit.Mvvm`) is a modern, fast, and modular MVVM library. It is part of the .NET Community Toolkit and is built around the following principles:
 
 - **Platform and Runtime Independent** - **.NET Standard 2.0**, **.NET Standard 2.1** and **.NET 6** 🚀 (UI Framework Agnostic)
 - **Simple to pick-up and use** - No strict requirements on Application structure or coding-paradigms (outside of 'MVVM'ness), i.e., flexible usage.

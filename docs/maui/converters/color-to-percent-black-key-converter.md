@@ -85,18 +85,18 @@ class ColorToPercentBlackKeyConverterPage : ContentPage
     public ColorToPercentBlackKeyConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The key component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentBlackKeyConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The key component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentBlackKeyConverter())
+            }
+        };
     }
 }
 ```

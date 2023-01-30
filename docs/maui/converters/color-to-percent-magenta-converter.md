@@ -85,18 +85,18 @@ class ColorToPercentMagentaConverterPage : ContentPage
     public ColorToPercentMagentaConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The magenta component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentMagentaConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The magenta component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentMagentaConverter())
+            }
+        };
     }
 }
 ```

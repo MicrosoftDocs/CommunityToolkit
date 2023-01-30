@@ -103,7 +103,9 @@ class ItemTappedEventArgsConverterPage : ContentPage
         {
             HasUnevenRows = true
         }
-        .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+        .Bind(
+            ListView.ItemsSourceProperty,
+            static(ViewModel vm => vm.Items))
         .Behaviors(
             new EventToCommandBehavior
             {
@@ -112,7 +114,7 @@ class ItemTappedEventArgsConverterPage : ContentPage
             }
             .Bind(
                 EventToCommandBehavior.CommandProperty, 
-                nameof(ViewModel.ItemTappedCommand)));                   
+                static(ViewModel vm => vm.ItemTappedCommand)));                   
     }
 }
 ```

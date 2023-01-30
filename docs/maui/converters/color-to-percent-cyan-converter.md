@@ -85,18 +85,18 @@ class ColorToPercentCyanConverterPage : ContentPage
     public ColorToPercentCyanConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The cyan component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentCyanConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The cyan component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentCyanConverter())
+            }
+        };
     }
 }
 ```

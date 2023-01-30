@@ -85,18 +85,18 @@ class ColorToByteRedConverterPage : ContentPage
     public ColorToByteRedConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The red component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToByteRedConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The red component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToByteRedConverter())
+            }
+        };
     }
 }
 ```

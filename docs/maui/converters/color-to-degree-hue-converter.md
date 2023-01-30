@@ -85,18 +85,18 @@ class ColorToDegreeHueConverterPage : ContentPage
     public ColorToDegreeHueConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The hue component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToDegreeHueConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The hue component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToDegreeHueConverter())
+            }
+        };
     }
 }
 ```

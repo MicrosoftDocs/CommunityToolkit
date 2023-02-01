@@ -285,6 +285,7 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | ShouldAutoPlay | `bool` | Indicates whether media playback will begin automatically when the `Source` property is set. This is a bindable property. | `false` |
 | ShouldLoopPlayback | `bool` | Describes whether the currently loaded media source should resume playback from the start after reaching its end. This is a bindable property. | `false` |
 | ShouldKeepScreenOn | `bool` | Determines whether the device screen should stay on during media playback. This is a bindable property. | `false` |
+| ShouldMute | `bool` | Determines whether the audio is currently muted. This is a bindable property. | `false` |
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
 | Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
 | Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |

@@ -46,7 +46,7 @@ builder.UseMauiCommunityToolkit(options =>
 
 5. Check out the rest of the documentation to learn more about implementing specific features.
 
-### `CommunityToolkit.Maui`
+### [`CommunityToolkit.Maui`](#tab/CommunityToolkit.Maui)
 
 This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.
 
@@ -55,6 +55,12 @@ This package is a collection of Animations, Behaviors, Converters, and Custom Vi
 **Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui
 
 #### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui;
+```
 
 In order to use the toolkit correctly the `UseMauiCommunityToolkit` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
 
@@ -67,7 +73,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### `CommunityToolkit.Maui.Markup`
+### [`CommunityToolkit.Maui.Markup`](#tab/CommunityToolkit.Maui.Markup)
 
 This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
 
@@ -76,6 +82,12 @@ This package is a set of fluent helper methods and classes to simplify building 
 **Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Markup
 
 #### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.Markup;
+```
 
 In order to use the toolkit correctly the `UseMauiCommunityToolkitMarkup` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
 
@@ -88,7 +100,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### `CommunityToolkit.Maui.MediaElement`
+### [`CommunityToolkit.Maui.MediaElement`](#tab/CommunityToolkit.Maui.MediaElement)
 
 This package enables you to play audio and video in your .NET MAUI application.
 
@@ -97,6 +109,12 @@ This package enables you to play audio and video in your .NET MAUI application.
 **Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement
 
 #### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.MediaElement;
+```
 
 In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
 
@@ -108,6 +126,8 @@ builder
 ```
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
+
+----
 
 ## Other resources
 

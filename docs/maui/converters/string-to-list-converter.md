@@ -130,7 +130,7 @@ class StringToListConverterPage : ContentPage
 
                 new CollectionView
                 {
-                    ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: "."))
+                    ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: Binding.SelfPath))
                 }.Bind(CollectionView.ItemsSourceProperty,
                         nameof(ViewModel.MyValue),    
                         converter: new StringToListConverter

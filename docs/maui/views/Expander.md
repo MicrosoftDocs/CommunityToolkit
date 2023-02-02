@@ -21,7 +21,7 @@ This `Header` property can be provided with any view to allow for full customiza
 This is the main content that will show when the `Header` property is interacted with it (clicked or tapped) or the `IsExpanded` property is modified.
 
 > [!NOTE]
-> `Expander` is not supported inside `ListView` on iOS/MacCatalyst and throws NotSupportedException. However, it can be replaced with the custom implementation by setting `public Action<TappedEventArgs>? HandleHeaderTapped { get; set; }`. This action is executed each time the header tapped. Please pay attention, by changing this action you may receive different behavior in `CollectionView` and `ListView` on all platforms.
+> `Expander` is not supported inside `CollectionView` or `ListView`
 
 ![Screenshot of an Expander in collapsed and expanded states](../images/views/Expander.gif "Expander showing in MacCatalyst")
 

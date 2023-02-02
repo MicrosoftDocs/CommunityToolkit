@@ -21,15 +21,18 @@ There are a number of overloads for the `Bind` method.
 
 #### One way binding
 
-A binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
+A one way binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
 
 ```csharp
 new Entry().Bind(Entry.TextProperty, static (RegistrationViewModel vm) => vm.RegistrationCode)
 ```
 
+> [!NOTE]
+> This will only result in the `RegistrationCode` property being updated when the `Text` property of the `Entry` changes (basically whenever the user types something in the box). It will **not** update the other way (e.g. changing the `RegistrationCode` property in the view model will not update the `Text` property.). To achieve this a Two way binding is required.
+
 #### Two way binding
 
-A binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
+A two way binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
 
 ```csharp
 new Entry().Bind(

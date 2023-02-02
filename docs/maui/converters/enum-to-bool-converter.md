@@ -145,7 +145,7 @@ class EnumToBoolConverterPage : ContentPage
                         static (ViewModel vm) => vm.Platforms)
                     .Bind(
                         Picker.SelectedItemProperty,
-                        static (ViewModel vm => vm.SelectedPlatform),
+                        static (ViewModel vm) => vm.SelectedPlatform),
 
                 new Label()
                     .Text("I am visible when the Picker value is Tizen.")

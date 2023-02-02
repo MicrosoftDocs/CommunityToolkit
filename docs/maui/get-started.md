@@ -22,6 +22,7 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 3. Choose the toolkit(s) that are most appropriate for your needs from:
     1. [`CommunityToolkit.Maui`](#communitytoolkitmaui)
     1. [`CommunityToolkit.Maui.Markup`](#communitytoolkitmauimarkup)
+    1. [`CommunityToolkit.Maui.MediaElement`](#communitytoolkitmauimediaelement)
 
 ## Using the NuGet package(s)
 

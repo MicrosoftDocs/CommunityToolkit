@@ -19,12 +19,23 @@ The `Bind` method offers a number of overloads providing different convenience a
 
 There are a number of overloads for the `Bind` method.
 
-#### Explicit property
+#### One way binding
 
 A binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
 
 ```csharp
-new Entry().Bind(Entry.TextProperty, static(RegistrationViewModel vm => vm.RegistrationCode))
+new Entry().Bind(Entry.TextProperty, static (RegistrationViewModel vm) => vm.RegistrationCode)
+```
+
+#### Two way binding
+
+A binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
+
+```csharp
+new Entry().Bind(
+    Entry.TextProperty,
+    static (RegistrationViewModel vm) => vm.RegistrationCode,
+    static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code)
 ```
 
 #### Default property
@@ -65,7 +76,7 @@ See [`TextCaseConverter`](../../converters/text-case-converter.md) for the docum
 new Entry()
     .Bind(
         Entry.TextProperty,
-        static(RegistrationViewModel vm => vm.RegistrationCode),
+        static (RegistrationViewModel vm) => vm.RegistrationCode,
         convert: (string? text) => text?.ToUpperInvariant());
 ```
 
@@ -103,7 +114,7 @@ The above could also be written as:
 new Button()
     .Bind(
         Entry.CommandProperty,
-        static(RegistrationViewModel vm => vm.SubmitCommand));
+        static (RegistrationViewModel vm) => vm.SubmitCommand);
 ```
 
 ## AppThemeBinding

@@ -92,10 +92,10 @@ class EnumToIntConverterPage : ContentPage
           new Picker()
             .Bind(
                 Picker.ItemSourceProperty,
-                static(ViewModel vm => vm.AllStates))
+                static (ViewModel vm) => vm.AllStates)
             .Bind(
                 Picker.SelectedIndexProperty,
-                static(ViewModel vm => vm.SelectedState)),
+                static (ViewModel vm) => vm.SelectedState),
 
           new Label()
             .Bind(Label.TextProperty, nameof(ViewModel.SelectedState), converter: new EnumToIntConverter()),

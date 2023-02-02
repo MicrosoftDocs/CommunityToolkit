@@ -103,7 +103,7 @@ class SelectedItemEventArgsConverterPage : ContentPage
         }
         .Bind(
             ListView.ItemsSourceProperty,
-            static(ViewModel vm => vm.Items))
+            static (ViewModel vm) => vm.Items)
         .Behaviors(
             new EventToCommandBehavior
             {

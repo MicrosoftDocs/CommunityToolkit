@@ -105,7 +105,7 @@ class ItemTappedEventArgsConverterPage : ContentPage
         }
         .Bind(
             ListView.ItemsSourceProperty,
-            static(ViewModel vm => vm.Items))
+            static (ViewModel vm) => vm.Items)
         .Behaviors(
             new EventToCommandBehavior
             {
@@ -114,7 +114,7 @@ class ItemTappedEventArgsConverterPage : ContentPage
             }
             .Bind(
                 EventToCommandBehavior.CommandProperty, 
-                static(ViewModel vm => vm.ItemTappedCommand)));                   
+                static (ViewModel vm) => vm.ItemTappedCommand));
     }
 }
 ```

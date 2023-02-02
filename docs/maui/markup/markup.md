@@ -35,7 +35,7 @@ entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCo
 Markup allows us to define the binding fluently and therefore chain multiple methods together to reduce the verbosity of our code:
 
 ```csharp
-new Entry().Bind(Entry.TextProperty, static(ViewModel vm => vm.RegistrationCode))
+new Entry().Bind(Entry.TextProperty, static (ViewModel vm) => vm.RegistrationCode)
 ```
 
 For further details on the possible options for the `Bind` method refer to the [`BindableObject` extensions documentation](extensions/bindable-object-extensions.md).
@@ -98,7 +98,7 @@ class SampleContentPage : ContentPage
                  .TextColor(Colors.Black)
                  .Height(44)
                  .Margin(5, 5)
-                 .Bind(Entry.TextProperty, static(ViewModel vm => vm.RegistrationCode))
+                 .Bind(Entry.TextProperty, static (ViewModel vm) => vm.RegistrationCode)
             }
         };
     }

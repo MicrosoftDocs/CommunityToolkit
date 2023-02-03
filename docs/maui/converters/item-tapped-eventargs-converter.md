@@ -15,6 +15,12 @@ The `ItemTappedEventArgsConverter` is a converter that allows users to extract t
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ItemTappedEventArgsConverter
+
 The `ItemTappedEventArgsConverter` can be used as follows in XAML:
 
 ```xaml

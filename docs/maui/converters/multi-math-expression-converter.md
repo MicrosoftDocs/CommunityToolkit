@@ -28,6 +28,12 @@ The following examples show how to add a `Label` that will show the result of `x
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the MultiMathExpressionConverter
+
 The `MultiMathExpressionConverter` can be used as follows in XAML:
 
 ```xaml

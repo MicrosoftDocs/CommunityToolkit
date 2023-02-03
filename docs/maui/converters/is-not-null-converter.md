@@ -18,6 +18,13 @@ The `ConvertBack` method is not supported. For the opposite behavior see the [`I
 ## Syntax
 
 ### XAML
+
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the IsNotNullConverter
+
 The `IsNotNullConverter` can be used as follows in XAML:
 
 ```xaml

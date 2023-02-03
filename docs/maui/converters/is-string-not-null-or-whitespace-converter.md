@@ -19,6 +19,12 @@ The `ConvertBack` method is not supported. For the opposite behavior see the [`I
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the IsStringNotNullOrWhitespaceConverter
+
 The `IsStringNotNullOrWhiteSpaceConverter` can be used as follows in XAML:
 
 ```xaml

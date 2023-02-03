@@ -91,7 +91,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
         }
         .Bind(
             UserStoppedTypingBehavior.CommandProperty, 
-            nameof(ViewModel. SearchCommand));                    
+            static (ViewModel vm) => vm.SearchCommand),
+            mode: BindingMode.OneTime);
     }
 }
 ```

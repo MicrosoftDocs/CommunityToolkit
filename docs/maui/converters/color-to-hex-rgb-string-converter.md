@@ -91,18 +91,18 @@ class ColorToHexRgbStringConverterPage : ContentPage
     public ColorToHexRgbStringConverterPage()
     {
         Content = new VerticalStackLayout
-	{
-		Children =
-		{
-			new Label()
-				.Text("My favourite Color is:"),
-			new Label()
-				.Bind(
-					Label.TextProperty,
-					nameof(ViewModel.MyFavoriteColor),
-					converter: new ColorToHexRgbStringConverter())
-		}
-	};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("My favourite Color is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToHexRgbStringConverter())
+            }
+        };
     }
 }
 ```

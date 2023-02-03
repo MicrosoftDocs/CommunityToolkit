@@ -116,7 +116,7 @@ The `ItemTemplate` method sets the `ItemTemplate` property on an `ItemsView` ele
 The following example sets the `ItemTemplate` to a new `DataTemplate` containing a `Label` whose `TextProperty` is bound to the ItemsSource:
 
 ```csharp
-new CollectionView().ItemTemplate(new DataTemplate(() => new Label().Bind(Label.TextProperty, ".")));
+new CollectionView().ItemTemplate(new DataTemplate(() => new Label().Bind(Label.TextProperty, Binding.SelfPath)));
 ```
 
 ## ItemsUpdatingScrollMode

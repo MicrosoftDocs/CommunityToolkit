@@ -91,18 +91,18 @@ class ColorToPercentYellowConverterPage : ContentPage
     public ColorToPercentYellowConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The yellow component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentYellowConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The yellow component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentYellowConverter())
+            }
+        };
     }
 }
 ```

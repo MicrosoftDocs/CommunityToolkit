@@ -89,7 +89,7 @@ class MaxLengthReachedBehaviorPage : ContentPage
         }.Behaviors(
             new MaxLengthReachedBehavior().Bind(
                 MaxLengthReachedBehavior.CommandProperty,
-                nameof(ViewModel.MaxLengthReachedCommand)));
+                static (ViewModel vm) => vm.MaxLengthReachedCommand));
     }
 }
 ```

@@ -59,7 +59,7 @@ Below is an example UI created using XAML. This sample UI is connected to the be
 
 ### C# Markup
 
-Below is the same UI as the XAML, above, created using [C# Markup](https://learn.microsoft.com/dotnet/communitytoolkit/maui/markup/markup).
+Below is the same UI as the XAML, above, created using [C# Markup](/dotnet/communitytoolkit/maui/markup/markup).
 
 This sample UI is connected to the below ViewModel, `StateContainerViewModel`.
 
@@ -120,7 +120,7 @@ static class States
 When using an `ICommand` to change `CurrentState` (e.g. when using `Button.Command` to change states),
 we recommended using `CanStateBeChanged` for `ICommand.CanExecute()`. 
 
-Below is an MVVM example using the [MVVM Community Toolkit](https://learn.microsoft.com/windows/communitytoolkit/mvvm/introduction):
+Below is an MVVM example using the [MVVM Community Toolkit](/windows/communitytoolkit/mvvm/introduction):
 
 ```cs
 [INotifyPropertyChanged]

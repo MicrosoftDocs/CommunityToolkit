@@ -19,33 +19,7 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 
     ![Manage NuGet Packages...](images/get-started/manage-nuget.png "Right click on the solution and select 'Manage NuGet Packages...'")
 
-3. Choose the toolkit(s) that are most appropriate for your needs from:
-    1. [`CommunityToolkit.Maui`](#communitytoolkitmaui)
-    1. [`CommunityToolkit.Maui.Markup`](#communitytoolkitmauimarkup)
-    1. [`CommunityToolkit.Maui.MediaElement`](#communitytoolkitmauimediaelement)
-
-## Using the NuGet package(s)
-
-4. Enable Toolkit in `MauiProgram.cs`:
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder.UseMauiApp<App>();
-builder.UseMauiCommunityToolkit();
-```
-
-4.1. For advanced settings set [CommunityToolkit.Maui.Options](./options.md):
-
-```csharp
-builder.UseMauiCommunityToolkit(options =>
-{
-    options.SetShouldSuppressExceptionsInConverters(false);
-    options.SetShouldSuppressExceptionsInBehaviors(false);
-    options.SetShouldSuppressExceptionsInAnimations(false);
-});
-```
-
-5. Check out the rest of the documentation to learn more about implementing specific features.
+3. Choose the toolkit(s) that are most appropriate for your needs from the options below:
 
 ### [CommunityToolkit.Maui](#tab/CommunityToolkitMaui)
 
@@ -129,6 +103,29 @@ builder
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
 ----
+
+## Using the NuGet package(s)
+
+4. Enable Toolkit in `MauiProgram.cs`:
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder.UseMauiApp<App>();
+builder.UseMauiCommunityToolkit();
+```
+
+4.1. For advanced settings set [CommunityToolkit.Maui.Options](./options.md):
+
+```csharp
+builder.UseMauiCommunityToolkit(options =>
+{
+    options.SetShouldSuppressExceptionsInConverters(false);
+    options.SetShouldSuppressExceptionsInBehaviors(false);
+    options.SetShouldSuppressExceptionsInAnimations(false);
+});
+```
+
+5. Check out the rest of the documentation to learn more about implementing specific features.
 
 ## Other resources
 

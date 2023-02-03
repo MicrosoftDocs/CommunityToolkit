@@ -114,7 +114,8 @@ class ItemTappedEventArgsConverterPage : ContentPage
             }
             .Bind(
                 EventToCommandBehavior.CommandProperty, 
-                static (ViewModel vm) => vm.ItemTappedCommand));
+                static (ViewModel vm) => vm.ItemTappedCommand,
+                mode: BindingMode.OneTime));
     }
 }
 ```

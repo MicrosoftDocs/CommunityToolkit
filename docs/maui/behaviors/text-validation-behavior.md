@@ -15,6 +15,12 @@ The following examples show how to add the `TextValidationBehavior` to an `Entry
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the TextValidationBehavior
+
 The `TextValidationBehavior` can be used as follows in XAML:
 
 ```xaml

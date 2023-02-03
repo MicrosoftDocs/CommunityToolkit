@@ -19,6 +19,12 @@ The following examples show how to add the `EmailValidationBehavior` to an `Entr
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the EmailValidationBehavior
+
 The `EmailValidationBehavior` can be used as follows in XAML:
 
 ```xaml

@@ -47,7 +47,7 @@ builder.UseMauiCommunityToolkit(options =>
 
 5. Check out the rest of the documentation to learn more about implementing specific features.
 
-### [CommunityToolkit.Maui](#tab/CommunityToolkit.Maui)
+### [CommunityToolkit.Maui](#tab/CommunityToolkitMaui)
 
 This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.
 
@@ -74,7 +74,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### [CommunityToolkit.Maui.Markup](#tab/CommunityToolkit.Maui.Markup)
+### [CommunityToolkit.Maui.Markup](#tab/CommunityToolkitMauiMarkup)
 
 This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
 
@@ -101,7 +101,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkit.Maui.MediaElement)
+### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkitMauiMediaElement)
 
 This package enables you to play audio and video in your .NET MAUI application.
 

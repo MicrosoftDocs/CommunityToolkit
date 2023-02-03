@@ -22,6 +22,12 @@ The `StateContainer` attached properties enables the user to turn any layout ele
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the StateContainer
+
 Below is an example UI created using XAML. This sample UI is connected to the below ViewModel, `StateContainerViewModel`.
 
 ```xml

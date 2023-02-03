@@ -19,6 +19,12 @@ The following sections cover how to use a `DockLayout` in both C# and XAML.
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the DockLayout
+
 A basic `DockLayout` can be created in XAML as shown here:
 
 ```xml

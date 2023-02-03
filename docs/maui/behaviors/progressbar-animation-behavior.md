@@ -13,6 +13,12 @@ The ProgressBar Animation Behavior animates a `ProgressBar` from its current Pro
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ProgressBarAnimationBehavior
+
 The `ProgressBarAnimationBehavior` can be used as follows in XAML:
 
 ```xaml

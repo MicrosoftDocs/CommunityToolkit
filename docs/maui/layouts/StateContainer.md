@@ -44,7 +44,7 @@ Below is an example UI created using XAML. This sample UI is connected to the be
         </toolkit:StateContainer.StateViews>
 
         <Label Text="Default Content" />
-        <Button Text="Change State" Command="{Binding ChangeStateCommand">
+        <Button Text="Change State" Command="{Binding ChangeStateCommand}" />
 
     </VerticalStackLayout>
 

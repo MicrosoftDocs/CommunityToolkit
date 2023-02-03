@@ -85,18 +85,18 @@ class ColorToByteGreenConverterPage : ContentPage
     public ColorToByteGreenConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The green component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToByteGreenConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The green component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                    converter: new ColorToByteGreenConverter())
+            }
+        };
     }
 }
 ```

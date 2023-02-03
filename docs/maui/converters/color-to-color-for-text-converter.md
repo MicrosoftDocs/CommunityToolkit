@@ -74,11 +74,11 @@ class ColorToColorForTextConverterPage : ContentPage
     public ColorToColorForTextConverterPage()
     {
         Content = new Label { Text = "The Text is showing in an optimum color against the background" }
-			.Bind(
-				Label.TextColorProperty,
-				nameof(ContentPage.BackgroundColor),
-				converter: new ColorToColorForTextConverter(),
-				source: this);
+            .Bind(
+                Label.TextColorProperty,
+                nameof(ContentPage.BackgroundColor),
+                converter: new ColorToColorForTextConverter(),
+                source: this);
     }
 }
 ```

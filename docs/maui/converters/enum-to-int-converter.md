@@ -90,8 +90,12 @@ class EnumToIntConverterPage : ContentPage
     {
         Content = new StackLayout {
           new Picker()
-            .Bind(Picker.ItemSourceProperty, nameof(ViewModel.AllStates)
-            .Bind(Picker.SelectedIndexProperty, nameof(ViewModel.SelectedState),
+            .Bind(
+                Picker.ItemSourceProperty,
+                static (ViewModel vm) => vm.AllStates)
+            .Bind(
+                Picker.SelectedIndexProperty,
+                static (ViewModel vm) => vm.SelectedState),
 
           new Label()
             .Bind(Label.TextProperty, nameof(ViewModel.SelectedState), converter: new EnumToIntConverter()),

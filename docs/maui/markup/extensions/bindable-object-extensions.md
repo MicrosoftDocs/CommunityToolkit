@@ -111,6 +111,8 @@ new Label().AppThemeBinding(Label.TextColorProperty, Colors.Black, Colors.White)
 > [!NOTE]
 > There is a more specific method when dealing with `Color` properties. `AppThemeColorBinding` will perform the same underlying behavior as `AppThemeBinding` but it requires a set of `Color` parameters.
 
+For more information refer to the [Theming](../theming.md) documentation.
+
 ## Examples
 
 You can find an example of these extension methods in action throughout the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui.Markup/blob/main/samples/CommunityToolkit.Maui.Markup.Sample/).

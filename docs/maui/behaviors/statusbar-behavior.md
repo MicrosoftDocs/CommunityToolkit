@@ -37,7 +37,7 @@ class MyPage : ContentPage
 {
     public MyPage()
     {
-        this.Behaviors(new StatusBarBehavior
+        this.Behaviors.Add(new StatusBarBehavior
         {
             StatusBarColor = Colors.Red,
             StatusBarStyle = StatusBarStyle.LightContent

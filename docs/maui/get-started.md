@@ -2,7 +2,7 @@
 title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
-ms.date: 01/14/2022
+ms.date: 01/23/2023
 ---
 
 # Get started
@@ -84,6 +84,27 @@ var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
     .UseMauiCommunityToolkitMarkup()
+```
+
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
+
+### `CommunityToolkit.Maui.MediaElement`
+
+This package enables you to play audio and video in your .NET MAUI application.
+
+**Package name:** `CommunityToolkit.Maui.MediaElement`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement
+
+#### Initializing the package
+
+In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMediaElement()
 ```
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.

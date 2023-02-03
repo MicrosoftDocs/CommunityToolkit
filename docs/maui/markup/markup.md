@@ -17,7 +17,7 @@ C# Markup is available on all platforms supported by .NET MAUI.
 
 ## NuGet package
 
-The C# Markup package can be included in your project(s) as decribed in our [Getting started](../get-started.md#communitytoolkitmauimarkup) guide.
+The C# Markup package can be included in your project(s) as decribed in our [Getting started](../get-started.md) guide.
 
 ## Examples
 

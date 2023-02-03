@@ -15,6 +15,12 @@ The following examples show how to add the `NumericValidationBehavior` to an `En
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the NumericValidationBehavior
+
 The `NumericValidationBehavior` can be used as follows in XAML:
 
 ```xaml

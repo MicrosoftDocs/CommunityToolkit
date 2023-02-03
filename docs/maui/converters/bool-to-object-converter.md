@@ -21,6 +21,12 @@ The following examples will show how to use the `BoolToObjectConverter` to chang
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the BoolToObjectConverter
+
 The `BoolToObjectConverter` can be used as follows in XAML:
 
 ```xaml

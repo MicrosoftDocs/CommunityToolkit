@@ -91,18 +91,18 @@ class ColorToByteBlueConverterPage : ContentPage
     public ColorToByteBlueConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The blue component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToByteBlueConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The blue component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToByteBlueConverter())
+            }
+        };
     }
 }
 ```

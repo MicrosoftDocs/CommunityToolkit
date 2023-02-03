@@ -91,18 +91,18 @@ class ColorToByteAlphaConverterPage : ContentPage
     public ColorToByteAlphaConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The alpha component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToByteAlphaConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The alpha component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToByteAlphaConverter())
+            }
+        };
     }
 }
 ```

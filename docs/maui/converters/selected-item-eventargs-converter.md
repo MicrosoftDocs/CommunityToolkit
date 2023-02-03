@@ -107,7 +107,9 @@ class SelectedItemEventArgsConverterPage : ContentPage
         {
             HasUnevenRows = true
         }
-        .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+        .Bind(
+            ListView.ItemsSourceProperty,
+            static (ViewModel vm) => vm.Items)
         .Behaviors(
             new EventToCommandBehavior
             {

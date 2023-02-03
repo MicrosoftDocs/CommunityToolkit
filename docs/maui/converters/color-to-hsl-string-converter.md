@@ -91,18 +91,18 @@ class ColorToHslStringConverterPage : ContentPage
     public ColorToHslStringConverterPage()
     {
         Content = new VerticalStackLayout
-	{
-		Children =
-		{
-			new Label()
-				.Text("My favourite Color is:"),
-			new Label()
-				.Bind(
-					Label.TextProperty,
-					nameof(ViewModel.MyFavoriteColor),
-					converter: new ColorToHslStringConverter())
-		}
-	};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("My favourite Color is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToHslStringConverter())
+            }
+        };
     }
 }
 ```

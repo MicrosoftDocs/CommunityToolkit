@@ -50,7 +50,7 @@ Below is an example UI created using XAML. This sample UI is connected to the be
         </toolkit:StateContainer.StateViews>
 
         <Label Text="Default Content" />
-        <Button Text="Change State" Command="{Binding ChangeStateCommand">
+        <Button Text="Change State" Command="{Binding ChangeStateCommand}" />
 
     </VerticalStackLayout>
 
@@ -76,9 +76,18 @@ Content = new VerticalStackLayout()
     
     new Button()
         .Text("Change State")
-        .Bind(Button.CommandProperty, nameof(StateContainerViewModel.ChangeStateCommand))
-}.Bind(StateContainer.CurrentStateProperty, nameof(StateContainerViewModel.CurrentState))
- .Bind(StateContainer.CanStateChange, nameof(StateContainerViewModel.CanStateChange))
+        .Bind(
+            Button.CommandProperty,
+            static (StateContainerViewModel vm) => vm.ChangeStateCommand,
+            mode: BindingMode.OneTime)
+}.Bind(
+    StateContainer.CurrentStateProperty,
+    static (StateContainerViewModel vm) => vm.CurrentState,
+    static (StateContainerViewModel vm, string currentState) => vm.CurrentState = currentState)
+ .Bind(
+    StateContainer.CanStateChange,
+    static (StateContainerViewModel vm) => vm.CanStateChange,
+    static (StateContainerViewModel vm, bool canStateChange) => vm.CanStateChange = canStateChange)
  .Assign(out VerticalStackLayout layout);
 
 var stateViews = new List<View>()

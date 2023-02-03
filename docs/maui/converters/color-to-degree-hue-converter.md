@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToDegreeHueConverter` to d
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToDegreeHueConverter
+
 The `ColorToDegreeHueConverter` can be used as follows in XAML:
 
 ```xaml

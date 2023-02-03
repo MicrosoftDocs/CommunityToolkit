@@ -15,6 +15,12 @@ The `DateTimeOffsetConverter` is a converter that allows users to convert a `Dat
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the DateTimeOffsetConverter
+
 The `DateTimeOffsetConverter` can be used as follows in XAML:
 
 ```xaml

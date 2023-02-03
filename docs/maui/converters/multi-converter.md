@@ -17,6 +17,12 @@ This example makes use of the `MultiConverterParameter` which allows for the Con
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the MultiConverter
+
 The `MultiConverter` can be used as follows in XAML:
 
 ```xaml

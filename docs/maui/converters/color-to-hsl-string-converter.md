@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToHslStringConverter` to d
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToHslStringConverter
+
 The `ColorToHslStringConverter` can be used as follows in XAML:
 
 ```xaml

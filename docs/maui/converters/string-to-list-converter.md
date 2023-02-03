@@ -25,6 +25,12 @@ The `ConvertBack` method is not supported. For the opposite behavior see the [`L
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the StringToListConverter
+
 The `StringToListConverter` can be used as follows in XAML:
 
 ```xaml

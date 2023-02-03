@@ -19,7 +19,13 @@ The `ConvertBack` method returns the supplied `ImageSource` `value` converted to
 
 ### XAML
 
-The `ByteArrayToImageSourceConverter ` can be used as follows in XAML:
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ByteArrayToImageSourceConverter
+
+The `ByteArrayToImageSourceConverter` can be used as follows in XAML:
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"

@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToPercentCyanConverter` to
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToPercentCyanConverter
+
 The `ColorToPercentCyanConverter` can be used as follows in XAML:
 
 ```xaml

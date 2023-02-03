@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToPercentMagentaConverter`
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToPercentMagentaConverter
+
 The `ColorToPercentMagentaConverter` can be used as follows in XAML:
 
 ```xaml

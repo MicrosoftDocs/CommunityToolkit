@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToRgbaStringConverter` to 
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToRgbaStringConverter
+
 The `ColorToRgbaStringConverter` can be used as follows in XAML:
 
 ```xaml

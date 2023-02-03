@@ -1,6 +1,6 @@
 ---
 title: StateContainer - .NET MAUI Community Toolkit
-author: [nicjay, brminnick]
+author: nicjay
 description: StateContainer bindable properties enable any Layout derived element to become state-aware
 ms.date: 12/12/2022
 ---

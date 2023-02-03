@@ -16,8 +16,14 @@ A common use case for this is to provide a signature box in an application.
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the DrawingView
+
 ```xml
-<views:DrawingView
+<toolkit:DrawingView
             Lines="{Binding MyLines}"
             LineColor="Red"
             LineWidth="5" />
@@ -111,7 +117,7 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
 ### XAML
 
 ```xml
-<views:DrawingView
+<toolkit:DrawingView
             x:Name="DrawingViewControl"
             Lines="{Binding MyLines}"
             IsMultiLineModeEnabled="true"
@@ -122,7 +128,7 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             LineWidth="5"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
-            <views:DrawingView.Background>
+            <toolkit:DrawingView.Background>
                     <LinearGradientBrush StartPoint="0,0"
                                          EndPoint="0,1">
                         <GradientStop Color="Blue"
@@ -130,8 +136,8 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
                         <GradientStop Color="Yellow"
                                       Offset="1"/>
                     </LinearGradientBrush>
-            </views:DrawingView.Background>
-</views:DrawingView>
+            </toolkit:DrawingView.Background>
+</toolkit:DrawingView>
 ```
 
 ### C#

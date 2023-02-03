@@ -72,13 +72,16 @@ Content = new VerticalStackLayout()
         .Text("Change State")
         .Bind(
             Button.CommandProperty,
-            static (StateContainerViewModel vm) => vm.ChangeStateCommand)
+            static (StateContainerViewModel vm) => vm.ChangeStateCommand,
+            mode: BindingMode.OneTime)
 }.Bind(
     StateContainer.CurrentStateProperty,
-    static (StateContainerViewModel vm) => vm.CurrentState)
+    static (StateContainerViewModel vm) => vm.CurrentState,
+    static (StateContainerViewModel vm, string currentState) => vm.CurrentState = currentState)
  .Bind(
     StateContainer.CanStateChange,
-    static (StateContainerViewModel vm) => vm.CanStateChange)
+    static (StateContainerViewModel vm) => vm.CanStateChange,
+    static (StateContainerViewModel vm, bool canStateChange) => vm.CanStateChange = canStateChange)
  .Assign(out VerticalStackLayout layout);
 
 var stateViews = new List<View>()

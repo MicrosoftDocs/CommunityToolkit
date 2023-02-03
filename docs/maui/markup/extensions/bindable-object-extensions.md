@@ -49,7 +49,7 @@ new Entry().Bind(nameof(ViewModel.RegistrationCode))
 ```
 
 > [!WARNING]
-> This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#explicit-property) approach.
+> This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
 
 #### Value conversion
 

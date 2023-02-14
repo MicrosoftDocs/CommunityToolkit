@@ -135,7 +135,7 @@ class StateToBooleanConverterPage : ContentPage
 
                 new Button()
                     .Text("Change state")
-                    .BindCommand(static (ViewModel vm) => vm.ChangeLayoutCommand)
+                    .BindCommand(nameof(ViewModel.ChangeLayoutCommand))
             }
         };
     }

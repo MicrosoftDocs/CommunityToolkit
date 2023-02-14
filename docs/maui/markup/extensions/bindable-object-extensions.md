@@ -102,7 +102,7 @@ The `BindCommand` method provides a helpful way of configuring a binding to a de
 The default command to bind for an `Button` is the `Command` property. So the following example sets up a binding to that property.
 
 ```csharp
-new Button().BindCommand(nameof(ViewModel.SubmitCommand));
+new Button().BindCommand(static (ViewModel vm) => vm.SubmitCommand);
 ```
 
 The above could also be written as:

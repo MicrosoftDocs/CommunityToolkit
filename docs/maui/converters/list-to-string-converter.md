@@ -87,7 +87,7 @@ class ListToStringConverterPage : ContentPage
         Content = new Label()
             .Bind(
                 Label.TextProperty,
-                nameof(ViewModel.MyListValue),
+                static (ViewModel vm) => vm.MyListValue,
                 converter: new ListToStringConverter(),
                 converterParameter: ",");
     }

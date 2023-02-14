@@ -99,7 +99,7 @@ class CompareConverterPage : ContentPage
             .Text("The background of this label will be green if the value entered is less than 50, and red otherwise.")
             .Bind(
                 Label.BackgroundColorProperty,
-                nameof(ViewModel.MyValue),
+                static (ViewModel vm) => vm.MyValue,
                 converter: new CompareConverter
                 {
                     ComparisonOperator = OperatorType.Smaller,

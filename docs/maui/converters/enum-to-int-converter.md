@@ -104,7 +104,10 @@ class EnumToIntConverterPage : ContentPage
                 static (ViewModel vm) => vm.SelectedState),
 
           new Label()
-            .Bind(Label.TextProperty, nameof(ViewModel.SelectedState), converter: new EnumToIntConverter()),
+            .Bind(
+                Label.TextProperty,
+                static (ViewModel vm) => vm.SelectedState,
+                converter: new EnumToIntConverter()),
         }
     }
 }

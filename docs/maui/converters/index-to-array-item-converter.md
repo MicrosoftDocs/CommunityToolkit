@@ -90,7 +90,7 @@ class IndexToArrayItemConverter : ContentPage
         Content = new Label()
             .Bind(
                 Label.TextProperty, 
-                nameof(ViewModel.MyIntegerValue), 
+                static (ViewModel vm) => vm.MyIntegerValue,
                 converter: new IndexToArrayItemConverter(),
                 converterParameter: array); 
     }

@@ -60,10 +60,22 @@ landingContent:
             url: maui/get-started.md
       - linkListType: concept
         links:
+          - text: Alerts
+            url: maui/alerts/index.md
+          - text: Animations
+            url: maui/animations/index.md
           - text: Behaviors
             url: maui/behaviors/index.md
           - text: Converters
             url: maui/converters/index.md
+          - text: Essentials
+            url: maui/essentials/index.md
+          - text: Extensions
+            url: maui/extensions/index.md
+          - text: Image Sources
+            url: maui/imagesources/index.md
+          - text: Layouts
+            url: maui/layouts/index.md
           - text: Views
             url: maui/views/index.md
           - text: C# Markup

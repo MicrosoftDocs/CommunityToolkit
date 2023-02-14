@@ -81,7 +81,7 @@ class IntToBoolConverterPage : ContentPage
         Content = new Label { Text = "The value is not zero." }
             .Bind(
                 Label.IsVisibleProperty,
-                static (ViewModel vm) => vm.MyValue,
+                nameof(ViewModel.MyValue),
                 converter: new IntToBoolConverter());
     }
 }

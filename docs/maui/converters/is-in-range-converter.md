@@ -59,7 +59,7 @@ class IsInRangeConverterPage : ContentPage
             .Text("The background of this label will be green if MyValue is between 'Hello' and 'World', otherwise red.")
             .Bind(
                 Label.BackgroundColorProperty,
-                static (ViewModel vm) => vm.MyValue,
+                nameof(ViewModel.MyValue),
                 converter: new IsInRangeConverter
                 {
                         TrueObject = Colors.Green,

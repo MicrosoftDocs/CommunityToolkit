@@ -61,7 +61,7 @@ The `Bind` method allows for a developer to supply the `Converter` that they wis
 new Entry()
     .Bind(
         Entry.TextProperty,
-        static (RegistrationViewModel vm) => vm.RegistrationCode,
+        nameof(RegistrationViewModel.RegistrationCode),
         converter: new TextCaseConverter { Type = TextCaseType.Upper });
 ```
 

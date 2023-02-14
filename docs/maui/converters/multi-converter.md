@@ -115,7 +115,7 @@ class MultiConverterPage : ContentPage
             .Text("Well done you guessed the magic word!")
             .Bind(
                 Label.IsVisibleProperty,
-                static (ViewModel vm) => vm.EnteredName,
+                nameof(ViewModels.EnteredName),
                 converter: converter,
                 converterParameter: parameters);
     }

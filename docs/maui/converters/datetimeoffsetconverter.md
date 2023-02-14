@@ -90,8 +90,8 @@ class DateTimeOffsetConverterPage : ContentPage
         Content = new Label()
             .Bind(
                 Label.TextProperty,
-                static (ViewModel vm) => vm.MyValue,
-                converter: new DateTimeOffsetConverter());
+                nameof(ViewModel.MyValue),
+                converter: new DateTimeOffsetConverterPage());
     }
 }
 ```

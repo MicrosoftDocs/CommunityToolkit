@@ -157,7 +157,7 @@ class EnumToBoolConverterPage : ContentPage
                     .Text("I am visible when the Picker value is Tizen.")
                     .Bind(
                         Label.IsVisibleProperty,
-                        static (ViewModel vm) => vm.SelectedPlatform,
+                        nameof(ViewModel.SelectedPlatform),
                         converter: new EnumToBoolConverter(),
                         converterParameter: MyDevicePlatform.Tizen)
             }

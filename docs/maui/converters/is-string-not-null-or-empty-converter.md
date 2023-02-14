@@ -81,7 +81,7 @@ class IsStringNotNullOrEmptyConverterPage : ContentPage
         Content = new Label { Text = "A value has been entered" }
             .Bind(
                 Label.IsVisibleProperty,
-                static (ViewModel vm) => vm.MyValue,
+                nameof(ViewModel.MyValue),
                 converter: new IsStringNotNullOrEmptyConverter());
     }
 }

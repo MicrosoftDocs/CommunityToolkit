@@ -87,7 +87,7 @@ class BoolToObjectConverterPage : ContentPage
             .Text("The answer to the Ultimate Question of Life, the Universe and Everything.")
             .Bind(
                 Label.IsVisibleProperty,
-                nameof(ViewModel.MyValue),
+                static (ViewModel vm) => vm.MyValue,
                 converter: new BoolToObjectConverter { TrueObject = 42, FalseObject = 0 });
     }
 }

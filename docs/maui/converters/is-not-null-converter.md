@@ -78,7 +78,10 @@ class IsNotNullConverterPage : ContentPage
     public IsNotNullConverterPage()
     {
         Content = new Label { Text = "Object is not null" }
-            .Bind(Label.IsVisibleProperty, nameof(ViewModel.MyObject), converter: new IsNotNullConverter());
+            .Bind(
+                Label.IsVisibleProperty,
+                static (ViewModel vm) => vm.MyObject,
+                converter: new IsNotNullConverter());
     }
 }
 ```

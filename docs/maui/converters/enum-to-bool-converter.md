@@ -41,6 +41,12 @@ public enum MyDevicePlatform
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the EnumToBoolConverter
+
 The `EnumToBoolConverter` can be used as follows in XAML:
 
 ```xaml

@@ -31,15 +31,21 @@ The following examples show how to use the `Expander` view by setting the `Heade
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the Expander
+
 The following example shows how to add an `Expander` view in XAML.
 
 ```xml
-<Expander>
-    <Expander.Header>
+<toolkit:Expander>
+    <toolkit:Expander.Header>
         <Label Text="Baboon"
                FontAttributes="Bold"
                FontSize="Medium" />
-    </Expander.Header>
+    </toolkit:Expander.Header>
     <HorizontalStackLayout Padding="10">
         <Image Source="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg"
                Aspect="AspectFill"
@@ -48,7 +54,7 @@ The following example shows how to add an `Expander` view in XAML.
         <Label Text="Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae."
                FontAttributes="Italic" />
     </HorizontalStackLayout>
-</Expander>
+</toolkit:Expander>
 ```
 
 ### C#

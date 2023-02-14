@@ -15,6 +15,12 @@ The `IndexToArrayItemConverter` is a converter that allows users to convert an `
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the IndexToArrayItemConverter
+
 The `IndexToArrayItemConverter` can be used as follows in XAML:
 
 ```xaml

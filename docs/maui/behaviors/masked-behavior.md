@@ -15,6 +15,12 @@ The following examples show how to add the `MaskedBehavior` to an `Entry` to aid
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the MaskedBehavior
+
 The `MaskedBehavior` can be used as follows in XAML:
 
 ```xaml

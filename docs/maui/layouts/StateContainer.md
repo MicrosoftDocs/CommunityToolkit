@@ -1,6 +1,6 @@
 ---
 title: StateContainer - .NET MAUI Community Toolkit
-author: nicjay, brminnick
+author: nicjay
 description: StateContainer bindable properties enable any Layout derived element to become state-aware
 ms.date: 12/12/2022
 ---
@@ -21,6 +21,12 @@ The `StateContainer` attached properties enables the user to turn any layout ele
 `StateContainer` properties can be used in XAML or C#.
 
 ### XAML
+
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the StateContainer
 
 Below is an example UI created using XAML. This sample UI is connected to the below ViewModel, `StateContainerViewModel`.
 
@@ -53,7 +59,7 @@ Below is an example UI created using XAML. This sample UI is connected to the be
 
 ### C# Markup
 
-Below is the same UI as the XAML, above, created using [C# Markup](https://learn.microsoft.com/dotnet/communitytoolkit/maui/markup/markup).
+Below is the same UI as the XAML, above, created using [C# Markup](/dotnet/communitytoolkit/maui/markup/markup).
 
 This sample UI is connected to the below ViewModel, `StateContainerViewModel`.
 
@@ -114,7 +120,7 @@ static class States
 When using an `ICommand` to change `CurrentState` (e.g. when using `Button.Command` to change states),
 we recommended using `CanStateBeChanged` for `ICommand.CanExecute()`. 
 
-Below is an MVVM example using the [MVVM Community Toolkit](https://learn.microsoft.com/windows/communitytoolkit/mvvm/introduction):
+Below is an MVVM example using the [MVVM Community Toolkit](/windows/communitytoolkit/mvvm/introduction):
 
 ```cs
 [INotifyPropertyChanged]

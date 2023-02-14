@@ -15,6 +15,12 @@ Additionally it is possible to dismiss the keyboard when the maximum length is r
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the MaxLengthReachedBehavior
+
 The `MaxLengthReachedBehavior` can be used as follows in XAML:
 
 ```xaml

@@ -20,6 +20,12 @@ For localization purposes or due to other requirements, the enum values often ne
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the EnumToIntConverter
+
 The `EnumToIntConverter` can be used as follows in XAML:
 
 ```xaml

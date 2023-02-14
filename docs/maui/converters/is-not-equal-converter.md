@@ -83,7 +83,7 @@ class IsNotEqualConverterPage : ContentPage
         Content = new Label { Text = "The value is not equal to 100" }
             .Bind(
                 Label.IsVisibleProperty,
-                static (ViewModel vm) => vm.MyValue,
+                nameof(ViewModel.MyValue),
                 converter: new IsNotEqualConverter(),
                 converterParameter: 100);
     }

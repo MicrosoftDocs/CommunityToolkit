@@ -87,7 +87,7 @@ class DoubleToIntConverterPage : ContentPage
         Content = new Label()
             .Bind(
                 Label.TextProperty,
-                static (ViewModel vm) => vm.MyValue,
+                nameof(ViewModel.MyValue),
                 converter: new DoubleToIntConverter());
     }
 }

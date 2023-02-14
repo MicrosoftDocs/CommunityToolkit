@@ -81,7 +81,7 @@ class ByteArrayToImageSourceConverterPage : ContentPage
         Content = new Image()
             .Bind(
                 Image.SourceProperty,
-                static (ViewModel vm) => vm.DotNetBotImageByteArray,
+                nameof(ViewModel.DotNetBotImageByteArray),
                 mode: BindingMode.OneWay,
                 converter: new ByteArrayToImageSourceConverter());
     }

@@ -81,7 +81,7 @@ class ColorToBlackOrWhiteConverterPage : ContentPage
         Content = new Label { Text = "The Text is showing in monochrome" }
             .Bind(
                 Label.TextColorProperty,
-                static (ViewModel vm) => vm.AppTextColor,
+                nameof(ViewModel.AppTextColor),
                 converter: new ColorToBlackOrWhiteConverter());
     }
 }

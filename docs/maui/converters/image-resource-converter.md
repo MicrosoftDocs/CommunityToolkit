@@ -82,7 +82,7 @@ class ImageResourceConverterPage : ContentPage
         Content = new Image()
             .Bind(
                 Label.SourceProperty, 
-                static (ViewModel vm) => vm.MyImageResource,
+                nameof(ViewModel.MyImageResource), 
                 converter: new ImageResourceConverter()); 
     }
 }

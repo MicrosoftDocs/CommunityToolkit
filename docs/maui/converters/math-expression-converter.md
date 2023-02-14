@@ -83,9 +83,9 @@ class MathExpressionConverterPage : ContentPage
         Content = new Label()
             .Bind(
                 Label.TextProperty,
-                static (ViewModel vm) => vm.MyValue,
+                nameof(ViewModel.MyValue),
                 converter: new MathExpressionConverter(),
-                converterParameter: "x/2");
+                converterParameter: "x/2"));
     }
 }
 ```

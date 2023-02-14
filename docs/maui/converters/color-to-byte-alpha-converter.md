@@ -99,7 +99,7 @@ class ColorToByteAlphaConverterPage : ContentPage
                 new Label()
                     .Bind(
                         Label.TextProperty,
-                        static (ViewModel vm) => vm.myFavoriteColor,
+                        nameof(ViewModel.MyFavoriteColor),
                         converter: new ColorToByteAlphaConverter())
             }
         };

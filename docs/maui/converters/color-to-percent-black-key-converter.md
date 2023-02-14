@@ -99,7 +99,7 @@ class ColorToPercentBlackKeyConverterPage : ContentPage
                 new Label()
                     .Bind(
                         Label.TextProperty,
-                        nameof(ViewModel.MyFavoriteColor),
+                        static (ViewModel vm) => vm.MyFavoriteColor,
                         converter: new ColorToPercentBlackKeyConverter())
             }
         };

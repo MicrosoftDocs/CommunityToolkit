@@ -99,8 +99,8 @@ class ColorToByteGreenConverterPage : ContentPage
                 new Label()
                     .Bind(
                         Label.TextProperty,
-                        nameof(ViewModel.MyFavoriteColor),
-                    converter: new ColorToByteGreenConverter())
+                        static (ViewModel vm) => vm.MyFavoriteColor,
+                        converter: new ColorToByteGreenConverter())
             }
         };
     }

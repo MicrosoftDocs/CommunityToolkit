@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToPercentYellowConverter` 
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToPercentYellowConverter
+
 The `ColorToPercentYellowConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToPercentYellowConverterPage : ContentPage
     public ColorToPercentYellowConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The yellow component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentYellowConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The yellow component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentYellowConverter())
+            }
+        };
     }
 }
 ```

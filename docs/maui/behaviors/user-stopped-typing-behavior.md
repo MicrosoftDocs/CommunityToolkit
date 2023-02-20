@@ -13,6 +13,12 @@ The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the UserStoppedTypingBehavior
+
 The `UserStoppedTypingBehavior` can be used as follows in XAML:
 
 ```xaml
@@ -85,7 +91,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
         }
         .Bind(
             UserStoppedTypingBehavior.CommandProperty, 
-            nameof(ViewModel. SearchCommand));                    
+            static (ViewModel vm) => vm.SearchCommand),
+            mode: BindingMode.OneTime);
     }
 }
 ```

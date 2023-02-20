@@ -41,6 +41,12 @@ public enum MyDevicePlatform
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the EnumToBoolConverter
+
 The `EnumToBoolConverter` can be used as follows in XAML:
 
 ```xaml
@@ -140,8 +146,12 @@ class EnumToBoolConverterPage : ContentPage
             Children = 
             {
                 new Picker()
-                    .Bind(Picker.ItemsSourceProperty, nameof(ViewModel.Platforms))
-                    .Bind(Picker.SelectedItemProperty, nameof(ViewModel.SelectedPlatform)),
+                    .Bind(
+                        Picker.ItemsSourceProperty, 
+                        static (ViewModel vm) => vm.Platforms)
+                    .Bind(
+                        Picker.SelectedItemProperty,
+                        static (ViewModel vm) => vm.SelectedPlatform),
 
                 new Label()
                     .Text("I am visible when the Picker value is Tizen.")

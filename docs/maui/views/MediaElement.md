@@ -47,12 +47,16 @@ The supported multimedia formats can be different per platform. In some cases it
 
 Before you are able to use `MediaElement` inside your application you will need to install the NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md) page.
 
+### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
 ## Play remote media
 
 A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
 
 ```xaml
-<MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+<toolkit:MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
               ShouldShowPlaybackControls="True" />
 ```
 
@@ -76,12 +80,12 @@ A `MediaElement` can play media files that are embedded in the app package, usin
 
 To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of you .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
 
-You can also place files in subfolders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaElement` would be `embed://MyVideos/MyFile.mp4`.
+You can also place files in sub folders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaElement` would be `embed://MyVideos/MyFile.mp4`.
 
 An example of how to use this syntax in XAML can be seen below.
 
 ```xaml
-<MediaElement Source="embed://MyFile.mp4"
+<toolkit:MediaElement Source="embed://MyFile.mp4"
               ShouldShowPlaybackControls="True" />
 ```
 

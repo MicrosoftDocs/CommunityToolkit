@@ -13,6 +13,12 @@ The `StatusBarBehavior` allows you to customize the color and style of yours dev
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the StatusBarBehavior
+
 The `StatusBarBehavior` can be used as follows in XAML:
 
 ```xaml

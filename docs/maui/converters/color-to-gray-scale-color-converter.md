@@ -19,6 +19,12 @@ The `ConvertBack` method is not supported.
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToGrayScaleColorConverter
+
 The `ColorToGrayScaleColorConverter` can be used as follows in XAML:
 
 ```xaml

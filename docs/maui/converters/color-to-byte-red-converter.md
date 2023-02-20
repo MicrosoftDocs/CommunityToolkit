@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToByteRedConverter` to dis
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToByteRedConverter
+
 The `ColorToByteRedConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToByteRedConverterPage : ContentPage
     public ColorToByteRedConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The red component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToByteRedConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The red component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToByteRedConverter())
+            }
+        };
     }
 }
 ```

@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToPercentBlackKeyConverter
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToPercentBlackKeyConverter
+
 The `ColorToPercentBlackKeyConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToPercentBlackKeyConverterPage : ContentPage
     public ColorToPercentBlackKeyConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The key component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentBlackKeyConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The key component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentBlackKeyConverter())
+            }
+        };
     }
 }
 ```

@@ -15,6 +15,12 @@ The `ItemTappedEventArgsConverter` is a converter that allows users to extract t
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ItemTappedEventArgsConverter
+
 The `ItemTappedEventArgsConverter` can be used as follows in XAML:
 
 ```xaml
@@ -103,7 +109,9 @@ class ItemTappedEventArgsConverterPage : ContentPage
         {
             HasUnevenRows = true
         }
-        .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+        .Bind(
+            ListView.ItemsSourceProperty,
+            static (ViewModel vm) => vm.Items)
         .Behaviors(
             new EventToCommandBehavior
             {
@@ -112,7 +120,8 @@ class ItemTappedEventArgsConverterPage : ContentPage
             }
             .Bind(
                 EventToCommandBehavior.CommandProperty, 
-                nameof(ViewModel.ItemTappedCommand)));                   
+                static (ViewModel vm) => vm.ItemTappedCommand,
+                mode: BindingMode.OneTime));
     }
 }
 ```

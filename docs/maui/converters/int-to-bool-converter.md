@@ -19,6 +19,12 @@ The `ConvertBack` method returns `1` if the supplied `value` is `true` and `0` o
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the IntToBoolConverter
+
 The `IntToBoolConverter` can be used as follows in XAML:
 
 ```xaml

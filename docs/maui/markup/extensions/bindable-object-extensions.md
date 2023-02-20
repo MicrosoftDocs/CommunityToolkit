@@ -19,23 +19,37 @@ The `Bind` method offers a number of overloads providing different convenience a
 
 There are a number of overloads for the `Bind` method.
 
-#### Explicit property
+#### One way binding
 
-A binding from a view model property called `RegistrationCode` to the text property of an `Entry` can be created as follows:
+A one way binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Label` can be created as follows:
 
 ```csharp
-new Entry().Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
+new Entry().Bind(Label.TextProperty, static (RegistrationViewModel vm) => vm.RegistrationCode)
+```
+
+#### Two way binding
+
+A two way binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
+
+```csharp
+new Entry().Bind(
+    Entry.TextProperty,
+    static (RegistrationViewModel vm) => vm.RegistrationCode,
+    static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code)
 ```
 
 #### Default property
 
-The `Bind` method can be called without specifying the property to set the binding up for, this will utilise the defaults provided by the library with the full list at the [GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/523ff96160889f0806f7686e25c5d651fa7d8b7e/src/CommunityToolkit.Maui.Markup/DefaultBindableProperties.cs). 
+The `Bind` method can be called without specifying the property to set the binding up for, this will utilize the defaults provided by the library with the full list at the [GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/523ff96160889f0806f7686e25c5d651fa7d8b7e/src/CommunityToolkit.Maui.Markup/DefaultBindableProperties.cs).
 
 The default property to bind for an `Entry` is the text property. So the above example could be written as:
 
 ```csharp
 new Entry().Bind(nameof(ViewModel.RegistrationCode))
 ```
+
+> [!WARNING]
+> This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
 
 #### Value conversion
 
@@ -46,9 +60,13 @@ The `Bind` method allows for a developer to supply the `Converter` that they wis
 ```csharp
 new Entry()
     .Bind(
-        nameof(ViewModel.RegistrationCode),
+        Entry.TextProperty,
+        nameof(RegistrationViewModel.RegistrationCode),
         converter: new TextCaseConverter { Type = TextCaseType.Upper });
 ```
+
+> [!WARNING]
+> This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
 
 See [`TextCaseConverter`](../../converters/text-case-converter.md) for the documentation on it's full usage.
 
@@ -57,7 +75,8 @@ See [`TextCaseConverter`](../../converters/text-case-converter.md) for the docum
 ```csharp
 new Entry()
     .Bind(
-        nameof(ViewModel.RegistrationCode),
+        Entry.TextProperty,
+        static (RegistrationViewModel vm) => vm.RegistrationCode,
         convert: (string? text) => text?.ToUpperInvariant());
 ```
 
@@ -94,8 +113,9 @@ The above could also be written as:
 ```csharp
 new Button()
     .Bind(
-        Button.CommandProperty,
-        nameof(ViewModel.SubmitCommand));
+        Entry.CommandProperty,
+        static (RegistrationViewModel vm) => vm.SubmitCommand,
+        mode: BindingMode.OneTime);
 ```
 
 ## AppThemeBinding

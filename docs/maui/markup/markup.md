@@ -17,7 +17,7 @@ C# Markup is available on all platforms supported by .NET MAUI.
 
 ## NuGet package
 
-The C# Markup package can be included in your project(s) as decribed in our [Getting started](../get-started.md#communitytoolkitmauimarkup) guide.
+The C# Markup package can be included in your project(s) as decribed in our [Getting started](../get-started.md) guide.
 
 ## Examples
 
@@ -35,7 +35,7 @@ entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCo
 Markup allows us to define the binding fluently and therefore chain multiple methods together to reduce the verbosity of our code:
 
 ```csharp
-new Entry().Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
+new Entry().Bind(Entry.TextProperty, static (ViewModel vm) => vm.RegistrationCode, static (ViewModel vm, string text) => vm.RegistrationCode = text)
 ```
 
 For further details on the possible options for the `Bind` method refer to the [`BindableObject` extensions documentation](extensions/bindable-object-extensions.md).
@@ -91,14 +91,14 @@ class SampleContentPage : ContentPage
                 new Entry
                 {
                     Keyboard = Keyboard.Numeric,
-                    BackgroundColor = Colors.AliceBlue,
                 }.Row(Row.TextEntry).Column(Column.Input)
+                 .BackgroundColor(Colors.AliceBlue)
                  .FontSize(15)
                  .Placeholder("Enter number")
                  .TextColor(Colors.Black)
                  .Height(44)
                  .Margin(5, 5)
-                 .Bind(Entry.TextProperty, nameof(ViewModel.RegistrationCode))
+                 .Bind(Entry.TextProperty, static (ViewModel vm) => vm.RegistrationCode, static (ViewModel vm, string text) => vm.RegistrationCode = text)
             }
         };
     }

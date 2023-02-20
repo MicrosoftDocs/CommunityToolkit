@@ -9,9 +9,18 @@ ms.date: 06/27/2022
 
 The `IconTintColorBehavior` is a `behavior` allows you to tint an image.
 
+> [!IMPORTANT]
+> The `IconTintColorBehavior` is not supported on Windows.
+
 ## Syntax
 
 ### XAML
+
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the IconTintColorBehavior
 
 The `IconTintColorBehavior` can be used as follows in XAML:
 
@@ -85,4 +94,4 @@ You can find an example of this behavior in action in the [.NET MAUI Community T
 
 ## API
 
-You can find the source code for `IconTintColorBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/IconTintColorBehavior.shared.cs).
+You can find the source code for `IconTintColorBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/PlatformBehaviors/IconTintColor/IconTintColorBehavior.shared.cs).

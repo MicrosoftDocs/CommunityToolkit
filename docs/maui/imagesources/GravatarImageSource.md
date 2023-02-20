@@ -10,6 +10,13 @@ ms.date: 09/16/2022
 A _Gravatar_ (a "globally recognized avatar") is an image that can be used on multiple websites as your avatar — that is, an image that represents you. For example, a Gravatar can identify a person in a forum post, in a blog comment, and so on. (You can register your own Gravatar at the Gravatar website at [http://www.gravatar.com/](http://www.gravatar.com/).) If you want to display images next to people's names or email addresses, you can use GravatarImageSource.
 
 ## Syntax
+
+### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+### Using the GravatarImageSource
+
 The following example shows how to use `GravatarImageSource`:
 
 ```xaml

@@ -50,14 +50,14 @@ The `FileSaver` can be used as follows in C#:
 async Task SaveFile(CancellationToken cancellationToken)
 {
     using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-    try
+    var fileSaverResult = await FileSaver.Default.SaveAsync("test.txt", stream, cancellationToken);
+    if (fileSaverResult.IsSuccessful)
     {
-        var fileLocation = await FileSaver.Default.SaveAsync("test.txt", stream, cancellationToken);
-        await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
+        await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
     }
-    catch (Exception ex)
+    else
     {
-        await Toast.Make($"File is not saved, {ex.Message}").Show(cancellationToken);
+        await Toast.Make($"File is not saved, {fileSaverResult.Exception.Message}").Show(cancellationToken);
     }
 }
 ```
@@ -67,6 +67,24 @@ async Task SaveFile(CancellationToken cancellationToken)
 |Method  |Description  |
 |---------|---------|
 | SaveAsync | Asks for permission, allows selecting a folder and saving file to the file system. |
+
+### FileSaverResult
+
+Stores information from `SaveAsync`.
+
+#### Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| FilePath | `string` | Saved file path. |
+| Exception | `Exception` | Exception if operation failed. |
+| IsSuccessful | `bool` | Checks if operation was successful. |
+
+#### Methods
+
+|Method  |Description  |
+|---------|---------|
+| EnsureSuccess | Checks if operation was successful. |
 
 ## Dependency Registration
 
@@ -105,8 +123,9 @@ public partial class MainPage : ContentPage
 	public async void SaveFile(object sender, EventArgs args)
 	{
 		using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-        var fileLocation = await fileSaver.SaveAsync("test.txt", stream, cancellationToken);
-        await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
+        var fileSaverResult = await fileSaver.SaveAsync("test.txt", stream, cancellationToken);
+        fileSaverResult.EnsureSuccess();
+        await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
 	}
 }
 ```

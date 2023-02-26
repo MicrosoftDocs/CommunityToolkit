@@ -46,14 +46,14 @@ The `FolderPicker` can be used as follows in C#:
 ```csharp
 async Task PickFolder(CancellationToken cancellationToken)
 {
-    try
+    var result = await FolderPicker.Default.PickAsync(cancellationToken);
+    if (result.IsSuccessful)
     {
-        var folder = await FolderPicker.Default.PickAsync(cancellationToken);
-        await Toast.Make($"Folder picked: Name - {folder.Name}, Path - {folder.Path}", ToastDuration.Long).Show(cancellationToken);
+        await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
     }
-    catch (Exception ex)
+    else
     {
-        await Toast.Make($"Folder is not picked, {ex.Message}").Show(cancellationToken);
+        await Toast.Make($"Folder is not picked, {result.Exception.Message}").Show(cancellationToken);
     }
 }
 ```
@@ -64,6 +64,24 @@ The `Folder` record represents a folder in the file system. It defines the follo
 
 - Path contains a Folder path.
 - Name contains a Folder name.
+
+### FolderPickerResult
+
+Stores information from `PickAsync`.
+
+#### Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| Folder | `Folder` | Picked Folder. |
+| Exception | `Exception` | Exception if operation failed. |
+| IsSuccessful | `bool` | Checks if operation was successful. |
+
+#### Methods
+
+|Method  |Description  |
+|---------|---------|
+| EnsureSuccess | Checks if operation was successful. |
 
 ## Methods
 
@@ -107,8 +125,9 @@ public partial class MainPage : ContentPage
 	
 	public async void Pick(object sender, EventArgs args)
 	{
-		var folder = await folderPicker.PickAsync(cancellationToken);
-        await Toast.Make($"Folder picked: Name - {folder.Name}, Path - {folder.Path}", ToastDuration.Long).Show(cancellationToken);
+		var result = await folderPicker.PickAsync(cancellationToken);
+        result.EnsureSuccess();
+        await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
 	}
 }
 ```

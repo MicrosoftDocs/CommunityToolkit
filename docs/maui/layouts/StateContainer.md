@@ -145,6 +145,33 @@ public partial class StateContainerViewModel
 }
 ```
 
+By default `StateContainer` changes state without animation. To add custom beautiful animation you can use `ChangeStateWithAnimation` method:
+
+```csharp
+async Task ChangeStateWithCustomAnimation()
+{
+    var targetState = "TargetState";
+    var currentState = StateContainer.GetCurrentState(MyBindableObject);
+    if (currentState == targetState)
+    {
+        await StateContainer.ChangeStateWithAnimation(MyBindableObject,
+                                                        null,
+                                                        (element, token) => element.ScaleTo(0, 100, Easing.SpringIn).WaitAsync(token),
+                                                        (element, token) => element.ScaleTo(1, 250, Easing.SpringOut).WaitAsync(token),
+                                                        CancellationToken.None);
+    }
+
+    else
+    {
+        await StateContainer.ChangeStateWithAnimation(MyBindableObject,
+                                                        targetState,
+                                                        (element, token) => element.ScaleTo(0, 100, Easing.SpringIn).WaitAsync(token),
+                                                        (element, token) => element.ScaleTo(1, 250, Easing.SpringOut).WaitAsync(token),
+                                                        CancellationToken.None);
+    }
+}
+```
+
 ## Properties
 
 ### StateContainer
@@ -156,7 +183,6 @@ The StateContainer properties can be used on any `Layout` inheriting element.
 | StateViews | `IList<View>` | The available `View` elements to be used as state templates. |
 | CurrentState | `string` | Determines which `View` element with the corresponding `StateKey` should be displayed. <br/><br/> **Warning**: `CurrentState` cannot be changed while a state change is in progress |
 | CanStateChange | `bool` | When `true`, the `CurrentState` property can be changed. When `false`, cannot be changed because it is currently changing. <br/><br/> **Warning**: If `CurrentState` is changed when `CanStateChanged` is `false`, a `StateContainerException` is thrown. |
-| ShouldAnimateOnStateChange | `bool` | Specifies if a fade out/in animation should display when switching between states. Defaults to `false`. <br/><br/>**Warning**: When `true`, a `StateContainerException` may be thrown when `CurrentState` is changed while an animation is in progress. To ensure `StateContainer` does not throw a `StateContainerException` due to active animations, first verify `CanStateChange` is `true` before changing `CurrentStateProperty` |
 
 ### StateView
 
@@ -165,6 +191,17 @@ The StateView properties can be used on any `View` inheriting element.
 | Property | Type | Description |
 |--------|--------|------------------|
 | StateKey | `string` | Name of the state. |
+
+## Methods
+
+### StateContainer
+
+| Method | Arguments | Description |
+|--------------------------|---------------|--------------------------------------------------------------------------------------|
+| ChangeStateWithAnimation (static) | BindableObject bindable, string? state, Animation? beforeStateChange, Animation? afterStateChange, CancellationToken token | Change state with custom animation. |
+| ChangeStateWithAnimation (static) | BindableObject bindable, string? state, Func<VisualElement, CancellationToken, Task>? beforeStateChange, Func<VisualElement, CancellationToken, Task>? afterStateChange, CancellationToken cancellationToken | Change state with custom animation. |
+| ChangeStateWithAnimation (static) | BindableObject bindable, string? state, CancellationToken token | Change state using the default fade animation. |
+
 
 ## Examples
 

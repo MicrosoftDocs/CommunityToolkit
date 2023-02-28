@@ -173,6 +173,10 @@ async Task ChangeStateWithCustomAnimation()
 }
 ```
 
+This is how it works on iOS:
+
+![StateContainer Animation](../images/layouts/statecontainer.gif)
+
 ## Properties
 
 ### StateContainer

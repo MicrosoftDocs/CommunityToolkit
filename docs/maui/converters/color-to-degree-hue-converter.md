@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToDegreeHueConverter` to d
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToDegreeHueConverter
+
 The `ColorToDegreeHueConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToDegreeHueConverterPage : ContentPage
     public ColorToDegreeHueConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The hue component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToDegreeHueConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The hue component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToDegreeHueConverter())
+            }
+        };
     }
 }
 ```

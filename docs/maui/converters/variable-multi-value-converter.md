@@ -21,6 +21,12 @@ The following examples show how to make a `Label` invisible based when at least 
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the VariableMultiValueConverter
+
 The `VariableMultiValueConverter` can be used as follows in XAML:
 
 ```xaml

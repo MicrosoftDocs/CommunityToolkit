@@ -19,9 +19,90 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 
     ![Manage NuGet Packages...](images/get-started/manage-nuget.png "Right click on the solution and select 'Manage NuGet Packages...'")
 
-3. Choose the toolkit(s) that are most appropriate for your needs from:
-    1. [`CommunityToolkit.Maui`](#communitytoolkitmaui)
-    1. [`CommunityToolkit.Maui.Markup`](#communitytoolkitmauimarkup)
+3. Choose the toolkit(s) that are most appropriate for your needs from the options below:
+
+### [CommunityToolkit.Maui](#tab/CommunityToolkitMaui)
+
+This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.
+
+**Package name:** `CommunityToolkit.Maui`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui
+
+#### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui;
+```
+
+In order to use the toolkit correctly the `UseMauiCommunityToolkit` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkit()
+```
+
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
+
+### [CommunityToolkit.Maui.Markup](#tab/CommunityToolkitMauiMarkup)
+
+This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
+
+**Package name:** `CommunityToolkit.Maui.Markup`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Markup
+
+#### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.Markup;
+```
+
+In order to use the toolkit correctly the `UseMauiCommunityToolkitMarkup` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMarkup()
+```
+
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
+
+### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkitMauiMediaElement)
+
+This package enables you to play audio and video in your .NET MAUI application.
+
+**Package name:** `CommunityToolkit.Maui.MediaElement`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement
+
+#### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.MediaElement;
+```
+
+In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMediaElement()
+```
+
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
+
+----
 
 ## Using the NuGet package(s)
 
@@ -45,69 +126,6 @@ builder.UseMauiCommunityToolkit(options =>
 ```
 
 5. Check out the rest of the documentation to learn more about implementing specific features.
-
-### `CommunityToolkit.Maui`
-
-This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.
-
-**Package name:** `CommunityToolkit.Maui`
-
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui
-
-#### Initializing the package
-
-In order to use the toolkit correctly the `UseMauiCommunityToolkit` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-    .UseMauiCommunityToolkit()
-```
-
-To use the features of the toolkit please refer to the documentation pages for each specific feature.
-
-### `CommunityToolkit.Maui.Markup`
-
-This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
-
-**Package name:** `CommunityToolkit.Maui.Markup`
-
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Markup
-
-#### Initializing the package
-
-In order to use the toolkit correctly the `UseMauiCommunityToolkitMarkup` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMarkup()
-```
-
-To use the features of the toolkit please refer to the documentation pages for each specific feature.
-
-### `CommunityToolkit.Maui.MediaElement`
-
-This package enables you to play audio and video in your .NET MAUI application.
-
-**Package name:** `CommunityToolkit.Maui.MediaElement`
-
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement
-
-#### Initializing the package
-
-In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMediaElement()
-```
-
-To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
 ## Other resources
 

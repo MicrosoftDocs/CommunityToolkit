@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToByteBlueConverter` to di
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToByteBlueConverter
+
 The `ColorToByteBlueConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToByteBlueConverterPage : ContentPage
     public ColorToByteBlueConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The blue component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToByteBlueConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The blue component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToByteBlueConverter())
+            }
+        };
     }
 }
 ```

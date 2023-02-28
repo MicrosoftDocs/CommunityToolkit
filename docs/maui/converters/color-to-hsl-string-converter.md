@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToHslStringConverter` to d
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToHslStringConverter
+
 The `ColorToHslStringConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToHslStringConverterPage : ContentPage
     public ColorToHslStringConverterPage()
     {
         Content = new VerticalStackLayout
-	{
-		Children =
-		{
-			new Label()
-				.Text("My favourite Color is:"),
-			new Label()
-				.Bind(
-					Label.TextProperty,
-					nameof(ViewModel.MyFavoriteColor),
-					converter: new ColorToHslStringConverter())
-		}
-	};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("My favourite Color is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToHslStringConverter())
+            }
+        };
     }
 }
 ```

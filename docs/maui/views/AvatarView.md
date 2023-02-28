@@ -10,6 +10,13 @@ ms.date: 07/11/2022
 The CommunityToolKit MAUI `AvatarView` is a control for displaying a user's avatar image or their initials.  Avatars can be text, image, colored, shaped and supports shadow and gestures.
 
 ## Syntax
+
+### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+### Using the AvatarView
+
 The following example shows how to create an `AvatarView`:
 
 ```xaml

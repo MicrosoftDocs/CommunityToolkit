@@ -19,6 +19,12 @@ The `ConvertBack` method returns `false` if the supplied `value` is `true` and `
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the InvertedBoolConverter
+
 The `InvertedBoolConverter` can be used as follows in XAML:
 
 ```xaml

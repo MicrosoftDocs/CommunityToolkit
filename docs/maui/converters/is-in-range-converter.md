@@ -20,6 +20,12 @@ The `ConvertBack` method is not supported.
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the IsInRangeConverter
+
 The `IsInRangeConverter` can be used as follows in XAML:
 
 ```xaml

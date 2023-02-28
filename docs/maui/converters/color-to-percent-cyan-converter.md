@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToPercentCyanConverter` to
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToPercentCyanConverter
+
 The `ColorToPercentCyanConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToPercentCyanConverterPage : ContentPage
     public ColorToPercentCyanConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The cyan component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentCyanConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The cyan component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentCyanConverter())
+            }
+        };
     }
 }
 ```

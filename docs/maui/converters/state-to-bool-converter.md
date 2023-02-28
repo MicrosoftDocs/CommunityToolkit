@@ -1,13 +1,13 @@
 ---
-title: StateToBoolConverter - .NET MAUI Community Toolkit
+title: StateToBooleanConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The StateToBoolConverter is a one way converter that returns a boolean result based on whether the supplied value is of a specific LayoutState."
+description: "The StateToBooleanConverter is a one way converter that returns a boolean result based on whether the supplied value is of a specific LayoutState."
 ms.date: 05/17/2022
 ---
 
-# StateToBoolConverter
+# StateToBooleanConverter
 
-The `StateToBoolConverter` is a one way converter that returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`.
+The `StateToBooleanConverter` is a one way converter that returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`.
 
 The `Convert` method returns a `boolean` result based on whether the supplied value is of a specific `LayoutState`. The `LayoutState` enum is provided by the toolkit and offers the possible values:
 
@@ -33,6 +33,12 @@ The `ConvertBack` method is not supported.
 The following example shows how to use the converter to change the visibility of a `Label` control based on the `LayoutState` property which is modified on a `Button` `Command`.
 
 ### XAML
+
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the StateToBooleanConverter
 
 The `StateToBooleanConverter` can be used as follows in XAML:
 

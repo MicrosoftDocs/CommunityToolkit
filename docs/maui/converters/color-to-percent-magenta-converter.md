@@ -21,6 +21,12 @@ The following examples will show how to use the `ColorToPercentMagentaConverter`
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the ColorToPercentMagentaConverter
+
 The `ColorToPercentMagentaConverter` can be used as follows in XAML:
 
 ```xaml
@@ -85,18 +91,18 @@ class ColorToPercentMagentaConverterPage : ContentPage
     public ColorToPercentMagentaConverterPage()
     {
         Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label()
- 					.Text("The magenta component is:"),
- 				new Label()
- 					.Bind(
- 						Label.TextProperty,
- 						nameof(ViewModel.MyFavoriteColor),
- 						converter: new ColorToPercentMagentaConverter())
- 			}
- 		};
+        {
+            Children =
+            {
+                new Label()
+                    .Text("The magenta component is:"),
+                new Label()
+                    .Bind(
+                        Label.TextProperty,
+                        nameof(ViewModel.MyFavoriteColor),
+                        converter: new ColorToPercentMagentaConverter())
+            }
+        };
     }
 }
 ```

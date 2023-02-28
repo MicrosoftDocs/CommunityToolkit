@@ -42,7 +42,7 @@ The `ItemsSource` method sets the `ItemsSource` property on an `ILayout`.
 The following example sets the `EmptyView` to `new Label().Bind(Label.TextProperty, "."))`:
 
 ```csharp
-new VerticalStackLayout().ItemsSource(new Label().Bind(Label.TextProperty, "."));
+new VerticalStackLayout().ItemsSource(new Label().Bind(Label.TextProperty, Binding.SelfPath));
 ```
 
 ## ItemTemplate
@@ -52,13 +52,13 @@ The `ItemTemplate` method sets the `ItemTemplate` property on an `ILayout`.
 The following example sets the `EmptyViewTemplate` to `new DataTemplate(() => new Label().Bind(Label.TextProperty, ".")`:
 
 ```csharp
-new VerticalStackLayout().ItemTemplate(new DataTemplate(() => new Label().Bind(Label.TextProperty, ".")));
+new VerticalStackLayout().ItemTemplate(new DataTemplate(() => new Label().Bind(Label.TextProperty, Binding.SelfPath)));
 ```
 
 An overload method exists for `ItemTemplate` that accepts a `Func<object>` that is used to initialize the `DataTemplate`.
 
 ```csharp
-new VerticalStackLayout().ItemTemplate(() => new Label().Bind(Label.TextProperty, "."));
+new VerticalStackLayout().ItemTemplate(() => new Label().Bind(Label.TextProperty, Binding.SelfPath));
 ```
 
 ## ItemTemplateSelector

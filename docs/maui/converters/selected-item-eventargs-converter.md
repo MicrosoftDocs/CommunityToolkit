@@ -15,6 +15,12 @@ The `SelectedItemEventArgsConverter` is a converter that allows users to extract
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the SelectedItemEventArgsConverter
+
 The `SelectedItemEventArgsConverter` can be used as follows in XAML:
 
 ```xaml
@@ -101,7 +107,9 @@ class SelectedItemEventArgsConverterPage : ContentPage
         {
             HasUnevenRows = true
         }
-        .Bind(ListView.ItemsSourceProperty, nameof(ViewModel.Items))
+        .Bind(
+            ListView.ItemsSourceProperty,
+            static (ViewModel vm) => vm.Items)
         .Behaviors(
             new EventToCommandBehavior
             {

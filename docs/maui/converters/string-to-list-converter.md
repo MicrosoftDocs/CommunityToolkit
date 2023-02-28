@@ -25,6 +25,12 @@ The `ConvertBack` method is not supported. For the opposite behavior see the [`L
 
 ### XAML
 
+#### Including the XAML namespace
+
+[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+
+#### Using the StringToListConverter
+
 The `StringToListConverter` can be used as follows in XAML:
 
 ```xaml
@@ -119,23 +125,25 @@ class StringToListConverterPage : ContentPage
 {
     public StringToListConverterPage()
     {
-		Content = new VerticalStackLayout
+        Content = new VerticalStackLayout
         {
             Children =    
             {
                 new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" }
-                    .Bind(Entry.TextProperty, path: nameof(ViewModel.MyValue)),
+                    .Bind(
+                        Entry.TextProperty, 
+                        static (ViewModel vm) => vm.MyValue),
 
                 new CollectionView
-    			{
-    				ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: "."))
-    			}.Bind(CollectionView.ItemsSourceProperty,
+                {
+                    ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: Binding.SelfPath))
+                }.Bind(CollectionView.ItemsSourceProperty,
                         nameof(ViewModel.MyValue),    
-				        converter: new StringToListConverter
-                		{
-                			SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
+                        converter: new StringToListConverter
+                        {
+                            SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
                             Separators = new [] { ",", ".", ";" }
-                		})
+                        })
             }
         };
     }

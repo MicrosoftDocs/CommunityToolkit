@@ -20,7 +20,7 @@ The following sample generates MVVMTK0008:
 
 ```xml
 <PropertyGroup>
-    <LangVersion>7.3</PropertyGroup>
+    <LangVersion>7.3</LangVersion>
 </PropertyGroup>
 ```
 ```csharp

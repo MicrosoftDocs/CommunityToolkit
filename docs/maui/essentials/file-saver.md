@@ -53,11 +53,11 @@ async Task SaveFile(CancellationToken cancellationToken)
     var fileSaverResult = await FileSaver.Default.SaveAsync("test.txt", stream, cancellationToken);
     if (fileSaverResult.IsSuccessful)
     {
-        await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
+        await Toast.Make($"The file was saved successfully to location: {fileSaverResult.FilePath}").Show(cancellationToken);
     }
     else
     {
-        await Toast.Make($"File is not saved, {fileSaverResult.Exception.Message}").Show(cancellationToken);
+        await Toast.Make($"The file was not saved successfully with error: {fileSaverResult.Exception.Message}").Show(cancellationToken);
     }
 }
 ```
@@ -70,21 +70,24 @@ async Task SaveFile(CancellationToken cancellationToken)
 
 ### FileSaverResult
 
-Stores information from `SaveAsync`.
+The result returned from the `SaveAsync` method. This can be used to verify whether the save was successful, check where the file was saved and also access any exceptions that may have ocurred during the save.
 
 #### Properties
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| FilePath | `string` | Saved file path. |
-| Exception | `Exception` | Exception if operation failed. |
-| IsSuccessful | `bool` | Checks if operation was successful. |
+| FilePath | `string` | The location on disk where the file was saved. |
+| Exception | `Exception` | Gets the `Exception` if the save operation failed. |
+| IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
 
 #### Methods
 
 |Method  |Description  |
 |---------|---------|
-| EnsureSuccess | Checks if operation was successful. |
+| EnsureSuccess | Verifies whether the save operation was successful. |
+
+> [!WARNING]
+> `EnsureSuccess` will throw an `Exception` if the save operation was unsuccessful.
 
 ## Dependency Registration
 

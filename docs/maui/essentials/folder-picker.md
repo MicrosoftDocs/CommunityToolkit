@@ -49,11 +49,11 @@ async Task PickFolder(CancellationToken cancellationToken)
     var result = await FolderPicker.Default.PickAsync(cancellationToken);
     if (result.IsSuccessful)
     {
-        await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
+        await Toast.Make($"The folder was picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
     }
     else
     {
-        await Toast.Make($"Folder is not picked, {result.Exception.Message}").Show(cancellationToken);
+        await Toast.Make($"The folder was not picked with error: {result.Exception.Message}").Show(cancellationToken);
     }
 }
 ```
@@ -73,15 +73,18 @@ Stores information from `PickAsync`.
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| Folder | `Folder` | Picked Folder. |
-| Exception | `Exception` | Exception if operation failed. |
-| IsSuccessful | `bool` | Checks if operation was successful. |
+| Folder | `Folder` | Gets the `Folder` that represents the selected folder in the file system. |
+| Exception | `Exception` | Gets the `Exception` if the pick operation failed. |
+| IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
 
 #### Methods
 
 |Method  |Description  |
 |---------|---------|
-| EnsureSuccess | Checks if operation was successful. |
+| EnsureSuccess | Verifies whether the pick operation was successful. |
+
+> [!WARNING]
+> `EnsureSuccess` will throw an `Exception` if the pick operation was unsuccessful.
 
 ## Methods
 

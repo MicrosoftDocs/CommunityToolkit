@@ -134,8 +134,8 @@ The following screenshot shows the resulting EmailValidationBehavior on Android:
 
 | Method  |Description  |
 |---------|---------|
-| EmailRegex (static) | A Regex to match an input is a valid email address. |
-| EmailDomainRegex (static) | A Regex to match the domain of an email address. |
+| EmailRegex (static) | A `GeneratedRegex` to match an input is a valid email address. |
+| EmailDomainRegex (static) | A `GeneratedRegex` to match the domain of an email address. |
 
 ## Examples
 

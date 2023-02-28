@@ -145,7 +145,7 @@ public partial class StateContainerViewModel
 }
 ```
 
-By default `StateContainer` changes state without animation. To add custom beautiful animation you can use `ChangeStateWithAnimation` method:
+By default `StateContainer` changes state without animation. To add a custom animation you can use the `ChangeStateWithAnimation` method:
 
 ```csharp
 async Task ChangeStateWithCustomAnimation()
@@ -154,20 +154,21 @@ async Task ChangeStateWithCustomAnimation()
     var currentState = StateContainer.GetCurrentState(MyBindableObject);
     if (currentState == targetState)
     {
-        await StateContainer.ChangeStateWithAnimation(MyBindableObject,
-                                                        null,
-                                                        (element, token) => element.ScaleTo(0, 100, Easing.SpringIn).WaitAsync(token),
-                                                        (element, token) => element.ScaleTo(1, 250, Easing.SpringOut).WaitAsync(token),
-                                                        CancellationToken.None);
+        await StateContainer.ChangeStateWithAnimation(
+            MyBindableObject,
+            null,
+            (element, token) => element.ScaleTo(0, 100, Easing.SpringIn).WaitAsync(token),
+            (element, token) => element.ScaleTo(1, 250, Easing.SpringOut).WaitAsync(token),
+            CancellationToken.None);
     }
-
     else
     {
-        await StateContainer.ChangeStateWithAnimation(MyBindableObject,
-                                                        targetState,
-                                                        (element, token) => element.ScaleTo(0, 100, Easing.SpringIn).WaitAsync(token),
-                                                        (element, token) => element.ScaleTo(1, 250, Easing.SpringOut).WaitAsync(token),
-                                                        CancellationToken.None);
+        await StateContainer.ChangeStateWithAnimation(
+            MyBindableObject,
+            targetState,
+            (element, token) => element.ScaleTo(0, 100, Easing.SpringIn).WaitAsync(token),
+            (element, token) => element.ScaleTo(1, 250, Easing.SpringOut).WaitAsync(token),
+            CancellationToken.None);
     }
 }
 ```

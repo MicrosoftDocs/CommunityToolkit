@@ -9,7 +9,7 @@ The `SemanticOrderView` provides the ability to control the order of VisualEleme
 
 ## Using the SemanticOrderView
 
-The following example shows how the `SemanticOrderView` can change the order in which the screen reader announces elements away from the order in which they are added to the user interface. The example adds the `Label` rendering the title after the `Label` that renders the description, this would mean that the `DescriptionLabel` would be announced before the `TitleLabel`.
+The following example shows how the `SemanticOrderView` can change the order in which the screen reader announces elements away from the order in which they are added to the user interface. The XAML below shows the `TitleLabel` rendering the title _after_ the `DescriptionLabel` that renders the description, this means that visually we will see the description before the title. While that might make sense when someone is looking at it, it doesn't necessarily make sense for someone who is visually impaired and doesn't see the screen (entirely).
 
 ```xaml
 <ContentPage
@@ -32,7 +32,7 @@ The following example shows how the `SemanticOrderView` can change the order in 
 </ContentPage>
 ```
 
-Then in the code behind file we can change the order as follows:
+To over come that, in the code behind file we can change the order that will be used by the device's screen reader as follows:
 
 ```csharp
 using System.Collections.Generic;
@@ -49,6 +49,8 @@ public partial class SemanticOrderViewPage : ContentPage
     }
 }
 ```
+
+With this, we tell the `SemanticOrderView` that the "proper" order for these controls, when accessed through screen reader software, is to first focus the `TitleLabel` and then `DescriptionLabel`.
 
 ## Examples
 

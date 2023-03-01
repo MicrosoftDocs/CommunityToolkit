@@ -7,7 +7,7 @@ metadata:
   title: Community Toolkits documentation
   description: The home for .NET based Community Toolkits which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
   ms.topic: landing-page
-  ms.date: 01/27/2022
+  ms.date: 02/15/2022
 
 landingContent:
   - title: .NET Community Toolkit
@@ -60,10 +60,22 @@ landingContent:
             url: maui/get-started.md
       - linkListType: concept
         links:
+          - text: Alerts
+            url: maui/alerts/index.md
+          - text: Animations
+            url: maui/animations/index.md
           - text: Behaviors
             url: maui/behaviors/index.md
           - text: Converters
             url: maui/converters/index.md
+          - text: Essentials
+            url: maui/essentials/index.md
+          - text: Extensions
+            url: maui/extensions/index.md
+          - text: Image Sources
+            url: maui/imagesources/index.md
+          - text: Layouts
+            url: maui/layouts/index.md
           - text: Views
             url: maui/views/index.md
           - text: C# Markup

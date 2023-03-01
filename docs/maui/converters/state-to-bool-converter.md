@@ -130,12 +130,12 @@ class StateToBooleanConverterPage : ContentPage
                     .CenterVertical()
                     .Bind(
                         Label.IsVisibleProperty,
-                        nameof(ViewModel.LayoutState),
+                        static (ViewModel vm) => vm.LayoutState,
                         converter: new StateToBooleanConverter { StateToCompare = LayoutState.Success }),
 
                 new Button()
                     .Text("Change state")
-                    .BindCommand(nameof(ViewModel.ChangeLayoutCommand))
+                    .BindCommand(static (ViewModel vm) => vm.ChangeLayoutCommand)
             }
         };
     }

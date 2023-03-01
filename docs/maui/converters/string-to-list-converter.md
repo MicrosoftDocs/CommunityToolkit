@@ -137,13 +137,14 @@ class StringToListConverterPage : ContentPage
                 new CollectionView
                 {
                     ItemTemplate = new DataTemplate(() => new Label().Bind(Label.TextProperty, path: Binding.SelfPath))
-                }.Bind(CollectionView.ItemsSourceProperty,
-                        nameof(ViewModel.MyValue),    
-                        converter: new StringToListConverter
-                        {
-                            SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
-                            Separators = new [] { ",", ".", ";" }
-                        })
+                }.Bind(
+                    CollectionView.ItemsSourceProperty,
+                    static (ViewModel vm) => vm.MyValue,
+                    converter: new StringToListConverter
+                    {
+                        SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
+                        Separators = new [] { ",", ".", ";" }
+                    })
             }
         };
     }

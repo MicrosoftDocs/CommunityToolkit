@@ -24,3 +24,4 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 | [`Expander`](Expander.md) | The `Expander` control provides an expandable container to host any content. |
 | [`MediaElement`](MediaElement.md) | The `MediaElement` is a view for playing multimedia such as audio and video. |
 | [`Popup`](popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |
+| [`SemanticOrderView`](semantic-order-view.md) | The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application. |

@@ -50,14 +50,14 @@ The `FileSaver` can be used as follows in C#:
 async Task SaveFile(CancellationToken cancellationToken)
 {
     using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-    try
+    var fileSaverResult = await FileSaver.Default.SaveAsync("test.txt", stream, cancellationToken);
+    if (fileSaverResult.IsSuccessful)
     {
-        var fileLocation = await FileSaver.Default.SaveAsync("test.txt", stream, cancellationToken);
-        await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
+        await Toast.Make($"The file was saved successfully to location: {fileSaverResult.FilePath}").Show(cancellationToken);
     }
-    catch (Exception ex)
+    else
     {
-        await Toast.Make($"File is not saved, {ex.Message}").Show(cancellationToken);
+        await Toast.Make($"The file was not saved successfully with error: {fileSaverResult.Exception.Message}").Show(cancellationToken);
     }
 }
 ```
@@ -67,6 +67,27 @@ async Task SaveFile(CancellationToken cancellationToken)
 |Method  |Description  |
 |---------|---------|
 | SaveAsync | Asks for permission, allows selecting a folder and saving file to the file system. |
+
+### FileSaverResult
+
+The result returned from the `SaveAsync` method. This can be used to verify whether the save was successful, check where the file was saved and also access any exceptions that may have ocurred during the save.
+
+#### Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| FilePath | `string` | The location on disk where the file was saved. |
+| Exception | `Exception` | Gets the `Exception` if the save operation failed. |
+| IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
+
+#### Methods
+
+|Method  |Description  |
+|---------|---------|
+| EnsureSuccess | Verifies whether the save operation was successful. |
+
+> [!WARNING]
+> `EnsureSuccess` will throw an `Exception` if the save operation was unsuccessful.
 
 ## Dependency Registration
 
@@ -105,8 +126,9 @@ public partial class MainPage : ContentPage
 	public async void SaveFile(object sender, EventArgs args)
 	{
 		using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-        var fileLocation = await fileSaver.SaveAsync("test.txt", stream, cancellationToken);
-        await Toast.Make($"File is saved: {fileLocation}").Show(cancellationToken);
+        var fileSaverResult = await fileSaver.SaveAsync("test.txt", stream, cancellationToken);
+        fileSaverResult.EnsureSuccess();
+        await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
 	}
 }
 ```

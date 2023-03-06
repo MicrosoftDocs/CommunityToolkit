@@ -32,6 +32,7 @@ The `EnumToIntConverter` can be used as follows in XAML:
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	     xmlns:vm="clr-namespace:CommunityToolkit.Maui.Sample.ViewModels.Converters"
              x:Class="MyLittleApp.MainPage">
     <ContentPage.Resources>
          <ResourceDictionary>
@@ -45,7 +46,7 @@ The `EnumToIntConverter` can be used as follows in XAML:
             <Label Text="Selecting a value from the picker will change the enum property in the view model" 
                    TextColor="{StaticResource NormalLabelTextColor}" />
             <Picker ItemsSource="{Binding AllStates}" 
-                    SelectedIndex="{Binding SelectedState, Converter={StaticResource EnumToIntConverter}}" 
+                    SelectedIndex="{Binding SelectedState, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type vm:IssueState}}"
                     TextColor="{StaticResource NormalLabelTextColor}" />
             <Label Text="This label binds to the SelectedIndex property of the picker, both use EnumToIntConverter, so no int properties are necessary in ViewModel"
                    TextColor="{StaticResource NormalLabelTextColor}" />

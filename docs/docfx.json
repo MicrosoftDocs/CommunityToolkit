@@ -42,6 +42,7 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "uhfHeaderId": "MSDocsHeader-DotNet",
       "author": "jfversluis",
       "breadcrumb_path": "/dotnet/communitytoolkit/breadcrumb/toc.json",
       "extendBreadcrumb": true,

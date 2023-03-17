@@ -10,9 +10,9 @@ dev_langs:
 
 ## Ref&lt;T>
 
-The [`Ref&<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1) is a stack-only type that can store a reference to a value of a specified type. It is semantically equivalent to a `ref T` value, with the difference that it can also be used as a type of field in another stack-only `struct` type. It can be used in place of proper `ref T` fields, which are currently not supported in C#.
+The [`Ref<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1) is a stack-only type that can store a reference to a value of a specified type. It is semantically equivalent to a `ref T` value, with the difference that it can also be used as a type of field in another stack-only `struct` type. It can be used in place of proper `ref T` fields, which are currently not supported in C#.
 
-> **Platform APIs:** [`Ref&<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1), [`ReadOnlyRef<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyref-1)
+> **Platform APIs:** [`Ref<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1), [`ReadOnlyRef<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyref-1)
 
 ### How it works
 

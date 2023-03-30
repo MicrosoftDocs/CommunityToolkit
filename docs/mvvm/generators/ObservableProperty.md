@@ -89,7 +89,7 @@ You're free to only implement one of these two methods, or neither. If they are 
 
 ## Notifying dependent properties
 
-Imagine you had a `FullName` property you wanted to raise a notification for whenever `Name` changes. You can do that by using the `NotifyPRopertyChangedFor` attribute, like so:
+Imagine you had a `FullName` property you wanted to raise a notification for whenever `Name` changes. You can do that by using the `NotifyPropertyChangedFor` attribute, like so:
 
 ```csharp
 [ObservableProperty]

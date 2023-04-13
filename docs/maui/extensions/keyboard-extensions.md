@@ -23,7 +23,7 @@ The following methods allow you to close, show, and check if the keyboard is ope
 
 The `HideKeyboardAsync` method will hide the Soft Input Keyboard if it is currently visible
 
-The following example shows how to hide the keyboard:
+The following example shows how to hide the keyboard for a given entry:
 
 ```csharp
 using CommunityToolkit.Maui.Extensions.Core;

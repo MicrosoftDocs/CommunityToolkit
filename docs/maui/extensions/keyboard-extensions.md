@@ -7,7 +7,7 @@ ms.date: 04/12/2023
 
 # KeyboardExtensions
 
-The `KeyboardExtensions` provide a series of extension methods that support interacting with the Keyboard.
+The `KeyboardExtensions` provide a series of extension methods that support interacting with the Keyboard on controls that support text input.
 
 The `KeyboardExtensions` can be found under the `CommunityToolkit.Maui.Core.Extensions` namespace so just add the following line to get started:
 

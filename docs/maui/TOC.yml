@@ -179,8 +179,10 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
-    - name: ColorConversionExtensions
-      href: extensions/color-conversion-extensions.md
+    - name: KeyboardExtensions
+      href: extensions/keyboard-extensions.md
+    - name: SemanticOrderView
+      href: views/semantic-order-view.md
     - name: ServiceCollectionExtensions
       href: extensions/servicecollection-extensions.md
 - name: ImageSources

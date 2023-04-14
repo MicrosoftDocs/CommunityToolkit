@@ -209,6 +209,8 @@ items:
       href: views/DrawingView.md
     - name: "Expander"
       href: views/Expander.md
+    - name: "LazyView"
+      href: views/LazyView.md
     - name: "MediaElement"
       href: views/MediaElement.md
     - name: "Popup"

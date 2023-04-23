@@ -30,7 +30,7 @@ using CommunityToolkit.Maui.Extensions;
 
 class PaintTheRainbowAnimation : BaseAnimation
 {
-    public override Task Animate(VisualElement view)
+    public override async Task Animate(VisualElement view)
     {
         await view.BackgroundColorTo(Colors.Red);
         await view.BackgroundColorTo(Colors.Orange);

@@ -127,6 +127,7 @@ Below is an MVVM example using the [MVVM Community Toolkit](/windows/communityto
 public partial class StateContainerViewModel
 {
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ChangeStateCommand))]
     bool canStateChange;
 
     [ObservableProperty]
@@ -137,11 +138,6 @@ public partial class StateContainerViewModel
     {
         CurrentState = States.Success;
     }
-
-    partial void OnCanStateChangeChanged(bool value)
-	{
-		ChangeStateCommand.NotifyCanExecuteChanged();
-	}
 }
 ```
 

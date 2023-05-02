@@ -232,6 +232,21 @@ public string? Name
 
 That generated `Broadcast` call will then send a new [`PropertyChangedMessage<T>`](/dotnet/api/communitytoolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1) using the `IMessenger` instance in use in the current viewmodel, to all registered subscribers.
 
+## Adding custom attributes
+
+In some cases, it might be useful to also have some custom attributes over the generated properties. To achieve that, you can simply use the `[property: ]` target in attribute lists over annotated fields, and the MVVM Toolkit will automatically forward those attributes to the generated properties.
+
+For instance, consider a field like this:
+
+```csharp
+[ObservableProperty]
+[property: JsonRequired]
+[property: JsonPropertyName("name")]
+private string? username;
+```
+
+This will generate a `Username` property, with those two `[JsonRequired]` and `[JsonPropertyName("name")]` attributes over it. You can use as many attribute lists targeting the property as you want, and all of them will be forwarded to the generated properties.
+
 ## Examples
 
 - Check out the [sample app](https://aka.ms/mvvmtoolkit/samples) (for multiple UI frameworks) to see the MVVM Toolkit in action.

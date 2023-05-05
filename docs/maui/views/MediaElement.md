@@ -315,6 +315,8 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
 | SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
+| FullScreen | Sets media to Full Screen Mode. |
+| RestoreScreen | Sets the media to Restore Screen Mode. |
 
 ## Examples
 

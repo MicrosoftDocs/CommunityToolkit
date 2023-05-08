@@ -273,23 +273,6 @@ private void OnRestoreScreenClicked(object sender, EventArgs e)
 }
 ```
 
-## Configuration
-
-### [Android](#tab/android)
-
-No changes needed.
-
-### [iOS](#tab/ios)
-
-In the *Platforms/iOS/Info.plist* file, add the following key and value:
-
-```xml
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <false/>
-```
-
------
-
 In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds its `Value` property to the `Volume` property of the `MediaElement`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.
 
 > [!NOTE]
@@ -372,6 +355,23 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
 | FullScreen | Sets media to Full Screen Mode. |
 | RestoreScreen | Sets the media to Restore Screen Mode. |
+
+## Configuration
+
+# [Android](#tab/android)
+
+No changes needed.
+
+# [iOS](#tab/ios)
+
+In the *Platforms/iOS/Info.plist* file, add the following key and value:
+
+```xml
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+```
+
+-----
 
 ## Examples
 

@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\contributing",
+    "\\docs",
+    "\\docs\\maui",
+    "\\docs\\maui\\behaviors",
+    "\\docs\\maui\\views"
   ],
-  "SelectedNode": "\\C:\\Users\\james\\Source\\Repos\\CommunityToolkit",
+  "SelectedNode": "\\docs\\maui\\views\\MediaElement.md",
   "PreviewInSolutionExplorer": false
 }

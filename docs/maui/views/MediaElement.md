@@ -235,9 +235,9 @@ A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Co
 </StackLayout>
 ```
 
-Full screen controls are implemented on each platform. You can set 'FullScreen' or 'RestoreScreen'.
-
 ## Implement a custom full screen control
+
+Full screen controls are implemented on each platform. You can set 'FullScreen' or 'RestoreScreen'.
 
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"

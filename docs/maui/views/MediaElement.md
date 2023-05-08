@@ -235,6 +235,60 @@ A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Co
 </StackLayout>
 ```
 
+
+Full screen controls are implemented on each platform. You can set 'FullScreen' or 'RestoreScreen'.
+
+## Implement a custom full screen control
+
+```xaml
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="CommunityToolkit.Maui.Sample.Pages.Views.MediaElementPage"
+             Title="Full Screen Controls">
+    
+    <toolkit:MediaElement x:Name="mediaElement"
+                          ShouldAutoPlay="False"
+                          ... />
+    <Button
+    Clicked="OnFullScreenClicked"
+    Text="FullScreen" />
+
+    <Button
+    Clicked="OnRestoreScreenClicked"
+    Text="RestoreScreen" />
+
+</ContentPage>
+```
+
+Then in the code-behind, call the methods to set screen either full screen or restore screen.
+
+```csharp
+private void OnFullScreenClicked(object sender, EventArgs e)
+	{
+		mediaElement.FullScreen();
+    }
+private void OnRestoreScreenClicked(object sender, EventArgs e)
+	{
+		mediaElement.RestoreScreen();
+    }
+```
+
+
+## Configuration
+
+# [Android](#tab/android)
+
+No changes needed.
+
+# [iOS](#tab/ios)
+In the _Platforms/iOS/Info.plist_ file, add the following key and value:
+
+```xml
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+```
+
 In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds its `Value` property to the `Volume` property of the `MediaElement`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.
 
 > [!NOTE]

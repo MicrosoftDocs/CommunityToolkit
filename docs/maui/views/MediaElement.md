@@ -358,11 +358,11 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 
 ## Configuration
 
-# [Android](#tab/android)
+### [Android](#tab/android)
 
 No changes needed.
 
-# [iOS](#tab/ios)
+### [iOS](#tab/ios)
 
 In the *Platforms/iOS/Info.plist* file, add the following key and value:
 

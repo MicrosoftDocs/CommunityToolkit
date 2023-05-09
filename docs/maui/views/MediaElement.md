@@ -250,11 +250,11 @@ Full screen controls are implemented on each platform. You can set 'FullScreen' 
                           ShouldAutoPlay="False"
                           ... />
     <Button
-    Clicked="OnFullScreenClicked"
+    Clicked="OnEnlargeVideoToFullScreenClicked"
     Text="FullScreen" />
 
     <Button
-    Clicked="OnRestoreScreenClicked"
+    Clicked="OnRevertFromFullScreenClicked"
     Text="RestoreScreen" />
 
 </ContentPage>
@@ -263,13 +263,13 @@ Full screen controls are implemented on each platform. You can set 'FullScreen' 
 Then in the code-behind, call the methods to set screen either full screen or restore screen.
 
 ```csharp
-private void OnFullScreenClicked(object sender, EventArgs e)
+private void OnEnlargeVideoToFullScreenClicked(object sender, EventArgs e)
 {
-    mediaElement.FullScreen();
+    mediaElement.EnlargeVideoToFullScreen();
 }
-private void OnRestoreScreenClicked(object sender, EventArgs e)
+private void OnRevertFromFullScreenClicked(object sender, EventArgs e)
 {
-    mediaElement.RestoreScreen();
+    mediaElement.RevertFromFullScreen();
 }
 ```
 
@@ -353,8 +353,8 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
 | SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
-| FullScreen | Sets media to Full Screen Mode. |
-| RestoreScreen | Sets the media to Restore Screen Mode. |
+| EnlargeVideoToFullScreen | Sets media to Full Screen Mode. |
+| RevertFromFullScreen | Sets the media to Restore Screen Mode. |
 
 ## Configuration
 

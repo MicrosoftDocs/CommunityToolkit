@@ -173,6 +173,8 @@ items:
       href: essentials/folder-picker.md
     - name: FileSaver
       href: essentials/file-saver.md
+    - name: SpeechToText
+      href: essentials/speech-to-text.md
 - name: Extensions
   items:
     - name: Overview

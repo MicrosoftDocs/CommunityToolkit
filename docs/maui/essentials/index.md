@@ -17,3 +17,4 @@ The .NET MAUI Community Toolkit provides a collection of cross-platform APIs for
 | --------- | ----------- |
 | [`FolderPicker`](../essentials/folder-picker.md) | The `FolderPicker` allows picking a folder from the file system. |
 | [`FileSaver`](../essentials/file-saver.md) | The `FileSaver` provides the ability to select target folder and save files to the file system. |
+| [`SpeechToText`](../essentials/speech-to-text.md) | The `SpeechToText` provides the ability to convert speech to text. |

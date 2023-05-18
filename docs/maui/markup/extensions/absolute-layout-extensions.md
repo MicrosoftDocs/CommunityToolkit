@@ -39,7 +39,7 @@ public class AbsoluteLayoutSamplePage : ContentPage
                 {
                     Color = Colors.Blue,
                 }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                .LayoutBounds(0.5, 0, 100, 25),
+                 .LayoutBounds(0.5, 0, 100, 25),
 
                 new BoxView
                 {
@@ -47,7 +47,13 @@ public class AbsoluteLayoutSamplePage : ContentPage
                     WidthRequest = 25,
                     HeightRequest = 100,
                 }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                .LayoutBounds(0, 0.5),
+                 .LayoutBounds(0, 0.5),
+
+                new BoxView
+                {
+                    Color = Colors.Green,
+                }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional, AbsoluteLayoutFlags.SizeProportional)
+                 .LayoutBounds(0, 0.5, 0.25, 0.25),
 
                 new BoxView
                 {
@@ -55,19 +61,19 @@ public class AbsoluteLayoutSamplePage : ContentPage
                     WidthRequest = 25,
                     HeightRequest = 100,
                 }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                .LayoutBounds(new Point(1, 0.5)),
+                 .LayoutBounds(new Point(1, 0.5)),
 
                 new BoxView
                 {
                     Color = Colors.Grey,
                 }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional)
-                .LayoutBounds(new Point(0.5, 1), new Size(100, 25)),
+                 .LayoutBounds(new Point(0.5, 1), new Size(100, 25)),
 
                 new BoxView
                 {
                     Color = Colors.Tan,
                 }.LayoutFlags(AbsoluteLayoutFlags.All)
-                .LayoutBounds(new Rect(0.5, 0.5, 1d/3d, 1d/3d))
+                 .LayoutBounds(new Rect(0.5, 0.5, 1d / 3d, 1d / 3d))
             }
         };
     }

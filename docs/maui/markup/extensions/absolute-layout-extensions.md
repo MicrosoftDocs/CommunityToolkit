@@ -51,7 +51,7 @@ public class AbsoluteLayoutSamplePage : ContentPage
 
                 new BoxView
                 {
-                    Color = Colors.Green,
+                    Color = Colors.Pink,
                 }.LayoutFlags(AbsoluteLayoutFlags.PositionProportional, AbsoluteLayoutFlags.SizeProportional)
                  .LayoutBounds(0, 0.5, 0.25, 0.25),
 

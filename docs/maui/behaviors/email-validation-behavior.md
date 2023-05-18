@@ -130,6 +130,13 @@ The following screenshot shows the resulting EmailValidationBehavior on Android:
 
 [!INCLUDE [common validation properties](../includes/validation-behavior.md)]
 
+## Methods
+
+| Method  |Description  |
+|---------|---------|
+| EmailRegex (static) | A `GeneratedRegex` to match an input is a valid email address. |
+| EmailDomainRegex (static) | A `GeneratedRegex` to match the domain of an email address. |
+
 ## Examples
 
 You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/EmailValidationBehaviorPage.xaml).

@@ -52,10 +52,13 @@ public string? Name
     {
         if (!EqualityComparer<string?>.Default.Equals(name, value))
         {
+            string? oldValue = name;
             OnNameChanging(value);
+            OnNameChanging(oldValue, value);
             OnPropertyChanging();
             name = value;
             OnNameChanged(value);
+            OnNameChanged(oldValue, value);
             OnPropertyChanged();
         }
     }
@@ -63,9 +66,14 @@ public string? Name
 
 partial void OnNameChanging(string? value);
 partial void OnNameChanged(string? value);
+
+partial void OnNameChanging(string? oldValue, string? newValue);
+partial void OnNameChanged(string? oldValue, string? newValue);
 ```
 
-This allows you to implement any of those two methods to inject additional code:
+This allows you to implement any of those methods to inject additional code. The first two are useful whenever you want to run some logic that only needs to reference the new value that the property has been set to. The other two are useful whenever you have some more complex logic that also has to update some state on both the old and new value being set.
+
+For instance, here is an example of how the first two overloads can be used:
 
 ```csharp
 [ObservableProperty]
@@ -82,14 +90,34 @@ partial void OnNameChanged(string? value)
 }
 ```
 
-You're free to only implement one of these two methods, or neither. If they are not implemented (or if only one is), the entire call(s) will just be removed by the compiler, so there will be no performance hit at all for cases where this additional functionality is not required.
+And here is an example of how the other two overloads can be used:
+
+```csharp
+[ObservableProperty]
+private ChildViewModel? selectedItem;
+
+partial void OnSelectedItemChanging(ChildViewModel? oldValue, ChildViewModel? newValue)
+{
+    if (oldValue is not null)
+    {
+        oldValue.IsSelected = true;
+    }
+
+    if (newValue is not null)
+    {
+        newValue.IsSelected = true;
+    }
+}
+```
+
+You're free to only implement any number of methods among the ones that are available, or none of them. If they are not implemented (or if only one is), the entire call(s) will just be removed by the compiler, so there will be no performance hit at all for cases where this additional functionality is not required.
 
 > [!NOTE]
 > The generated methods are [partial methods](/dotnet/csharp/language-reference/keywords/partial-method) with no implementation, meaning that if you choose to implement them, you cannot specify an explicit accessibility for them. That is, implementations of these methods should also be declared as just `partial` methods, and they will always implicitly have private accessibility. Trying to add an explicit accessibility (eg. adding `public` or `private`) will result in an error, as that is not allowed in C#.
 
 ## Notifying dependent properties
 
-Imagine you had a `FullName` property you wanted to raise a notification for whenever `Name` changes. You can do that by using the `NotifyPRopertyChangedFor` attribute, like so:
+Imagine you had a `FullName` property you wanted to raise a notification for whenever `Name` changes. You can do that by using the `NotifyPropertyChangedFor` attribute, like so:
 
 ```csharp
 [ObservableProperty]
@@ -203,6 +231,21 @@ public string? Name
 ```
 
 That generated `Broadcast` call will then send a new [`PropertyChangedMessage<T>`](/dotnet/api/communitytoolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1) using the `IMessenger` instance in use in the current viewmodel, to all registered subscribers.
+
+## Adding custom attributes
+
+In some cases, it might be useful to also have some custom attributes over the generated properties. To achieve that, you can simply use the `[property: ]` target in attribute lists over annotated fields, and the MVVM Toolkit will automatically forward those attributes to the generated properties.
+
+For instance, consider a field like this:
+
+```csharp
+[ObservableProperty]
+[property: JsonRequired]
+[property: JsonPropertyName("name")]
+private string? username;
+```
+
+This will generate a `Username` property, with those two `[JsonRequired]` and `[JsonPropertyName("name")]` attributes over it. You can use as many attribute lists targeting the property as you want, and all of them will be forwarded to the generated properties.
 
 ## Examples
 

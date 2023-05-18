@@ -7,7 +7,7 @@ ms.date: 05/04/2022
 
 # EnumToBoolConverter
 
-The `EnumToBoolConverter` is a on way converter that allows you to convert an `Enum` to a corresponding `bool` based on whether it is equal to a set of supplied enum values. It is useful when binding a collection of values representing an enumeration type to a boolean control property like the `IsVisible` property.
+The `EnumToBoolConverter` is a one way converter that allows you to convert an `Enum` to a corresponding `bool` based on whether it is equal to a set of supplied enum values. It is useful when binding a collection of values representing an enumeration type to a boolean control property like the `IsVisible` property.
 
 The `Convert` method returns the supplied `value` converted to an `bool` based on whether the `value` is equal to any of the defined `TrueValues` or the supplied `CommandParameter`.
 
@@ -157,7 +157,7 @@ class EnumToBoolConverterPage : ContentPage
                     .Text("I am visible when the Picker value is Tizen.")
                     .Bind(
                         Label.IsVisibleProperty,
-                        nameof(ViewModel.SelectedPlatform),
+                        static (ViewModel vm) => vm.SelectedPlatform,
                         converter: new EnumToBoolConverter(),
                         converterParameter: MyDevicePlatform.Tizen)
             }

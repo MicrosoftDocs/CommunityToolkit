@@ -184,6 +184,23 @@ private async Task DoWorkAsync(CancellationToken token)
 
 This will cause a `DoWorkCancelCommand` property to also be generated. This can then be bound to some other UI component to easily let users cancel pending asynchronous operations.
 
+## Adding custom attributes
+
+Just like with [observable properties](ObservableProperty.md), the `RelayCommand` generator also includes support for custom attributes for the generated properties. To leverage this, you can simply use the `[property: ]` target in attribute lists over annotated methods, and the MVVM Toolkit will forward those attributes to the generated command properties.
+
+For instance, consider a method like this:
+
+```csharp
+[RelayCommand]
+[property: JsonIgnore]
+private void GreetUser(User user)
+{
+    Console.WriteLine($"Hello {user.Name}!");
+}
+```
+
+This will generate a `GreetUserCommand` property, with the `[JsonIgnore]` attribute over it. You can use as many attribute lists targeting the method as you want, and all of them will be forwarded to the generated properties.
+
 ## Examples
 
 - Check out the [sample app](https://aka.ms/mvvmtoolkit/samples) (for multiple UI frameworks) to see the MVVM Toolkit in action.

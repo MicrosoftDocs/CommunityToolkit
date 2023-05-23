@@ -162,13 +162,13 @@ The following XAML example shows a page that contains a `MediaElement` and custo
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static toolkit:MediaElementState.Playing}">
+                                 Value="{x:Static toolkit:Primitives.MediaElementState.Playing}">
                         <Setter Property="Text"
                                 Value="Pause" />
                     </DataTrigger>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static toolkit:MediaElementState.Buffering}">
+                                 Value="{x:Static toolkit:Primitives.MediaElementState.Buffering}">
                         <Setter Property="IsEnabled"
                                 Value="False" />
                     </DataTrigger>
@@ -180,7 +180,7 @@ The following XAML example shows a page that contains a `MediaElement` and custo
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding CurrentState}"
-                                 Value="{x:Static toolkit:MediaElementState.Stopped}">
+                                 Value="{x:Static toolkit:Primitives.MediaElementState.Stopped}">
                         <Setter Property="IsEnabled"
                                 Value="False" />
                     </DataTrigger>

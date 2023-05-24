@@ -149,7 +149,7 @@ new Label()
 
 ### BindTapGesture
 
-The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` taps to activate, attach it to a `Label` and bind it to an `ICommand` in our ViewModel:
+The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` taps to activate, attach it to a `Label` and bind it to an `ICommand` property called _TapCommand_ in our ViewModel:
 
 ```cs
 new Label()

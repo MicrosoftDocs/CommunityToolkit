@@ -154,7 +154,7 @@ The following example demonstrates how to create a `ClickGestureRecognizer` that
 ```cs
 new Label()
     .BindTapGesture(
-        static (ViewModel vm) => vm.ClickCommand,
+        static (ViewModel vm) => vm.TapCommand,
         commandBindingMode: BindingMode.OneTime,
         numberOfTapsRequired: 2));
 ```

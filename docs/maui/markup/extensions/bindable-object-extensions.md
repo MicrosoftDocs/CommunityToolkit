@@ -136,7 +136,7 @@ new Label()
 
 ### BindSwipeGesture
 
-The following example demonstrates how to create a `SwipeGestureRecognizer` that requires `SwipeDirection.Up` for its `SwipeDirection` and a minumum 200-point distance for its `Threshold`, then attach it to a `Label` and bind it to an `ICommand` in our ViewModel:
+The following example demonstrates how to create a `SwipeGestureRecognizer` that requires `SwipeDirection.Up` for its `SwipeDirection` and a minumum 200-point distance for its `Threshold`, then attach it to a `Label` and bind it to an `ICommand` property called _SwipeCommand_ in our ViewModel:
 
 ```cs
 new Label()

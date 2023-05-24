@@ -124,7 +124,7 @@ Gesture bindings allow us to create an `ClickGestureRecognizer`, `SwipeGestureRe
 
 ### BindClickGesture
 
-The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` clicks to activate, attach it to a `Label` and bind it to an `ICommand` in our ViewModel:
+The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` clicks to activate, attach it to a `Label` and bind it to an `ICommand` property called _ClickCommand_ in our ViewModel:
 
 ```cs
 new Label()

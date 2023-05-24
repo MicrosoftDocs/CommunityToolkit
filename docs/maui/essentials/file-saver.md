@@ -139,4 +139,4 @@ You can find an example of `FileSaver` in action in the [.NET MAUI Community Too
 
 ## API
 
-You can find the source code for `FileSaver` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/IFileSaver.shared.cs).
+You can find the source code for `FileSaver` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/FileSaver/IFileSaver.shared.cs).

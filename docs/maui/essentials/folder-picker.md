@@ -141,4 +141,4 @@ You can find an example of `FolderPicker` in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `FolderPicker` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/IFolderPicker.shared.cs).
+You can find the source code for `FolderPicker` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/FolderPicker/IFolderPicker.shared.cs).

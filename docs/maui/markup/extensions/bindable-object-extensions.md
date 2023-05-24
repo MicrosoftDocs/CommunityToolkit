@@ -141,7 +141,7 @@ The following example demonstrates how to create a `SwipeGestureRecognizer` that
 ```cs
 new Label()
     .BindSwipeGesture(
-        static (ViewModel vm) => vm.ClickCommand,
+        static (ViewModel vm) => vm.SwipeCommand,
         commandBindingMode: BindingMode.OneTime,
         direction: SwipeDirection.Up,
         threshold: 200);

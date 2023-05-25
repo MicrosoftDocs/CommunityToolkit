@@ -28,7 +28,7 @@ The following example shows how to hide the keyboard for a given entry:
 ```csharp
 using CommunityToolkit.Maui.Extensions.Core;
 
-entry.HideKeyboardAsync()
+entry.HideKeyboardAsync(CancellationToken.None);
 ```
 
 ### Show Keyboard
@@ -39,7 +39,7 @@ The following example shows how to show the keyboard for a given entry:
 ```csharp
 using CommunityToolkit.Maui.Extensions.Core;
 
-entry.ShowKeyboardAsync()
+entry.ShowKeyboardAsync(CancellationToken.None);
 ```
 
 ### Is SoftKeyboard Showing
@@ -60,4 +60,4 @@ You can find an example of this extension in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `KeyboardExtensions` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Extensions/KeyboardExtensions.shared.cs).
+You can find the source code for `KeyboardExtensions` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Platform/KeyboardExtensions/KeyboardExtensions.shared.cs).

@@ -25,14 +25,7 @@ Here are some brief examples showing how common tasks can be achieved through th
 
 ### Bindings
 
-First let's take a look at how a Binding could be defined without the Markup package:
-
-```csharp
-var entry = new Entry();
-entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.RegistrationCode));
-```
-
-Markup allows us to define the binding fluently and therefore chain multiple methods together to reduce the verbosity of our code:
+C# Markup allows us to define the binding fluently and therefore chain multiple methods together to reduce the verbosity of our code:
 
 ```csharp
 new Entry().Bind(Entry.TextProperty, static (ViewModel vm) => vm.RegistrationCode, static (ViewModel vm, string text) => vm.RegistrationCode = text)
@@ -42,15 +35,7 @@ For further details on the possible options for the `Bind` method refer to the [
 
 ### Sizing
 
-First let's take a look at how an `Entry` could be sized without the Markup package:
-
-```csharp
-var entry = new Entry();
-entry.WidthRequest = 200;
-entry.HeightRequest = 40;
-```
-
-Markup allows us to define the sizing fluently and therefore chain multiple methods together to reduce the verbosity of our code:
+C# Markup allows us to define the sizing fluently and therefore chain multiple methods together to reduce the verbosity of our code:
 
 ```csharp
 new Entry().Size(200, 40);

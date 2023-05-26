@@ -2,14 +2,14 @@
 title: SpeechToText - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The SpeechToText provides the ability to convert speech to text.
-ms.date: 12/11/2022
+ms.date: 06/05/2023
 ---
 
 # SpeechToText
 
-The `SpeechToText` provides the ability to convert speech to text.
+The `SpeechToText` API provides the ability to convert speech to text.
 
-![Screenshot of an SpeechTexy on macOS](../images/essentials/speech-to-text-mac.gif "SpeechToText on macOS")
+![Screenshot of SpeechText implemented on macOS](../images/essentials/speech-to-text-mac.gif "SpeechToText on macOS")
 
 The following preconditions required for the `SpeechToText`:
 # [Android](#tab/android)
@@ -28,7 +28,7 @@ Add permissions to `Info.plist`
 <key>NSSpeechRecognitionUsageDescription</key>  
 <string>SpeechToText requires speech recognition usage</string>  
 <key>NSMicrophoneUsageDescription</key>  
-<string>SpeechtToText requires microphone usage</string> 
+<string>SpeechToText requires microphone usage</string> 
 ```
 
 # [Windows](#tab/windows)

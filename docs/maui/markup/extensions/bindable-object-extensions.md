@@ -118,6 +118,47 @@ new Button()
         mode: BindingMode.OneTime);
 ```
 
+## Gesture Binding
+
+Gesture bindings allow us to create an `ClickGestureRecognizer`, `SwipeGestureRecognizer`, `TapGestureRecognizer`, attach it to any element that implements `IGestureRecognizer` and bind it to an `ICommand` in our ViewModel.
+
+### BindClickGesture
+
+The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` clicks to activate, attach it to a `Label` and bind it to an `ICommand` property called _ClickCommand_ in our ViewModel:
+
+```cs
+new Label()
+    .BindClickGesture(
+        static (ViewModel vm) => vm.ClickCommand,
+        commandBindingMode: BindingMode.OneTime,
+        numberOfClicksRequired: 2));
+```
+
+### BindSwipeGesture
+
+The following example demonstrates how to create a `SwipeGestureRecognizer` that requires `SwipeDirection.Up` for its `SwipeDirection` and a minumum 200-point distance for its `Threshold`, then attach it to a `Label` and bind it to an `ICommand` property called _SwipeCommand_ in our ViewModel:
+
+```cs
+new Label()
+    .BindSwipeGesture(
+        static (ViewModel vm) => vm.SwipeCommand,
+        commandBindingMode: BindingMode.OneTime,
+        direction: SwipeDirection.Up,
+        threshold: 200);
+```
+
+### BindTapGesture
+
+The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` taps to activate, attach it to a `Label` and bind it to an `ICommand` property called _TapCommand_ in our ViewModel:
+
+```cs
+new Label()
+    .BindTapGesture(
+        static (ViewModel vm) => vm.TapCommand,
+        commandBindingMode: BindingMode.OneTime,
+        numberOfTapsRequired: 2));
+```
+
 ## AppThemeBinding
 
 The `AppThemeBinding` method allows for a light and dark value to assigned to a `BindableProperty` so that when the applications `AppTheme` is modified the appropriate value will be used for that theme.

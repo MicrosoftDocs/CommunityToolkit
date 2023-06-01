@@ -173,14 +173,18 @@ items:
       href: essentials/folder-picker.md
     - name: FileSaver
       href: essentials/file-saver.md
+    - name: SpeechToText
+      href: essentials/speech-to-text.md
 - name: Extensions
   items:
     - name: Overview
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
-    - name: ColorConversionExtensions
-      href: extensions/color-conversion-extensions.md
+    - name: KeyboardExtensions
+      href: extensions/keyboard-extensions.md
+    - name: SemanticOrderView
+      href: views/semantic-order-view.md
     - name: ServiceCollectionExtensions
       href: extensions/servicecollection-extensions.md
 - name: ImageSources
@@ -207,6 +211,8 @@ items:
       href: views/DrawingView.md
     - name: "Expander"
       href: views/Expander.md
+    - name: "LazyView"
+      href: views/LazyView.md
     - name: "MediaElement"
       href: views/MediaElement.md
     - name: "Popup"

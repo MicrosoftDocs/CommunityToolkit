@@ -125,7 +125,7 @@ If we enhance the previous XAML example by adding an ok `Button`:
 In the resulting event handler we call `Close`, this will programmatically close the `Popup`.
 
 > [!NOTE] 
-> `Close()` is a fire-and-forget method. It will complete and return to the calling thread before the operating system has dismissed the `Popup` from the screen. If you need to pause the execution of your code until the operating system has dismissed the `Popup` from the screen, use instead `CloseAsync`.
+> `Close()` is a fire-and-forget method. It will complete and return to the calling thread before the operating system has dismissed the `Popup` from the screen. If you need to pause the execution of your code until the operating system has dismissed the `Popup` from the screen, use instead `CloseAsync()`.
 
 ```csharp
 public partial class MySimplePopup : Popup
@@ -145,7 +145,7 @@ public partial class MySimplePopup : Popup
 
     async void OnOKButtonClicked(object? sender, EventArgs e) 
     {
-         await Close();
+         await CloseAsync();
          await Toast.Make("Popup Dismissed By Button").Show();
     }
 }

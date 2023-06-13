@@ -2,7 +2,7 @@
 title: Map - .NET MAUI Community Toolkit
 author: jfversluis
 description: "The Map control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit."
-ms.date: 13/06/2023
+ms.date: 06/13/2023
 ---
 
 # Map

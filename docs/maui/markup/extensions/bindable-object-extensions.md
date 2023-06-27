@@ -65,8 +65,6 @@ new Entry()
         converter: new TextCaseConverter { Type = TextCaseType.Upper });
 ```
 
-> [!WARNING]
-> This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
 
 See [`TextCaseConverter`](../../converters/text-case-converter.md) for the documentation on it's full usage.
 

@@ -74,6 +74,9 @@ Local media can be played from the following sources:
 - A resource embedded in the platform application, using the `embed://` URI scheme.
 - Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
 
+> [!NOTE]
+> The shorthand `embed://` and `filesystem://` only work from XAML. In code, please use `MediaSource.FromResource()` and `MediaSource.FromFile()` respectively. Using these methods, you can omit the the `embed://` and `filesystem://` prefixes. The rest of the path should be the same.
+
 ### Play media embedded in the app package
 
 A `MediaElement` can play media files that are embedded in the app package, using the `embed://` URI scheme. Media files are embedded in the app package by placing them in the platform project.

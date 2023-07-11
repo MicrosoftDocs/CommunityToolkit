@@ -1,8 +1,8 @@
 ---
 title: Essentials - .NET MAUI Community Toolkit
-author: VladislavAntonyuk
+author: jfversluis
 description: The .NET MAUI Community Toolkit Essentials provides developers with cross-platform APIs for their applications.
-ms.date: 12/11/2022
+ms.date: 07/11/2023
 ---
 
 # Essentials
@@ -15,6 +15,7 @@ The .NET MAUI Community Toolkit provides a collection of cross-platform APIs for
 
 | Essential | Description |
 | --------- | ----------- |
+| [`AppTheme Resources`](../essentials/apptheme-resources.md) | With `AppThemeResource` and `AppThemeColor` you can create theme aware resources for your application that automatically update when the device theme updates. |
 | [`FolderPicker`](../essentials/folder-picker.md) | The `FolderPicker` allows picking a folder from the file system. |
 | [`FileSaver`](../essentials/file-saver.md) | The `FileSaver` provides the ability to select target folder and save files to the file system. |
 | [`SpeechToText`](../essentials/speech-to-text.md) | The `SpeechToText` provides the ability to convert speech to text. |

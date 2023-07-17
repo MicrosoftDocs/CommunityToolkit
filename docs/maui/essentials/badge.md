@@ -7,13 +7,13 @@ ms.date: 07/14/2023
 
 # Badge
 
-The `Badge` allows developers to set the app icon badge number on the homescreen.
+The `Badge` API allows developers to set the app icon badge number on the homescreen.
 
 ![Screenshot of an Badge on Windows](../images/essentials/badge-windows.png "Badge on Windows")
 
 ---
 
-The following preconditions required for the `Badge`:
+The following preconditions required for the `Badge` API:
 
 # [iOS/MacCatalyst](#tab/ios)
 
@@ -31,7 +31,7 @@ Add permissions to `tizen-manifest.xml`:
 
 ### C#
 
-The `Badge` can be used as follows in C#:
+The `Badge` API can be used as follows in C#:
 
 ```csharp
 void SetCount(uint value)
@@ -89,13 +89,17 @@ public partial class MainPage : ContentPage
 
 ## Examples
 
-You can find an example of `Badge` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/BadgePage.xaml).
+You can find an example of `Badge` API in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/BadgePage.xaml).
 
 ## API
 
-You can find the source code for `Badge` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/Badge/IBadge.shared.cs).
+You can find the source code for `Badge` API over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/Badge/IBadge.shared.cs).
 
 ## Android
+
+⚠️ WARNING ⚠️ 
+
+Due to the diverse landscape of Android device manufacturers and launchers, please be aware there may be unpredictable variations in how app badge counts are displayed or not displayed on different devices. 
 
 In the world of Android, one size rarely fits all. This principle holds true when it comes to setting application badge counts, due to the lack of a standardized API provided by Android system for this functionality.
 
@@ -125,3 +129,9 @@ public MainApplication(IntPtr handle, JniHandleOwnership ownership)
 <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
 <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
 ```
+
+These changes are enough for your application to run on an Android based Samsung device and correctly update the app icons badge number. It also gives you a starting point and guide as to how you could start implementing support for other launchers within your application.
+
+Therefore, while our code aims to provide an ideal implementation, there may be instances where Android will not behave as expected. 
+
+We strongly recommend thoroughly testing your app on a range of devices and launchers for the most accurate assessment of how app badge notifications behave in your specific use case.

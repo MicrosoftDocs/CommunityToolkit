@@ -48,7 +48,7 @@ void SetCount(uint value)
 
 ## Dependency Registration
 
-In case you want to inject service, you first need to register it.
+If you would like to make use of the built-in dependency injection layer within .NET MAUI, then you will need to first register the `Badge` implementation inside your `MauiProgram`.
 Update `MauiProgram.cs` with the next changes:
 
 ```csharp

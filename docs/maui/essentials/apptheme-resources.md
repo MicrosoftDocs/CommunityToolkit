@@ -7,7 +7,7 @@ ms.date: 07/13/2023
 
 # AppTheme Resources
 
-With `AppThemeResource` and `AppThemeColor` you can create theme aware resources for your application that automatically update when the device theme updates.
+With `AppThemeResource` and `AppThemeColor` you can create theme-aware resources for your application that automatically update when the device theme updates.
 
 The `AppThemeResource` and `AppThemeColor` objects are theme-aware resources that will make it easier to work with colors, images, and other resources that need to change depending on the app's current theme.
 These objects build upon the concepts of the [`AppThemeBinding`](/dotnet/maui/user-interface/system-theme-changes) that is available in .NET MAUI, and will make it easier to work with these types of resources in a [`ResourceDictionary`](/dotnet/maui/fundamentals/resource-dictionaries).
@@ -22,7 +22,11 @@ Because of this, you should typically use these APIs through the `ThemeResource`
 
 #### AppThemeResource
 
-The `AppThemeResource` is a generic theme-aware object that allows you to set any `object` for the `Light`, `Dark` and `Default` properties. Because `AppThemeResource` is not strongly-typed, at runtime the values for each property will be evaluated and casted. If the cast is invalid, this might result in a runtime exception.
+The `AppThemeResource` is a generic theme-aware object that allows you to set any `object` for the `Light`, `Dark` and `Default` properties. Because `AppThemeResource` is not strongly-typed, at runtime the values for each property will be evaluated and casted.
+
+> [!WARNING]
+>
+> If the cast is invalid, this might result in a runtime exception.
 
 The following example shows how to use `AppThemeResource` through a `ResourceDictionary`:
 
@@ -33,7 +37,7 @@ The following example shows how to use `AppThemeResource` through a `ResourceDic
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
-        <mct:AppThemeResource Light="dark.png" Dark="light.png" x:Key="MyImageSource" />
+        <toolkit:AppThemeResource Light="dark.png" Dark="light.png" x:Key="MyImageSource" />
     </ContentPage.Resources>
 
     <VerticalStackLayout>
@@ -55,7 +59,7 @@ The following example shows how to use `AppThemeColor` through a `ResourceDictio
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
-        <mct:AppThemeColor Light="Red" Dark="Green" x:Key="LabelTextColor" />
+        <toolkit:AppThemeColor Light="Red" Dark="Green" x:Key="LabelTextColor" />
     </ContentPage.Resources>
 
     <VerticalStackLayout>
@@ -77,12 +81,12 @@ The following example shows how to use `AppThemeColor` through a `Style`:
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
-        <mct:AppThemeColor Light="Red" Dark="Green" x:Key="LabelTextColor" />
+        <toolkit:AppThemeColor Light="Red" Dark="Green" x:Key="LabelTextColor" />
 
         <Style x:Key="Headline" TargetType="Label">
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="10" />
-            <Setter Property="TextColor" Value="{mct:ThemeResource LabelTextColor}" />
+            <Setter Property="TextColor" Value="{toolkit:ThemeResource LabelTextColor}" />
         </Style>
     </ContentPage.Resources>
 

@@ -117,7 +117,7 @@ The following example shows how to attach the `AnimationBehavior` to an `Image` 
             </toolkit:AnimationBehavior.AnimationType>
         </toolkit:AnimationBehavior>
     </Image.Behaviors>
-</Entry>
+</Image>
 ```
 
 #### View model

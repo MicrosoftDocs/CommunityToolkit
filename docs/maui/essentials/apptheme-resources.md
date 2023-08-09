@@ -7,9 +7,9 @@ ms.date: 07/13/2023
 
 # AppTheme Resources
 
-With `AppThemeResource` and `AppThemeColor` you can create theme-aware resources for your application that automatically update when the device theme updates.
+With `AppThemeObject` and `AppThemeColor` you can create theme-aware resources for your application that automatically update when the device theme updates.
 
-The `AppThemeResource` and `AppThemeColor` objects are theme-aware resources that will make it easier to work with colors, images, and other resources that need to change depending on the app's current theme.
+The `AppThemeObject` and `AppThemeColor` objects are theme-aware resources that will make it easier to work with colors, images, and other resources that need to change depending on the app's current theme.
 These objects build upon the concepts of the [`AppThemeBinding`](/dotnet/maui/user-interface/system-theme-changes) that is available in .NET MAUI, and will make it easier to work with these types of resources in a [`ResourceDictionary`](/dotnet/maui/fundamentals/resource-dictionaries).
 
 Because of this, you should typically use these APIs through the `ThemeResource` markup extension in XAML.
@@ -22,13 +22,13 @@ Because of this, you should typically use these APIs through the `ThemeResource`
 
 #### AppThemeResource
 
-The `AppThemeResource` is a generic theme-aware object that allows you to set any `object` for the `Light`, `Dark` and `Default` properties. Because `AppThemeResource` is not strongly-typed, at runtime the values for each property will be evaluated and casted.
+The `AppThemeObject` is a generic theme-aware object that allows you to set any `object` for the `Light`, `Dark` and `Default` properties. Because `AppThemeObject` is not strongly-typed, at runtime the values for each property will be evaluated and casted.
 
 > [!WARNING]
 >
 > If the cast is invalid, this might result in a runtime exception.
 
-The following example shows how to use `AppThemeResource` through a `ResourceDictionary`:
+The following example shows how to use `AppThemeObject` through a `ResourceDictionary`:
 
 ```xaml
 <ContentPage
@@ -37,11 +37,11 @@ The following example shows how to use `AppThemeResource` through a `ResourceDic
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
-        <toolkit:AppThemeResource Light="dark.png" Dark="light.png" x:Key="MyImageSource" />
+        <toolkit:AppThemeObject Light="dark.png" Dark="light.png" x:Key="MyImageSource" />
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <Image Source="{toolkit:ThemeResource ImageSource}" />
+        <Image Source="{toolkit:AppThemeResource ImageSource}" />
     </VerticalStackLayout>
 </ContentPage>
 ```
@@ -63,7 +63,7 @@ The following example shows how to use `AppThemeColor` through a `ResourceDictio
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <Label TextColor="{toolkit:ThemeResource LabelTextColor}" />
+        <Label TextColor="{toolkit:AppThemeResource LabelTextColor}" />
     </VerticalStackLayout>
 </ContentPage>
 ```
@@ -86,7 +86,7 @@ The following example shows how to use `AppThemeColor` through a `Style`:
         <Style x:Key="Headline" TargetType="Label">
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="10" />
-            <Setter Property="TextColor" Value="{toolkit:ThemeResource LabelTextColor}" />
+            <Setter Property="TextColor" Value="{toolkit:AppThemeResource LabelTextColor}" />
         </Style>
     </ContentPage.Resources>
 
@@ -98,11 +98,11 @@ The following example shows how to use `AppThemeColor` through a `Style`:
 
 ## Extensibility
 
-Both `AppThemeResource` and `AppThemeColor` inherit from the abstract class `AppThemeObject<T>`. If you have a need for a more strongly typed resource that is not available in the .NET MAUI Community Toolkit, you can create your own inheritance.
+Both `AppThemeObject` and `AppThemeColor` inherit from the abstract class `AppThemeObject<T>`. If you have a need for a more strongly typed resource that is not available in the .NET MAUI Community Toolkit, you can create your own inheritance.
 
 ## Properties
 
-THe below table describes the properties for `AppThemeResource` and `AppThemeColor`. For `AppThemeColor`, the types of each property will be `Color` instead of `object`.
+The below table describes the properties for `AppThemeObject` and `AppThemeColor`. For `AppThemeColor`, the types of each property will be `Color` instead of `object`.
 
 | Property | Type | Description |
 |---|---|---|

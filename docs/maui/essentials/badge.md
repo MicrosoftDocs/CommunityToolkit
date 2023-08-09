@@ -2,7 +2,7 @@
 title: Badge - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The Badge API allows developers to set the app icon badge number on the home screen.
-ms.date: 07/14/2023
+ms.date: 08/09/2023
 ---
 
 # Badge

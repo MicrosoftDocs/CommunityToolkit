@@ -16,7 +16,7 @@ The `Badge` API allows developers to set the app icon badge number on the home s
 The following preconditions are required in order to use the `Badge` API:
 
 # [Android](#tab/android)
-Additional configuration required to support Android devices. See [Android section](#android) below.
+Additional configuration required to support Android devices. See [Android section](#android-1) below.
 
 # [iOS/MacCatalyst](#tab/ios)
 

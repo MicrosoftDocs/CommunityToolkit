@@ -158,7 +158,7 @@ builder.UseMauiCommunityToolkit(options =>
 
 ## Other resources
 
-Download the [.NET MAUI Community Toolkit Sample App](https://github.com/CommunityToolkit/Maui) from the repository to see how to use the toolkit within an actual application.
+The [.NET MAUI Community Toolkit GitHub Repository](https://github.com/CommunityToolkit/Maui/samples) contains the source code for a sample application that is designed to show how you can use the toolkit to build a .NET MAUI application. **Please note that you will be required to clone or download the repository and compile the source code in order to run the sample application.**
 
 We recommend developers who are new to .NET MAUI to visit the [.NET MAUI](/dotnet/maui/) documentation.
 

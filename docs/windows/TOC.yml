@@ -1,0 +1,23 @@
+items:
+- name: Windows Toolkit Introduction
+  href: index.md
+- name: Animations
+  items:   
+    - name: AnimationSet
+      href: Animations/Animations.md
+    - name: Connected
+      href: Animations/ConnectedAnimations.md
+- name: Behaviors
+  items:   
+    - name: Animations
+      href: Behaviors/Behaviors.Animations.md
+    - name: Behaviors Overview
+      href: Behaviors.md
+    - name: Headers
+      href: HeaderBehaviors.md
+    - name: Notifications
+      href: StackedNotificationsBehavior.md
+- name: Sample Gallery
+  href: https://aka.ms/windowstoolkitapp
+- name: Labs Website
+  href: https://toolkitlabs.dev/

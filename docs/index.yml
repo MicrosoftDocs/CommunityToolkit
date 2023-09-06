@@ -45,9 +45,9 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Installation
-            url: /windows/communitytoolkit/getting-started
-          - text: Using with WinUI 3/Windows App SDK
-            url: https://aka.ms/wct-winui3
+            url: windows/getting-started
+          - text: Using with Uno Platform
+            url: https://nicksnettravels.builttoroam.com/windows-community-toolkit-prerelease/
   - title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit
     linkLists:
       - linkListType: overview

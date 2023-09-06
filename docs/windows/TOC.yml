@@ -1,6 +1,8 @@
 items:
 - name: Windows Toolkit Introduction
   href: index.md
+- name: Getting Started
+  href: getting-started.md
 - name: Animations
   items:
   - name: Implicit Animations

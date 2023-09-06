@@ -1,11 +1,11 @@
 ### YamlMime:Landing
 
 title: Community Toolkits Documentation
-summary: The home for .NET based Community Toolkits which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
+summary: The home for Community Toolkits for .NET which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
 
 metadata:
   title: Community Toolkits documentation
-  description: The home for .NET based Community Toolkits which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
+  description: The home for Community Toolkits for .NET which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
   ms.topic: landing-page
   ms.date: 02/15/2022
 
@@ -33,10 +33,10 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is the Windows Community Toolkit?
-            url: /windows/communitytoolkit/
+            url: windows/index.md
       - linkListType: quickstart
         links:
-          - text: Windows Community Toolkit Sample App
+          - text: Windows Community Toolkit Gallery
             url: https://aka.ms/windowstoolkitapp
       - linkListType: reference
         links:

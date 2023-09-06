@@ -1,48 +1,53 @@
-- name: .NET Community Toolkits
-  href: index.yml
+- name: Community Toolkits for .NET
+  expanded: true
   items:
-    - name: Toolkits
-      expanded: true
+    - name: Overview
+      href: index.yml
+    - name: .NET Community Toolkit
       items:
-        - name: .NET Community Toolkit
+        - name: Introduction
+          href: introduction.md
+        - name: Getting Started
+          href: /windows/communitytoolkit/getting-started
+        - name: MVVM Toolkit
           items:
             - name: Introduction
-              href: introduction.md
-            - name: Getting Started
-              href: /windows/communitytoolkit/getting-started
-            - name: MVVM Toolkit
-              items:
-                - name: Introduction
-                  href: mvvm/index.md
-                - name: Samples
-                  href: https://aka.ms/mvvmtoolkit/samples
-            - name: Diagnostics
-              items:
-                - name: Introduction
-                  href: diagnostics/Introduction.md
-                - name: Guard
-                  href: diagnostics/Guard.md
-                - name: ThrowHelper
-                  href: diagnostics/ThrowHelper.md
-            - name: High Performance
-              items:
-                - name: Introduction
-                  href: high-performance/Introduction.md
-                - name: Span2D<T>
-                  href: high-performance/Span2D.md
-                - name: Memory2D<T>
-                  href: high-performance/Memory2D.md
-                - name: SpanOwner<T>
-                  href: high-performance/SpanOwner.md
-                - name: MemoryOwner<T>
-                  href: high-performance/MemoryOwner.md
-                - name: StringPool
-                  href: high-performance/StringPool.md
-                - name: ParallelHelper
-                  href: high-performance/ParallelHelper.md
-                - name: Ref<T>
-                  href: high-performance/Ref.md
-        - name: Windows Community Toolkit
-          href: /windows/communitytoolkit/
-        - name: .NET MAUI Community Toolkit
-          href: maui/index.md
+              href: mvvm/index.md
+            - name: Samples
+              href: https://aka.ms/mvvmtoolkit/samples
+        - name: Diagnostics
+          items:
+            - name: Introduction
+              href: diagnostics/Introduction.md
+            - name: Guard
+              href: diagnostics/Guard.md
+            - name: ThrowHelper
+              href: diagnostics/ThrowHelper.md
+        - name: High Performance
+          items:
+            - name: Introduction
+              href: high-performance/Introduction.md
+            - name: Span2D<T>
+              href: high-performance/Span2D.md
+            - name: Memory2D<T>
+              href: high-performance/Memory2D.md
+            - name: SpanOwner<T>
+              href: high-performance/SpanOwner.md
+            - name: MemoryOwner<T>
+              href: high-performance/MemoryOwner.md
+            - name: StringPool
+              href: high-performance/StringPool.md
+            - name: ParallelHelper
+              href: high-performance/ParallelHelper.md
+            - name: Ref<T>
+              href: high-performance/Ref.md
+    - name: Windows Community Toolkit
+      items:
+        - name: Introduction
+          href: windows/index.md
+        - name: Labs
+          href: https://aka.ms/toolkit/labs/windows
+        - name: Sample Gallery
+          href: https://aka.ms/windowstoolkitapp
+    - name: .NET MAUI Community Toolkit
+      href: maui/index.md

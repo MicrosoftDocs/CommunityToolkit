@@ -1,3 +1,4 @@
+items:
 - name: Docs
   tocHref: /
   topicHref: /
@@ -6,7 +7,7 @@
     tocHref: /dotnet/
     topicHref: /dotnet/index
     items:
-    - name: Community Toolkits
+    - name: Community Toolkits for .NET
       tocHref: /dotnet/communitytoolkit/
       topicHref: /dotnet/communitytoolkit/index
       items:
@@ -19,3 +20,6 @@
         - name: .NET MAUI Community Toolkit
           tocHref: /dotnet/communitytoolkit/maui/
           topicHref: /dotnet/communitytoolkit/maui/index
+        - name: Windows Community Toolkit
+          tocHref: /dotnet/communitytoolkit/windows/
+          topicHref: /dotnet/communitytoolkit/windows/index

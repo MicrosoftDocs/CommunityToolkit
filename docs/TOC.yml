@@ -45,6 +45,8 @@
       items:
         - name: Introduction
           href: windows/index.md
+        - name: Getting Started
+          href: windows/getting-started
         - name: Labs
           href: https://aka.ms/toolkit/labs/windows
         - name: Sample Gallery

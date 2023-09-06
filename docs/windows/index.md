@@ -9,9 +9,9 @@ ms.custom: RS5
 
 # Windows Community Toolkit Documentation
 
-The Windows Community Toolkit is a collection of controls for WinUI 2, WinUI 3, and Uno Platform developers. Simplifies and demonstrates common developer tasks building experiences for Windows with .NET.
+The Windows Community Toolkit is a collection of controls for [WinUI 2](/windows/apps/winui/winui2/), [WinUI 3](/windows/apps/winui/winui3/), and [Uno Platform](https://platform.uno) developers. Simplifies and demonstrates common developer tasks building experiences for Windows with .NET.
 
-The Windows Community Toolkit is available as a Visual Studio NuGet package for new or existing C# projects.
+The Windows Community Toolkit is available as a NuGet package for new or existing C# projects. Read the [Getting Started](getting-started.md) page for all the details.
 
 You can also preview the capabilities of the toolkit by downloading the [Windows Community Toolkit Gallery](https://aka.ms/windowstoolkitapp) in the Windows Store.
 

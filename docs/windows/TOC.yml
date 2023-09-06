@@ -5,14 +5,14 @@ items:
   href: getting-started.md
 - name: Animations
   items:
+  - name: AnimationSet
+    href: Animations/AnimationSet.md
   - name: Implicit Animations
     href: Animations/Animations.md
   - name: Connected Animations
     href: Animations/ConnectedAnimations.md
 - name: Behaviors
   items:
-  - name: AnimationSet
-    href: Behaviors/Behaviors.Animations.md
   - name: Behaviors
     href: Behaviors/Behaviors.md
   - name: Header Behaviors

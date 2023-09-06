@@ -74,9 +74,7 @@ In case you want to add a custom variable character you can use the `CustomMask`
 
 ### Sample output
 
-A `TextBox` with `Mask` set to `+1999-9999` and `MaskPlaceholder` as space (the placeholder represents the characters the user can change on runtime) will be displayed as follows:
-
-![TextBoxMask animation](../resources/images/Extensions/TextBoxMask.gif)
+A `TextBox` with `Mask` set to `+1999-9999` and `MaskPlaceholder` as space (the placeholder represents the characters the user can change on runtime).
 
 ## Text regex
 
@@ -113,12 +111,6 @@ The validation has 3 modes (`TextBoxExtensions.ValidationMode`):
     ui:TextBoxExtensions.ValidationType="Decimal" />
 ```
 
-### Sample output
-
-Here is a `TextBox` with `ValidationType="Email"`, with the validation occurring when `TextChanged` is raised:
-
-![TextBoxRegex animation](../resources/images/Extensions/TextBoxRegex.gif)
-
 ## Surface Dial support
 
 The `SurfaceDialOptions` property adds features from the Surface Dial control to a numeric `TextBox`. This enables you to modify the content of the `TextBox` when rotating the Surface Dial (increasing or decreasing the value) and optionally go to the next focus element by tapping the Surface Dial click button. The various options are set through the `SurfaceDialOptions` type, which is declared in XAML and used to set all the values to use for a given `TextBox` from a single place.
@@ -148,12 +140,6 @@ The `SurfaceDialOptions` property adds features from the Surface Dial control to
     </TextBox>
 </Page>
 ```
-
-### Sample output
-
-Here is an example of the visual result when scrolling on a Surface Dial over a `TextBox`:
-
-![SurfaceDialTextbox animation](../resources/images/Extensions/SurfaceDialTextbox.gif)
 
 ## Examples
 

@@ -14,8 +14,6 @@ icon: Assets/ImageCropper.png
 
 # ImageCropper
 
-# ImageCropper
-
 The `ImageCropper Control` allows user to freely crop an image.
 
 :::code language="xaml" source="~/../code-windows/components/ImageCropper/samples/ImageCropperSample.xaml":::

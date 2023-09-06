@@ -48,12 +48,11 @@
       "extendBreadcrumb": true,
       "feedback_system": "GitHub",
       "feedback_github_repo": "MicrosoftDocs/CommunityToolkit",
-      "feedback_product_url": "https://developercommunity.visualstudio.com/",
       "feedback_product_url": "https://github.com/CommunityToolkit/",
       "ms.author": "joverslu",
       "ms.prod": "dotnet-communitytoolkit",
-      "titleSuffix": ".NET Community Toolkit",
-      "searchScope": [ ".NET Community Toolkit" ]
+      "titleSuffix": "Community Toolkits for .NET",
+      "searchScope": [ "Community Toolkits for .NET" ]
     },
     "fileMetadata": {
       "ms.technology": {

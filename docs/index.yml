@@ -45,7 +45,7 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Installation
-            url: windows/getting-started
+            url: windows/getting-started.md
           - text: Using with Uno Platform
             url: https://nicksnettravels.builttoroam.com/windows-community-toolkit-prerelease/
   - title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit

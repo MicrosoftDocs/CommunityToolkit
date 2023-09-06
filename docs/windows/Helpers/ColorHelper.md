@@ -24,4 +24,3 @@ HslColor hsl = Colors.Red.ToHsl();
 HsvColor hsv = Colors.Red.ToHsv();
 int i = Colors.Red.ToInt();
 ```
-

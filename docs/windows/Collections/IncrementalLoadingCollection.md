@@ -26,7 +26,7 @@ icon: Assets/IncrementalLoadingCollection.png
 
 ```csharp
 // Be sure to include the using at the top of the file:
-//using CommunityToolkit.WinUI;
+//using CommunityToolkit.WinUI.Collections;
 
 public class Person
 {

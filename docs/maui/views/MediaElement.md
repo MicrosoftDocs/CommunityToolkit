@@ -60,16 +60,16 @@ To bypass the Hardware Silent Switch on iOS, add the following lines of code to 
 ```cs
 public static class MauiProgram
 {
-    // ...
+    // ... Additonal Code Not Shown ... //
 
 	public static MauiApp CreateMauiApp()
 	{
-        // ...
+        // ... Additonal Code Not Shown ... //
 #if IOS
         AVAudioSession.SharedInstance().SetActive(true);
         AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
 #endif
-        // ..
+        // ... Additonal Code Not Shown ... //
     }
 }
 ```

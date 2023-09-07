@@ -31,7 +31,7 @@ In your viewmodel instead of having a public [IEnumerable](/dotnet/core/api/syst
 ## Example
 
 ```csharp
-using CommunityToolkit.WinUI;
+using CommunityToolkit.WinUI.Collections;
 
 // Grab a sample type
 public class Person

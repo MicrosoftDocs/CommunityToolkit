@@ -45,16 +45,16 @@ class IconTintColorBehaviorPage : ContentPage
 {
     public IconTintColorBehaviorPage()
     {
-        var img = new Image();
+        var image = new Image();
 
         var behavior = new IconTintColorBehavior
         {
             TintColor = Color.Red
         };
 
-        img.Behaviors.Add(behavior);
+        image.Behaviors.Add(behavior);
 
-        Content = entry;
+        Content = image;
     }
 }
 ```

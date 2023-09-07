@@ -45,7 +45,7 @@ The supported multimedia formats can be different per platform. In some cases it
 
 ## Setup
 
-Before you are able to use `MediaElement` inside your application you will need to install the NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md) page.
+Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md#communitytoolkitmauimediaelement) page.
 
 ### Including the XAML namespace
 
@@ -73,6 +73,9 @@ Local media can be played from the following sources:
 
 - A resource embedded in the platform application, using the `embed://` URI scheme.
 - Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
+
+> [!NOTE]
+> The shorthand `embed://` and `filesystem://` only work from XAML. In code, please use `MediaSource.FromResource()` and `MediaSource.FromFile()` respectively. Using these methods, you can omit the the `embed://` and `filesystem://` prefixes. The rest of the path should be the same.
 
 ### Play media embedded in the app package
 

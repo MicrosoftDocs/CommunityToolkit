@@ -29,6 +29,12 @@
   "need_pr_comments": false,
   "dependent_repositories": [
     {
+      "path_to_root": "code-windows",
+      "url": "https://github.com/CommunityToolkit/Windows",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
       "branch": "main",

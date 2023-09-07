@@ -75,6 +75,35 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
+### [CommunityToolkit.Maui.Maps](#tab/CommunityToolkitMauiMaps)
+
+This package enables you to display a map in your .NET MAUI Windows application.
+
+**Package name:** `CommunityToolkit.Maui.Maps`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Maps
+
+#### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.Maps;
+```
+
+In order to use the `Map` correctly the `.UseMauiCommunityToolkitMaps` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. This method expects a valid Bing Maps API key which you can obtain through the [Bing Maps Portal](https://www.bingmapsportal.com/).
+
+The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
+```
+
+How to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
+
 ### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkitMauiMediaElement)
 
 This package enables you to play audio and video in your .NET MAUI application.
@@ -129,7 +158,7 @@ builder.UseMauiCommunityToolkit(options =>
 
 ## Other resources
 
-Download the [.NET MAUI Community Toolkit Sample App](https://github.com/CommunityToolkit/Maui) from the repository to see how to use the toolkit within an actual application.
+The [.NET MAUI Community Toolkit GitHub Repository](https://github.com/CommunityToolkit/Maui/samples) contains the source code for a sample application that is designed to show how you can use the toolkit to build a .NET MAUI application. **Please note that you will be required to clone or download the repository and compile the source code in order to run the sample application.**
 
 We recommend developers who are new to .NET MAUI to visit the [.NET MAUI](/dotnet/maui/) documentation.
 

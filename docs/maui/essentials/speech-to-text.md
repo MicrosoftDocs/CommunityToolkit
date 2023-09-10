@@ -85,12 +85,48 @@ async Task Listen(CancellationToken cancellationToken)
 }
 ```
 
+or using events:
+
+```csharp
+async Task Listen(CancellationToken cancellationToken)
+{
+    var isGranted = await speechToText.RequestPermissions(cancellationToken);
+    if (!isGranted)
+    {
+        await Toast.Make("Permission not granted").Show(CancellationToken.None);
+        return;
+    }
+
+    speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
+    speechToText.RecognitionResultCompleted += OnRecognitionTextCompleted;
+    await SpeechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
+    
+    // Some logic
+    
+    await SpeechToText.StopListenAsync(CancellationToken.None);
+    SpeechToText.Default.RecognitionResultUpdated -= OnRecognitionTextUpdated;
+    SpeechToText.Default.RecognitionResultCompleted -= OnRecognitionTextCompleted;
+
+    void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
+    {
+        RecognitionText += args.RecognitionResult;
+    };
+    
+    void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
+    {
+        RecognitionText = args.RecognitionResult;
+    };
+}
+```
+
 ## Methods
 
 |Method  |Description  |
 |---------|---------|
 | RequestPermissions | Asks for permission. |
 | ListenAsync | Starts speech recognition. |
+| StartListenAsync | Starts the SpeechToText service. (Real time speech recognition results will be surfaced via RecognitionResultUpdated and RecognitionResultCompleted) |
+| StopListenAsync | Stops the SpeechToText service. (Speech recognition results will be surfaced via  RecognitionResultCompleted) |
 
 ### SpeechToTextResult
 
@@ -103,6 +139,15 @@ The result returned from the `ListenAsync` method. This can be used to verify wh
 | Text | `string` | The recognized text. |
 | Exception | `Exception` | Gets the `Exception` if the speech recognition operation failed. |
 | IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
+| CurrentState | `SpeechToTextState` | Gets a current listening state. |
+
+#### Events
+
+|EventName  |EventArgs  |Description  |
+|---------|---------|---------|
+| RecognitionResultUpdated | `SpeechToTextRecognitionResultUpdatedEventArgs` | Triggers when SpeechToText has real time updates. |
+| RecognitionResultCompleted | `SpeechToTextRecognitionResultCompletedEventArgs` | Triggers when SpeechToText has completed. |
+| StateChanged | `SpeechToTextStateChangedEventArgs` | Triggers when `CurrentState` has changed. |
 
 #### Methods
 

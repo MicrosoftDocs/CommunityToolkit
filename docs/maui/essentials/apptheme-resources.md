@@ -2,7 +2,7 @@
 title: AppTheme Resources - .NET MAUI Community Toolkit
 author: jfversluis
 description: With AppThemeResource and AppThemeColor you can create theme aware resources for your application that automatically update when the device theme updates.
-ms.date: 07/13/2023
+ms.date: 09/22/2023
 ---
 
 # AppTheme Resources
@@ -41,7 +41,7 @@ The following example shows how to use `AppThemeObject` through a `ResourceDicti
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <Image Source="{toolkit:AppThemeResource ImageSource}" />
+        <Image Source="{toolkit:AppThemeResource MyImageSource}" />
     </VerticalStackLayout>
 </ContentPage>
 ```

@@ -88,7 +88,7 @@ async Task Listen(CancellationToken cancellationToken)
 or using events:
 
 ```csharp
-async Task Listen(CancellationToken cancellationToken)
+async Task StartListening(CancellationToken cancellationToken)
 {
     var isGranted = await speechToText.RequestPermissions(cancellationToken);
     if (!isGranted)
@@ -100,23 +100,25 @@ async Task Listen(CancellationToken cancellationToken)
     speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
     speechToText.RecognitionResultCompleted += OnRecognitionTextCompleted;
     await SpeechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
-    
-    // Some logic
-    
+}
+
+async Task StopListening(CancellationToken cancellationToken)
+{
     await SpeechToText.StopListenAsync(CancellationToken.None);
     SpeechToText.Default.RecognitionResultUpdated -= OnRecognitionTextUpdated;
     SpeechToText.Default.RecognitionResultCompleted -= OnRecognitionTextCompleted;
-
-    void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
-    {
-        RecognitionText += args.RecognitionResult;
-    };
-    
-    void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
-    {
-        RecognitionText = args.RecognitionResult;
-    };
 }
+
+void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
+{
+    RecognitionText += args.RecognitionResult;
+};
+
+void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
+{
+    RecognitionText = args.RecognitionResult;
+};
+
 ```
 
 ## Methods

@@ -1,13 +1,13 @@
 ---
 title: SelectAllTextBehavior - .NET MAUI Community Toolkit
 author: vhugogarcia
-description: "The SelectAllTextBehavior is an effect that will select all text in an Entry / Editor when it becomes focused."
+description: "The SelectAllTextBehavior is a Behavior that will select all text in an InputView (e.g. an Entry or Editor) when it becomes focused."
 ms.date: 09/12/2023
 ---
 
 # SelectAllTextBehavior
 
-The `SelectAllTextBehavior` is an `Behavior` that will select all text in an `Entry` / `Editor` when it becomes focused.
+The `SelectAllTextBehavior` is a [`Behavior`](/dotnet/maui/fundamentals/behaviors) that will select all text in an `InputView` (e.g. an `Entry` or `Editor`) when it becomes focused.
 
 ## Syntax
 
@@ -76,7 +76,7 @@ class SelectAllTextBehaviorPage : ContentPage
 ```
 
 > [!NOTE]
-> On MacCatalyst, the behavior “SelectAllText” only works by doing right-click on the `editor` due to a native platform behavior.
+> On MacCatalyst, the behavior “SelectAllText” only works by performing a right-click in the `editor` due to platform specific functionality.
 
 ## Examples
 

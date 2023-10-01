@@ -51,6 +51,30 @@ Before you are able to use `MediaElement` inside your application you will need 
 
 [!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
 
+### Bypassing the iOS Silent Switch
+
+On iOS, the MediaElement's playback audio is muted by default when the [user has toggled the Hardware Silent Switch to off](https://support.apple.com/en-mide/guide/iphone/iph37c04838/ios#:~:text=The%20Ring%2FSilent%20switch%20is,play%20through%20your%20iPhone%20speaker). 
+
+To bypass the Hardware Silent Switch on iOS, add the following lines of code to `MauiProgram.cs`. This ensures that MediaElement's playback audio will always be audible to the user regardless of their device's Hardware Silent Switch.
+
+```cs
+public static class MauiProgram
+{
+    // ... Additonal Code Not Shown ... //
+
+	public static MauiApp CreateMauiApp()
+	{
+        // ... Additonal Code Not Shown ... //
+#if IOS
+        AVAudioSession.SharedInstance().SetActive(true);
+        AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+#endif
+        // ... Additonal Code Not Shown ... //
+    }
+}
+```
+
+
 ## Play remote media
 
 A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:

@@ -13,7 +13,7 @@ C# Markup is a set of fluent helper methods and classes designed to simplify the
 
 Just as with XAML, C# Markup enables a clean separation between UI (View) and Business Logic (View Model).
 
-C# Markup is available on all platforms supported by .NET MAUI.
+C# Markup is available on all platforms supported by .NET MAUI, and supports [.NET Hot Reload](dotnet-hot-reload.md).
 
 ## NuGet package
 

@@ -221,6 +221,43 @@ public class MyPage : ContentPage
 > [!NOTE]
 > In order to handle the tapping outside of a `Popup` when also awaiting the result you can change the value that is returned through the `ResultWhenUserTapsOutsideOfPopup` property.
 
+## Styling
+
+The `Popup` class allows the use of .NET MAUI [Styles](/dotnet/maui/user-interface/styles/xaml) to make it easier to share common visual settings across multiple popups.
+
+The following example shows how to define a style that applies to the `SimplePopup` example from the previous section.
+
+```xaml
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:popups="clr-namespace:CommunityToolkit.Maui.Sample.Views.Popups"
+               x:Class="MyProject.SimplePopup">
+
+    <toolkit:Popup.Resources>
+        <Style TargetType="{x:Type popups:SimplePopup}">
+            <Setter Property="Size" Value="100,200" />
+            <Setter Property="Color" Value="Green" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="CanBeDismissedByTappingOutsideOfPopup" Value="True" />
+        </Style>
+    </toolkit:Popup.Resources>
+
+    <VerticalStackLayout>
+        <Label Text="This is a very important message! Do you agree?" />
+        <Button Text="Yes" 
+                Clicked="OnYesButtonClicked" />
+        <Button Text="No"
+                Clicked="OnNoButtonClicked" />
+    </VerticalStackLayout>
+    
+</toolkit:Popup>
+```
+
+> [!NOTE]
+> When creating a `Style` that targets `Popup` and you wish to make it apply to custom popups like the `SimplePopup` example, make sure to set the [`ApplyToDerivedTypes`](/dotnet/api/microsoft.maui.controls.style.applytoderivedtypes) property on the `Style` definition.
+
 ## Properties
 
 |Property  |Type  |Description  |

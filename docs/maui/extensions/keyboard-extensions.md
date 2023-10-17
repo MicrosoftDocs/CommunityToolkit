@@ -9,10 +9,10 @@ ms.date: 04/12/2023
 
 The `KeyboardExtensions` provide a series of extension methods that support interacting with the Keyboard on controls that support text input.
 
-The `KeyboardExtensions` can be found under the `CommunityToolkit.Maui.Core.Extensions` namespace so just add the following line to get started:
+The `KeyboardExtensions` can be found under the `CommunityToolkit.Maui.Core.Platform.KeyboardExtensions` namespace so just add the following line to get started:
 
 ```csharp
-using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Maui.Core.Platform;
 ```
 
 ## Soft Keyboard Methods
@@ -26,7 +26,7 @@ The `HideKeyboardAsync` method will hide the Soft Input Keyboard if it is curren
 The following example shows how to hide the keyboard for a given entry:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Platform;
 
 entry.HideKeyboardAsync(CancellationToken.None);
 ```
@@ -37,7 +37,7 @@ The `ShowKeyboardAsync` method will show the Soft Input Keyboard and indicates w
 
 The following example shows how to show the keyboard for a given entry:
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Platform;
 
 entry.ShowKeyboardAsync(CancellationToken.None);
 ```
@@ -49,7 +49,7 @@ The `IsSoftKeyboardShowing` method indicates if the Soft Keyboard is currently o
 The following example shows how to check if the Soft Input Keyboard is currently open and showing:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Platform;
 
 entry.IsSoftKeyboardShowing()
 ```

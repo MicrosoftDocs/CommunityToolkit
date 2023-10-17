@@ -26,7 +26,7 @@ The `HideKeyboardAsync` method will hide the Soft Input Keyboard if it is curren
 The following example shows how to hide the keyboard for a given entry:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 entry.HideKeyboardAsync(CancellationToken.None);
 ```
@@ -37,7 +37,7 @@ The `ShowKeyboardAsync` method will show the Soft Input Keyboard and indicates w
 
 The following example shows how to show the keyboard for a given entry:
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 entry.ShowKeyboardAsync(CancellationToken.None);
 ```
@@ -49,7 +49,7 @@ The `IsSoftKeyboardShowing` method indicates if the Soft Keyboard is currently o
 The following example shows how to check if the Soft Input Keyboard is currently open and showing:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 entry.IsSoftKeyboardShowing()
 ```

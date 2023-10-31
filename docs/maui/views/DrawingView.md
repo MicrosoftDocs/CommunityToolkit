@@ -77,16 +77,16 @@ The following screenshot shows the resulting DrawingView on Android:
 
 ![Screenshot of an DrawingView with multi-line on Android](../images/views/drawingview-multiline-android.gif "DrawingView on Android")
 
-## Handle event when DrawingLineCompleted
+## Handle event when Drawing Line Completed
 
-`DrawingView` allows to subscribe to the events like `DrawingLineCompleted`. The corresponding command `DrawingLineCompletedCommand` is also available.
+`DrawingView` allows to subscribe to the events like `OnDrawingLineCompleted`. The corresponding command `DrawingLineCompletedCommand` is also available.
 
 ### XAML
 ```xml
 <views:DrawingView
             Lines="{Binding MyLines}"
             DrawingLineCompletedCommand="{Binding DrawingLineCompletedCommand}"
-            DrawingLineCompleted="OnDrawingLineCompletedEvent" />
+            OnDrawingLineCompleted="OnDrawingLineCompletedEvent" />
 ```
 
 ### C#
@@ -104,7 +104,7 @@ var drawingView = new DrawingView
         gestureImage.Source = ImageSource.FromStream(() => stream);
     })
 };
-drawingView.DrawingLineCompleted += async (s, e) =>
+drawingView.OnDrawingLineCompleted += async (s, e) =>
 {
     var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
     gestureImage.Source = ImageSource.FromStream(() => stream);
@@ -123,7 +123,7 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             IsMultiLineModeEnabled="true"
             ShouldClearOnFinish="true"
             DrawingLineCompletedCommand="{Binding DrawingLineCompletedCommand}"
-            DrawingLineCompleted="OnDrawingLineCompletedEvent"
+            OnDrawingLineCompleted="OnDrawingLineCompletedEvent"
             LineColor="Red"
             LineWidth="5"
             HorizontalOptions="FillAndExpand"
@@ -160,7 +160,7 @@ var drawingView = new DrawingView
     LineWidth = 5,
     Background = Brush.Red
 };
-drawingView.DrawingLineCompleted += async (s, e) =>
+drawingView.OnDrawingLineCompleted += async (s, e) =>
 {
     var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
     gestureImage.Source = ImageSource.FromStream(() => stream);
@@ -184,8 +184,14 @@ var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.
 | Lines | `ObservableCollection<IDrawingLine>` | Collection of `IDrawingLine` that are currently on the `DrawingView` |
 | IsMultiLineModeEnabled | `bool` | Toggles multi-line mode. When true, multiple lines can be drawn on the `DrawingView` while the tap/click is released in-between lines. Note: when `ClearOnFinish` is also enabled, the lines are cleared after the tap/click is released. Additionally, `DrawingLineCompletedCommand` will be fired after each line that is drawn. |
 | ShouldClearOnFinish | `bool` | Indicates whether the `DrawingView` is cleared after releasing the tap/click and a line is drawn. Note: when `IsMultiLineModeEnabled` is also enabled, this might cause unexpected behavior. |
-| DrawingLineCompletedCommand | `ICommand` | This command is invoked whenever the drawing of a line on the `DrawingView` has completed. Note that this is fired after the tap or click is lifted. When `MultiLineMode` is enabled this command is fired multiple times. |
-| DrawingLineCompleted | `EventHandler<DrawingLineCompletedEventArgs>` | `DrawingView` event occurs when drawing line completed. |
+| DrawingLineStartedCommand | `ICommand` | This command is invoked whenever the drawing of a line on the `DrawingView` has started.
+| DrawingLineCancelledCommand | `ICommand` | This command is invoked whenever the drawing of a line on the `DrawingView` has cancelled.
+| DrawingLineCompletedCommand | `ICommand` | This command is invoked whenever the drawing of a line on the `DrawingView` has completed. . Note that this is fired after the tap or click is lifted. When `MultiLineMode` is enabled this command is fired multiple times. |
+| PointDrawnCommand | `ICommand` | This command is invoked whenever the drawing of a point on the `DrawingView` has completed. |
+| OnDrawingLineStarted | `EventHandler<DrawingLineStartedEventArgs>` | `DrawingView` event occurs when drawing line started. |
+| OnDrawingLineCancelled | `EventHandler<EventArgs>` | `DrawingView` event occurs when drawing line cancelled. |
+| OnDrawingLineCompleted | `EventHandler<DrawingLineCompletedEventArgs>` | `DrawingView` event occurs when drawing line completed. |
+| OnPointDrawn | `EventHandler<PointDrawnEventArgs>` | `DrawingView` event occurs when point drawn. |
 | LineColor | `Color` | The color that is used by default to draw a line on the `DrawingView`. |
 | LineWidth | `float` | The width that is used by default to draw a line on the `DrawingView`. |
 
@@ -234,6 +240,17 @@ There are 2 steps to replace the default `DrawingLine` with the custom implement
     drawingViewHandler.SetDrawingLineAdapter(myDrawingLineAdapter);
     ```
 
+### DrawingLineStartedEventArgs
+
+Event argument which contains last drawing point.
+
+#### Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| Point | `PointF` | Last drawing point. |
+
+
 ### DrawingLineCompletedEventArgs
 
 Event argument which contains last drawing line.
@@ -243,6 +260,16 @@ Event argument which contains last drawing line.
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | LastDrawingLine | `IDrawingLine` | Last drawing line. |
+
+### PointDrawnEventArgs
+
+Event argument which contains last drawing point.
+
+#### Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| Point | `PointF` | Last drawing point. |
 
 ## Methods
 

@@ -311,6 +311,53 @@ The `RouteFactory` to control View construction.
 [IServiceCollection](/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection)
 A reference to this instance after the operation has completed.
 
+## Register Popup View and View Model
+
+The following methods allow you to register Popup based Views and ViewModels within the .NET MAUI `IServiceCollection`.
+
+### AddTransientPopup<TPopupView, TPopupViewModel>(IServiceCollection)
+
+Adds a transient View of the type specified in TPopupView and ViewModel of the type TPopupViewModel to the specified IServiceCollection.
+
+```csharp
+using CommunityToolkit.Maui;
+
+namespace CommunityToolkit.Maui.Sample;
+
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder()
+                            .UseMauiCommunityToolkit()
+                            .UseMauiApp<App>();
+
+        builder.Services.AddTransientPopup<UpdatingPopup, UpdatingPopupViewModel>();
+    }
+}
+```
+
+#### Type Parameters
+
+##### TView
+
+The type of the View to add. Constrained to `Popup`
+
+##### TViewModel
+
+The type of the ViewModel to add. Constrained to reference types implementing `INotifyPropertyChanged`
+
+#### Parameters
+
+##### `services` [IServiceCollection](/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection)
+
+The [IServiceCollection](/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) to add the View and ViewModel to.
+
+#### Returns
+
+[IServiceCollection](/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection)
+A reference to this instance after the operation has completed.
+
 ## API
 
 You can find the source code for `ServiceCollectionExtensions` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Extensions/ServiceCollectionExtensions.shared.cs).

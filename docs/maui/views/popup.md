@@ -78,7 +78,67 @@ var popup = new Popup
 
 ## Presenting a Popup
 
-Once the `Popup` has been built it can then be presented through the use of our `Popup` extension methods.
+Once the `Popup` has been built it can then be presented through the use of our `Popup` extension methods or through the `IPopupService` implementation from this toolkit.
+
+### IPopupService
+
+The .NET MAUI Community Toolkit provides a mechanism to instantiate and present popups in a .NET MAUI application. The popup service is automatically registered with the `MauiAppBuilder` when using the `UseMauiCommunityToolkit` initialization method. This enables you to resolve an `IPopupService` implementation in any part of your application.
+
+The `IPopupService` makes it possible to register a popup view and its associated view model. The ability to show a `Popup` can now be driven by only providing the view model making it possible to keep a clean separation between view and view model.
+
+#### Registering Popups
+
+In order to first use the `IPopupService` to display a popup in your application you will need to register the popup and view model with the `MauiAppBuilder`, this can be done through the use of [Register Popup View and View Model](../extensions/servicecollection-extensions.md#register-popup-view-and-view-model).
+
+#### Displaying Popups
+
+The following example shows how to use the `IPopupService` to create and display a popup in a .NET MAUI application:
+
+```csharp
+public class MyViewModel : INotifyPropertyChanged
+{
+    private readonly IPopupService popupService;
+
+    public MyViewModel(IPopupService popupService)
+    {
+        this.popupService = popupService;
+    }
+
+    public void DisplayPopup()
+    {
+        this.popupService.ShowPopup<UpdatingPopupViewModel>();
+    }
+}
+```
+
+For a more concrete example please refer to our sample application and the example in [`MultiplePopupViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/Popup/MultiplePopupViewModel.cs)
+
+The `IPopupService` also provides methods to handle a result being returned from a Popup as covered in [Returning a result](./popup.md#returning-a-result).
+
+#### Passing data to a Popup view model
+
+When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. The `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `Action<TViewModel> onPresenting` parameter. This parameter has been designed to be framework agnostic and allow you as a developer to drive the loading/passing of data however best fits your architecture.
+
+To extend the previous example of showing a `UpdatingPopupViewModel` and its associated Popup, we can use the `onPresenting` parameter to pass in the number of updates that we wish to perform:
+
+```csharp
+public class MyViewModel : INotifyPropertyChanged
+{
+    private readonly IPopupService popupService;
+
+    public MyViewModel(IPopupService popupService)
+    {
+        this.popupService = popupService;
+    }
+
+    public void DisplayPopup()
+    {
+        this.popupService.ShowPopup<UpdatingPopupViewModel>(onPresenting: viewModel => viewModel.PerformUpdates(10));
+    }
+}
+```
+
+### Extension methods
 
 > [!IMPORTANT]
 > A `Popup` can only be displayed from a `Page` or an implementation inheriting from `Page`.
@@ -124,7 +184,7 @@ If we enhance the previous XAML example by adding an ok `Button`:
 
 In the resulting event handler we call `Close`, this will programmatically close the `Popup`.
 
-> [!NOTE] 
+> [!NOTE]
 > `Close()` is a fire-and-forget method. It will complete and return to the calling thread before the operating system has dismissed the `Popup` from the screen. If you need to pause the execution of your code until the operating system has dismissed the `Popup` from the screen, use instead `CloseAsync()`.
 
 ```csharp
@@ -220,6 +280,43 @@ public class MyPage : ContentPage
 
 > [!NOTE]
 > In order to handle the tapping outside of a `Popup` when also awaiting the result you can change the value that is returned through the `ResultWhenUserTapsOutsideOfPopup` property.
+
+## Styling
+
+The `Popup` class allows the use of .NET MAUI [Styles](/dotnet/maui/user-interface/styles/xaml) to make it easier to share common visual settings across multiple popups.
+
+The following example shows how to define a style that applies to the `SimplePopup` example from the previous section.
+
+```xaml
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:popups="clr-namespace:CommunityToolkit.Maui.Sample.Views.Popups"
+               x:Class="MyProject.SimplePopup">
+
+    <toolkit:Popup.Resources>
+        <Style TargetType="{x:Type popups:SimplePopup}">
+            <Setter Property="Size" Value="100,200" />
+            <Setter Property="Color" Value="Green" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="CanBeDismissedByTappingOutsideOfPopup" Value="True" />
+        </Style>
+    </toolkit:Popup.Resources>
+
+    <VerticalStackLayout>
+        <Label Text="This is a very important message! Do you agree?" />
+        <Button Text="Yes" 
+                Clicked="OnYesButtonClicked" />
+        <Button Text="No"
+                Clicked="OnNoButtonClicked" />
+    </VerticalStackLayout>
+    
+</toolkit:Popup>
+```
+
+> [!NOTE]
+> When creating a `Style` that targets `Popup` and you wish to make it apply to custom popups like the `SimplePopup` example, make sure to set the [`ApplyToDerivedTypes`](/dotnet/api/microsoft.maui.controls.style.applytoderivedtypes) property on the `Style` definition.
 
 ## Properties
 

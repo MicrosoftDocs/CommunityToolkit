@@ -207,7 +207,7 @@ public partial class MySimplePopup : Popup
     {
         var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 
-         await CloseAsync(cts.Token);
+         await CloseAsync(token: cts.Token);
          await Toast.Make("Popup Dismissed By Button").Show();
     }
 }

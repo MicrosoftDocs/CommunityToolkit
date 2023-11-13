@@ -35,8 +35,18 @@ Follow the [Getting started guide][get-started] to install the **CommunityToolki
 
 ## Open source
 
-The .NET MAUI Community Toolkit is built as a set of open source projects hosted on GitHub by the community:
+The .NET MAUI Community Toolkit is built as a set of open source projects hosted on GitHub by the community. Please feel free to join the team in contributing in any possible way that you can:
 
-* [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui)
+### CommunityToolkit.Maui
 
-* [CommunityToolkit.Maui.Markup](https://github.com/CommunityToolkit/Maui.Markup)
+* [GitHub repository](https://github.com/CommunityToolkit/Maui)
+* [Report an issue](https://github.com/CommunityToolkit/Maui/issues/new/choose)
+* [Documentation repository](https://github.com/MicrosoftDocs/CommunityToolkit)
+* [Report an issue with the documentation](https://github.com/MicrosoftDocs/CommunityToolkit/issues/new)
+
+### CommunityToolkit.Maui.Markup
+
+* [GitHub repository](https://github.com/CommunityToolkit/Maui.Markup)
+* [Report an issue](https://github.com/CommunityToolkit/Maui.Markup/issues/new/choose)
+* [Documentation repository](https://github.com/MicrosoftDocs/CommunityToolkit)
+* [Report an issue with the documentation](https://github.com/MicrosoftDocs/CommunityToolkit/issues/new)

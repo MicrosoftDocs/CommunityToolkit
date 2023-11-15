@@ -105,9 +105,9 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-			.UseMauiCommunityToolkit();
+            .UseMauiCommunityToolkit();
 
-		builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
         return builder.Build();
     }
 }
@@ -120,20 +120,22 @@ public partial class MainPage : ContentPage
 {
     private readonly IFolderPicker folderPicker;
 
-	public MainPage(IFolderPicker folderPicker)
-	{
-		InitializeComponent();
+    public MainPage(IFolderPicker folderPicker)
+    {
+        InitializeComponent();
         this.folderPicker = folderPicker;
-	}
-	
-	public async void Pick(object sender, EventArgs args)
-	{
-		var result = await folderPicker.PickAsync(cancellationToken);
+    }
+
+    async Task PickFolder(CancellationToken cancellationToken)
+    {
+        var result = await folderPicker.PickAsync(cancellationToken);
         result.EnsureSuccess();
         await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
-	}
+    }
 }
 ```
+
+For more detail on how to provide a `CancellationToken` refer to the [Microsoft documentation](/dotnet/standard/threading/cancellation-in-managed-threads).
 
 ## Examples
 

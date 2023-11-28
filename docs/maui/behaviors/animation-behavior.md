@@ -175,7 +175,7 @@ public void Save()
 {
     if (string.IsNullOrEmpty(FirstName))
     {
-        TriggerAnimationCommand.Execute(null);
+        TriggerAnimationCommand.Execute(CancellationToken.None);
         return;
     }
 
@@ -184,7 +184,7 @@ public void Save()
 ```
 
 > [!NOTE]
-> The `AnimateCommand` property is read-only and expects a binding mode of `BindingMode.OneWay`.
+> The `AnimateCommand` property is read-only and expects a binding mode of `BindingMode.OneWayToSource`. You also do not need to assign a value to the command property in your view model (`TriggerAnimationCommand` in the example above), this is because the binding will assign the value to your property from the value created in the `AnimationBehavior`.
 
 This provides the ability to trigger an animation from within a view model.
 

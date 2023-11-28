@@ -249,6 +249,8 @@ items:
       href: markup/extensions/object-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
+    - name: "SemanticProperty extensions"
+      href: markup/extensions/semantic-properties.md
     - name: "Style<T>"
       href: markup/extensions/style.md
     - name: "TextAlignment extensions"

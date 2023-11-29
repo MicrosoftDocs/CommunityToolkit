@@ -21,9 +21,37 @@ Add permissions to `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-# [iOS/MacCatalyst](#tab/ios)
+# [iOS](#tab/ios)
 
 Nothing is needed.
+
+# [MacCatalyst](#tab/macos)
+
+When using [App Sandbox](https://developer.apple.com/documentation/security/app_sandbox), which is required if you wish to distribute your macOS application via the Apple App Store, you will also need to enable [Accessing files from the macOS App Sandbox](https://developer.apple.com/documentation/security/app_sandbox/accessing_files_from_the_macos_app_sandbox).
+
+There are two key options when enabling access to files from the macOS App Sandbox:
+
+1. Read-only access
+
+Add the following into your entitlements.plist file:
+
+```xml
+<key>com.apple.security.files.user-selected.read-only</key>
+<true/>
+```
+
+Further reading at: [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-only](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-only)
+
+2. Read-write access
+
+Add the following into your entitlements.plist file:
+
+```xml
+<key>com.apple.security.files.user-selected.read-write</key>
+<true/>
+```
+
+Further reading at: [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write)
 
 # [Windows](#tab/windows)
 

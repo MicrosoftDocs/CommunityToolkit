@@ -136,6 +136,7 @@ public static class MauiProgram
             .UseMauiCommunityToolkit();
 
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }
 }

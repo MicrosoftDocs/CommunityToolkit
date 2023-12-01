@@ -24,7 +24,9 @@ There are a number of overloads for the `Bind` method.
 A one way binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Label` can be created as follows:
 
 ```csharp
-new Entry().Bind(Label.TextProperty, static (RegistrationViewModel vm) => vm.RegistrationCode)
+new Entry()
+    .Bind(Label.TextProperty, 
+            getter: static (RegistrationViewModel vm) => vm.RegistrationCode)
 ```
 
 #### Two way binding
@@ -32,11 +34,48 @@ new Entry().Bind(Label.TextProperty, static (RegistrationViewModel vm) => vm.Reg
 A two way binding from a view model (`RegistrationViewModel`) property called `RegistrationCode` to the `Text` property of an `Entry` can be created as follows:
 
 ```csharp
+new Entry()
+    .Bind(Entry.TextProperty,
+            getter: static (RegistrationViewModel vm) => vm.RegistrationCode,
+            setter: static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code)
+```
+
+### Complex (Nested) Bindings
+
+When binding to a property inside of a property (also known as "Nested Bindings"), the `handlers` parameter is required. The `handler` parameter requires a reference to each Property in the complex binding chain.
+
+
+#### Complex (Nested) Bindings Example
+
+Using the below `ViewModel` class, we can create a nested two-way binding directly to `ViewModel.NestedObject.Text` using the `handler` parameter:
+
+```csharp
 new Entry().Bind(
     Entry.TextProperty,
-    static (RegistrationViewModel vm) => vm.RegistrationCode,
-    static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code)
+    getter: static (ViewModel vm) => vm.NestedObject.Text,
+    handlers: new (Func<ViewModel, object?>, string)[]
+             {
+                (vm => vm, nameof(ViewModel.NestedObject)),
+                (vm => vm.NestedObject, nameof(ViewModel.NestedObject.Text)),
+             },
+    setter: static (ViewModel vm, string text) => vm.NestedObject.Text = text);
 ```
+
+```cs
+class ViewModel
+{
+    public NestedObject NestedObject { get; set; } = new();
+
+    public required string Text { get; set; }
+}
+
+class NestedObject
+{
+    public required string Text { get; set; }
+}
+```
+
+
 
 #### Default property
 
@@ -59,10 +98,9 @@ The `Bind` method allows for a developer to supply the `Converter` that they wis
 
 ```csharp
 new Entry()
-    .Bind(
-        Entry.TextProperty,
-        static (RegistrationViewModel vm) => vm.RegistrationCode,
-        converter: new TextCaseConverter { Type = TextCaseType.Upper });
+    .Bind(Entry.TextProperty,
+            getter: static (RegistrationViewModel vm) => vm.RegistrationCode,
+            converter: new TextCaseConverter { Type = TextCaseType.Upper });
 ```
 
 
@@ -72,10 +110,9 @@ See [`TextCaseConverter`](../../converters/text-case-converter.md) for the docum
 
 ```csharp
 new Entry()
-    .Bind(
-        Entry.TextProperty,
-        static (RegistrationViewModel vm) => vm.RegistrationCode,
-        convert: (string? text) => text?.ToUpperInvariant());
+    .Bind(Entry.TextProperty,
+            getter: static (RegistrationViewModel vm) => vm.RegistrationCode,
+            convert: (string? text) => text?.ToUpperInvariant());
 ```
 
 #### Multiple Bindings
@@ -86,11 +123,10 @@ The `convert` parameter is a `Func` that is required to convert the multiple bin
 
 ```csharp
 new Label()
-    .Bind(
-        Label.TextProperty,
-        binding1: new Binding(nameof(ViewModel.IsBusy)),
-        binding2: new Binding(nameof(ViewModel.LabelText)),
-        convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
+    .Bind(Label.TextProperty,
+            binding1: new Binding(nameof(ViewModel.IsBusy)),
+            binding2: new Binding(nameof(ViewModel.LabelText)),
+            convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
 ```
 
 ## BindCommand
@@ -110,10 +146,9 @@ The above could also be written as:
 
 ```csharp
 new Button()
-    .Bind(
-        Entry.CommandProperty,
-        static (RegistrationViewModel vm) => vm.SubmitCommand,
-        mode: BindingMode.OneTime);
+    .Bind(Entry.CommandProperty,
+            getter: static (RegistrationViewModel vm) => vm.SubmitCommand,
+            mode: BindingMode.OneTime);
 ```
 
 ## Gesture Binding

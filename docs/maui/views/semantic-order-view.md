@@ -5,6 +5,8 @@ description: The SemanticOrderView provides the ability to control the order of 
 ms.date: 02/28/2023
 ---
 
+# SemanticOrderView
+
 The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application. This can be particularly useful when building user interfaces in orders differing from the order in which users and screen readers will navigate them.
 
 ## Using the SemanticOrderView

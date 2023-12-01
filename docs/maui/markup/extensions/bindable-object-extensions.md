@@ -44,7 +44,7 @@ new Entry()
 
 When binding to a property inside of a property (also known as "Nested Bindings"), the `handlers` parameter is required. The `handler` parameter requires a reference to each Property in the complex binding chain.
 
-Along with the example below, you can find additonal examples of more complex bindings in the [Unit Tests for `CommunityToolkit.Maui.Markup`](https://github.com/CommunityToolkit/Maui.Markup/blob/08459a7e128de0e764f4e293cc191bfa293b79bd/src/CommunityToolkit.Maui.Markup.UnitTests/TypedBindingExtensionsTests.cs#L308-L461).
+Along with the example below, you can find additonal examples of complex bindings in the [Unit Tests for `CommunityToolkit.Maui.Markup`](https://github.com/CommunityToolkit/Maui.Markup/blob/08459a7e128de0e764f4e293cc191bfa293b79bd/src/CommunityToolkit.Maui.Markup.UnitTests/TypedBindingExtensionsTests.cs#L308-L461).
 
 #### Complex (Nested) Bindings Example
 

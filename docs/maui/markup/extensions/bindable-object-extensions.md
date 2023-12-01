@@ -44,7 +44,6 @@ new Entry()
 
 When binding to a property inside of a property (also known as "Nested Bindings"), the `handlers` parameter is required. The `handler` parameter requires a reference to each Property in the complex binding chain.
 
-
 #### Complex (Nested) Bindings Example
 
 Using the below `ViewModel` class, we can create a nested two-way binding directly to `ViewModel.NestedObject.Text` using the `handlers` parameter:
@@ -74,8 +73,6 @@ class NestedObject
     public required string Text { get; set; }
 }
 ```
-
-
 
 #### Default property
 

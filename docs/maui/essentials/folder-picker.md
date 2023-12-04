@@ -135,7 +135,10 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit();
 
+        // Register the FolderPicker as a singleton
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        
+        // Register the MainPage as transient to make sure it can resolve the IFolderPicker dependency.
         builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }

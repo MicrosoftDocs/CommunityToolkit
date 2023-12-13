@@ -74,6 +74,12 @@
         "communitytoolkit/maui/**/**.md": "The .NET MAUI Community Toolkit documentation is open source. Please provide feedback here.",
         "communitytoolkit/mvvm/**/**.md": "The MVVM Toolkit documentation is open source. Please provide feedback here.",
         "communitytoolkit/windows/**/**.md": "The Windows Community Toolkit documentation is open source. Please provide feedback here."
+      },
+      "open_source_feedback_productLogoLightUrl": {
+        "communitytoolkit/windows/**/**.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
+      },
+      "open_source_feedback_productLogoDarkUrl": {
+        "communitytoolkit/windows/**/**.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
       }
     },
     "template": [],

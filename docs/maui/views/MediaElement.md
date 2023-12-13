@@ -35,7 +35,7 @@ The supported multimedia formats can be different per platform. In some cases it
 
 |Platform| Link | Notes |
 |--------|------|-------|
-| Android | [ExoPlayer Supported Formats](https://exoplayer.dev/supported-formats.html) | |
+| Android | [ExoPlayer Supported Formats](https://developer.android.com/guide/topics/media/exoplayer/supported-formats) | |
 | iOS/macOS | [iOS/macOS Supported Formats](https://stackoverflow.com/a/45898816/1506387) | No official documentation on this exists |
 | Windows | [Windows Supported Formats](/windows/uwp/audio-video-camera/supported-codecs) | On Windows the supported formats are very much dependent on what codecs are installed on the user's machine |
 | Tizen | [Tizen Supported Formats](https://docs.tizen.org/application/native/tutorials/feature/app-multimedia-video) | |

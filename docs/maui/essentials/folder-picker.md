@@ -18,9 +18,37 @@ Add permissions to `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 ```
 
-# [iOS/MacCatalyst](#tab/ios)
+# [iOS](#tab/ios)
 
 Nothing is needed.
+
+# [MacCatalyst](#tab/macos)
+
+When using [App Sandbox](https://developer.apple.com/documentation/security/app_sandbox), which is required if you wish to distribute your macOS application via the Apple App Store, you will also need to enable [Accessing files from the macOS App Sandbox](https://developer.apple.com/documentation/security/app_sandbox/accessing_files_from_the_macos_app_sandbox).
+
+There are two key options when enabling access to files from the macOS App Sandbox:
+
+1. Read-only access
+
+Add the following into your entitlements.plist file:
+
+```xml
+<key>com.apple.security.files.user-selected.read-only</key>
+<true/>
+```
+
+Further reading at: [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-only](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-only)
+
+2. Read-write access
+
+Add the following into your entitlements.plist file:
+
+```xml
+<key>com.apple.security.files.user-selected.read-write</key>
+<true/>
+```
+
+Further reading at: [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write)
 
 # [Windows](#tab/windows)
 
@@ -105,9 +133,13 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-			.UseMauiCommunityToolkit();
+            .UseMauiCommunityToolkit();
 
-		builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        // Register the FolderPicker as a singleton
+        builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        
+        // Register the MainPage as transient to make sure it can resolve the IFolderPicker dependency.
+        builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }
 }
@@ -120,20 +152,22 @@ public partial class MainPage : ContentPage
 {
     private readonly IFolderPicker folderPicker;
 
-	public MainPage(IFolderPicker folderPicker)
-	{
-		InitializeComponent();
+    public MainPage(IFolderPicker folderPicker)
+    {
+        InitializeComponent();
         this.folderPicker = folderPicker;
-	}
-	
-	public async void Pick(object sender, EventArgs args)
-	{
-		var result = await folderPicker.PickAsync(cancellationToken);
+    }
+
+    async Task PickFolder(CancellationToken cancellationToken)
+    {
+        var result = await folderPicker.PickAsync(cancellationToken);
         result.EnsureSuccess();
         await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
-	}
+    }
 }
 ```
+
+For more detail on how to provide a `CancellationToken` refer to the [Microsoft documentation](/dotnet/standard/threading/cancellation-in-managed-threads).
 
 ## Examples
 

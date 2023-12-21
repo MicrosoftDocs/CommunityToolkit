@@ -341,7 +341,7 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | Play | Starts playing the loaded media. |
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
-| SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
+| SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. |
 
 ## Examples
 

@@ -100,13 +100,17 @@ var drawingView = new DrawingView
     Lines = new ObservableCollection<IDrawingLine>(),
     DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
     {
-        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
         gestureImage.Source = ImageSource.FromStream(() => stream);
     })
 };
 drawingView.OnDrawingLineCompleted += async (s, e) =>
 {
-    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 ```
@@ -153,7 +157,9 @@ var drawingView = new DrawingView
     ShouldClearOnFinish = false,
     DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
     {
-        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
         gestureImage.Source = ImageSource.FromStream(() => stream);
     }),
     LineColor = Colors.Red,
@@ -162,19 +168,23 @@ var drawingView = new DrawingView
 };
 drawingView.OnDrawingLineCompleted += async (s, e) =>
 {
-    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 
 // get stream from lines collection
+var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 var lines = new List<IDrawingLine>();
 var stream1 = await DrawingView.GetImageStream(
                 lines,
                 new Size(gestureImage.Width, gestureImage.Height),
-                Colors.Black);
+                Colors.Black.
+                cts.Token);
 
 // get steam from the current DrawingView
-var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height);
+var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height, cts.Token);
 ```
 
 ## Properties

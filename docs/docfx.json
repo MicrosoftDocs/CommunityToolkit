@@ -61,19 +61,19 @@
     },
     "fileMetadata": {
       "ms.technology": {
-        "docs/maui/**/*.md": "dotnet-maui-community-toolkit",
-        "docs/windows/**/*.md": "windows-community-toolkit"
+        "maui/**/*.md": "dotnet-maui-community-toolkit",
+        "windows/**/*.md": "windows-community-toolkit"
       },
       "open_source_feedback_productName": {
-        "docs/maui/**.*": ".NET MAUI Community Toolkit",
-        "docs/mvvm/**.*": "MVVM Toolkit",
-        "docs/windows/**.*": "Windows Community Toolkit"
+        "maui/**/*.md": ".NET MAUI Community Toolkit",
+        "mvvm/**/*.md": "MVVM Toolkit",
+        "windows/**/*.md": "Windows Community Toolkit"
       },
       "open_source_feedback_productLogoLightUrl": {
-        "docs/windows/**/*.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
+        "windows/**/*.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
       },
       "open_source_feedback_productLogoDarkUrl": {
-        "docs/windows/**/*.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
+        "windows/**/*.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
       }
     },
     "template": [],

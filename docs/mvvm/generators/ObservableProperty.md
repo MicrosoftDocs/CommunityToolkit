@@ -9,12 +9,12 @@ dev_langs:
 
 # ObservableProperty attribute
 
-The [`ObservableProperty`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservablePropertyAttribute) type is an attribute that allows generating observable properties from annotated fields. Its purpose is to greatly reduce the amount of boilerplate that is needed to define observable properties.
+The [`ObservableProperty`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservablePropertyAttribute) type is an attribute that allows generating observable properties from annotated fields. Its purpose is to greatly reduce the amount of boilerplate that is needed to define observable properties.
 
 > [!NOTE]
 > In order to work, annotated fields need to be in a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods) with the necessary `INotifyPropertyChanged` infrastructure. If the type is nested, all types in the declaration syntax tree must also be annotated as partial. Not doing so will result in a compile errors, as the generator will not be able to generate a different partial declaration of that type with the requested observable property.
 
-> **Platform APIs:** [`ObservableProperty`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservablePropertyAttribute), [`NotifyPropertyChangedFor`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedForAttribute), [`NotifyCanExecuteChangedFor`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyCanExecuteChangedForAttribute), [`NotifyDataErrorInfo`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyDataErrorInfoAttribute), [`NotifyPropertyChangedRecipients`](/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedRecipientsAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [ObservableValidator](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableValidator), [`PropertyChangedMessage<T>`](/dotnet/api/communitytoolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1), [`IMessenger`](/dotnet/api/communitytoolkit.mvvm.Messaging.IMessenger)
+> **Platform APIs:** [`ObservableProperty`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservablePropertyAttribute), [`NotifyPropertyChangedFor`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.NotifyPropertyChangedForAttribute), [`NotifyCanExecuteChangedFor`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.NotifyCanExecuteChangedForAttribute), [`NotifyDataErrorInfo`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.NotifyDataErrorInfoAttribute), [`NotifyPropertyChangedRecipients`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.NotifyPropertyChangedRecipientsAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand), [ObservableValidator](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableValidator), [`PropertyChangedMessage<T>`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1), [`IMessenger`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.IMessenger)
 
 ## How it works
 
@@ -230,7 +230,7 @@ public string? Name
 }
 ```
 
-That generated `Broadcast` call will then send a new [`PropertyChangedMessage<T>`](/dotnet/api/communitytoolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1) using the `IMessenger` instance in use in the current viewmodel, to all registered subscribers.
+That generated `Broadcast` call will then send a new [`PropertyChangedMessage<T>`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1) using the `IMessenger` instance in use in the current viewmodel, to all registered subscribers.
 
 ## Adding custom attributes
 

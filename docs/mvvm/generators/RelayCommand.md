@@ -14,7 +14,7 @@ The [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribu
 > [!NOTE]
 > In order to work, annotated methods need to be in a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods). If the type is nested, all types in the declaration syntax tree must also be annotated as partial. Not doing so will result in a compile errors, as the generator will not be able to generate a different partial declaration of that type with the requested command.
 
-> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
+> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
 
 ## How it works
 
@@ -63,7 +63,7 @@ The resulting command will automatically use the type of the argument as its typ
 
 ## Asynchronous commands
 
-The `[RelayCommand]` command also supports wrapping asynchronous methods, via the [`IAsyncRelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand) and [`IAsyncRelayCommand<T>`](/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand-1) interfaces. This is handled automatically whenever a method returns a [`Task`](/dotnet/api/system.threading.tasks.task) type. For instance:
+The `[RelayCommand]` command also supports wrapping asynchronous methods, via the [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand) and [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1) interfaces. This is handled automatically whenever a method returns a [`Task`](/dotnet/api/system.threading.tasks.task) type. For instance:
 
 ```csharp
 [RelayCommand]
@@ -103,7 +103,7 @@ private async Task GreetUserAsync(CancellationToken token)
 }
 ```
 
-Will result in the generated command passing a token to the wrapped method. This allows consumers to just call [`IAsyncRelayCommand.Cancel`](/dotnet/api/communitytoolkit.mvvm.input.iasyncrelaycommand.cancel) to signal that token, and to allow pending operations to be stopped correctly.
+Will result in the generated command passing a token to the wrapped method. This allows consumers to just call [`IAsyncRelayCommand.Cancel`](/dotnet/api/microsoft.toolkit.mvvm.input.iasyncrelaycommand.cancel) to signal that token, and to allow pending operations to be stopped correctly.
 
 ## Enabling and disabling commands
 
@@ -122,7 +122,7 @@ private bool CanGreetUser(User? user)
 }
 ```
 
-This way, `CanGreetUser` is invoked when the button is first bound to the UI (eg. to a button), and then it is invoked again every time [`IRelayCommand.NotifyCanExecuteChanged`](/dotnet/api/communitytoolkit.mvvm.input.irelaycommand.notifycanexecutechanged) is invoked on the command.
+This way, `CanGreetUser` is invoked when the button is first bound to the UI (eg. to a button), and then it is invoked again every time [`IRelayCommand.NotifyCanExecuteChanged`](/dotnet/api/microsoft.toolkit.mvvm.input.irelaycommand.notifycanexecutechanged) is invoked on the command.
 
 For instance, this is how a command can be bound to a property to control its state:
 
@@ -154,7 +154,7 @@ Note that if a command accepts a cancellation token, a token will also be cancel
 
 There are two different ways async relay commands handle exceptions:
 - **Await and rethrow (default)**: when the command awaits the completion of an invocation, any exceptions will naturally be thrown on the same synchronization context. That usually means that exceptions being thrown would just crash the app, which is a behavior consistent with that of synchronous commands (where exceptions being thrown will also crash the app).
-- **Flow exceptions to task scheduler**: if a command is configured to flow exceptions to the task scheduler, exceptions being thrown will not crash the app, but instead they will both become available through the exposed [`IAsyncRelayCommand.ExecutionTask`](/dotnet/api/communitytoolkit.mvvm.input.iasyncrelaycommand.executiontask) as well as bubbling up to the [`TaskScheduler.UnobservedTaskException`](/dotnet/api/system.threading.tasks.taskscheduler.unobservedtaskexception). This enables more advanced scenarios (such as having UI components bind to the task and display different results based on the outcome of the operation), but it is more complex to use correctly.
+- **Flow exceptions to task scheduler**: if a command is configured to flow exceptions to the task scheduler, exceptions being thrown will not crash the app, but instead they will both become available through the exposed [`IAsyncRelayCommand.ExecutionTask`](/dotnet/api/microsoft.toolkit.mvvm.input.iasyncrelaycommand.executiontask) as well as bubbling up to the [`TaskScheduler.UnobservedTaskException`](/dotnet/api/system.threading.tasks.taskscheduler.unobservedtaskexception). This enables more advanced scenarios (such as having UI components bind to the task and display different results based on the outcome of the operation), but it is more complex to use correctly.
 
 The default behavior is having commands await and rethrow exceptions. This can be configured via the `FlowExceptionsToTaskScheduler` property:
 

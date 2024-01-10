@@ -2,7 +2,7 @@
 title: SpeechToText - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The SpeechToText provides the ability to convert speech to text.
-ms.date: 26/05/2023
+ms.date: 05/26/2023
 ---
 
 # SpeechToText

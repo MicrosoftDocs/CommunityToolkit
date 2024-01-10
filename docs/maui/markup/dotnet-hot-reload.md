@@ -1,5 +1,5 @@
 ---
-title: .NET MAUI Community Toolkit - Markup
+title: C# Markup Hot Reload - .NET MAUI Community Toolkit - Markup
 author: brminnick
 description: C# Markup supports C# Hot Reload
 ms.date: 10/01/2023
@@ -14,7 +14,7 @@ To use [.NET Hot Reload](https://devblogs.microsoft.com/dotnet/introducing-net-h
 ![C# Hot Reload Demo](dotnet-hot-reload.gif)
 
 > [!WARNING]
-> When modifying UI code, the **Apply Code Changes** button (aka the 🔥 button) will update the running C# code immediately, but it may not update your UI immediately (see [Advanced Usage](./dotnet-hot-reload.md#advanced-usage)). This is because .NET MAUI is not aware of the underlying changes you've just made to the runnning [Intermediate Language](https://learn.microsoft.com/dotnet/standard/managed-code#intermediate-language--execution). 
+> When modifying UI code, the **Apply Code Changes** button (aka the 🔥 button) will update the running C# code immediately, but it may not update your UI immediately (see [Advanced Usage](./dotnet-hot-reload.md#advanced-usage)). This is because .NET MAUI is not aware of the underlying changes you've just made to the runnning [Intermediate Language](/dotnet/standard/managed-code#intermediate-language--execution). 
 > 
 > The good news is the running code has indeed been updated, and we just need to tell .NET MAUI to redraw the updated UI onto the screen
 >
@@ -24,7 +24,7 @@ To use [.NET Hot Reload](https://devblogs.microsoft.com/dotnet/introducing-net-h
 
 ## Advanced Usage
 
-There exists a gap in the .NET ecosystem between .NET MAUI and .NET Hot Reload: your .NET MAUI app UI does not automatically refresh after pressing the **Apply Code Changes** button (aka the 🔥 button). Whilst your code has been updated in the app's underlying [Intermediate Language](https://learn.microsoft.com/dotnet/standard/managed-code#intermediate-language--execution), nothing has told .NET MAUI to redraw the updated UI on the screen.
+There exists a gap in the .NET ecosystem between .NET MAUI and .NET Hot Reload: your .NET MAUI app UI does not automatically refresh after pressing the **Apply Code Changes** button (aka the 🔥 button). Whilst your code has been updated in the app's underlying [Intermediate Language](/dotnet/standard/managed-code#intermediate-language--execution), nothing has told .NET MAUI to redraw the updated UI on the screen.
 
 The good news is that we can manually tell .NET MAUI to redraw the UI by implementing `ICommunityToolkitHotReloadHandler` and registering it with .NET MAUI's Dependency Injection container ([example below](./dotnet-hot-reload.md#example-icommunitytoolkithotreloadhandler-implementation)).
 

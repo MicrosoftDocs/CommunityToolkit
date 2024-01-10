@@ -5,7 +5,7 @@ description: The toolkit is available as a set of NuGet packages that can be add
 ms.date: 01/23/2023
 ---
 
-# Get started
+# Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 
 This article covers how to get started using the packages provided as part of the .NET MAUI Community Toolkit project.
 

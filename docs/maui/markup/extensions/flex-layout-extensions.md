@@ -13,7 +13,7 @@ The extensions offer the following methods:
 
 ## AlignSelf
 
-The `AlignSelf` extension method allows you to set how a `View` in `FlexLayout` is aligned on the cross axis. Setting this property overrides the `AlignItems` property set on the parent `FlexLayout` itself. For further detail refer to the [Microsoft documentation](/dotnet/maui/user-interface/layouts/layouts/flexlayout#alignself).
+The `AlignSelf` extension method allows you to set how a `View` in `FlexLayout` is aligned on the cross axis. Setting this property overrides the `AlignItems` property set on the parent `FlexLayout` itself. For further detail refer to the [Microsoft documentation](/dotnet/maui/user-interface/layouts/flexlayout#alignself).
 
 The following example sets the `AlignSelfProperty` for a `Label` to `FlexAlignSelf.Stretch`:
 

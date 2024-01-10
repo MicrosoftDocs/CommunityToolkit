@@ -5,7 +5,7 @@ description: The .NET MAUI Community Toolkit provides a collection of pre-built,
 ms.date: 03/30/2022
 ---
 
-# Behaviors
+# .NET MAUI Behaviors
 
 .NET Multi-platform App UI (.NET MAUI) behaviors let you add functionality to user interface controls without having to subclass them. Instead, the functionality is implemented in a behavior class and attached to the control as if it was part of the control itself.
 

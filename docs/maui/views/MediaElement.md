@@ -45,7 +45,7 @@ The supported multimedia formats can be different per platform. In some cases it
 
 ## Setup
 
-Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md#communitytoolkitmauimediaelement) page.
+Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md#tab/CommunityToolkitMauiMediaElement) page.
 
 ### Including the XAML namespace
 

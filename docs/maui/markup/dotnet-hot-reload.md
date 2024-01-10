@@ -26,10 +26,10 @@ To use [.NET Hot Reload](https://devblogs.microsoft.com/dotnet/introducing-net-h
 
 There exists a gap in the .NET ecosystem between .NET MAUI and .NET Hot Reload: your .NET MAUI app UI does not automatically refresh after pressing the **Apply Code Changes** button (aka the 🔥 button). Whilst your code has been updated in the app's underlying [Intermediate Language](/dotnet/standard/managed-code#intermediate-language--execution), nothing has told .NET MAUI to redraw the updated UI on the screen.
 
-The good news is that we can manually tell .NET MAUI to redraw the UI by implementing `ICommunityToolkitHotReloadHandler` and registering it with .NET MAUI's Dependency Injection container ([example below](./dotnet-hot-reload.md#example-icommunitytoolkithotreloadhandler-implementation)).
+The good news is that we can manually tell .NET MAUI to redraw the UI by implementing `ICommunityToolkitHotReloadHandler` and registering it with .NET MAUI's Dependency Injection container ([example below](./dotnet-hot-reload.md#example-implementation-of-icommunitytoolkithotreloadhandler)).
 
 ### MetadataUpdateHandler 
-When [.NET Hot Reload](https://devblogs.microsoft.com/dotnet/introducing-net-hot-reload/) executes, it surfaces each updated `Type` by providing a `Type[]` via [`System.Reflection.Metadata.MetadataUpdateHandler`](https://learn.microsoft.com/dotnet/api/system.reflection.metadata.metadataupdatehandlerattribute). 
+When [.NET Hot Reload](https://devblogs.microsoft.com/dotnet/introducing-net-hot-reload/) executes, it surfaces each updated `Type` by providing a `Type[]` via [`System.Reflection.Metadata.MetadataUpdateHandler`](/dotnet/api/system.reflection.metadata.metadataupdatehandlerattribute). 
 
 The .NET MAUI C# Markup Community Toolkit surfaces the changed types via `ICommunityToolkitHotReloadHandler.OnHotReload(IReadOnlyList<Type> types)`. 
 

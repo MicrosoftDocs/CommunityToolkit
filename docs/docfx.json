@@ -52,7 +52,7 @@
       "open_source_feedback_issueUrl": "https://github.com/MicrosoftDocs/communitytoolkit/issues/new?template=customer-feedback.yml",
       "open_source_feedback_issueTitle": "",
       "open_source_feedback_productName": ".NET Community Toolkit",
-      "open_source_feedback_productDescription": "The .NET Community Toolkit documentation is open source. Please provide feedback here.",
+      "open_source_feedback_productDescription": ".NET Community Toolkit is an open source project. Select a link to provide feedback:",
       "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "ms.author": "joverslu",
@@ -66,14 +66,14 @@
         "communitytoolkit/windows/**/**.md": "windows-community-toolkit"
       },
       "open_source_feedback_productName": {
-        "communitytoolkit/maui/**/**.md": ".NET MAUI Community Toolkit",
-        "communitytoolkit/mvvm/**/**.md": "MVVM Toolkit",
-        "communitytoolkit/windows/**/**.md": "Windows Community Toolkit"
+        "communitytoolkit/maui/**.*": ".NET MAUI Community Toolkit",
+        "communitytoolkit/mvvm/**.*": "MVVM Toolkit",
+        "communitytoolkit/windows/**.*": "Windows Community Toolkit"
       },
       "open_source_feedback_productDescription": {
-        "communitytoolkit/maui/**/**.md": "The .NET MAUI Community Toolkit documentation is open source. Please provide feedback here.",
-        "communitytoolkit/mvvm/**/**.md": "The MVVM Toolkit documentation is open source. Please provide feedback here.",
-        "communitytoolkit/windows/**/**.md": "The Windows Community Toolkit documentation is open source. Please provide feedback here."
+        "communitytoolkit/maui/**.*": ".NET MAUI Community Toolkit is an open source project. Select a link to provide feedback:",
+        "communitytoolkit/mvvm/**.*": "MVVM Toolkit is an open source project. Select a link to provide feedback:",
+        "communitytoolkit/windows/**.*": "Windows Community Toolkit is an open source project. Select a link to provide feedback:"
       },
       "open_source_feedback_productLogoLightUrl": {
         "communitytoolkit/windows/**/**.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"

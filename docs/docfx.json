@@ -55,12 +55,12 @@
       "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "ms.author": "joverslu",
-      "ms.prod": "dotnet-communitytoolkit",
+      "ms.service": "dotnet-communitytoolkit",
       "titleSuffix": "Community Toolkits for .NET",
       "searchScope": [ "Community Toolkits for .NET" ]
     },
     "fileMetadata": {
-      "ms.technology": {
+      "ms.subservice": {
         "maui/**/*.md": "dotnet-maui-community-toolkit",
         "windows/**/*.md": "windows-community-toolkit"
       },

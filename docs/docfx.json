@@ -62,6 +62,7 @@
     "fileMetadata": {
       "ms.subservice": {
         "maui/**/*.md": "dotnet-maui-community-toolkit",
+        "mvvm/**/*.md": "mvvm-toolkit",
         "windows/**/*.md": "windows-community-toolkit"
       },
       "open_source_feedback_productName": {

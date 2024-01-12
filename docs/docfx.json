@@ -44,6 +44,7 @@
     "globalMetadata": {
       "uhfHeaderId": "MSDocsHeader-DotNet",
       "author": "jfversluis",
+      "ms.author": "joverslu",
       "breadcrumb_path": "/dotnet/communitytoolkit/breadcrumb/toc.json",
       "feedback_system": "OpenSource",
       "feedback_github_repo": "MicrosoftDocs/CommunityToolkit",
@@ -54,7 +55,6 @@
       "open_source_feedback_productName": ".NET Community Toolkit",
       "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
-      "ms.author": "joverslu",
       "ms.service": "dotnet-communitytoolkit",
       "titleSuffix": "Community Toolkits for .NET",
       "searchScope": [ "Community Toolkits for .NET" ]
@@ -62,6 +62,7 @@
     "fileMetadata": {
       "ms.subservice": {
         "maui/**/*.md": "dotnet-maui-community-toolkit",
+        "mvvm/**/*.md": "mvvm-toolkit",
         "windows/**/*.md": "windows-community-toolkit"
       },
       "open_source_feedback_productName": {

@@ -53,7 +53,7 @@ Add the following into your entitlements.plist file:
 <true/>
 ```
 
-Further reading at: [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write)
+Further reading at [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write)
 
 # [Windows](#tab/windows)
 

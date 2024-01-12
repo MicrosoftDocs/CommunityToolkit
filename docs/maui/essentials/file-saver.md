@@ -7,19 +7,23 @@ ms.date: 12/11/2022
 
 # FileSaver
 
-The `FileSaver` provides the ability to select target folder and save files to the file system.
+The `FileSaver` provides the ability to select a target folder and save files to the file system.
 
 ![Screenshot of an FileSaver on macOS](../images/essentials/file-saver-mac.png "FileSaver on macOS")
 
-The following preconditions required for the `FileSaver`:
+The following preconditions are required for the `FileSaver`:
 # [Android](#tab/android)
 
-Add permissions to `AndroidManifest.xml`:
+If your target device API level is less than 33 add permissions to `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
+
+When your app targets Android API level 34 and up, no additional permissions are required.
+
+For more information about Android storage permission, please refer to the Android documentation about [Manifest.permission](https://developer.android.com/reference/android/Manifest.permission#WRITE_EXTERNAL_STORAGE)
 
 # [iOS](#tab/ios)
 
@@ -51,7 +55,7 @@ Add the following into your entitlements.plist file:
 <true/>
 ```
 
-Further reading at: [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write)
+Further reading at [https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_files_user-selected_read-write)
 
 # [Windows](#tab/windows)
 
@@ -94,18 +98,18 @@ async Task SaveFile(CancellationToken cancellationToken)
 
 |Method  |Description  |
 |---------|---------|
-| SaveAsync | Asks for permission, allows selecting a folder and saving file to the file system. |
+| SaveAsync | Asks for permission, allows selecting a folder and saving files to the file system. |
 
 ### FileSaverResult
 
-The result returned from the `SaveAsync` method. This can be used to verify whether the save was successful, check where the file was saved and also access any exceptions that may have ocurred during the save.
+The result returned from the `SaveAsync` method. This can be used to verify whether the save was successful, check where the file was saved, and also access any exceptions that may have occurred during the save.
 
 #### Properties
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| FilePath | `string` | The location on disk where the file was saved. |
-| Exception | `Exception` | Gets the `Exception` if the save operation failed. |
+| FilePath | `string` | The location on the disk where the file was saved. |
+| Exception | `Exception` | Gets the `Exception` if the save operation fails. |
 | IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
 
 #### Methods
@@ -115,11 +119,11 @@ The result returned from the `SaveAsync` method. This can be used to verify whet
 | EnsureSuccess | Verifies whether the save operation was successful. |
 
 > [!WARNING]
-> `EnsureSuccess` will throw an `Exception` if the save operation was unsuccessful.
+> `EnsureSuccess` will throw an `Exception` if the save operation is unsuccessful.
 
 ## Dependency Registration
 
-In case you want to inject service, you first need to register it.
+In case you want to inject a service, you first need to register it.
 Update `MauiProgram.cs` with the next changes:
 
 ```csharp

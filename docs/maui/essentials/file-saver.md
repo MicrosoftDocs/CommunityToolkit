@@ -21,7 +21,9 @@ If your target device API level is less than 33 add permissions to `AndroidManif
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-More information about Android storage permission can be read here: [Manifest.permission](https://developer.android.com/reference/android/Manifest.permission#WRITE_EXTERNAL_STORAGE)
+When your app targets Android API level 34 and up, no additional permissions are required.
+
+For more information about Android storage permission, please refer to the Android documentation about [Manifest.permission](https://developer.android.com/reference/android/Manifest.permission#WRITE_EXTERNAL_STORAGE)
 
 # [iOS](#tab/ios)
 

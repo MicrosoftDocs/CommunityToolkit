@@ -7,7 +7,7 @@ ms.date: 09/27/2022
 
 # StatusBarBehavior
 
-The `StatusBarBehavior` allows you to customize the color and style of yours device statusbar.
+The `StatusBarBehavior` allows you to customize the color and style of your device statusbar.
 
 ## Syntax
 

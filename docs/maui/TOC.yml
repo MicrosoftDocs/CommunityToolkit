@@ -45,6 +45,8 @@ items:
       href: behaviors/progressbar-animation-behavior.md
     - name: "RequiredStringValidationBehavior"
       href: behaviors/required-string-validation-behavior.md
+    - name: "SelectAllTextBehavior"
+      href: behaviors/select-all-text-behavior.md
     - name: "SetFocusOnEntryCompletedBehavior"
       href: behaviors/set-focus-when-entry-completed-behavior.md
     - name: "StatusBarBehavior"
@@ -169,6 +171,10 @@ items:
   items:   
     - name: Overview
       href: essentials/index.md
+    - name: "AppTheme Resources"
+      href: essentials/apptheme-resources.md
+    - name: "Badge"
+      href: essentials/badge.md
     - name: FolderPicker
       href: essentials/folder-picker.md
     - name: FileSaver
@@ -181,6 +187,8 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
+    - name: ColorConversionExtensions
+      href: extensions/color-conversion-extensions.md
     - name: KeyboardExtensions
       href: extensions/keyboard-extensions.md
     - name: ServiceCollectionExtensions
@@ -211,6 +219,8 @@ items:
       href: views/Expander.md
     - name: "LazyView"
       href: views/LazyView.md
+    - name: "Map (Windows)"
+      href: views/Map.md 
     - name: "MediaElement"
       href: views/MediaElement.md
     - name: "Popup"

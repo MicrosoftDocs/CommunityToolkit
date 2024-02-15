@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 01/23/2023
+ms.date: 02/15/2024
 ---
 
 # MediaElement

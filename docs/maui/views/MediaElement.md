@@ -62,8 +62,8 @@ public static class MauiProgram
 {
     // ... Additonal Code Not Shown ... //
 
-	public static MauiApp CreateMauiApp()
-	{
+    public static MauiApp CreateMauiApp()
+    {
         // ... Additonal Code Not Shown ... //
 #if IOS
         AVAudioSession.SharedInstance().SetActive(true);
@@ -73,7 +73,6 @@ public static class MauiProgram
     }
 }
 ```
-
 
 ## Play remote media
 
@@ -342,6 +341,36 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
 | SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. |
+
+## Known issues
+
+> [!WARNING]
+> Possible exception when using full-screen support on Android.
+
+While this is not an issue with the full-screen support in the .NET MAUI Community Toolkit, using the feature will at present, run the risk of exposing a known issue with .NET MAUI - [MAUI Android build crashes when app is reopened from background. It throws the exception: 'Window was already created.'](https://github.com/dotnet/maui/issues/18692).
+
+### Workaround
+
+There is a workaround that can be applied to an applications codebase in order to avoid observing this exception at runtime.
+
+In the *MainActivity.cs* file under */Platforms/Android/*, the following code can be added inside the `MainActivity` class:
+
+```csharp
+protected override void OnPostCreate(Bundle? savedInstanceState)
+{
+    try
+    {
+        base.OnPostCreate(savedInstanceState);
+    }
+    catch(Exception ex)
+    {
+        // https://github.com/dotnet/maui/issues/18692
+        System.Diagnostics.Trace.WriteLine(ex.Message);
+    }
+}
+```
+
+For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
 ## Examples
 

@@ -207,6 +207,12 @@ items:
       href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md
+- name: "Platform Specific"
+  items:
+    - name: Overview
+      href: platform-specific/index.md
+    - name: "Navigation Bar (Android)"
+      href: platform-specific/navigation-bar.md
 - name: "Views"
   items:
     - name: Overview

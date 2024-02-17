@@ -362,7 +362,7 @@ protected override void OnPostCreate(Bundle? savedInstanceState)
     {
         base.OnPostCreate(savedInstanceState);
     }
-    catch(Exception ex)
+    catch(InvalidOperationException ex)
     {
         // https://github.com/dotnet/maui/issues/18692
         System.Diagnostics.Trace.WriteLine(ex.Message);

@@ -5,7 +5,7 @@ description: The .NET MAUI Community Toolkit provides a collection of pre-built,
 ms.date: 03/30/2022
 ---
 
-# Behaviors
+# .NET MAUI Behaviors
 
 .NET Multi-platform App UI (.NET MAUI) behaviors let you add functionality to user interface controls without having to subclass them. Instead, the functionality is implemented in a behavior class and attached to the control as if it was part of the control itself.
 
@@ -26,7 +26,9 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable beh
 | [`NumericValidationBehavior`](numeric-validation-behavior.md) | The `NumericValidationBehavior` is a `Behavior` that allows the user to determine if text input is a valid numeric value. |
 | [`ProgressBarAnimationBehavior`](progressbar-animation-behavior.md) | The `ProgressBarAnimationBehavior` animates a `ProgressBar` from its current Progress value to a provided value over time. |
 | [`RequiredStringValidationBehavior`](required-string-validation-behavior.md) | The `RequiredStringValidationBehavior` is a `Behavior` that allows the user to determine if text input is equal to specific text. |
+| [`SelectAllTextBehavior`](select-all-text-behavior.md) | The `SelectAllTextBehavior` is a `Behavior` that allows selecting all text in an `InputView` (e.g. an `Entry` or `Editor`) when it becomes focused.
 | [`SetFocusOnEntryCompletedBehavior`](set-focus-when-entry-completed-behavior.md) | The `SetFocusOnEntryCompletedBehavior` is a `Behavior` that gives focus to a specified `VisualElement` when an `Entry` is completed. |
+| [`StatusBarBehavior`](statusbar-behavior.md) | The `StatusBarBehavior` is a `Behavior` that allows you to customize the color and style of your device statusbar.|
 | [`TextValidationBehavior`](text-validation-behavior.md) | The `TextValidationBehavior` is a `Behavior` that allows the user to validate a given text depending on specified parameters. |
 | [`UriValidationBehavior`](uri-validation-behavior.md) | The `UriValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid URI. |
 | [`UserStoppedTypingBehavior`](user-stopped-typing-behavior.md) | The `UserStoppedTypingBehavior` is a behavior that allows the user to trigger an action when a user has stopped data input an `Entry`. |

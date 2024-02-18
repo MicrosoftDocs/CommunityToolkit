@@ -45,6 +45,8 @@ items:
       href: behaviors/progressbar-animation-behavior.md
     - name: "RequiredStringValidationBehavior"
       href: behaviors/required-string-validation-behavior.md
+    - name: "SelectAllTextBehavior"
+      href: behaviors/select-all-text-behavior.md
     - name: "SetFocusOnEntryCompletedBehavior"
       href: behaviors/set-focus-when-entry-completed-behavior.md
     - name: "StatusBarBehavior"
@@ -169,6 +171,10 @@ items:
   items:   
     - name: Overview
       href: essentials/index.md
+    - name: "AppTheme Resources"
+      href: essentials/apptheme-resources.md
+    - name: "Badge"
+      href: essentials/badge.md
     - name: FolderPicker
       href: essentials/folder-picker.md
     - name: FileSaver
@@ -181,10 +187,10 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
+    - name: ColorConversionExtensions
+      href: extensions/color-conversion-extensions.md
     - name: KeyboardExtensions
       href: extensions/keyboard-extensions.md
-    - name: SemanticOrderView
-      href: views/semantic-order-view.md
     - name: ServiceCollectionExtensions
       href: extensions/servicecollection-extensions.md
 - name: ImageSources
@@ -213,10 +219,12 @@ items:
       href: views/Expander.md
     - name: "LazyView"
       href: views/LazyView.md
+    - name: "Map (Windows)"
+      href: views/Map.md 
     - name: "MediaElement"
       href: views/MediaElement.md
     - name: "Popup"
-      href: views/popup.md
+      href: views/Popup.md
     - name: SemanticOrderView
       href: views/semantic-order-view.md
 - name: C# Markup
@@ -251,6 +259,8 @@ items:
       href: markup/extensions/object-extensions.md
     - name: "Placeholder extensions"
       href: markup/extensions/placeholder-extensions.md
+    - name: "SemanticProperty extensions"
+      href: markup/extensions/semantic-properties.md
     - name: "Style<T>"
       href: markup/extensions/style.md
     - name: "TextAlignment extensions"

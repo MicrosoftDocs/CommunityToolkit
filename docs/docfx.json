@@ -44,19 +44,37 @@
     "globalMetadata": {
       "uhfHeaderId": "MSDocsHeader-DotNet",
       "author": "jfversluis",
+      "ms.author": "joverslu",
       "breadcrumb_path": "/dotnet/communitytoolkit/breadcrumb/toc.json",
-      "feedback_system": "GitHub",
+      "feedback_system": "OpenSource",
       "feedback_github_repo": "MicrosoftDocs/CommunityToolkit",
       "feedback_product_url": "https://github.com/CommunityToolkit/",
-      "ms.author": "joverslu",
-      "ms.prod": "dotnet-communitytoolkit",
+      "open_source_feedback_contributorGuideUrl": "https://github.com/MicrosoftDocs/CommunityToolkit/blob/main/contributing/contributing-maui.md",
+      "open_source_feedback_issueUrl": "https://github.com/MicrosoftDocs/communitytoolkit/issues/new?template=customer-feedback.yml",
+      "open_source_feedback_issueTitle": "",
+      "open_source_feedback_productName": ".NET Community Toolkit",
+      "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "ms.service": "dotnet-communitytoolkit",
       "titleSuffix": "Community Toolkits for .NET",
       "searchScope": [ "Community Toolkits for .NET" ]
     },
     "fileMetadata": {
-      "ms.technology": {
-        "communitytoolkit/maui/**/**.md": "dotnet-maui-community-toolkit",
-        "communitytoolkit/windows/**/**.md": "windows-community-toolkit"
+      "ms.subservice": {
+        "maui/**/*.md": "dotnet-maui-community-toolkit",
+        "mvvm/**/*.md": "mvvm-toolkit",
+        "windows/**/*.md": "windows-community-toolkit"
+      },
+      "open_source_feedback_productName": {
+        "maui/**/*.md": ".NET MAUI Community Toolkit",
+        "mvvm/**/*.md": "MVVM Toolkit",
+        "windows/**/*.md": "Windows Community Toolkit"
+      },
+      "open_source_feedback_productLogoLightUrl": {
+        "windows/**/*.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
+      },
+      "open_source_feedback_productLogoDarkUrl": {
+        "windows/**/*.md": "https://learn.microsoft.com/media/logos/logo_Windows.svg"
       }
     },
     "template": [],

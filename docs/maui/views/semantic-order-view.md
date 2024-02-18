@@ -5,6 +5,8 @@ description: The SemanticOrderView provides the ability to control the order of 
 ms.date: 02/28/2023
 ---
 
+# SemanticOrderView
+
 The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application. This can be particularly useful when building user interfaces in orders differing from the order in which users and screen readers will navigate them.
 
 ## Using the SemanticOrderView
@@ -22,9 +24,9 @@ The following example shows how the `SemanticOrderView` can change the order in 
         <toolkit:SemanticOrderView x:Name="SemanticOrderView">
             <Grid RowDefinitions="2*,*">
                 
-                <Label x:Name="DescriptionLabel" Text="{Binding Description}">
+                <Label x:Name="DescriptionLabel" Text="{Binding Description}" />
 
-                <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="30">
+                <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="30" />
 
             </Grid>
         </toolkit:SemanticOrderView>

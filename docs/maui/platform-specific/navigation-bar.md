@@ -92,8 +92,8 @@ class NavigationBarPage : ContentPage
 {
     public NavigationBarPage()
     {
-        NavigationBar.SetColor(this, Colors.DarkSlateBlue);
-        NavigationBar.SetStyle(this, NavigationBarStyle.LightContent);
+	this.On<Android>().SetColor(Colors.Purple);
+	this.On<Android>().SetStyle(NavigationBarStyle.DarkContent);
     }
 }
 ```

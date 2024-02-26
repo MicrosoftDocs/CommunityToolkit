@@ -344,12 +344,14 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 
 ## Known issues
 
+### Possible exception when using full-screen support on Android
+
 > [!WARNING]
 > Possible exception when using full-screen support on Android.
 
 While this is not an issue with the full-screen support in the .NET MAUI Community Toolkit, using the feature will at present, run the risk of exposing a known issue with .NET MAUI - [MAUI Android build crashes when app is reopened from background. It throws the exception: 'Window was already created.'](https://github.com/dotnet/maui/issues/18692).
 
-### Workaround
+#### Workaround
 
 There is a workaround that can be applied to an applications codebase in order to avoid observing this exception at runtime.
 
@@ -371,6 +373,24 @@ protected override void OnPostCreate(Bundle? savedInstanceState)
 ```
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
+
+### The app might behave incorrectly unless LaunchMode.SingleInstance is set in the main activity
+
+> [!WARNING]
+> The app might behave incorrectly unless `LaunchMode.SingleInstance` is set in the main activity. This ensures that only one instance of the app is running at a time, and prevents the Media Element from being reinitialized or duplicated. To set the launch mode, add the following attribute to the `MainActivity` class in the *Platforms/Android* folder.
+
+#### Workaround
+
+To avoid this issue it is recommended to set the `LaunchMode` of the application to `LaunchMode.SingleInstance` as per the following example.
+
+```csharp
+[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleInstance)]
+public class MainActivity : MauiAppCompatActivity
+{
+}
+```
+
+For a full example of this attribute included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
 ## Examples
 

@@ -86,7 +86,6 @@ No setup is required.
 
 No setup is required.
 
-n/a
 
 ### [Tizen](#tab/tizen)
 

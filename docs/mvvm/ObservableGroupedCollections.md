@@ -100,7 +100,7 @@ And the relative UI could then be (using WinUI XAML):
     x:Class="MvvmSampleUwp.Views.ContactsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:collections="using:CommunityToolkit.Common.Collections"
+    xmlns:collections="using:CommunityToolkit.Mvvm.Collections"
     xmlns:contacts="using:MvvmSample.Core.Models"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"

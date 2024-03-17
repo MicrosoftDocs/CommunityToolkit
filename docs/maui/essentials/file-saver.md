@@ -94,6 +94,25 @@ async Task SaveFile(CancellationToken cancellationToken)
 }
 ```
 
+or in case the file is rather big and takes some time to be saved, you may be interested to know the progress:
+
+```csharp
+async Task SaveFile(CancellationToken cancellationToken)
+{
+    using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
+    var saverProgress = new Progress<double>(percentage => ProgressBar.Value = percentage);
+    var fileSaverResult = await FileSaver.Default.SaveAsync("test.txt", stream, saverProgress, cancellationToken);
+    if (fileSaverResult.IsSuccessful)
+    {
+        await Toast.Make($"The file was saved successfully to location: {fileSaverResult.FilePath}").Show(cancellationToken);
+    }
+    else
+    {
+        await Toast.Make($"The file was not saved successfully with error: {fileSaverResult.Exception.Message}").Show(cancellationToken);
+    }
+}
+```
+
 ## Methods
 
 |Method  |Description  |

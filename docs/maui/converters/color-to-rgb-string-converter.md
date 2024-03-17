@@ -1,17 +1,17 @@
 ---
 title: ColorToRgbStringConverter - .NET MAUI Community Toolkit
 author: bijington
-description: "The ColorToRgbStringConverter is a one way converter that allows users to convert a Color value binding to its RGB string equivalent."
-ms.date: 04/15/2022
+description: "The ColorToRgbStringConverter is a converter that allows users to convert a Color value binding to its RGB string equivalent."
+ms.date: 02/15/2024
 ---
 
 # ColorToRgbStringConverter
 
-The `ColorToRgbStringConverter` is a one way converter that allows users to convert a `Color` value binding to its RGB `string` equivalent in the format: **RGB(red,green,blue)** where **red**, **green** and **blue** will be a value between 0 and 255 (e.g. **RGB(255,0,0)** for `Colors.Red`.
+The `ColorToRgbStringConverter` is a converter that allows users to convert a `Color` value binding to its RGB `string` equivalent in the format: **RGB(red,green,blue)** where **red**, **green** and **blue** will be a value between 0 and 255 (e.g. **RGB(255,0,0)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its RGB `string` equivalent.
 
-The `ConvertBack` method is not supported.
+The `ConvertBack` method returns the RGB `string` `value` converted to a `Color`.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
 

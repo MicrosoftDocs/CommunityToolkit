@@ -109,7 +109,7 @@ var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
 #if ANDROID || IOS
-    .UseMauiMaps("YOUR_API_KEY")
+    .UseMauiMaps()
 #elif WINDOWS
     .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
 #endif

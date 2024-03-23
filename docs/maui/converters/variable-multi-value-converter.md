@@ -129,7 +129,7 @@ class VariableMultiValueConverterPage : ContentPage
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | ConditionType | `MultiBindingCondition` | Indicates how many values should be `true` out of the provided boolean values in the `MultiBinding`. |
-| Count | `int` | The number of values that should be true when using `ConditionType` of `GreaterThan`, `LessThan` or `Exact`. |
+| Count | `int` | The value to evaluate the condition upon when using `ConditionType` of `GreaterThan`, `LessThan` or `Exact`. |
 
 ### MultiBindingCondition
 

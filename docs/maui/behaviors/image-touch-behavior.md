@@ -1,16 +1,16 @@
 ---
-title: TouchBehavior - .NET MAUI Community Toolkit
+title: ImageTouchBehavior - .NET MAUI Community Toolkit
 author: bijington
-description: The TouchBehavior is a Behavior that provides the ability to interact with any VisualElement based on touch, mouse click and hover events.
+description: The ImageTouchBehavior extends the TouchBehavior by providing the ability to customize Image elements based on touch, mouse click and hover events.
 ms.date: 03/25/2024
 ---
 
-# TouchBehavior
+# ImageTouchBehavior
 
-The `TouchBehavior` is a `Behavior` that provides the ability to interact with any `VisualElement` based on touch, mouse click and hover events. The `TouchBehavior` implementation makes it possible to customize many different visual properties of the `VisualElement` that it is attached to such as the `BackgroundColor`, `Opacity` and `Scale`, as well as many other properties.
+The `ImageTouchBehavior` extends the `TouchBehavior` by providing the ability to customize `Image` elements based on touch, mouse click and hover events. The `ImageTouchBehavior` implementation makes it possible to customize the `Source` property of the `Image` element that it is attached to.
 
 > [!NOTE]
-> The toolkit also provides the [`ImageTouchBehavior`](./image-touch-behavior.md) implementation that extends this `TouchBehavior` by also providing the ability to customize the `Source` of an `Image` element.
+> For further customization options in the `ImageTouchBehavior` please refer to the [`TouchBehavior`](./touch-behavior.md) implementation that this `Behavior` extends.
 
 ## Syntax
 
@@ -25,20 +25,21 @@ The following examples show how to add the `AnimationBehavior` to a `Label` and 
 #### Using the AnimationBehavior
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorPage"
+    x:Name="Page">
 
-    <Label Text="Click this Label">
-        <Label.Behaviors>
-            <toolkit:AnimationBehavior>
-                <toolkit:AnimationBehavior.AnimationType>
-                    <toolkit:FadeAnimation Opacity="0.5" />
-                </toolkit:AnimationBehavior.AnimationType>
-            </toolkit:AnimationBehavior>
-        </Label.Behaviors>
-    </Label>
+    <Image HeightRequest="100" WidthRequest="100">
+        <Image.Behaviors>
+            <mct:ImageTouchBehavior
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseTouchCountCommand}"
+                DefaultImageSource="button.png"
+                PressedImageSource="button_pressed.png" />
+        </Image.Behaviors>
+    </Image>
 
 </ContentPage>
 ```

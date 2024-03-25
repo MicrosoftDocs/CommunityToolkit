@@ -7,14 +7,19 @@ ms.date: 03/25/2024
 
 # TouchBehavior
 
-The `TouchBehavior` is a `Behavior` that provides the ability to interact with any `VisualElement` based on touch, mouse click and hover events. The `TouchBehavior` implementation makes it possible to customize many different visual properties of the `VisualElement` that it is attached to such as the `BackgroundColor`, `Opacity` and `Scale`, as well as many other properties.
+The `TouchBehavior` is a `Behavior` that provides the ability to interact with any `VisualElement` based on touch, mouse click and hover events. The `TouchBehavior` implementation makes it possible to customize many different visual properties of the `VisualElement` that it is attached to such as the `BackgroundColor`, `Opacity`, `Rotation` and `Scale`, as well as many other properties.
 
 > [!NOTE]
 > The toolkit also provides the [`ImageTouchBehavior`](./image-touch-behavior.md) implementation that extends this `TouchBehavior` by also providing the ability to customize the `Source` of an `Image` element.
 
 ## Syntax
 
-The following examples show how to add the `AnimationBehavior` to a `Label` and use the `FadeAnimation` to animate a change in opacity.
+The following examples show how to add the `TouchBehavior` to a parent `HorizontalStackLayout` and perform the following animations when a user touches or clicks on the `HorizontalStackLayout` or any of its children:
+
+- animates over a period of 250 milliseconds
+- applies the `CubicInOut` [`Easing`](/dotnet/maui/user-interface/animation/easing)
+- changes the `Opacity` to 0.6
+- changes the `Scale` to 0.8
 
 ### XAML
 
@@ -25,49 +30,88 @@ The following examples show how to add the `AnimationBehavior` to a `Label` and 
 #### Using the AnimationBehavior
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.TouchBehaviorPage">
 
-    <Label Text="Click this Label">
-        <Label.Behaviors>
-            <toolkit:AnimationBehavior>
-                <toolkit:AnimationBehavior.AnimationType>
-                    <toolkit:FadeAnimation Opacity="0.5" />
-                </toolkit:AnimationBehavior.AnimationType>
-            </toolkit:AnimationBehavior>
-        </Label.Behaviors>
-    </Label>
+   <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+        <HorizontalStackLayout.Behaviors>
+            <toolkit:TouchBehavior
+                DefaultAnimationDuration="250"
+                DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                PressedOpacity="0.6"
+                PressedScale="0.8" />
+        </HorizontalStackLayout.Behaviors>
+
+        <ContentView
+            HeightRequest="100"
+            WidthRequest="10"
+            BackgroundColor="Gold" />
+        <Label Text="The entire layout receives touches" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+        <ContentView
+            HeightRequest="100"
+            WidthRequest="10"
+            BackgroundColor="Gold" />
+    </HorizontalStackLayout>
 
 </ContentPage>
 ```
 
 ### C#
 
-The `AnimationBehavior` can be used as follows in C#:
+The `TouchBehavior` can be used as follows in C#:
 
 ```csharp
-class AnimationBehaviorBehaviorPage : ContentPage
+class TouchBehaviorPage : ContentPage
 {
-    public AnimationBehaviorBehaviorPage()
+    public TouchBehaviorPage()
     {
+        var firstContent = new ContentView
+        {
+            HeightRequest = 100,
+            WidthRequest = 10,
+            BackgroundColor = Colors.Gold
+        };
+
         var label = new Label
         {
-            Text = "Click this Label"
+            Text = "The entire layout receives touches",
+            VerticalOptions = LayoutOptions.Center,
+            LineBreakMode = LineBreakMode.TailTruncation
         };
 
-        var animationBehavior = new AnimationBehavior
+        var secondContent = new ContentView
         {
-            AnimationType = new FadeAnimation
-            {
-                Opacity = 0.5
-            }
+            HeightRequest = 100,
+            WidthRequest = 10,
+            BackgroundColor = Colors.Gold
         };
 
-        label.Behaviors.Add(animationBehavior);
+        var layout = new HorizontalStackLayout
+        {
+            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            VerticalOptions = LayoutOptions.Center,
+            Children = 
+            {
+                firstContent,
+                label,
+                secondContent
+            }
+        }
 
-        Content = label;
+        var touchBehavior = new TouchBehavior
+        {
+            DefaultAnimationDuration = 250,
+            DefaultAnimationEasing = Easing.CubicInOut,
+            PressedOpacity = 0.6,
+            PressedScale = 0.8
+        };
+
+        layout.Behaviors.Add(touchBehavior);
+
+        Content = layout;
     }
 }
 ```
@@ -79,166 +123,89 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class AnimationBehaviorBehaviorPage : ContentPage
+class TouchBehaviorPage : ContentPage
 {
-    public AnimationBehaviorBehaviorPage()
+    public TouchBehaviorPage()
     {
-        Content = new Label()
-            .Text("Click this label")
-            .Behaviors(new AnimationBehavior
+        Content = new HorizontalStackLayout
+        {
+            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            VerticalOptions = LayoutOptions.Center,
+            Children = 
             {
-                AnimationType = new FadeAnimation
+                new ContentView()
+                    .Size(10, 100)
+                    .BackgroundColor(Colors.Gold),
+
+                new Label
                 {
-                    Opacity = 0.5
+                    LineBreakMode = LineBreakMode.TailTruncation
                 }
+                    .Text("The entire layout receives touches"
+                    .CenterVertical(),
+
+                new ContentView()
+                    .Size(10, 100)
+                    .BackgroundColor(Colors.Gold)
+            }
+        }
+            .Behaviors(new TouchBehavior
+            {
+                DefaultAnimationDuration = 250,
+                DefaultAnimationEasing = Easing.CubicInOut,
+                PressedOpacity = 0.6,
+                PressedScale = 0.8
             });
     }
 }
 ```
 
-The following screenshot shows the resulting AnimationBehavior on Android:
-![Screenshot of an AnimationBehavior on Android](../images/behaviors/animation-behavior-android.gif "AnimationBehavior on Android")
-
 ## Additional examples
 
-### Handling the user interaction
+### Handling hover interaction
 
-The `AnimationBehavior` responds to taps and clicks by the user, it is possible to handle this interaction through the `Command` property on the behavior.
+The `TouchBehavior` provides the ability to customize the properties of the attached `VisualElement` based on whether the mouse it hovering over the element.
 
-The following example shows how to attach the `AnimationBehavior` to an `Image` and bind the `Command` property to a property on a view model.
+The following example shows how to attach the `TouchBehavior` to a `HorizontalStackLayout` and change the `BackgroundColor` and `Scale` of the `HorizontalStackLayout` when a user hovers their mouse cursor over the layout and any child elements.
+
+```xaml
+<HorizontalStackLayout
+    Padding="20"
+    Background="Black"
+    HorizontalOptions="CenterAndExpand">
+    <HorizontalStackLayout.Behaviors>
+        <toolkit:TouchBehavior
+            HoveredBackgroundColor="{StaticResource Gray900}"
+            HoveredScale="1.2" />
+    </HorizontalStackLayout.Behaviors>
+</HorizontalStackLayout>
+```
+
+### Handling long press interaction
+
+The `TouchBehavior` provides the ability to handle the scenario when a user presses for a long period of time. This period of time can be defined by the `LongPressDuration` which is in units of milliseconds.
+
+The following example shows how to add the `TouchBehavior` to a `HorizontalStackLayout`, bind the `LongPressCommand` to the `IncreaseLongPressCountCommand` defined in the backing view model and set the `LongPressDuration` to 750 milliseconds.
 
 #### View
 
 ```xaml
-<Image Source="thumbs-up.png">
-    <Image.Behaviors>
-        <toolkit:AnimationBehavior Command="{Binding ThumbsUpCommand}">
-            <toolkit:AnimationBehavior.AnimationType>
-                <toolkit:FadeAnimation />
-            </toolkit:AnimationBehavior.AnimationType>
-        </toolkit:AnimationBehavior>
-    </Image.Behaviors>
-</Image>
-```
-
-#### View model
-
-```csharp
-
-public ICommand ThumbsUpCommand { get; }
-
-public MyViewModel()
-{
-    ThumbsUpCommand = new Command(() => OnThumbsUp())
-}
-
-public void OnThumbsUp()
-{
-    // perform the thumbs up logic.
-}
-```
-
-### Programmatically triggering the animation
-
-The `AnimationBehavior` provides the ability to trigger animations programmatically. The `AnimateCommand` can be executed to trigger the associated animation type.
-
-The following example shows how to add the `AnimationBehavior` to an `Entry`, bind the `AnimatedCommand` and then execute the command from a view model.
-
-#### View
-
-```xaml
-<Entry Placeholder="First name (Required)"
-       Text="{Binding FirstName}">
-    <Entry.Behaviors>
-        <toolkit:AnimationBehavior AnimateCommand="{Binding TriggerAnimationCommand}">
-            <toolkit:AnimationBehavior.AnimationType>
-                <toolkit:FadeAnimation />
-            </toolkit:AnimationBehavior.AnimationType>
-        </toolkit:AnimationBehavior>
-    </Entry.Behaviors>
-</Entry>
-```
-
-#### View model
-
-```csharp
-private string firstName;
-
-public string FirstName
-{
-    get => firstName;
-    set => SetProperty(ref firstName, value);
-}
-
-public ICommand TriggerAnimationCommand { get; set; }
-
-public void Save()
-{
-    if (string.IsNullOrEmpty(FirstName))
-    {
-        TriggerAnimationCommand.Execute(CancellationToken.None);
-        return;
-    }
-
-    // save code.
-}
-```
-
-> [!NOTE]
-> The `AnimateCommand` property is read-only and expects a binding mode of `BindingMode.OneWayToSource`. You also do not need to assign a value to the command property in your view model (`TriggerAnimationCommand` in the example above), this is because the binding will assign the value to your property from the value created in the `AnimationBehavior`.
-
-This provides the ability to trigger an animation from within a view model.
-
-### Triggering the animation from control events
-
-The `AnimationBehavior` provides the same underlying features as the [`EventToCommandBehavior`](event-to-command-behavior.md). Through the use of the `EventName` property, the associated animation type can be triggered when an event matching the supplied name is raised.
-
-Using the following example animation implementation:
-
-```csharp
-class SampleScaleToAnimation : BaseAnimation
-{
-    public double Scale { get; set; }
-
-    public override Task Animate(VisualElement view) => view.ScaleTo(Scale, Length, Easing);
-}
-```
-
-The following example shows how we can assign two `AnimationBehavior` instances to an `Entry`; one to trigger an animation when the **Focused** event is raised, and another to trigger a different animation when the **Unfocused** event is raised.
-
-```xaml
-<Entry Placeholder="Animate on Focused and Unfocused">
-    <Entry.Behaviors>
-        <toolkit:AnimationBehavior EventName="Focused">
-            <toolkit:AnimationBehavior.AnimationType>
-                <behaviorPages:SampleScaleToAnimation 
-                    Easing="{x:Static Easing.Linear}"
-                    Length="100"
-                    Scale="1.05"/>
-            </toolkit:AnimationBehavior.AnimationType>
-        </toolkit:AnimationBehavior>
-
-        <toolkit:AnimationBehavior EventName="Unfocused">
-            <toolkit:AnimationBehavior.AnimationType>
-                <behaviorPages:SampleScaleToAnimation 
-                    Easing="{x:Static Easing.Linear}"
-                    Length="100"
-                    Scale="1"/>
-            </toolkit:AnimationBehavior.AnimationType>
-        </toolkit:AnimationBehavior>
-    </Entry.Behaviors>
-</Entry>
+<HorizontalStackLayout
+    Padding="20"
+    Background="Black"
+    HorizontalOptions="CenterAndExpand">
+    <HorizontalStackLayout.Behaviors>
+        <toolkit:TouchBehavior
+            LongPressDuration="750"
+            LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand}"/>
+    </HorizontalStackLayout.Behaviors>
+</HorizontalStackLayout>
 ```
 
 ## Examples
 
-You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/AnimationBehaviorPage.xaml).
+You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/TouchBehaviorPage.xaml).
 
 ## API
 
-You can find the source code for `AnimationBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/AnimationBehavior.shared.cs).
-
-## Useful links
-
-- [.NET MAUI Community Toolkit Behaviors](../animations/index.md)
-- [Creating custom animations](../animations/index.md#creating-custom-animations)
+You can find the source code for `TouchBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/TouchnBehavior.shared.cs).

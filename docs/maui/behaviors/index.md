@@ -17,9 +17,11 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable beh
 
 | Behavior | Description |
 | --------- | ----------- |
+| [`AnimationBehavior`](animation-behavior.md) | The `AnimationBehavior` is a `Behavior` that provides the ability to animate any `VisualElement` it is attached to. |
 | [`CharactersValidationBehavior`](characters-validation-behavior.md) | The `CharactersValidationBehavior` is a `Behavior` that allows the user to validate text input depending on specified parameters. |
 | [`EmailValidationBehavior`](email-validation-behavior.md) | The `EmailValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid e-mail address. |
 | [`EventToCommandBehavior`](event-to-command-behavior.md) | The `EventToCommandBehavior` is a `behavior` that allows the user to invoke a `Command` through an `Event`. It is designed to associate Commands to events exposed by controls that were not designed to support Commands. It allows you to map any arbitrary event on a control to a Command. |
+| [`IconTintColorBehavior`](icon-tint-color-behavior.md) | The `IconTintColorBehavior` is a `behavior` that allows you to tint an image. |
 | [`ImageTouchBehavior`](image-touch-behavior.md) | The `ImageTouchBehavior` extends the `TouchBehavior` by providing the ability to customize `Image` elements based on touch, mouse click and hover events. |
 | [`MaskedBehavior`](masked-behavior.md) | The `MaskedBehavior` is a `Behavior` that allows the user to define an input mask for data entry. |
 | [`MaxLengthReachedBehavior`](maximum-length-reached-behavior.md) | The `MaxLengthReachedBehavior` is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. |

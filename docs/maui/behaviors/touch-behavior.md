@@ -202,6 +202,11 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 </HorizontalStackLayout>
 ```
 
+## Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+
 ## Examples
 
 You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/TouchBehaviorPage.xaml).

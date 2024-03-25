@@ -14,7 +14,7 @@ The `ImageTouchBehavior` extends the `TouchBehavior` by providing the ability to
 
 ## Syntax
 
-The following examples show how to add the `ImageTouchBehavior` to an `Image` and toggle between the `DefaultImageSource` and the `PressedImageSource` when the users interacts with the image by either pressing their finger or clicking with the mouse on the `Image`.
+The following examples show how to add the `ImageTouchBehavior` to an `Image` and toggle between the `DefaultImageSource`, `HoveredImageSource` and the `PressedImageSource` when the users interacts with the image by either touch based or mouse based interactions.
 
 ### XAML
 
@@ -37,6 +37,7 @@ The following examples show how to add the `ImageTouchBehavior` to an `Image` an
             <toolkit:ImageTouchBehavior
                 Command="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseTouchCountCommand}"
                 DefaultImageSource="button.png"
+                HoveredImageSource="button_hovered.png"
                 PressedImageSource="button_pressed.png" />
         </Image.Behaviors>
     </Image>
@@ -65,6 +66,7 @@ class TouchBehaviorPage : ContentPage
         {
             Command = ((TouchBehaviorBehaviorViewModel)BindingContext).IncreaseTouchCountCommand,
             DefaultImageSource = "button.png",
+            HoveredImageSource = "button_hovered.png",
             PressedImageSource = "button_pressed.png"
         };
 
@@ -92,11 +94,26 @@ class TouchBehaviorPage : ContentPage
             {
                 Command = ((TouchBehaviorBehaviorViewModel)BindingContext).IncreaseTouchCountCommand,
                 DefaultImageSource = "button.png",
+                HoveredImageSource = "button_hovered.png",
                 PressedImageSource = "button_pressed.png"
             });
     }
 }
 ```
+
+## Properties
+
+|Property  |Type  |Description  |
+|---------|---------|---------|
+| DefaultImageSource | [`ImageSource`](xref:Microsoft.Maui.Controls.ImageSource) | Gets or sets the [`ImageSource`](xref:Microsoft.Maui.Controls.ImageSource) in the default mode of interaction - which is essentially no interaction. |
+| DefaultImageAspect | [`Aspect`](xref:Microsoft.Maui.Aspect) | Gets or sets the [`Aspect`](xref:Microsoft.Maui.Aspect) in the default mode of interaction - which is essentially no interaction. |
+| HoveredImageSource | [`ImageSource`](xref:Microsoft.Maui.Controls.ImageSource) | Gets or sets the [`ImageSource`](xref:Microsoft.Maui.Controls.ImageSource) when the mouse is hovering over the `VisualElement` this `Behavior` is attached to. |
+| HoveredImageAspect | [`Aspect`](xref:Microsoft.Maui.Aspect) | Gets or sets the [`Aspect`](xref:Microsoft.Maui.Aspect) when the mouse is hovering over the `VisualElement` this `Behavior` is attached to. |
+| PressedImageSource | [`ImageSource`](xref:Microsoft.Maui.Controls.ImageSource) | Gets or sets the [`ImageSource`](xref:Microsoft.Maui.Controls.ImageSource) when the user has pressed down with touch or the mouse on the `VisualElement` this `Behavior` is attached to. |
+| PressedImageAspect | [`Aspect`](xref:Microsoft.Maui.Aspect) | Gets or sets the [`Aspect`](xref:Microsoft.Maui.Aspect) when the user has pressed down with touch or the mouse on the `VisualElement` this `Behavior` is attached to. |
+| ShouldSetImageOnAnimationEnd | `bool` | Gets or sets a value indicating whether the image should be set when the animation ends. |
+
+For the rest of the available properties please refer to the [TouchBehavior properties](./touch-behavior.md#properties) section.
 
 ## Examples
 

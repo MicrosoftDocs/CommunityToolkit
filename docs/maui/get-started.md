@@ -102,7 +102,20 @@ builder
     .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
 ```
 
-How to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
+When using the .NET MAUI Community Toolkit Map for Windows and the regular .NET MAUI Maps together, you will need to make sure that each initialization call is only made for the relevant platform. The following example shows how to do this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+#if ANDROID || IOS
+    .UseMauiMaps()
+#elif WINDOWS
+    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
+#endif
+```
+
+For more information on how to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
 
 ### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkitMauiMediaElement)
 

@@ -55,6 +55,7 @@
       "open_source_feedback_productName": ".NET Community Toolkit",
       "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "ms.topic": "conceptual",      
       "ms.service": "dotnet-communitytoolkit",
       "titleSuffix": "Community Toolkits for .NET",
       "searchScope": [ "Community Toolkits for .NET" ]

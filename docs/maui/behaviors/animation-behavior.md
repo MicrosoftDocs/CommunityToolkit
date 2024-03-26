@@ -47,9 +47,9 @@ The following examples show how to add the `AnimationBehavior` to a `Label` and 
 The `AnimationBehavior` can be used as follows in C#:
 
 ```csharp
-class AnimationBehaviorBehaviorPage : ContentPage
+class AnimationBehaviorPage : ContentPage
 {
-    public AnimationBehaviorBehaviorPage()
+    public AnimationBehaviorPage()
     {
         var label = new Label
         {
@@ -78,9 +78,9 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class AnimationBehaviorBehaviorPage : ContentPage
+class AnimationBehaviorPage : ContentPage
 {
-    public AnimationBehaviorBehaviorPage()
+    public AnimationBehaviorPage()
     {
         Content = new Label()
             .Text("Click this label")

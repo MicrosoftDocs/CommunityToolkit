@@ -187,8 +187,6 @@ The `TouchBehavior` provides the ability to handle the scenario when a user pres
 
 The following example shows how to add the `TouchBehavior` to a `HorizontalStackLayout`, bind the `LongPressCommand` to the `IncreaseLongPressCountCommand` defined in the backing view model and set the `LongPressDuration` to 750 milliseconds.
 
-#### View
-
 ```xaml
 <HorizontalStackLayout
     Padding="20"
@@ -206,6 +204,49 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
+| Command | `ICommand` | Gets or sets the `ICommand` to invoke when the user has completed a touch gesture. |
+| CommandParameter | `object` | Gets or sets the parameter to pass to the `Command` property. |
+| CurrentHoverState | `HoverState` | Gets or sets the current `HoverState` of the behavior. |
+| CurrentHoverStatus | `HoverStatus` | Gets or sets the current `HoverStatus` of the behavior. |
+| CurrentInteractionStatus | `TouchInteractionStatus` | Gets or sets the current `TouchInteractionStatus` of the behavior. |
+| CurrentTouchState | `TouchState` | Gets or sets the current `TouchState` of the behavior. |
+| CurrentTouchStatus | `TouchStatus` | Gets or sets the current `TouchStatus` of the behavior. |
+| DefaultAnimationDuration | `int` | Gets or sets the duration of the animation when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultAnimationEasing | `Easing` | Gets or sets the easing of the animation when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultBackgroundColor | `Color` | Gets or sets the background color of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultOpacity | `double` | Gets or sets the opacity of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultRotation | `double` | Gets or sets the rotation around both the X and Y axes of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultRotationX | `double` | Gets or sets the rotation around the X axis of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultRotationY | `double` | Gets or sets the rotation around the Y axis of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultScale | `double` | Gets or sets the scale of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultTranslationX | `double` | Gets or sets the X translation of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DefaultTranslationY | `double` | Gets or sets the Y translation of the element when the `CurrentTouchState` property is `TouchState.Default`. |
+| DisallowTouchThreshold | `int` | Gets or sets the threshold for disallowing touch. |
+| HoveredAnimationDuration | `int` | Gets or sets the duration of the animation when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredAnimationEasing | `Easing` | Gets or sets the easing of the animation when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredBackgroundColor | `Color` | Gets or sets the background color of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredOpacity | `double` | Gets or sets the opacity of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredRotation | `double` | Gets or sets the rotation around both the X and Y axes of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredRotationX | `double` | Gets or sets the rotation around the X axis of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredRotationY | `double` | Gets or sets the rotation around the Y axis of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredScale | `double` | Gets or sets the scale of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredTranslationX | `double` | Gets or sets the X translation of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| HoveredTranslationY | `double` | Gets or sets the Y translation of the element when the `CurrentHoverState` property is `HoverState.Hovered`. |
+| IsEnabled | `bool` | Gets or sets a value indicating whether the behavior is enabled. |
+| LongPressCommand | `ICommand` | Gets or sets the `ICommand` to invoke when the user has completed a long press. |
+| LongPressCommandParameter | `object` | Gets or sets the parameter to pass to the `LongPressCommand` property. |
+| LongPressDuration | `int` | Gets or sets the duration in milliseconds required to trigger the long press gesture. |
+| PressedAnimationDuration | `int` | Gets or sets the duration of the animation when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedAnimationEasing | `Easing` | Gets or sets the easing of the animation when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedBackgroundColor | `Color` | Gets or sets the background color of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedOpacity | `double` | Gets or sets the opacity of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedRotation | `double` | Gets or sets the rotation around both the X and Y axes of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedRotationX | `double` | Gets or sets the rotation around the X axis of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedRotationY | `double` | Gets or sets the rotation around the Y axis of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedScale | `double` | Gets or sets the scale of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedTranslationX | `double` | Gets or sets the X translation of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| PressedTranslationY | `double` | Gets or sets the Y translation of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
+| ShouldMakeChildrenInputTransparent | `bool` | Gets or sets a value indicating whether the children of the element should be made input transparent. |
 
 ## Examples
 

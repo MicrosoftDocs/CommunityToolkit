@@ -248,6 +248,18 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 | PressedTranslationY | `double` | Gets or sets the Y translation of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
 | ShouldMakeChildrenInputTransparent | `bool` | Gets or sets a value indicating whether the children of the element should be made input transparent. |
 
+## Events
+
+|Event | Description  |
+|---------|---------|
+| `CurrentTouchStateChanged` | Fires when `CurrentTouchState` changes. |
+| `CurrentTouchStatusChanged` | Fires when `CurrentTouchStatus` changes. |
+| `HoverStateChanged` | Fires when `CurrentHoverState` changes. |
+| `HoverStatusChanged` | Fires when `CurrentHoverStatus` changes. |
+| `InteractionStatusChanged` | Fires when `CurrentInteractionStatus` changes. |
+| `LongPressCompleted` | Fires when a long press gesture has completed. |
+| `TouchGestureCompleted` | Fires when a touch gesture has completed. |
+
 ## Examples
 
 You can find an example of this behavior in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/TouchBehaviorPage.xaml).

@@ -30,7 +30,7 @@ When using `Snackbar` it is essential to perform the following two steps:
 
 #### 1. Enable the snackbar usage with the MauiAppBuilder
 
-When using the `UseMauiCommunityToolkit` make use of the `options` parameter to enable the snackbar usage on windows as follows:
+When using the `UseMauiCommunityToolkit` make use of the `options` parameter to enable the snackbar usage on Windows as follows:
 
 ```csharp
 var builder = MauiApp.CreateBuilder()
@@ -40,7 +40,7 @@ var builder = MauiApp.CreateBuilder()
   })
 ```
 
-The above will automatically register the required handlers by configuring lifecycle events (OnLaunched and OnClosed).
+The above will automatically register the required handlers by configuring lifecycle events (`OnLaunched` and `OnClosed`).
 
 #### 2. Include ToastNotification registrations in your Package.appxmanifest file
 
@@ -59,7 +59,7 @@ xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
 IgnorableNamespaces="uap rescap com desktop"
 ```
 
-##### Example:Completed `<Package>` Tag
+##### Example: Completed `<Package>` Tag
 
 Here is an example of a completed opening `<Package>` tag that has added support for `Snackbar`:
 
@@ -78,15 +78,15 @@ Here is an example of a completed opening `<Package>` tag that has added support
 ```xml
 <Extensions>
 
-  <!--Specify which CLSID to activate when notification is clicked-->
+   <!-- Specify which CLSID to activate when notification is clicked -->
    <desktop:Extension Category="windows.toastNotificationActivation">
        <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
    </desktop:Extension>
 
-   <!--Register COM CLSID-->
+   <!-- Register COM CLSID -->
    <com:Extension Category="windows.comServer">
        <com:ComServer>
-           <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!--Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe-->
+           <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
                <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
            </com:ExeServer>
        </com:ComServer>
@@ -97,7 +97,7 @@ Here is an example of a completed opening `<Package>` tag that has added support
 
 ##### Example: Completed `<Applications>` tag
 
-Here is an example of a completed `<Applications>` tag that now has added support for `Snackbar` ***:
+Here is an example of a completed `<Applications>` tag that now has added support for `Snackbar`:
 
 ```xml
 <Applications>
@@ -119,7 +119,7 @@ Here is an example of a completed `<Applications>` tag that now has added suppor
       
          <com:Extension Category="windows.comServer">
              <com:ComServer>
-                 <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!--Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe-->
+                 <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
                      <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
                   </com:ExeServer>
               </com:ComServer>
@@ -180,7 +180,7 @@ Below is an example `Package.appxmanifest` file that has been updated to support
             
                <com:Extension Category="windows.comServer">
                    <com:ComServer>
-                       <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!--Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe-->
+                       <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
                            <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
                         </com:ExeServer>
                     </com:ComServer>

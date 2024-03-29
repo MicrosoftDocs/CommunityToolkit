@@ -124,5 +124,5 @@ The C# Markup package provides the ability to define `IValueConverter` and `IMul
 | [`SemanticProperties`](extensions/semantic-properties.md) | The `SemanticProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
 | [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
 | [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing `ITextAlignment`. |
-| [`View`](extensions/visual-element-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |
+| [`View`](extensions/view-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |
 | [`VisualElement`](extensions/visual-element-extensions.md) | The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`. |

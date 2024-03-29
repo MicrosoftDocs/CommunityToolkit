@@ -76,7 +76,9 @@ Here is an example of how this can be used:
 
 :::code language="xaml" source="~/../code-windows/components/Extensions/samples/FrameworkElementAncestorSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Extensions/samples/FrameworkElementAncestorSample.xaml.cs":::While this example is trivial, it shows you how to properly setup and bind to the parent element's property, in this case `Spacing`.
+:::code language="csharp" source="~/../code-windows/components/Extensions/samples/FrameworkElementAncestorSample.xaml.cs":::
+
+While this example is trivial, it shows you how to properly setup and bind to the parent element's property, in this case `Spacing`.
 
 ## Cursor
 
@@ -101,7 +103,7 @@ Here is how you can easily set a custom cursor type for a target `FrameworkEleme
 ```
 
 > [!NOTE]
-> Even though Microsoft recommends in [UWP Design guidelines](/windows/apps/design/input/mouse-interactions#cursors) hover effects instead of custom cursors over interactive elements, custom cursors can be useful in some specific scenarios.
+> Even though Microsoft recommends in [UWP Design guidelines](/uwp/input-and-devices/mouse-interactions#cursors) hover effects instead of custom cursors over interactive elements, custom cursors can be useful in some specific scenarios.
 
 > [!WARNING]
 > Because the UWP framework does not support metadata on attached properties, specifically the [`FrameworkPropertyMetadata.Inherits`](/dotnet/api/system.windows.frameworkpropertymetadata.-ctor#System_Windows_FrameworkPropertyMetadata__ctor_System_Object_System_Windows_FrameworkPropertyMetadataOptions_System_Windows_PropertyChangedCallback_System_Windows_CoerceValueCallback_) flag, the `Cursor` property might not work properly in some very specific XAML layout scenarios when combining nested `FrameworkElement`-s with different `CoreCursorType` values set on them.

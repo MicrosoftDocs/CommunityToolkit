@@ -1,6 +1,6 @@
 ---
 title: DesignTimeHelpers
-author: michael-hawker
+author: 
 description: Class used to provide helpers for design time.
 keywords: Helpers, designtimehelpers,
 dev_langs:

@@ -1,6 +1,6 @@
 ---
 title: ColorHelper
-author: michael-hawker
+author: 
 description: Convert colors from text names, HTML hex, HSV, or HSL to Windows UI Colors (and back again).
 keywords: Helpers, Theming, theme listener, themes, screenunithelper, colorhelper
 dev_langs:
@@ -24,3 +24,4 @@ HslColor hsl = Colors.Red.ToHsl();
 HsvColor hsv = Colors.Red.ToHsv();
 int i = Colors.Red.ToInt();
 ```
+

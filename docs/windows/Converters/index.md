@@ -130,3 +130,5 @@ Converts a `Visibility` enumeration to a boolean value.
 :::code language="xaml" source="~/../code-windows/components/Converters/samples/VisibilityToBoolConverterSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Converters/samples/VisibilityToBoolConverterSample.xaml.cs":::
+
+

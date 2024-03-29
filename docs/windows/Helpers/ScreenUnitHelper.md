@@ -1,6 +1,6 @@
 ---
 title: ScreenUnitHelper
-author: michael-hawker
+author: 
 description: Convert screen units to another screen unit.
 keywords: Helpers, screenunithelper,
 dev_langs:

@@ -46,11 +46,43 @@ The above will automatically register the required handlers by configuring lifec
 
 To handle the snackbar actions you will need to modify the `Platform\Windows\Package.appxmanifest` file as follows:
 
-1. In **Package.appxmanifest**, in the opening `<Package>` tag, add the following XML Namespaces:
-
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
 xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
 xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+IgnorableNamespaces="uap rescap com desktop">
+
+...
+
+<Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+        <uap:VisualElements />
+        <Extensions>
+
+            <!--Specify which CLSID to activate when notification is clicked-->
+            <desktop:Extension Category="windows.toastNotificationActivation">
+                <desktop:ToastNotificationActivation ToastActivatorCLSID="YOUR-UNIQUE-GUID" />
+            </desktop:Extension>
+
+            <!--Register COM CLSID-->
+            <com:Extension Category="windows.comServer">
+                <com:ComServer>
+                    <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!--Example path: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe-->
+                        <com:Class Id="YOUR-UNIQUE-GUID" />
+                    </com:ExeServer>
+                </com:ComServer>
+            </com:Extension>
+
+        </Extensions>
+    </Application>
+</Applications>
+
+</Package>
+```
 
 For more information on handling activation: [Send a local toast notification from C# apps](/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation)
 

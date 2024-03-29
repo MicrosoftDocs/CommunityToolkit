@@ -11,6 +11,201 @@ The `Snackbar` is a timed alert that appears at the bottom of the screen by defa
 
 The `Snackbar` informs users of a process that an app has performed or will perform. It appears temporarily, towards the bottom of the screen.
 
+## Platform specific initialization
+
+To access the `Snackbar` functionality, the following platform specific setup is required.
+
+<!-- markdownlint-disable MD025 -->
+### [Android](#tab/android)
+
+No setup is required.
+
+### [iOS/Mac Catalyst](#tab/macios)
+
+No setup is required.
+
+### [Windows](#tab/windows)
+
+When using `Snackbar` it is essential to perform the following two steps:
+
+#### 1. Enable the snackbar usage with the MauiAppBuilder
+
+When using the `UseMauiCommunityToolkit` make use of the `options` parameter to enable the snackbar usage on Windows as follows:
+
+```csharp
+var builder = MauiApp.CreateBuilder()
+  .UseMauiCommunityToolkit(options =>
+  {
+    options.SetShouldEnableSnackbarOnWindows(true);
+  })
+```
+
+The above will automatically register the required handlers by configuring lifecycle events (`OnLaunched` and `OnClosed`).
+
+#### 2. Include ToastNotification registrations in your Package.appxmanifest file
+
+To handle the snackbar actions you will need to modify the `Platform\Windows\Package.appxmanifest` file as follows:
+
+1. In **Package.appxmanifest**, in the opening `<Package>` tag, add the following XML Namespaces:
+
+```xml
+xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+```
+
+2. In **Package.appxmanifest**, also in the opening `<Package>` tag, update `IgnorableNamespaces` to include `uap` `rescap` `com` and `desktop`:
+
+```xml
+IgnorableNamespaces="uap rescap com desktop"
+```
+
+##### Example: Completed `<Package>` Tag
+
+Here is an example of a completed opening `<Package>` tag that has added support for `Snackbar`:
+
+```xml
+<Package
+     xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+     xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+     xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+     xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+     xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+     IgnorableNamespaces="uap rescap com desktop">
+```
+
+3. In **Package.appxmanifest**, inside of each `<Application>` tag, add the following extensions:
+
+```xml
+<Extensions>
+
+   <!-- Specify which CLSID to activate when notification is clicked -->
+   <desktop:Extension Category="windows.toastNotificationActivation">
+       <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
+   </desktop:Extension>
+
+   <!-- Register COM CLSID -->
+   <com:Extension Category="windows.comServer">
+       <com:ComServer>
+           <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
+               <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
+           </com:ExeServer>
+       </com:ComServer>
+   </com:Extension>
+
+</Extensions>
+```
+
+##### Example: Completed `<Applications>` tag
+
+Here is an example of a completed `<Applications>` tag that now has added support for `Snackbar`:
+
+```xml
+<Applications>
+  <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+          DisplayName="$placeholder$"
+          Description="$placeholder$"
+          Square150x150Logo="$placeholder$.png"
+          Square44x44Logo="$placeholder$.png"
+          BackgroundColor="transparent">
+           <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
+           <uap:SplashScreen Image="$placeholder$.png" />
+       </uap:VisualElements>
+       <Extensions>
+
+         <desktop:Extension Category="windows.toastNotificationActivation">
+             <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
+         </desktop:Extension>
+      
+         <com:Extension Category="windows.comServer">
+             <com:ComServer>
+                 <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
+                     <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
+                  </com:ExeServer>
+              </com:ComServer>
+          </com:Extension>
+
+       </Extensions>
+   </Application>
+</Applications>
+```
+
+##### Example: Updated `Package.appxmanifest` File to Support `Snackbar`
+
+Below is an example `Package.appxmanifest` file that has been updated to support `Snackbar` on Windows:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+    xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+    xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+    xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+    xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+    IgnorableNamespaces="uap rescap com desktop">
+
+    <Identity Name="maui-package-name-placeholder" Publisher="CN=Microsoft" Version="0.0.0.0" />
+
+    <Properties>
+        <DisplayName>$placeholder$</DisplayName>
+        <PublisherDisplayName>Microsoft</PublisherDisplayName>
+        <Logo>$placeholder$.png</Logo>
+    </Properties>
+
+    <Dependencies>
+        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+        <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    </Dependencies>
+
+    <Resources>
+        <Resource Language="x-generate" />
+    </Resources>
+
+    <Applications>
+        <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+            <uap:VisualElements
+                DisplayName="$placeholder$"
+                Description="$placeholder$"
+                Square150x150Logo="$placeholder$.png"
+                Square44x44Logo="$placeholder$.png"
+                BackgroundColor="transparent">
+                <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
+                <uap:SplashScreen Image="$placeholder$.png" />
+            </uap:VisualElements>
+            <Extensions>
+
+               <desktop:Extension Category="windows.toastNotificationActivation">
+                   <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
+               </desktop:Extension>
+            
+               <com:Extension Category="windows.comServer">
+                   <com:ComServer>
+                       <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
+                           <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
+                        </com:ExeServer>
+                    </com:ComServer>
+                </com:Extension>
+
+            </Extensions>
+        </Application>
+    </Applications>
+
+    <Capabilities>
+        <rescap:Capability Name="runFullTrust" />
+    </Capabilities>
+
+</Package>
+```
+
+For more information on handling activation: [Send a local toast notification from C# apps](/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation)
+
+### [Tizen](#tab/tizen)
+
+No setup is required.
+
+-----
+<!-- markdownlint-enable MD025 -->
+
 ## Syntax
 
 The `Snackbar` is invoked using C#.
@@ -63,6 +258,9 @@ There is also an extension method, which will anchor the `Snackbar` to any `Visu
 ```csharp
 await MyVisualElement.DisplaySnackbar("Snackbar is awesome. It is anchored to MyVisualElement");
 ```
+
+> [!WARNING]
+> `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.
 
 `SnackBar` contains two events:
 
@@ -120,116 +318,3 @@ You can find an example of this feature in action in the [.NET MAUI Community To
 ## API
 
 You can find the source code for `Snackbar` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Alerts/Snackbar).
-
-## Details of implementation and limitation for different platforms
-
-1. The API allows override existing methods with your own implementation or even create your own Snackbar, by implementing `ISnackbar` interface.
-2. "Native" Snackbar is available only on Android and created by Google. Other platforms use "Container" (`UIView` for iOS and MacCatalyst, `ToastNotification` on Windows).
-3. `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.
-
-### WinUI specifics
-
-`ToastNotification` which is used to show `Snackbar` on Windows has 2 types of activation: foreground and background.
-
-More info about handling activation: [Send a local toast notification from C# apps](/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation) 
-
-Foreground activation type is used in `CommunityToolkit.Maui` library. That means, whenever a notification is shown a new instance of application is executed. It is up to the developer how to handle such situations. Here are a few suggestions:
-
-1. Use Single Application Instance.
-
-    That means, whenever the user clicks on the `ToastNotification`, the new instance of the application (new process) checks if there is already a process running for our app and if any, the new process that was created by the notification is killed.
-
-    Add the next code to `Platform\Windows\App.xaml.cs`:
-
-    ```csharp
-    static Mutex? mutex;
-
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
-    {
-        if (!IsSingleInstance())
-        {
-            Process.GetCurrentProcess().Kill();
-        }
-        else
-        {
-            base.OnLaunched(args);
-        }
-    }
-
-    static bool IsSingleInstance()
-    {
-        const string applicationId = "YOUR_APP_ID_FROM_CSPROJ";
-        mutex = new Mutex(false, applicationId);
-        GC.KeepAlive(mutex);
-
-        try
-        {
-            return mutex.WaitOne(0, false);
-        }
-        catch (AbandonedMutexException)
-        {
-            mutex.ReleaseMutex();
-            return mutex.WaitOne(0, false);
-        }
-    }
-    ```
-
-2. Using external NuGet package.
-
-    With this approach application registers new service which monitors `ToastNotification` activation. Works with Windows 10.0.18362 and later.
-
-    1. Install `CommunityToolkit.WinUI.Notifications`.
-    2. Add the next code to `Platform\Windows\App.xaml.cs`:
-
-    ```csharp
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
-    {
-        ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
-        base.OnLaunched(args);
-    }
-
-    void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
-    {
-        // Handle ToastNotificationEvent.
-    }
-    ```
-
-    3. Update `Platform\Windows\Package.appxmanifest`:
-    
-    ```xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <Package
-    xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-    xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-    xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" 
-    xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
-    IgnorableNamespaces="uap rescap com desktop">
-
-    ...
-
-    <Applications>
-        <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
-        <uap:VisualElements />
-        <Extensions>
-
-            <!-- Specify which CLSID to activate when toast clicked -->
-            <desktop:Extension Category="windows.toastNotificationActivation">
-                <desktop:ToastNotificationActivation ToastActivatorCLSID="YOUR_APP_ID_FROM_CSPROJ" /> 
-            </desktop:Extension>
-
-            <!--Register COM CLSID LocalServer32 registry key-->
-            <com:Extension Category="windows.comServer">
-                <com:ComServer>
-                    <com:ExeServer Executable="YOUR_APP_NAME.exe" Arguments="-ToastActivated" DisplayName="Toast activator">
-                        <com:Class Id="YOUR_APP_ID_FROM_CSPROJ" DisplayName="Toast activator"/>
-                    </com:ExeServer>
-                </com:ComServer>
-            </com:Extension>
-
-        </Extensions>
-        </Application>
-    </Applications>
-
-    </Package>
-    ```

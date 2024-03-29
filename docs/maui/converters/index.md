@@ -2,7 +2,7 @@
 title: Converters - .NET MAUI Community Toolkit
 author: bijington
 description: The .NET MAUI Community Toolkit provides a collection of pre-built, reusable converters to make developers lives easier.
-ms.date: 03/13/2022
+ms.date: 02/15/2024
 ---
 
 # .NET MAUI Converters
@@ -29,8 +29,8 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`ColorToColorForTextConverter`](color-to-color-for-text-converter.md) | The `ColorToColorForTextConverter` is a one-way converter that allows users to convert an incoming `Color` to a monochrome value of either `Colors.Black` or `Colors.White` based on whether it is determined as being dark for the human eye. |
 | [`ColorToDegreeHueConverter`](color-to-degree-hue-converter.md) | The `ColorToDegreeHueConverter` is a one-way converter that allows users to convert an incoming `Color` to the **hue** component as a value between 0 and 360. |
 | [`ColorToGrayScaleColorConverter`](color-to-gray-scale-color-converter.md) | The `ColorToGrayScaleColorConverter` is a one-way converter that allows users to convert an incoming `Color` to a grayscale `Color`. |
-| [`ColorToHexRgbStringConverter`](color-to-hex-rgb-string-converter.md) | The `ColorToHexRgbStringConverter` is a that allows users to convert a `Color` value binding to its RGB hexadecimal `string` equivalent. |
-| [`ColorToHexRgbaStringConverter`](color-to-hex-rgba-string-converter.md) | The `ColorToHexRgbaStringConverter` is a that allows users to convert a `Color` value binding to its RGBA hexadecimal `string` equivalent. |
+| [`ColorToHexRgbStringConverter`](color-to-hex-rgb-string-converter.md) | The `ColorToHexRgbStringConverter` is a converter that allows users to convert a `Color` value binding to its RGB hexadecimal `string` equivalent. |
+| [`ColorToHexRgbaStringConverter`](color-to-hex-rgba-string-converter.md) | The `ColorToHexRgbaStringConverter` is a converter that allows users to convert a `Color` value binding to its RGBA hexadecimal `string` equivalent. |
 | [`ColorToHslStringConverter`](color-to-hsl-string-converter.md) | The `ColorToHslStringConverter` is a one-way converter that allows users to convert a `Color` value binding to its HSL `string` equivalent. |
 | [`ColorToHslaStringConverter`](color-to-hsla-string-converter.md) | The `ColorToHslaStringConverter` is a one-way converter that allows users to convert a `Color` value binding to its HSLA `string` equivalent. |
 | [`ColorToInverseColorConverter`](color-to-inverse-color-converter.md) | The `ColorToInverseColorConverter` is a one-way converter that allows users to convert an incoming `Color` to its inverse. |
@@ -38,7 +38,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`ColorToPercentCyanConverter`](color-to-percent-cyan-converter.md) | The `ColorToPercentCyanConverter` is a one-way converter that allows users to convert an incoming `Color` to the **cyan** component as a value between 0 and 1. |
 | [`ColorToPercentMagentaConverter`](color-to-percent-magenta-converter.md) | The `ColorToPercentMagentaConverter` is a one-way converter that allows users to convert an incoming `Color` to the **magenta** component as a value between 0 and 1. |
 | [`ColorToPercentYellowConverter`](color-to-percent-yellow-converter.md) | The `ColorToPercentYellowConverter` is a one-way converter that allows users to convert an incoming `Color` to the **yellow** component as a value between 0 and 1. |
-| [`ColorToRgbStringConverter`](color-to-rgb-string-converter.md) | The `ColorToRgbStringConverter` is a one-way converter that allows users to convert a `Color` value binding to its RGB `string` equivalent. |
+| [`ColorToRgbStringConverter`](color-to-rgb-string-converter.md) | The `ColorToRgbStringConverter` is a converter that allows users to convert a `Color` value binding to its RGB `string` equivalent. |
 | [`ColorToRgbaStringConverter`](color-to-rgba-string-converter.md) | The `ColorToRgbaStringConverter` is a one-way converter that allows users to convert a `Color` value binding to its RGBA `string` equivalent. |
 | [`CompareConverter`](compare-converter.md) | The `CompareConverter` is a one-way converter that take an incoming value implementing `IComparable`, compares to a specified value, and returns the comparison result. |
 | [`DateTimeOffsetConverter`](datetimeoffsetconverter.md) | The `DateTimeOffsetConverter` is a converter that allows users to convert a `DateTimeOffset` to a `DateTime` |

@@ -50,3 +50,36 @@ int someOtherValue = await dispatcherQueue.EnqueueAsync(async () =>
     return 42;
 });
 ```
+
+## Migrating from [`DispatcherHelper`](..\helpers\DispatcherHelper.md)
+
+The [`CoreDispatcher`](/uwp/api/windows.ui.core.coredispatcher) is being deprecated (and it will no longer work with XAML Islands or WinUI 3) and should no longer be used, as it had a number of limitations. Specifically, it relied on the assumption that each window had its own UI thread tied to it, which is not always the case. The new `DispatcherQueue` instead can be used going forwards, and it requires some changes in code that was previously relying on `CoreDispatcher` and `DispatcherHelper`. Specifically, a background thread can no longer retrieve the `CoreDispatcher` by just accessing the dispatcher associated to the "main window" for the application, because this concept does not apply anymore. Instead, a `DispatcherQueue` instance needs to be retrieved on the UI thread and cached for later use in a background thread.
+
+If you were using `DispatcherHelper` on the UI thread, apply the following change (here we're using `Task.Run` to simulate some work being done in a background thread and accessing some UI component, and we're assuming for this example that there is a `TextBlock` control in our page called "MyTextBlock"):
+
+```csharp
+// Before
+Task.Run(() =>
+{
+    await DispatcherHelper.ExecuteOnUIThreadAsync(() =>
+    {
+        MyTextBlock.Text = "Hello from a background thread!";
+    });
+});
+
+// After
+DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+
+Task.Run(() =>
+{
+    await dispatcherQueue.EnqueueAsync(() =>
+    {
+        MyTextBlock.Text = "Hello from a background thread!";
+    });
+});
+```
+
+## Examples
+
+You can find more examples in the [unit tests](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/rel/7.1.0/UnitTests/UnitTests.UWP/Extensions/Test_DispatcherQueueExtensions.cs).
+

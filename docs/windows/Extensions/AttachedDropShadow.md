@@ -35,7 +35,9 @@ With the target element setup, you can simply attach a shadow to any number of o
 
 :::code language="xaml" source="~/../code-windows/components/Extensions/samples/Shadows/AttachedDropShadowBasicSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Extensions/samples/Shadows/AttachedDropShadowBasicSample.xaml.cs":::> [!NOTE]
+:::code language="csharp" source="~/../code-windows/components/Extensions/samples/Shadows/AttachedDropShadowBasicSample.xaml.cs":::
+
+> [!NOTE]
 > If you need to scroll the element and its shadow, be sure to place your entire panel, including the sibling shadow target within the
 ScrollViewer.
 
@@ -57,3 +59,5 @@ Or define your own definition within your style as we've done here:
 :::code language="xaml" source="~/../code-windows/components/Extensions/samples/Shadows/AttachedDropShadowStyleSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Extensions/samples/Shadows/AttachedDropShadowStyleSample.xaml.cs":::
+
+

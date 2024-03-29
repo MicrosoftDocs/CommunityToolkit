@@ -33,6 +33,8 @@ items:
       href: behaviors/event-to-command-behavior.md
     - name: "IconTintColorBehavior"
       href: behaviors/icon-tint-color-behavior.md
+    - name: "ImageTouchBehavior"
+      href: behaviors/image-touch-behavior.md
     - name: MaskedBehavior
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
@@ -53,6 +55,8 @@ items:
       href: behaviors/statusbar-behavior.md
     - name: "TextValidationBehavior"
       href: behaviors/text-validation-behavior.md
+    - name: "TouchBehavior"
+      href: behaviors/touch-behavior.md
     - name: "UriValidationBehavior"
       href: behaviors/uri-validation-behavior.md
     - name: "UserStoppedTypingBehavior"
@@ -207,6 +211,12 @@ items:
       href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md
+- name: "Platform Specific"
+  items:
+    - name: Overview
+      href: platform-specific/index.md
+    - name: "Navigation Bar (Android)"
+      href: platform-specific/navigation-bar.md
 - name: "Views"
   items:
     - name: Overview

@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 01/23/2023
+ms.date: 02/15/2024
 ---
 
 # MediaElement
@@ -29,6 +29,71 @@ The `MediaElement` uses the following platform implementations.
 | iOS/macOS | [AVPlayer](xref:AVFoundation.AVPlayer) |
 | Windows | [MediaPlayer](xref:Windows.Media.Playback.MediaPlayer) |
 
+## Getting started
+
+To use the `MediaElement` feature of the .NET MAUI Community Toolkit, the following steps are required.
+
+### Install NuGet package
+
+Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. As follows:
+
+**Package name:** `CommunityToolkit.Maui.MediaElement`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement
+
+### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.MediaElement;
+```
+
+In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMediaElement()
+```
+
+For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.
+
+### Platform specific initialization
+
+To access the `MediaElement` functionality, the following platform specific setup is required.
+
+<!-- markdownlint-disable MD025 -->
+### [Android](#tab/android)
+
+To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` as per the following example.
+
+```csharp
+[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
+public class MainActivity : MauiAppCompatActivity
+{
+}
+```
+
+For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
+
+### [iOS/Mac Catalyst](#tab/macios)
+
+No setup is required.
+
+### [Windows](#tab/windows)
+
+No setup is required.
+
+
+### [Tizen](#tab/tizen)
+
+No setup is required.
+
+-----
+<!-- markdownlint-enable MD025 -->
+
 ## Supported Formats
 
 The supported multimedia formats can be different per platform. In some cases it can even be dependant on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
@@ -43,13 +108,9 @@ The supported multimedia formats can be different per platform. In some cases it
 > [!IMPORTANT]
 > If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.
 
-## Setup
+## Common scenarios
 
-Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.
-
-### Including the XAML namespace
-
-[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
+The following sections covers common usage scenarios for the `MediaElement`.
 
 ### Bypassing the iOS Silent Switch
 
@@ -62,8 +123,8 @@ public static class MauiProgram
 {
     // ... Additonal Code Not Shown ... //
 
-	public static MauiApp CreateMauiApp()
-	{
+    public static MauiApp CreateMauiApp()
+    {
         // ... Additonal Code Not Shown ... //
 #if IOS
         AVAudioSession.SharedInstance().SetActive(true);
@@ -74,8 +135,7 @@ public static class MauiProgram
 }
 ```
 
-
-## Play remote media
+### Play remote media
 
 A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
 
@@ -91,7 +151,7 @@ By default, the media that is defined by the `Source` property doesn't immediate
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
 
-## Play local media
+### Play local media
 
 Local media can be played from the following sources:
 

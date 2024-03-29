@@ -40,7 +40,7 @@ var builder = MauiApp.CreateBuilder()
   })
 ```
 
-THe above will automatically register the required handlers by configuring lifecycle events (OnLaunched and OnClosed).
+The above will automatically register the required handlers by configuring lifecycle events (OnLaunched and OnClosed).
 
 #### 2. Include ToastNotification registrations in your Package.appxmanifest file
 

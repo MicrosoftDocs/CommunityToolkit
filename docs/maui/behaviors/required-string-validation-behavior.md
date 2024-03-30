@@ -9,6 +9,8 @@ ms.date: 04/20/2022
 
 The `RequiredStringValidationBehavior` is a `Behavior` that allows the user to determine if text input is equal to specific text. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid text input is provided.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `RequiredStringValidationBehavior` to an `Entry` and change the `TextColor` based on whether the `RequiredString` has been entered.

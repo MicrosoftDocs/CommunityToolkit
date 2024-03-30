@@ -9,6 +9,8 @@ ms.date: 06/27/2022
 
 The `IconTintColorBehavior` is a `behavior` that allows you to tint an image.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 ### XAML

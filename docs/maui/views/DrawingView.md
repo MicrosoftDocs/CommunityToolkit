@@ -130,8 +130,8 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             OnDrawingLineCompleted="OnDrawingLineCompletedEvent"
             LineColor="Red"
             LineWidth="5"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
             <toolkit:DrawingView.Background>
                     <LinearGradientBrush StartPoint="0,0"
                                          EndPoint="0,1">

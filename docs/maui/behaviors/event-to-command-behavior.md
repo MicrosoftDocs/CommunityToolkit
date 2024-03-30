@@ -37,8 +37,7 @@ The `EventToCommandBehavior` can be used as follows in XAML:
         <Button.Behaviors>
             <toolkit:EventToCommandBehavior
                 EventName="Clicked"
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.TriggerAnimationCommand}"
-                Command="{Binding MyCustomCommand}" />
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MyCustomCommand}" />
         </Button.Behaviors>
     </Button>
 </ContentPage>

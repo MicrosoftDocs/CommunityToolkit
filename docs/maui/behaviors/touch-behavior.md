@@ -269,3 +269,94 @@ You can find an example of this behavior in action in the [.NET MAUI Community T
 ## API
 
 You can find the source code for `TouchBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/TouchBehavior.shared.cs).
+
+
+## Migrating From Xamarin Community Toolkit
+
+In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](https://learn.microsoft.com/en-us/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk) if you are upgrading an app from Forms to Maui there are a number of changes that you need to be aware of.
+
+The XCT implementation was an attached effect and was applied to an element in the following way:
+
+```xaml
+<StackLayout Orientation="Horizontal"
+            HorizontalOptions="CenterAndExpand"
+            xct:TouchEffect.AnimationDuration="250"
+            xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+            xct:TouchEffect.PressedScale="0.8"
+            xct:TouchEffect.PressedOpacity="0.6"
+            xct:TouchEffect.Command="{Binding Command}">
+    <BoxView Color="Gold" />
+    <Label Text="The entire layout receives touches" />
+    <BoxView Color="Gold"/>
+</StackLayout>
+```
+
+You should be aware of the 2 following major changes to this effect:
+1. `TouchBehavior` is now a `PlatformBehavior`, not an `AttachedEffect`
+2. The `BindingContext is not automatically set
+
+### Migrating To Platform Behavior
+
+The behavior is now applied to the elements behavior collection, see [Platform Behaviors](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/behaviors?view=net-maui-8.0#platform-behaviors) for more information.
+
+```xaml
+<HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+    <HorizontalStackLayout.Behaviors>
+        <mct:TouchBehavior
+            DefaultAnimationDuration="250"
+            DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+            PressedOpacity="0.6"
+            PressedScale="0.8" />
+    </HorizontalStackLayout.Behaviors>
+
+    <ContentView
+        BackgroundColor="Gold"
+        HeightRequest="100"
+        WidthRequest="10" />
+    <Label
+        LineBreakMode="TailTruncation"
+        Text="The entire layout receives touches"
+        VerticalOptions="Center" />
+    <ContentView
+        BackgroundColor="Gold"
+        HeightRequest="100"
+        WidthRequest="10" />
+</HorizontalStackLayout>
+```
+
+### Setting The TouchBehavior Binding Context
+
+As noted in the previous section, the `BindingContext` of the behavior is not set automatically, the reason for this is outlined in the Maui documentation for [Behaviors](https://learn.microsoft.com/en-gb/dotnet/maui/fundamentals/behaviors?view=net-maui-8.0#create-a-net-maui-behavior):
+
+> .NET MAUI does not set the BindingContext of a behavior, because behaviors can be shared and applied to multiple controls through styles.
+
+You can set an `x:Name` on any element on page to set the `BindingContext` of the `TouchBehavior` to your respective viewmodel. A convenient way of doing this is setting this at the root element of your view, for example the `ContentPage`.
+
+```xaml
+<ContentPage x:Name="Page">
+    <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+        <HorizontalStackLayout.Behaviors>
+            <mct:TouchBehavior
+                BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext}"
+                Command="{Binding IncreaseTouchCountCommand}"
+                DefaultAnimationDuration="250"
+                DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                PressedOpacity="0.6"
+                PressedScale="0.8" />
+        </HorizontalStackLayout.Behaviors>
+
+        <ContentView
+            BackgroundColor="Gold"
+            HeightRequest="100"
+            WidthRequest="10" />
+        <Label
+            LineBreakMode="TailTruncation"
+            Text="The entire layout receives touches"
+            VerticalOptions="Center" />
+        <ContentView
+            BackgroundColor="Gold"
+            HeightRequest="100"
+            WidthRequest="10" />
+    </HorizontalStackLayout>
+</ContentPage>
+```

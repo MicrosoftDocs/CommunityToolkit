@@ -9,6 +9,8 @@ ms.date: 04/16/2022
 
 The `MaskedBehavior` is a `Behavior` that allows the user to define an input mask for data entry. Adding this behavior to an `InputView` (e.g. an `Entry`) control will force the user to only input values matching a given mask. Examples of its usage include input of a credit card number or a phone number.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `MaskedBehavior` to an `Entry` to aid a user when entering a 16 digit credit card number.

@@ -12,6 +12,8 @@ The `TouchBehavior` is a `Behavior` that provides the ability to interact with a
 > [!NOTE]
 > The toolkit also provides the [`ImageTouchBehavior`](./image-touch-behavior.md) implementation that extends this `TouchBehavior` by also providing the ability to customize the `Source` of an `Image` element.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `TouchBehavior` to a parent `HorizontalStackLayout` and perform the following animations when a user touches or clicks on the `HorizontalStackLayout` or any of its children:

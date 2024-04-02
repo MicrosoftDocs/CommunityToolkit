@@ -12,6 +12,8 @@ The `ImageTouchBehavior` extends the `TouchBehavior` by providing the ability to
 > [!NOTE]
 > For further customization options in the `ImageTouchBehavior` please refer to the [`TouchBehavior`](./touch-behavior.md) implementation that this `Behavior` extends.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `ImageTouchBehavior` to an `Image` and toggle between the `DefaultImageSource`, `HoveredImageSource` and the `PressedImageSource` when the users interacts with the image by either touch based or mouse based interactions.

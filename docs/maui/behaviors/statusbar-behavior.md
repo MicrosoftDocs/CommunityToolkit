@@ -17,6 +17,8 @@ The `StatusBarBehavior` applies the color and style values when the properties a
 > [!NOTE]
 > If your application changes the status bar appearance on a per page basis then you should make use of the `StatusBarApplyOn.OnPageNavigatedTo` value for the `ApplyOn` property. Otherwise when navigating back the system will preserve the status bar appearance from the page the user navigated from and not to.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 ### XAML

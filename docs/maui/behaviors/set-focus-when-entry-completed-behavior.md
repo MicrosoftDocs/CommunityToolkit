@@ -9,6 +9,8 @@ ms.date: 05/18/2022
 
 The `SetFocusOnEntryCompletedBehavior` is a `Behavior` that gives focus to a specified `VisualElement` when an `Entry` is completed. For example, a page might have several `Entry`s in sequence, and this makes it convenient to the user if completing an `Entry` automatically switched focus to the next `Entry`.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `SetFocusOnEntryCompletedBehavior` to an `Entry` so that when the `Next` button on the soft keyboard is pressed another `Entry` is given focus.

@@ -11,6 +11,8 @@ The `MaxLengthReachedBehavior` is a `Behavior` that allows the user to trigger a
 
 Additionally it is possible to dismiss the keyboard when the maximum length is reached via the `ShouldDismissKeyboardAutomatically` property which defaults to `false`.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 ### XAML
@@ -24,16 +26,18 @@ Additionally it is possible to dismiss the keyboard when the maximum length is r
 The `MaxLengthReachedBehavior` can be used as follows in XAML:
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.MaxLengthReachedBehaviorPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.MaxLengthReachedBehaviorPage"
+    x:Name="Page">
 
     <Entry Placeholder="Start typing until MaxLength is reached..."
            MaxLength="100">
         <Entry.Behaviors>
             <toolkit:MaxLengthReachedBehavior 
-                Command="{Binding MaxLengthReachedCommand}" />
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand}" />
         </Entry.Behaviors>
     </Entry>
 

@@ -9,6 +9,8 @@ ms.date: 04/16/2022
 
 The `NumericValidationBehavior` is a `Behavior` that allows the user to determine if text input is a valid numeric value. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid numeric input is provided.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `NumericValidationBehavior` to an `Entry` and change the `TextColor` when the number entered is considered invalid (not between 1 and 100).

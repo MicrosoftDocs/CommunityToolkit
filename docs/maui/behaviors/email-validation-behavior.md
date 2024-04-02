@@ -13,6 +13,8 @@ When attached to an `InputView` (e.g. `Entry`, `Editor`, etc.), `EmailValidation
 
 When detached from an `InputView`, `EmailValidationBehavior` will change `Keyboard.Email` back to `Keyboard.Default`. If a `Keyboard` other than `Keyboard.Email` has been specified for the `InputView`, `EmailValidationBehavior`, will not change the `Keyboard` when detaching.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `EmailValidationBehavior` to an `Entry` and change the `TextColor` based on whether the entered text is a valid email address.

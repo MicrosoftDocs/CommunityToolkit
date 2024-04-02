@@ -9,6 +9,8 @@ ms.date: 05/18/2022
 
 The `MultiValidationBehavior` is a `Behavior` that allows the user to combine multiple validators to validate text input depending on specified parameters. For example, an `Entry` control can be styled differently depending on whether a valid or an invalid text input is provided. By allowing the user to chain multiple existing validators together, it offers a high degree of customization when it comes to validation.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `MultiValidationBehavior` to an `Entry` and include 4 different validation behaviors to enforce a password policy.

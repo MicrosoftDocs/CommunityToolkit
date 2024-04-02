@@ -9,6 +9,8 @@ ms.date: 04/20/2022
 
 The `TextValidationBehavior` is a `Behavior` that allows the user to validate a given text depending on specified parameters. By adding this behavior to any `InputView` control it can be styled differently depending on whether a valid or an invalid text value is provided. It offers various built-in checks such as checking for a certain length or whether or not the input value matches a specific regular expression.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `TextValidationBehavior` to an `Entry` and change the `TextColor` based on whether the entered text is between 1 and 10 characters long.

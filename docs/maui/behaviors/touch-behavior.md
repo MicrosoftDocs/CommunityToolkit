@@ -273,9 +273,18 @@ You can find the source code for `TouchBehavior` over on the [.NET MAUI Communit
 
 ## Migrating From Xamarin Community Toolkit
 
-In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](https://learn.microsoft.com/en-us/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk) if you are upgrading an app from Forms to Maui there are a number of changes that you need to be aware of.
+In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk) if you are upgrading an app from Xamarin.Forms to .NET Maui there are a number of changes that you need to be aware of:
 
-The XCT implementation was an attached effect and was applied to an element in the following way:
+1. [`TouchBehavior` is now a `PlatformBehavior`](#TouchBehavior-is-now-a-PlatformBehavior)
+2. [The `BindingContext` is not automatically set](#Setting-The-TouchBehavior-Binding-Context)
+
+### TouchBehavior is now a PlatformBehavior
+
+In the Xamarin Community Toolkit the `TouchEffect` was implemented as an `AttachedEffect`. To use the effect you would use the attached properties and apply to any `VisualElement`
+
+In .NET Maui the `TouchBehavior` is implemented as a `PlatformBehavior` behavior is now applied to the elements behavior collection, see [Platform Behaviors](/dotnet/maui/fundamentals/behaviors#platform-behaviors) for more information.
+
+Below is an example of a `TouchEffect` being applied to a view in Xamarin Forms:
 
 ```xaml
 <StackLayout Orientation="Horizontal"
@@ -291,13 +300,7 @@ The XCT implementation was an attached effect and was applied to an element in t
 </StackLayout>
 ```
 
-You should be aware of the 2 following major changes to this effect:
-1. `TouchBehavior` is now a `PlatformBehavior`, not an `AttachedEffect`
-2. The `BindingContext is not automatically set
-
-### Migrating To Platform Behavior
-
-The behavior is now applied to the elements behavior collection, see [Platform Behaviors](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/behaviors?view=net-maui-8.0#platform-behaviors) for more information.
+The equivalent `TouchBehavior` in .NET Maui would look like this:
 
 ```xaml
 <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
@@ -326,9 +329,13 @@ The behavior is now applied to the elements behavior collection, see [Platform B
 
 ### Setting The TouchBehavior Binding Context
 
-As noted in the previous section, the `BindingContext` of the behavior is not set automatically, the reason for this is outlined in the Maui documentation for [Behaviors](https://learn.microsoft.com/en-gb/dotnet/maui/fundamentals/behaviors?view=net-maui-8.0#create-a-net-maui-behavior):
+As noted in the previous section, the `BindingContext` of the behavior is not set automatically, the reason for this is outlined in the Maui documentation for [Behaviors](/dotnet/maui/fundamentals/behaviors#create-a-net-maui-behavior):
 
 > .NET MAUI does not set the BindingContext of a behavior, because behaviors can be shared and applied to multiple controls through styles.
+
+You should note that whilst .NET Maui behaviors can be shared via styles, the `TouchBehavior` is inteded to be applied to a specific `VisualElement` and should not be shared across multiple views. A new instance of the `TouchBehavior` should be created for every `VisualElement` it is applied to.
+
+Since the `TouchBehavior` does not inherit any `BindingContext`, the use of [Relative bindings](/dotnet/maui/fundamentals/data-binding/relative-bindings) is unsupported since the behavior has no way of obtaining any information about the `BindingContext` of the `VisualElement` it is applied to. Instead you should use an element in your view as an anchor to provide the `BindingContext` for the `TouchBehavior` using an `x:Reference`.
 
 You can set an `x:Name` on any element on page to set the `BindingContext` of the `TouchBehavior` to your respective viewmodel. A convenient way of doing this is setting this at the root element of your view, for example the `ContentPage`.
 
@@ -359,4 +366,22 @@ You can set an `x:Name` on any element on page to set the `BindingContext` of th
             WidthRequest="10" />
     </HorizontalStackLayout>
 </ContentPage>
+```
+
+If you are using a templated view, such as a `DataTemplate` you should use the parent view instead:
+
+```xaml
+<DataTemplate x:DataType="models:User">
+    <ContentView x:Name="ContentView">
+        <ContentView.Behaviors>
+            <mct:TouchBehavior BindingContext="{Binding Source={x:Reference ContentView}, Path=BindingContext}"/>
+        </ContentView.Behaviors>
+        <Grid ColumnDefinitions="Auto, *">
+        
+            <Image Source="{Binding ProfilePicture}">
+
+            <Label Text="{Binding UserName}" Grid.Column="1">
+        </Grid>
+    </ContentView>
+</DataTemplate>
 ```

@@ -38,7 +38,7 @@ The following examples show how to add the `TouchBehavior` to a parent `Horizont
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.TouchBehaviorPage">
 
-   <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+   <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <HorizontalStackLayout.Behaviors>
             <toolkit:TouchBehavior
                 DefaultAnimationDuration="250"
@@ -93,7 +93,7 @@ class TouchBehaviorPage : ContentPage
 
         var layout = new HorizontalStackLayout
         {
-            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             Children = 
             {
@@ -131,7 +131,7 @@ class TouchBehaviorPage : ContentPage
     {
         Content = new HorizontalStackLayout
         {
-            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             Children = 
             {
@@ -174,7 +174,7 @@ The following example shows how to attach the `TouchBehavior` to a `HorizontalSt
 <HorizontalStackLayout
     Padding="20"
     Background="Black"
-    HorizontalOptions="CenterAndExpand">
+    HorizontalOptions="Center">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
             HoveredBackgroundColor="{StaticResource Gray900}"
@@ -193,7 +193,7 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 <HorizontalStackLayout
     Padding="20"
     Background="Black"
-    HorizontalOptions="CenterAndExpand">
+    HorizontalOptions="Center">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
             LongPressDuration="750"

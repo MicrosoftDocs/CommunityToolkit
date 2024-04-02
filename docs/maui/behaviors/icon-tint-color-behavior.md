@@ -75,7 +75,7 @@ class IconTintColorBehaviorPage : ContentPage
         Content = new Image()
         .Behaviors(new IconTintColorBehavior
         {
-            Tintcolor = Color.Red
+            TintColor = Color.Red
         });                 
     }
 }

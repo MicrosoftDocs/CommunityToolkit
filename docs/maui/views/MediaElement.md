@@ -244,7 +244,7 @@ The following XAML example shows a page that contains a `MediaElement` and custo
         <HorizontalStackLayout BindingContext="{x:Reference mediaElement}"
                      ...>
             <Button Text="Play"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
                     Clicked="OnPlayPauseButtonClicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
@@ -262,7 +262,7 @@ The following XAML example shows a page that contains a `MediaElement` and custo
                 </Button.Triggers>
             </Button>
             <Button Text="Stop"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
                     Clicked="OnStopButtonClicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"

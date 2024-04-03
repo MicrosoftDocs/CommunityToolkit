@@ -306,6 +306,9 @@ In .NET Maui the `TouchBehavior` is implemented as a `PlatformBehavior` which is
 
 Below is an example of a `TouchEffect` being applied to a view in Xamarin Forms:
 
+<!-- markdownlint-disable MD025 -->
+# [Xaml](#tab/xaml)
+
 ```xaml
 <StackLayout Orientation="Horizontal"
             HorizontalOptions="CenterAndExpand"
@@ -320,16 +323,42 @@ Below is an example of a `TouchEffect` being applied to a view in Xamarin Forms:
 </StackLayout>
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+var stackLayout = new StackLayout()
+{
+    HorizontalOptions = LayoutOptions.CenterAndExpand,
+    Orientation = StackOrientation.Horizontal,
+    Children =
+    {
+        new BoxView() { Color = Color.Gold, },
+        new Label() { Text = "The entire layout receives touches", },
+        new BoxView() { Color = Color.Gold, },
+    }
+};
+
+TouchEffect.SetAnimationDuration(stackLayout, 250);
+TouchEffect.SetAnimationEasing(stackLayout, Easing.CubicInOut);
+TouchEffect.SetPressedScale(stackLayout, 0.8);
+TouchEffect.SetPressedOpacity(stackLayout, 0.6);
+TouchEffect.SetCommand(stackLayout, command);
+```
+
 The equivalent `TouchBehavior` in .NET Maui would look like this:
 
+<!-- markdownlint-disable MD025 -->
+# [Xaml](#tab/xaml)
+
 ```xaml
-<HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+<HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
     <HorizontalStackLayout.Behaviors>
         <mct:TouchBehavior
             DefaultAnimationDuration="250"
             DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
             PressedOpacity="0.6"
-            PressedScale="0.8" />
+            PressedScale="0.8"
+            Command="{Binding Command}" />
     </HorizontalStackLayout.Behaviors>
 
     <ContentView
@@ -345,4 +374,46 @@ The equivalent `TouchBehavior` in .NET Maui would look like this:
         HeightRequest="100"
         WidthRequest="10" />
 </HorizontalStackLayout>
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+var stackLayout = new HorizontalStackLayout()
+{
+    HorizontalOptions = LayoutOptions.Center,
+    VerticalOptions = LayoutOptions.Center,
+    Children =
+    {
+        new ContentView()
+        {
+            BackgroundColor = Colors.Gold,
+            HeightRequest = 100,
+            WidthRequest = 10,
+        },
+        new Label()
+        {
+            LineBreakMode = LineBreakMode.TailTruncation,
+            Text = "The entire layout receives touches",
+            VerticalOptions = LayoutOptions.Center,
+        },
+        new ContentView()
+        {
+            BackgroundColor = Colors.Gold,
+            HeightRequest = 100,
+            WidthRequest = 10,
+        },
+    },
+    Behaviors =
+    {
+        new TouchBehavior()
+        {
+            DefaultAnimationDuration = 250,
+            DefaultAnimationEasing = Easing.CubicInOut,
+            PressedOpacity = 0.6,
+            PressedScale = 0.8,
+            Command = command,
+        }
+    }
+};
 ```

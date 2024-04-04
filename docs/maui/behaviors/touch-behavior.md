@@ -273,14 +273,14 @@ You can find the source code for `TouchBehavior` over on the [.NET MAUI Communit
 
 ## Migrating From Xamarin Community Toolkit
 
-In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk&preserve-view=true) if you are upgrading an app from Xamarin.Forms to .NET Maui there are some breaking changes that you should be aware of:
+In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk&preserve-view=true) if you are upgrading an app from Xamarin.Forms to .NET MAUI there are some breaking changes that you should be aware of:
 
-1. [API Name Changes](#API-Name-Changes)
-2. [TouchBehavior is now implemented as a `PlatformBehavior`](#TouchBehavior-is-now-implemented-as-a-`PlatformBehavior`)
+1. [API Name Changes](#api-name-changes)
+2. [TouchBehavior is now implemented as a `PlatformBehavior`](#touchbehavior-is-now-implemented-as-a-platformbehavior)
 
 ### API Name Changes
 
-| Name In Xamarin Community Toolkit | Name In Maui Community Toolkit                       |
+| Name In Xamarin Community Toolkit | Name In MAUI Community Toolkit                       |
 |-----------------------------------|------------------------------------------------------|
 | TouchEffect                       | TouchBehavior                                        |
 | NormalBackgroundColor             | DefaultBackgroundColor                               |
@@ -300,9 +300,9 @@ In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityTo
 
 In the Xamarin Community Toolkit the `TouchEffect` was implemented as an `AttachedEffect`. To use the effect you would use the attached properties and apply to any `VisualElement`
 
-In .NET Maui the `TouchBehavior` is implemented as a `PlatformBehavior` which is now applied to the elements behavior collection, see [Platform Behaviors](/dotnet/maui/fundamentals/behaviors#platform-behaviors) for more information.
+In .NET MAUI the `TouchBehavior` is implemented as a `PlatformBehavior` which is now applied to the elements behavior collection, see [Platform Behaviors](/dotnet/maui/fundamentals/behaviors#platform-behaviors) for more information.
 
-> Note: By default in .NET Maui `PlatformBehavior`s will not set a BindingContext, this is because Behaviors can be shared in styles. The `TouchBehavior` will set it's `BindingContext` equal to the `VisualElement` it is applied to. This means that you should not share the `TouchBehavior` between elements via styles.
+> Note: By default in .NET MAUI `PlatformBehavior`s will not set a BindingContext, this is because Behaviors can be shared in styles. The `TouchBehavior` will set its `BindingContext` equal to the `VisualElement` it is applied to. This means that you should not share the `TouchBehavior` between elements via styles.
 
 Below is an example of a `TouchEffect` being applied to a view in Xamarin Forms:
 
@@ -345,7 +345,7 @@ TouchEffect.SetPressedOpacity(stackLayout, 0.6);
 TouchEffect.SetCommand(stackLayout, command);
 ```
 
-The equivalent `TouchBehavior` in .NET Maui would look like this:
+The equivalent `TouchBehavior` in .NET MAUI would look like this:
 
 <!-- markdownlint-disable MD025 -->
 # [Xaml](#tab/xaml)

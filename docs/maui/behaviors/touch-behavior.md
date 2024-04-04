@@ -269,3 +269,151 @@ You can find an example of this behavior in action in the [.NET MAUI Community T
 ## API
 
 You can find the source code for `TouchBehavior` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/TouchBehavior.shared.cs).
+
+
+## Migrating From Xamarin Community Toolkit
+
+In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk&preserve-view=true) if you are upgrading an app from Xamarin.Forms to .NET MAUI there are some breaking changes that you should be aware of:
+
+1. [API Name Changes](#api-name-changes)
+2. [TouchBehavior is now implemented as a `PlatformBehavior`](#touchbehavior-is-now-implemented-as-a-platformbehavior)
+
+### API Name Changes
+
+| Name In Xamarin Community Toolkit | Name In MAUI Community Toolkit                       |
+|-----------------------------------|------------------------------------------------------|
+| TouchEffect                       | TouchBehavior                                        |
+| NormalBackgroundColor             | DefaultBackgroundColor                               |
+| NormalScale                       | DefaultScale                                         |
+| NormalOpacity                     | DefaultOpacity                                       |
+| NormalTranslationX                | DefaultTranslationX                                  |
+| NormalTranslationY                | DefaultTranslationY                                  |
+| NormalRotation                    | DefaultRotation                                      |
+| NormalRotationX                   | DefaultRotationX                                     |
+| NormalRotationY                   | DefaultRotationY                                     |
+| NormalAnimationDuration           | DefaultAnimationDuration                             |
+| NormalAnimationEasing             | DefaultAnimationEasing                               |
+| NormalBackgroundImageSource       | DefaultImageSource (Moved to `ImageTouchBehavior`)   |
+| NormalBackgroundImageAspect       | DefaultImageAspect (Moved to  `ImageTouchBehavior` ) |
+
+### TouchBehavior is now implemented as a `PlatformBehavior`
+
+In the Xamarin Community Toolkit the `TouchEffect` was implemented as an `AttachedEffect`. To use the effect you would use the attached properties and apply to any `VisualElement`
+
+In .NET MAUI the `TouchBehavior` is implemented as a `PlatformBehavior` which is now applied to the elements behavior collection, see [Platform Behaviors](/dotnet/maui/fundamentals/behaviors#platform-behaviors) for more information.
+
+> Note: By default in .NET MAUI `PlatformBehavior`s will not set the `BindingContext` property, this is because Behaviors can be shared in styles. The `TouchBehavior` will set the `BindingContext` property equal to the `VisualElement` it is applied to. This means that you should _not_ share the `TouchBehavior` between elements via styles.
+
+Below is an example of a `TouchEffect` being applied to a view in Xamarin.Forms:
+
+<!-- markdownlint-disable MD025 -->
+#### [TouchEffect XAML](#tab/toucheffect-xaml)
+
+```xaml
+<StackLayout Orientation="Horizontal"
+            HorizontalOptions="CenterAndExpand"
+            xct:TouchEffect.AnimationDuration="250"
+            xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+            xct:TouchEffect.PressedScale="0.8"
+            xct:TouchEffect.PressedOpacity="0.6"
+            xct:TouchEffect.Command="{Binding Command}">
+    <BoxView Color="Gold" />
+    <Label Text="The entire layout receives touches" />
+    <BoxView Color="Gold"/>
+</StackLayout>
+```
+
+#### [TouchEffect C#](#tab/toucheffect-c)
+
+```csharp
+var stackLayout = new StackLayout()
+{
+    HorizontalOptions = LayoutOptions.CenterAndExpand,
+    Orientation = StackOrientation.Horizontal,
+    Children =
+    {
+        new BoxView() { Color = Color.Gold, },
+        new Label() { Text = "The entire layout receives touches", },
+        new BoxView() { Color = Color.Gold, },
+    }
+};
+
+TouchEffect.SetAnimationDuration(stackLayout, 250);
+TouchEffect.SetAnimationEasing(stackLayout, Easing.CubicInOut);
+TouchEffect.SetPressedScale(stackLayout, 0.8);
+TouchEffect.SetPressedOpacity(stackLayout, 0.6);
+TouchEffect.SetCommand(stackLayout, command);
+```
+
+The equivalent `TouchBehavior` in .NET MAUI would look like this:
+
+<!-- markdownlint-disable MD025 -->
+#### [TouchBehavior XAML](#tab/touchbehavior-xaml)
+
+```xaml
+<HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <HorizontalStackLayout.Behaviors>
+        <toolkit:TouchBehavior
+            DefaultAnimationDuration="250"
+            DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+            PressedOpacity="0.6"
+            PressedScale="0.8"
+            Command="{Binding Command}" />
+    </HorizontalStackLayout.Behaviors>
+
+    <ContentView
+        BackgroundColor="Gold"
+        HeightRequest="100"
+        WidthRequest="10" />
+    <Label
+        LineBreakMode="TailTruncation"
+        Text="The entire layout receives touches"
+        VerticalOptions="Center" />
+    <ContentView
+        BackgroundColor="Gold"
+        HeightRequest="100"
+        WidthRequest="10" />
+</HorizontalStackLayout>
+```
+
+#### [TouchBehavior C#](#tab/touchbehavior-c)
+
+```csharp
+var stackLayout = new HorizontalStackLayout()
+{
+    HorizontalOptions = LayoutOptions.Center,
+    VerticalOptions = LayoutOptions.Center,
+    Children =
+    {
+        new ContentView()
+        {
+            BackgroundColor = Colors.Gold,
+            HeightRequest = 100,
+            WidthRequest = 10,
+        },
+        new Label()
+        {
+            LineBreakMode = LineBreakMode.TailTruncation,
+            Text = "The entire layout receives touches",
+            VerticalOptions = LayoutOptions.Center,
+        },
+        new ContentView()
+        {
+            BackgroundColor = Colors.Gold,
+            HeightRequest = 100,
+            WidthRequest = 10,
+        },
+    },
+    Behaviors =
+    {
+        new TouchBehavior()
+        {
+            DefaultAnimationDuration = 250,
+            DefaultAnimationEasing = Easing.CubicInOut,
+            PressedOpacity = 0.6,
+            PressedScale = 0.8,
+            Command = command,
+        }
+    }
+};
+```

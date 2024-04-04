@@ -302,12 +302,12 @@ In the Xamarin Community Toolkit the `TouchEffect` was implemented as an `Attach
 
 In .NET MAUI the `TouchBehavior` is implemented as a `PlatformBehavior` which is now applied to the elements behavior collection, see [Platform Behaviors](/dotnet/maui/fundamentals/behaviors#platform-behaviors) for more information.
 
-> Note: By default in .NET MAUI `PlatformBehavior`s will not set a BindingContext, this is because Behaviors can be shared in styles. The `TouchBehavior` will set its `BindingContext` equal to the `VisualElement` it is applied to. This means that you should not share the `TouchBehavior` between elements via styles.
+> Note: By default in .NET MAUI `PlatformBehavior`s will not set the `BindingContext` property, this is because Behaviors can be shared in styles. The `TouchBehavior` will set the `BindingContext` property equal to the `VisualElement` it is applied to. This means that you should _not_ share the `TouchBehavior` between elements via styles.
 
-Below is an example of a `TouchEffect` being applied to a view in Xamarin Forms:
+Below is an example of a `TouchEffect` being applied to a view in Xamarin.Forms:
 
 <!-- markdownlint-disable MD025 -->
-#### [TouchEffect Xaml](#tab/toucheffect-xaml)
+#### [TouchEffect XAML](#tab/toucheffect-xaml)
 
 ```xaml
 <StackLayout Orientation="Horizontal"
@@ -348,12 +348,12 @@ TouchEffect.SetCommand(stackLayout, command);
 The equivalent `TouchBehavior` in .NET MAUI would look like this:
 
 <!-- markdownlint-disable MD025 -->
-#### [TouchBehavior Xaml](#tab/touchbehavior-xaml)
+#### [TouchBehavior XAML](#tab/touchbehavior-xaml)
 
 ```xaml
 <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
     <HorizontalStackLayout.Behaviors>
-        <mct:TouchBehavior
+        <toolkit:TouchBehavior
             DefaultAnimationDuration="250"
             DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
             PressedOpacity="0.6"

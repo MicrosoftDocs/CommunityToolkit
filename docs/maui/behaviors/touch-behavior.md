@@ -273,7 +273,7 @@ You can find the source code for `TouchBehavior` over on the [.NET MAUI Communit
 
 ## Migrating From Xamarin Community Toolkit
 
-In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk) if you are upgrading an app from Xamarin.Forms to .NET Maui there are some breaking changes that you should be aware of:
+In the [Xamarin Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit), there was the [`TouchEffect`](/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk&preserve-view=true) if you are upgrading an app from Xamarin.Forms to .NET Maui there are some breaking changes that you should be aware of:
 
 1. [API Name Changes](#API-Name-Changes)
 2. [TouchBehavior is now implemented as a `PlatformBehavior`](#TouchBehavior-is-now-implemented-as-a-`PlatformBehavior`)

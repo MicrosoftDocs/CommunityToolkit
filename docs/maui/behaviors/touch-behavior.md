@@ -345,6 +345,8 @@ TouchEffect.SetPressedOpacity(stackLayout, 0.6);
 TouchEffect.SetCommand(stackLayout, command);
 ```
 
+__ _
+
 The equivalent `TouchBehavior` in .NET MAUI would look like this:
 
 <!-- markdownlint-disable MD025 -->

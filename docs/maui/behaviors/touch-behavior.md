@@ -307,7 +307,7 @@ In .NET MAUI the `TouchBehavior` is implemented as a `PlatformBehavior` which is
 Below is an example of a `TouchEffect` being applied to a view in Xamarin.Forms:
 
 <!-- markdownlint-disable MD025 -->
-#### [TouchEffect XAML](#tab/toucheffect-xaml)
+#### [XAML](#tab/toucheffect-xaml)
 
 ```xaml
 <StackLayout Orientation="Horizontal"
@@ -323,7 +323,7 @@ Below is an example of a `TouchEffect` being applied to a view in Xamarin.Forms:
 </StackLayout>
 ```
 
-#### [TouchEffect C#](#tab/toucheffect-c)
+#### [C#](#tab/toucheffect-csharp)
 
 ```csharp
 var stackLayout = new StackLayout()
@@ -345,10 +345,12 @@ TouchEffect.SetPressedOpacity(stackLayout, 0.6);
 TouchEffect.SetCommand(stackLayout, command);
 ```
 
+__ _
+
 The equivalent `TouchBehavior` in .NET MAUI would look like this:
 
 <!-- markdownlint-disable MD025 -->
-#### [TouchBehavior XAML](#tab/touchbehavior-xaml)
+#### [XAML](#tab/touchbehavior-xaml)
 
 ```xaml
 <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
@@ -376,7 +378,7 @@ The equivalent `TouchBehavior` in .NET MAUI would look like this:
 </HorizontalStackLayout>
 ```
 
-#### [TouchBehavior C#](#tab/touchbehavior-c)
+#### [C#](#tab/touchbehavior-csharp)
 
 ```csharp
 var stackLayout = new HorizontalStackLayout()

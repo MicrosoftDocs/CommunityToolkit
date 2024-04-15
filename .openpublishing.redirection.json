@@ -9,6 +9,70 @@
       "source_path": "mvvm/index.md",
       "redirect_url": "/mvvm/introduction",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "windows/Animations/Animations.md",
+      "redirect_url": "/windows/Animations/index.md"
+    },
+    {
+      "source_path": "windows/Animations/AnimationSet.md",
+      "redirect_url": "/windows/Behaviors/Behaviors.Animations.md"
+    },
+    {
+      "source_path": "windows/Behaviors/Behaviors.md",
+      "redirect_url": "/windows/Behaviors/index.md"
+    },
+    {
+      "source_path": "windows/CameraPreview/CameraPreview.md",
+      "redirect_url": "/windows/CameraPreview/index.md"
+    },
+    {
+      "source_path": "windows/Converters/Converters.md",
+      "redirect_url": "/windows/Converters/index.md"
+    },
+    {
+      "source_path": "windows/DeveloperTools/DeveloperTools.md",
+      "redirect_url": "/windows/DeveloperTools/index.md"
+    },
+    {
+      "source_path": "windows/ImageCropper/ImageCropper.md",
+      "redirect_url": "/windows/ImageCropper/index.md"
+    },
+    {
+      "source_path": "windows/LayoutTransformControl/LayoutTransformControl.md",
+      "redirect_url": "/windows/LayoutTransformControl/index.md"
+    },
+    {
+      "source_path": "windows/MetadataControl/MetadataControl.md",
+      "redirect_url": "/windows/MetadataControl/index.md"
+    },
+    {
+      "source_path": "windows/Primitives/StaggeredSamples.md",
+      "redirect_url": "/windows/Primitives/StaggeredLayout.md"
+    },
+    {
+      "source_path": "windows/RadialGauge/RadialGauge.md",
+      "redirect_url": "/windows/RadialGauge/index.md"
+    },
+    {
+      "source_path": "windows/RangeSelector/RangeSelector.md",
+      "redirect_url": "/windows/RangeSelector/index.md"
+    },
+    {
+      "source_path": "windows/RichSuggestBox/RichSuggestBox.md",
+      "redirect_url": "/windows/RichSuggestBox/index.md"
+    },
+    {
+      "source_path": "windows/Segmented/Segmented.md",
+      "redirect_url": "/windows/Segmented/index.md"
+    },
+    {
+      "source_path": "windows/TokenizingTextBox/TokenizingTextBox.md",
+      "redirect_url": "/windows/TokenizingTextBox/index.md"
+    },
+    {
+      "source_path": "windows/Triggers/Triggers.md",
+      "redirect_url": "/windows/Triggers/index.md"
     }
   ]
 }

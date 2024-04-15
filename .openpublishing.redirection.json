@@ -12,67 +12,67 @@
     },
     {
       "source_path": "windows/Animations/Animations.md",
-      "redirect_url": "/windows/Animations/index.md"
+      "redirect_url": "/windows/Animations"
     },
     {
       "source_path": "windows/Animations/AnimationSet.md",
-      "redirect_url": "/windows/Behaviors/AnimationSet.md"
+      "redirect_url": "/windows/Behaviors/AnimationSet"
     },
     {
       "source_path": "windows/Behaviors/Behaviors.md",
-      "redirect_url": "/windows/Behaviors/index.md"
+      "redirect_url": "/windows/Behaviors"
     },
     {
       "source_path": "windows/CameraPreview/CameraPreview.md",
-      "redirect_url": "/windows/CameraPreview/index.md"
+      "redirect_url": "/windows/CameraPreview"
     },
     {
       "source_path": "windows/Converters/Converters.md",
-      "redirect_url": "/windows/Converters/index.md"
+      "redirect_url": "/windows/Converters"
     },
     {
       "source_path": "windows/DeveloperTools/DeveloperTools.md",
-      "redirect_url": "/windows/DeveloperTools/index.md"
+      "redirect_url": "/windows/DeveloperTools"
     },
     {
       "source_path": "windows/ImageCropper/ImageCropper.md",
-      "redirect_url": "/windows/ImageCropper/index.md"
+      "redirect_url": "/windows/ImageCropper"
     },
     {
       "source_path": "windows/LayoutTransformControl/LayoutTransformControl.md",
-      "redirect_url": "/windows/LayoutTransformControl/index.md"
+      "redirect_url": "/windows/LayoutTransformControl"
     },
     {
       "source_path": "windows/MetadataControl/MetadataControl.md",
-      "redirect_url": "/windows/MetadataControl/index.md"
+      "redirect_url": "/windows/MetadataControl"
     },
     {
       "source_path": "windows/Primitives/StaggeredSamples.md",
-      "redirect_url": "/windows/Primitives/StaggeredLayout.md"
+      "redirect_url": "/windows/Primitives/StaggeredLayout"
     },
     {
       "source_path": "windows/RadialGauge/RadialGauge.md",
-      "redirect_url": "/windows/RadialGauge/index.md"
+      "redirect_url": "/windows/RadialGauge"
     },
     {
       "source_path": "windows/RangeSelector/RangeSelector.md",
-      "redirect_url": "/windows/RangeSelector/index.md"
+      "redirect_url": "/windows/RangeSelector"
     },
     {
       "source_path": "windows/RichSuggestBox/RichSuggestBox.md",
-      "redirect_url": "/windows/RichSuggestBox/index.md"
+      "redirect_url": "/windows/RichSuggestBox"
     },
     {
       "source_path": "windows/Segmented/Segmented.md",
-      "redirect_url": "/windows/Segmented/index.md"
+      "redirect_url": "/windows/Segmented"
     },
     {
       "source_path": "windows/TokenizingTextBox/TokenizingTextBox.md",
-      "redirect_url": "/windows/TokenizingTextBox/index.md"
+      "redirect_url": "/windows/TokenizingTextBox"
     },
     {
       "source_path": "windows/Triggers/Triggers.md",
-      "redirect_url": "/windows/Triggers/index.md"
+      "redirect_url": "/windows/Triggers"
     }
   ]
 }

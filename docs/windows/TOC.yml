@@ -12,7 +12,7 @@ items:
 - name: Behaviors
   items: 
   - name: AnimationSet
-    href: Behaviors/Behaviors.Animations.md
+    href: Behaviors/AnimationSet.md
   - name: Behaviors
     href: Behaviors/index.md
   - name: Header Behaviors

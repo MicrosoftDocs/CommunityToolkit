@@ -12,67 +12,83 @@
     },
     {
       "source_path": "windows/Animations/Animations.md",
-      "redirect_url": "/windows/Animations"
+      "redirect_url": "/windows/Animations",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/Animations/AnimationSet.md",
-      "redirect_url": "/windows/Behaviors/AnimationSet"
+      "redirect_url": "/windows/Behaviors/AnimationSet",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/Behaviors/Behaviors.md",
-      "redirect_url": "/windows/Behaviors"
+      "redirect_url": "/windows/Behaviors",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/CameraPreview/CameraPreview.md",
-      "redirect_url": "/windows/CameraPreview"
+      "redirect_url": "/windows/CameraPreview",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/Converters/Converters.md",
-      "redirect_url": "/windows/Converters"
+      "redirect_url": "/windows/Converters",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/DeveloperTools/DeveloperTools.md",
-      "redirect_url": "/windows/DeveloperTools"
+      "redirect_url": "/windows/DeveloperTools",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/ImageCropper/ImageCropper.md",
-      "redirect_url": "/windows/ImageCropper"
+      "redirect_url": "/windows/ImageCropper",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/LayoutTransformControl/LayoutTransformControl.md",
-      "redirect_url": "/windows/LayoutTransformControl"
+      "redirect_url": "/windows/LayoutTransformControl",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/MetadataControl/MetadataControl.md",
-      "redirect_url": "/windows/MetadataControl"
+      "redirect_url": "/windows/MetadataControl",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/Primitives/StaggeredSamples.md",
-      "redirect_url": "/windows/Primitives/StaggeredLayout"
+      "redirect_url": "/windows/Primitives/StaggeredLayout",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/RadialGauge/RadialGauge.md",
-      "redirect_url": "/windows/RadialGauge"
+      "redirect_url": "/windows/RadialGauge",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/RangeSelector/RangeSelector.md",
-      "redirect_url": "/windows/RangeSelector"
+      "redirect_url": "/windows/RangeSelector",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/RichSuggestBox/RichSuggestBox.md",
-      "redirect_url": "/windows/RichSuggestBox"
+      "redirect_url": "/windows/RichSuggestBox",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/Segmented/Segmented.md",
-      "redirect_url": "/windows/Segmented"
+      "redirect_url": "/windows/Segmented",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/TokenizingTextBox/TokenizingTextBox.md",
-      "redirect_url": "/windows/TokenizingTextBox"
+      "redirect_url": "/windows/TokenizingTextBox",
+      "redirect_document_id": true
     },
     {
       "source_path": "windows/Triggers/Triggers.md",
-      "redirect_url": "/windows/Triggers"
+      "redirect_url": "/windows/Triggers",
+      "redirect_document_id": true
     }
   ]
 }

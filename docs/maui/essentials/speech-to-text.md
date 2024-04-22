@@ -219,4 +219,4 @@ You can find an example of `SpeechToText` in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `SpeechToText` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/ISpeechToText.shared.cs).
+You can find the source code for `SpeechToText` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/SpeechToText/ISpeechToText.shared.cs).

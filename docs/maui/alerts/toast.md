@@ -11,6 +11,9 @@ ms.date: 03/30/2022
 
 It provides simple feedback to the user about an operation in a small alert.
 
+> [!NOTE]
+> Additional setup is required for unpackaged WinUI 3 applications, refer to the snackbar [platform specific initialization](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/alerts/snackbar) instructions of Windows. 
+
 ## Syntax
 
 ### C#

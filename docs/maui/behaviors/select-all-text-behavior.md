@@ -11,6 +11,9 @@ The `SelectAllTextBehavior` is a [`Behavior`](/dotnet/maui/fundamentals/behavior
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
+> [!IMPORTANT]
+> `SelectAllTextBehavior` is a platform specific behavior. It has an implementation in all runtime types supported by `Maui` but cannot be referenced by a project that targets .NET without a native runtime. If the project compiles for .NET only, you will receive the error `The type 'toolkit:SelectAllTextBehavior' was not found.`
+
 ## Syntax
 
 The following examples show how to add the `SelectAllTextBehavior` to an `Entry`.

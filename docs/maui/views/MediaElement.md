@@ -71,7 +71,7 @@ To initialize the `MediaElement` on Android, the `LaunchMode` of the application
 example
 
 ```csharp
-[Activity(Theme = "@style/Maui.SplashTheme",ResizeableActivity =true,  MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
+[Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true,  MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
 public class MainActivity : MauiAppCompatActivity
 {
 }

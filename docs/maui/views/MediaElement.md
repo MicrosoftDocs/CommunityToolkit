@@ -95,8 +95,8 @@ Edit the `androidManifest.xml` manifest file and add the following.
 <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 ```
 
-NOTE: This adds support for notifications and is required for notifications to work on all applicable API's. It adds a service and grants permissions
-for required services.
+NOTE: "This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
+ for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
@@ -208,19 +208,19 @@ Platform provided media playback controls are enabled by default, and can be dis
 
 A `MediaElement` can use metadata for `MediaElement.MetaDataTitle`, `MediaElement.MetaDataArtist` and `MediaElement.MetaDataArtworkUrl` You can set
 the title or artist to show what is currently playing on lockscreen controls for Windows, Mac Catalyst, IOS, and Android. You can set a local or 
-remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. It cannot be a local file, or resource. It
-must be a URL and be either `.jpg` or `.png` For title or artist the only requirement is that it be a string. This can be set in code behind or in xaml.
+remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. Itmust be a URL and be either `.jpg` or
+ `.png` For title or artist the only requirement is that it be a string. This can be set in code behind or in xaml.
 
 ```xaml
 <toolkit:MediaElement MetaDataTitle="Title"
                 MetaDataArtist="Artist"
-                MetaDataArtworkUrl="http://www.a-domain.com/image.jpg" />
+                MetaDataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
 ```
 
 ```csharp
     MediaElement.MetaDataTitle="Title";
     MediaElement.MetaDataArtist="Artist";
-    MediaElement.MetaDataArtworkUrl="http://www.a-domain.com/image.jpg";
+    MediaElement.MetaDataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
 ```
 
 > [!NOTE]

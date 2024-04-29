@@ -96,7 +96,7 @@ Edit the `androidManifest.xml` manifest file and add the following.
 ```
 
 > [!NOTE] This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
-> for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
+ for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 

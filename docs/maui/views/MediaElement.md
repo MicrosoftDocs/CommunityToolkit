@@ -67,7 +67,7 @@ To access the `MediaElement` functionality, the following platform specific setu
 <!-- markdownlint-disable MD025 -->
 ### [Android](#tab/android)
 
-To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` and you must add 'ResizableActivity=true` as per the following
+To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` and you must add `ResizableActivity=true` as per the following
 example
 
 ```csharp

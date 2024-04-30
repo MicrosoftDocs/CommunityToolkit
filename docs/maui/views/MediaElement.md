@@ -225,7 +225,7 @@ remote URL with artwork for the lockscreen. It should be at least 1080P for best
     MediaElement.MetaDataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 > You can set the metadata in either xaml or code behind. If you are setting it in code behind you need to set the source in code behind. The source should
 be set last. If you set the metadata in xaml or in constructor this note can be safely ignored.
 

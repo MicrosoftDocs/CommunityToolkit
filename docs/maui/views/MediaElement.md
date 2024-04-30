@@ -207,7 +207,7 @@ Platform provided media playback controls are enabled by default, and can be dis
 
 ### Using MetaData
 
-A `MediaElement` can use metadata for `MediaElement.MetaDataTitle`, `MediaElement.MetaDataArtist` and `MediaElement.MetaDataArtworkUrl` You can set
+A `MediaElement` can use metadata for `MediaElement.MetaDataTitle`, `MediaElement.MetaDataArtist` and `MediaElement.MetaDataArtworkUrl`. You can set
 the title or artist to show what is currently playing on lockscreen controls for Windows, Mac Catalyst, IOS, and Android. You can set a local or 
 remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. It must be a URL and be either `.jpg` or
  `.png` 

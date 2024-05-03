@@ -1,13 +1,13 @@
 ---
 title: FadeAnimation - .NET MAUI Community Toolkit
 author: bijington
-description: The FadeAnimation provides the ability to animate the opacity of a VisualElement from it's original opacity, to a specified new opacity and then back to the original.
+description: The FadeAnimation provides the ability to animate the opacity of a VisualElement from its original opacity to a specified new opacity and then back to the original.
 ms.date: 09/16/2022
 ---
 
 # FadeAnimation
 
-The `FadeAnimation` provides the ability to animate the opacity of a `VisualElement` from it's original opacity, to a specified new opacity and then back to the original.
+The `FadeAnimation` provides the ability to animate the opacity of a `VisualElement` from its original opacity to a specified new opacity and then back to the original.
 
 ## Syntax
 

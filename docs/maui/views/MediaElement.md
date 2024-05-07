@@ -128,8 +128,8 @@ public static class MauiProgram
     {
         // ... Additonal Code Not Shown ... //
 #if IOS
-        AVAudioSession.SharedInstance().SetActive(true);
-        AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+        AVFoundation.AVAudioSession.SharedInstance().SetActive(true);
+        AVFoundation.AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
 #endif
         // ... Additonal Code Not Shown ... //
     }

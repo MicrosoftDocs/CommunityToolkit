@@ -345,8 +345,8 @@ The following example shows how to define a style that applies to the `SimplePop
 
 |Event | Description  |
 |---------|---------|
-| `Closed` | The event that is dismissed event is invoked when the `Popup` is closed. |
-| `Opened` | The event that is dismissed event is invoked when the `Popup` is opened. |
+| `Closed` | Occurs when the `Popup` is closed. |
+| `Opened` | Occurs when the `Popup` is opened. |
 
 ## Examples
 

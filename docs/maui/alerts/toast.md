@@ -11,8 +11,11 @@ ms.date: 03/30/2022
 
 It provides simple feedback to the user about an operation in a small alert.
 
-> [!NOTE]
-> Additional setup is required for unpackaged WinUI 3 applications, refer to the snackbar [platform specific initialization](snackbar.md) instructions of Windows. 
+## Platform specific initialization
+
+To access the `Toast` functionality, the following platform specific setup is required.
+
+[!INCLUDE [important note on platform initialization for snackbar](../includes/toast-snackbar-setup.md)]
 
 ## Syntax
 

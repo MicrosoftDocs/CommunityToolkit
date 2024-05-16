@@ -130,7 +130,7 @@ This package enables you to play audio and video in your .NET MAUI application.
 First the using statement needs to be added to the top of your *MauiProgram.cs* file
 
 ```csharp
-using CommunityToolkit.Maui.MediaElement;
+using CommunityToolkit.Maui;
 ```
 
 In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.

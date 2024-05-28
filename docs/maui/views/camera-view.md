@@ -1,19 +1,19 @@
 ---
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
-description: "The CameraView provides the ability to connect to a connected camera, display a preview from the camera and take photos."
+description: "The CameraView provides the ability to connect to a camera, display a preview from the camera and take photos."
 ms.date: 05/23/2024
 ---
 
 # CameraView
 
-The `CameraView` provides the ability to connect to a connected camera, display a preview from the camera and take photos. The `CameraView` also offers the options you would expect to support taking photos and recording videos such as turning the flash on or off, saving the captured media to a file, and offering different hooks for events.
+The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. The `CameraView` also offers the options you would expect to support taking photos and recording videos such as turning the flash on or off, saving the captured media to a file, and offering different hooks for events.
 
 The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraViewModel.cs). that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraViewPage.xaml).
 
 ## Platform specific initialization
 
-To first use the `CameraView` please refer to the [Getting started](../get-started.md) section. The following platform specific setup is required.
+To first use the `CameraView` please refer to the [Getting started](../get-started.md#communitytoolkitmauicameraview) section. The following platform specific setup is required.
 
 <!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD051 -->

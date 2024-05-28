@@ -17,7 +17,7 @@ The `ConvertBack` method returns `true` if the supplied `value` is equal to the 
 
 ## Syntax
 
-The following examples will show how to use the `BoolToObjectConverter` to change the visibility of a `Label` control based on the specific value of a bound property `MyValue`.
+The following examples will show how to use the `BoolToObjectConverter` to change the background of an `Entry` control based on the specific value of a bound property `IsValid` is `true` or `false`.
 
 ### XAML
 
@@ -37,12 +37,16 @@ The `BoolToObjectConverter` can be used as follows in XAML:
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="42" FalseObject="0" />
+            <SolidColorBrush x:Key="TrueColorBrush">Green</SolidColorBrush>
+            <SolidColorBrush x:Key="FalseColorBrush">Red</SolidColorBrush>
+
+            <toolkit:BoolToObjectConverter x:Key="IsValidConverter" 
+                TrueObject="{StaticResource TrueColorBrush}" 
+                FalseObject="{StaticResource FalseColorBrush}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Label Text="The answer to the Ultimate Question of Life, the Universe and Everything."
-           IsVisible="{Binding MyValue, Converter={StaticResource BoolToObjectConverter}}" />
+    <Entry Background="{Binding IsValid, Converter={StaticResource IsValidConverter}}" />
 
 </ContentPage>
 ```
@@ -56,18 +60,19 @@ class BoolToObjectConverterPage : ContentPage
 {
     public BoolToObjectConverterPage()
     {
-        var label = new Label
-        {
-            Text = "The answer to the Ultimate Question of Life, the Universe and Everything."
-        };
+        var entry = new Entry();
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new BoolToObjectConverter { TrueObject = 42, FalseObject = 0 }));
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                nameof(ViewModels.IsValid),
+                converter: new BoolToObjectConverter
+                {
+                    TrueObject = new SolidColorBrush(Colors.Green),
+                    FalseObject = new SolidColorBrush(Colors.Red)
+                }));
 
-		Content = label;
+        Content = label;
     }
 }
 ```
@@ -83,12 +88,15 @@ class BoolToObjectConverterPage : ContentPage
 {
     public BoolToObjectConverterPage()
     {
-        Content = new Label()
-            .Text("The answer to the Ultimate Question of Life, the Universe and Everything.")
+        Content = new Entry()
             .Bind(
-                Label.IsVisibleProperty,
-                static (ViewModel vm) => vm.MyValue,
-                converter: new BoolToObjectConverter { TrueObject = 42, FalseObject = 0 });
+                Label.BackgroundProperty,
+                static (ViewModel vm) => vm.IsValid,
+                converter: new BoolToObjectConverter
+                {
+                    TrueObject = new SolidColorBrush(Colors.Green),
+                    FalseObject = new SolidColorBrush(Colors.Red)
+                });
     }
 }
 ```

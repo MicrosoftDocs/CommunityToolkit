@@ -7,7 +7,7 @@ ms.date: 05/23/2024
 
 # CameraView
 
-The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. The `CameraView` also offers the options you would expect to support taking photos and recording videos such as turning the flash on or off, saving the captured media to a file, and offering different hooks for events.
+The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. The `CameraView` also offers features to support taking photos, controlling the flash, saving captured media to a file, and offering different hooks for events.
 
 The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraViewModel.cs). that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraViewPage.xaml).
 

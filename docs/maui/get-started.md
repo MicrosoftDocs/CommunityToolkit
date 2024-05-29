@@ -160,7 +160,7 @@ First the using statement needs to be added to the top of your *MauiProgram.cs* 
 using CommunityToolkit.Maui;
 ```
 
-In order to use the `CameraView` correctly the `UseMauiCommunityToolkitCameraView` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+In order to use the `CameraView` correctly, the `UseMauiCommunityToolkitCameraView` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();

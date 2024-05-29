@@ -145,7 +145,7 @@ Tizen is not currently supported.
 
 ## Basic usage
 
-The `CameraView` can be added to a a .NET MAUI application in the following way.
+The `CameraView` can be added to a .NET MAUI application in the following way.
 
 ### Including the XAML namespace
 

@@ -13,7 +13,7 @@ The following sections will incrementally build on how to use the `CameraView` i
 
 ## Platform specific initialization
 
-To first use the `CameraView` please refer to the [Getting started](../get-started.md?tabs=CommunityToolkitMauiCameraView) section. The following platform specific setup is required.
+To first use the `CameraView` please refer to the [Getting started](../get-started.md?tabs=CommunityToolkitMauiCamera) section. The following platform specific setup is required.
 
 <!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD051 -->

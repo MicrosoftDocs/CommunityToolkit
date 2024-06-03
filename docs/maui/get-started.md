@@ -144,13 +144,13 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### [CommunityToolkit.Maui.CameraView](#tab/CommunityToolkitMauiCameraView)
+### [CommunityToolkit.Maui.Camera](#tab/CommunityToolkitMauiCamera)
 
 This package enables you to connect to a camera, display a preview from the camera and take photos.
 
-**Package name:** `CommunityToolkit.Maui.CameraView`
+**Package name:** `CommunityToolkit.Maui.Camera`
 
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.CameraView
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Camera
 
 #### Initializing the package
 
@@ -160,13 +160,13 @@ First the using statement needs to be added to the top of your *MauiProgram.cs* 
 using CommunityToolkit.Maui;
 ```
 
-In order to use the `CameraView` correctly, the `UseMauiCommunityToolkitCameraView` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+In order to use the `CameraView` correctly, the `UseMauiCommunityToolkitCamera` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
-    .UseMauiCommunityToolkitCameraView()
+    .UseMauiCommunityToolkitCamera()
 ```
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.

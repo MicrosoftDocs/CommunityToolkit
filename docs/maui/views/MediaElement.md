@@ -67,11 +67,9 @@ To access the `MediaElement` functionality, the following platform specific setu
 <!-- markdownlint-disable MD025 -->
 ### [Android](#tab/android)
 
-To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` and you must add `ResizableActivity=true` as per the following
-example
-
+To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` add 'ResizeableActivity = true` as per the following example.
 ```csharp
-[Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true,  MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
+[Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true, MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
 public class MainActivity : MauiAppCompatActivity
 {
 }
@@ -106,35 +104,35 @@ For a full example of this method included in an application please refer to the
 
 Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 ```csharp
-    <key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoadsInMedia</key>
-		<true/>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>bluetooth-central</string>
-		<string>audio</string>
-	</array>
-    <key>NSLocalNetworkUsageDescription</key>
-	<string></string>
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoadsInMedia</key>
+    <true/>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+<key>UIBackgroundModes</key>
+<array>
+    <string>bluetooth-central</string>
+    <string>audio</string>
+</array>
+<key>NSLocalNetworkUsageDescription</key>
+<string></string>
 ```
 
 ### [IOS](#tab/ios)
 
 Edit the `Info.plist` for `ios` and add the following keys.
 ```csharp
-    <key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoadsInMedia</key>
-		<true/>
-	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-	</array>
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoadsInMedia</key>
+    <true/>
+</dict>
+<key>UIBackgroundModes</key>
+<array>
+    <string>audio</string>
+</array>
 ```
 
 ### [Windows](#tab/windows)

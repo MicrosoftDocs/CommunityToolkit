@@ -188,7 +188,7 @@ the title or artist to show what is currently playing on lockscreen controls for
 remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. It must be a URL and be either `.jpg` or
  `.png` 
 
-```xml
+```xaml
 <toolkit:MediaElement 
     MetaDataTitle="Title"
     MetaDataArtist="Artist"

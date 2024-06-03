@@ -67,7 +67,10 @@ To access the `MediaElement` functionality, the following platform specific setu
 <!-- markdownlint-disable MD025 -->
 ### [Android](#tab/android)
 
-To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` add 'ResizeableActivity = true` as per the following example.
+When using `MediaElement` is is essential to perform the following steps:
+
+#### 1. Add `ResizableActivity` and `Launchmode` to Activity
+
 ```csharp
 [Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true, MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
 public class MainActivity : MauiAppCompatActivity
@@ -75,19 +78,47 @@ public class MainActivity : MauiAppCompatActivity
 }
 ```
 
-Edit the `androidManifest.xml` manifest file and add the following.
+#### 2. Add the following to `androidManifest.xml` in `<application>` tag.
+
+```csharp
+ <service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+   <intent-filter>
+     <action android:name="android.intent.action.MEDIA_BUTTON" />
+   </intent-filter>
+   <intent-filter>
+     <action android:name="androidx.media3.session.MediaSessionService"/>
+   </intent-filter>
+ </service>
+```
+
+#### 3. Add the following `permissions` to `androidManifest.xml`
+
+```csharp
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+```
+
+#### Here is an example of required settings in `androidManifest.xml`
 
 ```csharp
 <application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
-    <service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-      <intent-filter>
-        <action android:name="android.intent.action.MEDIA_BUTTON" />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="androidx.media3.session.MediaSessionService"/>
-      </intent-filter>
-    </service>
+<service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+    <intent-filter>
+    <action android:name="android.intent.action.MEDIA_BUTTON" />
+    </intent-filter>
+    <intent-filter>
+    <action android:name="androidx.media3.session.MediaSessionService"/>
+    </intent-filter>
+</service>
 </application>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />

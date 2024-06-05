@@ -155,11 +155,6 @@ Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 
 Edit the `Info.plist` for `iOS` and add the following keys.
 ```csharp
-<key>NSAppTransportSecurity</key>
-<dict>
-    <key>NSAllowsArbitraryLoadsInMedia</key>
-    <true/>
-</dict>
 <key>UIBackgroundModes</key>
 <array>
     <string>audio</string>

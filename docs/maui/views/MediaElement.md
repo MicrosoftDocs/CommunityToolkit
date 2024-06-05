@@ -67,7 +67,7 @@ To access the `MediaElement` functionality, the following platform specific setu
 <!-- markdownlint-disable MD025 -->
 ### [Android](#tab/android)
 
-When using `MediaElement` is is essential to perform the following steps:
+When using `MediaElement` it is essential to perform the following steps:
 
 #### 1. Add `ResizableActivity` and `Launchmode` to Activity
 
@@ -78,7 +78,7 @@ public class MainActivity : MauiAppCompatActivity
 }
 ```
 
-#### 2. Add the following to `androidManifest.xml` in `<application>` tag.
+#### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
 
 ```csharp
  <service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
@@ -91,7 +91,7 @@ public class MainActivity : MauiAppCompatActivity
  </service>
 ```
 
-#### 3. Add the following `permissions` to `androidManifest.xml`
+#### 3. Add the following permissions to `AndroidManifest.xml`
 
 ```csharp
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -103,7 +103,7 @@ public class MainActivity : MauiAppCompatActivity
 <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 ```
 
-#### Here is an example of required settings in `androidManifest.xml`
+#### Here is an example of required settings in `AndroidManifest.xml`
 
 ```csharp
 <application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
@@ -151,9 +151,9 @@ Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 <string></string>
 ```
 
-### [IOS](#tab/ios)
+### [iOS](#tab/ios)
 
-Edit the `Info.plist` for `ios` and add the following keys.
+Edit the `Info.plist` for `iOS` and add the following keys.
 ```csharp
 <key>NSAppTransportSecurity</key>
 <dict>

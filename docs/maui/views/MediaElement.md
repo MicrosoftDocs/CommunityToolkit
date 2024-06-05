@@ -135,13 +135,6 @@ For a full example of this method included in an application please refer to the
 
 Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 ```csharp
-<key>NSAppTransportSecurity</key>
-<dict>
-    <key>NSAllowsArbitraryLoadsInMedia</key>
-    <true/>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-</dict>
 <key>UIBackgroundModes</key>
 <array>
     <string>bluetooth-central</string>

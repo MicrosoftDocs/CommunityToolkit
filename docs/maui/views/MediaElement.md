@@ -212,7 +212,7 @@ By default, the media that is defined by the `Source` property doesn't immediate
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
 
-### Using MetaData
+### Using Metadata
 
 A `MediaElement` can use metadata for `MediaElement.MetadataTitle`, `MediaElement.MetadataArtist` and `MediaElement.MetadataArtworkUrl`. You can set
 the title or artist to show what is currently playing on lockscreen controls for Windows, Mac Catalyst, iOS, and Android. You can set a local or 

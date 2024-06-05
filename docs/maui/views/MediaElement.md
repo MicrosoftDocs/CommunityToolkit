@@ -221,7 +221,7 @@ remote URL with artwork for the lockscreen. It should be at least 1080P for best
 
 ```xaml
 <toolkit:MediaElement 
-    MetaDataTitle="Title"
+    MetadataTitle="Title"
     MetaDataArtist="Artist"
     MetaDataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
 ```

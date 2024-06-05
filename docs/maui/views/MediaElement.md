@@ -227,9 +227,9 @@ remote URL with artwork for the lockscreen. It should be at least 1080P for best
 ```
 
 ```csharp
-    MediaElement.MetaDataTitle="Title";
-    MediaElement.MetaDataArtist="Artist";
-    MediaElement.MetaDataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
+    MediaElement.MetadataTitle="Title";
+    MediaElement.MetadataArtist="Artist";
+    MediaElement.MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
 ```
 
 > [!IMPORTANT]

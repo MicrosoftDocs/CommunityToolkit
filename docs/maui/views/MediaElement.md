@@ -67,21 +67,92 @@ To access the `MediaElement` functionality, the following platform specific setu
 <!-- markdownlint-disable MD025 -->
 ### [Android](#tab/android)
 
-To initialize the `MediaElement` on Android, the `LaunchMode` of the applications `Activity` must be set to `LaunchMode.SingleTask` and you must add `ResizableActivity=true` as per the following
-example
+When using `MediaElement` it is essential to perform the following steps:
+
+#### 1. Add `ResizableActivity` and `Launchmode` to Activity
 
 ```csharp
-[Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true,  MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
+[Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true, MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
 public class MainActivity : MauiAppCompatActivity
 {
 }
 ```
 
+#### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
+
+```csharp
+ <service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+   <intent-filter>
+     <action android:name="android.intent.action.MEDIA_BUTTON" />
+   </intent-filter>
+   <intent-filter>
+     <action android:name="androidx.media3.session.MediaSessionService"/>
+   </intent-filter>
+ </service>
+```
+
+#### 3. Add the following permissions to `AndroidManifest.xml`
+
+```csharp
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+```
+
+#### Here is an example of required settings in `AndroidManifest.xml`
+
+```csharp
+<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
+<service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+    <intent-filter>
+    <action android:name="android.intent.action.MEDIA_BUTTON" />
+    </intent-filter>
+    <intent-filter>
+    <action android:name="androidx.media3.session.MediaSessionService"/>
+    </intent-filter>
+</service>
+</application>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+```
+
+> [!NOTE]
+> This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
+ for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
+
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
-### [iOS/Mac Catalyst](#tab/macios)
+### [Mac Catalyst](#tab/mac)
 
-No setup is required.
+Edit the `Info.plist` for `MacCatalyst` and add the following keys.
+```csharp
+<key>UIBackgroundModes</key>
+<array>
+    <string>bluetooth-central</string>
+    <string>audio</string>
+</array>
+<key>NSLocalNetworkUsageDescription</key>
+<string></string>
+```
+
+### [iOS](#tab/ios)
+
+Edit the `Info.plist` for `iOS` and add the following keys.
+```csharp
+<key>UIBackgroundModes</key>
+<array>
+    <string>audio</string>
+</array>
+```
 
 ### [Windows](#tab/windows)
 
@@ -113,29 +184,6 @@ The supported multimedia formats can be different per platform. In some cases it
 
 The following sections covers common usage scenarios for the `MediaElement`.
 
-### Bypassing the iOS Silent Switch
-
-On iOS, the MediaElement's playback audio is muted by default when the [user has toggled the Hardware Silent Switch to off](https://support.apple.com/en-mide/guide/iphone/iph37c04838/ios#:~:text=The%20Ring%2FSilent%20switch%20is,play%20through%20your%20iPhone%20speaker). 
-
-To bypass the Hardware Silent Switch on iOS, add the following lines of code to `MauiProgram.cs`. This ensures that MediaElement's playback audio will always be audible to the user regardless of their device's Hardware Silent Switch.
-
-```cs
-public static class MauiProgram
-{
-    // ... Additonal Code Not Shown ... //
-
-    public static MauiApp CreateMauiApp()
-    {
-        // ... Additonal Code Not Shown ... //
-#if IOS
-        AVFoundation.AVAudioSession.SharedInstance().SetActive(true);
-        AVFoundation.AVAudioSession.SharedInstance().SetCategory(AVFoundation.AVAudioSessionCategory.Playback);
-#endif
-        // ... Additonal Code Not Shown ... //
-    }
-}
-```
-
 ### Play remote media
 
 A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
@@ -151,6 +199,30 @@ A `MediaElement` can play remote media files using the HTTP and HTTPS URI scheme
 By default, the media that is defined by the `Source` property doesn't immediately start playing after the media is opened. To enable automatic media playback, set the `ShouldAutoPlay` property to `true`.
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
+
+### Using Metadata
+
+A `MediaElement` can use metadata for `MediaElement.MetadataTitle`, `MediaElement.MetadataArtist` and `MediaElement.MetadataArtworkUrl`. You can set
+the title or artist to show what is currently playing on lockscreen controls for Windows, Mac Catalyst, iOS, and Android. You can set a local or 
+remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. It must be a URL and be either `.jpg` or
+ `.png` 
+
+```xaml
+<toolkit:MediaElement 
+    MetadataTitle="Title"
+    MetadataArtist="Artist"
+    MetasataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
+```
+
+```csharp
+    MediaElement.MetadataTitle="Title";
+    MediaElement.MetadataArtist="Artist";
+    MediaElement.MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
+```
+
+> [!IMPORTANT]
+> You can set the metadata in either XAML or code behind. If you are setting it in code behind you need to set the source in code behind. The source should
+be set last. If you set the metadata in XAML or in constructor this note can be safely ignored.
 
 ### Play local media
 

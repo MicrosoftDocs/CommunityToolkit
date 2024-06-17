@@ -20,6 +20,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 | View | Description |
 | --------- | ----------- |
 | [`AvatarView`](AvatarView.md) | The `AvatarView` is a control for displaying a user's avatar image or their initials. |
+| [`CameraView`](camera-view.md) | The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. |
 | [`DrawingView`](DrawingView.md) | The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image. |
 | [`Expander`](Expander.md) | The `Expander` control provides an expandable container to host any content. |
 | [`LazyView`](LazyView.md) | The `LazyView` control allows you to delay the initialization of a View.|

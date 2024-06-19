@@ -453,8 +453,8 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
 | Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
 | Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |
-| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. | `0` |
-| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. | `0` |
+| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
+| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |
 
 ## Events

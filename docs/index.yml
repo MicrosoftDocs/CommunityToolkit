@@ -80,3 +80,15 @@ landingContent:
             url: maui/views/index.md
           - text: C# Markup
             url: maui/markup/markup.md
+      - linkListType: overview
+        links:
+          - text: What is the .NET MAUI Community Toolkit?
+            url: maui/index.md
+      - linkListType: get-started
+        links:
+          - text: Installation
+            url: maui/get-started.md
+      - linkListType: reference
+        links:
+          - text: Native Library Interop
+            url: /maui/native-library-interop/index.md

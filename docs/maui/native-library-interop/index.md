@@ -1,33 +1,29 @@
 ---
 title: Native Library Interop - .NET MAUI Community Toolkit
-author: miparker
+author: miparker, rachelkang
 description: The .NET MAUI Community Toolkit Native Library Interop components
 ms.date: 06/18/2024
 ---
 
-# Native library interop
+# Native Library Interop
 
 ## Overview
 
-NativeLibraryInterop provides a set of build tasks to simplify interop with native libraries using an approach known as [slim binding](#what-is-slim-binding).
+Native Library Interop, formerly referred to as "Slim Bindings", refers to a pattern for accessing native SDKs in .NET apps. The idea is to create your own abstraction or thin "wrapper" with a simplified API surface to the native SDKs you're interested in calling from .NET. The native "wrapper" library/framework projects get created in Android Studio using Java/Kotlin and/or Xcode using Objective-C/Swift. This approach is especially beneficial when you only need a small slice of the API surface of the SDK, though it also works well for larger API surface usage all the same.
 
-### What is slim binding
+### Understanding when and why to use Native Library Interop
 
-Slim binding refers to a pattern for accessing native SDKs in .NET apps indirectly via a "thin" wrapper with a simplified API surface. This approach is especially beneficial when you only need a small slice of the API surface of the SDK, though it also works well for larger API surface usage all the same.
+Native Library Interop is a very effective approach to interop with native libraries, but they may not always be the best fit for your project. Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. It may also be worth considering a traditional/full binding if the library you are needing to interop with has a large API surface and you need to use the majority of those APIs, or if you are a vendor of a library/SDK and you are wanting to support .NET MAUI developers in consuming your library. The existing tools and methods for traditional bindings aren't going away; this is simply an alternative technique which is in some cases much easier to understand, implement, and maintain.
 
-The idea is to create your own abstraction or "wrapper" API to the native SDK's you're interested in calling from .NET. The native "wrapper" library/framework projects get created in Android Studio using Java/Kotlin and/or Xcode Objective-C/Swift. The implementation of this wrapper API would typically follow the SDK documentation which is likely easier to follow and apply when using the same language as the documentation. It may even be possible to copy and paste code from the vendor documentation directly.
-
-A key benefit of slim bindings is based on the premise that .NET Android and iOS binding tools work great with simple API surfaces. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings.
+A key benefit of Native Library Interop is based on the premise that .NET Android and iOS binding tools work great with simple API surfaces. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings.
 
 While the initial setup may take some time, handling subsequent updates to the underlying SDKs may involve less work. For example, it may only require updating the version and rebuilding. If there's breaking changes to the API surfaces being used, or to how SDKs work in general, then native code may need changing. However, there's a greater chance that the wrapper API surface (and the usage in the .NET app) can remain unchanged compared to traditional full bindings.
 
-### Should I use slim binding
+The implementation of the wrapper API would typically follow the SDK documentation which is likely easier to follow and apply when using the same language as the documentation. It may even be possible to copy and paste code from the vendor documentation directly.
 
-Slim bindings are a very effective approach to interop with native libraries, but they may not always be the best fit for your project. Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. It may also be worth considering a traditional/full binding if the library you are needing to interop with has a large API surface and you need to use the majority of those APIs, or if you are a vendor of a library/SDK and you are wanting to support .NET MAUI developers in consuming your library. The existing tools and methods for traditional bindings aren't going away; this is simply an alternative technique which is in some cases much easier to understand, implement, and maintain.
+### Using Maui.NativeLibraryInterop
 
-### How NativeLibraryInterop works
-
-A notable challenge with creating and maintaining slim bindings is manually coalescing the native projects, their native dependencies, build outputs, and the .NET Binding library project. NativeLibraryInterop can help orchestrate parts of this process through MSBuild invocations. This can include:
+A notable challenge with creating and maintaining bindings created via Native Library Interop is manually coalescing the native projects, their native dependencies, build outputs, and the .NET Binding library project. Maui.NativeLibraryInterop can help orchestrate parts of this process through MSBuild invocations. This can include:
 
 - Resolving or downloading native SDK dependencies
 - Building the native slim binding project and its dependencies

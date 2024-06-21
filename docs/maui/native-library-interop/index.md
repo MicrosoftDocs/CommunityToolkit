@@ -9,40 +9,45 @@ ms.date: 06/18/2024
 
 ## Overview
 
-Native Library Interop, formerly referred to as "Slim Bindings", refers to a pattern for accessing native SDKs in .NET apps. The idea is to create your own abstraction or thin "wrapper" with a simplified API surface to the native SDKs you're interested in calling from .NET. The native "wrapper" library/framework projects get created in Android Studio using Java/Kotlin and/or Xcode using Objective-C/Swift. This approach is especially beneficial when you only need a small slice of the API surface of the SDK, though it also works well for larger API surface usage all the same.
+Native Library Interop, formerly referred to as "Slim Bindings", refers to a pattern for accessing native SDKs in .NET MAUI apps, including .NET for Android, .NET for iOS, and .NET for Mac Catalyst apps. The idea is to create your own abstraction or thin "wrapper" with a simplified API surface to the native SDKs you're interested in calling from .NET. The native "wrapper" library/framework projects get created in Android Studio using Java/Kotlin and/or Xcode using Objective-C/Swift. This approach is especially beneficial when you only need a small slice of the API surface of the SDK, though it also works well for larger API surface usage all the same.
 
 ### Understanding when and why to use Native Library Interop
 
-Native Library Interop is a very effective approach to interop with native libraries, but they may not always be the best fit for your project. Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. It may also be worth considering a traditional/full binding if the library you are needing to interop with has a large API surface and you need to use the majority of those APIs, or if you are a vendor of a library/SDK and you are wanting to support .NET MAUI developers in consuming your library. The existing tools and methods for traditional bindings aren't going away; this is simply an alternative technique which is in some cases much easier to understand, implement, and maintain.
+Native Library Interop is a very effective approach to integrating with native libraries, thought it may not always be the best fit for your project. Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. For projects requiring extensive use of a library's API or for vendors supporting .NET MAUI developers, traditional bindings might still be more suitable. Native Library Interop, however, offers an alternative that is often easier to understand, implement, and maintain.
 
-A key benefit of Native Library Interop is based on the premise that .NET Android and iOS binding tools work great with simple API surfaces. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings.
+A key benefit of Native Library Interop is its effectiveness with simple API surfaces. When wrappers involve only primitive types that .NET supports, existing binding tools can generate reliable definitions with minimal manual intervention, which is often required for traditional bindings. This makes the process straightforward, especially since wrapper API implementation typically follows SDK documentation, and often allows direct copying from vendor documentation.
 
-While the initial setup may take some time, handling subsequent updates to the underlying SDKs may involve less work. For example, it may only require updating the version and rebuilding. If there's breaking changes to the API surfaces being used, or to how SDKs work in general, then native code may need changing. However, there's a greater chance that the wrapper API surface (and the usage in the .NET app) can remain unchanged compared to traditional full bindings.
+While the initial setup may be detailed, managing updates to underlying SDKs generally requires less effort. Updates often involve simply adjusting the version and rebuilding the project. Even if breaking changes occur in the API surfaces or SDKs, the wrapper API surface and .NET application's usage are likely to remain stable, requiring fewer adjustments compared to traditional bindings.
 
-The implementation of the wrapper API would typically follow the SDK documentation which is likely easier to follow and apply when using the same language as the documentation. It may even be possible to copy and paste code from the vendor documentation directly.
+In summary, Native Library Interop provides several benefits:
+- Simplifies following SDK documentation with native languages and tools
+- Requires minimal manual intervention to create working bindings
+- Makes maintenance easier and reduces the frequency of necessary updates
+- Enhances isolation of the app from changes in underlying SDKs
 
-### Using Maui.NativeLibraryInterop
+Although resolving dependency chains (particularly on Android) may require similar effort as traditional bindings, the streamlined implementation and maintenance advantages make Native Library Interop an appealing choice for many projects.
 
-A notable challenge with creating and maintaining bindings created via Native Library Interop is manually coalescing the native projects, their native dependencies, build outputs, and the .NET Binding library project. Maui.NativeLibraryInterop can help orchestrate parts of this process through MSBuild invocations. This can include:
+
+### Understanding Maui.NativeLibraryInterop
+
+A notable challenge with creating and maintaining bindings created via Native Library Interop is manually coalescing the native projects, their native dependencies, build outputs, and the .NET Binding library project. Maui.NativeLibraryInterop helps you jumpstart the process by building from and customizing the samples for your own app's needs.
+
+Part of this includes orchestrating parts of the build process through MSBuild invocations. This can include:
 
 - Resolving or downloading native SDK dependencies
 - Building the native slim binding project and its dependencies
 - Moving the requisite native artifacts to the expected working directory
 - Generating the API definition for the binding library project
 
-The [NativeLibraryInterop.BuildTasks NuGet package](#nuget-package) provides a set of build tasks and targets you can configure in a .NET binding library project csproj file. See [examples](#examples).
+The binding build process is extended to obtain and build native SDK dependencies by adding the `CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks` NuGet package to your binding project:
 
-Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemented via the [Metadata.xml](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file.
+```xml
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
+  </ItemGroup>
+```
 
-![Conceptual overview: NativeLibraryInterop for Android](../images/native-library-interop/nativelibraryinterop-conceptual-overview-android.png "Conceptual overview of NativeLibraryInterop for Android")
-
-An iOS binding library project must include an explicitly defined API. To help with this, [Objective-Sharpie](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) can be run automatically on the resulting native framework to produce an [API definition file](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (ApiDefinition.cs) alongside it. This can serve as a helpful reference when creating and maintaining the ApiDefintion.cs file used by the iOS binding project.
-
-![Conceptual overview: NativeLibraryInterop for iOS](../images/native-library-interop/nativelibraryinterop-conceptual-overview-ios.png "Conceptual overview of NativeLibraryInterop for iOS")
-
-## Examples
-
-### Building the native wrapper - Android
+Android binding projects will also add a `@(GradleProjectReference)` item that points to the root folder that contains their gradle project:
 
 ```xml
 <ItemGroup>
@@ -55,7 +60,7 @@ An iOS binding library project must include an explicitly defined API. To help w
 </ItemGroup>
 ```
 
-### Building the native wrapper - iOS
+iOS binding projects will also add a `@(XcodeProjectReference)` item that points to their Xcode project:
 
 ```xml
 <ItemGroup>
@@ -70,11 +75,12 @@ An iOS binding library project must include an explicitly defined API. To help w
 </ItemGroup>
 ```
 
-## NuGet package
+Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemented via the [Metadata.xml](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file.
 
-The NativeLibraryInterop.BuildTasks package can be included in your project(s) as described in our [Getting started](get-started.md) guide.
+![Conceptual overview: NativeLibraryInterop for Android](../images/native-library-interop/nativelibraryinterop-conceptual-overview-android.png "Conceptual overview of NativeLibraryInterop for Android")
 
-## Resources
+An iOS binding library project must include an explicitly defined API. To help with this, [Objective-Sharpie](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) can be run automatically on the resulting native framework to produce an [API definition file](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (ApiDefinition.cs) alongside it. This can serve as a helpful reference when creating and maintaining the ApiDefintion.cs file used by the iOS binding project.
 
-- [GoneMobile.io: Slim Bindings Podcast Episode](https://www.gonemobile.io/101)
-- [MonkeyFest 2020: Bridge the gap with Bindings to native iOS and Android SDK's](https://www.youtube.com/watch?v=bgK_6anwMcw)
+![Conceptual overview: NativeLibraryInterop for iOS](../images/native-library-interop/nativelibraryinterop-conceptual-overview-ios.png "Conceptual overview of NativeLibraryInterop for iOS")
+
+The requisite native dependencies are embedded into the binding assembly. When a .NET project adds a reference to the native project, the native dependencies are included in the app automatically.

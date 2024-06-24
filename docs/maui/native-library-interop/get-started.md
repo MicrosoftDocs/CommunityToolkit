@@ -7,7 +7,7 @@ ms.date: 06/18/2024
 
 # Getting Started with Native Library Interop
 
-This article covers how to get started with creating a slim binding using Maui.NativeLibraryInterop to simplify the setup. Due to the unique nature of each native library, we are unable to provide a detailed step-by-step walkthrough; rather, these instructions outline the basic steps, key decision points, and guiding examples.
+This article covers how to get started with Native Library Interop using Maui.NativeLibraryInterop to simplify the setup. These instructions outline the basic steps, key decision points, and guiding examples for creating bindings via Native Library Interop. For further guidance on specific API and implementation details, please refer to documentation for the native SDKs and libraries of interest.
 
 ## Prerequisites
 
@@ -29,41 +29,93 @@ Install prerequisites:
 
 ## Create a new binding
 
-### Set up native binding library
+The easiest way to get started with creating a new binding is by cloning the `newBinding` template in the Maui.NativeLibraryInterop repo and making modifications from there. To better understand the full scope of how Maui.NativeLibraryInterop is currently set up, read more in the [overview documentation](../index.md).
 
-// mention newBinding template and the simple edits that can be made there
-// using the NuGet - referencing in csproj
+### Set up the .NET binding libraries
 
-#### [Android](#tab/Android)
+The `newBinding` template includes starter .NET for Android and .NET for iOS binding libraries.
 
-`dotnet new android-bindinglib`
-// link to docs
+Update the binding libraries to reflect the target platforms and .NET version as needed in your .NET app.
+> For example: If you aim to create only an iOS binding using .NET 9, you can:
+> 1. Delete the Android binding library (newBinding/android/NewBinding.Android.Binding), and
+> 2. Update the target framework (in newBinding/macios/NewBinding.MaciOS.Binding/NewBinding.MaciOS.Binding.csproj) to be set to `net9.0-ios`.
 
-#### [iOS & Mac Catalyst](#tab/MaciOS)
+### Set up the native apps and libararies
 
-`dotnet new iosbinding`
-// link to docs
+The `newBinding` template also includes starter Android Studio projects and Xcode projects.
 
-### Create API interface
+Update the native projects to reflect the target platforms and versions as needed in your .NET app, and include the native libraries of interest with the following steps.
 
-// mention newBinding template and the simple edits that can be made there
+#### iOS & Mac Catalyst
 
-#### [Android](#tab/Android)
+The Xcode project is located at `newBinding/macios/native/NewBinding`.
 
-// instructions for Android Studio project creation
-// Java file - APIs here
+Update the Xcode project to reflect the target platforms and versions as supported in your .NET app.
+In the Xcode project, click on the top-level framework, and in `Targets > General`:
+1. Add/remove any `Support Destinations` as needed.
+2. Adjust the iOS version as needed.
 
-#### [iOS & Mac Catalyst](#tab/MaciOS)
+Bring in the native library for iOS and/or MacCatalyst into your Xcode project, through whatever method works best for your library and your needs (e.g., CocoaPods, Swift Package Manager).
 
-// instructions for Xcode project creation
-// Swift file - APIs here
-// copying ApiDefinitions over
+#### Android
 
-### Consume the APIs in your .NET MAUI app
+The Android Studio project is located at `newBinding/android/native`.
 
-// mention newBinding template and the simple edits that can be made there
-// csproj references
+Update the Android Studio project to reflect the target versions supported in your .NET app.
+1. Navigate to `build.gradle.kts (:app)`
+2. Update the `compileSdk` version as needed
 
+Bring in the Android native library through gradle
+1. Add the package dependency in the dependencies block of `build.gradle.kts (:app)`.
+2. Uncomment the `project.afterEvaluate` code block at the bottom of `build.gradle.kts (:app)`.
+3. Add the repository to the dependencyResolutionManagement repositories block in `settings.gradle.kts`.
+4. Sync project with gradle files (via the button in the upper right corner of Android Studio).
+
+### Create the API interface
+
+Create the API interface between your native projects and your .NET binding projects with the following steps.
+
+#### iOS & Mac Catalyst
+
+On the native side, make updates in `newBinding/macios/native/NewBinding/NewBinding/DotnetNewBinding.swift`:
+1. Add an import statement to import the native library you just added.
+2. Write the API definitions for the native library APIs of interest.
+3. Ensure the Xcode project builds successfully and you are satisfied with the APIs.
+
+Back on the .NET side, we are now ready to interop with the native library:
+1. Run `dotnet build` from `newBinding/macios/NewBinding.MaciOS.Binding` to test everything is plugged in correctly and good to go. If successful, you should see the generated C# bindings at `newBinding/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs`.
+2. Update the contents of `newBinding/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs` by replacing it with the contents of `newBinding/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs`.
+3. Run `dotnet build` from `newBinding/macios/NewBinding.MaciOS.Binding` again.
+
+#### Android
+
+On the native side, make updates in `newBinding/android/native/app/src/main/java/com/example/newbinding/DotnetNewBinding.java`:
+1. Add an import statement to import the native library you just added.
+2. Write the API definitions for the native library APIs of interest.
+3. Ensure the Android Studio project builds successfully and you are satisfied with the APIs.
+
+Back on the .NET side, we are now ready to interop with the native library:
+Run `dotnet build` from `newBinding/android/NewBinding.Android.Binding` to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
+
+> For more examples and tips for writing the API definitions, read more in the section below: [Modify and existing binding](#Modify-an-existing-binding)
+
+### Consume the APIs in your .NET app
+
+The `newBinding` template includes a .NET MAUI sample app at newBinding/sample/MauiSample, which references the .NET binding projects and makes the native libraries immediately ready to use!
+
+If you are interested in using your own .NET MAUI, .NET for Android, .NET for iOS, and/or .NET for Mac Catalyst apps, however, you may do so by modifying your .NET app project files to reference the binding libraries:
+
+```xaml
+<!-- Reference to MaciOS Binding project -->
+<ItemGroup Condition="$(TargetFramework.Contains('ios')) Or $(TargetFramework.Contains('maccatalyst'))">
+    <ProjectReference Include="..\..\macios\NewBinding.MaciOS.Binding\NewBinding.MaciOS.Binding.csproj" />
+</ItemGroup>
+
+<!-- Reference to Android Binding project -->
+<ItemGroup Condition="$(TargetFramework.Contains('android'))">
+    <ProjectReference Include="..\..\android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj" />
+</ItemGroup>
+```
 
 ## Modify an existing binding
 

@@ -1,6 +1,7 @@
 ---
 title: Getting Started with Native Library Interop
-author: miparker, rachelkang
+author: miparker
+author: rachelkang
 description: Getting Started with Native Library Interop using the starter template and build tasks from Maui.NativeLibraryInterop.
 ms.date: 06/18/2024
 ---
@@ -42,7 +43,7 @@ Update the binding libraries to reflect the target platforms and .NET version as
 > 1. Delete the Android binding library (newBinding/android/NewBinding.Android.Binding), and
 > 1. Update the target framework (in newBinding/macios/NewBinding.MaciOS.Binding/NewBinding.MaciOS.Binding.csproj) to be set to `net9.0-ios`.
 
-### Set up the native apps and libararies
+### Set up the native wrapper projects and libararies
 
 The `newBinding` template also includes starter Android Studio projects and Xcode projects.
 
@@ -151,11 +152,11 @@ public class MauiFIRMessaging : NSObject {
 ```
 
 > [!NOTE]
-> Slim wrapper API types which will be used by the .NET Binding must be declared as `public` and need to be annoted with `@objc(NameOfType)` and methods also need to be `public`, and can also benefit from similar annotations `@objc(methodName:parameter1:)` where the name and parameters are specified which help influence the binding which objective sharpie will generate.
+> Native wrapper API types which will be used by the .NET Binding must be declared as `public` and need to be annoted with `@objc(NameOfType)` and methods also need to be `public`, and can also benefit from similar annotations `@objc(methodName:parameter1:)` where the name and parameters are specified which help influence the binding which objective sharpie will generate.
 
 You can see in this method that the public API surface only uses types which .NET for iOS is already aware of: `NSData`, `String`, `NSError` and a callback.
 
-In the `Firebase.MaciOS.Binding` project, the `ApiDefinitions.cs` file contains the binding definition for this slim wrapper API:
+In the `Firebase.MaciOS.Binding` project, the `ApiDefinitions.cs` file contains the binding definition for this native wrapper API:
 
 ```csharp
 using System;
@@ -204,7 +205,7 @@ void UnRegister(Action completion);
 Once you've made these changes, you can rebuild the Binding project, and the new API will be ready to use from your .NET MAUI project.
 
 > [!NOTE]
-> Binding projects for Mac/iOS are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reloaded the solution so that the project reference picks up the newer assembly.  Your app project should still compile regardless of intellisense errors.
+> Binding projects for Mac/iOS are not using source generators, and so the project system and intellisense may not know about the new API's until you've rebuilt the binding project, and reloaded the solution so that the project reference picks up the newer assembly.  Your app project should still compile regardless of intellisense errors.
 
 ### Android
 
@@ -264,4 +265,4 @@ public static void logEvent(String eventName) {
 From this simple change, binding project requires no updates to the `Transforms/Metadata.xml` or other files.  You can simply rebuild the Binding project, and the new API will be ready to use from your .NET MAUI project.
 
 > [!NOTE]
-> Binding projects for Android are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reloaded the solution so that the project reference picks up the newer assembly.  Your app project should still compile regardless of intellisense errors.
+> Binding projects for Android are not using source generators, and so the project system and intellisense may not know about the new API's until you've rebuilt the binding project, and reloaded the solution so that the project reference picks up the newer assembly.  Your app project should still compile regardless of intellisense errors.

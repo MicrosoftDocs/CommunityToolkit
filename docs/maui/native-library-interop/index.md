@@ -1,6 +1,7 @@
 ---
 title: Native Library Interop - .NET MAUI Community Toolkit
-author: miparker, rachelkang
+author: miparker
+author: rachelkang
 description: The .NET MAUI Community Toolkit Native Library Interop components
 ms.date: 06/18/2024
 ---
@@ -47,31 +48,33 @@ The binding build process is extended to obtain and build native SDK dependencie
   </ItemGroup>
 ```
 
-Android binding projects will add a `@(GradleProjectReference)` item that points to the root folder that contains the native wrapper gradle project:
+Android binding projects will add a `@(NLIGradleProjectReference)` item that points to the root folder that contains the native wrapper gradle project:
 
 ```xml
 <ItemGroup>
-    <GradleProjectReference Include="../native" >
-        <ModuleName>{module_name}</ModuleName>
-        <!-- Metadata applicable to @(AndroidLibrary) will be used if set -->
+    <NLIGradleProjectReference Include="../native" >
+        <ModuleName>newbinding</ModuleName>
+        <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
         <Bind>true</Bind>
         <Pack>true</Pack>
-    </GradleProjectReference>
+        -->
+    </NLIGradleProjectReference>
 </ItemGroup>
 ```
 
-iOS binding projects will add an `@(XcodeProjectReference)` item that points to the native wrapper Xcode project:
+iOS binding projects will add an `@(NLIXcodeProjectReference)` item that points to the native wrapper Xcode project:
 
 ```xml
 <ItemGroup>
-    <XcodeProjectReference Include="../native/{project_name}.xcodeproj">
-        <SchemeName>{scheme_name}</SchemeName>
-        <SharpieNamespace>{namespace_to_generate}</SharpieNamespace>
+    <NLIXcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
+        <SchemeName>NewBinding</SchemeName>
+        <SharpieNamespace>NewBinding</SharpieNamespace>
         <SharpieBind>true</SharpieBind>
-        <!-- Metadata applicable to @(NativeReference) will be used if set -->
+        <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
         <Kind>Framework</Kind>
         <SmartLink>true</SmartLink>
-    </XcodeProjectReference>
+        -->
+    </NLIXcodeProjectReference>
 </ItemGroup>
 ```
 

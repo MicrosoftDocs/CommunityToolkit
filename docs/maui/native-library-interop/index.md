@@ -13,20 +13,20 @@ Native Library Interop, formerly referred to as "Slim Bindings", refers to a pat
 
 ### Understanding when and why to use Native Library Interop
 
-Native Library Interop is a very effective approach to integrating with native libraries, thought it may not always be the best fit for your project. Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. For projects requiring extensive use of a library's API or for vendors supporting .NET MAUI developers, traditional bindings might still be more suitable. Native Library Interop, however, offers an alternative that is often easier to understand, implement, and maintain.
+Native Library Interop is a very effective approach to integrating with native libraries, though it may not always be the best fit for your project. Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. For projects requiring extensive use of a library's API or for vendors supporting .NET MAUI developers, traditional bindings might still be more suitable. Native Library Interop, however, offers an alternative that is often easier to understand, implement, and maintain.
 
 A key benefit of Native Library Interop is its effectiveness with simple API surfaces. When wrappers involve only primitive types that .NET supports, existing binding tools can generate reliable definitions with minimal manual intervention, which is often required for traditional bindings. This makes the process straightforward, especially since wrapper API implementation typically follows SDK documentation, and often allows direct copying from vendor documentation.
 
-While the initial setup may be detailed, managing updates to underlying SDKs generally requires less effort. Updates often involve simply adjusting the version and rebuilding the project. Even if breaking changes occur in the API surfaces or SDKs, the wrapper API surface and .NET application's usage are likely to remain stable, requiring fewer adjustments compared to traditional bindings.
+While the initial setup may be more intricate, managing updates to underlying SDKs generally requires less effort. Updates often involve simply adjusting the version and rebuilding the project. Even if breaking changes occur in the API surfaces or SDKs, the wrapper API surface and .NET application's usage are more likely to remain stable, requiring fewer adjustments compared to traditional bindings.
 
 In summary, Native Library Interop provides several benefits:
+
 - Simplifies following SDK documentation with native languages and tools
-- Requires minimal manual intervention to create working bindings
+- Requires less manual intervention to create working bindings
 - Makes maintenance easier and reduces the frequency of necessary updates
 - Enhances isolation of the app from changes in underlying SDKs
 
 Although resolving dependency chains (particularly on Android) may require similar effort as traditional bindings, the streamlined implementation and maintenance advantages make Native Library Interop an appealing choice for many projects.
-
 
 ### Understanding Maui.NativeLibraryInterop
 
@@ -47,7 +47,7 @@ The binding build process is extended to obtain and build native SDK dependencie
   </ItemGroup>
 ```
 
-Android binding projects will also add a `@(GradleProjectReference)` item that points to the root folder that contains their gradle project:
+Android binding projects will add a `@(GradleProjectReference)` item that points to the root folder that contains the native wrapper gradle project:
 
 ```xml
 <ItemGroup>
@@ -60,7 +60,7 @@ Android binding projects will also add a `@(GradleProjectReference)` item that p
 </ItemGroup>
 ```
 
-iOS binding projects will also add a `@(XcodeProjectReference)` item that points to their Xcode project:
+iOS binding projects will add an `@(XcodeProjectReference)` item that points to the native wrapper Xcode project:
 
 ```xml
 <ItemGroup>

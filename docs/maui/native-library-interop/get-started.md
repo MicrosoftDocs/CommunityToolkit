@@ -24,7 +24,7 @@ Install prerequisites:
 - [Xcode Command Line Tools](https://developer.apple.com/download/all/?q=command%20line%20tools) (```xcode-select --install```)
 
 > [!NOTE]
-> 
+>
 > It's possible to install the [Android SDK](https://developer.android.com/tools) and/or the [Xcode Command Line Tools](https://developer.apple.com/download/all/?q=command%20line%20tools) in a standalone manner. However, installation of the [Xcode Command Line Tools](https://developer.apple.com/download/all/?q=command%20line%20tools) is typically handled via [Xcode](https://developer.apple.com/xcode/). Likewise, [Android SDK](https://developer.android.com/tools) installation is also typically handled via [Android Studio](https://developer.android.com/studio) and/or the [.NET MAUI VS Code Extension](https://aka.ms/mauidevkit-marketplace) as-per the [.NET MAUI Getting Started](https://learn.microsoft.com/dotnet/maui/get-started/installation?view=net-maui-8.0&tabs=visual-studio-code#install-visual-studio-code-and-the-net-maui-extension) documentation.
 
 ## Create a new binding
@@ -36,9 +36,11 @@ The easiest way to get started with creating a new binding is by cloning the `ne
 The `newBinding` template includes starter .NET for Android and .NET for iOS binding libraries.
 
 Update the binding libraries to reflect the target platforms and .NET version as needed in your .NET app.
-> For example: If you aim to create only an iOS binding using .NET 9, you can:
+
+> [!NOTE] For example: If you aim to create only an iOS binding using .NET 9, you can:
+>
 > 1. Delete the Android binding library (newBinding/android/NewBinding.Android.Binding), and
-> 2. Update the target framework (in newBinding/macios/NewBinding.MaciOS.Binding/NewBinding.MaciOS.Binding.csproj) to be set to `net9.0-ios`.
+> 1. Update the target framework (in newBinding/macios/NewBinding.MaciOS.Binding/NewBinding.MaciOS.Binding.csproj) to be set to `net9.0-ios`.
 
 ### Set up the native apps and libararies
 
@@ -46,50 +48,56 @@ The `newBinding` template also includes starter Android Studio projects and Xcod
 
 Update the native projects to reflect the target platforms and versions as needed in your .NET app, and include the native libraries of interest with the following steps.
 
-#### iOS & Mac Catalyst
+#### Setup: iOS & Mac Catalyst
 
 The Xcode project is located at `newBinding/macios/native/NewBinding`.
 
 Update the Xcode project to reflect the target platforms and versions as supported in your .NET app.
 In the Xcode project, click on the top-level framework, and in `Targets > General`:
+
 1. Add/remove any `Support Destinations` as needed.
-2. Adjust the iOS version as needed.
+1. Adjust the iOS version as needed.
 
 Bring in the native library for iOS and/or MacCatalyst into your Xcode project, through whatever method works best for your library and your needs (e.g., CocoaPods, Swift Package Manager).
 
-#### Android
+#### Setup: Android
 
 The Android Studio project is located at `newBinding/android/native`.
 
 Update the Android Studio project to reflect the target versions supported in your .NET app.
+
 1. Navigate to `build.gradle.kts (:app)`
-2. Update the `compileSdk` version as needed
+1. Update the `compileSdk` version as needed
 
 Bring in the Android native library through gradle
+
 1. Add the package dependency in the dependencies block of `build.gradle.kts (:app)`.
-2. Uncomment the `project.afterEvaluate` code block at the bottom of `build.gradle.kts (:app)`.
-3. Add the repository to the dependencyResolutionManagement repositories block in `settings.gradle.kts`.
-4. Sync project with gradle files (via the button in the upper right corner of Android Studio).
+1. Uncomment the `project.afterEvaluate` code block at the bottom of `build.gradle.kts (:app)`.
+1. Add the repository to the dependencyResolutionManagement repositories block in `settings.gradle.kts`.
+1. Sync project with gradle files (via the button in the upper right corner of Android Studio).
 
 ### Create the API interface
 
 Create the API interface between your native projects and your .NET binding projects with the following steps.
 
-#### iOS & Mac Catalyst
+#### API Definition: iOS & Mac Catalyst
 
 On the native side, make updates in `newBinding/macios/native/NewBinding/NewBinding/DotnetNewBinding.swift`:
+
 1. Add an import statement to import the native library you just added.
-2. Write the API definitions for the native library APIs of interest.
-3. Ensure the Xcode project builds successfully and you are satisfied with the APIs.
+1. Write the API definitions for the native library APIs of interest.
+1. Ensure the Xcode project builds successfully and you are satisfied with the APIs.
 
 Back on the .NET side, we are now ready to interop with the native library:
-1. Run `dotnet build` from `newBinding/macios/NewBinding.MaciOS.Binding` to test everything is plugged in correctly and good to go. If successful, you should see the generated C# bindings at `newBinding/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs`.
-2. Update the contents of `newBinding/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs` by replacing it with the contents of `newBinding/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs`.
-3. Run `dotnet build` from `newBinding/macios/NewBinding.MaciOS.Binding` again.
 
-#### Android
+1. Run `dotnet build` from `newBinding/macios/NewBinding.MaciOS.Binding` to test everything is plugged in correctly and good to go. If successful, you should see the generated C# bindings at `newBinding/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs`.
+1. Update the contents of `newBinding/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs` by replacing it with the contents of `newBinding/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs`.
+1. Run `dotnet build` from `newBinding/macios/NewBinding.MaciOS.Binding` again.
+
+#### API Definition: Android
 
 On the native side, make updates in `newBinding/android/native/app/src/main/java/com/example/newbinding/DotnetNewBinding.java`:
+
 1. Add an import statement to import the native library you just added.
 2. Write the API definitions for the native library APIs of interest.
 3. Ensure the Android Studio project builds successfully and you are satisfied with the APIs.
@@ -97,7 +105,8 @@ On the native side, make updates in `newBinding/android/native/app/src/main/java
 Back on the .NET side, we are now ready to interop with the native library:
 Run `dotnet build` from `newBinding/android/NewBinding.Android.Binding` to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
 
-> For more examples and tips for writing the API definitions, read more in the section below: [Modify and existing binding](#Modify-an-existing-binding)
+> [!NOTE]
+> You can rename the placeholder ```DotnetNewBinding``` class to better reflect the native library being wrapped. For more examples and tips for writing the API definitions, read more in the section below: [Modify an existing binding](#modify-an-existing-binding).
 
 ### Consume the APIs in your .NET app
 
@@ -141,9 +150,10 @@ public class MauiFIRMessaging : NSObject {
 }
 ```
 
-> NOTE: Slim wrapper API types which will be used by the .NET Binding must be declared as `public` and need to be annoted with `@objc(NameOfType)` and methods also need to be `public`, and can also benefit from similar annotations `@objc(methodName:parameter1:)` where the name and parameters are specified which help influence the binding which objective sharpie will generate.
+> [!NOTE]
+> Slim wrapper API types which will be used by the .NET Binding must be declared as `public` and need to be annoted with `@objc(NameOfType)` and methods also need to be `public`, and can also benefit from similar annotations `@objc(methodName:parameter1:)` where the name and parameters are specified which help influence the binding which objective sharpie will generate.
 
-You can see in this method that the public API surface only uses types which iOS for .NET already is aware of: `NSData`, `String`, `NSError` and a callback.
+You can see in this method that the public API surface only uses types which .NET for iOS is already aware of: `NSData`, `String`, `NSError` and a callback.
 
 In the `Firebase.MaciOS.Binding` project, the `ApiDefinitions.cs` file contains the binding definition for this slim wrapper API:
 
@@ -193,7 +203,8 @@ void UnRegister(Action completion);
 
 Once you've made these changes, you can rebuild the Binding project, and the new API will be ready to use from your .NET MAUI project.
 
-> NOTE: Binding projects for Mac/iOS are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reload the solution so that the project reference picks up the newer assembly which was built.  Your app project should still compile regardless of intellisense errors.
+> [!NOTE]
+> Binding projects for Mac/iOS are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reloaded the solution so that the project reference picks up the newer assembly.  Your app project should still compile regardless of intellisense errors.
 
 ### Android
 
@@ -232,7 +243,7 @@ public class FacebookSdk {
 }
 ```
 
-You can see in this method that the public API surface only uses types which Android for .NET already is aware of: `Activity` and `Boolean`.
+You can see in this method that the public API surface only uses types which .NET for Android is already aware of: `Activity` and `Boolean`.
 
 In the `Facebook.Android.Binding` project, the `Transforms/Metadata.xml` file contains only some xml to describe how to map the java package name (`com.microsoft.mauifacebook`) to a more C# friendly namespace (`Facebook`).  Generally android bindings are more 'automatic' than  Mac/iOS at this point, and you rarely should need to make changes to these transform files.
 
@@ -252,4 +263,5 @@ public static void logEvent(String eventName) {
 
 From this simple change, binding project requires no updates to the `Transforms/Metadata.xml` or other files.  You can simply rebuild the Binding project, and the new API will be ready to use from your .NET MAUI project.
 
-> NOTE: Binding projects for Android are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reload the solution so that the project reference picks up the newer assembly which was built.  Your app project should still compile regardless of intellisense errors.
+> [!NOTE]
+> Binding projects for Android are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reloaded the solution so that the project reference picks up the newer assembly.  Your app project should still compile regardless of intellisense errors.

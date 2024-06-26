@@ -81,12 +81,12 @@ landingContent:
           - text: C# Markup
             url: maui/markup/markup.md
   - title: .NET MAUI Native Library Interop
-      linkLists:  
-        - linkListType: overview
-          links:
-            - text: What is the Native Library Interop?
-              url: maui/native-library-interop/index.md
-        - linkListType: get-started
-          links:
-            - text: Getting started with Native Library Interop
-              url: maui/native-library-interop/get-started.md
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is the Native Library Interop?
+            url: maui/native-library-interop/index.md
+      - linkListType: get-started
+        links:
+          - text: Getting started with Native Library Interop
+            url: maui/native-library-interop/get-started.md

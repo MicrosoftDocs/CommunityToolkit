@@ -1,6 +1,6 @@
 ---
 title: Native Library Interop - .NET MAUI Community Toolkit
-author: miparker
+author: mikeparker104
 description: The .NET MAUI Community Toolkit Native Library Interop components
 ms.date: 06/18/2024
 ---

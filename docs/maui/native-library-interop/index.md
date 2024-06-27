@@ -45,7 +45,7 @@ The binding build process is extended to obtain and build native SDK dependencie
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
 </ItemGroup>
 ```
 

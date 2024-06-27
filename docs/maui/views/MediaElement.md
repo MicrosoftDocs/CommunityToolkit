@@ -58,6 +58,13 @@ builder
     .UseMauiCommunityToolkitMediaElement()
 ```
 
+If using subtitles in `MediaElement`, add the code below above namespace in `MauiProgram.cs` file.
+
+```
+[assembly: ExportFont("Your-Font1.ttf", Alias = "Your-Font1 Alias")]
+[assembly: ExportFont("Your-Font2.ttf", Alias = "Your-Font2 Alias")]
+```
+
 For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.
 
 ### Platform specific initialization
@@ -144,6 +151,15 @@ Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 <string></string>
 ```
 
+If you are using subtitles and yout want to use a file from the local file system, you need to add the following key to the `Info.plist` file.
+```csharp
+<key>UIAppFonts</key>
+<array>
+    <string>yourfont.ttf</string>
+    <string>yourfont2.ttf</string>
+</array>
+```
+
 ### [iOS](#tab/ios)
 
 Edit the `Info.plist` for `iOS` and add the following keys.
@@ -151,6 +167,15 @@ Edit the `Info.plist` for `iOS` and add the following keys.
 <key>UIBackgroundModes</key>
 <array>
     <string>audio</string>
+</array>
+```
+
+If you are using subtitles and yout want to use a file from the local file system, you need to add the following key to the `Info.plist` file.
+```csharp
+<key>UIAppFonts</key>
+<array>
+    <string>yourfont.ttf</string>
+    <string>yourfont2.ttf</string>
 </array>
 ```
 
@@ -248,6 +273,31 @@ An example of how to use this syntax in XAML can be seen below.
 <toolkit:MediaElement Source="embed://MyFile.mp4"
               ShouldShowPlaybackControls="True" />
 ```
+
+### Use Subtitles with Media Element
+
+A `MediaElement` can use subtitles by using `MediaElement.SubtitleUrl`, and it should be a `string` and contain a URL and be either `.srt` or `.vtt`.
+You can use a custom parser that can be imported in your project. The parser must inherit from `IParser` and implement the `ParseContent` method. A sample is shown in the sample app for the `SrtParser` class. You can set the font and font size for the subtitles. To use custom fonts you must export them from your project. The sample app has an example of how to do this.
+
+```xaml
+ <toolkit:MediaElement
+     x:Name="MediaElement"
+     SubtitleFontSize = 16
+     SubtitleUrl="https://raw.githubusercontent.com/ne0rrmatrix/SampleVideo/main/SRT/WindowsVideo.srt" />
+```
+
+```csharp
+SrtParser srtParser = new();
+MediaElement.CustomSubtitleParser = srtParser;
+MediaElement.SubtitleFont = @"PlaywriteSK-Regular.ttf#Playwrite SK";
+MediaElement.SubtitleFontSize = 16;
+MediaElement.SubtitleUrl = "https://raw.githubusercontent.com/ne0rrmatrix/SampleVideo/main/SRT/WindowsVideo.srt";
+MediaElement.Source = MediaSource.FromResource("WindowsVideo.mp4");
+```
+If you include a custom parser like `SrtParser` in your project, you can use it in XAML and C# code. A sample of how to write one is included in the sample app.
+For use in XAML and code behind you will need to set the `CustomSubtitleParser` property. If it is not set it will only support `SRT` and `VTT` files.
+
+You can set the font size to use for the subtitles by setting the `SubtitleFontSize` property.
 
 ## Understand MediaSource types
 

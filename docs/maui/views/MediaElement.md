@@ -60,7 +60,7 @@ builder
 
 If using subtitles in `MediaElement`, add the code below above namespace in `MauiProgram.cs` file.
 
-```
+```csharp
 [assembly: ExportFont("Your-Font1.ttf", Alias = "Your-Font1 Alias")]
 [assembly: ExportFont("Your-Font2.ttf", Alias = "Your-Font2 Alias")]
 ```

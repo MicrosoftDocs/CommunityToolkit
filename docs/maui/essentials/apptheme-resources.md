@@ -116,4 +116,4 @@ You can find an example of `AppThemeResource` in action in the [.NET MAUI Commun
 
 ## API
 
-You can find the source code for `AppThemeResource` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/AppTheme/AppThemeObjectOfT.shared.cs).
+You can find the source code for `AppThemeResource` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Essentials/AppTheme/AppThemeObject.shared.cs).

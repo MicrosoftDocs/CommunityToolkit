@@ -101,3 +101,5 @@ The example below creates a `RichSuggestBox` that only allows users to enter pla
 :::code language="xaml" source="~/../code-windows/components/RichSuggestBox/samples/RichSuggestBoxPlainText.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/RichSuggestBox/samples/RichSuggestBoxPlainText.xaml.cs":::
+
+

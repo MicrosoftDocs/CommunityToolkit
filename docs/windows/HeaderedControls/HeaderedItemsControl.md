@@ -22,3 +22,5 @@ The `Header` property can be any object and you can use the `HeaderTemplate` to 
 :::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedItemsControlSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedItemsControlSample.xaml.cs":::
+
+

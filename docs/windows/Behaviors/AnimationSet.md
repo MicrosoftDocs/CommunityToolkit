@@ -158,7 +158,9 @@ This makes it possible to also not having to name the target UI element, to regi
 
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/InvokeActionsSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/InvokeActionsSample.xaml.cs"::::::code language="xaml" source="~/../code-windows/components/Behaviors/samples/StartAnimationActivitySample.xaml":::
+:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/InvokeActionsSample.xaml.cs":::
+
+:::code language="xaml" source="~/../code-windows/components/Behaviors/samples/StartAnimationActivitySample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Behaviors/samples/StartAnimationActivitySample.xaml.cs":::
 
@@ -203,3 +205,4 @@ Here is an example of how the new `PipelineVisualFactory` type can be combined w
 ```
 
 Here we are setting the `IsAnimatable` property for the effects we want to animate after creating the brush. This is necessary because Win2D/Composition effects do not support animation by default, and additional setup is required when creating a Composition brush to enable this functionality. Effects in a pipeline are not just all configured as being animatable by default both in order to reduce the overhead, and because there is a limit on the number of effects that can be animated in a single brush. Making this more advanced functionality opt-in for users ensures that it will still be possible to animate effects even within very large pipelines, without incurring into issues due to this limit.
+

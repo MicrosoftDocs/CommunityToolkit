@@ -21,11 +21,17 @@ The `Header` property can be any object and you can use the `HeaderTemplate` to 
 
 :::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlSample.xaml.cs"::::::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlTextSample.xaml":::
+:::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlSample.xaml.cs":::
 
-:::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlTextSample.xaml.cs"::::::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlImageSample.xaml":::
+:::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlTextSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlImageSample.xaml.cs"::::::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlComplexSample.xaml":::
+:::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlTextSample.xaml.cs":::
+
+:::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlImageSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlImageSample.xaml.cs":::
+
+:::code language="xaml" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlComplexSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/HeaderedControls/samples/HeaderedContentControlComplexSample.xaml.cs":::
 

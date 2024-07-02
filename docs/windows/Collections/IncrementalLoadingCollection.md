@@ -2,7 +2,7 @@
 title: IncrementalLoadingCollection
 author: nmetulev
 description: The IncrementalLoadingCollection helpers greatly simplify the definition and usage of collections whose items can be loaded incrementally only when needed by the view (such as a ScrollViewer).
-keywords: IncrementalLoadingCollection, Control, Data, Incremental, Loading
+keywords: IncrementalLoadingCollection, Control, Data, Incremental, Loading, Collections
 dev_langs:
   - csharp
 category: Helpers
@@ -16,7 +16,9 @@ icon: Assets/IncrementalLoadingCollection.png
 
 :::code language="xaml" source="~/../code-windows/components/Collections/samples/IncrementalLoadingCollectionSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Collections/samples/IncrementalLoadingCollectionSample.xaml.cs":::`IIncrementalSource` - An interface that represents a data source whose items can be loaded incrementally.
+:::code language="csharp" source="~/../code-windows/components/Collections/samples/IncrementalLoadingCollectionSample.xaml.cs":::
+
+`IIncrementalSource` - An interface that represents a data source whose items can be loaded incrementally.
 
 `IncrementalLoadingCollection` - An extension of [ObservableCollection](/dotnet/api/system.collections.objectmodel.observablecollection-1) such that its items are loaded only when needed.
 

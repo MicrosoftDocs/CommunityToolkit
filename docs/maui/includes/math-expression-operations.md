@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 ## Supported operations
 
 The following operations are supported:

@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 <!-- markdownlint-disable MD025 -->
 ### [Android](#tab/android)
 
@@ -63,7 +67,7 @@ Here is an example of a completed opening `<Package>` tag that has added support
 
    <!-- Specify which CLSID to activate when notification is clicked -->
    <desktop:Extension Category="windows.toastNotificationActivation">
-       <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
+       <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" />
    </desktop:Extension>
 
    <!-- Register COM CLSID -->
@@ -97,9 +101,9 @@ Here is an example of a completed `<Applications>` tag that now has added suppor
        <Extensions>
 
          <desktop:Extension Category="windows.toastNotificationActivation">
-             <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
+             <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" />
          </desktop:Extension>
-      
+
          <com:Extension Category="windows.comServer">
              <com:ComServer>
                  <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
@@ -158,9 +162,9 @@ Below is an example `Package.appxmanifest` file that has been updated to support
             <Extensions>
 
                <desktop:Extension Category="windows.toastNotificationActivation">
-                   <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" /> 
+                   <desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" />
                </desktop:Extension>
-            
+
                <com:Extension Category="windows.comServer">
                    <com:ComServer>
                        <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->

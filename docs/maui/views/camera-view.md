@@ -462,7 +462,7 @@ The following example shows how to add a `Button` into the application and setup
 
 ## Stop preview
 
-The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StopCameraPreview` method or the `StopCameraPreviewCommand`.
+The `CameraView` provides the ability to programmatically stop the preview from the camera. This is possible through both the `StopCameraPreview` method or the `StopCameraPreviewCommand`.
 
 The following example shows how to add a `Button` into the application and setup the following bindings:
 

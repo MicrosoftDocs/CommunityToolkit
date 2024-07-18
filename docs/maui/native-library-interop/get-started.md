@@ -110,7 +110,7 @@ Back on the .NET side, we are now ready to interop with the native library:
 
 ```xml
 <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-    <AndroidLibrary Include="..\android\native\newbinding\build\outputs\deps\{yourDependencyLibrary.aar}">
+    <AndroidLibrary Include="..\android\native\newbinding\bin\Release\net8.0-android\outputs\deps\{yourDependencyLibrary.aar}">
         <Bind>false</Bind>
         <Visible>false</Visible>
     </AndroidLibrary>

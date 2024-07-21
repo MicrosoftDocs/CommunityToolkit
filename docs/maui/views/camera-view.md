@@ -462,7 +462,7 @@ The following example shows how to add a `Button` into the application and setup
 
 ## Stop preview
 
-The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StopCameraPreview` method or the `StopCameraPreviewCommand`.
+The `CameraView` provides the ability to programmatically stop the preview from the camera. This is possible through both the `StopCameraPreview` method or the `StopCameraPreviewCommand`.
 
 The following example shows how to add a `Button` into the application and setup the following bindings:
 
@@ -529,8 +529,8 @@ The following example shows how to add a `Button` into the application and setup
 
 ## Examples
 
-You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraViewPage.xaml.cs).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml.cs).
 
 ## API
 
-You can find the source code for `CameraView` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.CameraView/Views/CameraView.shared.cs).
+You can find the source code for `CameraView` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Camera/Views/CameraView.shared.cs).

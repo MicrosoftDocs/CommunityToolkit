@@ -281,3 +281,9 @@ items:
       href: markup/extensions/view-extensions.md
     - name: "VisualElement extensions"
       href: markup/extensions/visual-element-extensions.md
+- name: "Native Library Interop"
+  items:
+    - name: Overview
+      href: native-library-interop/index.md
+    - name: Get started
+      href: native-library-interop/get-started.md

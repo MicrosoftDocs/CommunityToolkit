@@ -291,7 +291,7 @@ The `MediaElementScreenState` enumeration defines the following members:
 
 To retrieve the current `MediaElement` screen status, you can use the `FullScreenState` property. The screen status is a read-only property. You cannot enter or exit full screen mode programmatically. To track the change in `MediaElementScreenState`, you can use the `MediaElement.FullScreenStateChanged` event. The Following XAML shows a page that contains a `MediaElement` and an event handler that is invoked when the `MediaElement` enters or exits full screen mode. 
 
-``xaml
+```xaml
 <toolkit:MediaElement
     x:Name="MediaElement"
     ShouldAutoPlay="True"

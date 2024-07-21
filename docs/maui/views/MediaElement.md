@@ -279,6 +279,33 @@ The `Aspect` property determines how video media will be scaled to fit the displ
 - `AspectFill` indicates that the video will be clipped so that it fills the display area, while preserving the aspect ratio.
 - `Fill` indicates that the video will be stretched to fill the display area.
 
+## Determine Media Screen status
+
+The `mediaElement` class defines a read-only bindable property named `FullScreenState` of type `MediaElementScreenState`. This property indicates the current status of the control, such as whether the player is in full screen or default state.
+
+The `MediaElementScreenState` enumeration defines the following members:
+- `FullScreen` indicates the `MediaElement` is in full screen mode.
+- `Default` indicates the `MediaElement` is in default mode.
+
+## Implement Media Screen status controls
+
+To retrieve the current `MediaElement` screen status, you can use the `FullScreenState` property. The screen status is a read-only property. You cannot enter or exit full screen mode programmatically. To track the change in `MediaElementScreenState`, you can use the `MediaElement.FullScreenStateChanged` event. The Following XAML shows a page that contains a `MediaElement` and an event handler that is invoked when the `MediaElement` enters or exits full screen mode. 
+
+``xaml
+<toolkit:MediaElement
+    x:Name="MediaElement"
+    ShouldAutoPlay="True"
+    Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    FullScreenStateChanged="MediaElement_FullScreenStateChanged"/>
+```
+
+The code-behind file has the handlers for the `MediaElement` events.
+
+```csharp
+void MediaElement_FullScreenStateChanged(object? sender, FullScreenStateChangedEventArgs e) =>
+	logger.LogInformation("FullScreen State Changed. Old State: {PreviousState}, New State: {NewState}", e.PreviousState, e.NewState);
+```
+
 ## Determine `MediaElement` status
 
 The `MediaElement` class defines a read-only bindable property named `CurrentState`, of type `MediaElementState`. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.
@@ -294,6 +321,7 @@ The `MediaElementState` enumeration defines the following members:
 - `Failed` indicates that the `MediaElement` failed to load or play the media. This can occur while trying to load a new media item, when attempting to play the media item or when the media playback is interrupted due to a failure. Use the `MediaFailed` event to retrieve additional details.
 
 It's generally not necessary to examine the `CurrentState` property when using the `MediaElement` transport controls. However, this property becomes important when implementing your own transport controls.
+
 
 ## Implement custom transport controls
 
@@ -466,6 +494,7 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | MediaFailed | Occurs when there's an error associated with the media source. |
 | PositionChanged | Occurs when the `Position` property value has changed. |
 | SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
+| FullScreenStateChanged | Occurs when entering or exiting full screen mode. |
 
 ## Methods
 

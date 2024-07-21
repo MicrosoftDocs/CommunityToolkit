@@ -236,7 +236,7 @@ remote URL with artwork for the lockscreen. It should be at least 1080P for best
 <toolkit:MediaElement 
     MetadataTitle="Title"
     MetadataArtist="Artist"
-    MetasataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
+    MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
 ```
 
 ```csharp

@@ -322,7 +322,6 @@ The `MediaElementState` enumeration defines the following members:
 
 It's generally not necessary to examine the `CurrentState` property when using the `MediaElement` transport controls. However, this property becomes important when implementing your own transport controls.
 
-
 ## Implement custom transport controls
 
 The transport controls of a media player include the buttons that perform the functions **Play**, **Pause**, and **Stop**. These buttons are generally identified with familiar icons rather than text, and the **Play** and **Pause** functions are generally combined into one button.

@@ -96,7 +96,7 @@ Converts a source string from the App resources and returns its value, if found.
 
 ## StringFormatConverter
 
-This allows you to format a string property upon binding wrapping [string.Format](/dotnet/api/system.string.format?view=netstandard-2.0).  
+This allows you to format a string property upon binding wrapping [string.Format](/dotnet/api/system.string.format?view=netstandard-2.0&preserve-view=true).  
 It only allows for a single input value (the binding string), but can be formatted with the regular string.Format
 methods.
 
@@ -130,3 +130,5 @@ Converts a `Visibility` enumeration to a boolean value.
 :::code language="xaml" source="~/../code-windows/components/Converters/samples/VisibilityToBoolConverterSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Converters/samples/VisibilityToBoolConverterSample.xaml.cs":::
+
+

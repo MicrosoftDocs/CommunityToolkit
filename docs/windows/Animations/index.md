@@ -55,3 +55,5 @@ Here is an example that shows how different animations can be attached to a UI e
 :::code language="xaml" source="~/../code-windows/components/Animations/samples/AnimationsImplicitSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Animations/samples/AnimationsImplicitSample.xaml.cs":::
+
+

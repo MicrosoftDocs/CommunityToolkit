@@ -49,7 +49,9 @@ Of the given targets, this behavior sets the focus on the first control which ac
 A control only receives focus if it is enabled and loaded into the visual tree:
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/FocusBehaviorButtonSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/FocusBehaviorButtonSample.xaml.cs":::Empty lists do not receive focus:
+:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/FocusBehaviorButtonSample.xaml.cs":::
+
+Empty lists do not receive focus:
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/FocusBehaviorListSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Behaviors/samples/FocusBehaviorListSample.xaml.cs":::
@@ -61,3 +63,5 @@ This behavior allows you to define a Uri in XAML, similar to a `Hyperlink` or `H
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/NavigateToUriActionSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Behaviors/samples/NavigateToUriActionSample.xaml.cs":::
+
+

@@ -41,7 +41,9 @@ The QuickReturnHeaderBehavior causes the element in the scrolling collection to 
 
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/Headers/QuickReturnHeaderBehaviorSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/Headers/QuickReturnHeaderBehaviorSample.xaml.cs":::It can also be used to have content quickly re-appear in any `ScrollViewer`:
+:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/Headers/QuickReturnHeaderBehaviorSample.xaml.cs":::
+
+It can also be used to have content quickly re-appear in any `ScrollViewer`:
 
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/Headers/QuickReturnScrollViewerSample.xaml":::
 
@@ -53,8 +55,12 @@ The StickyHeaderBehavior causes the element in the scrolling collection to stay 
 
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/Headers/StickyHeaderBehaviorSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/Headers/StickyHeaderBehaviorSample.xaml.cs":::Or similarly, it can be used with a `HeaderedItemsControl` to maintain context at the top:
+:::code language="csharp" source="~/../code-windows/components/Behaviors/samples/Headers/StickyHeaderBehaviorSample.xaml.cs":::
+
+Or similarly, it can be used with a `HeaderedItemsControl` to maintain context at the top:
 
 :::code language="xaml" source="~/../code-windows/components/Behaviors/samples/Headers/StickyHeaderItemsControlSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Behaviors/samples/Headers/StickyHeaderItemsControlSample.xaml.cs":::
+
+

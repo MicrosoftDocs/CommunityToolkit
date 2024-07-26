@@ -45,7 +45,7 @@ Update the binding libraries to reflect the target platforms and .NET version as
 > 1. Delete the Android binding library at _template/android/NewBinding.Android.Binding_, and
 > 1. Update the target framework in _template/macios/NewBinding.MaciOS.Binding/NewBinding.MaciOS.Binding.csproj_ to be set to `net9.0-ios`.
 
-### Set up the native wrapper projects and libararies
+### Set up the native wrapper projects and libraries
 
 The **template** also includes starter Android Studio projects and Xcode projects.
 
@@ -75,7 +75,6 @@ Update the Android Studio project to reflect the target versions supported in yo
 Bring in the Android native library through gradle
 
 1. Add the package dependency in the dependencies block of the _build.gradle.kts (:app)_ file.
-1. Uncomment the `project.afterEvaluate` code block at the bottom of _build.gradle.kts (:app)_.
 1. Add the repository to the `dependencyResolutionManagement` `repositories` block in the _settings.gradle.kts_ file.
 1. Sync project with gradle files (via the button in the upper right corner of Android Studio).
 
@@ -93,8 +92,8 @@ On the native side, make updates in _template/macios/native/NewBinding/NewBindin
 
 Back on the .NET side, we are now ready to interop with the native library:
 
-1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go. If successful, you should see the generated C# bindings at _template/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs_.
-1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/native/NewBinding/build/sharpie/ApiDefinitions.cs_.
+1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go. If successful, you should see the generated C# bindings at _template/macios/native/NewBinding/bin/Release/net8.0-ios/sharpie/NewBinding/ApiDefinitions.cs_.
+1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/native/NewBinding/bin/Release/net8.0-ios/sharpie/NewBinding/ApiDefinitions.cs_.
 1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
 
 #### API Definition: Android
@@ -102,11 +101,21 @@ Back on the .NET side, we are now ready to interop with the native library:
 On the native side, make updates in _template/android/native/app/src/main/java/com/example/newbinding/DotnetNewBinding.java_:
 
 1. Add an import statement to import the native library you just added.
-2. Write the API definitions for the native library APIs of interest.
-3. Ensure the Android Studio project builds successfully and you are satisfied with the APIs.
+1. Write the API definitions for the native library APIs of interest.
+1. Ensure the Android Studio project builds successfully and you are satisfied with the APIs.
 
 Back on the .NET side, we are now ready to interop with the native library:
-Run `dotnet build` from _template/android/NewBinding.Android.Binding_ to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
+1. Run `dotnet build` from _template/android/NewBinding.Android.Binding_ to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
+1. Reference any Android binding dependencies by adding the following code to _template/sample/MauiSample.csproj_ for each dependency. Replace _{yourDependencyLibrary.aar}_ with the required .aar file for the dependency you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library. The _build.gradle.kts_ file is configured to copy dependencies into a bin/outputs/deps folder for you to reference in your application)
+
+```xml
+<ItemGroup Condition="$(TargetFramework.Contains('android'))">
+    <AndroidLibrary Include="..\android\native\newbinding\bin\Release\net8.0-android\outputs\deps\{yourDependencyLibrary.aar}">
+        <Bind>false</Bind>
+        <Visible>false</Visible>
+    </AndroidLibrary>
+</ItemGroup>
+```
 
 > [!NOTE]
 > You can rename the placeholder ```DotnetNewBinding``` class to better reflect the native library being wrapped. For more examples and tips for writing the API definitions, read more in the section below: [Modify an existing binding](#modify-an-existing-binding).

@@ -31,7 +31,7 @@ Install prerequisites:
 
 ## Create a new binding
 
-The easiest way to get started with creating a new binding is by cloning the **template** in the **Maui.NativeLibraryInterop** repo and making modifications from there. To better understand the full scope of how Maui.NativeLibraryInterop is currently set up, read more in the [overview documentation](../index.md).
+The easiest way to get started with creating a new binding is by cloning the **template** in the **[Maui.NativeLibraryInterop](https://github.com/CommunityToolkit/Maui.NativeLibraryInterop)** repo and making modifications from there. To better understand the full scope of how Maui.NativeLibraryInterop is currently set up, read more in the [overview documentation](../index.md).
 
 ### Set up the .NET binding libraries
 

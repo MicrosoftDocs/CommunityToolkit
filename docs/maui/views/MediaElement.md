@@ -81,7 +81,7 @@ public class MainActivity : MauiAppCompatActivity
 #### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
 
 ```csharp
- <service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+ <service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
    <intent-filter>
      <action android:name="android.intent.action.MEDIA_BUTTON" />
    </intent-filter>
@@ -107,7 +107,7 @@ public class MainActivity : MauiAppCompatActivity
 
 ```csharp
 <application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
-<service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+<service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
     <intent-filter>
     <action android:name="android.intent.action.MEDIA_BUTTON" />
     </intent-filter>

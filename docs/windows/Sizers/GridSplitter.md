@@ -22,3 +22,5 @@ you can manually specify the `ResizeDirection` (`Auto` / `Column` / `Row`) and t
 :::code language="xaml" source="~/../code-windows/components/Sizers/samples/GridSplitterPage.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Sizers/samples/GridSplitterPage.xaml.cs":::
+
+

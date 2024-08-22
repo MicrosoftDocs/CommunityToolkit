@@ -22,8 +22,12 @@ A GridSplitter would be insufficient as it would force the grid to remember the 
 
 :::code language="xaml" source="~/../code-windows/components/Sizers/samples/ContentSizerTopShelfPage.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Sizers/samples/ContentSizerTopShelfPage.xaml.cs":::The following example shows how to use the ContentSizer to create a left-side shelf; however, this scenario can also be accomplished with a `GridSplitter`.
+:::code language="csharp" source="~/../code-windows/components/Sizers/samples/ContentSizerTopShelfPage.xaml.cs":::
+
+The following example shows how to use the ContentSizer to create a left-side shelf; however, this scenario can also be accomplished with a `GridSplitter`.
 
 :::code language="xaml" source="~/../code-windows/components/Sizers/samples/ContentSizerLeftShelfPage.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Sizers/samples/ContentSizerLeftShelfPage.xaml.cs":::
+
+

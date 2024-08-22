@@ -18,7 +18,9 @@ A `RangeSelector` is pretty similar to a regular `Slider`, and shares some of it
 
 :::code language="xaml" source="~/../code-windows/components/RangeSelector/samples/RangeSelectorSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/RangeSelector/samples/RangeSelectorSample.xaml.cs":::> [!NOTE]
+:::code language="csharp" source="~/../code-windows/components/RangeSelector/samples/RangeSelectorSample.xaml.cs":::
+
+> [!NOTE]
 > If you are using a RangeSelector within a ScrollViewer you'll need to add some codes. This is because by default, the ScrollViewer will block the thumbs of the RangeSelector to capture the pointer.
 
 Here is an example of using RangeSelector within a ScrollViewer:

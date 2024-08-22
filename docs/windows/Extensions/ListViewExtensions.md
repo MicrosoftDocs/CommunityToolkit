@@ -126,3 +126,5 @@ We can use this extension to make the selected item always centered:
 :::code language="xaml" source="~/../code-windows/components/Extensions/samples/ListViewExtensions/SmoothScrollIntoViewSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Extensions/samples/ListViewExtensions/SmoothScrollIntoViewSample.xaml.cs":::
+
+

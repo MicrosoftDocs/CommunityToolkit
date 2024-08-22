@@ -22,7 +22,9 @@ The example shows how easy it is to not only apply an `AttachedCardShadow` to an
 
 :::code language="xaml" source="~/../code-windows/components/Media/samples/Shadows/AttachedCardShadowBasicSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Media/samples/Shadows/AttachedCardShadowBasicSample.xaml.cs":::You can see the `AttachedCardShadow` defined as a resource so it can be shared across multiple components. It also supports binding/animations to update at runtime.
+:::code language="csharp" source="~/../code-windows/components/Media/samples/Shadows/AttachedCardShadowBasicSample.xaml.cs":::
+
+You can see the `AttachedCardShadow` defined as a resource so it can be shared across multiple components. It also supports binding/animations to update at runtime.
 
 ## Layer Ordering
 
@@ -31,3 +33,5 @@ There can be cases, especially direct usage on untemplated elements, where the A
 :::code language="xaml" source="~/../code-windows/components/Media/samples/Shadows/AttachedCardShadowUntemplatedSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Media/samples/Shadows/AttachedCardShadowUntemplatedSample.xaml.cs":::
+
+

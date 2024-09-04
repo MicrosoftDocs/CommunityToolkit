@@ -112,13 +112,12 @@ async Task StopListening(CancellationToken cancellationToken)
 void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
 {
     RecognitionText += args.RecognitionResult;
-};
+}
 
 void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
 {
     RecognitionText = args.RecognitionResult;
-};
-
+}
 ```
 
 ## Methods

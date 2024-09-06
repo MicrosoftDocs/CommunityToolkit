@@ -54,11 +54,11 @@ Using the below `ViewModel` class, we can create a nested two-way binding direct
 new Entry().Bind(
     Entry.TextProperty,
     getter: static (ViewModel vm) => vm.NestedObject.Text,
-    handlers: new (Func<ViewModel, object?>, string)[]
-             {
-                (vm => vm, nameof(ViewModel.NestedObject)),
-                (vm => vm.NestedObject, nameof(ViewModel.NestedObject.Text)),
-             },
+    handlers: 
+    [
+        (vm => vm, nameof(ViewModel.NestedObject)),
+        (vm => vm.NestedObject, nameof(ViewModel.NestedObject.Text)),
+    ],
     setter: static (ViewModel vm, string text) => vm.NestedObject.Text = text);
 ```
 

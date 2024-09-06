@@ -20,10 +20,11 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 | View | Description |
 | --------- | ----------- |
 | [`AvatarView`](AvatarView.md) | The `AvatarView` is a control for displaying a user's avatar image or their initials. |
+| [`CameraView`](camera-view.md) | The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. |
 | [`DrawingView`](DrawingView.md) | The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image. |
 | [`Expander`](Expander.md) | The `Expander` control provides an expandable container to host any content. |
 | [`LazyView`](LazyView.md) | The `LazyView` control allows you to delay the initialization of a View.|
 | [`Map (Windows)`](Map.md) | The `Map` control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit. |
 | [`MediaElement`](MediaElement.md) | The `MediaElement` is a view for playing multimedia such as audio and video. |
-| [`Popup`](popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |
+| [`Popup`](Popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |
 | [`SemanticOrderView`](semantic-order-view.md) | The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application. |

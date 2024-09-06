@@ -24,9 +24,9 @@ The following example shows how the `SemanticOrderView` can change the order in 
         <toolkit:SemanticOrderView x:Name="SemanticOrderView">
             <Grid RowDefinitions="2*,*">
                 
-                <Label x:Name="DescriptionLabel" Text="{Binding Description}">
+                <Label x:Name="DescriptionLabel" Text="{Binding Description}" />
 
-                <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="30">
+                <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="30" />
 
             </Grid>
         </toolkit:SemanticOrderView>

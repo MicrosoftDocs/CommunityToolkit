@@ -30,6 +30,8 @@ Add permissions to `tizen-manifest.xml`:
 <privilege>http://tizen.org/privilege/notification</privilege>
 ```
 
+---
+
 ## Syntax
 
 ### C#

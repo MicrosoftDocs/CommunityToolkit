@@ -11,6 +11,8 @@ The `AnimationBehavior` is a `Behavior` that provides the ability to animate any
 
 The `AnimationType` property is required to be set, possible options for this can be found at [Animations](../animations/index.md).
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `AnimationBehavior` to a `Label` and use the `FadeAnimation` to animate a change in opacity.
@@ -24,10 +26,12 @@ The following examples show how to add the `AnimationBehavior` to a `Label` and 
 #### Using the AnimationBehavior
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="CommunityToolkit.Maui.Sample.Pages.Behaviors.AnimationBehaviorPage"
+    x:Name="Page">
 
     <Label Text="Click this Label">
         <Label.Behaviors>
@@ -47,9 +51,9 @@ The following examples show how to add the `AnimationBehavior` to a `Label` and 
 The `AnimationBehavior` can be used as follows in C#:
 
 ```csharp
-class AnimationBehaviorBehaviorPage : ContentPage
+class AnimationBehaviorPage : ContentPage
 {
-    public AnimationBehaviorBehaviorPage()
+    public AnimationBehaviorPage()
     {
         var label = new Label
         {
@@ -78,9 +82,9 @@ Our [`CommunityToolkit.Maui.Markup`](../markup/markup.md) package provides a muc
 ```csharp
 using CommunityToolkit.Maui.Markup;
 
-class AnimationBehaviorBehaviorPage : ContentPage
+class AnimationBehaviorPage : ContentPage
 {
-    public AnimationBehaviorBehaviorPage()
+    public AnimationBehaviorPage()
     {
         Content = new Label()
             .Text("Click this label")

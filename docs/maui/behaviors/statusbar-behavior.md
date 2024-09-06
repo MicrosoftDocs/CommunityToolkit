@@ -1,13 +1,23 @@
 ---
 title: StatusBarBehavior - .NET MAUI Community Toolkit
 author: pictos
-description: "The StatusBarBehavior is a behavior allows you to control the statusbar's style."
+description: "The StatusBarBehavior provides the ability to customize the color and style of a devices status bar."
 ms.date: 09/27/2022
 ---
 
 # StatusBarBehavior
 
-The `StatusBarBehavior` allows you to customize the color and style of yours device statusbar.
+The `StatusBarBehavior` provides the ability to customize the color and style of a devices status bar.
+
+The `StatusBarBehavior` applies the color and style values when the properties are updated. The values are also applied based on the `ApplyOn` property, this property makes it possible to define which lifecycle event is used:
+
+- `StatusBarApplyOn.OnBehaviorAttachedTo` - Applies the color and style when the behavior has been attached to a page. **This is the default.**
+- `StatusBarApplyOn.OnPageNavigatedTo` - Applies the color and style when the page has been navigated to.
+
+> [!NOTE]
+> If your application changes the status bar appearance on a per page basis then you should make use of the `StatusBarApplyOn.OnPageNavigatedTo` value for the `ApplyOn` property. Otherwise when navigating back the system will preserve the status bar appearance from the page the user navigated from and not to.
+
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
 ## Syntax
 
@@ -91,6 +101,7 @@ In the _Platforms/iOS/Info.plist_ file, add the following key and value:
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
+| ApplyOn | StatusBarBehavior | When to apply the status bar color and style. |
 | StatusBarColor | Color | The `Color` name from the Microsoft.Maui.Graphics namespace. |
 | StatusBarStyle | StatusBarStyle | The style used by statusbar, can be LightContent, DarkContent or Default. |
 

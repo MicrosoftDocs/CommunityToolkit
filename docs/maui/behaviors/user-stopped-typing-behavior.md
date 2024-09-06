@@ -9,6 +9,8 @@ ms.date: 04/13/2022
 
 The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when a user has stopped data input on controls for example `Entry`, `SearchBar` and `Editor`. Examples of its usage include triggering a search when a user has stopped entering their search query.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 ### XAML
@@ -22,15 +24,17 @@ The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when
 The `UserStoppedTypingBehavior` can be used as follows in XAML:
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MyLittleApp.MainPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MyLittleApp.MainPage"
+    x:Name="Page">
      
            <Entry Placeholder="Start typing when you stop the behavior will trigger...">
                 <Entry.Behaviors>
                     <toolkit:UserStoppedTypingBehavior 
-                        Command="{Binding SearchCommand}"
+                        Command="{Binding Source={x:Reference Page}, Path=BindingContext.SearchCommand}"
                         StoppedTypingTimeThreshold="1000"
                         MinimumLengthThreshold="3"
                         ShouldDismissKeyboardAutomatically="True" />

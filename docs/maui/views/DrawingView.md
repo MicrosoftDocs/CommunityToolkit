@@ -100,16 +100,41 @@ var drawingView = new DrawingView
     Lines = new ObservableCollection<IDrawingLine>(),
     DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
     {
-        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
         gestureImage.Source = ImageSource.FromStream(() => stream);
     })
 };
 drawingView.OnDrawingLineCompleted += async (s, e) =>
 {
-    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 ```
+
+## Use within a ScrollView
+
+When using the `DrawingView` inside a `ScrollView` the touch interaction with the `ScrollView` can sometimes be intercepted on iOS. This can be prevented by setting the `ShouldDelayContentTouches` property to `false` on iOS as per the following example:
+
+I solved this problem, by addding the ios:ScrollView.ShouldDelayContentTouches="false" to the ScrollView that contains the DrawingView:
+
+```xaml
+<ContentPage
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls">
+
+    <ScrollView ios:ScrollView.ShouldDelayContentTouches="false">
+
+        <DrawingView />
+
+    </ScrollView>
+
+</ContentPage>
+```
+
+For more information please refer to [ScrollView content touches](/dotnet/maui/ios/platform-specifics/scrollview-content-touches).
 
 ## Advanced usage
 
@@ -126,8 +151,8 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             OnDrawingLineCompleted="OnDrawingLineCompletedEvent"
             LineColor="Red"
             LineWidth="5"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
             <toolkit:DrawingView.Background>
                     <LinearGradientBrush StartPoint="0,0"
                                          EndPoint="0,1">
@@ -153,7 +178,9 @@ var drawingView = new DrawingView
     ShouldClearOnFinish = false,
     DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>
     {
-        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
         gestureImage.Source = ImageSource.FromStream(() => stream);
     }),
     LineColor = Colors.Red,
@@ -162,19 +189,23 @@ var drawingView = new DrawingView
 };
 drawingView.OnDrawingLineCompleted += async (s, e) =>
 {
-    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
     gestureImage.Source = ImageSource.FromStream(() => stream);
 };
 
 // get stream from lines collection
+var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 var lines = new List<IDrawingLine>();
 var stream1 = await DrawingView.GetImageStream(
                 lines,
                 new Size(gestureImage.Width, gestureImage.Height),
-                Colors.Black);
+                Colors.Black.
+                cts.Token);
 
 // get steam from the current DrawingView
-var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height);
+var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height, cts.Token);
 ```
 
 ## Properties

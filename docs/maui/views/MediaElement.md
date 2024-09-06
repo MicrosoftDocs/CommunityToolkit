@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 01/23/2023
+ms.date: 02/15/2024
 ---
 
 # MediaElement
@@ -29,6 +29,143 @@ The `MediaElement` uses the following platform implementations.
 | iOS/macOS | [AVPlayer](xref:AVFoundation.AVPlayer) |
 | Windows | [MediaPlayer](xref:Windows.Media.Playback.MediaPlayer) |
 
+## Getting started
+
+To use the `MediaElement` feature of the .NET MAUI Community Toolkit, the following steps are required.
+
+### Install NuGet package
+
+Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. As follows:
+
+**Package name:** `CommunityToolkit.Maui.MediaElement`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement
+
+### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui.MediaElement;
+```
+
+In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitMediaElement()
+```
+
+For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.
+
+### Platform specific initialization
+
+To access the `MediaElement` functionality, the following platform specific setup is required.
+
+<!-- markdownlint-disable MD025 -->
+### [Android](#tab/android)
+
+When using `MediaElement` it is essential to perform the following steps:
+
+#### 1. Add `ResizableActivity` and `Launchmode` to Activity
+
+```csharp
+[Activity(Theme = "@style/Maui.SplashTheme", ResizeableActivity = true, MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
+public class MainActivity : MauiAppCompatActivity
+{
+}
+```
+
+#### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
+
+```csharp
+ <service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+   <intent-filter>
+     <action android:name="android.intent.action.MEDIA_BUTTON" />
+   </intent-filter>
+   <intent-filter>
+     <action android:name="androidx.media3.session.MediaSessionService"/>
+   </intent-filter>
+ </service>
+```
+
+#### 3. Add the following permissions to `AndroidManifest.xml`
+
+```csharp
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+```
+
+#### Here is an example of required settings in `AndroidManifest.xml`
+
+```csharp
+<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
+<service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+    <intent-filter>
+    <action android:name="android.intent.action.MEDIA_BUTTON" />
+    </intent-filter>
+    <intent-filter>
+    <action android:name="androidx.media3.session.MediaSessionService"/>
+    </intent-filter>
+</service>
+</application>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+```
+
+> [!NOTE]
+> This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
+ for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
+
+For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
+
+### [Mac Catalyst](#tab/mac)
+
+Edit the `Info.plist` for `MacCatalyst` and add the following keys.
+```csharp
+<key>UIBackgroundModes</key>
+<array>
+    <string>bluetooth-central</string>
+    <string>audio</string>
+</array>
+<key>NSLocalNetworkUsageDescription</key>
+<string></string>
+```
+
+### [iOS](#tab/ios)
+
+Edit the `Info.plist` for `iOS` and add the following keys.
+```csharp
+<key>UIBackgroundModes</key>
+<array>
+    <string>audio</string>
+</array>
+```
+
+### [Windows](#tab/windows)
+
+No setup is required.
+
+
+### [Tizen](#tab/tizen)
+
+No setup is required.
+
+-----
+<!-- markdownlint-enable MD025 -->
+
 ## Supported Formats
 
 The supported multimedia formats can be different per platform. In some cases it can even be dependant on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
@@ -43,39 +180,11 @@ The supported multimedia formats can be different per platform. In some cases it
 > [!IMPORTANT]
 > If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.
 
-## Setup
+## Common scenarios
 
-Before you are able to use `MediaElement` inside your application you will need to install the `CommunityToolkit.Maui.MediaElement` NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md#communitytoolkitmauimediaelement) page.
+The following sections covers common usage scenarios for the `MediaElement`.
 
-### Including the XAML namespace
-
-[!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
-
-### Bypassing the iOS Silent Switch
-
-On iOS, the MediaElement's playback audio is muted by default when the [user has toggled the Hardware Silent Switch to off](https://support.apple.com/en-mide/guide/iphone/iph37c04838/ios#:~:text=The%20Ring%2FSilent%20switch%20is,play%20through%20your%20iPhone%20speaker). 
-
-To bypass the Hardware Silent Switch on iOS, add the following lines of code to `MauiProgram.cs`. This ensures that MediaElement's playback audio will always be audible to the user regardless of their device's Hardware Silent Switch.
-
-```cs
-public static class MauiProgram
-{
-    // ... Additonal Code Not Shown ... //
-
-	public static MauiApp CreateMauiApp()
-	{
-        // ... Additonal Code Not Shown ... //
-#if IOS
-        AVAudioSession.SharedInstance().SetActive(true);
-        AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
-#endif
-        // ... Additonal Code Not Shown ... //
-    }
-}
-```
-
-
-## Play remote media
+### Play remote media
 
 A `MediaElement` can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the `Source` property to the URI of the media file:
 
@@ -91,7 +200,31 @@ By default, the media that is defined by the `Source` property doesn't immediate
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
 
-## Play local media
+### Using Metadata
+
+A `MediaElement` can use metadata for `MediaElement.MetadataTitle`, `MediaElement.MetadataArtist` and `MediaElement.MetadataArtworkUrl`. You can set
+the title or artist to show what is currently playing on lockscreen controls for Windows, Mac Catalyst, iOS, and Android. You can set a local or 
+remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. It must be a URL and be either `.jpg` or
+ `.png` 
+
+```xaml
+<toolkit:MediaElement 
+    MetadataTitle="Title"
+    MetadataArtist="Artist"
+    MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
+```
+
+```csharp
+    MediaElement.MetadataTitle="Title";
+    MediaElement.MetadataArtist="Artist";
+    MediaElement.MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
+```
+
+> [!IMPORTANT]
+> You can set the metadata in either XAML or code behind. If you are setting it in code behind you need to set the source in code behind. The source should
+be set last. If you set the metadata in XAML or in constructor this note can be safely ignored.
+
+### Play local media
 
 Local media can be played from the following sources:
 
@@ -184,7 +317,7 @@ The following XAML example shows a page that contains a `MediaElement` and custo
         <HorizontalStackLayout BindingContext="{x:Reference mediaElement}"
                      ...>
             <Button Text="Play"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
                     Clicked="OnPlayPauseButtonClicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
@@ -202,7 +335,7 @@ The following XAML example shows a page that contains a `MediaElement` and custo
                 </Button.Triggers>
             </Button>
             <Button Text="Stop"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
                     Clicked="OnStopButtonClicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
@@ -320,8 +453,8 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
 | Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
 | Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |
-| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. | `0` |
-| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. | `0` |
+| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
+| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |
 
 ## Events
@@ -341,7 +474,7 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | Play | Starts playing the loaded media. |
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
-| SeekTo | Takes a `TimeSpan` value to set the `Position` property to. |
+| SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. |
 
 ## Examples
 

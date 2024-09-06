@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 In order to use the toolkit in XAML the following `xmlns` needs to be added into your page or view:
 
 ```xaml

@@ -113,7 +113,7 @@ public class MyViewModel : INotifyPropertyChanged
 
 For a more concrete example please refer to our sample application and the example in [`MultiplePopupViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/Popup/MultiplePopupViewModel.cs)
 
-The `IPopupService` also provides methods to handle a result being returned from a Popup as covered in [Returning a result](./popup.md#returning-a-result).
+The `IPopupService` also provides methods to handle a result being returned from a Popup as covered in [Returning a result](./Popup.md#returning-a-result).
 
 #### Passing data to a Popup view model
 
@@ -165,7 +165,7 @@ There are 2 different ways that a `Popup` can be closed; programmatically or by 
 
 In order to close a `Popup` a developer must call `Close` or `CloseAsync` on the `Popup` itself. This is typically performed by responding to a button press from a user.
 
-If we enhance the previous XAML example by adding an ok `Button`:
+We can enhance the previous XAML example by adding an **OK** `Button`:
 
 ```xml
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -205,7 +205,9 @@ public partial class MySimplePopup : Popup
 
     async void OnOKButtonClicked(object? sender, EventArgs e) 
     {
-         await CloseAsync();
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+         await CloseAsync(token: cts.Token);
          await Toast.Make("Popup Dismissed By Button").Show();
     }
 }
@@ -245,9 +247,17 @@ By adding 2 new buttons to the XAML:
 Then adding the following event handlers in the C#:
 
 ```csharp
-async void OnYesButtonClicked(object? sender, EventArgs e) => await CloseAsync(true);
+async void OnYesButtonClicked(object? sender, EventArgs e)
+{
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+    await CloseAsync(true, cts.Token);
+}
 
-async void OnNoButtonClicked(object? sender, EventArgs e) => await CloseAsync(false);
+async void OnNoButtonClicked(object? sender, EventArgs e)
+{
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+    await CloseAsync(false, cts.Token);
+}
 ```
 
 The `Close` method allows for an `object` value to be supplied, this will be the resulting return value. In order to await the result the `ShowPopupAsync` method must be used as follows:
@@ -261,7 +271,7 @@ public class MyPage : ContentPage
     {
         var popup = new SimplePopup();
 
-        var result = await this.ShowPopupAsync(popup);
+        var result = await this.ShowPopupAsync(popup, CancellationToken.None);
 
         if (result is bool boolResult)
         {
@@ -335,8 +345,8 @@ The following example shows how to define a style that applies to the `SimplePop
 
 |Event | Description  |
 |---------|---------|
-| `Closed` | The event that is dismissed event is invoked when the `Popup` is closed. |
-| `Opened` | The event that is dismissed event is invoked when the `Popup` is opened. |
+| `Closed` | Occurs when the `Popup` is closed. |
+| `Opened` | Occurs when the `Popup` is opened. |
 
 ## Examples
 

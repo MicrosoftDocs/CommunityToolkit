@@ -9,7 +9,7 @@ dev_langs:
 
 # INotifyPropertyChanged attributes
 
-The [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute) type is an attribute that allows inserting MVVM support code into existing types. Along with other related attributes ([`ObservableObject`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableObjectAttribute) and [`ObservableRecipient`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableRecipientdAttribute)), its purpose is to support developers in cases where the same functionality from these types was needed, but the target types were already implementing from another type. Since C# does not allow multiple inheritance, these attributes can instead be used to have the MVVM Toolkit generator add the same code right into those types, sidestepping this limitation.
+The [`INotifyPropertyChanged`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.inotifypropertychangedattribute) type is an attribute that allows inserting MVVM support code into existing types. Along with other related attributes ([`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObjectAttribute) and [`ObservableRecipient`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableRecipientAttribute)), its purpose is to support developers in cases where the same functionality from these types was needed, but the target types were already implementing from another type. Since C# does not allow multiple inheritance, these attributes can instead be used to have the MVVM Toolkit generator add the same code right into those types, sidestepping this limitation.
 
 > [!NOTE]
 > In order to work, annotated types need to be in a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods). If the type is nested, all types in the declaration syntax tree must also be annotated as partial. Not doing so will result in a compile errors, as the generator will not be able to generate a different partial declaration of that type with the requested additional code.
@@ -17,7 +17,7 @@ The [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.
 > [!NOTE]
 > These attributes are only meant to be used in cases where the target types cannot just inherit from the equivalent types (eg. from `ObservableObject`). If that is possible, inheriting is the recommended approach, as it will reduce the binary size by avoiding creating duplicated code into the final assembly.
 
-> **Platform APIs:** [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute), [`ObservableObject`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableObjectAttribute), [`ObservableRecipient`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableRecipientdAttribute)
+> **Platform APIs:** [`INotifyPropertyChanged`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute), [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObjectAttribute), [`ObservableRecipient`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableRecipientAttribute)
 
 ## How to use them
 
@@ -31,9 +31,9 @@ public partial class MyViewModel : SomeOtherType
 ```
 
 This will generate a complete `INotifyPropertyChanged` implementation into the `MyViewModel` type, complete with additional helpers (such as `SetProperty`) that can be used to reduce verbosity. Here is a brief summary of the various attributes:
-- [`INotifyPropertyChanged`](/dotnet/api/communitytoolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute): implements the interface and adds helper methods to set properties and raise the events.
-- [`ObservableObject`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableObjectAttribute): adds all the code from the `ObservableObject` type. It is conceptually equivalent to `INotifyPropertyChanged`, with the main difference being that it also implements `INotifyPropertyChanging`.
-- [`ObservableRecipient`](/dotnet/api/communitytoolkit.mvvm.componentmodel.ObservableRecipientdAttribute): adds all the code from the `ObservableRecipient` type. In particular, this can be added to a type inheriting from `ObservableValidator` to combine the two.
+- [`INotifyPropertyChanged`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.INotifyPropertyChangedAttribute): implements the interface and adds helper methods to set properties and raise the events.
+- [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObjectAttribute): adds all the code from the `ObservableObject` type. It is conceptually equivalent to `INotifyPropertyChanged`, with the main difference being that it also implements `INotifyPropertyChanging`.
+- [`ObservableRecipient`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableRecipientAttribute): adds all the code from the `ObservableRecipient` type. In particular, this can be added to a type inheriting from `ObservableValidator` to combine the two.
 
 ## Examples
 

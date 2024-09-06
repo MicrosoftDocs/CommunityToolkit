@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 ### BaseConverter Properties
 
 The following properties are implemented in the base class, `public abstract class BaseConverter`:

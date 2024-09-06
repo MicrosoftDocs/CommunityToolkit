@@ -1,13 +1,15 @@
 ---
 title: IconTintColorBehavior - .NET MAUI Community Toolkit
 author: vhugogarcia
-description: "The IconTintColorBehavior is a behavior allows you to tint an image."
+description: "The IconTintColorBehavior is a behavior that allows you to tint an image."
 ms.date: 06/27/2022
 ---
 
 # IconTintColorBehavior
 
-The `IconTintColorBehavior` is a `behavior` allows you to tint an image.
+The `IconTintColorBehavior` is a `behavior` that allows you to tint an image.
+
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
 ## Syntax
 
@@ -73,7 +75,7 @@ class IconTintColorBehaviorPage : ContentPage
         Content = new Image()
         .Behaviors(new IconTintColorBehavior
         {
-            Tintcolor = Color.Red
+            TintColor = Color.Red
         });                 
     }
 }

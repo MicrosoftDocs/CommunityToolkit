@@ -56,3 +56,5 @@ The next sample shows how you can use the `MultipleX` property to snap the size 
 :::code language="xaml" source="~/../code-windows/components/Primitives/samples/ConstrainedBox/ConstrainedBoxMultipleSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Primitives/samples/ConstrainedBox/ConstrainedBoxMultipleSample.xaml.cs":::
+
+

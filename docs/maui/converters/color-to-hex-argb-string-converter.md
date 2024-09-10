@@ -109,7 +109,7 @@ class ColorToHexArgbStringConverterPage : ContentPage
 
 ## Examples 
 
-You can find an example of this converter in action in the .NET MAUI Community Toolkit Sample Application.
+[.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/ColorsConverterPage.xaml)
 
 ## API
 

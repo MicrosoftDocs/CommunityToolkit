@@ -113,4 +113,4 @@ class ColorToHexArgbStringConverterPage : ContentPage
 
 ## API
 
-You can find the source code for `ColorToHexArgbStringConverter` over on the .NET MAUI Community Toolkit GitHub repository.
+You can find the source code for `ColorToHexArgbStringConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/ColorToStringConverter.shared.cs).

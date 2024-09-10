@@ -19,8 +19,12 @@ You can set the `Header`, `Description`, `HeaderIcon` and `Content` properties t
 
 :::code language="xaml" source="~/../code-windows/components/SettingsControls/samples/SettingsCardSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/SettingsControls/samples/SettingsCardSample.xaml.cs":::SettingsCard can also be turned into a button, by setting the `IsClickEnabled` property. This can be useful whenever you want your settings component to navigate to a detail page or open an external link. You can set a custom icon by setting the `ActionIcon`, or hiding it completely by setting the `IsActionIconVisible` to `false`.
+:::code language="csharp" source="~/../code-windows/components/SettingsControls/samples/SettingsCardSample.xaml.cs":::
+
+SettingsCard can also be turned into a button, by setting the `IsClickEnabled` property. This can be useful whenever you want your settings component to navigate to a detail page or open an external link. You can set a custom icon by setting the `ActionIcon`, or hiding it completely by setting the `IsActionIconVisible` to `false`.
 
 :::code language="xaml" source="~/../code-windows/components/SettingsControls/samples/ClickableSettingsCardSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/SettingsControls/samples/ClickableSettingsCardSample.xaml.cs":::
+
+

@@ -99,26 +99,25 @@ async Task StartListening(CancellationToken cancellationToken)
 
     speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
     speechToText.RecognitionResultCompleted += OnRecognitionTextCompleted;
-    await SpeechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
+    await speechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
 }
 
 async Task StopListening(CancellationToken cancellationToken)
 {
-    await SpeechToText.StopListenAsync(CancellationToken.None);
-    SpeechToText.Default.RecognitionResultUpdated -= OnRecognitionTextUpdated;
-    SpeechToText.Default.RecognitionResultCompleted -= OnRecognitionTextCompleted;
+    await speechToText.StopListenAsync(CancellationToken.None);
+    speechToText.RecognitionResultUpdated -= OnRecognitionTextUpdated;
+    speechToText.RecognitionResultCompleted -= OnRecognitionTextCompleted;
 }
 
 void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
 {
     RecognitionText += args.RecognitionResult;
-};
+}
 
 void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
 {
     RecognitionText = args.RecognitionResult;
-};
-
+}
 ```
 
 ## Methods

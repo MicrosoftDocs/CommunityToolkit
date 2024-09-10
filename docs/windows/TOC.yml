@@ -4,41 +4,37 @@ items:
 - name: Getting Started
   href: getting-started.md
 - name: Animations
-  items:
-  - name: AnimationSet
-    href: Animations/AnimationSet.md
+  items: 
   - name: Implicit Animations
-    href: Animations/Animations.md
+    href: Animations/index.md
   - name: Connected Animations
     href: Animations/ConnectedAnimations.md
 - name: Behaviors
-  items:
+  items: 
+  - name: AnimationSet
+    href: Behaviors/AnimationSet.md
   - name: Behaviors
-    href: Behaviors/Behaviors.md
+    href: Behaviors/index.md
   - name: Header Behaviors
     href: Behaviors/HeaderBehaviors.md
   - name: StackedNotificationsBehavior
     href: Behaviors/StackedNotificationsBehavior.md
 - name: CameraPreview
-  items:
-  - name: CameraPreview
-    href: CameraPreview/CameraPreview.md
+  href: CameraPreview/index.md
 - name: Collections
-  items:
+  items: 
   - name: AdvancedCollectionView
     href: Collections/AdvancedCollectionView.md
   - name: IncrementalLoadingCollection
     href: Collections/IncrementalLoadingCollection.md
+- name: ColorPicker
+  href: ColorPicker/index.md
 - name: Converters
-  items:
-  - name: Converters
-    href: Converters/Converters.md
-- name: DeveloperTools
-  items:
-  - name: Developer Tools
-    href: DeveloperTools/DeveloperTools.md
+  href: Converters/index.md
+- name: Developer Tools
+  href: DeveloperTools/index.md
 - name: Extensions
-  items:
+  items: 
   - name: Array Extensions
     href: Extensions/ArrayExtensions.md
   - name: Attached Drop Shadow
@@ -80,7 +76,7 @@ items:
   - name: Composition Visual Extensions
     href: Extensions/VisualExtensions.md
 - name: HeaderedControls
-  items:
+  items: 
   - name: HeaderedContentControl
     href: HeaderedControls/HeaderedContentControl.md
   - name: HeaderedItemsControl
@@ -88,7 +84,7 @@ items:
   - name: HeaderedTreeView
     href: HeaderedControls/HeaderedTreeView.md
 - name: Helpers
-  items:
+  items: 
   - name: CameraHelper
     href: Helpers/CameraHelper.md
   - name: ColorHelper
@@ -104,31 +100,27 @@ items:
   - name: WeakEventListener
     href: Helpers/WeakEventListener.md
 - name: ImageCropper
-  items:
-  - name: ImageCropper
-    href: ImageCropper/ImageCropper.md
+  href: ImageCropper/index.md
 - name: LayoutTransformControl
-  items:
-  - name: LayoutTransformControl
-    href: LayoutTransformControl/LayoutTransformControl.md
+  href: LayoutTransformControl/index.md
 - name: Media
-  items:
+  items: 
   - name: Attached Card Shadow
     href: Media/AttachedCardShadow.md
   - name: EffectAnimations
     href: Media/EffectAnimations.md
 - name: MetadataControl
-  items:
-  - name: MetadataControl
-    href: MetadataControl/MetadataControl.md
+  href: MetadataControl/index.md
 - name: Primitives
-  items:
+  items: 
   - name: ConstrainedBox
     href: Primitives/ConstrainedBox.md
   - name: DockPanel
     href: Primitives/DockPanel.md
-  - name: StaggeredLayout / StaggeredPanel
-    href: Primitives/StaggeredSamples.md
+  - name: StaggeredLayout
+    href: Primitives/StaggeredLayout.md
+  - name: StaggeredPanel
+    href: Primitives/StaggeredPanel.md
   - name: SwitchPresenter
     href: Primitives/SwitchPresenter.md
   - name: UniformGrid
@@ -138,29 +130,21 @@ items:
   - name: WrapPanel
     href: Primitives/WrapPanel.md
 - name: RadialGauge
-  items:
-  - name: RadialGauge
-    href: RadialGauge/RadialGauge.md
+  href: RadialGauge/index.md
 - name: RangeSelector
-  items:
-  - name: RangeSelector
-    href: RangeSelector/RangeSelector.md
+  href: RangeSelector/index.md
 - name: RichSuggestBox
-  items:
-  - name: RichSuggestBox
-    href: RichSuggestBox/RichSuggestBox.md
+  href: RichSuggestBox/index.md
 - name: Segmented
-  items:
-  - name: Segmented
-    href: Segmented/Segmented.md
+  href: Segmented/index.md
 - name: SettingsControls
-  items:
+  items: 
   - name: SettingsCard
     href: SettingsControls/SettingsCard.md
   - name: SettingsExpander
     href: SettingsControls/SettingsExpander.md
 - name: Sizers
-  items:
+  items: 
   - name: ContentSizer
     href: Sizers/ContentSizer.md
   - name: GridSplitter
@@ -169,14 +153,12 @@ items:
     href: Sizers/PropertySizer.md
   - name: Sizer overview
     href: Sizers/SizerControls.md
+- name: TabbedCommandBar
+  href: TabbedCommandBar/index.md
 - name: TokenizingTextBox
-  items:
-  - name: TokenizingTextBox
-    href: TokenizingTextBox/TokenizingTextBox.md
+  href: TokenizingTextBox/index.md
 - name: Triggers
-  items:
-  - name: Triggers
-    href: Triggers/Triggers.md
+  href: Triggers/index.md
 - name: Sample Gallery
   href: https://aka.ms/windowstoolkitapp
 - name: Labs Website

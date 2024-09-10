@@ -25,3 +25,5 @@ Both `GridSplitter` and `ContentSizer` are insufficient as they would force the 
 :::code language="xaml" source="~/../code-windows/components/Sizers/samples/PropertySizerNavigationViewPage.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Sizers/samples/PropertySizerNavigationViewPage.xaml.cs":::
+
+

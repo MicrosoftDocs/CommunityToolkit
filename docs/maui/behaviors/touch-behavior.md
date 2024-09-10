@@ -29,7 +29,7 @@ The following examples show how to add the `TouchBehavior` to a parent `Horizont
 
 [!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
 
-#### Using the AnimationBehavior
+#### Using the TouchBehavior
 
 ```xaml
 <ContentPage 

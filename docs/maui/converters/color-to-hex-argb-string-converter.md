@@ -13,17 +13,11 @@ The `Convert` method returns the supplied `Color` `value` converted to its ARGB 
 
 The `ConvertBack` method returns the ARGB hexadecimal `string` `value` converted to a `Color`.
 
-!INCLUDE [common converter properties]
-
 ## Syntax
 
 The following examples will show how to use the `ColorToHexArgbStringConverter` to display the ARGB hexadecimal equivalent string of a specific `Color`.
 
 ### XAML
-
-#### Including the XAML namespace
-
-!INCLUDE [XAML usage guidance]
 
 #### Using the ColorToHexArgbStringConverter
 
@@ -106,11 +100,3 @@ class ColorToHexArgbStringConverterPage : ContentPage
     }
 }
 ```
-
-## Examples 
-
-[.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/ColorsConverterPage.xaml)
-
-## API
-
-You can find the source code for `ColorToHexArgbStringConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/ColorToStringConverter.shared.cs).

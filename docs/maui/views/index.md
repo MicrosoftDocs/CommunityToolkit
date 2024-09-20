@@ -27,4 +27,5 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 | [`Map (Windows)`](Map.md) | The `Map` control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit. |
 | [`MediaElement`](MediaElement.md) | The `MediaElement` is a view for playing multimedia such as audio and video. |
 | [`Popup`](Popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |
+| [`RatingView`](RatingView.md) | The `RatingView` is designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms. |
 | [`SemanticOrderView`](semantic-order-view.md) | The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application. |

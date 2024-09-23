@@ -191,7 +191,7 @@ RatingView ratingView = new()
 };
 ```
 
-For more information about custom shapes, see [Shapes.Path](/dotnet/api/shapes.path).
+For more information about custom shapes, see [Shapes.Path](/dotnet/api/microsoft.maui.controls.shapes.path).
 
 
 ## Set empty color

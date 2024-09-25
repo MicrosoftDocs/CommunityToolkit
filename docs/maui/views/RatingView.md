@@ -171,7 +171,8 @@ partial class MyPage : ContentPage
 ## Set custom shape
 The `CustomShape` property is a `string` that allows for the defining of custom rating item shape `path`. This feature empowers developers to implement unique designs, such as distinctive symbols, as rating items.
 
-Only when the `Shape` property is set to `Custom`, will the custom shape path be used.
+> [!IMPORTANT]
+> Only when the `Shape` property is set to `Custom`, will the custom shape path be used.
 
 The following examples sets the custom and shape properties:
 

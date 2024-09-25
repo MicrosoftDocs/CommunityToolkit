@@ -235,6 +235,8 @@ items:
       href: views/Map.md 
     - name: "MediaElement"
       href: views/MediaElement.md
+    - name: "RatingView"
+      href: views/RatingView.md
     - name: "Popup"
       href: views/Popup.md
     - name: SemanticOrderView

@@ -176,6 +176,8 @@ The `CustomShape` property is a `string` that allows for the defining of custom 
 
 The following examples sets the custom and shape properties:
 
+![Screenshot of an RatingView custom shape example](../images/views/RatingView_CustomShape.png "RatingView custom shape example")
+
 ```xaml
 <toolkit:RatingView
 	CustomShape="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z"
@@ -240,18 +242,12 @@ The following examples set the is read only property:
 
 ```xaml
 <toolkit:RatingView
-	IsReadOnly="False" />
-<toolkit:RatingView
 	IsReadOnly="True" />
 ```
 
 The equivalent C# code is:
 
 ```csharp
-RatingView editableRatingView = new()
-{
-	IsReadOnly = False,
-};
 RatingView readOnlyRatingView = new()
 {
 	IsReadOnly = True,
@@ -405,6 +401,8 @@ The `Shape` property is an `enum` of type `RatingViewShape` for setting the rati
 - `Custom` - If set and `CustomShape` is NULL or empty, defaults to `Star`
 
 The following examples set the rating fill property:
+
+![Screenshot of an RatingView shape examples](../images/views/RatingView_Shape.png "RatingView shape examples")
 
 ```xaml
 <toolkit:RatingView

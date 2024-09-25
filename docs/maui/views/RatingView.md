@@ -80,93 +80,24 @@ partial class MyPage : ContentPage
 
 | Property | Type | Description |
 |---|---|---|
-| AnchorX | `double` | Gets or sets the X component of the center point for any transform operation, relative to the bounds of the element. This is a bindable property. |
-| AnchorY | `double` | Gets or sets the Y component of the center point for any transform operation, relative to the bounds of the element. This is a bindable property. |
-| AutomationId | `string` | Gets or sets a value that allows the automation framework to find and interact with this element. |
-| Background | `brush` | Gets or sets the Brush which will be used to fill the background of an element. This is a bindable property. |
 | BackgroundColor | `color` | Gets or sets the Color which will fill the background of an element. This is a bindable property. |
-| Batched | `bool` | Gets a value that indicates there are batched changes done for this element. |
-| Behaviors	| `IList<Behavior>` | Gets the list of Behavior objects associated to this element. This is a read-only bindable property. |
 | BindingContext | `object` | Gets or sets an object that contains the properties that will be targeted by the bound properties that belong to this BindableObject. This is a bindable property. |
-| Bounds | `Microsoft.Maui.Graphics.Rect` | Gets the bounds of the element in device-independent units. |
-| CascadeInputTransparent | `bool` | Gets or sets a value that controls whether child elements inherit the input transparency of this layout when the tranparency is true. |
-| Children | `object` | Gets the child objects contained in this layout. |
-| class | `IList<string>` | Gets or sets the style classes for the element. |
-| ClassId | `string` | Gets or sets a value used to identify a collection of semantically similar elements. |
-| Clip | `Shapes.Geometry` | Specifies the clipping region for an element. This is a bindable property. |
-| Count | `int` | Gets the child object count in this layout. |
 | CustomShape | `string` | Gets or sets the `Path` for rating item shapes. Only when the `Shape` property is set to `Custom` is the `CustomShape` be used. This is a bindable property. |
-| DesiredSize | `Microsoft.Maui.Graphics.Size` | Gets the size that this element computed during the measure pass of the layout process. |
-| DisableLayout | `bool` | Gets a value that indicates that layout for this element is disabled. |
-| Dispatcher | `Microsoft.Maui.Dispatching.IDispatcher` | Gets the dispatcher that was available when this bindable object was created, otherwise tries to find the nearest available dispatcher (probably the window's/app's). |
-| EffectControlProvider | `IEffectControlProvider` | For internal use by .NET MAUI. |
-| Effects | `IList<Effect>` | Gets or sets the styles and properties that will be applied to the element during runtime. |
 | EmptyColor | `Color` | Gets or sets the color that is applied to the unfilled (empty) rating items.  The default value is Transparent.  This is a bindable property. |
 | FilledColor | `Color` | Gets or sets the Color that is applied to the filled (rated) portion of each rating item.  The default value is Yellow. This is a bindable property. |
-| FlowDirection | `Microsoft.Maui.FlowDirection` | Gets or sets the layout flow direction. This is a bindable property. |
-| Frame | `Microsoft.Maui.Graphics.Rect` | Gets or sets the frame this element resides in on screen. |
-| GestureRecognizers | `IList<IGestureRecognizer>` | The collection of gesture recognizers associated with this view. |
-| Handler | `Microsoft.Maui.IViewHandler?` | Gets or sets the IViewHandler associated to this element. |
-| Height | `double` | Gets the current rendered height of this element. This is a read-only bindable property. |
-| HeightRequest | `double` | Gets or sets the desired height override of this element. This is a bindable property. |
-| HorizontalOptions | `LayoutOptions` | Gets or sets the LayoutOptions that define how the element gets laid out in a layout cycle. This is a bindable property. |
-| Id | `Guid` | Gets a value that can be used to uniquely identify an element throughout the run of your application. |
-| IgnoreSafeArea | `bool` | Specifies how the View's content should be positioned in relation to obstructions. If this value is false, the content will be positioned only in the unobstructed portion of the screen. If this value is true, the content may be positioned anywhere on the screen. This includes the portion of the screen behind toolbars, screen cutouts, etc. |
-| InputTransparent | `bool` | Gets or sets a value indicating whether this element responds to hit testing during user interaction. This is a bindable property. |
-| IsClippedToBounds | `bool` | Gets or sets a value which determines if the layout should clip its children to its bounds. The default value is false. |
-| IsEnabled | `bool` | Gets or sets a value indicating whether this element is enabled in the user interface. This is a bindable property. |
-| IsEnabledCore | `bool` | This value represents the cumulative IsEnabled value. All types that override this property need to also invoke the RefreshIsEnabledProperty() method if the value will change. |
-| IsFocused | `bool` | Gets a value indicating whether this element is focused currently. This is a bindable property. |
-| IsInPlatformLayout | `bool` | Gets or sets a value that indicates that this element is currently going through the platform layout cycle. |
-| IsLoaded | `bool` | Indicates if an element is connected to the main object tree. |
-| IsPlatformEnabled | `bool` | Gets or sets a value that indicates whether this elements's platform equivalent element is enabled. |
-| IsPlatformStateConsistent | `bool` | Gets or sets a value that indicates that this element is currently consistent with the platform equivalent element state. |
 | IsReadOnly | `bool` | Gets whether this layout is readonly. The default value is false.  This is a bindable property. |
-| IsVisible | `bool` | Gets or sets a value that determines whether this element will be visible on screen and take up space in layouts. This is a bindable property. |
-| ItemPadding | `Thickness` | Gets or sets the inner padding of the rating item. The default value is a Thickness with all values set to 0.  This is a bindable property. |
-| Margin | `Thickness` | Gets or set the margin for the view. |
-| MaximumHeightRequest | `double` | Gets or sets the maximum height the element will request during layout. This is a bindable property. |
 | MaximumRating | `byte` | Gets or sets the maximum number of ratings. The range of this value is 1 to 25; values outside this range will be set to the nearest valid value.  The default value is 5. This is a bindable property. |
-| MaximumWidthRequest | `double` | Gets or sets the maximum width the element will request during layout. This is a bindable property. |
-| MinimumHeightRequest | `double` | Gets or sets the minimum height the element will request during layout. This is a bindable property. |
-| MinimumWidthRequest | `double` | Gets or sets the minimum width the element will request during layout. This is a bindable property. |
-| Navigation | `INavigation` | Gets the object responsible for handling stack-based navigation. |
-| NavigationProxy | `Internals.NavigationProxy` | Gets the cast of Navigation to a NavigationProxy. |
-| Opacity | `double` | Gets or sets the opacity value applied to the element when it is rendered. The range of this value is 0 to 1; values outside this range will be set to the nearest valid value. This is a bindable property. |
-| Padding | `Thickness` | Gets or sets the inner padding of the layout. The default value is a Thickness with all values set to 0. |
-| Parent | `Element` | Gets or sets the parent Element of this element. |
 | RatingChanged | `EventHandler<RatingChangedEventArgs>` | Event occurs when the rating is changed. |
 | RatingFill | `RatingFillElement` | Gets or sets a value indicating how the fill is applied against the entire rating item or just the shape. The property is of type [`RatingFillElement`](#set-rating-fill) and is an enumeration. The default value of this property is Shape.  This is a bindable property. |
 | Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.  The default value is 0.  This is a bindable property. |
-| RealParent | `Element` | For internal use by .NET MAUI. |
-| Resources | `ResourceDictionary` | Gets or sets the local resource dictionary. |
-| Rotation | `double` | Gets or sets the rotation (in degrees) about the Z-axis (affine rotation) when the element is rendered. This is a bindable property. |
-| RotationX | `double` | Gets or sets the rotation (in degrees) about the X-axis (perspective rotation) when the element is rendered. This is a bindable property. |
-| RotationY | `double` | Gets or sets the rotation (in degrees) about the Y-axis (perspective rotation) when the element is rendered. This is a bindable property. |
-| Scale | `double` | Gets or sets the scale factor applied to the element. This is a bindable property. |
-| ScaleX | `double` | Gets or sets a scale value to apply to the X direction. This is a bindable property. |
-| ScaleY | `double` | Gets or sets a scale value to apply to the Y direction. This is a bindable property. |
-| Shadow | `Shadow` | Gets or sets the shadow effect cast by the element. This is a bindable property. |
 | ShapeBorderColor | `Color` | Gets or sets the border color of the rating item shape. The default value of this is Grey.  This is a bindable property. |
 | ShapeBorderThickness | `Thickness` | Gets or sets the border thickness of the rating item shape.  The default value is a Thickness with all values set to 1.  This is a bindable property. |
 | ItemShapeSize | `double` | Gets or sets the size of the rating item shape.  The default value is 20. |
 | Shape | `RatingViewShape` | Gets or sets the rating item shape.  The property is of type [`RatingViewShape`](#set-shape) and is an enumeration. The default value is Star.  This is a bindable property. |
 | Spacing | `double` | Gets or sets the spacing between rating item elements.  The default value is 10.  This is a bindable property. |
-| Style | `Style` | Gets or sets the unique Style for this element. |
-| StyleClass | `IList<string>` | Gets or sets the style classes for the element. |
-| StyleId | `string` | Gets or sets a user defined value to uniquely identify the element. |
-| TranslationX | `double` | Gets or sets the X translation delta of the element. This is a bindable property. |
-| TranslationY | `double` | Gets or sets the Y translation delta of the element. This is a bindable property. |
-| Triggers | `IList<TriggerBase>` | Gets the list of TriggerBase objects associated to this element. This is a read-only bindable property. |
-| VerticalOptions | `LayoutOptions` | Gets or sets the LayoutOptions that define how the element gets laid out in a layout cycle. This is a bindable property. |
-| Visual | `IVisual` | Gets or sets a IVisual implementation that overrides the visual appearance of an element. This is a bindable property. |
-| Width | `double` | Gets the current width of this element. This is a read-only bindable property. |
-| WidthRequest | `double` | Gets or sets the desired width override of this element. This is a bindable property. |
-| Window | `Window` | Gets the Window that is associated with an element. This is a read-only bindable property. |
-| X | `double` | Gets the current X position of this element. This is a read-only bindable property. |
-| Y | `double` | Gets the current Y position of this element. This is a read-only bindable property. |
-| ZIndex | `int` | Gets or sets the front-to-back z-index of an element within a layout. This is a bindable property. |
 
+> [!TIP]
+> Additional base class properties can be found in the [HorizontalStackLayout Class](/dotnet/api/microsoft.maui.controls.horizontalstacklayout).
 
 ## Set custom shape
 The `CustomShape` property is a `string` that allows for the defining of custom rating item shape `path`. This feature empowers developers to implement unique designs, such as distinctive symbols, as rating items.
@@ -195,7 +126,6 @@ RatingView ratingView = new()
 ```
 
 For more information about custom shapes, see [Shapes.Path](/dotnet/api/microsoft.maui.controls.shapes.path).
-
 
 ## Set empty color
 The `EmptyColor` property is a `Color` that for the unfilled (empty) rating items. This allows for clear visual differentiation between rated and unrated items.
@@ -320,6 +250,8 @@ The `RatingFill` property is an `enum` of type `RatingFillElement` for setting h
 - `Item` - The filled (rated) portion of each item is applied to the item.
 
 The following examples set the rating fill property:
+
+![Screenshot of an RatingView rating fill example](../images/views/RatingView_RatingFill.png "RatingView rating fill example")
 
 ```xaml
 <toolkit:RatingView

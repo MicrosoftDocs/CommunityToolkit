@@ -215,7 +215,7 @@ RatingView ratingView = new()
 ```
 
 ## Set filled (rated) color
-The `FilleColor` property is a `color` that will be applied to the filled (rated) portion of each item, offering flexibility in defining the visual aesthetic of the rating items when selected by the user.
+The `FilledColor` property is a `Color` that will be applied to the filled (rated) portion of each item, offering flexibility in defining the visual aesthetic of the rating items when selected by the user.
 
 The following examples set the filled color property:
 

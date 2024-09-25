@@ -196,7 +196,7 @@ For more information about custom shapes, see [Shapes.Path](/dotnet/api/microsof
 
 
 ## Set empty color
-The `EmptyColor` property is a `color` that for the unfilled (empty) rating items. This allows for clear visual differentiation between rated and unrated items.
+The `EmptyColor` property is a `Color` that for the unfilled (empty) rating items. This allows for clear visual differentiation between rated and unrated items.
 
 The following examples set the empty color property:
 

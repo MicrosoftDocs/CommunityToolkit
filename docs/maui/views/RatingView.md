@@ -38,7 +38,7 @@ The following example shows how to create a `RatingView`:
 			MaximumRating="5"
 			RatingFill="Shape"
 			Rating="4.5"
-			Shape="Star"
+			ItemShape="Star"
 			ShapeBorderColor="Red"
 			ShapeBorderThickness="1"
 			Spacing="3" />
@@ -65,7 +65,7 @@ partial class MyPage : ContentPage
 			MaximumRating = 5,
 			RatingFill = RatingFillElement.Shape,
 			Rating = 4.5,
-			Shape = RatingViewShape.Star,
+			ItemShape = RatingViewShape.Star,
 			ShapeBorderColor = Colors.Red,
 			ShapeBorderThickness = 1,
 			Spacing = 3,
@@ -82,28 +82,28 @@ partial class MyPage : ContentPage
 |---|---|---|
 | BackgroundColor | `color` | Gets or sets the Color which will fill the background of an element. This is a bindable property. |
 | BindingContext | `object` | Gets or sets an object that contains the properties that will be targeted by the bound properties that belong to this BindableObject. This is a bindable property. |
-| CustomShape | `string` | Gets or sets the `Path` for rating item shapes. Only when the `Shape` property is set to `Custom` is the `CustomShape` be used. This is a bindable property. |
+| CustomItemShape | `string` | Gets or sets the `Path` for custom rating item shapes. This is a bindable property. |
 | EmptyColor | `Color` | Gets or sets the color that is applied to the unfilled (empty) rating items.  The default value is Transparent.  This is a bindable property. |
 | FilledColor | `Color` | Gets or sets the Color that is applied to the filled (rated) portion of each rating item.  The default value is Yellow. This is a bindable property. |
 | IsReadOnly | `bool` | Gets whether this layout is readonly. The default value is false.  This is a bindable property. |
+| ItemShape | `RatingViewShape` | Gets or sets the rating item shape.  The property is of type [`RatingViewShape`](#set-item-shape) and is an enumeration. The default value is Star.  This is a bindable property. |
+| ItemShapeSize | `double` | Gets or sets the size of the rating item shape.  The default value is 20. |
 | MaximumRating | `byte` | Gets or sets the maximum number of ratings. The range of this value is 1 to 25; values outside this range will be set to the nearest valid value.  The default value is 5. This is a bindable property. |
 | RatingChanged | `EventHandler<RatingChangedEventArgs>` | Event occurs when the rating is changed. |
 | RatingFill | `RatingFillElement` | Gets or sets a value indicating how the fill is applied against the entire rating item or just the shape. The property is of type [`RatingFillElement`](#set-rating-fill) and is an enumeration. The default value of this property is Shape.  This is a bindable property. |
 | Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.  The default value is 0.  This is a bindable property. |
 | ShapeBorderColor | `Color` | Gets or sets the border color of the rating item shape. The default value of this is Grey.  This is a bindable property. |
 | ShapeBorderThickness | `Thickness` | Gets or sets the border thickness of the rating item shape.  The default value is a Thickness with all values set to 1.  This is a bindable property. |
-| ItemShapeSize | `double` | Gets or sets the size of the rating item shape.  The default value is 20. |
-| Shape | `RatingViewShape` | Gets or sets the rating item shape.  The property is of type [`RatingViewShape`](#set-shape) and is an enumeration. The default value is Star.  This is a bindable property. |
 | Spacing | `double` | Gets or sets the spacing between rating item elements.  The default value is 10.  This is a bindable property. |
 
 > [!TIP]
 > Additional base class properties can be found in the [HorizontalStackLayout Class](/dotnet/api/microsoft.maui.controls.horizontalstacklayout).
 
-## Set custom shape
-The `CustomShape` property is a `string` that allows for the defining of custom rating item shape `path`. This feature empowers developers to implement unique designs, such as distinctive symbols, as rating items.
+## Set custom item shape
+The `CustomItemShape` property is a `string` that allows for the defining of custom rating item shape `path`. This feature empowers developers to implement unique designs, such as distinctive symbols, as rating items.
 
 > [!IMPORTANT]
-> Only when the `Shape` property is set to `Custom`, will the custom shape path be used.
+> Only when the `ItemShape` property is set to `Custom`, will the custom shape path be used.
 
 The following examples sets the custom and shape properties:
 
@@ -111,8 +111,8 @@ The following examples sets the custom and shape properties:
 
 ```xaml
 <toolkit:RatingView
-	CustomShape="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z"
-	Shape="Custom" />
+	CustomItemShape="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z"
+	ItemShape="Custom" />
 ```
 
 The equivalent C# code is:
@@ -120,8 +120,8 @@ The equivalent C# code is:
 ```csharp
 RatingView ratingView = new()
 {
-	CustomShape = "M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z",
-	Shape = RatingViewShape.Custom,
+	CustomItemShape = "M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z",
+	ItemShape = RatingViewShape.Custom,
 };
 ```
 
@@ -225,7 +225,8 @@ RatingView ratingView = new()
 ## Set maximum rating
 The `MaximumRating` property is a `byte` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application.
 
-If the value is set to 1, the control will toggle the rating between 0 and 1 when clicked/tapped.  If the value is set below the current `Rating`, the rating is adjusted accordingly.
+> [!NOTE]
+> If the value is set to 1, the control will toggle the rating between 0 and 1 when clicked/tapped.  If the value is set below the current `Rating`, the rating is adjusted accordingly.
 
 The following examples set the maximum rating property:
 
@@ -296,9 +297,9 @@ RatingView ratingView = new()
 The `RatingChanged` event has the argument type of `RatingChangedEventArgs`.  The event is raised when the `Rating` property is changed, and the element `IsReadOnly` is false.
 
 The `RatingChangedEventArgs` exposes a single property:
-- `Rating` - This is the new rating value.
+- `Rating` - The new rating value.
 
-The following examples show how to attach the  event:
+The following examples show how to attach the event:
 
 ```xaml
 <toolkit:RatingView
@@ -322,15 +323,15 @@ void RatingView_RatingChanged(object sender, RatingChangedEventArgs e)
 }
 ```
 
-## Set shape
-The `Shape` property is an `enum` of type `RatingViewShape` for setting the rating item shape of the rating items, such as stars, circles, like, dislike, or any other commonly used rating icons..  The available options are:
+## Set item shape
+The `ItemShape` property is an `enum` of type `RatingViewShape` for setting the rating item shape of the rating items, such as stars, circles, like, dislike, or any other commonly used rating icons..  The available options are:
 
 - `Star` - (default)
 - `Heart`
 - `Circle`
 - `Like`
 - `Dislike`
-- `Custom` - If set and `CustomShape` is NULL or empty, defaults to `Star`
+- `Custom` - If set and `CustomItemShape` is NULL or empty, defaults to `Star`
 
 The following examples set the rating fill property:
 
@@ -338,17 +339,17 @@ The following examples set the rating fill property:
 
 ```xaml
 <toolkit:RatingView
-	Shape="Star" />
+	ItemShape="Star" />
 <toolkit:RatingView
-	Shape="Heart" />
+	ItemShape="Heart" />
 <toolkit:RatingView
-	Shape="Circle" />
+	ItemShape="Circle" />
 <toolkit:RatingView
-	Shape="Like" />
+	ItemShape="Like" />
 <toolkit:RatingView
-	Shape="Dislike" />
+	ItemShape="Dislike" />
 <toolkit:RatingView
-	Shape="Custom" />
+	ItemShape="Custom" />
 ```
 
 The equivalent C# code is:
@@ -356,27 +357,27 @@ The equivalent C# code is:
 ```csharp
 RatingView starRatingView = new()
 {
-	Shape = RatingViewShape.Star,
+	ItemShape = RatingViewShape.Star,
 };
 RatingView heartRatingView = new()
 {
-	Shape = RatingViewShape.Heart,
+	ItemShape = RatingViewShape.Heart,
 };
 RatingView circleRatingView = new()
 {
-	Shape = RatingViewShape.Circle,
+	ItemShape = RatingViewShape.Circle,
 };
 RatingView likeRatingView = new()
 {
-	Shape = RatingViewShape.Like,
+	ItemShape = RatingViewShape.Like,
 };
 RatingView dislikeRatingView = new()
 {
-	Shape = RatingViewShape.Dislike,
+	ItemShape = RatingViewShape.Dislike,
 };
 RatingView customRatingView = new()
 {
-	Shape = RatingViewShape.Custom,
+	ItemShape = RatingViewShape.Custom,
 };
 ```
 
@@ -419,7 +420,7 @@ RatingView ratingView = new()
 ```
 
 ## Set spacing
-The `Spacing` is a `double` for setting the spacing between each rating item.
+The `Spacing` is of type `double`, that indicates the amount of device-independent unit of space between each rating item.
 
 The following examples set the shape border thickness property:
 
@@ -436,7 +437,6 @@ RatingView ratingView = new()
 	Spacing = 7,
 };
 ```
-
 
 ## Examples
 

@@ -80,8 +80,6 @@ partial class MyPage : ContentPage
 
 | Property | Type | Description |
 |---|---|---|
-| BackgroundColor | `color` | Gets or sets the Color which will fill the background of an element. This is a bindable property. |
-| BindingContext | `object` | Gets or sets an object that contains the properties that will be targeted by the bound properties that belong to this BindableObject. This is a bindable property. |
 | CustomItemShape | `string` | Gets or sets the `Path` for custom rating item shapes. This is a bindable property. |
 | EmptyColor | `Color` | Gets or sets the color that is applied to the unfilled (empty) rating items.  The default value is Transparent.  This is a bindable property. |
 | FilledColor | `Color` | Gets or sets the Color that is applied to the filled (rated) portion of each rating item.  The default value is Yellow. This is a bindable property. |
@@ -94,7 +92,6 @@ partial class MyPage : ContentPage
 | Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.  The default value is 0.  This is a bindable property. |
 | ShapeBorderColor | `Color` | Gets or sets the border color of the rating item shape. The default value of this is Grey.  This is a bindable property. |
 | ShapeBorderThickness | `Thickness` | Gets or sets the border thickness of the rating item shape.  The default value is a Thickness with all values set to 1.  This is a bindable property. |
-| Spacing | `double` | Gets or sets the spacing between rating item elements.  The default value is 10.  This is a bindable property. |
 
 > [!TIP]
 > Additional base class properties can be found in the [HorizontalStackLayout Class](/dotnet/api/microsoft.maui.controls.horizontalstacklayout).
@@ -416,25 +413,6 @@ The equivalent C# code is:
 RatingView ratingView = new()
 {
 	ShapeBorderThickness = 3,
-};
-```
-
-## Set spacing
-The `Spacing` is of type `double`, that indicates the amount of device-independent unit of space between each rating item.
-
-The following examples set the shape border thickness property:
-
-```xaml
-<toolkit:RatingView
-	Spacing="7" />
-```
-
-The equivalent C# code is:
-
-```csharp
-RatingView ratingView = new()
-{
-	Spacing = 7,
 };
 ```
 

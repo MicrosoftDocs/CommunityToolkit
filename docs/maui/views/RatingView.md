@@ -9,7 +9,6 @@ ms.date: 09/19/2024
 
 The .NET MAUI Community Toolkit `RatingView` is a control designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms.
 
-
 ## Syntax
 
 ### Including the XAML namespace
@@ -86,7 +85,7 @@ partial class MyPage : ContentPage
 | IsReadOnly | `bool` | Gets whether this layout is readonly. The default value is false.  This is a bindable property. |
 | ItemShape | `RatingViewShape` | Gets or sets the rating item shape.  The property is of type [`RatingViewShape`](#set-item-shape) and is an enumeration. The default value is Star.  This is a bindable property. |
 | ItemShapeSize | `double` | Gets or sets the size of the rating item shape.  The default value is 20. |
-| MaximumRating | `byte` | Gets or sets the maximum number of ratings. The range of this value is 1 to 25; values outside this range will be set to the nearest valid value.  The default value is 5. This is a bindable property. |
+| MaximumRating | `int` | Gets or sets the maximum number of ratings. The range of this value is 1 to 25; the default value is 5. This is a bindable property. |
 | RatingChanged | `EventHandler<RatingChangedEventArgs>` | Event occurs when the rating is changed. |
 | RatingFill | `RatingFillElement` | Gets or sets a value indicating how the fill is applied against the entire rating item or just the shape. The property is of type [`RatingFillElement`](#set-rating-fill) and is an enumeration. The default value of this property is Shape.  This is a bindable property. |
 | Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.  The default value is 0.  This is a bindable property. |
@@ -220,7 +219,7 @@ RatingView ratingView = new()
 ```
 
 ## Set maximum rating
-The `MaximumRating` property is a `byte` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application.
+The `MaximumRating` property is a `byte` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application. The range of this value is 1 to 25; the default value is 5.
 
 > [!NOTE]
 > If the value is set to 1, the control will toggle the rating between 0 and 1 when clicked/tapped.  If the value is set below the current `Rating`, the rating is adjusted accordingly.

@@ -219,7 +219,7 @@ RatingView ratingView = new()
 ```
 
 ## Set maximum rating
-The `MaximumRating` property is a `byte` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application. The range of this value is 1 to 25; the default value is 5.
+The `MaximumRating` property is a `int` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application. The range of this value is 1 to 25; the default value is 5.
 
 > [!NOTE]
 > If the value is set to 1, the control will toggle the rating between 0 and 1 when clicked/tapped.  If the value is set below the current `Rating`, the rating is adjusted accordingly.

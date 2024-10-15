@@ -7,13 +7,15 @@ ms.date: 04/12/2022
 
 # PopupService
 
-The PopupService provides a mechanism for displaying [Popups](overview.md) within an application using the MVVM pattern.
+The `PopupService` provides a mechanism for displaying [Popups](overview.md) within an application using the MVVM pattern.
 
 The following sections will incrementally build on how to use the `PopupService` in a .NET MAUI application.
 
 ## Creating a Popup
 
-In order to use the PopupService to present or close a Popup the Popup must first be registered. Based on the steps in [Defining your popup](popup-service.md#defining-your-popup) the following can be created.
+In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Defining your popup](popup-service.md#defining-your-popup) the following can be created.
+
+The XAML contents of the `Popup` can be defined as:
 
 ```xaml
 <toolkit:Popup 
@@ -35,6 +37,8 @@ In order to use the PopupService to present or close a Popup the Popup must firs
 </toolkit:Popup>
 ```
 
+The C# contents of the `Popup` can be defined as:
+
 ```csharp
 using CommunityToolkit.Maui.Views;
 using MyProject.ViewModels;
@@ -50,6 +54,8 @@ public partial class NamePopup : Popup
     }
 }
 ```
+
+The backing view model for the `Popup` can be defined as:
 
 ```csharp
 public class NamePopupViewModel : ObservableObject
@@ -109,6 +115,15 @@ public class MyViewModel : INotifyPropertyChanged
     {
         this.popupService.ShowPopup<NamePopupViewModel>();
     }
+}
+```
+
+Alternatively the caller can await the ShowPopupAsync method in order to handle a [result being returned](#returning-a-result). The `DisplayPopup` method can be rewritten as:
+
+```csharp
+public void DisplayPopup()
+{
+    var name = await this.popupService.ShowPopupAsync<NamePopupViewModel>();
 }
 ```
 

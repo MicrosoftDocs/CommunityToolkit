@@ -193,7 +193,8 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 <HorizontalStackLayout
     Padding="20"
     Background="Black"
-    HorizontalOptions="Center">
+    HorizontalOptions="Center"
+    x:Name="TouchableHorizontalStackLayout">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
             LongPressDuration="750"
@@ -353,14 +354,18 @@ The equivalent `TouchBehavior` in .NET MAUI would look like this:
 #### [XAML](#tab/touchbehavior-xaml)
 
 ```xaml
-<HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+<HorizontalStackLayout 
+    HorizontalOptions="Center" 
+    VerticalOptions="Center"
+    x:Name="TouchableHorizontalLayout">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
             DefaultAnimationDuration="250"
             DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
             PressedOpacity="0.6"
             PressedScale="0.8"
-            Command="{Binding Command}" />
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference TouchableHorizontalLayout}}"
+            Command="{Binding LayoutTappedCommand}" />
     </HorizontalStackLayout.Behaviors>
 
     <ContentView

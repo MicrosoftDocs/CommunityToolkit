@@ -76,19 +76,6 @@ class NestedObject
 }
 ```
 
-#### Default property
-
-The `Bind` method can be called without specifying the property to set the binding up for, this will utilize the defaults provided by the library with the full list at the [GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/523ff96160889f0806f7686e25c5d651fa7d8b7e/src/CommunityToolkit.Maui.Markup/DefaultBindableProperties.cs).
-
-The default property to bind for an `Entry` is the text property. So the above example could be written as:
-
-```csharp
-new Entry().Bind(nameof(ViewModel.RegistrationCode))
-```
-
-> [!WARNING]
-> This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
-
 #### Value conversion
 
 The `Bind` method allows for a developer to supply the `Converter` that they wish to use in the binding or simply provide a mechanism to use an inline conversion.
@@ -123,8 +110,8 @@ The `convert` parameter is a `Func` that is required to convert the multiple bin
 ```csharp
 new Label()
     .Bind(Label.TextProperty,
-            binding1: new Binding(nameof(ViewModel.IsBusy)),
-            binding2: new Binding(nameof(ViewModel.LabelText)),
+            binding1: BindingBase.Create((ViewModel vm) => vm.IsBusy),
+            binding2: BindingBase.Create((ViewModel vm) => vm.LabelText),
             convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
 ```
 
@@ -152,19 +139,7 @@ new Button()
 
 ## Gesture Binding
 
-Gesture bindings allow us to create an `ClickGestureRecognizer`, `SwipeGestureRecognizer`, `TapGestureRecognizer`, attach it to any element that implements `IGestureRecognizer` and bind it to an `ICommand` in our ViewModel.
-
-### BindClickGesture
-
-The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` clicks to activate, attach it to a `Label` and bind it to an `ICommand` property called _ClickCommand_ in our ViewModel:
-
-```cs
-new Label()
-    .BindClickGesture(
-        static (ViewModel vm) => vm.ClickCommand,
-        commandBindingMode: BindingMode.OneTime,
-        numberOfClicksRequired: 2));
-```
+Gesture bindings allow us to create an `SwipeGestureRecognizer` or a `TapGestureRecognizer`, attach it to any element that implements `IGestureRecognizer`, and bind it to an `ICommand` in our ViewModel.
 
 ### BindSwipeGesture
 
@@ -181,7 +156,7 @@ new Label()
 
 ### BindTapGesture
 
-The following example demonstrates how to create a `ClickGestureRecognizer` that requires `2` taps to activate, attach it to a `Label` and bind it to an `ICommand` property called _TapCommand_ in our ViewModel:
+The following example demonstrates how to create a `BindTapGesture` that requires `2` taps to activate, attach it to a `Label` and bind it to an `ICommand` property called _TapCommand_ in our ViewModel:
 
 ```cs
 new Label()

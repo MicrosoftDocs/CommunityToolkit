@@ -420,6 +420,7 @@ var stackLayout = new HorizontalStackLayout()
             PressedOpacity = 0.6,
             PressedScale = 0.8,
             Command = command,
+            BindingContext = this.BindingContext
         }
     }
 };

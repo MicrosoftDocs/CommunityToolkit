@@ -121,7 +121,7 @@ Back on the .NET side, we are now ready to interop with the native library:
 </ItemGroup>
 ```
 
-For more information about this process, see the [AndroidMavenLibrary reference](dotnet/android/binding-libs/advanced-concepts/android-maven-library) documentation.
+For more information about this process, see the [AndroidMavenLibrary reference](/dotnet/android/binding-libs/advanced-concepts/android-maven-library) documentation.
 
 > [!NOTE]
 > You can rename the placeholder ```DotnetNewBinding``` class to better reflect the native library being wrapped. For more examples and tips for writing the API definitions, read more in the section below: [Modify an existing binding](#modify-an-existing-binding).

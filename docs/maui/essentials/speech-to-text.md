@@ -207,9 +207,7 @@ public partial class MainPage : ContentPage
 
 You can find an example of `SpeechToText` in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/SpeechToTextPage.xaml).
 
-For Offline recognition, you can use this sample: [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/OfflineSpeechToTextPage.xaml)
-
-```csharp
+For Offline recognition, you can use this sample: [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/OfflineSpeechToTextPage.xaml).
 
 ## API
 

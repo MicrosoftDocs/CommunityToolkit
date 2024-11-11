@@ -100,7 +100,7 @@ Back on the .NET side, we are now ready to interop with the native library:
         cd _template/macios/native/NewBinding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework &&
         sharpie bind --output=sharpie-out --namespace=NewBindingMaciOS --sdk=iphoneos18.0 --scope=Headers Headers/NewBinding-Swift.h
         ```
-    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _sharpie-out/ApiDefinitions.cs_.
+    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_.
     1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
 
 #### API Definition: Android

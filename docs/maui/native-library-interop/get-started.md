@@ -93,7 +93,7 @@ On the native side, make updates in _template/macios/native/NewBinding/NewBindin
 Back on the .NET side, we are now ready to interop with the native library:
 
 1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go.
-1. Optionally use objective sharpie to generate an updated ApiDefinitions.cs file that reflects any changes in your swift code.
+1. Use objective sharpie to generate the C# bindings for your Swift API updates:
     1. Run `sharpie xcode -sdks` to get a list of valid target SDK values for the bind command. Select the value that aligns with the platform and version you are targeting to use with the next command, for example `iphoneos18.0`.
     1. Run `sharpie bind` against the header files in the xcframework created by the binding project:
         ```

@@ -113,7 +113,7 @@ On the native side, make updates in _template/android/native/app/src/main/java/c
 
 Back on the .NET side, we are now ready to interop with the native library:
 1. Run `dotnet build` from _template/android/NewBinding.Android.Binding_ to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
-1. Reference any Android binding dependencies by adding `@(AndroidMavenLibrary)` or `@(PackageReference)` elements to satisfy the java dependency chain for the native library you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library.)
+1. Reference any Android binding dependencies by adding the following code to _template/sample/MauiSample.csproj_ for each dependency. Add `@(AndroidMavenLibrary)` or `@(PackageReference)` elements as needed to satisfy the java dependency chain for the native library you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library.)
 
 ```xml
 <ItemGroup Condition="$(TargetFramework.Contains('android'))">

@@ -117,7 +117,7 @@ Back on the .NET side, we are now ready to interop with the native library:
 
 ```xml
 <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-    <AndroidMavenLibrary Include="my.library:dependency-library" Version="1.0.0" Bind="false" />
+    <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false"
 </ItemGroup>
 ```
 

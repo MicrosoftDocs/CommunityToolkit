@@ -103,7 +103,7 @@ Back on the .NET side, we are now ready to interop with the native library:
     1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_.
     1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
 
-See also the [objective-sharpie](previous-versions/xamarin/cross-platform/macios/binding/objective-sharpie/tools) documentation to learn more about this tool.
+See also the [objective-sharpie](/previous-versions/xamarin/cross-platform/macios/binding/objective-sharpie/tools) documentation to learn more about this tool.
 
 #### API Definition: Android
 
@@ -123,7 +123,7 @@ Back on the .NET side, we are now ready to interop with the native library:
 </ItemGroup>
 ```
 
-See also the [AndroidMavenLibrary reference](/dotnet/android/binding-libs/advanced-concepts/android-maven-library) and [Java dependency verification](dotnet/android/binding-libs/advanced-concepts/java-dependency-verification) documentation for more information about this process.
+See also the [AndroidMavenLibrary reference](/dotnet/android/binding-libs/advanced-concepts/android-maven-library) and [Java dependency verification](/dotnet/android/binding-libs/advanced-concepts/java-dependency-verification) documentation for more information about this process.
 
 > [!NOTE]
 > You can rename the placeholder ```DotnetNewBinding``` class to better reflect the native library being wrapped. For more examples and tips for writing the API definitions, read more in the section below: [Modify an existing binding](#modify-an-existing-binding).

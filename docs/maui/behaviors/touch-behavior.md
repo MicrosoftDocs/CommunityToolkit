@@ -197,8 +197,9 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
     x:Name="TouchableHorizontalStackLayout">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
+            BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext, x:DataType=ContentPage}
             LongPressDuration="750"
-            LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand}"/>
+            LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand, x:DataType=ContentPage}"/>
     </HorizontalStackLayout.Behaviors>
 </HorizontalStackLayout>
 ```
@@ -364,7 +365,7 @@ The equivalent `TouchBehavior` in .NET MAUI would look like this:
             DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
             PressedOpacity="0.6"
             PressedScale="0.8"
-            BindingContext="{Binding Path=BindingContext, Source={x:Reference TouchableHorizontalLayout}}"
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference TouchableHorizontalLayout}, x:DataType=HorizontalStackLayout}"
             Command="{Binding LayoutTappedCommand}" />
     </HorizontalStackLayout.Behaviors>
 

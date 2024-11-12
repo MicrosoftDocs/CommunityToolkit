@@ -36,7 +36,7 @@ The `UserStoppedTypingBehavior` can be used as follows in XAML:
                 x:Name="UserStoppedTypingEntry">
                 <Entry.Behaviors>
                     <toolkit:UserStoppedTypingBehavior 
-                        BindingContext="{Binding Path=BindingContext, Source={x:Reference UserStoppedTypingEntry}}"
+                        BindingContext="{Binding Path=BindingContext, Source={x:Reference UserStoppedTypingEntry}, x:DataType=Entry}"
                         Command="{Binding SearchCommand}"
                         StoppedTypingTimeThreshold="1000"
                         MinimumLengthThreshold="3"

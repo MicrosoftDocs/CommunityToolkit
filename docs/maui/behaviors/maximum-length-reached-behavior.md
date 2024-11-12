@@ -38,8 +38,8 @@ The `MaxLengthReachedBehavior` can be used as follows in XAML:
            x:Name="MaxLengthEntry">
         <Entry.Behaviors>
             <toolkit:MaxLengthReachedBehavior
-                BindingContext="{Binding Path=BindingContext, Source={x:Reference MaxLengthEntry}}"
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand}" />
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MaxLengthEntry}, x:DataType=Entry}"
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand, x:DataType=ContentPage}" />
         </Entry.Behaviors>
     </Entry>
 

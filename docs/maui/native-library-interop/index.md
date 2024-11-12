@@ -41,14 +41,6 @@ Part of this includes orchestrating parts of the build process through MSBuild i
 - Moving the requisite native artifacts to the expected working directory
 - Generating the API definition for the binding library project
 
-The binding build process is extended to obtain and build native SDK dependencies by adding the `CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks` NuGet package to your binding project:
-
-```xml
-<ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
-</ItemGroup>
-```
-
 Android binding projects will add a `@(AndroidGradleProject)` item that points to a build.gradle file that will be used to build the gradle project:
 
 ```xml

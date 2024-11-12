@@ -94,14 +94,16 @@ Back on the .NET side, we are now ready to interop with the native library:
 
 1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go.
 1. Use objective sharpie to generate the C# bindings for your Swift API updates:
+    1. Navigate to _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework_ in your MaciOS binding projects output folder.
     1. Run `sharpie xcode -sdks` to get a list of valid target SDK values for the bind command. Select the value that aligns with the platform and version you are targeting to use with the next command, for example `iphoneos18.0`.
     1. Run `sharpie bind` against the header files in the xcframework created by the binding project:
         ```
-        cd _template/macios/native/NewBinding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework &&
         sharpie bind --output=sharpie-out --namespace=NewBindingMaciOS --sdk=iphoneos18.0 --scope=Headers Headers/NewBinding-Swift.h
         ```
     1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_.
     1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
+
+See also the [objective-sharpie](previous-versions/xamarin/cross-platform/macios/binding/objective-sharpie/tools) documentation to learn more about this tool.
 
 #### API Definition: Android
 
@@ -113,15 +115,15 @@ On the native side, make updates in _template/android/native/app/src/main/java/c
 
 Back on the .NET side, we are now ready to interop with the native library:
 1. Run `dotnet build` from _template/android/NewBinding.Android.Binding_ to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
-1. Reference any Android binding dependencies by adding the following code to _template/sample/MauiSample.csproj_ for each dependency. Add `@(AndroidMavenLibrary)` or `@(PackageReference)` elements as needed to satisfy the java dependency chain for the native library you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library.)
+1. Reference any Android binding dependencies by adding an `@(AndroidMavenLibrary)` item to _template/sample/MauiSample.csproj_ for each maven dependency being bound in your native Android project. This will enable Java dependency verification for your project and cause subsequent builds to produce build warnings or errors for missing dependencies. You can address these warnings/errors by adding `@(AndroidMavenLibrary)` or `@(PackageReference)` elements as suggested to satisfy the java dependency chain for the native library you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library.)
 
 ```xml
 <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-    <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false"
+    <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false" />
 </ItemGroup>
 ```
 
-For more information about this process, see the [AndroidMavenLibrary reference](/dotnet/android/binding-libs/advanced-concepts/android-maven-library) documentation.
+See also the [AndroidMavenLibrary reference](/dotnet/android/binding-libs/advanced-concepts/android-maven-library) and [Java dependency verification](dotnet/android/binding-libs/advanced-concepts/java-dependency-verification) documentation for more information about this process.
 
 > [!NOTE]
 > You can rename the placeholder ```DotnetNewBinding``` class to better reflect the native library being wrapped. For more examples and tips for writing the API definitions, read more in the section below: [Modify an existing binding](#modify-an-existing-binding).

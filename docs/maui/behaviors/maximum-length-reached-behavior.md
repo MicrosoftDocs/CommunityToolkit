@@ -34,10 +34,12 @@ The `MaxLengthReachedBehavior` can be used as follows in XAML:
     x:Name="Page">
 
     <Entry Placeholder="Start typing until MaxLength is reached..."
-           MaxLength="100">
+           MaxLength="100"
+           x:Name="MaxLengthEntry">
         <Entry.Behaviors>
-            <toolkit:MaxLengthReachedBehavior 
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand}" />
+            <toolkit:MaxLengthReachedBehavior
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MaxLengthEntry}, x:DataType=Entry}"
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand, x:DataType=ContentPage}" />
         </Entry.Behaviors>
     </Entry>
 

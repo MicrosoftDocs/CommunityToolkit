@@ -89,6 +89,9 @@ new Entry().Bind(nameof(ViewModel.RegistrationCode))
 > [!WARNING]
 > This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
 
+> [!Warning]
+> Bindings like this that use a `string` for the `path:` parameter are not trim-safe
+
 #### Value conversion
 
 The `Bind` method allows for a developer to supply the `Converter` that they wish to use in the binding or simply provide a mechanism to use an inline conversion.
@@ -123,8 +126,8 @@ The `convert` parameter is a `Func` that is required to convert the multiple bin
 ```csharp
 new Label()
     .Bind(Label.TextProperty,
-            binding1: new Binding(nameof(ViewModel.IsBusy)),
-            binding2: new Binding(nameof(ViewModel.LabelText)),
+            binding1: BindingBase.Create((ViewModel vm) => vm.IsBusy),
+            binding2: BindingBase.Create((ViewModel vm) => vm.LabelText),
             convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
 ```
 

@@ -2,7 +2,7 @@
 title: Introduction to the MVVM Toolkit
 author: Sergio0694
 description: An overview of how to get started with the MVVM Toolkit and to the APIs it contains
-keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, get started, visual studio, MVVM, net core, net standard
+keywords: winui, winui 3, windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, get started, visual studio, MVVM, net core, net standard
 dev_langs:
   - csharp
   - vb 
@@ -19,7 +19,7 @@ The `CommunityToolkit.Mvvm` package (aka MVVM Toolkit, formerly named `Microsoft
 
 The MVVM Toolkit is maintained and published by Microsoft, and part of the .NET Foundation. It is also used by several first party applications that are built into Windows, such as [the Microsoft Store](https://blogs.windows.com/windowsexperience/2021/06/24/building-a-new-open-microsoft-store-on-windows-11/).
 
-This package targets **.NET Standard** so it can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. It runs on all of them. The API surface is identical in all cases, making it perfect for building shared libraries.
+This package targets **.NET Standard** so it can be used on any app platform: WinUI 3, UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. It runs on all of them. The API surface is identical in all cases, making it perfect for building shared libraries.
 
 Additionally, the MVVM Toolkit also has a **.NET 6** target, which is used to enable more internal optimizations when running on .NET 6. The public API surface is identical in both cases, so NuGet will always resolve the best possible version of the package without consumers having to worry about which APIs will be available on their platform.
 

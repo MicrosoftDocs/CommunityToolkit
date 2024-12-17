@@ -238,7 +238,7 @@ items:
     - name: "Popup"
       items:
         - name: Overview
-          href: views/popup/overview.md
+          href: views/popup/Popup.md
         - name: "Popup Service"
           href: views/popup/popup-service.md
     - name: SemanticOrderView

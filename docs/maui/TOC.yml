@@ -238,9 +238,9 @@ items:
     - name: "Popup"
       items:
         - name: Overview
-          href: views/popup/Popup.md
+          href: views/Popup.md
         - name: "Popup Service"
-          href: views/popup/popup-service.md
+          href: views/popup-service.md
     - name: SemanticOrderView
       href: views/semantic-order-view.md
 - name: C# Markup

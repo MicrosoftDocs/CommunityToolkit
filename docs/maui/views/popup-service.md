@@ -85,7 +85,7 @@ public class NamePopupViewModel : ObservableObject
 
 ## Registering a Popup
 
-In order to first use the `IPopupService` to display a popup in your application you will need to register the popup and view model with the `MauiAppBuilder`, this can be done through the use of [Register Popup View and View Model](../../extensions/servicecollection-extensions.md#register-popup-view-and-view-model).
+In order to first use the `IPopupService` to display a popup in your application you will need to register the popup and view model with the `MauiAppBuilder`, this can be done through the use of [Register Popup View and View Model](../extensions/servicecollection-extensions.md#register-popup-view-and-view-model).
 
 Based on the example above the following code can be added to the MauiProgram.cs file.
 

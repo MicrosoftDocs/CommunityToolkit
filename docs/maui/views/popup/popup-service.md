@@ -1,5 +1,5 @@
 ---
-title: Popup - .NET MAUI Community Toolkit
+title: PopupService - .NET MAUI Community Toolkit
 author: bijington
 description: The PopupService provides a mechanism for displaying Popups within an application using the MVVM pattern.
 ms.date: 04/12/2022
@@ -13,7 +13,7 @@ The following sections will incrementally build on how to use the `PopupService`
 
 ## Creating a Popup
 
-In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Defining your popup](popup-service.md#defining-your-popup) the following can be created.
+In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Defining your popup](./overview.md#defining-your-popup) the following can be created.
 
 The XAML contents of the `Popup` can be defined as:
 
@@ -129,7 +129,7 @@ public void DisplayPopup()
 
 For a more concrete example please refer to our sample application and the example in [`MultiplePopupViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/Popup/MultiplePopupViewModel.cs)
 
-The `IPopupService` also provides methods to handle a result being returned from a Popup as covered in [Returning a result](./Popup.md#returning-a-result).
+The `IPopupService` also provides methods to handle a result being returned from a Popup as covered in [Returning a result](./popup-service.md#returning-a-result).
 
 ## Passing data to a Popup view model
 

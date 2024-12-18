@@ -37,7 +37,7 @@ The following examples show how to add the `ImageTouchBehavior` to an `Image` an
     <Image HeightRequest="100" WidthRequest="100">
         <Image.Behaviors>
             <toolkit:ImageTouchBehavior
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseTouchCountCommand}"
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseTouchCountCommand, x:DataType=Image}"
                 DefaultImageSource="button.png"
                 HoveredImageSource="button_hovered.png"
                 PressedImageSource="button_pressed.png" />

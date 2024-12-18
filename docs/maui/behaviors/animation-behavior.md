@@ -113,9 +113,11 @@ The following example shows how to attach the `AnimationBehavior` to an `Image` 
 #### View
 
 ```xaml
-<Image Source="thumbs-up.png">
+<Image Source="thumbs-up.png" x:Name="ThumbsUpImage">
     <Image.Behaviors>
-        <toolkit:AnimationBehavior Command="{Binding ThumbsUpCommand}">
+        <toolkit:AnimationBehavior 
+            Command="{Binding ThumbsUpCommand}">
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference ThumbsUpImage}, x:DataType=Image}"
             <toolkit:AnimationBehavior.AnimationType>
                 <toolkit:FadeAnimation />
             </toolkit:AnimationBehavior.AnimationType>
@@ -151,9 +153,12 @@ The following example shows how to add the `AnimationBehavior` to an `Entry`, bi
 
 ```xaml
 <Entry Placeholder="First name (Required)"
-       Text="{Binding FirstName}">
+       Text="{Binding FirstName}"
+       x:Name="FirstNameEntry">
     <Entry.Behaviors>
-        <toolkit:AnimationBehavior AnimateCommand="{Binding TriggerAnimationCommand}">
+        <toolkit:AnimationBehavior 
+            AnimateCommand="{Binding TriggerAnimationCommand}">
+            BindingContext="{Binding Path=BindingContext, Source={X:Reference FirstNameEntry}, x:DataType=Entry}"
             <toolkit:AnimationBehavior.AnimationType>
                 <toolkit:FadeAnimation />
             </toolkit:AnimationBehavior.AnimationType>

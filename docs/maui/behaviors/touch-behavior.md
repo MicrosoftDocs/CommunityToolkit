@@ -197,7 +197,7 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
     x:Name="TouchableHorizontalStackLayout">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
-            BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext, x:DataType=ContentPage}
+            BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext, x:DataType=ContentPage}"
             LongPressDuration="750"
             LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand, x:DataType=ContentPage}"/>
     </HorizontalStackLayout.Behaviors>

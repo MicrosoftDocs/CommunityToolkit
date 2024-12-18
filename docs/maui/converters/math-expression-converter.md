@@ -60,7 +60,7 @@ class MathExpressionConverterPage : ContentPage
         label.SetBinding(
             Label.TextProperty,
             new Binding(
-                nameof(ViewModels.MyValue),
+                static (ViewModels vm) => vm.MyValue,
                 converter: new MathExpressionConverter(),
                 converterParameter: "x/2"));
 

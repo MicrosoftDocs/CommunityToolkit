@@ -55,14 +55,14 @@ class ByteArrayToImageSourceConverterPage : ContentPage
     {
         var image = new Image();
 
-	image.SetBinding(
-		Image.SourceProperty,
-		new Binding(
-			nameof(ViewModel.DotNetBotImageByteArray),
-			mode: BindingMode.OneWay,
-			converter: new ByteArrayToImageSourceConverter()));
+    image.SetBinding(
+        Image.SourceProperty,
+        new Binding(
+            static (ViewModel vm) => vm.DotNetBotImageByteArray,
+            mode: BindingMode.OneWay,
+            converter: new ByteArrayToImageSourceConverter()));
 
-	Content = image;
+        Content = image;
     }
 }
 ```

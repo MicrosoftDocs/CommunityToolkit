@@ -65,10 +65,8 @@ class MaxLengthReachedBehaviorPage : ContentPage
         var behavior = new MaxLengthReachedBehavior();
         behavior.SetBinding(
             MaxLengthReachedBehavior.CommandProperty,
-            new Binding(
-                nameof(ViewModel.MaxLengthReachedCommand)
-            )
-        );
+            static (MaxLengthReachedBehaviorViewModel vm) => vm.MaxLengthReachedCommand,
+            source: this.BindingContext);
 
         entry.Behaviors.Add(behavior);
 
@@ -93,9 +91,10 @@ class MaxLengthReachedBehaviorPage : ContentPage
             Placeholder = "Start typing until MaxLength is reached...",
             MaxLength = 100
         }.Behaviors(
-            new MaxLengthReachedBehavior().Bind(
-                MaxLengthReachedBehavior.CommandProperty,
-                static (ViewModel vm) => vm.MaxLengthReachedCommand));
+            new MaxLengthReachedBehavior()
+            .Bind(MaxLengthReachedBehavior.CommandProperty,
+                getter: static (ViewModel vm) => vm.MaxLengthReachedCommand,
+                source: this.BindingContext));
     }
 }
 ```

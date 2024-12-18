@@ -78,13 +78,13 @@ class SelectedItemEventArgsConverterPage : ContentPage
             EventName = nameof(ListView.ItemSelected),
             EventArgsConverter = new SelectedItemEventArgsConverter()
         };
-        behavior.SetBinding(EventToCommandBehavior.CommandProperty, nameof(ViewModel.ItemSelectedCommand);
+        behavior.SetBinding(EventToCommandBehavior.CommandProperty, static (ViewModel vm) => vm.ItemSelectedCommand);
 
         var listView = new ListView 
         { 
             HasUnevenRows = true 
         };
-        listView.SetBinding(ListView.ItemsSource, nameof(ViewModel.Items));
+        listView.SetBinding(ListView.ItemsSource, static (ViewModel vm) => vm.Items);
         listView.Behaviors.Add(behavior);
 
         Content = listView;
@@ -118,7 +118,7 @@ class SelectedItemEventArgsConverterPage : ContentPage
             }
             .Bind(
                 EventToCommandBehavior.CommandProperty, 
-                nameof(ViewModel.ItemTappedCommand)));                   
+                static (ViewModel vm) => vm.ItemTappedCommand));                   
     }
 }
 ```

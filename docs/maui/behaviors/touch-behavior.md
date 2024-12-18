@@ -193,11 +193,13 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 <HorizontalStackLayout
     Padding="20"
     Background="Black"
-    HorizontalOptions="Center">
+    HorizontalOptions="Center"
+    x:Name="TouchableHorizontalStackLayout">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
+            BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext, x:DataType=ContentPage}
             LongPressDuration="750"
-            LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand}"/>
+            LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand, x:DataType=ContentPage}"/>
     </HorizontalStackLayout.Behaviors>
 </HorizontalStackLayout>
 ```
@@ -353,14 +355,18 @@ The equivalent `TouchBehavior` in .NET MAUI would look like this:
 #### [XAML](#tab/touchbehavior-xaml)
 
 ```xaml
-<HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+<HorizontalStackLayout 
+    HorizontalOptions="Center" 
+    VerticalOptions="Center"
+    x:Name="TouchableHorizontalLayout">
     <HorizontalStackLayout.Behaviors>
         <toolkit:TouchBehavior
             DefaultAnimationDuration="250"
             DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
             PressedOpacity="0.6"
             PressedScale="0.8"
-            Command="{Binding Command}" />
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference TouchableHorizontalLayout}, x:DataType=HorizontalStackLayout}"
+            Command="{Binding LayoutTappedCommand}" />
     </HorizontalStackLayout.Behaviors>
 
     <ContentView
@@ -415,6 +421,7 @@ var stackLayout = new HorizontalStackLayout()
             PressedOpacity = 0.6,
             PressedScale = 0.8,
             Command = command,
+            BindingContext = this.BindingContext
         }
     }
 };

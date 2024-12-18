@@ -73,7 +73,7 @@ Android binding projects generate the API definition automatically taking into a
 
 ![Conceptual overview: NativeLibraryInterop for Android](../images/native-library-interop/nativelibraryinterop-conceptual-overview-android.png "Conceptual overview of NativeLibraryInterop for Android")
 
-An iOS binding library project must include an explicitly defined API. To help with this, [Objective-Sharpie](/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) must be run on the resulting native framework to produce an [API definition file](/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (ApiDefinition.cs) alongside it. This can serve as a helpful reference when creating and maintaining the ApiDefintion.cs file used by the iOS binding project.
+An iOS binding library project must include an explicitly defined API. To help with this, [Objective-Sharpie](/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) must be run on the resulting native framework to produce an [API definition file](/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (ApiDefinition.cs) alongside it. This serves as a helpful reference when creating and maintaining the ApiDefinition.cs file used by the iOS binding project.
 
 ![Conceptual overview: NativeLibraryInterop for iOS](../images/native-library-interop/nativelibraryinterop-conceptual-overview-ios.png "Conceptual overview of NativeLibraryInterop for iOS")
 

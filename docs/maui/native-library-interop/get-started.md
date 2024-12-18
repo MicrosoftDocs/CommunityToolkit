@@ -100,14 +100,14 @@ Back on the .NET side, we are now ready to interop with the native library:
         ```
         sharpie bind --output=sharpie-out --namespace=NewBindingMaciOS --sdk=iphoneos18.0 --scope=Headers Headers/NewBinding-Swift.h
         ```
-    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_.
+    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_ and tweaking as desired (e.g. naming).
     1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
 
 See also the [objective-sharpie](/previous-versions/xamarin/cross-platform/macios/binding/objective-sharpie/tools) documentation to learn more about this tool.
 
 #### API Definition: Android
 
-On the native side, make updates in _template/android/native/app/src/main/java/com/example/newbinding/DotnetNewBinding.java_:
+On the native side, make updates in _template/android/native/newbinding/src/main/java/com/example/newbinding/DotnetNewBinding.java_:
 
 1. Add an import statement to import the native library you just added.
 1. Write the API definitions for the native library APIs of interest.

@@ -115,6 +115,27 @@ drawingView.OnDrawingLineCompleted += async (s, e) =>
 };
 ```
 
+## Use within a ScrollView
+
+When using the `DrawingView` inside a `ScrollView` the touch interaction with the `ScrollView` can sometimes be intercepted on iOS. This can be prevented by setting the `ShouldDelayContentTouches` property to `false` on iOS as per the following example:
+
+I solved this problem, by addding the ios:ScrollView.ShouldDelayContentTouches="false" to the ScrollView that contains the DrawingView:
+
+```xaml
+<ContentPage
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls">
+
+    <ScrollView ios:ScrollView.ShouldDelayContentTouches="false">
+
+        <DrawingView />
+
+    </ScrollView>
+
+</ContentPage>
+```
+
+For more information please refer to [ScrollView content touches](/dotnet/maui/ios/platform-specifics/scrollview-content-touches).
+
 ## Advanced usage
 
 To get the full benefits, the `DrawingView` provides the methods to get the image stream of the drawing lines.
@@ -130,8 +151,8 @@ To get the full benefits, the `DrawingView` provides the methods to get the imag
             OnDrawingLineCompleted="OnDrawingLineCompletedEvent"
             LineColor="Red"
             LineWidth="5"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
             <toolkit:DrawingView.Background>
                     <LinearGradientBrush StartPoint="0,0"
                                          EndPoint="0,1">

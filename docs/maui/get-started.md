@@ -79,6 +79,10 @@ To use the features of the toolkit please refer to the documentation pages for e
 
 This package enables you to display a map in your .NET MAUI Windows application.
 
+> [!IMPORTANT]
+> Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
+> For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.
+
 **Package name:** `CommunityToolkit.Maui.Maps`
 
 **Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Maps
@@ -102,7 +106,20 @@ builder
     .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
 ```
 
-How to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
+When using the .NET MAUI Community Toolkit Map for Windows and the regular .NET MAUI Maps together, you will need to make sure that each initialization call is only made for the relevant platform. The following example shows how to do this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+#if ANDROID || IOS
+    .UseMauiMaps()
+#elif WINDOWS
+    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
+#endif
+```
+
+For more information on how to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
 
 ### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkitMauiMediaElement)
 
@@ -117,7 +134,7 @@ This package enables you to play audio and video in your .NET MAUI application.
 First the using statement needs to be added to the top of your *MauiProgram.cs* file
 
 ```csharp
-using CommunityToolkit.Maui.MediaElement;
+using CommunityToolkit.Maui;
 ```
 
 In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
@@ -127,6 +144,33 @@ var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
     .UseMauiCommunityToolkitMediaElement()
+```
+
+To use the features of the toolkit please refer to the documentation pages for each specific feature.
+
+### [CommunityToolkit.Maui.Camera](#tab/CommunityToolkitMauiCamera)
+
+This package enables you to connect to a camera, display a preview from the camera and take photos.
+
+**Package name:** `CommunityToolkit.Maui.Camera`
+
+**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Camera
+
+#### Initializing the package
+
+First the using statement needs to be added to the top of your *MauiProgram.cs* file
+
+```csharp
+using CommunityToolkit.Maui;
+```
+
+In order to use the `CameraView` correctly, the `UseMauiCommunityToolkitCamera` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkitCamera()
 ```
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.

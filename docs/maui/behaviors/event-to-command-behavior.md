@@ -9,6 +9,8 @@ ms.date: 04/23/2022
 
 The `EventToCommandBehavior` is a `behavior` that allows the user to invoke a `Command` through an `Event`. It is designed to associate Commands to events exposed by controls that were not designed to support Commands. It allows you to map any arbitrary event on a control to a Command.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add an `EventToCommandBehavior` to a `Button` control and then handle the clicked event.
@@ -24,16 +26,19 @@ The following examples show how to add an `EventToCommandBehavior` to a `Button`
 The `EventToCommandBehavior` can be used as follows in XAML:
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MyLittleApp.MainPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MyLittleApp.MainPage"
+    x:Name="Page">
     
-    <Button>
+    <Button x:Name="MyButton">
         <Button.Behaviors>
             <toolkit:EventToCommandBehavior
                 EventName="Clicked"
-                Command="{Binding MyCustomCommand}" />
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyButton}, x:DataType=Button}
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MyCustomCommand, x:DataType=ContentPage}" />
         </Button.Behaviors>
     </Button>
 </ContentPage>
@@ -95,11 +100,14 @@ By using the `EventToCommandBehavior<T>` implementation the `EventArgs` will be 
 The following example shows how to use the generic implementation to pass the `WebNavigatedEventArgs` into the command.
 
 ```xaml
-<WebView Source="https://github.com">
+<WebView 
+    Source="https://github.com">
+    x:Name="MyWebView"
     <WebView.Behaviors>
         <toolkit:EventToCommandBehavior
             x:TypeArguments="WebNavigatedEventArgs"
             EventName="Navigated"
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference MyWebView}, x:DataType=WebView}"
             Command="{Binding WebViewNavigatedCommand}" />
     </WebView.Behaviors>
 </WebView>

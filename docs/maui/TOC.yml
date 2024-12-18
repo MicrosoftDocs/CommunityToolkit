@@ -33,6 +33,8 @@ items:
       href: behaviors/event-to-command-behavior.md
     - name: "IconTintColorBehavior"
       href: behaviors/icon-tint-color-behavior.md
+    - name: "ImageTouchBehavior"
+      href: behaviors/image-touch-behavior.md
     - name: MaskedBehavior
       href: behaviors/masked-behavior.md
     - name: "MaxLengthReachedBehavior"
@@ -45,12 +47,16 @@ items:
       href: behaviors/progressbar-animation-behavior.md
     - name: "RequiredStringValidationBehavior"
       href: behaviors/required-string-validation-behavior.md
+    - name: "SelectAllTextBehavior"
+      href: behaviors/select-all-text-behavior.md
     - name: "SetFocusOnEntryCompletedBehavior"
       href: behaviors/set-focus-when-entry-completed-behavior.md
     - name: "StatusBarBehavior"
       href: behaviors/statusbar-behavior.md
     - name: "TextValidationBehavior"
       href: behaviors/text-validation-behavior.md
+    - name: "TouchBehavior"
+      href: behaviors/touch-behavior.md
     - name: "UriValidationBehavior"
       href: behaviors/uri-validation-behavior.md
     - name: "UserStoppedTypingBehavior"
@@ -169,6 +175,10 @@ items:
   items:   
     - name: Overview
       href: essentials/index.md
+    - name: "AppTheme Resources"
+      href: essentials/apptheme-resources.md
+    - name: "Badge"
+      href: essentials/badge.md
     - name: FolderPicker
       href: essentials/folder-picker.md
     - name: FileSaver
@@ -181,6 +191,8 @@ items:
       href: extensions/index.md
     - name: ColorAnimationExtensions
       href: extensions/color-animation-extensions.md
+    - name: ColorConversionExtensions
+      href: extensions/color-conversion-extensions.md
     - name: KeyboardExtensions
       href: extensions/keyboard-extensions.md
     - name: ServiceCollectionExtensions
@@ -199,22 +211,36 @@ items:
       href: layouts/StateContainer.md
     - name: "UniformItemsLayout"
       href: layouts/UniformItemsLayout.md
+- name: "Platform Specific"
+  items:
+    - name: Overview
+      href: platform-specific/index.md
+    - name: "Navigation Bar (Android)"
+      href: platform-specific/navigation-bar.md
 - name: "Views"
   items:
     - name: Overview
       href: views/index.md
     - name: "AvatarView"
       href: views/AvatarView.md
+    - name: "CameraView"
+      href: views/camera-view.md
     - name: "DrawingView"
       href: views/DrawingView.md
     - name: "Expander"
       href: views/Expander.md
     - name: "LazyView"
       href: views/LazyView.md
+    - name: "Map (Windows)"
+      href: views/Map.md 
     - name: "MediaElement"
       href: views/MediaElement.md
     - name: "Popup"
-      href: views/Popup.md
+      items:
+        - name: Overview
+          href: views/Popup.md
+        - name: "Popup Service"
+          href: views/popup-service.md
     - name: SemanticOrderView
       href: views/semantic-order-view.md
 - name: C# Markup
@@ -259,3 +285,9 @@ items:
       href: markup/extensions/view-extensions.md
     - name: "VisualElement extensions"
       href: markup/extensions/visual-element-extensions.md
+- name: "Native Library Interop"
+  items:
+    - name: Overview
+      href: native-library-interop/index.md
+    - name: Get started
+      href: native-library-interop/get-started.md

@@ -99,26 +99,25 @@ async Task StartListening(CancellationToken cancellationToken)
 
     speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
     speechToText.RecognitionResultCompleted += OnRecognitionTextCompleted;
-    await SpeechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
+    await speechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
 }
 
 async Task StopListening(CancellationToken cancellationToken)
 {
-    await SpeechToText.StopListenAsync(CancellationToken.None);
-    SpeechToText.Default.RecognitionResultUpdated -= OnRecognitionTextUpdated;
-    SpeechToText.Default.RecognitionResultCompleted -= OnRecognitionTextCompleted;
+    await speechToText.StopListenAsync(CancellationToken.None);
+    speechToText.RecognitionResultUpdated -= OnRecognitionTextUpdated;
+    speechToText.RecognitionResultCompleted -= OnRecognitionTextCompleted;
 }
 
 void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
 {
     RecognitionText += args.RecognitionResult;
-};
+}
 
 void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
 {
     RecognitionText = args.RecognitionResult;
-};
-
+}
 ```
 
 ## Methods
@@ -219,4 +218,4 @@ You can find an example of `SpeechToText` in action in the [.NET MAUI Community 
 
 ## API
 
-You can find the source code for `SpeechToText` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/ISpeechToText.shared.cs).
+You can find the source code for `SpeechToText` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/SpeechToText/ISpeechToText.shared.cs).

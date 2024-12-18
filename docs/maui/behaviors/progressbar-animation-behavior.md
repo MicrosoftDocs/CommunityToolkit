@@ -9,6 +9,8 @@ ms.date: 05/02/2022
 
 The ProgressBar Animation Behavior animates a `ProgressBar` from its current Progress value to a provided value over time. The method accepts a `Double` progress value, a `uint` duration in milliseconds and an `Easing` enum value.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 ### XAML
@@ -22,10 +24,12 @@ The ProgressBar Animation Behavior animates a `ProgressBar` from its current Pro
 The `ProgressBarAnimationBehavior` can be used as follows in XAML:
 
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MyLittleApp.MainPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MyLittleApp.MainPage"
+    x:Name="Page">
      
         <Label Text="The ProgressBarAnimationBehavior is a behavior that animates a ProgressBar" />
 
@@ -33,7 +37,7 @@ The `ProgressBarAnimationBehavior` can be used as follows in XAML:
             <ProgressBar.Behaviors>
                 <toolkit:ProgressBarAnimationBehavior
                     x:Name="ProgressBarAnimationBehavior"
-                    Progress="{Binding Progress}"
+                    Progress="{Binding Source={x:Reference Page}, Path=BindingContext.Progress, x:DataType=ProgressBar}"
                     Length="250"/>
             </ProgressBar.Behaviors>
         </ProgressBar>

@@ -9,6 +9,8 @@ ms.date: 09/12/2023
 
 The `SelectAllTextBehavior` is a [`Behavior`](/dotnet/maui/fundamentals/behaviors) that will select all text in an `InputView` (e.g. an `Entry` or `Editor`) when it becomes focused.
 
+[!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
+
 ## Syntax
 
 The following examples show how to add the `SelectAllTextBehavior` to an `Entry`.

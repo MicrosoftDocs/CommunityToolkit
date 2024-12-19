@@ -65,7 +65,7 @@ class IndexToArrayItemConverter : ContentPage
         label.SetBinding(
             Label.TextProperty, 
             new Binding(
-                nameof(ViewModel.MyIntegerValue), 
+                static (ViewModel vm) => vm.MyIntegerValue, 
                 converter: new IndexToArrayItemConverter(), 
                 converterParameter: array)); 
 

@@ -77,32 +77,32 @@ class StringToListConverterPage : ContentPage
 {
     public StringToListConverterPage()
     {
-		var entry = new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" };
-		entry.SetBinding(Entry.TextProperty, new Binding(nameof(ViewModel.MyValue)));
+        var entry = new Entry { Placeholder = "Enter some text separated by ',' or '.' or ';'" };
+        entry.SetBinding(Entry.TextProperty, new Binding(static (ViewModel vm) => vm.MyValue));
 
-		var stringToListConverter = new StringToListConverter
-		{
-			SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
-			Separators = new [] { ",", ".", ";" }
-		};
+        var stringToListConverter = new StringToListConverter
+        {
+            SplitOptions = System.StringSplitOptions.RemoveEmptyEntries,
+            Separators = new [] { ",", ".", ";" }
+        };
 
-		var collectionView = new CollectionView
-		{
-			ItemTemplate = new DataTemplate(() =>
-			{
-				var itemLabel = new Label();
-				itemLabel.SetBinding(Label.TextProperty, path: ".");
-				return itemLabel;
-			})
-		};
+        var collectionView = new CollectionView
+        {
+            ItemTemplate = new DataTemplate(() =>
+            {
+                var itemLabel = new Label();
+                itemLabel.SetBinding(Label.TextProperty, path: ".");
+                return itemLabel;
+            })
+        };
 
-		collectionView.SetBinding(
-			CollectionView.ItemsSourceProperty,
-			new Binding(
-				nameof(ViewModel.MyValue),
-				converter: stringToListConverter));
+        collectionView.SetBinding(
+            CollectionView.ItemsSourceProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyValue,
+                converter: stringToListConverter));
 
-		Content = new VerticalStackLayout
+        Content = new VerticalStackLayout
         {
             Children =    
             {

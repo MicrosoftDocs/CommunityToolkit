@@ -107,22 +107,22 @@ class EnumToBoolConverterPage : ContentPage
     public EnumToBoolConverterPage()
     {
         var picker = new Picker();
-        picker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.Platforms));
-        picker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.SelectedPlatform));
+        picker.SetBinding(Picker.ItemsSourceProperty, static (ViewModel vm) => vm.Platforms);
+        picker.SetBinding(Picker.SelectedItemProperty, static (ViewModel vm) => vm.SelectedPlatform);
 
         var label = new Label
         {
             Text = "I am visible when the Picker value is Tizen."
         };
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModel.SelectedPlatform),
-				converter: new EnumToBoolConverter(),
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModel vm) => vm.SelectedPlatform,
+                converter: new EnumToBoolConverter(),
                 converterParameter: MyDevicePlatform.Tizen));
 
-		Content = new VerticalStackLayout
+        Content = new VerticalStackLayout
         {
             Children = { picker, label }
         };

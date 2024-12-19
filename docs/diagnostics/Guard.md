@@ -104,7 +104,7 @@ There are dozens of different APIs and overloads in the `Guard` class, here are 
 | Methods | Return Type | Description |
 | -- | -- | -- |
 | IsNotNullOrEmpty(string, string) | void | Asserts that the input string instance must not be null or empty |
-| IsNotNullOrWhitespace(string, string) | void | Asserts that the input string instance must not be null or whitespace |
+| IsNotNullOrWhiteSpace(string, string) | void | Asserts that the input string instance must not be null or whitespace |
 
 ### Collections
 

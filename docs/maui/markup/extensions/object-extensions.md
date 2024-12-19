@@ -22,7 +22,7 @@ Content = new Label()
     .Assign(out var label)
     .Bind(
         Label.TextColorProperty,
-        sttaic (Label label) => label.BackgroundColor,
+        static (Label label) => label.BackgroundColor,
         source: label,
         converter: new ColorToInverseColorConverter());
 ```

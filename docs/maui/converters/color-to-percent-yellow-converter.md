@@ -61,20 +61,20 @@ class ColorToPercentYellowConverterPage : ContentPage
     {
         var label = new Label();
 
- 		label.SetBinding(
- 			Label.TextProperty,
- 			new Binding(
- 				nameof(ViewModel.MyFavoriteColor),
- 				converter: new ColorToPercentYellowConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyFavoriteColor,
+                converter: new ColorToPercentYellowConverter()));
 
- 		Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label { Text = "The yellow component is:" },
- 				label
- 			}
- 		};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "The yellow component is:" },
+                label
+            }
+        };
     }
 }
 ```

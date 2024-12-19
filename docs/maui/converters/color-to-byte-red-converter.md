@@ -61,20 +61,20 @@ class ColorToByteRedConverterPage : ContentPage
     {
         var label = new Label();
 
- 		label.SetBinding(
- 			Label.TextProperty,
- 			new Binding(
- 				nameof(ViewModel.MyFavoriteColor),
- 				converter: new ColorToByteRedConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyFavoriteColor,
+                converter: new ColorToByteRedConverter()));
 
- 		Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label { Text = "The red component is:" },
- 				label
- 			}
- 		};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "The red component is:" },
+                label
+            }
+        };
     }
 }
 ```

@@ -78,67 +78,7 @@ var popup = new Popup
 
 ## Presenting a Popup
 
-Once the `Popup` has been built it can then be presented through the use of our `Popup` extension methods or through the `IPopupService` implementation from this toolkit.
-
-### IPopupService
-
-The .NET MAUI Community Toolkit provides a mechanism to instantiate and present popups in a .NET MAUI application. The popup service is automatically registered with the `MauiAppBuilder` when using the `UseMauiCommunityToolkit` initialization method. This enables you to resolve an `IPopupService` implementation in any part of your application.
-
-The `IPopupService` makes it possible to register a popup view and its associated view model. The ability to show a `Popup` can now be driven by only providing the view model making it possible to keep a clean separation between view and view model.
-
-#### Registering Popups
-
-In order to first use the `IPopupService` to display a popup in your application you will need to register the popup and view model with the `MauiAppBuilder`, this can be done through the use of [Register Popup View and View Model](../extensions/servicecollection-extensions.md#register-popup-view-and-view-model).
-
-#### Displaying Popups
-
-The following example shows how to use the `IPopupService` to create and display a popup in a .NET MAUI application:
-
-```csharp
-public class MyViewModel : INotifyPropertyChanged
-{
-    private readonly IPopupService popupService;
-
-    public MyViewModel(IPopupService popupService)
-    {
-        this.popupService = popupService;
-    }
-
-    public void DisplayPopup()
-    {
-        this.popupService.ShowPopup<UpdatingPopupViewModel>();
-    }
-}
-```
-
-For a more concrete example please refer to our sample application and the example in [`MultiplePopupViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/Popup/MultiplePopupViewModel.cs)
-
-The `IPopupService` also provides methods to handle a result being returned from a Popup as covered in [Returning a result](./Popup.md#returning-a-result).
-
-#### Passing data to a Popup view model
-
-When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. The `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `Action<TViewModel> onPresenting` parameter. This parameter has been designed to be framework agnostic and allow you as a developer to drive the loading/passing of data however best fits your architecture.
-
-To extend the previous example of showing a `UpdatingPopupViewModel` and its associated Popup, we can use the `onPresenting` parameter to pass in the number of updates that we wish to perform:
-
-```csharp
-public class MyViewModel : INotifyPropertyChanged
-{
-    private readonly IPopupService popupService;
-
-    public MyViewModel(IPopupService popupService)
-    {
-        this.popupService = popupService;
-    }
-
-    public void DisplayPopup()
-    {
-        this.popupService.ShowPopup<UpdatingPopupViewModel>(onPresenting: viewModel => viewModel.PerformUpdates(10));
-    }
-}
-```
-
-### Extension methods
+Once the `Popup` has been built it can then be presented through the use of our `Popup` extension methods or through the [`IPopupService`](popup-service.md) implementation from this toolkit.
 
 > [!IMPORTANT]
 > A `Popup` can only be displayed from a `Page` or an implementation inheriting from `Page`.

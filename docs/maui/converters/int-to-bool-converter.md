@@ -56,13 +56,13 @@ class IntToBoolConverterPage : ContentPage
     {
         var label = new Label { Text = "The value is not zero." };
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new IntToBoolConverter()));
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new IntToBoolConverter()));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

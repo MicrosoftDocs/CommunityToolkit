@@ -56,14 +56,14 @@ class ColorToColorForTextConverterPage : ContentPage
     {
         var label = new Label { Text = "The Text is showing in an optimum color against the background" };
 
-		label.SetBinding(
-			Label.TextColorProperty,
-			new Binding(
-				nameof(ContentPage.BackgroundColor),
-				converter: new ColorToColorForTextConverter(),
-				source: this));
+        label.SetBinding(
+            Label.TextColorProperty,
+            new Binding(
+                static (ContentPage page) => page.BackgroundColor,
+                converter: new ColorToColorForTextConverter(),
+                source: this));
 
-		Content = label;
+        Content = label;
     }
 }
 ```
@@ -82,7 +82,7 @@ class ColorToColorForTextConverterPage : ContentPage
         Content = new Label { Text = "The Text is showing in an optimum color against the background" }
             .Bind(
                 Label.TextColorProperty,
-                nameof(ContentPage.BackgroundColor),
+                static (ContentPage page) => page.BackgroundColor,
                 converter: new ColorToColorForTextConverter(),
                 source: this);
     }

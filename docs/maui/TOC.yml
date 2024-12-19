@@ -236,7 +236,11 @@ items:
     - name: "MediaElement"
       href: views/MediaElement.md
     - name: "Popup"
-      href: views/Popup.md
+      items:
+        - name: Overview
+          href: views/Popup.md
+        - name: "Popup Service"
+          href: views/popup-service.md
     - name: SemanticOrderView
       href: views/semantic-order-view.md
 - name: C# Markup

@@ -80,13 +80,13 @@ class ItemTappedEventArgsConverterPage : ContentPage
             EventName = nameof(ListView.ItemTapped),
             EventArgsConverter = new ItemTappedEventArgsConverter()
         };
-        behavior.SetBinding(EventToCommandBehavior.CommandProperty, nameof(ViewModel.ItemTappedCommand);
+        behavior.SetBinding(EventToCommandBehavior.CommandProperty, static (ViewModel vm) => vm.ItemTappedCommand);
 
         var listView = new ListView 
         { 
             HasUnevenRows = true 
         };
-        listView.SetBinding(ListView.ItemsSource, nameof(ViewModel.Items));
+        listView.SetBinding(ListView.ItemsSource, static (ViewModel vm) => vm .Items);
         listView.Behaviors.Add(behavior);
 
         Content = listView;

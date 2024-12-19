@@ -62,13 +62,13 @@ class DoubleToIntConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModel.MyValue),
-				converter: new DoubleToIntConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyValue,
+                converter: new DoubleToIntConverter()));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

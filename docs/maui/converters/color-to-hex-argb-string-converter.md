@@ -55,20 +55,20 @@ class ColorToHexArgbStringConverterPage : ContentPage
     {
         var label = new Label();
 
-	label.SetBinding(
-		Label.TextProperty,
-		new Binding(
-			nameof(ViewModel.MyFavoriteColor),
-			converter: new ColorToHexArgbStringConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => .MyFavoriteColor,
+                converter: new ColorToHexArgbStringConverter()));
 
-	Content = new VerticalStackLayout
-	{
-		Children =
-		{
-			new Label { Text = "My favorite color is:" },
-			label
-		}
-	};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "My favorite color is:" },
+                label
+            }
+        };
     }
 }
 ```

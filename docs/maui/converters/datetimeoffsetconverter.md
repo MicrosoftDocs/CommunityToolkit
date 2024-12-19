@@ -65,13 +65,13 @@ class DateTimeOffsetConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new DateTimeOffsetConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new DateTimeOffsetConverter()));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

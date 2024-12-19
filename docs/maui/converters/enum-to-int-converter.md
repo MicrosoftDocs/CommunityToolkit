@@ -65,22 +65,24 @@ class EnumToIntConverterPage : ContentPage
 {
     public EnumToIntConverterPage()
     {
-      Picker picker = new Picker { Title = "EnumToIntConverter" };
-      picker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.AllStates));
-      picker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.SelectedState));
+        Picker picker = new Picker { Title = "EnumToIntConverter" };
+        picker.SetBinding(Picker.ItemsSourceProperty, static (ViewModel vm) => vm .AllStates);
+        picker.SetBinding(Picker.SelectedItemProperty, static (ViewModel vm) => vm.SelectedState);
 
-      Content = new StackLayout
-			{
-				Margin = new Thickness(20),
-				Children = {
-					new Label {
-						Text = "The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.",
-						FontAttributes = FontAttributes.Bold,
-						HorizontalOptions = LayoutOptions.Center 
-					},
-					picker
-				}
-			};
+        Content = new StackLayout
+        {
+            Margin = new Thickness(20),
+            Children = 
+            {
+                new Label 
+                {
+                    Text = "The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.",
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalOptions = LayoutOptions.Center 
+                },
+                picker
+            }
+        };
 }
 ```
 

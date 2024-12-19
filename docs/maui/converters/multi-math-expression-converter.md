@@ -83,9 +83,9 @@ class MultiMathExpressionConverterPage : ContentPage
                 ConverterParameter = "x0 + x1 + x2",
                 Bindings = new List<BindingBase>
                 {
-                    new Binding(nameof(ViewModel.X0)),
-                    new Binding(nameof(ViewModel.X1)),
-                    new Binding(nameof(ViewModel.X2))
+                    new Binding(static (ViewModel vm) => vm.X0),
+                    new Binding(static (ViewModel vm) => vm.X1),
+                    new Binding(static (ViewModel vm) => vm.X2)
                 }
             });
 
@@ -109,9 +109,9 @@ class MultiMathExpressionConverterPage : ContentPage
                 Label.TextProperty,
                 new List<BindingBase>
                 {
-                    new Binding(nameof(ViewModel.X0)),
-                    new Binding(nameof(ViewModel.X1)),
-                    new Binding(nameof(ViewModel.X2))
+                    new Binding(static (ViewModel vm) => vmX0),
+                    new Binding(static (ViewModel vm) => vmX1),
+                    new Binding(static (ViewModel vm) => vmX2)
                 },
                 converter: new MultiMathExpressionConverter(),
                 converterParameter: "x0 + x1 + x2");

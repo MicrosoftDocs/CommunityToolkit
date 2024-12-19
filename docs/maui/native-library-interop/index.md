@@ -41,41 +41,31 @@ Part of this includes orchestrating parts of the build process through MSBuild i
 - Moving the requisite native artifacts to the expected working directory
 - Generating the API definition for the binding library project
 
-The binding build process is extended to obtain and build native SDK dependencies by adding the `CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks` NuGet package to your binding project:
+Android binding projects will add a `@(AndroidGradleProject)` item that points to a build.gradle file that will be used to build the gradle project:
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
-</ItemGroup>
-```
-
-Android binding projects will add a `@(NLIGradleProjectReference)` item that points to the root folder that contains the native wrapper gradle project:
-
-```xml
-<ItemGroup>
-    <NLIGradleProjectReference Include="../native" >
+    <AndroidGradleProject Include="../native/build.gradle.kts" >
         <ModuleName>newbinding</ModuleName>
         <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
         <Bind>true</Bind>
         <Pack>true</Pack>
         -->
-    </NLIGradleProjectReference>
+    </AndroidGradleProject>
 </ItemGroup>
 ```
 
-iOS binding projects will add an `@(NLIXcodeProjectReference)` item that points to the native wrapper Xcode project:
+iOS binding projects will add an `@(XcodeProject)` item that points to the native wrapper Xcode project:
 
 ```xml
 <ItemGroup>
-    <NLIXcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
+    <XcodeProject Include="../native/NewBinding/NewBinding.xcodeproj">
         <SchemeName>NewBinding</SchemeName>
-        <SharpieNamespace>NewBinding</SharpieNamespace>
-        <SharpieBind>true</SharpieBind>
         <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
         <Kind>Framework</Kind>
         <SmartLink>true</SmartLink>
         -->
-    </NLIXcodeProjectReference>
+    </XcodeProject>
 </ItemGroup>
 ```
 
@@ -83,7 +73,7 @@ Android binding projects generate the API definition automatically taking into a
 
 ![Conceptual overview: NativeLibraryInterop for Android](../images/native-library-interop/nativelibraryinterop-conceptual-overview-android.png "Conceptual overview of NativeLibraryInterop for Android")
 
-An iOS binding library project must include an explicitly defined API. To help with this, [Objective-Sharpie](/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) can be run automatically on the resulting native framework to produce an [API definition file](/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (ApiDefinition.cs) alongside it. This can serve as a helpful reference when creating and maintaining the ApiDefintion.cs file used by the iOS binding project.
+An iOS binding library project must include an explicitly defined API. To help with this, [Objective-Sharpie](/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) must be run on the resulting native framework to produce an [API definition file](/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (ApiDefinition.cs) alongside it. This serves as a helpful reference when creating and maintaining the ApiDefinition.cs file used by the iOS binding project.
 
 ![Conceptual overview: NativeLibraryInterop for iOS](../images/native-library-interop/nativelibraryinterop-conceptual-overview-ios.png "Conceptual overview of NativeLibraryInterop for iOS")
 

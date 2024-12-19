@@ -19,7 +19,7 @@ Install prerequisites:
 - [.NET MAUI workload](https://github.com/dotnet/core/blob/main/release-notes/6.0/install-maui.md#cli-installation) (via Visual Studio or CLI ```dotnet workload install maui```)
 - [Android SDK](https://developer.android.com/tools)
 - [Android Studio](https://developer.android.com/studio)
-- [Objective-Sharpie](https://aka.ms/objective-sharpie) (required for the C# APIs to be auto-generated)
+- [Objective-Sharpie](https://aka.ms/objective-sharpie) (used to manually generate the C# APIs)
     - [Xamarin.iOS](https://download.visualstudio.microsoft.com/download/pr/ceb0ea3f-4db8-46b4-8dc3-8049d27c0107/3960868aa9b1946a6c77668c3f3334ee/xamarin.ios-16.4.0.23.pkg) (required for Objective-Sharpie to work)
 - [Visual Studio](https://visualstudio.microsoft.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/download)
 - [Xcode](https://developer.apple.com/xcode/)
@@ -92,13 +92,22 @@ On the native side, make updates in _template/macios/native/NewBinding/NewBindin
 
 Back on the .NET side, we are now ready to interop with the native library:
 
-1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go. If successful, you should see the generated C# bindings at _template/macios/native/NewBinding/bin/Release/net8.0-ios/sharpie/NewBinding/ApiDefinitions.cs_.
-1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/native/NewBinding/bin/Release/net8.0-ios/sharpie/NewBinding/ApiDefinitions.cs_.
-1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
+1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go.
+1. Use objective sharpie to generate the C# bindings for your Swift API updates:
+    1. Navigate to _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework_ in your MaciOS binding projects output folder.
+    1. Run `sharpie xcode -sdks` to get a list of valid target SDK values for the bind command. Select the value that aligns with the platform and version you are targeting to use with the next command, for example `iphoneos18.0`.
+    1. Run `sharpie bind` against the header files in the xcframework created by the binding project:
+        ```
+        sharpie bind --output=sharpie-out --namespace=NewBindingMaciOS --sdk=iphoneos18.0 --scope=Headers Headers/NewBinding-Swift.h
+        ```
+    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_ and tweaking as desired (e.g. naming).
+    1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
+
+See also the [objective-sharpie](/previous-versions/xamarin/cross-platform/macios/binding/objective-sharpie/tools) documentation to learn more about this tool.
 
 #### API Definition: Android
 
-On the native side, make updates in _template/android/native/app/src/main/java/com/example/newbinding/DotnetNewBinding.java_:
+On the native side, make updates in _template/android/native/newbinding/src/main/java/com/example/newbinding/DotnetNewBinding.java_:
 
 1. Add an import statement to import the native library you just added.
 1. Write the API definitions for the native library APIs of interest.
@@ -106,16 +115,15 @@ On the native side, make updates in _template/android/native/app/src/main/java/c
 
 Back on the .NET side, we are now ready to interop with the native library:
 1. Run `dotnet build` from _template/android/NewBinding.Android.Binding_ to test everything is plugged in correctly and good to go. (Note: This step will require that you have JDK 17 installed)
-1. Reference any Android binding dependencies by adding the following code to _template/sample/MauiSample.csproj_ for each dependency. Replace _{yourDependencyLibrary.aar}_ with the required .aar file for the dependency you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library. The _build.gradle.kts_ file is configured to copy dependencies into a bin/outputs/deps folder for you to reference in your application)
+1. Reference any Android binding dependencies by adding an `@(AndroidMavenLibrary)` item to _template/sample/MauiSample.csproj_ for each maven dependency being bound in your native Android project. This will enable Java dependency verification for your project and cause subsequent builds to produce build warnings or errors for missing dependencies. You can address these warnings/errors by adding `@(AndroidMavenLibrary)` or `@(PackageReference)` elements as suggested to satisfy the java dependency chain for the native library you are binding. (Note: The gradle/maven dependencies often need to be explicitly referenced, as they are not automatically bundled into your library.)
 
 ```xml
 <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-    <AndroidLibrary Include="..\android\native\newbinding\bin\Release\net8.0-android\outputs\deps\{yourDependencyLibrary.aar}">
-        <Bind>false</Bind>
-        <Visible>false</Visible>
-    </AndroidLibrary>
+    <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false" />
 </ItemGroup>
 ```
+
+See also the [AndroidMavenLibrary reference](/dotnet/android/binding-libs/advanced-concepts/android-maven-library) and [Java dependency verification](/dotnet/android/binding-libs/advanced-concepts/java-dependency-verification) documentation for more information about this process.
 
 > [!NOTE]
 > You can rename the placeholder ```DotnetNewBinding``` class to better reflect the native library being wrapped. For more examples and tips for writing the API definitions, read more in the section below: [Modify an existing binding](#modify-an-existing-binding).
@@ -202,7 +210,7 @@ public static func unregister(completion: @escaping (NSError?) -> Void) {
 The other half will be to update the _ApiDefinitions.cs_ file in the binding project to expose this new method.  There are two ways you can go about this:
 
 1. You can manually add the required code
-2. When the binding project builds, objective sharpie is run and an _ApiDefinitions.cs_ file is generated inside of the _native/macios/bin/sharpie_ folder (this path will vary based on the project you are working on of course).  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
+2. After building the binding project, you can run the objective sharpie tool to generate an _ApiDefinitions.cs_ file.  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
 
 In this case, the changes to _ApiDefinitions.cs_ would be:
 

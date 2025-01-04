@@ -24,7 +24,7 @@ The following examples show how to add the `ImageTouchBehavior` to an `Image` an
 
 [!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
 
-#### Using the AnimationBehavior
+#### Using the ImageTouchBehavior
 
 ```xaml
 <ContentPage 

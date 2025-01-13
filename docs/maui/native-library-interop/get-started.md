@@ -15,7 +15,7 @@ These instructions outline the basic steps, key decision points, and guiding exa
 
 Install prerequisites:
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download)
+- [.NET 9 SDK](https://dotnet.microsoft.com/download)
 - [.NET MAUI workload](https://github.com/dotnet/core/blob/main/release-notes/6.0/install-maui.md#cli-installation) (via Visual Studio or CLI ```dotnet workload install maui```)
 - [Android SDK](https://developer.android.com/tools)
 - [Android Studio](https://developer.android.com/studio)

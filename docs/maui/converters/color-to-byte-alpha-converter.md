@@ -61,20 +61,20 @@ class ColorToByteAlphaConverterPage : ContentPage
     {
         var label = new Label();
 
- 		label.SetBinding(
- 			Label.TextProperty,
- 			new Binding(
- 				nameof(ViewModel.MyFavoriteColor),
- 				converter: new ColorToByteAlphaConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyFavoriteColor,
+                converter: new ColorToByteAlphaConverter()));
 
- 		Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label { Text = "The alpha component is:" },
- 				label
- 			}
- 		};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "The alpha component is:" },
+                label
+            }
+        };
     }
 }
 ```

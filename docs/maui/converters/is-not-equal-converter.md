@@ -57,14 +57,14 @@ class IsNotEqualConverterPage : ContentPage
     {
         var label = new Label { Text = "The value is not equal to 100" };
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new IsNotEqualConverter(),
-				converterParameter: 100));
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new IsNotEqualConverter(),
+                converterParameter: 100));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

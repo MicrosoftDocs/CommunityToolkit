@@ -39,6 +39,16 @@ Here's an example setting `Label.HorizontalTextAlignment` to `TextAlignment.End`
 new Label().TextEnd()
 ```
 
+## TextJustify
+
+The `TextJustify` method sets the `ITextAlignment.HorizontalTextAlignment` property to `TextAlignment.Justify`.
+
+Here's an example setting `Label.HorizontalTextAlignment` to `TextAlignment.Justify` using `TextJustify`:
+
+```cs
+new Label().TextJustify()
+```
+
 ## TextTop
 
 The `TextTop` method sets the `ITextAlignment.VerticalTextAlignment` property to `TextAlignment.Start`.

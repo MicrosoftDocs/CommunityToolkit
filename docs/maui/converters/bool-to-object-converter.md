@@ -65,7 +65,7 @@ class BoolToObjectConverterPage : ContentPage
         label.SetBinding(
             Label.IsVisibleProperty,
             new Binding(
-                nameof(ViewModels.IsValid),
+                static (ViewModel vm) => vm.IsValid,
                 converter: new BoolToObjectConverter
                 {
                     TrueObject = new SolidColorBrush(Colors.Green),

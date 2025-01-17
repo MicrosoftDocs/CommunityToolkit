@@ -33,11 +33,12 @@ The `EventToCommandBehavior` can be used as follows in XAML:
     x:Class="MyLittleApp.MainPage"
     x:Name="Page">
     
-    <Button>
+    <Button x:Name="MyButton">
         <Button.Behaviors>
             <toolkit:EventToCommandBehavior
                 EventName="Clicked"
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MyCustomCommand}" />
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyButton}, x:DataType=Button}"
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MyCustomCommand, x:DataType=ContentPage}" />
         </Button.Behaviors>
     </Button>
 </ContentPage>
@@ -99,11 +100,14 @@ By using the `EventToCommandBehavior<T>` implementation the `EventArgs` will be 
 The following example shows how to use the generic implementation to pass the `WebNavigatedEventArgs` into the command.
 
 ```xaml
-<WebView Source="https://github.com">
+<WebView 
+    Source="https://github.com"
+    x:Name="MyWebView">
     <WebView.Behaviors>
         <toolkit:EventToCommandBehavior
             x:TypeArguments="WebNavigatedEventArgs"
             EventName="Navigated"
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference MyWebView}, x:DataType=WebView}"
             Command="{Binding WebViewNavigatedCommand}" />
     </WebView.Behaviors>
 </WebView>

@@ -61,20 +61,20 @@ class ColorToByteGreenConverterPage : ContentPage
     {
         var label = new Label();
 
- 		label.SetBinding(
- 			Label.TextProperty,
- 			new Binding(
- 				nameof(ViewModel.MyFavoriteColor),
- 				converter: new ColorToByteGreenConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyFavoriteColor,
+                converter: new ColorToByteGreenConverter()));
 
- 		Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label { Text = "The green component is:" },
- 				label
- 			}
- 		};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "The green component is:" },
+                label
+            }
+        };
     }
 }
 ```

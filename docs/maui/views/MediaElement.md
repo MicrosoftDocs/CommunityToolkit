@@ -25,7 +25,7 @@ The `MediaElement` uses the following platform implementations.
 
 |Platform| Platform media player implementation |
 |--------|-----------------------|
-| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [ExoPlayerXamarin](https://github.com/Baseflow/ExoPlayerXamarin) maintainers! |
+| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [Android Libraries](https://github.com/dotnet/android-libraries) maintainers! |
 | iOS/macOS | [AVPlayer](xref:AVFoundation.AVPlayer) |
 | Windows | [MediaPlayer](xref:Windows.Media.Playback.MediaPlayer) |
 
@@ -81,10 +81,7 @@ public class MainActivity : MauiAppCompatActivity
 #### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
 
 ```csharp
- <service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-   <intent-filter>
-     <action android:name="android.intent.action.MEDIA_BUTTON" />
-   </intent-filter>
+ <service android:name="communityToolkit.maui.media.services" android:stopWithTask android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
    <intent-filter>
      <action android:name="androidx.media3.session.MediaSessionService"/>
    </intent-filter>
@@ -106,23 +103,19 @@ public class MainActivity : MauiAppCompatActivity
 #### Here is an example of required settings in `AndroidManifest.xml`
 
 ```csharp
-<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
-<service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+<service android:name="communityToolkit.maui.media.services" android:stopWithTask="true" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
     <intent-filter>
-    <action android:name="android.intent.action.MEDIA_BUTTON" />
-    </intent-filter>
-    <intent-filter>
-    <action android:name="androidx.media3.session.MediaSessionService"/>
+        <action android:name="androidx.media3.session.MediaSessionService"/>
     </intent-filter>
 </service>
 </application>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
 ```
 
 > [!NOTE]

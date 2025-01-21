@@ -81,7 +81,7 @@ public class MainActivity : MauiAppCompatActivity
 #### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
 
 ```csharp
- <service android:name="communityToolkit.maui.media.services" android:stopWithTask android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+ <service android:name="communityToolkit.maui.media.services" android:stopWithTask="true" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
    <intent-filter>
      <action android:name="androidx.media3.session.MediaSessionService"/>
    </intent-filter>

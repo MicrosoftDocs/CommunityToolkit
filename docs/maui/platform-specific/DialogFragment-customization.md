@@ -1,6 +1,6 @@
 ---
 title: Dialog Fragment Service - .NET MAUI Community Toolkit
-author: Pedro Jesus
+author: pictos
 description: The DialogFragmentService provides an easy way to control the behavior of Modal pages in Android.
 ms.date: 02/01/2025
 ---

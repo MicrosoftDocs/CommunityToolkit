@@ -88,7 +88,13 @@ public class MainActivity : MauiAppCompatActivity
  </service>
 ```
 
-#### 3. Add the following permissions to `AndroidManifest.xml`
+#### 3. Update the minimum android API version
+In the project's `.csproj` file, update the minimum android API version to 26.
+```xml
+<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
+```
+
+#### 4. Add the following permissions to `AndroidManifest.xml`
 
 ```csharp
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

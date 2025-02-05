@@ -85,7 +85,7 @@ class StateToBooleanConverterPage : ContentPage
         label.SetBinding(
             Label.IsVisibleProperty,
             new Binding(
-                nameof(ViewModel.LayoutState),
+                static (ViewModel vm) => vm.LayoutState,
                 converter: new StateToBooleanConverter { StateToCompare = LayoutState.Success }));
 
         var button = new Button

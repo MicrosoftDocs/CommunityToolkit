@@ -60,13 +60,13 @@ class TextCaseConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new TextCaseConverter { Type = TextCaseType.Upper }));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new TextCaseConverter { Type = TextCaseType.Upper }));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

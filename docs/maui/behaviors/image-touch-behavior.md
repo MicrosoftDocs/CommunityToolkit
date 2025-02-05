@@ -24,7 +24,7 @@ The following examples show how to add the `ImageTouchBehavior` to an `Image` an
 
 [!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]
 
-#### Using the AnimationBehavior
+#### Using the ImageTouchBehavior
 
 ```xaml
 <ContentPage 
@@ -37,7 +37,7 @@ The following examples show how to add the `ImageTouchBehavior` to an `Image` an
     <Image HeightRequest="100" WidthRequest="100">
         <Image.Behaviors>
             <toolkit:ImageTouchBehavior
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseTouchCountCommand, x:DataType=Image}"
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseTouchCountCommand, x:DataType=ContentPage}"
                 DefaultImageSource="button.png"
                 HoveredImageSource="button_hovered.png"
                 PressedImageSource="button_pressed.png" />

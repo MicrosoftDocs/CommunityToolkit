@@ -83,9 +83,9 @@ class VariableMultiValueConverterPage : ContentPage
                 },
                 Bindings = new List<BindingBase>
                 {
-                    new Binding(nameof(ViewModel.IsCheeseSelected)),
-                    new Binding(nameof(ViewModel.IsHamSelected)),
-                    new Binding(nameof(ViewModel.IsPineappleSelected))
+                    new Binding(static (ViewModel vm) => vm.IsCheeseSelected),
+                    new Binding(static (ViewModel vm) => vmIsHamSelected),
+                    new Binding(static (ViewModel vm) => vmIsPineappleSelected)
                 }
             });
 
@@ -111,9 +111,9 @@ class VariableMultiValueConverterPage : ContentPage
                 Label.IsVisibleProperty,
                 new List<BindingBase>
                 {
-                    new Binding(nameof(ViewModel.IsCheeseSelected)),
-                    new Binding(nameof(ViewModel.IsHamSelected)),
-                    new Binding(nameof(ViewModel.IsPineappleSelected))
+                    new Binding(static (ViewModel vm) => vm.IsCheeseSelected),
+                    new Binding(static (ViewModel vm) => vm.IsHamSelected),
+                    new Binding(static (ViewModel vm) => vm.IsPineappleSelected)
                 },
                 converter: new VariableMultiValueConverter
                 {

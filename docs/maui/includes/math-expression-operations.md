@@ -6,47 +6,47 @@ ms.topic: include
 
 The following operations are supported:
 
-- "+"
-- "-"
-- "*"
-- "/"
-- "%"
-- "?" ":"
-- "||" or "or"
-- "&&" (C# only), "&amp;&amp;" (XAML only), or "and"
-- "=="
-- "!="
-- ">=" (C# only), "&gt;=" (XAML only), or "ge"
-- ">" (C# only), "&gt;" (XAML only), or "gt"
-- "<=" (C# only), "&lt;=" (XAML only), or "le"
-- "<" (C# only), "&lt;" (XAML only), or "lt"
-- "!"
-- "abs"
-- "acos"
-- "asin"
-- "atan"
-- "atan2"
-- "ceiling"
-- "cos"
-- "cosh"
-- "exp"
-- "floor"
-- "ieeeremainder"
-- "log"
-- "log10"
-- "max"
-- "min"
-- "pow"
-- "round"
-- "sign"
-- "sin"
-- "sinh"
-- "sqrt"
-- "tan"
-- "tanh"
-- "truncate"
-- "^"
-- "pi"
-- "e"
-- "true"
-- "false"
+- `"+"`
+- `"-"`
+- `"*"`
+- `"/"`
+- `"%"`
+- `"?"` `":"`
+- `"||" or "or"
+- `"&&"` (C# only), `"&amp;&amp;"` (XAML only), or `"and"`
+- `"=="`
+- `"!="`
+- `">="` (C# only), `"&gt;="` (XAML only), or `"ge"`
+- `">"` (C# only), `"&gt;"` (XAML only), or `"gt"`
+- `"<="` (C# only), `"&lt;="` (XAML only), or `"le"`
+- `"<"` (C# only), `"&lt;"` (XAML only), or `"lt"`
+- `"!"`
+- `"abs"`
+- `"acos"`
+- `"asin"`
+- `"atan"`
+- `"atan2"`
+- `"ceiling"`
+- `"cos"`
+- `"cosh"`
+- `"exp"`
+- `"floor"`
+- `"ieeeremainder"`
+- `"log"`
+- `"log10"`
+- `"max"`
+- `"min"`
+- `"pow"`
+- `"round"`
+- `"sign"`
+- `"sin"`
+- `"sinh"`
+- `"sqrt"`
+- `"tan"`
+- `"tanh"`
+- `"truncate"`
+- `"^"`
+- `"pi"`
+- `"e"`
+- `"true"`
+- `"false"`

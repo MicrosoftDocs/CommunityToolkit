@@ -34,10 +34,12 @@ The `MaxLengthReachedBehavior` can be used as follows in XAML:
     x:Name="Page">
 
     <Entry Placeholder="Start typing until MaxLength is reached..."
-           MaxLength="100">
+           MaxLength="100"
+           x:Name="MaxLengthEntry">
         <Entry.Behaviors>
-            <toolkit:MaxLengthReachedBehavior 
-                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand}" />
+            <toolkit:MaxLengthReachedBehavior
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MaxLengthEntry}, x:DataType=Entry}"
+                Command="{Binding Source={x:Reference Page}, Path=BindingContext.MaxLengthReachedCommand, x:DataType=ContentPage}" />
         </Entry.Behaviors>
     </Entry>
 
@@ -63,10 +65,8 @@ class MaxLengthReachedBehaviorPage : ContentPage
         var behavior = new MaxLengthReachedBehavior();
         behavior.SetBinding(
             MaxLengthReachedBehavior.CommandProperty,
-            new Binding(
-                nameof(ViewModel.MaxLengthReachedCommand)
-            )
-        );
+            static (MaxLengthReachedBehaviorViewModel vm) => vm.MaxLengthReachedCommand,
+            source: this.BindingContext);
 
         entry.Behaviors.Add(behavior);
 
@@ -91,9 +91,10 @@ class MaxLengthReachedBehaviorPage : ContentPage
             Placeholder = "Start typing until MaxLength is reached...",
             MaxLength = 100
         }.Behaviors(
-            new MaxLengthReachedBehavior().Bind(
-                MaxLengthReachedBehavior.CommandProperty,
-                static (ViewModel vm) => vm.MaxLengthReachedCommand));
+            new MaxLengthReachedBehavior()
+            .Bind(MaxLengthReachedBehavior.CommandProperty,
+                getter: static (ViewModel vm) => vm.MaxLengthReachedCommand,
+                source: this.BindingContext));
     }
 }
 ```

@@ -57,14 +57,14 @@ class IsEqualConverterPage : ContentPage
     {
         var label = new Label { Text = "The value is equal to 100" };
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new IsEqualConverter(),
-				converterParameter: 100));
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new IsEqualConverter(),
+                converterParameter: 100));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

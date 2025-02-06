@@ -78,7 +78,7 @@ class IsNullConverterPage : ContentPage
     public IsNullConverterPage()
     {
         Content = new Label { Text = "Object is null" }
-            .Bind(Label.IsVisibleProperty, nameof(ViewModel.MyObject), converter: new IsNullConverter());
+            .Bind(Label.IsVisibleProperty, static (ViewModel vm) => vm.MyObject, converter: new IsNullConverter());
     }
 }
 ```

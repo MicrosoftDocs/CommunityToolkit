@@ -56,13 +56,13 @@ class InvertedBoolConverterPage : ContentPage
     {
         var label = new Label { Text = "The value is false." };
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new InvertedBoolConverter()));
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new InvertedBoolConverter()));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

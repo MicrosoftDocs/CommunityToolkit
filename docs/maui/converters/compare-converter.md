@@ -115,7 +115,7 @@ class CompareConverterPage : ContentPage
         label.SetBinding(
             Label.BackgroundColorProperty,
             new Binding(
-                nameof(ViewModel.MyValue),
+                static (ViewModel vm) => vm.MyValue,
                 converter: new CompareConverter
                 {
                     ComparisonOperator = OperatorType.Smaller,

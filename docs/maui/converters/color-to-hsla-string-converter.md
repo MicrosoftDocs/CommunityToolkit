@@ -61,20 +61,20 @@ class ColorToHslaStringConverterPage : ContentPage
     {
         var label = new Label();
 
-	label.SetBinding(
-		Label.TextProperty,
-		new Binding(
-			nameof(ViewModel.MyFavoriteColor),
-			converter: new ColorToHslaStringConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyFavoriteColor,
+                converter: new ColorToHslaStringConverter()));
 
-	Content = new VerticalStackLayout
-	{
-		Children =
-		{
-			new Label { Text = "My favourite Color is:" },
-			label
-		}
-	};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "My favourite Color is:" },
+                label
+            }
+        };
     }
 }
 ```

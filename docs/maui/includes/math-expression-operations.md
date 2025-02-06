@@ -13,7 +13,7 @@ The following operations are supported:
 - "%"
 - "?" ":"
 - "||" or "or"
-- "&&" (C# only) or "and"
+- "&&" (C# only), "&amp;&amp;" (XAML only), or "and"
 - "=="
 - "!="
 - ">=" (C# only), "&gt;=" (XAML only), or "ge"

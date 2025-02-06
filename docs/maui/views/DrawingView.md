@@ -104,25 +104,22 @@ await drawingView.GetImageStream(desiredWidth: 400, desiredHeight: 300, imageOut
 
 Using the `DrawingView` methods can make it difficult to build an application using the MVVM pattern, to help deal with this the .NET MAUI Community Toolkit also provides the `DrawingViewService` class that will also allow the ability to generate an image stream.
 
-The following example shows how to generate an image stream of a desired width of 1920 and height of 1080 and a blue background. Developers are required to provide the lines parameter which will be the lines that the user has drawn.
+#### `ImageLineOptions.JustLines`
+
+The following example shows how to generate an image stream of a desired width of 1920 and height of 1080 and a blue background. Developers can use the `ImageLineOptions.JustLines` method to provide suitable options to only export the lines drawn. To export the entire canvas see [`ImageLineOptions.FullCanvas`](./DrawingView.md#imagelineoptionsfullcanvas)
 
 ```csharp
 await using var stream = await DrawingViewService.GetImageStream(
-    lines: Lines,
-    desiredSize: new Size(1920, 1080),
-    background: Brush.Blue);
+    ImageLineOptions.JustLines(Lines, new Size(1920, 1080), Brush.Blue));
 ```
 
-In order to generate an image that directly matches the DrawingView surface as mentioned in the previous section the `canvasSize` parameter can also be used.
+#### `ImageLineOptions.FullCanvas`
 
-The following example shows how to provide a `canvasSize`.
+In order to generate an image that directly matches the DrawingView surface the `ImageLineOptions.FullCanvas` method can be used as follows.
 
 ```csharp
 await using var stream = await DrawingViewService.GetImageStream(
-    lines: Lines,
-    desiredSize: new Size(1920, 1080),
-    background: Brush.Blue,
-    canvasSize: new Size(CanvasWidth, CanvasHeight));
+    ImageLineOptions.FullCanvas(Lines, new Size(1920, 1080), Brush.Blue, new Size(CanvasWidth, CanvasHeight)));
 ```
 
 For the purpose of this example the `CanvasWidth` and `CanvasHeight` properties have been data bound to the `Width` and `Height` properties of the `DrawingView` respectively. For the full solution please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/DrawingViewPage.xaml).

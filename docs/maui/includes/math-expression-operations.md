@@ -12,7 +12,7 @@ The following operations are supported:
 - `"/"`
 - `"%"`
 - `"?"` `":"`
-- `"||" or "or"
+- `"||"` or `"or"`
 - `"&&"` (C# only), `"&amp;&amp;"` (XAML only), or `"and"`
 - `"=="`
 - `"!="`

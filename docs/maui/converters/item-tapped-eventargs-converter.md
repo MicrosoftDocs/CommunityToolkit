@@ -42,6 +42,7 @@ The `ItemTappedEventArgsConverter` can be used as follows in XAML:
             Margin="0, 0, 0, 20" />
 
         <ListView
+            x:Name="TargetID"
             BackgroundColor="Transparent"
             ItemsSource="{Binding Items}"
             SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
@@ -56,6 +57,7 @@ The `ItemTappedEventArgsConverter` can be used as follows in XAML:
             </ListView.ItemTemplate>
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior EventName="ItemTapped"
+                                                BindingContext="{Binding BindingContext, Source={Reference TargetID}}"
                                                 Command="{Binding ItemTappedCommand}"
                                                 EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}" />
             </ListView.Behaviors>

@@ -12,15 +12,15 @@ The following operations are supported:
 - `"/"`
 - `"%"`
 - `"?"` `":"`
-- `"||"` or `"or"`
-- `"&&"` (C# only), `"&amp;&amp;"` (XAML only), or `"and"`
 - `"=="`
 - `"!="`
-- `">="` (C# only), `"&gt;="` (XAML only), or `"ge"`
-- `">"` (C# only), `"&gt;"` (XAML only), or `"gt"`
-- `"<="` (C# only), `"&lt;="` (XAML only), or `"le"`
-- `"<"` (C# only), `"&lt;"` (XAML only), or `"lt"`
 - `"!"`
+- `"or" or `"||"`
+- `"and"` or `"&&"` if you want to use this in XAML you will need to escape the characters (e.g. `"&amp;&amp;"`)
+- `"ge"` or `">="` if you want to use this in XAML you will need to escape the characters (e.g. `"&gt;="`)
+- `"gt"` or `">"` if you want to use this in XAML you will need to escape the characters (e.g. `"&gt;"`)
+- `"le"` or `"<="` if you want to use this in XAML you will need to escape the characters (e.g. `"&lt;="`)
+- `"lt"` or `"<"` if you want to use this in XAML you will need to escape the characters (e.g. `"&lt;"`)
 - `"abs"`
 - `"acos"`
 - `"asin"`

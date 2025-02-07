@@ -15,7 +15,7 @@ The following operations are supported:
 - `"=="`
 - `"!="`
 - `"!"`
-- `"or" or `"||"`
+- `"or"` or `"||"`
 - `"and"` or `"&&"` if you want to use this in XAML you will need to escape the characters (e.g. `"&amp;&amp;"`)
 - `"ge"` or `">="` if you want to use this in XAML you will need to escape the characters (e.g. `"&gt;="`)
 - `"gt"` or `">"` if you want to use this in XAML you will need to escape the characters (e.g. `"&gt;"`)

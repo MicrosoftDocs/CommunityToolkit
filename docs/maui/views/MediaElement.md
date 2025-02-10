@@ -25,7 +25,7 @@ The `MediaElement` uses the following platform implementations.
 
 |Platform| Platform media player implementation |
 |--------|-----------------------|
-| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [ExoPlayerXamarin](https://github.com/Baseflow/ExoPlayerXamarin) maintainers! |
+| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [Android Libraries](https://github.com/dotnet/android-libraries) maintainers! |
 | iOS/macOS | [AVPlayer](xref:AVFoundation.AVPlayer) |
 | Windows | [MediaPlayer](xref:Windows.Media.Playback.MediaPlayer) |
 

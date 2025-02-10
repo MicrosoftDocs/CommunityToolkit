@@ -7,13 +7,13 @@ ms.date: 02/01/2025
 
 # Dialog Fragment Service
 
-In .NET 9, the .NET MAUI changed how modal pages works in Android, now it uses a [`DialogFragment`](https://developer.android.com/reference/android/app/DialogFragment) and that's a breaking-change. With that some features that worked didn't work anymore and because of that a new way to interact with it has to be implemented.
+.NET 9.0 introduced a breaking change in how modal pages work in Android - they now use a [`DialogFragment`](https://developer.android.com/reference/android/app/DialogFragment). This breaking change resulted in broken functionality within the .NET MAUI Community Toolkit. The `DialogFragmentService` provides a mechanism to fix the breaking changes,
 
-The `DialogFragmenteService` is an interface that allows developers to customize the behavior and appearence of Modal pages in .NET MAUI for Android. The .NET MAUI Community Toolkit provides a default implementation to make sure its features, like `StatusBarColor` will work with the new Modal implementation.
+`IDialogFragmentService` is an interface that allows developers to customize the behavior and appearence of Modal pages in .NET MAUI for Android. The .NET MAUI Community Toolkit provides a default implementation to make sure its features, like `StatusBarColor` will work with the new Modal implementation.
 
 ## Usage
 
-By default the .NET MAUI Community Toolkit register the service, but you can control that, during the builder phase.
+By default the .NET MAUI Community Toolkit registers the `DialogFragmentService`, but you can control that as follows
 
 ```csharp
 public static class MauiProgram
@@ -31,11 +31,11 @@ public static class MauiProgram
 }
 ```
 
-Will be cases where you want to fix and customize the `DialogFragment` to match your apps needs, so in for that you can create your own implementation for that and use togheter with other implementations.
+There will be cases where you want to fix and customize the `DialogFragment` to match your apps needs, in these scenarios you can create your own implementation of the `IDialogFragmentService` interface and use in combination with other implementations.
 
 ## Create you own service
 
-Let's say that your app needs to present the Modal in immersive mode, in order to that we need to have access to the `DialogFragment` and configure its `Window` to behave the way we need.
+The following example shows how to present the modals in immersive mode. In order to achieve this we need to have access to the `DialogFragment` and configure its `Window` to behave in the required way.
 
 For that, first we will need to create a class that implements the `IDialogFragmentService` interface and customize the method that we need. And make sure this class will only compile for android, otherwise it will fail to build other targets.
 

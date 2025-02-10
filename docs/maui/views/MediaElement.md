@@ -78,7 +78,6 @@ public class MainActivity : MauiAppCompatActivity
 }
 ```
 
-- > [!NOTE]
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
 ### [Mac Catalyst](#tab/mac)

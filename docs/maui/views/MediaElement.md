@@ -78,56 +78,6 @@ public class MainActivity : MauiAppCompatActivity
 }
 ```
 
-#### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
-
-```csharp
- <service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-   <intent-filter>
-     <action android:name="android.intent.action.MEDIA_BUTTON" />
-   </intent-filter>
-   <intent-filter>
-     <action android:name="androidx.media3.session.MediaSessionService"/>
-   </intent-filter>
- </service>
-```
-
-#### 3. Add the following permissions to `AndroidManifest.xml`
-
-```csharp
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-```
-
-#### Here is an example of required settings in `AndroidManifest.xml`
-
-```csharp
-<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
-<service android:name="communityToolkit.maui.media.services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-    <intent-filter>
-    <action android:name="android.intent.action.MEDIA_BUTTON" />
-    </intent-filter>
-    <intent-filter>
-    <action android:name="androidx.media3.session.MediaSessionService"/>
-    </intent-filter>
-</service>
-</application>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-```
-
-> [!NOTE]
-> This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
- for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 

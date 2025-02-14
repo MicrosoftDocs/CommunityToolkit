@@ -7,7 +7,7 @@ ms.date: 09/19/2024
 
 # RatingView
 
-The .NET MAUI Community Toolkit `RatingView` is a control designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms.
+The .NET MAUI Community Toolkit `RatingView` is an `ItemTemplate` designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms.
 
 ## Syntax
 

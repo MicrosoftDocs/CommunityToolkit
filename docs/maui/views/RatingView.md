@@ -187,7 +187,7 @@ The following examples set the item padding property:
 
 ```xaml
 <toolkit:RatingView
-	ItemPadding="3, 7, 7, 3" />
+	ShapePadding="3, 7, 7, 3" />
 ```
 
 The equivalent C# code is:
@@ -195,7 +195,7 @@ The equivalent C# code is:
 ```csharp
 RatingView ratingView = new()
 {
-	ItemPadding = new Tickness(3, 7, 7, 3),
+	ShapePadding = new Tickness(3, 7, 7, 3),
 };
 ```
 

@@ -240,7 +240,7 @@ RatingView ratingView = new()
 };
 ```
 
-## Set rating fill
+## Set fill option
 The `FillOption` property is an `enum` of type `RatingViewFillOption` for setting how the fill is applied when the `Rating` is set, enabling more nuanced visual presentation, such as filling only the interior of the shapes or the full item.  The available options are:
 
 - `Shape` - (default) Fill the RatingView shape.

@@ -1,7 +1,7 @@
 ---
 title: RatingView - .NET MAUI Community Toolkit
 author: GeorgeLeithead
-description: "The RatingView is designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms."
+description: "The RatingView is an ItemTemplate designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms."
 ms.date: 09/19/2024
 ---
 

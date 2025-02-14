@@ -87,7 +87,7 @@ partial class MyPage : ContentPage
 | ShapeDiameter | `double` | Gets or sets the shape diameter in points.  The default value is 20. |
 | MaximumRating | `int` | Gets or sets the maximum number of ratings. The range of this value is 1 to 25; the default value is 5. This is a bindable property. |
 | RatingChanged | `EventHandler<RatingChangedEventArgs>` | Event occurs when the rating is changed. |
-| FillOption | `RatingViewFillOption` | Gets or sets the element to fill when a Rating is set. The property is of type [`RatingViewFillOption `](#set-fill-option) and is an enumeration. The default value of this property is `RatingViewFillOption .Shape`.  This is a bindable property. |
+| FillOption | `RatingViewFillOption` | Gets or sets the element to fill when a Rating is set. The property is of type [`RatingViewFillOption `](#set-fill-option) and is an enumeration. The default value of this property is `RatingViewFillOption.Shape`.  This is a bindable property. |
 | Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.  The default value is 0.  This is a bindable property. |
 | ShapeBorderColor | `Color` | Gets or sets the border color of the rating item shape. The default value of this is Grey.  This is a bindable property. |
 | ShapeBorderThickness | `Thickness` | Gets or sets the border thickness of the rating item shape.  The default value is a Thickness with all values set to 1.  This is a bindable property. |
@@ -123,7 +123,7 @@ RatingView ratingView = new()
 
 For more information about custom shapes, see [Shapes.Path](/dotnet/api/microsoft.maui.controls.shapes.path).
 
-## Set empty color
+## Set empty shape color
 The `EmptyShapeColor` property is a `Color` that for the unfilled (empty) rating shapes. This allows for clear visual differentiation between rated and unrated shapes.
 
 The following examples set the empty color property:

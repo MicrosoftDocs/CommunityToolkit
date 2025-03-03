@@ -1,6 +1,6 @@
 ---
 title: Element extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Element extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of an Element.
 ms.date: 03/28/2022
 ---

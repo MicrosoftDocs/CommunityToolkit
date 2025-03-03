@@ -1,6 +1,6 @@
 ---
 title: DynamicResourceHandler extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Dynamic Resource Handler extensions provide a series of extension methods that support configuring IDynamicResourceHandler
 ms.date: 05/16/2022
 ---

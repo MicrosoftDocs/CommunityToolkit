@@ -1,6 +1,6 @@
 ---
 title: Grid extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Grid extensions provide a series of extension methods that support configuring a Grid.
 ms.date: 05/17/2022
 ---

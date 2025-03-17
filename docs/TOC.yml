@@ -42,7 +42,7 @@
             - name: Ref<T>
               href: high-performance/Ref.md
     - name: .NET Aspire Community Toolkit
-      href:/dotnet/aspire/community-toolkit/overview
+      href: /dotnet/aspire/community-toolkit/overview
     - name: Windows Community Toolkit
       items:
         - name: Introduction

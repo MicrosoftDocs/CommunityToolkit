@@ -34,7 +34,7 @@ landingContent:
       - linkListType: overview
         links:
           - text: .NET Aspire Community Toolkit overview
-            url:/dotnet/aspire/community-toolkit/overview
+            url: /dotnet/aspire/community-toolkit/overview
       - linkListType: get-started
         links:
           - text: Ollama (AI)

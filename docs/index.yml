@@ -28,6 +28,28 @@ landingContent:
         links:
           - text: Installation
             url: /windows/communitytoolkit/getting-started
+  
+  - title: .NET Aspire Community Toolkit
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: .NET Aspire Community Toolkit overview
+            url:/dotnet/aspire/community-toolkit/overview
+      - linkListType: get-started
+        links:
+          - text: Ollama (AI)
+            url: /dotnet/aspire/community-toolkit/ollama
+          - text: Azure Static Web Apps
+            url: /dotnet/aspire/community-toolkit/hosting-azure-static-web-apps
+          - text: Python hosting extensions
+            url: /dotnet/aspire/community-toolkit/hosting-python-extensions
+          - text: SQLite Entity Framework Core
+            url: /dotnet/aspire/community-toolkit/sqlite-entity-framework-integration
+      - linkListType: sample
+        links:
+          - text: .NET Aspire Community Toolkit GitHub repo
+            url: https://github.com/CommunityToolkit/Aspire
+
   - title: Windows Community Toolkit
     linkLists:
       - linkListType: overview

@@ -1,6 +1,6 @@
 ---
 title: Object extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Object Extensions provide a series of extension methods that support configuring any object.
 ms.date: 11/05/2022
 ---

@@ -237,7 +237,7 @@ Local media can be played from the following sources:
 
 A `MediaElement` can play media files that are embedded in the app package, using the `embed://` URI scheme. Media files are embedded in the app package by placing them in the platform project.
 
-To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of you .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
+To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of your .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
 
 You can also place files in sub folders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaElement` would be `embed://MyVideos/MyFile.mp4`.
 

@@ -1,6 +1,6 @@
 ---
 title: TextAlignment extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The TextAlignment extensions provide a series of extension methods that support configuring the text alignment of controls implementing ITextAlignment.
 ms.date: 05/18/2022
 ---

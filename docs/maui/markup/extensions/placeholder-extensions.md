@@ -1,6 +1,6 @@
 ---
 title: Placeholder extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Placeholder extensions provide a series of extension methods that support configuring IPlaceholder controls
 ms.date: 03/28/2022
 ---

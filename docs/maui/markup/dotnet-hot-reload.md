@@ -1,6 +1,6 @@
 ---
 title: C# Markup Hot Reload - .NET MAUI Community Toolkit - Markup
-author: brminnick
+author: TheCodeTraveler
 description: C# Markup supports C# Hot Reload
 ms.date: 10/01/2023
 ---

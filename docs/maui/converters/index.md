@@ -70,3 +70,59 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`StringToListConverter`](string-to-list-converter.md) | The `StringToListConverter` is a one-way converter that returns a set of substrings by splitting the input string based on one or more separators. |
 | [`TextCaseConverter`](text-case-converter.md) | The `TextCaseConverter` is a one-way converter that allows users to convert the casing of an incoming `string` type binding. The `Type` property is used to define what kind of casing will be applied to the string. |
 | [`VariableMultiValueConverter`](variable-multi-value-converter.md) | The `VariableMultiValueConverter` is a converter that allows users to convert `bool` values via a `MultiBinding` to a single `bool`. |
+
+## Create a .NET MAUI Community Toolkit Converter
+
+The .NET MAUI Community Toolkit provides type safe implementations of the `IValueConverter` interface provided by .NET MAUI, this makes it easier for developers to write more concise, type safe converters. The toolkit provides the following options
+
+### Two way converter
+
+The `BaseConverter` class provides developers with the ability to define the incoming value type and also the outgoing value type for an `IValueConverter` implementation that supports a two-way binding. The following example shows how to create a converter that will convert a `bool` value to `Colors.Green` if `true` and `Colors.Red` if `false`.
+
+```csharp
+public class BoolToColorConverter : BaseConverter<bool, Color>
+{
+    public override Color DefaultConvertReturnValue { get; set; } = Colors.Orange;
+
+    public override bool DefaultConvertBackReturnValue { get; set; } = false;
+
+    public override string ConvertFrom(bool value, CultureInfo? culture)
+    {
+        return value ? Colors.Green : Colors.Red;
+    }
+
+    public override int ConvertBackTo(Color value, CultureInfo? culture)
+    {
+        return value == Colors.Green;
+    }
+}
+```
+
+The `DefaultConvertReturnValue` will be used by the base implementation and returned if an exception is thrown inside the `ConvertFrom` method.
+
+The `DefaultConvertBackReturnValue` will be used by the base implementation and returned if an exception is thrown inside the `ConvertBackTo` method.
+
+> [!WARNING]
+> The converter will throw an `ArgumentException` if either the incoming or outgoing values are not of the expected type. The throwing of exceptions can be disabled by setting [CommunityToolkit.Maui.Options](../options.md)`.ShouldSuppressExceptionsInConverters` to `false`.
+
+### One way converter
+
+The `BaseConverterOneWay` class provides developers with the ability to define the incoming value type and also the outgoing value type for an `IValueConverter` implementation that supports a one-way binding. The following example shows how to create a converter that will convert a `bool` value to `Colors.Green` if `true` and `Colors.Red` if `false`.
+
+```csharp
+public class BoolToColorConverter : BaseConverterOneWay<bool, Color>
+{
+    public override Color DefaultConvertReturnValue { get; set; } = Colors.Orange
+
+    public override string ConvertFrom(bool value, CultureInfo? culture)
+    {
+        return value ? Colors.Green : Colors.Red;
+    }
+}
+```
+
+The `DefaultConvertReturnValue` will be used by the base implementation and returned if an exception is thrown inside the `ConvertFrom` method.
+
+> [!WARNING]
+> The converter will throw an `ArgumentException` if either the incoming or outgoing values are not of the expected type. The throwing of exceptions can be disabled by setting [CommunityToolkit.Maui.Options](../options.md)`.ShouldSuppressExceptionsInConverters` to `false`.
+> The converter will throw a `NotSupportedException` if used in a two-way binding.

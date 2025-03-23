@@ -37,8 +37,8 @@ The `CompareConverter` can be used as follows in XAML:
     <ContentPage.Resources>
         <ResourceDictionary>
             <x:Int32 x:Key="Threshold">50</x:Int32>
-            <Color x:Key="EqualOrGreaterThanThresholdColor">LightGreen</x:Int32>
-            <Color x:Key="SmallerThanThresholdColor">PaleVioletRed</x:Int32>
+            <Color x:Key="EqualOrGreaterThanThresholdColor">LightGreen</Color>
+            <Color x:Key="SmallerThanThresholdColor">PaleVioletRed</Color>
 
             <toolkit:CompareConverter
                 x:Key="CompareConverter"

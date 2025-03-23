@@ -51,7 +51,7 @@ The `CompareConverter` can be used as follows in XAML:
 
     <Label
         Text="The background of this label will be green if the value entered is less than 50, and red otherwise." 
-        BackgroundColor="{Binding MyValue, Converter={StaticResource CompareConverter}" />
+        BackgroundColor="{Binding MyValue, Converter={StaticResource CompareConverter}}" />
 
 </ContentPage>
 ```
@@ -92,7 +92,7 @@ It is then possible to use that converter in XAML as follows:
 
     <Label
         Text="The background of this label will be green if the value entered is less than 50, and red otherwise." 
-        BackgroundColor="{Binding MyValue, Converter={StaticResource CompareConverter}" />
+        BackgroundColor="{Binding MyValue, Converter={StaticResource CompareConverter}}" />
 
 </ContentPage>
 ```

@@ -19,7 +19,7 @@ The .NET MAUI Community Toolkit `RatingView` is an `ItemTemplate` designed to pr
 
 The following example shows how to create a `RatingView`:
 
-![Screenshot of an RatingView example](../images/views/RatingView.png "RatingView example")
+![Screenshot of a RatingView example](../images/views/RatingView.png "RatingView example")
 
 ```xaml
 <ContentPage
@@ -80,30 +80,30 @@ partial class MyPage : ContentPage
 | Property | Type | Description |
 |---|---|---|
 | CustomShapePath | `string` | Gets or sets the SVG path for a custom rating view shape. This is a bindable property. |
-| EmptyShapeColor | `Color` | Gets or sets the color that is applied to the unfilled (empty) rating shape.  The default value is Transparent.  This is a bindable property. |
-| FillColor | `Color` | Gets or sets the color of the fill used to display the current rating.  Set `FillOption` to apply this color to `RatingViewFillOption.Background` or `RatingViewFillOption.Shape`. The default value is Yellow. This is a bindable property. |
-| IsReadOnly | `bool` | Gets whether this layout is readonly. The default value is false.  This is a bindable property. |
-| Shape | `RatingViewShape` | Gets or sets the rating item shape.  The property is of type [`RatingViewShape`](#set-shape) and is an enumeration. The default value is Star.  This is a bindable property. |
-| ShapeDiameter | `double` | Gets or sets the shape diameter in points.  The default value is 20. |
+| EmptyShapeColor | `Color` | Gets or sets the color that is applied to the unfilled (empty) rating shape. The default value is Transparent. This is a bindable property. |
+| FillColor | `Color` | Gets or sets the color of the fill used to display the current rating. Set `FillOption` to apply this color to `RatingViewFillOption.Background` or `RatingViewFillOption.Shape`. The default value is Yellow. This is a bindable property. |
+| IsReadOnly | `bool` | Gets whether this layout is read-only. The default value is false. This is a bindable property. |
+| Shape | `RatingViewShape` | Gets or sets the rating item shape. The property is of type [`RatingViewShape`](#set-shape) and is an enumeration. The default value is Star. This is a bindable property. |
+| ShapeDiameter | `double` | Gets or sets the shape diameter in points. The default value is 20. |
 | MaximumRating | `int` | Gets or sets the maximum number of ratings. The range of this value is 1 to 25; the default value is 5. This is a bindable property. |
 | RatingChanged | `EventHandler<RatingChangedEventArgs>` | Event occurs when the rating is changed. |
-| FillOption | `RatingViewFillOption` | Gets or sets the element to fill when a Rating is set. The property is of type [`RatingViewFillOption `](#set-fill-option) and is an enumeration. The default value of this property is `RatingViewFillOption.Shape`.  This is a bindable property. |
-| Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.  The default value is 0.  This is a bindable property. |
-| ShapeBorderColor | `Color` | Gets or sets the border color of the rating item shape. The default value of this is Grey.  This is a bindable property. |
-| ShapeBorderThickness | `Thickness` | Gets or sets the border thickness of the rating item shape.  The default value is a Thickness with all values set to 1.  This is a bindable property. |
+| FillOption | `RatingViewFillOption` | Gets or sets the element to fill when a Rating is set. The property is of type [`RatingViewFillOption`](#set-fill-option) and is an enumeration. The default value of this property is `RatingViewFillOption.Shape`. This is a bindable property. |
+| Rating | `double` | Gets or sets a value indicating the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control. The default value is 0. This is a bindable property. |
+| ShapeBorderColor | `Color` | Gets or sets the border color of the rating item shape. The default value of this is Grey. This is a bindable property. |
+| ShapeBorderThickness | `Thickness` | Gets or sets the border thickness of the rating item shape. The default value is a Thickness with all values set to 1. This is a bindable property. |
 
 > [!TIP]
 > Additional base class properties can be found in the [HorizontalStackLayout Class](/dotnet/api/microsoft.maui.controls.horizontalstacklayout).
 
 ## Set custom shape path
-The `CustomShapePath` property is a `string` that allows for the defining of custom SVG path. This feature enables developers to implement unique SVG shapes, such as distinctive symbols, as rating items.
+The `CustomShapePath` property is a `string` that allows for the defining of custom SVG paths. This feature enables developers to implement unique SVG shapes, such as distinctive symbols, as rating items.
 
 > [!IMPORTANT]
-> `CustomShapePath` is only used when the `Shape` property is set to `Shape.Custom`. Setting `Shape.Custom` when `CustomShapePath is null` will throw an `InvalidOperationException`: Unable to draw RatingViewShape.Custom because CustomShapePath is null. Please provide an SVG Path to CustomShapePath.
+> `CustomShapePath` is only used when the `Shape` property is set to `Shape.Custom`. Setting `Shape.Custom` when `CustomShapePath` is null will throw an `InvalidOperationException`: Unable to draw RatingViewShape.Custom because CustomShapePath is null. Please provide an SVG Path to CustomShapePath.
 
-The following examples sets the custom and shape properties:
+The following example sets the custom and shape properties:
 
-![Screenshot of an RatingView custom shape example](../images/views/RatingView_CustomShape.png "RatingView custom shape example")
+![Screenshot of a RatingView custom shape example](../images/views/RatingView_CustomShape.png "RatingView custom shape example")
 
 ```xaml
 <toolkit:RatingView
@@ -124,9 +124,9 @@ RatingView ratingView = new()
 For more information about custom shapes, see [Shapes.Path](/dotnet/api/microsoft.maui.controls.shapes.path).
 
 ## Set empty shape color
-The `EmptyShapeColor` property is a `Color` that for the unfilled (empty) rating shapes. This allows for clear visual differentiation between rated and unrated shapes.
+The `EmptyShapeColor` property is a `Color` for the unfilled (empty) rating shapes. This allows for clear visual differentiation between rated and unrated shapes.
 
-The following examples set the empty color property:
+The following example sets the empty color property:
 
 ```xaml
 <toolkit:RatingView
@@ -145,7 +145,7 @@ RatingView ratingView = new()
 ## Set filled (rated) color
 The `FillColor` property is a `Color` that will be applied to the filled (rated) portion of each shape, offering flexibility in defining the visual aesthetic of the rating items when selected by the user. Use `FillOption` to apply this color to the `RatingViewFillOption.Background` or the `RatingViewFillOption.Shape`.
 
-The following examples set the filled color property:
+The following example sets the filled color property:
 
 ```xaml
 <toolkit:RatingView
@@ -164,7 +164,7 @@ RatingView ratingView = new()
 ## Set is read only
 The `IsReadOnly` property is a `bool` that will enable or disable the user from modifying the `Rating` value by tapping on the `RatingView`.
 
-The following examples set the is read only property:
+The following example sets the is read-only property:
 
 ```xaml
 <toolkit:RatingView
@@ -183,7 +183,7 @@ RatingView readOnlyRatingView = new()
 ## Set shape padding
 The `ShapePadding` property is a `Thickness` for the padding between the rating control and its corresponding shapes, allowing for finer control over the appearance and layout of the rating shapes.
 
-The following examples set the item padding property:
+The following example sets the item padding property:
 
 ```xaml
 <toolkit:RatingView
@@ -202,7 +202,7 @@ RatingView ratingView = new()
 ## Set shape diameter
 The `ShapeDiameter` property is a `double` that customizes the shape size to fit the overall design of the application, providing the flexibility to adjust the control to various UI layouts.
 
-The following examples set the item padding property:
+The following example sets the item padding property:
 
 ```xaml
 <toolkit:RatingView
@@ -219,12 +219,12 @@ RatingView ratingView = new()
 ```
 
 ## Set maximum rating
-The `MaximumRating` property is a `int` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application. The range of this value is 1 to 25; the default value is 5.
+The `MaximumRating` property is an `int` for setting the total number of items (e.g., stars, hearts, etc., or custom shapes) available for rating. This allows for ratings of any scale, such as a 5-star or 10-star system, depending on the needs of the application. The range of this value is 1 to 25; the default value is 5.
 
 > [!NOTE]
-> If the value is set to 1, the control will toggle the rating between 0 and 1 when clicked/tapped.  If the value is set below the current `Rating`, the rating is adjusted accordingly.
+> If the value is set to 1, the control will toggle the rating between 0 and 1 when clicked/tapped. If the value is set below the current `Rating`, the rating is adjusted accordingly.
 
-The following examples set the maximum rating property:
+The following example sets the maximum rating property:
 
 ```xaml
 <toolkit:RatingView
@@ -241,14 +241,14 @@ RatingView ratingView = new()
 ```
 
 ## Set fill option
-The `FillOption` property is an `enum` of type `RatingViewFillOption` for setting how the fill is applied when the `Rating` is set or tapped, enabling more nuanced visual presentation, such as filling only the interior of the shapes or the full item.  The available options are:
+The `FillOption` property is an `enum` of type `RatingViewFillOption` for setting how the fill is applied when the `Rating` is set or tapped, enabling more nuanced visual presentation, such as filling only the interior of the shapes or the full item. The available options are:
 
 - `Shape` - (default) Fill the RatingView shape.
 - `Background` - Fill the background behind the shape
 
-The following examples set the rating fill property:
+The following example sets the rating fill property:
 
-![Screenshot of an RatingView rating fill example](../images/views/RatingView_RatingFill.png "RatingView rating fill example")
+![Screenshot of a RatingView rating fill example](../images/views/RatingView_RatingFill.png "RatingView rating fill example")
 
 ```xaml
 <toolkit:RatingView
@@ -273,7 +273,7 @@ RatingView itemFillRatingView = new()
 ## Set rating
 The `Rating` property is a `double` for setting the current rating value, allowing for both pre-defined ratings (e.g., from previous user input or stored data) and updates during runtime as the user interacts with the control.
 
-The following examples set the rating property:
+The following example sets the rating property:
 
 ```xaml
 <toolkit:RatingView
@@ -290,12 +290,12 @@ RatingView ratingView = new()
 ```
 
 ## Handle rating changed event
-The `RatingChanged` event has the argument type of `RatingChangedEventArgs`.  The event is raised when the `Rating` property is changed, and the element `IsReadOnly` is false.
+The `RatingChanged` event has the argument type of `RatingChangedEventArgs`. The event is raised when the `Rating` property is changed, and the element `IsReadOnly` is false.
 
 The `RatingChangedEventArgs` exposes a single property:
 - `Rating` - The new rating value.
 
-The following examples show how to attach the event:
+The following example shows how to attach the event:
 
 ```xaml
 <toolkit:RatingView
@@ -309,7 +309,7 @@ The equivalent C# code is:
 	ratingView.RatingChanged += RatingView_RatingChanged;
 ```
 
-The following example is the code behind to handle the event:
+The following example is the code-behind to handle the event:
 
 ```csharp
 void RatingView_RatingChanged(object sender, RatingChangedEventArgs e)
@@ -320,7 +320,7 @@ void RatingView_RatingChanged(object sender, RatingChangedEventArgs e)
 ```
 
 ## Set shape
-The `Shape` property is an `enum` of type `RatingViewShape` for setting the rating item shape of the ratings, such as stars, circles, like, dislike, or any other commonly used rating icons..  The available options are:
+The `Shape` property is an `enum` of type `RatingViewShape` for setting the rating item shape of the ratings, such as stars, circles, like, dislike, or any other commonly used rating icons. The available options are:
 
 - `Star` - (default)
 - `Heart`
@@ -329,9 +329,9 @@ The `Shape` property is an `enum` of type `RatingViewShape` for setting the rati
 - `Dislike`
 - `Custom` - Requires `CustomShapePath` to first be defined; will throw `InvalidOperationException` if `CustomShapePath` is `null`
 
-The following examples set the rating fill property:
+The following example sets the rating fill property:
 
-![Screenshot of an RatingView shape examples](../images/views/RatingView_Shape.png "RatingView shape examples")
+![Screenshot of a RatingView shape example](../images/views/RatingView_Shape.png "RatingView shape example")
 
 ```xaml
 <toolkit:RatingView
@@ -345,12 +345,13 @@ The following examples set the rating fill property:
 <toolkit:RatingView
 	Shape="Dislike" />
 <toolkit:RatingView
-        CustomShapePath="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z"
+    CustomShapePath="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z"
 	Shape="Custom" />
 ```
 
 The equivalent C# code is:
 
+```csharp
 RatingView starRatingView = new()
 {
 	Shape = RatingViewShape.Star,
@@ -373,16 +374,15 @@ RatingView dislikeRatingView = new()
 };
 RatingView customRatingView = new()
 {
-        CustomShapePath = "M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z",
+    CustomShapePath = "M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z",
 	Shape = RatingViewShape.Custom,
-};
 };
 ```
 
 ## Set shape border color
 The `ShapeBorderColor` is a `Color` for setting the border color of the rating item shape. This provides additional flexibility to create visually distinct and stylized rating shapes with custom borders.
 
-The following examples set the shape border color property:
+The following example sets the shape border color property:
 
 ```xaml
 <toolkit:RatingView
@@ -401,7 +401,7 @@ RatingView ratingView = new()
 ## Set shape border thickness
 The `ShapeBorderThickness` is a `double` for setting the thickness of the shape border. This provides additional flexibility to create visually distinct and stylized rating shapes with custom borders.
 
-The following examples set the shape border thickness property:
+The following example sets the shape border thickness property:
 
 ```xaml
 <toolkit:RatingView

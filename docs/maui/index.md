@@ -22,8 +22,8 @@ Feel free to browse the documentation using the table of contents on the left si
 The .NET MAUI Community Toolkit supports the platforms officially supported by [Microsoft](/dotnet/maui/supported-platforms):
 
 * Android 5.0 (API 21) or higher.
-* iOS 10 or higher.
-* macOS 10.15 or higher, using Mac Catalyst.
+* iOS 15.0 or higher is required.
+* macOS 12.0 or higher, using Mac Catalyst (15.0).
 * Windows 11 and Windows 10 version 1809 or higher, using [Windows UI Library (WinUI) 3](/windows/apps/winui/winui3/).
 * Tizen 7.0 or higher.
 

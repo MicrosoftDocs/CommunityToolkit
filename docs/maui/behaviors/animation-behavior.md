@@ -7,7 +7,7 @@ ms.date: 09/16/2022
 
 # AnimationBehavior
 
-The `AnimationBehavior` is a `Behavior` that provides the ability to animate any `VisualElement` it is attached to. Setting `AnimateOnTap` adds a `TapGestureRecognizer` to the `VisualElement` and triggers the associated animation when that recognizer detects that the user has tapped or clicked on the `VisualElement`.
+The `AnimationBehavior` is a `Behavior` that provides the ability to animate any `VisualElement` it is attached to. Setting `AnimateOnTap` to `true` adds a `TapGestureRecognizer` to the `VisualElement` and triggers the associated animation when that recognizer detects that the user has tapped or clicked on the `VisualElement`.
 
 The `AnimationType` property is required to be set, possible options for this can be found at [Animations](../animations/index.md).
 

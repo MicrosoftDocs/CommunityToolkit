@@ -16,43 +16,60 @@ icon: Assets/EffectAnimations.png
 
 EffectAnimations are used to animate the Win2D effects in `CommunityToolkit.WinUI.Media.Effects` without code-behind. Combined with an `AnimationSet`, you can string together complex animated effects that run sequentially or simultaneously.
 
-> [!SAMPLE EffectAnimationsSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/EffectAnimationsSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/EffectAnimationsSample.xaml.cs":::
 
 ## BlurEffectAnimation
 
 Apply and animate a Win2D BlurEffect
 
-> [!SAMPLE BlurEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/BlurEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/BlurEffectAnimationSample.xaml.cs":::
 
 ## ColorEffectAnimation
 
 Animate an overlaid color with a Win2D ColorEffect.
 
-> [!SAMPLE ColorEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/ColorEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/ColorEffectAnimationSample.xaml.cs":::
 
 ## CrossFadeEffectAnimation
 
 Blends and animates any PipelineBuilder source with any Win2D effect. This sample blends an image with a `BlurEffect` and effect from `CommunityToolkit.WinUI.Media.Effects`.
 
-> [!SAMPLE CrossFadeEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/CrossFadeEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/CrossFadeEffectAnimationSample.xaml.cs":::
 
 ## ExposureEffectAnimation
 
 Animate the exposure with a Win2D ExposureEffect.
 
-> [!SAMPLE ExposureEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/ExposureEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/ExposureEffectAnimationSample.xaml.cs":::
 
 ## HueRotationEffectAnimation
 
 Animate Hue to a specific angle using a Win2D HueRotationEffect.
 
-> [!SAMPLE HueRotationEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/HueRotationEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/HueRotationEffectAnimationSample.xaml.cs":::
 
 ## SaturationEffectAnimation
 
-> [!SAMPLE SaturationEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/SaturationEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/SaturationEffectAnimationSample.xaml.cs":::
 
 ## SepiaEffectAnimation
 
-> [!SAMPLE SepiaEffectAnimationSample]
+:::code language="xaml" source="~/../code-windows/components/Media/samples/SepiaEffectAnimationSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Media/samples/SepiaEffectAnimationSample.xaml.cs":::
+
 

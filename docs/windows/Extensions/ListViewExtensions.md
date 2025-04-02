@@ -33,14 +33,9 @@ The `AlternateColor` property provides a way to assign a background color to eve
 
 Here is how this property can be used in XAML:
 
-```xaml
-<Page ...
-     xmlns:ui="using:CommunityToolkit.WinUI">
+:::code language="xaml" source="~/../code-windows/components/Extensions/samples/ListViewExtensionsAlternateColorSample.xaml":::
 
-<ListView
-    ui:ListViewExtensions.AlternateColor="Silver"
-    ItemsSource="{x:Bind MainViewModel.Items, Mode=OneWay}" />
-```
+:::code language="csharp" source="~/../code-windows/components/Extensions/samples/ListViewExtensionsAlternateColorSample.xaml.cs":::
 
 ## AlternateItemTemplate
 

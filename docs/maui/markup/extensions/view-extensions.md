@@ -1,6 +1,6 @@
 ---
 title: View extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The View extensions provide a series of extension methods that support configuring the alignment of controls inheriting from View
 ms.date: 05/18/2022
 ---

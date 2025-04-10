@@ -42,6 +42,7 @@ The `ItemTappedEventArgsConverter` can be used as follows in XAML:
             Margin="0, 0, 0, 20" />
 
         <ListView
+            x:Name="TargetID"
             BackgroundColor="Transparent"
             ItemsSource="{Binding Items}"
             SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
@@ -56,6 +57,7 @@ The `ItemTappedEventArgsConverter` can be used as follows in XAML:
             </ListView.ItemTemplate>
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior EventName="ItemTapped"
+                                                BindingContext="{Binding BindingContext, Source={Reference TargetID}}"
                                                 Command="{Binding ItemTappedCommand}"
                                                 EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}" />
             </ListView.Behaviors>
@@ -80,13 +82,13 @@ class ItemTappedEventArgsConverterPage : ContentPage
             EventName = nameof(ListView.ItemTapped),
             EventArgsConverter = new ItemTappedEventArgsConverter()
         };
-        behavior.SetBinding(EventToCommandBehavior.CommandProperty, nameof(ViewModel.ItemTappedCommand);
+        behavior.SetBinding(EventToCommandBehavior.CommandProperty, static (ViewModel vm) => vm.ItemTappedCommand);
 
         var listView = new ListView 
         { 
             HasUnevenRows = true 
         };
-        listView.SetBinding(ListView.ItemsSource, nameof(ViewModel.Items));
+        listView.SetBinding(ListView.ItemsSource, static (ViewModel vm) => vm .Items);
         listView.Behaviors.Add(behavior);
 
         Content = listView;

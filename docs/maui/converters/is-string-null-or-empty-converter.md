@@ -56,13 +56,13 @@ class IsStringNullOrEmptyConverterPage : ContentPage
     {
         var label = new Label { Text = "A value is required" };
 
-		label.SetBinding(
-			Label.IsVisibleProperty,
-			new Binding(
-				nameof(ViewModels.MyValue),
-				converter: new IsStringNullOrEmptyConverter()));
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyValue,
+                converter: new IsStringNullOrEmptyConverter()));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

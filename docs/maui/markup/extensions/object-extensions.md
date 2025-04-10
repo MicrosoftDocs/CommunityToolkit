@@ -1,6 +1,6 @@
 ---
 title: Object extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Object Extensions provide a series of extension methods that support configuring any object.
 ms.date: 11/05/2022
 ---
@@ -22,7 +22,7 @@ Content = new Label()
     .Assign(out var label)
     .Bind(
         Label.TextColorProperty,
-        path: nameof(Label.BackgroundColor),
+        static (Label label) => label.BackgroundColor,
         source: label,
         converter: new ColorToInverseColorConverter());
 ```

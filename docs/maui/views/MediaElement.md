@@ -25,7 +25,7 @@ The `MediaElement` uses the following platform implementations.
 
 |Platform| Platform media player implementation |
 |--------|-----------------------|
-| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [ExoPlayerXamarin](https://github.com/Baseflow/ExoPlayerXamarin) maintainers! |
+| Android | [ExoPlayer](https://exoplayer.dev), big thank you to the [Android Libraries](https://github.com/dotnet/android-libraries) maintainers! |
 | iOS/macOS | [AVPlayer](xref:AVFoundation.AVPlayer) |
 | Windows | [MediaPlayer](xref:Windows.Media.Playback.MediaPlayer) |
 
@@ -84,57 +84,6 @@ public class MainActivity : MauiAppCompatActivity
 {
 }
 ```
-
-#### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
-
-```csharp
- <service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-   <intent-filter>
-     <action android:name="android.intent.action.MEDIA_BUTTON" />
-   </intent-filter>
-   <intent-filter>
-     <action android:name="androidx.media3.session.MediaSessionService"/>
-   </intent-filter>
- </service>
-```
-
-#### 3. Add the following permissions to `AndroidManifest.xml`
-
-```csharp
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-```
-
-#### Here is an example of required settings in `AndroidManifest.xml`
-
-```csharp
-<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
-<service android:name="CommunityToolkit.Maui.Media.Services" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-    <intent-filter>
-    <action android:name="android.intent.action.MEDIA_BUTTON" />
-    </intent-filter>
-    <intent-filter>
-    <action android:name="androidx.media3.session.MediaSessionService"/>
-    </intent-filter>
-</service>
-</application>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-```
-
-> [!NOTE]
-> This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
- for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
@@ -263,7 +212,7 @@ Local media can be played from the following sources:
 
 A `MediaElement` can play media files that are embedded in the app package, using the `embed://` URI scheme. Media files are embedded in the app package by placing them in the platform project.
 
-To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of you .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
+To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of your .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
 
 You can also place files in sub folders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaElement` would be `embed://MyVideos/MyFile.mp4`.
 
@@ -503,8 +452,8 @@ To read more about handlers, please see the .NET MAUI documentation on [Handlers
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
 | Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
 | Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |
-| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. | `0` |
-| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. | `0` |
+| MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
+| MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |
 
 ## Events

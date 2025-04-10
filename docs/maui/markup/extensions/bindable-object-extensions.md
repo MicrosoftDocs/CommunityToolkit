@@ -54,11 +54,11 @@ Using the below `ViewModel` class, we can create a nested two-way binding direct
 new Entry().Bind(
     Entry.TextProperty,
     getter: static (ViewModel vm) => vm.NestedObject.Text,
-    handlers: new (Func<ViewModel, object?>, string)[]
-             {
-                (vm => vm, nameof(ViewModel.NestedObject)),
-                (vm => vm.NestedObject, nameof(ViewModel.NestedObject.Text)),
-             },
+    handlers: 
+    [
+        (vm => vm, nameof(ViewModel.NestedObject)),
+        (vm => vm.NestedObject, nameof(ViewModel.NestedObject.Text)),
+    ],
     setter: static (ViewModel vm, string text) => vm.NestedObject.Text = text);
 ```
 
@@ -88,6 +88,9 @@ new Entry().Bind(nameof(ViewModel.RegistrationCode))
 
 > [!WARNING]
 > This approach will result in some level of Reflection being used and will not perform as well as the [Explicit property](#inline-conversion) approach.
+
+> [!Warning]
+> Bindings like this that use a `string` for the `path:` parameter are not trim-safe
 
 #### Value conversion
 
@@ -123,8 +126,8 @@ The `convert` parameter is a `Func` that is required to convert the multiple bin
 ```csharp
 new Label()
     .Bind(Label.TextProperty,
-            binding1: new Binding(nameof(ViewModel.IsBusy)),
-            binding2: new Binding(nameof(ViewModel.LabelText)),
+            binding1: BindingBase.Create((ViewModel vm) => vm.IsBusy),
+            binding2: BindingBase.Create((ViewModel vm) => vm.LabelText),
             convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
 ```
 

@@ -76,7 +76,9 @@ Here is an example of how this can be used:
 
 :::code language="xaml" source="~/../code-windows/components/Extensions/samples/FrameworkElementAncestorSample.xaml":::
 
-:::code language="csharp" source="~/../code-windows/components/Extensions/samples/FrameworkElementAncestorSample.xaml.cs":::While this example is trivial, it shows you how to properly setup and bind to the parent element's property, in this case `Spacing`.
+:::code language="csharp" source="~/../code-windows/components/Extensions/samples/FrameworkElementAncestorSample.xaml.cs":::
+
+While this example is trivial, it shows you how to properly setup and bind to the parent element's property, in this case `Spacing`.
 
 ## Cursor
 

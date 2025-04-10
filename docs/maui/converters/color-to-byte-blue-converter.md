@@ -61,20 +61,20 @@ class ColorToByteBlueConverterPage : ContentPage
     {
         var label = new Label();
 
- 		label.SetBinding(
- 			Label.TextProperty,
- 			new Binding(
- 				nameof(ViewModel.MyFavoriteColor),
- 				converter: new ColorToByteBlueConverter()));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModel vm) => vm.MyFavoriteColor,
+                converter: new ColorToByteBlueConverter()));
 
- 		Content = new VerticalStackLayout
- 		{
- 			Children =
- 			{
- 				new Label { Text = "The blue component is:" },
- 				label
- 			}
- 		};
+        Content = new VerticalStackLayout
+        {
+            Children =
+            {
+                new Label { Text = "The blue component is:" },
+                label
+            }
+        };
     }
 }
 ```

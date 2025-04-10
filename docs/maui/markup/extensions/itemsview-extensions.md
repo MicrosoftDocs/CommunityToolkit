@@ -1,6 +1,6 @@
 ---
 title: ItemsView extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The ItemsView extensions provide a series of extension methods that support configuring ItemsView controls
 ms.date: 03/28/2022
 ---

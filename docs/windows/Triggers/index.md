@@ -77,3 +77,5 @@ Trigger for switching UI based on whether the user favors their left or right ha
 :::code language="xaml" source="~/../code-windows/components/Triggers/samples/UserHandPreferenceStateTriggerSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Triggers/samples/UserHandPreferenceStateTriggerSample.xaml.cs":::
+
+

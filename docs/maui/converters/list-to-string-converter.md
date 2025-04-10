@@ -62,13 +62,13 @@ class ListToStringConverterPage : ContentPage
     {
         var label = new Label();
 
-		label.SetBinding(
-			Label.TextProperty,
-			new Binding(
-				nameof(ViewModels.MyListValue),
-				converter: new ListToStringConverter() { Separator = "," }));
+        label.SetBinding(
+            Label.TextProperty,
+            new Binding(
+                static (ViewModels vm) => vm.MyListValue,
+                converter: new ListToStringConverter() { Separator = "," }));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

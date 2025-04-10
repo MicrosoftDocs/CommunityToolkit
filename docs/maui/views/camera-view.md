@@ -9,11 +9,11 @@ ms.date: 05/23/2024
 
 The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. The `CameraView` also offers features to support taking photos, controlling the flash, saving captured media to a file, and offering different hooks for events.
 
-The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraViewModel.cs). that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraViewPage.xaml).
+The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraView/CameraViewViewModel.cs). that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml).
 
 ## Platform specific initialization
 
-To first use the `CameraView` please refer to the [Getting started](../get-started.md?tabs=CommunityToolkitMauiCamera) section. The following platform specific setup is required.
+The `CameraView` is part of the `CommunityToolkit.Maui.Camera` nuget package. To first use the `CameraView` please refer to the [Getting started](../get-started.md?tabs=CommunityToolkitMauiCamera) section. The following platform specific setup is required.
 
 <!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD051 -->
@@ -357,7 +357,8 @@ The following example shows how to add a `Button` into the application and setup
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,30,30">
-        <toolkit:CameraView 
+        <toolkit:CameraView
+            x:Name="Camera" 
             Grid.ColumnSpan="3" 
             Grid.Row="0"
             SelectedCamera="{Binding SelectedCamera}"
@@ -415,7 +416,8 @@ The following example shows how to add a `Button` into the application and setup
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,30,30">
-        <toolkit:CameraView 
+        <toolkit:CameraView
+            x:Name="Camera"  
             Grid.ColumnSpan="3" 
             Grid.Row="0"
             SelectedCamera="{Binding SelectedCamera}"
@@ -476,7 +478,8 @@ The following example shows how to add a `Button` into the application and setup
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,30,30">
-        <toolkit:CameraView 
+        <toolkit:CameraView
+            x:Name="Camera"  
             Grid.ColumnSpan="3" 
             Grid.Row="0"
             SelectedCamera="{Binding SelectedCamera}"

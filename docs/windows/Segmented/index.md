@@ -33,3 +33,13 @@ The `Segmented` control contains various additional styles, to match the look an
 :::code language="xaml" source="~/../code-windows/components/Segmented/samples/SegmentedStylesSample.xaml":::
 
 :::code language="csharp" source="~/../code-windows/components/Segmented/samples/SegmentedStylesSample.xaml.cs":::
+
+## Segmented + SwitchPresenter
+
+The `Segmented` control can be combined with e.g. a `SwitchPresenter` to provide easy navigation and with limited XAML and no code-behind!
+
+:::code language="xaml" source="~/../code-windows/components/Segmented/samples/SegmentedSwitchPresenterSample.xaml":::
+
+:::code language="csharp" source="~/../code-windows/components/Segmented/samples/SegmentedSwitchPresenterSample.xaml.cs":::
+
+

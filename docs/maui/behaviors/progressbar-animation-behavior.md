@@ -37,7 +37,7 @@ The `ProgressBarAnimationBehavior` can be used as follows in XAML:
             <ProgressBar.Behaviors>
                 <toolkit:ProgressBarAnimationBehavior
                     x:Name="ProgressBarAnimationBehavior"
-                    Progress="{Binding Source={x:Reference Page}, Path=BindingContext.Progress}"
+                    Progress="{Binding Source={x:Reference Page}, Path=BindingContext.Progress, x:DataType=ContentPage}"
                     Length="250"/>
             </ProgressBar.Behaviors>
         </ProgressBar>

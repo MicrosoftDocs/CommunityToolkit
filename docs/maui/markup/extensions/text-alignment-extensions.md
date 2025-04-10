@@ -1,6 +1,6 @@
 ---
 title: TextAlignment extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The TextAlignment extensions provide a series of extension methods that support configuring the text alignment of controls implementing ITextAlignment.
 ms.date: 05/18/2022
 ---
@@ -37,6 +37,16 @@ Here's an example setting `Label.HorizontalTextAlignment` to `TextAlignment.End`
 
 ```cs
 new Label().TextEnd()
+```
+
+## TextJustify
+
+The `TextJustify` method sets the `ITextAlignment.HorizontalTextAlignment` property to `TextAlignment.Justify`.
+
+Here's an example setting `Label.HorizontalTextAlignment` to `TextAlignment.Justify` using `TextJustify`:
+
+```cs
+new Label().TextJustify()
 ```
 
 ## TextTop

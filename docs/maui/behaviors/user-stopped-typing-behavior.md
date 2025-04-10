@@ -31,10 +31,13 @@ The `UserStoppedTypingBehavior` can be used as follows in XAML:
     x:Class="MyLittleApp.MainPage"
     x:Name="Page">
      
-           <Entry Placeholder="Start typing when you stop the behavior will trigger...">
+            <Entry 
+                Placeholder="Start typing when you stop the behavior will trigger..."
+                x:Name="UserStoppedTypingEntry">
                 <Entry.Behaviors>
                     <toolkit:UserStoppedTypingBehavior 
-                        Command="{Binding Source={x:Reference Page}, Path=BindingContext.SearchCommand}"
+                        BindingContext="{Binding Path=BindingContext, Source={x:Reference UserStoppedTypingEntry}, x:DataType=Entry}"
+                        Command="{Binding SearchCommand}"
                         StoppedTypingTimeThreshold="1000"
                         MinimumLengthThreshold="3"
                         ShouldDismissKeyboardAutomatically="True" />
@@ -60,7 +63,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
         };
 
         behavior.SetBinding(UserStoppedTypingBehavior.CommandProperty, 
-        nameof(ViewModel. SearchCommand);
+                                static (ViewModel vm) => vm.SearchCommand,
+                                source: this.BindingContext);
 
         var entry = new Entry
         {
@@ -92,11 +96,10 @@ class UserStoppedTypingBehaviorPage : ContentPage
             StoppedTypingTimeThreshold = 1000,
             MinimumLengthThreshold = 3,
             ShouldDismissKeyboardAutomatically = true
-        }
-        .Bind(
-            UserStoppedTypingBehavior.CommandProperty, 
-            static (ViewModel vm) => vm.SearchCommand,
-            mode: BindingMode.OneTime));
+        }.Bind(UserStoppedTypingBehavior.CommandProperty, 
+                getter: static (ViewModel vm) => vm.SearchCommand,
+                source: this.BindingContext,
+                mode: BindingMode.OneTime));
     }
 }
 ```

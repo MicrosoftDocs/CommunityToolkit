@@ -84,6 +84,23 @@ For a full example of this method included in an application please refer to the
 
 Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 ```csharp
+<key>UIApplicationSceneManifest</key>
+	<dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+            <dict>
+                <key>UISceneConfigurationName</key>
+                <string>__MAUI_DEFAULT_SCENE_CONFIGURATION__</string>
+                <key>UISceneDelegateClassName</key>
+                <string>SceneDelegate</string>
+            </dict>
+            </array>
+        </dict>
+    </dict>
 <key>UIBackgroundModes</key>
 <array>
     <string>bluetooth-central</string>
@@ -92,6 +109,21 @@ Edit the `Info.plist` for `MacCatalyst` and add the following keys.
 <key>NSLocalNetworkUsageDescription</key>
 <string></string>
 ```
+Add the following to a new file `SceneDelegate.cs` in the `Platforms/MacCatalyst` folder.`
+```csharp  
+using System;
+using Foundation;
+using Microsoft.Maui;
+using ObjCRuntime;
+using UIKit;
+
+namespace CommunityToolkit.Maui.Sample.Platforms.MacCatalyst;
+
+[Register("SceneDelegate")]
+public class SceneDelegate : MauiUISceneDelegate
+{
+}  
+```  
 
 ### [iOS](#tab/ios)
 

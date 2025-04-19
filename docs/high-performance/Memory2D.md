@@ -40,7 +40,7 @@ This configuration allows `Memory2D<T>` to be extremely flexible in the way it m
 - A 2D `T[,]` array, mapped directly to a `Memory2D<T>` instance.
 - A 3D `T[,,]` array, with a `Memory2D<T>` instance representing a given depth slice (a layer).
 
-The `Memory<T>` type also exposes a number of utility methods, including most of the same API surface that the standard `Memory<T>` implements. For instance, it includes a `Slice(int, int)` method that makes it easy to do 2D slicing operations directly on the virtual 2D memory location, with the `Memory2D<T>` instance automatically adjusting the necessary parameters internally to shift its mapping on the right memory area(s) corresponding to the requested result.
+The `Memory2D<T>` type also exposes a number of utility methods, including most of the same API surface that the standard `Memory<T>` implements. For instance, it includes a `Slice(int, int)` method that makes it easy to do 2D slicing operations directly on the virtual 2D memory location, with the `Memory2D<T>` instance automatically adjusting the necessary parameters internally to shift its mapping on the right memory area(s) corresponding to the requested result.
 
 ## Syntax
 

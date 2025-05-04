@@ -185,8 +185,7 @@ to allow transparencies and other effects. This is set by changing the builder t
 })
 ```
 > [!IMPORTANT]
-> No other changes are required to enable this feature. It is not enabled or recommended using texture view unless you have a specific need for it. It has
-possible performance related issues if enabled and is recommended only for those that need transparencies and other advanced features.
+> We do not recommend using TextureView unless you have a specific need for it. It has possible performance related issues if enabled and is recommended only for those that need transparencies and other advanced features.
 
 ### Play local media
 

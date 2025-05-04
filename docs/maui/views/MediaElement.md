@@ -179,8 +179,9 @@ A `MediaElement` can use `TextureView` on Android Platform. The platform default
 to allow transparencies and other effects. This is set by changing the builder to use
 
 ```csharp
-.UseMauiCommunityToolkitMediaElement(options => {
-				options.AndroidViewType = AndroidViewType.TextureView;
+.UseMauiCommunityToolkitMediaElement(static options => 
+{
+				options.SetDefaultAndroidViewType(AndroidViewType.TextureView);
 })
 ```
 > [!IMPORTANT]

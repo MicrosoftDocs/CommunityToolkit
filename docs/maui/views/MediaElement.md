@@ -184,6 +184,20 @@ to allow transparencies and other effects. This is set by changing the builder t
 				options.SetDefaultAndroidViewType(AndroidViewType.TextureView);
 })
 ```
+
+You can set `TextureView` for each media element you use as well. It can be set in `XAML` and codebehind. Using it this way will override the builder command `.UseMauiCommunityToolkitMediaElement()`.
+
+```csharp
+var mediaElement = new MediaElement
+{
+    AndroidViewType = AndroidViewType.TextureView
+}
+```
+
+```xaml
+<toolkit:MediaElement AndroidViewType="TextureView" />
+```
+
 > [!IMPORTANT]
 > We do not recommend using TextureView unless you have a specific need for it. It has possible performance related issues if enabled and is recommended only for those that need transparencies and other advanced features.
 

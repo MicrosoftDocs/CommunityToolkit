@@ -18,10 +18,9 @@ In order to use the `PopupService` to present or close a `Popup` the `Popup` mus
 The XAML contents of the `Popup` can be defined as:
 
 ```xaml
-<toolkit:Popup 
+<ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:MyProject.ViewModels"
     x:Class="MyProject.Popups.NamePopup"
     x:DataType="viewModels:NamePopupViewModel">
@@ -34,18 +33,17 @@ The XAML contents of the `Popup` can be defined as:
         <Button Text="Cancel" Command="{Binding CancelCommand}" />
     </VerticalStackLayout>
     
-</toolkit:Popup>
+</ContentView>
 ```
 
 The C# contents of the `Popup` can be defined as:
 
 ```csharp
-using CommunityToolkit.Maui.Views;
 using MyProject.ViewModels;
 
 namespace MyProject.Popups;
 
-public partial class NamePopup : Popup
+public partial class NamePopup : ContentView
 {
     public NamePopup(NamePopupViewModel namePopupViewModel)
     {
@@ -97,7 +95,7 @@ builder.Services.AddTransientPopup<NamePopup, NamePopupViewModel>();
 
 The .NET MAUI Community Toolkit provides a mechanism to instantiate and present popups in a .NET MAUI application. The popup service is automatically registered with the `MauiAppBuilder` when using the `UseMauiCommunityToolkit` initialization method. This enables you to resolve an `IPopupService` implementation in any part of your application.
 
-The `IPopupService` makes it possible to register a popup view and its associated view model. The ability to show a `Popup` can now be driven by only providing the view model making it possible to keep a clean separation between view and view model.
+The `IPopupService` makes it possible to register a popup view and its associated view model. The ability to show a `Popup` requires a developer to pass in the current `INavigation` implementation for the current window in the application. The easiest way to achieve this is through the following example.
 
 The following example shows how to use the `IPopupService` to create and display a popup in a .NET MAUI application:
 
@@ -113,7 +111,12 @@ public class MyViewModel : INotifyPropertyChanged
 
     public void DisplayPopup()
     {
-        this.popupService.ShowPopup<NamePopupViewModel>();
+        if (Application.Current?.Windows[0].Page is not Page currentPage)
+        {
+            throw new InvalidOperationException("Unable to retrieve current page");
+        }
+
+        this.popupService.ShowPopup<NamePopupViewModel>(currentPage.Navigation);
     }
 }
 ```
@@ -121,9 +124,14 @@ public class MyViewModel : INotifyPropertyChanged
 Alternatively the caller can await the ShowPopupAsync method in order to handle a [result being returned](#returning-a-result). The `DisplayPopup` method can be rewritten as:
 
 ```csharp
-public void DisplayPopup()
+public async Task DisplayPopup()
 {
-    var name = await this.popupService.ShowPopupAsync<NamePopupViewModel>();
+    if (Application.Current?.Windows[0].Page is not Page currentPage)
+    {
+        throw new InvalidOperationException("Unable to retrieve current page");
+    }
+
+    var name = await this.popupService.ShowPopupAsync<NamePopupViewModel>(currentPage.Navigation);
 }
 ```
 
@@ -149,7 +157,7 @@ public class MyViewModel : INotifyPropertyChanged
 
     public void DisplayPopup()
     {
-        this.popupService.ShowPopup<UpdatingPopupViewModel>(onPresenting: viewModel => viewModel.Name = "Shaun");
+        this.popupService.ShowPopup<NamePopupViewModel>(onPresenting: viewModel => viewModel.Name = "Shaun");
     }
 }
 ```

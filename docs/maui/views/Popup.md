@@ -31,20 +31,18 @@ Please note that if a `Popup` is created in XAML it must have a C# code behind f
 The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML)` to your project and then change each of the files to the following:
 
 ```xaml
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               x:Class="MyProject.SimplePopup">
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MyProject.SimplePopup">
 
-    <VerticalStackLayout>
-        <Label Text="This is a very important message!" />
-    </VerticalStackLayout>
+    <Label Text="This is a very important message!" />
     
-</toolkit:Popup>
+</ContentView>
 ```
 
 ```csharp
-public partial class SimplePopup : Popup
+public partial class SimplePopup : ContentView
 {
     public SimplePopup()
     {
@@ -61,17 +59,11 @@ public partial class SimplePopup : Popup
 ```csharp
 using CommunityToolkit.Maui.Views;
 
-var popup = new Popup
+var popup = new ContentView
 {
-    Content = new VerticalStackLayout
+    Content = new Label
     {
-        Children = 
-        {
-            new Label
-            {
-                Text = "This is a very important message!"
-            }
-        }
+        Text = "This is a very important message!"
     }
 };
 ```
@@ -81,7 +73,7 @@ var popup = new Popup
 Once the `Popup` has been built it can then be presented through the use of our `Popup` extension methods or through the [`IPopupService`](popup-service.md) implementation from this toolkit.
 
 > [!IMPORTANT]
-> A `Popup` can only be displayed from a `Page` or an implementation inheriting from `Page`.
+> A `Popup` can only be displayed from a `Page` or an `INavigation` implementation.
 
 ```csharp
 using CommunityToolkit.Maui.Views;
@@ -107,19 +99,17 @@ In order to close a `Popup` a developer must call `Close` or `CloseAsync` on the
 
 We can enhance the previous XAML example by adding an **OK** `Button`:
 
-```xml
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               x:Class="MyProject.SimplePopup">
+```xaml
+<VerticalStackLayout
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MyProject.SimplePopup">
 
-    <VerticalStackLayout>
-        <Label Text="This is a very important message!" />
-        <Button Text="OK" 
-                Clicked="OnOKButtonClicked" />
-    </VerticalStackLayout>
+    <Label Text="This is a very important message!" />
+    <Button Text="OK" 
+            Clicked="OnOKButtonClicked" />
     
-</toolkit:Popup>
+</VerticalStackLayout>
 ```
 
 In the resulting event handler we call `Close`, this will programmatically close the `Popup`.
@@ -128,7 +118,7 @@ In the resulting event handler we call `Close`, this will programmatically close
 > `Close()` is a fire-and-forget method. It will complete and return to the calling thread before the operating system has dismissed the `Popup` from the screen. If you need to pause the execution of your code until the operating system has dismissed the `Popup` from the screen, use instead `CloseAsync()`.
 
 ```csharp
-public partial class MySimplePopup : Popup
+public partial class MySimplePopup : VerticalStackLayout
 {
     // ...
 
@@ -139,7 +129,7 @@ public partial class MySimplePopup : Popup
 In the resulting event handler we call `CloseAsync`, this will programmatically close the `Popup` allowing the caller to `await` the method until the operating system has dismissed the `Popup` from the screen.
 
 ```csharp
-public partial class MySimplePopup : Popup
+public partial class MySimplePopup : VerticalStackLayout
 {
     // ...
 
@@ -155,7 +145,7 @@ public partial class MySimplePopup : Popup
 
 ### Tapping outside of the Popup
 
-By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `CanBeDismissedByTappingOutsideOfPopup` property. Setting this property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it.
+By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property. Setting this property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it. See [PopupOptions](#popupoptions) for more details.
 
 ## Returning a result
 
@@ -167,21 +157,19 @@ We can enhance our original XAML example to show how this can be accomplished:
 
 By adding 2 new buttons to the XAML:
 
-```xml
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               x:Class="MyProject.SimplePopup">
+```xaml
+<VerticalStackLayout 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MyProject.SimplePopup">
 
-    <VerticalStackLayout>
-        <Label Text="This is a very important message! Do you agree?" />
-        <Button Text="Yes" 
-                Clicked="OnYesButtonClicked" />
-        <Button Text="No"
-                Clicked="OnNoButtonClicked" />
-    </VerticalStackLayout>
+    <Label Text="This is a very important message! Do you agree?" />
+    <Button Text="Yes" 
+            Clicked="OnYesButtonClicked" />
+    <Button Text="No"
+            Clicked="OnNoButtonClicked" />
     
-</toolkit:Popup>
+</VerticalStackLayout>
 ```
 
 Then adding the following event handlers in the C#:
@@ -231,57 +219,23 @@ public class MyPage : ContentPage
 > [!NOTE]
 > In order to handle the tapping outside of a `Popup` when also awaiting the result you can change the value that is returned through the `ResultWhenUserTapsOutsideOfPopup` property.
 
-## Styling
+## PopupOptions
 
-The `Popup` class allows the use of .NET MAUI [Styles](/dotnet/maui/user-interface/styles/xaml) to make it easier to share common visual settings across multiple popups.
+It is possible to further customize the appearance of the `Popup` through the use of the `PopupOptions` class.
 
-The following example shows how to define a style that applies to the `SimplePopup` example from the previous section.
-
-```xaml
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               xmlns:popups="clr-namespace:CommunityToolkit.Maui.Sample.Views.Popups"
-               x:Class="MyProject.SimplePopup">
-
-    <toolkit:Popup.Resources>
-        <Style TargetType="{x:Type popups:SimplePopup}">
-            <Setter Property="Size" Value="100,200" />
-            <Setter Property="Color" Value="Green" />
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="VerticalOptions" Value="Start" />
-            <Setter Property="CanBeDismissedByTappingOutsideOfPopup" Value="True" />
-        </Style>
-    </toolkit:Popup.Resources>
-
-    <VerticalStackLayout>
-        <Label Text="This is a very important message! Do you agree?" />
-        <Button Text="Yes" 
-                Clicked="OnYesButtonClicked" />
-        <Button Text="No"
-                Clicked="OnNoButtonClicked" />
-    </VerticalStackLayout>
-    
-</toolkit:Popup>
-```
-
-> [!NOTE]
-> When creating a `Style` that targets `Popup` and you wish to make it apply to custom popups like the `SimplePopup` example, make sure to set the [`ApplyToDerivedTypes`](/dotnet/api/microsoft.maui.controls.style.applytoderivedtypes) property on the `Style` definition.
-
-## Properties
+The `PopupOptions` class provides the following bindable properties to make it possible for developers to dynamic control the property values.
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| `Anchor` | `View` | Gets or sets the `View` anchor. The Anchor is where the Popup will render closest to. When an Anchor is configured the popup will appear centered over that control or as close as possible. |
 | `CanBeDismissedByTappingOutsideOfPopup` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the Popup. On Android - when false the hardware back button is disabled. |
-| `Color` | `Color` | Gets or sets the `Color` of the Popup. This color sets the native background color of the `Popup`, which is independent of any background color configured in the actual `Content`. |
-| `Content` | `View` | Gets or sets the `View` content to render in the `Popup`. |
-| `HorizontalOptions` | `LayoutAlignment` | Gets or sets the `LayoutAlignment` for positioning the `Popup` horizontally on the screen. |
-| `Result` | `Task<object?>` | Gets the final result of the dismissed `Popup`. |
-| `Size` | `Size` | Gets or sets the `Size` of the Popup Display. The Popup will always try to constrain the actual size of the `Popup` to the size of the View unless a `Size` is specified. If the `Popup` uses the `HorizontalOptions` or `VerticalOptions` properties that are not the defaults then this `Size` property is required. |
-| `VerticalOptions` | `LayoutAlignment` | Gets or sets the `LayoutAlignment` for positioning the `Popup` vertically on the screen. |
+| `OnTappingOutsideOfPopup` | `Action` | Gets or sets the `Action` to be executed when the user taps outside the `Popup`. |
+| `PageOverlayColor` | `Color` | Gets or sets the `Color` of the overlay behind the `Popup`. |
+| `Shape` | `Shape` | Gets or sets the border shape for the `Popup`. Set this to `null` to remove any border styling. |
+| `Shadow` | `Shadow` | Gets or sets the `Shadow` of the `Popup`. Set this to `null` to remove any shadow. |
 
 ## Events
+
+The `Popup` class provides the following events that can be subscribed to.
 
 |Event | Description  |
 |---------|---------|

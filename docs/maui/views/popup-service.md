@@ -141,9 +141,24 @@ The `IPopupService` also provides methods to handle a result being returned from
 
 ## Passing data to a Popup view model
 
-When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. The `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `Action<TViewModel> onPresenting` parameter. This parameter has been designed to be framework agnostic and allow you as a developer to drive the loading/passing of data however best fits your architecture.
+When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. The `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `IDictionary<string, object> shellParameters` parameter. This makes use of the `IQueryAttributable` interface provided with .NET MAUI Shell, for more information on using this please refer to [Process navigation data using a single method](/dotnet/maui/fundamentals/shell/navigation?view=net-maui-9.0#process-navigation-data-using-a-single-method).
 
-To extend the previous example of showing a `NamePopupViewModel` and its associated Popup, we can use the `onPresenting` parameter to pass in the users name:
+To extend the previous example of showing a `NamePopupViewModel` and its associated Popup, we can extend the `NamePopupViewModel` to implement the `IQueryAttributable` interface as follows:
+
+```csharp
+public class NamePopupViewModel : ObservableObject, IQueryAttributable
+{
+    [ObservableProperty]
+    public partial string Name { get; set; } = "";
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        Name = query["Name"] as string;
+    }
+}
+```
+
+Then the view model that presents the popup and passes the data can look as follows:
 
 ```csharp
 public class MyViewModel : INotifyPropertyChanged
@@ -155,9 +170,17 @@ public class MyViewModel : INotifyPropertyChanged
         this.popupService = popupService;
     }
 
-    public void DisplayPopup()
+    public async Task DisplayPopup()
     {
-        this.popupService.ShowPopup<NamePopupViewModel>(onPresenting: viewModel => viewModel.Name = "Shaun");
+        var queryAttributes = new Dictionary<string, object>
+        {
+            ["Name"] = "Shaun"
+        };
+
+        await this.popupService.ShowPopupAsync<NamePopupViewModel>(
+            Shell.Current,
+            options: null,
+            queryAttributes);
     }
 }
 ```
@@ -194,7 +217,7 @@ void OnSave()
 }
 ```
 
-This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name`.
+This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name`. For more information on creating a `Popup` that can return a result see [`Popup` - Returning a result](./popup/popup-result.md).
 
 ## Examples
 
@@ -203,3 +226,9 @@ You can find an example of this feature in action in the [.NET MAUI Community To
 ## API
 
 You can find the source code for `Popup` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui/Views/Popup).
+
+## Additional Resources
+
+- [`Popup` - Returning a result](./popup/popup-result.md)
+- [`IPopupService`](./popup-service.md)
+- [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup/popup-options.md)

@@ -168,7 +168,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<ISpeechToText>(SpeechToText.Default);
         // For offline recognition
-        // builder.Services.AddSingleton<IOfflineSpeechToText>(OfflineSpeechToText.Default);
+        // builder.Services.AddSingleton<ISpeechToText>(OfflineSpeechToText.Default);
         return builder.Build();
     }
 }

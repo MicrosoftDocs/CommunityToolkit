@@ -111,12 +111,7 @@ public class MyViewModel : INotifyPropertyChanged
 
     public void DisplayPopup()
     {
-        if (Application.Current?.Windows[0].Page is not Page currentPage)
-        {
-            throw new InvalidOperationException("Unable to retrieve current page");
-        }
-
-        this.popupService.ShowPopup<NamePopupViewModel>(currentPage.Navigation);
+        this.popupService.ShowPopup<NamePopupViewModel>(Shell.Current);
     }
 }
 ```
@@ -126,12 +121,7 @@ Alternatively the caller can await the ShowPopupAsync method in order to handle 
 ```csharp
 public async Task DisplayPopup()
 {
-    if (Application.Current?.Windows[0].Page is not Page currentPage)
-    {
-        throw new InvalidOperationException("Unable to retrieve current page");
-    }
-
-    var name = await this.popupService.ShowPopupAsync<NamePopupViewModel>(currentPage.Navigation);
+    var result = await this.popupService.ShowPopupAsync<NamePopupViewModel>(currentPage.Navigation);
 }
 ```
 
@@ -217,7 +207,7 @@ void OnSave()
 }
 ```
 
-This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name`. For more information on creating a `Popup` that can return a result see [`Popup` - Returning a result](./popup/popup-result.md).
+This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name` wrapped inside of an `IPopupResult<T>` implementation. For more information on creating a `Popup` that can return a result see [`Popup` - Returning a result](./popup/popup-result.md).
 
 ## Examples
 

@@ -76,10 +76,7 @@ var popup = new ContentView
 
 ## Presenting a Popup
 
-Once the `Popup` has been built it can then be presented through the use of the `Popup` extension methods or through the [`IPopupService`](popup-service.md) implementation from this toolkit.
-
-> [!IMPORTANT]
-> A `Popup` can only be displayed from a `Page`, `Shell` or an `INavigation` implementation.
+Once the `Popup` has been built it can then be presented through the use of the `Popup` extension methods used on a `Page`, `Shell` or an `INavigation`, or through the [`IPopupService`](popup-service.md) implementation from this toolkit.
 
 The following example shows how to instantiate and show the `SimplePopup` created in the previous example through a method on a `ContentPage`.
 

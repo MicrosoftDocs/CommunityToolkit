@@ -5,6 +5,8 @@ description: The PopupOptions class provides the ability to customize the appear
 ms.date: 05/19/2025
 ---
 
+# PopupOptions - Customizing the popup behavior and appearance
+
 The `PopupOptions` class provides the ability to customize the appearance and behavior of the `Popup`.
 
 All of the examples in this page make use of the `SimplePopup` example that is covered at [`Popup`](../popup.md).
@@ -19,8 +21,10 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
     CanBeDismissedByTappingOutsideOfPopup = false
 });
 ```
+
 > [!NOTE]
-> You can cache the `PopupOptions` to reuse on future navigations or with other popups that share the same configuration, that would prevent unnecessary allocations.
+> It is possible to cache `PopupOptions` to reuse on future navigation actions or with other popups that share the same configuration, that would prevent unnecessary allocations.
+
 ## Customize the Overlay Color
 
 `PopupOptions` provides the `PageOverlayColor` property which can control the `Color` that overlays the current page. The following example shows how to set the `PageOverlayColor` to orange.

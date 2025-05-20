@@ -1,9 +1,11 @@
 ---
 title: Popup<T> - .NET MAUI Community Toolkit
 author: bijington
-description: The PopupService provides a mechanism for displaying Popups within an application using the MVVM pattern.
+description: Popup<T> enables developers to return a value from a popup when it is dismissed.
 ms.date: 05/19/2025
 ---
+
+# Returning a value from a Popup
 
 The .NET MAUI Community Toolkit provides the ability to show a [Popup](../Popup.md) to a user. A common more complex scenario is to display a `Popup` and await for a result to be returned when that `Popup` is dismissed. This page covers how the `Popup<T>` class can be used to achieve the desired behavior.
 
@@ -43,10 +45,12 @@ The easiest way to create a `Popup<T>` is to add a new `.NET MAUI ContentView (X
 </toolkit:Popup>
 ```
 
+The use of `x:TypeArguments` in XAML makes it possible to supply the type parameter for a generic type.
+
 ##### .xaml.cs
 
 ```csharp
-public partial class ReturnResultPopup : ContentView
+public partial class ReturnResultPopup : Popup<bool>
 {
     public ReturnResultPopup()
     {
@@ -64,6 +68,8 @@ public partial class ReturnResultPopup : ContentView
     }
 }
 ```
+
+The use of `Popup<bool>` must match the definition in the XAML through the use of `x:TypeArguments`.
 
 > [!IMPORTANT]
 > If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
@@ -110,7 +116,7 @@ public class ReturnResultPopup : Popup<bool>
     }
 ```
 
-The `Close` method allows for an `object` value to be supplied, this will be the resulting return value. 
+The `Close` method allows for a value to be supplied, this will be the resulting return value. The use of generics in `Popup<T>` provides type-safety when returning values from a Popup.
 
 ## Awaiting the result from a Popup
 
@@ -125,25 +131,28 @@ public class MyPage : ContentPage
     {
         var popup = new ReturnResultPopup();
 
-        var result = await this.ShowPopupAsync(popup, CancellationToken.None);
+        // The type parameter must match the type returned from the popup.
+        IPopupResult<bool> result = await this.ShowPopupAsync(popup, CancellationToken.None);
 
-        if (result is bool boolResult)
+        if (result.WasDismissedByTappingOutsideOfPopup)
         {
-            if (boolResult)
-            {
-                // Yes was tapped
-            }
-            else
-            {
-                // No was tapped
-            }
+            return;
+        }
+
+        if (result.Result)
+        {
+            // Yes was tapped
+        }
+        else
+        {
+            // No was tapped
         }
     }
 }
 ```
 
 > [!NOTE]
-> In order to handle the tapping outside of a `Popup` when also awaiting the result you can change the value that is returned through the `ResultWhenUserTapsOutsideOfPopup` property.
+> The `WasDismissedByTappingOutsideOfPopup` property enables developers to confirm whether the Popup was dismissed in a positive manner - programmatically or whether the user tapped outside of the Popup. If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.
 
 ## Examples
 

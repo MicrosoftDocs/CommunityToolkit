@@ -243,6 +243,10 @@ items:
           href: views/Popup.md
         - name: "Popup Service"
           href: views/popup-service.md
+        - name: "Customizing Popup behavior and appearance"
+          href: views/popup/popup-options.md
+        - name: "Returning a value from a Popup"
+          href: views/popup/popup-result.md
     - name: SemanticOrderView
       href: views/semantic-order-view.md
 - name: C# Markup

@@ -19,7 +19,8 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
     CanBeDismissedByTappingOutsideOfPopup = false
 });
 ```
-
+> [!NOTE]
+> You can cache the `PopupOptions` to reuse on future navigations or with other popups that share the same configuration, that would prevent unnecessary allocations.
 ## Customize the Overlay Color
 
 `PopupOptions` provides the `PageOverlayColor` property which can control the `Color` that overlays the current page. The following example shows how to set the `PageOverlayColor` to orange.

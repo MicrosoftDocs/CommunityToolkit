@@ -23,6 +23,8 @@ The XAML contents of the `Popup` can be defined as:
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MyProject.ViewModels"
     x:Class="MyProject.Popups.NamePopup"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
     x:DataType="viewModels:NamePopupViewModel">
 
     <VerticalStackLayout>

@@ -36,6 +36,8 @@ The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
     x:Class="MyProject.SimplePopup">
 
     <Label Text="This is a very important message!" />
@@ -67,6 +69,8 @@ using CommunityToolkit.Maui.Views;
 
 var popup = new ContentView
 {
+    HorizontalOptions = LayoutOptions.Center,
+    VerticalOptions = LayoutOptions.Center,
     Content = new Label
     {
         Text = "This is a very important message!"
@@ -111,6 +115,8 @@ To show how a `Popup` can be closed programmatically, the `SimplePopup` XAML exa
 <VerticalStackLayout
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
     x:Class="MyProject.SimplePopup">
 
     <Label Text="This is a very important message!" />

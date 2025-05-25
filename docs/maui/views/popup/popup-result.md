@@ -28,6 +28,8 @@ The easiest way to create a `Popup<T>` is to add a new `.NET MAUI ContentView (X
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
     x:TypeArguments="system:Boolean"
     x:Class="MyProject.ReturnResultPopup">
 
@@ -95,6 +97,8 @@ public class ReturnResultPopup : Popup<bool>
 
         Content = new VerticalStackLayout
         {
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Center,
             Children = 
             {
                 new Label { Text = "This is a very important message! Do you agree?" },
@@ -114,6 +118,7 @@ public class ReturnResultPopup : Popup<bool>
     {
         await CloseAsync(false);
     }
+}
 ```
 
 The `Close` method allows for a value to be supplied, this will be the resulting return value. The use of generics in `Popup<T>` provides type-safety when returning values from a Popup.

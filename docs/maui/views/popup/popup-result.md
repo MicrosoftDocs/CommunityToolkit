@@ -30,6 +30,8 @@ The easiest way to create a `Popup<T>` is to add a new `.NET MAUI ContentView (X
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     HorizontalOptions="Center"
     VerticalOptions="Center"
+    Padding="10"
+    Spacing="6"
     x:TypeArguments="system:Boolean"
     x:Class="MyProject.ReturnResultPopup">
 
@@ -155,6 +157,8 @@ public class MyPage : ContentPage
     }
 }
 ```
+
+![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
 > The `WasDismissedByTappingOutsideOfPopup` property enables developers to confirm whether the Popup was dismissed in a positive manner - programmatically or whether the user tapped outside of the Popup. If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.

@@ -25,6 +25,8 @@ The XAML contents of the `Popup` can be defined as:
     x:Class="MyProject.Popups.NamePopup"
     HorizontalOptions="Center"
     VerticalOptions="Center"
+    Padding="10"
+    Spacing="6"
     x:DataType="viewModels:NamePopupViewModel">
 
     <VerticalStackLayout>

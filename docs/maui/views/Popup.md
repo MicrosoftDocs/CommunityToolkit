@@ -45,6 +45,8 @@ The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML
 </ContentView>
 ```
 
+The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` filling the page that it overlays. The example sets both properties to `Center` to allow the popup size to be determined by the size of its contents.
+
 ##### .xaml.cs
 
 ```csharp
@@ -98,6 +100,26 @@ public class MyPage : ContentPage
 }
 ```
 
+![Popup](../images/views/popup/popup-basic.png "Popup rendering with a simple label")
+
+A popup will present without any `Padding` by default. In order to make the `SimplePopup` look better a `Padding` of 10 can be added as follows
+
+```xaml
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
+    Padding="10"
+    x:Class="MyProject.SimplePopup">
+
+    <Label Text="This is a very important message!" />
+    
+</ContentView>
+```
+
+![Popup with padding](../images/views/popup/popup-with-padding.png "Popup rendering with padding around a simple label")
+
 ## Closing a Popup
 
 There are 2 different ways that a `Popup` can be closed; programmatically or by tapping outside of the popup.
@@ -117,6 +139,8 @@ To show how a `Popup` can be closed programmatically, the `SimplePopup` XAML exa
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     HorizontalOptions="Center"
     VerticalOptions="Center"
+    Padding="10"
+    Spacing="6"
     x:Class="MyProject.SimplePopup">
 
     <Label Text="This is a very important message!" />
@@ -136,6 +160,8 @@ public partial class SimplePopup : VerticalStackLayout
     void OnOKButtonClicked(object? sender, EventArgs e) => Close();
 }
 ```
+
+![Popup with button](../images/views/popup/popup-with-button.png "Popup rendering with padding around a simple label and a button")
 
 > [!NOTE]
 > `Close()` is a fire-and-forget method. It will complete and return to the calling thread before the operating system has dismissed the `Popup` from the screen. If you need to pause the execution of your code until the operating system has dismissed the `Popup` from the screen, use instead `CloseAsync()`.

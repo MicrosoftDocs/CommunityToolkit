@@ -36,9 +36,22 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 });
 ```
 
+![Popup page overlay](../../images/views/popup/popup-page-overlay-opaque.png "Popup rendering with an opaque orange background")
+
+The above `Popup` renders with an opaque background, to control the opacity modify the alpha property of a `Color`. The following example shows how to
+
+```csharp
+await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+{
+    PageOverlayColor = Colors.Orange.WithAlpha(0.5f)
+});
+```
+
+![Popup page transparent overlay](../../images/views/popup/popup-page-overlay-translucent.png "Popup rendering with a translucent orange background")
+
 ## Customize the Popup Border
 
-`PopupOptions` provides the `Shape` property which can control the appearance of the border around the content displayed in the `Popup`. The following example shows how to set the border to be a rounded rectangle with a corner radius of 4 and a stroke of white.
+`PopupOptions` provides the `Shape` property which can control the appearance of the border around the content displayed in the `Popup`. The following example shows how to set the border to be a rounded rectangle with a corner radius of 4 and a stroke of blue.
 
 ```csharp
 await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
@@ -46,12 +59,15 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
     Shape = new RoundRectangle
     {
         CornerRadius = new CornerRadius(4),
-        Stroke = Colors.White
+        Stroke = Colors.Blue,
+        StrokeThickness = 4
     }
 });
 ```
 
-For more details on how to customize the `Shadow` property see [.NET MAUI Shapes](/dotnet/maui/user-interface/controls/shapes/).
+![Popup blue border stroke](../../images/views/popup/popup-blue-border.png "Popup rendering with a blue border")
+
+For more details on how to customize the `Shape` property see [.NET MAUI Shapes](/dotnet/maui/user-interface/controls/shapes/).
 
 ### Disable the Popup Border
 
@@ -64,20 +80,24 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 });
 ```
 
+![Popup no border](../../images/views/popup/popup-no-border.png "Popup rendering with no border")
+
 ## Customize the Popup Shadow
 
-`PopupOptions` provides the `Shadow` property which can control the shadow which is applied to the `Popup`. The following example shows how to set the shadow to be black with an opacity of 80%.
+`PopupOptions` provides the `Shadow` property which can control the shadow which is applied to the `Popup`. The following example shows how to set the shadow to be green with an opacity of 80%.
 
 ```csharp
 await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 {
     Shadow = new Shadow
     {
-        Brush = Brush.Black,
+        Brush = Brush.Green,
         Opacity = 0.8f
     }
 });
 ```
+
+![Popup green shadow](../../images/views/popup/popup-green-shadow.png "Popup rendering with a green shadow")
 
 For more details on how to customize the `Shadow` property see [.NET MAUI Shadow](/dotnet/maui/user-interface/shadow).
 
@@ -91,6 +111,8 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
     Shadow = null
 });
 ```
+
+![Popup no shadow](../../images/views/popup/popup-no-shadow.png "Popup rendering with no shadow")
 
 ## Properties
 

@@ -1,6 +1,6 @@
 ---
 title: Style extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: Style<T> provides a series of fluent extension methods that support configuring Microsoft.Maui.Controls.Style
 ms.date: 03/28/2022
 ---

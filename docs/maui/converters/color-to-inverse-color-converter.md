@@ -56,14 +56,14 @@ class ColorToInverseColorConverterPage : ContentPage
     {
         var label = new Label { Text = "This Text is the inverse of the Background" };
 
-		label.SetBinding(
-			Label.TextColorProperty,
-			new Binding(
-				nameof(ContentPage.BackgroundColor),
-				converter: new ColorToInverseColorConverter(),
+        label.SetBinding(
+            Label.TextColorProperty,
+            new Binding(
+                static (ContentPage page) => page.BackgroundColor,
+                converter: new ColorToInverseColorConverter(),
                 source: this));
 
-		Content = label;
+        Content = label;
     }
 }
 ```
@@ -82,7 +82,7 @@ class ColorToInverseColorConverterPage : ContentPage
         Content = new Label { Text = "This Text is the inverse of the Background" }
             .Bind(
                 Label.TextColorProperty,
-                nameof(ContentPage.BackgroundColor),
+                getter: static (ContentPage page) => page.BackgroundColor,
                 converter: new ColorToInverseColorConverter(),
                 source: this);
     }

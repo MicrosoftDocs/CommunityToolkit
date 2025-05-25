@@ -81,7 +81,7 @@ class MultiConverterPage : ContentPage
         label.SetBinding(
             Label.IsVisibleProperty,
             new Binding(
-                nameof(ViewModels.EnteredName),
+                static (ViewModels vm) => vm.EnteredName,
                 converter: converter,
                 converterParameter: parameters));
 

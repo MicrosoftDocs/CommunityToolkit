@@ -1,6 +1,6 @@
 ---
 title: Label extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Label extensions provide a series of extension methods that support configuring a Label.
 ms.date: 05/18/2022
 ---

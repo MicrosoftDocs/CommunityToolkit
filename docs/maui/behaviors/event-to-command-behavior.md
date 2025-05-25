@@ -37,7 +37,7 @@ The `EventToCommandBehavior` can be used as follows in XAML:
         <Button.Behaviors>
             <toolkit:EventToCommandBehavior
                 EventName="Clicked"
-                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyButton}, x:DataType=Button}
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyButton}, x:DataType=Button}"
                 Command="{Binding Source={x:Reference Page}, Path=BindingContext.MyCustomCommand, x:DataType=ContentPage}" />
         </Button.Behaviors>
     </Button>
@@ -101,8 +101,8 @@ The following example shows how to use the generic implementation to pass the `W
 
 ```xaml
 <WebView 
-    Source="https://github.com">
-    x:Name="MyWebView"
+    Source="https://github.com"
+    x:Name="MyWebView">
     <WebView.Behaviors>
         <toolkit:EventToCommandBehavior
             x:TypeArguments="WebNavigatedEventArgs"

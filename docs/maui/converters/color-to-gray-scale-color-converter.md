@@ -56,13 +56,13 @@ class ColorToGrayScaleColorConverterPage : ContentPage
     {
         var label = new Label { Text = "The Text is showing in grayscale" };
 
-		label.SetBinding(
-			Label.TextColorProperty,
-			new Binding(
-				nameof(ViewModels.AppTextColor),
-				converter: new ColorToGrayScaleColorConverter()));
+        label.SetBinding(
+            Label.TextColorProperty,
+            new Binding(
+                static (ViewModels vm) => vm.AppTextColor,
+                converter: new ColorToGrayScaleColorConverter()));
 
-		Content = label;
+        Content = label;
     }
 }
 ```

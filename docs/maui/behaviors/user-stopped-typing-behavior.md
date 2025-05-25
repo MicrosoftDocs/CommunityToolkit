@@ -63,7 +63,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
         };
 
         behavior.SetBinding(UserStoppedTypingBehavior.CommandProperty, 
-        nameof(ViewModel. SearchCommand);
+                                static (ViewModel vm) => vm.SearchCommand,
+                                source: this.BindingContext);
 
         var entry = new Entry
         {
@@ -95,11 +96,10 @@ class UserStoppedTypingBehaviorPage : ContentPage
             StoppedTypingTimeThreshold = 1000,
             MinimumLengthThreshold = 3,
             ShouldDismissKeyboardAutomatically = true
-        }
-        .Bind(
-            UserStoppedTypingBehavior.CommandProperty, 
-            static (ViewModel vm) => vm.SearchCommand,
-            mode: BindingMode.OneTime));
+        }.Bind(UserStoppedTypingBehavior.CommandProperty, 
+                getter: static (ViewModel vm) => vm.SearchCommand,
+                source: this.BindingContext,
+                mode: BindingMode.OneTime));
     }
 }
 ```

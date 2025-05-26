@@ -63,7 +63,7 @@ The backing view model for the `Popup` can be defined as:
 public class NamePopupViewModel : ObservableObject
 {
     [ObservableProperty]
-    string name = "";
+    public partial string Name { get; set; } = string.Empty;
 
     readonly IPopupService popupService;
 
@@ -181,7 +181,7 @@ public class MyViewModel : INotifyPropertyChanged
 
 ## Closing a Popup
 
-The `PopupService` provides the `ClosePopup` and `ClosePopupAsync` methods that make it possible to close a `Popup` from a view model.
+The `PopupService` provides the `ClosePopupAsync` method that makes it possible to close a `Popup` from a view model.
 
 ### Programmatically closing a Popup
 
@@ -191,7 +191,7 @@ Expanding on the previous example the following implementation can be added to t
 [RelayCommand]
 void OnCancel()
 {
-    popupService.ClosePopup();
+    popupService.ClosePopupAsync(Shell.Current.Navigation);
 }
 ```
 
@@ -207,7 +207,7 @@ Expanding on the previous example the following implementation can be added to t
 [RelayCommand(CanExecute = nameof(CanSave))]
 void OnSave()
 {
-    popupService.ClosePopup(Name);
+    popupService.ClosePopupAsync(Shell.Current.Navigation, Name);
 }
 ```
 

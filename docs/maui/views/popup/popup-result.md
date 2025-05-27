@@ -118,7 +118,7 @@ public class ReturnResultPopup : Popup<bool>
 }
 ```
 
-The `Close` method allows for a value to be supplied, this will be the resulting return value. The use of generics in `Popup<T>` provides type-safety when returning values from a Popup.
+The `CloseAsync` method allows for a value to be supplied, this will be the resulting return value. The use of generics in `Popup<T>` provides type-safety when returning values from a Popup.
 
 ## Awaiting the result from a Popup
 

@@ -13,7 +13,7 @@ The .NET MAUI Community Toolkit provides the ability to show a [Popup](../Popup.
 
 A `Popup<T>` can be created in XAML or C# as follows:
 
-### XAML
+### Building a Popup in XAML
 
 The following section covers how to create a `Popup<T>` using XAML.
 
@@ -21,21 +21,18 @@ The following section covers how to create a `Popup<T>` using XAML.
 
 The easiest way to create a `Popup<T>` is to add a new `.NET MAUI ContentView (XAML)` to your project, this will create 2 files; a _*.xaml_ file and a _*.xaml.cs_ file. The contents of each file can be replaced with the following:
 
-##### .xaml
+##### .XAML
 
 ```xaml
 <toolkit:Popup
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    HorizontalOptions="Center"
-    VerticalOptions="Center"
     Padding="10"
-    Spacing="6"
     x:TypeArguments="system:Boolean"
     x:Class="MyProject.ReturnResultPopup">
 
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="6">
         <Label Text="This is a very important message! Do you agree?" />
 
         <Button Text="Yes" 
@@ -51,7 +48,7 @@ The easiest way to create a `Popup<T>` is to add a new `.NET MAUI ContentView (X
 
 The use of `x:TypeArguments` in XAML makes it possible to supply the type parameter for a generic type.
 
-##### .xaml.cs
+##### XAML Code-Behind File
 
 ```csharp
 public partial class ReturnResultPopup : Popup<bool>
@@ -78,7 +75,7 @@ The use of `Popup<bool>` must match the definition in the XAML through the use o
 > [!IMPORTANT]
 > If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
 
-### C#
+### Building a Popup in C#
 
 The following section covers how to create a `Popup` using C#.
 
@@ -99,8 +96,6 @@ public class ReturnResultPopup : Popup<bool>
 
         Content = new VerticalStackLayout
         {
-            HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center,
             Children = 
             {
                 new Label { Text = "This is a very important message! Do you agree?" },

@@ -20,7 +20,7 @@ The .NET MAUI Community Toolkit provides 2 approaches to create a `Popup` that c
 
 A `Popup` can be created in XAML or C# as follows:
 
-### XAML
+### Building a Popup in XAML
 
 The following section covers how to create a `Popup` using XAML.
 
@@ -28,16 +28,16 @@ The following section covers how to create a `Popup` using XAML.
 
 Please note that if a `Popup` is created in XAML it must have a C# code behind file as well. To understand why this is required please refer to this [.NET MAUI documentation page](/dotnet/maui/xaml/runtime-load).
 
-The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML)` to your project, this will create 2 files; a _*.xaml_ file and a _*.xaml.cs_ file. The contents of each file can be replaced with the following:
+The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML)` to your project. This will create 2 files; a _*.xaml_ file and a _*.xaml.cs_ file. The contents of each file can be replaced with the following:
 
-##### .xaml
+##### XAML
+
+The SimplePopup.xaml file can be set to the following
 
 ```xaml
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    HorizontalOptions="Center"
-    VerticalOptions="Center"
     x:Class="MyProject.SimplePopup">
 
     <Label Text="This is a very important message!" />
@@ -45,9 +45,11 @@ The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML
 </ContentView>
 ```
 
-The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` filling the page that it overlays. The example sets both properties to `Center` to allow the popup size to be determined by the size of its contents.
+The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` being displayed in the middle of page that it overlays.
 
-##### .xaml.cs
+##### XAML Code-Behind File
+
+The SimplePopup.xaml.cs file can be set to the following
 
 ```csharp
 public partial class SimplePopup : ContentView
@@ -62,7 +64,7 @@ public partial class SimplePopup : ContentView
 > [!IMPORTANT]
 > If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
 
-### C#
+### Building a Popup in C#
 
 The following section covers how to create a `Popup` using C#.
 
@@ -71,8 +73,6 @@ using CommunityToolkit.Maui.Views;
 
 var popup = new ContentView
 {
-    HorizontalOptions = LayoutOptions.Center,
-    VerticalOptions = LayoutOptions.Center,
     Content = new Label
     {
         Text = "This is a very important message!"
@@ -102,7 +102,7 @@ public class MyPage : ContentPage
 
 ![Popup](../images/views/popup/popup-basic.png "Popup rendering with a simple label")
 
-A popup will present without any `Padding` by default. In order to make the `SimplePopup` look better a `Padding` of 10 can be added as follows
+A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 can be added as follows
 
 ```xaml
 <ContentView
@@ -130,8 +130,8 @@ In order to close a `Popup` a developer must call `Close` or `CloseAsync` on the
 
 To show how a `Popup` can be closed programmatically, the `SimplePopup` XAML example can be enhanced by:
 
-- changing the `ContentView` element to `VerticalStackLayout`
-- adding an **OK** `Button`
+- Changing the `ContentView` element to `VerticalStackLayout`
+- Adding an **OK** `Button`
 
 ```xaml
 <VerticalStackLayout
@@ -157,14 +157,16 @@ public partial class SimplePopup : VerticalStackLayout
 {
     // ...
 
-    void OnOKButtonClicked(object? sender, EventArgs e) => Close();
+    async void OnOKButtonClicked(object? sender, EventArgs e)
+    {
+        var cts = new CancellationTokenSource();
+       
+        await this.ClosePopup(cts.Token);
+    }
 }
 ```
 
 ![Popup with button](../images/views/popup/popup-with-button.png "Popup rendering with padding around a simple label and a button")
-
-> [!NOTE]
-> `Close()` is a fire-and-forget method. It will complete and return to the calling thread before the operating system has dismissed the `Popup` from the screen. If you need to pause the execution of your code until the operating system has dismissed the `Popup` from the screen, use instead `CloseAsync()`.
 
 Alternatively in the resulting event handler `OnOKButtonClicked` we call `CloseAsync`, this will programmatically close the `Popup` allowing the caller to `await` the method until the operating system has dismissed the `Popup` from the screen.
 
@@ -177,8 +179,8 @@ public partial class SimplePopup : VerticalStackLayout
     {
         var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 
-         await CloseAsync(token: cts.Token);
-         await Toast.Make("Popup Dismissed By Button").Show();
+        await CloseAsync(token: cts.Token);
+        await Toast.Make("Popup Dismissed By Button").Show();
     }
 }
 ```

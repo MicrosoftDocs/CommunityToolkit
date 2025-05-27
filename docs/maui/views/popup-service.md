@@ -191,7 +191,7 @@ Expanding on the previous example the following implementation can be added to t
 [RelayCommand]
 void OnCancel()
 {
-    popupService.ClosePopupAsync(Shell.Current.Navigation);
+    popupService.ClosePopupAsync(Shell.Current);
 }
 ```
 

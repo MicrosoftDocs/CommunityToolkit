@@ -38,7 +38,8 @@ The SimplePopup.xaml file can be set to the following
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MyProject.SimplePopup">
+    x:Class="MyProject.SimplePopup"
+    Padding="10">
 
     <Label Text="This is a very important message!" />
     
@@ -73,12 +74,15 @@ using CommunityToolkit.Maui.Views;
 
 var popup = new ContentView
 {
+    Padding = new Thickness(10),
     Content = new Label
     {
         Text = "This is a very important message!"
     }
 };
 ```
+
+A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
 
 ## Presenting a Popup
 
@@ -98,24 +102,6 @@ public class MyPage : ContentPage
         this.ShowPopup(popup);
     }
 }
-```
-
-![Popup](../images/views/popup/popup-basic.png "Popup rendering with a simple label")
-
-A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 can be added as follows
-
-```xaml
-<ContentView
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    HorizontalOptions="Center"
-    VerticalOptions="Center"
-    Padding="10"
-    x:Class="MyProject.SimplePopup">
-
-    <Label Text="This is a very important message!" />
-    
-</ContentView>
 ```
 
 ![Popup with padding](../images/views/popup/popup-with-padding.png "Popup rendering with padding around a simple label")

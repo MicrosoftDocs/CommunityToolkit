@@ -158,6 +158,12 @@ public class MyPage : ContentPage
 > [!NOTE]
 > If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.
 
+## PopupOptions
+The `PopupOptions` class provides the ability to customize the Border, Shadow, PageOverlayColor, and more, of the displayed `Popup`.
+
+Please refer to the [PopupOptions Documentation](./popup-options.md) to learn more.
+
+
 ## Examples
 
 You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/Popups/ReturnResultPopup.xaml).

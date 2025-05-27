@@ -134,14 +134,14 @@ public class MyPage : ContentPage
         var popup = new ReturnResultPopup();
 
         // The type parameter must match the type returned from the popup.
-        IPopupResult<bool> result = await this.ShowPopupAsync(popup, CancellationToken.None);
+        IPopupResult<bool> popupResult = await this.ShowPopupAsync(popup, CancellationToken.None);
 
-        if (result.WasDismissedByTappingOutsideOfPopup)
+        if (popupResult.WasDismissedByTappingOutsideOfPopup)
         {
             return;
         }
 
-        if (result.Result)
+        if (popupResult.Result is true)
         {
             // Yes was tapped
         }
@@ -156,7 +156,7 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> The `WasDismissedByTappingOutsideOfPopup` property enables developers to confirm whether the Popup was dismissed in a positive manner - programmatically or whether the user tapped outside of the Popup. If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.
+> If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.
 
 ## Examples
 

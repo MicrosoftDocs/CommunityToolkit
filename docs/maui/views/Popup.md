@@ -7,7 +7,7 @@ ms.date: 04/12/2022
 
 # Popup
 
-Popups are a very common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance.
+Popups are a common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance.
 
 > [!NOTE]
 > If you wish to present something to the user that is more subtle then checkout our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
@@ -16,23 +16,69 @@ The `Popup` view allows developers to build their own custom UI and present it t
 
 The .NET MAUI Community Toolkit provides 2 approaches to create a `Popup` that can be shown in a .NET MAUI application. These approaches will depend on the use case. This page focuses on the simplest form of `Popup` - simply rendering an overlay in an application, for the more advanced approach enabling the ability to return a result from the `Popup` please refer to [Popup - Returning a result](./popup/popup-result.md).
 
-## Building a Popup
+## Displaying a Popup
 
-A `Popup` can be created in XAML or C# as follows:
+The .NET MAUI Community Toolkit provides multiple approaches to display a `Popup` in a .NET MAUI application:
+
+1. In a `ContentPage`, call to the `this.ShowPopupAsync()` extension method, passing in a `View` to display in the Popup
+    - **Note:** To further customize a Popup, please refer to the [**PopupOptions** documentation](./popup-options).
+2. Returning a result from the `Popup` 
+    - Please refer to the [**Popup - Returning a result** documentation](./popup/popup-result.md).
+3. Using the `PopupService`
+    - Please refer to the [**PopupService** documentation](./popup-service.md).
+
+The documentation below demonstrates the simplest way to display a Popup using the `.ShowPopupAsync()` extension method. This method returns a `Task<IPopupResult>` that will complete when the Popup closes. The `PopupOptions` provided are optional.
+
+```cs
+public class MainPage : ContentPage
+{
+    // ...
+
+    async void DisplayPopupButtonClicked(object? sender, EventArgs e)
+    {
+        await this.ShowPopupAsync(new Label
+        {
+            Text = "This is a very important message!"
+        }, new PopupOptions
+        {
+            CanBeDismissedByTappingOutsideOfPopup = false,
+            Shape = new RoundRectangle
+            {
+                CornerRadius = new CornerRadius(20, 20, 20, 20),
+                StrokeThickness = 2,
+                Stroke = Colors.LightGray
+            }
+        })
+
+        /**** Alternatively, Shell.Current can be used to display a Popup
+
+        await Shell.Current.ShowPopupAsync(new Label
+        {
+            Text = "This is a very important message!"
+        }, new PopupOptions
+        {
+            CanBeDismissedByTappingOutsideOfPopup = false,
+            Shape = new RoundRectangle
+            {
+                CornerRadius = new CornerRadius(20, 20, 20, 20),
+                StrokeThickness = 2,
+                Stroke = Colors.LightGray
+            }
+        })
+        ****/
+    }
+}
+```
+
+![Popup with padding](../images/views/popup/popup-with-padding.png "Popup rendering with padding around a simple label")
+
+Alternatively, a `Popup` can be created in XAML or C# and passed into `ShowPopupAsync()`.
 
 ### Building a Popup in XAML
 
-The following section covers how to create a `Popup` using XAML.
+The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML)` to your project. This will create 2 files: a _*.xaml_ file and a _*.xaml.cs_ file. 
 
-#### Defining your Popup
-
-Please note that if a `Popup` is created in XAML it must have a C# code behind file as well. To understand why this is required please refer to this [.NET MAUI documentation page](/dotnet/maui/xaml/runtime-load).
-
-The easiest way to create a `Popup` is to add a new `.NET MAUI ContentView (XAML)` to your project. This will create 2 files; a _*.xaml_ file and a _*.xaml.cs_ file. The contents of each file can be replaced with the following:
-
-##### XAML
-
-The SimplePopup.xaml file can be set to the following
+Replace the contents of _*.xaml_ with the following:
 
 ```xaml
 <ContentView
@@ -46,60 +92,26 @@ The SimplePopup.xaml file can be set to the following
 </ContentView>
 ```
 
-The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` being displayed in the middle of page that it overlays.
-
-##### XAML Code-Behind File
-
-The SimplePopup.xaml.cs file can be set to the following
-
-```csharp
-public partial class SimplePopup : ContentView
-{
-    public SimplePopup()
-    {
-        InitializeComponent();
-    }
-}
-```
-
-> [!IMPORTANT]
-> If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
-
-### Building a Popup in C#
-
-The following section covers how to create a `Popup` using C#.
-
-```csharp
-using CommunityToolkit.Maui.Views;
-
-var popup = new ContentView
-{
-    Padding = new Thickness(10),
-    Content = new Label
-    {
-        Text = "This is a very important message!"
-    }
-};
-```
+The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` being displayed in the center of page that it overlays.
 
 A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
 
-## Presenting a Popup
+### Presenting a Popup Created in XAML
 
-Once the `Popup` has been built it can then be presented through the use of the `Popup` extension methods used on a `Page`, `Shell` or an `INavigation`, or through the [`IPopupService`](popup-service.md) implementation from this toolkit.
+Once the `Popup` has been created in XAML, it can then be presented through the use of the `Popup` extension methods used on a `Page`, `Shell` or an `INavigation`, or through the [`IPopupService`](popup-service.md) implementation from this toolkit.
 
-The following example shows how to instantiate and show the `SimplePopup` created in the previous example through a method on a `ContentPage`.
+The following example shows how to instantiate and show the `SimplePopup` created in the previous example through an extension method on a `ContentPage`.
 
 ```csharp
 using CommunityToolkit.Maui.Views;
 
 public class MyPage : ContentPage
 {
-    public void DisplayPopup()
+    public async Task DisplayPopup(CancellationToken token)
     {
         var popup = new SimplePopup();
 
-        this.ShowPopup(popup);
+        await this.ShowPopupAsync(popup, PopupOptions.Empty, token);
     }
 }
 ```
@@ -108,72 +120,64 @@ public class MyPage : ContentPage
 
 ## Closing a Popup
 
-There are 2 different ways that a `Popup` can be closed; programmatically or by tapping outside of the popup.
+There are 2 different ways that a `Popup` can be closed: 
 
-### Programmatically closing a Popup
+1. A Popup can be closed programmatically 
+2. A Popup can be closed when a user taps outside of the popup
+    - **Note** To prevent a Popup from closing when a user taps outside of it, set `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` to `false`
 
-In order to close a `Popup` a developer must call `Close` or `CloseAsync` on the `Popup` itself. This is typically performed by responding to a button press from a user or once a long running task has completed.
+### 1. Programmatically closing a Popup
 
-To show how a `Popup` can be closed programmatically, the `SimplePopup` XAML example can be enhanced by:
+There are 3 options to close a `Popup` programatically:
 
-- Changing the `ContentView` element to `VerticalStackLayout`
-- Adding an **OK** `Button`
+1. In a `ContentPage`, use the `this.ClosePopupAsync()` extension method
+2. In an app using `Shell`, use `Shell.Current.ClosePopupAsync()` extension method
+3. Use the `PopupService`
+    - Please refer to the [**PopupService** documentation](./popup-service.md).
 
-```xaml
-<VerticalStackLayout
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    HorizontalOptions="Center"
-    VerticalOptions="Center"
-    Padding="10"
-    Spacing="6"
-    x:Class="MyProject.SimplePopup">
-
-    <Label Text="This is a very important message!" />
-    <Button Text="OK" 
-            Clicked="OnOKButtonClicked" />
-    
-</VerticalStackLayout>
-```
-
-In the resulting event handler `OnOKButtonClicked` we call `Close`, this will programmatically close the `Popup`.
+In the example below, we demonstrate how to use the `this.ClosePopupAsync()` in a `ContentPage`. To learn how to use `PopupService` to close a Popup, please refer to the [**PopupService** documentation](./popup-service.md). 
 
 ```csharp
-public partial class SimplePopup : VerticalStackLayout
-{
-    // ...
+using CommunityToolkit.Maui.Views;
 
-    async void OnOKButtonClicked(object? sender, EventArgs e)
+public class MyPage : ContentPage
+{
+    public async Task DisplayAutomaticallyClosingPopup(Timespan displayTimeSpan, CancellationToken token)
     {
-        var cts = new CancellationTokenSource();
-       
-        await this.ClosePopup(cts.Token);
+        var popup = new SimplePopup();
+
+        // This Popup is be closed automatically after 2 seconds
+        this.ShowPopup(popup, new PopupOptions
+        {
+            CanBeDismissedByTappingOutsideOfPopup = false
+        });
+
+        await Task.Delay(TimeSpan.FromSeconds(displayTimeSpan), token);
+
+        await this.ClosePopupAsync(token);
+
+        /**** Alternatively, Shell.Current can be used to close a Popup
+        Shell.Current.ShowPopup(popup, new PopupOptions
+        {
+            CanBeDismissedByTappingOutsideOfPopup = false
+        });
+
+        await Task.Delay(TimeSpan.FromSeconds(displayTimeSpan), token);
+
+        await Shell.Current.ClosePopupAsync(token);
+        ***/
+
     }
 }
 ```
 
-![Popup with button](../images/views/popup/popup-with-button.png "Popup rendering with padding around a simple label and a button")
-
-Alternatively in the resulting event handler `OnOKButtonClicked` we call `CloseAsync`, this will programmatically close the `Popup` allowing the caller to `await` the method until the operating system has dismissed the `Popup` from the screen.
-
-```csharp
-public partial class SimplePopup : VerticalStackLayout
-{
-    // ...
-
-    async void OnOKButtonClicked(object? sender, EventArgs e) 
-    {
-        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-
-        await CloseAsync(token: cts.Token);
-        await Toast.Make("Popup Dismissed By Button").Show();
-    }
-}
-```
-
-### Tapping outside of the Popup
+### 2. Tapping outside of the Popup
 
 By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property. Setting this property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it. See [PopupOptions](./popup/popup-options.md) for more details.
+
+## PopupOptions
+
+The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [PopupOptions](./popup/popup-options.md) for more details.
 
 ## Events
 

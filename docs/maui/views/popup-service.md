@@ -13,7 +13,7 @@ The following sections will incrementally build on how to use the `PopupService`
 
 ## Creating a Popup
 
-In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Defining your popup](./Popup.md#defining-your-popup) the following can be created.
+In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Displaying a Popup](./Popup.md#displaying-a-popup) the following can be created.
 
 The XAML contents of the `Popup` can be defined as:
 

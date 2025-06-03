@@ -21,7 +21,7 @@ The .NET MAUI Community Toolkit provides 2 approaches to create a `Popup` that c
 The .NET MAUI Community Toolkit provides multiple approaches to display a `Popup` in a .NET MAUI application:
 
 1. In a `ContentPage`, call to the `this.ShowPopupAsync()` extension method, passing in a `View` to display in the Popup
-    - **Note:** To further customize a Popup, please refer to the [**PopupOptions** documentation](./popup/popup-options).
+    - **Note:** To further customize a Popup, please refer to the [**PopupOptions** documentation](./popup/popup-options.md).
 2. Returning a result from the `Popup`
     - Please refer to the [**Popup - Returning a result** documentation](./popup/popup-result.md).
 3. Using the `PopupService`

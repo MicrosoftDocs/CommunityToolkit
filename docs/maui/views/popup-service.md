@@ -135,7 +135,7 @@ The `IPopupService` also provides methods to handle a result being returned from
 
 ## Passing data to a Popup view model
 
-When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. The `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `IDictionary<string, object> shellParameters` parameter. This makes use of the `IQueryAttributable` interface provided with .NET MAUI Shell, for more information on using this please refer to [Process navigation data using a single method](/dotnet/maui/fundamentals/shell/navigation#process-navigation-data-using-a-single-method).
+When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `IDictionary<string, object> shellParameters` parameter. This makes use of the `IQueryAttributable` interface provided with .NET MAUI Shell, for more information on using this please refer to [Process navigation data using a single method](/dotnet/maui/fundamentals/shell/navigation#process-navigation-data-using-a-single-method).
 
 To extend the previous example of showing a `NamePopupViewModel` and its associated Popup, we can extend the `NamePopupViewModel` to implement the `IQueryAttributable` interface as follows:
 
@@ -147,7 +147,7 @@ public class NamePopupViewModel : ObservableObject, IQueryAttributable
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        Name = query["Name"] as string;
+        Name = (string)query[nameof(NamePopupViewModel.Name)];
     }
 }
 ```
@@ -168,13 +168,13 @@ public class MyViewModel : INotifyPropertyChanged
     {
         var queryAttributes = new Dictionary<string, object>
         {
-            ["Name"] = "Shaun"
+            [nameof(NamePopupViewModel.Name)] = "Shaun"
         };
 
         await this.popupService.ShowPopupAsync<NamePopupViewModel>(
             Shell.Current,
-            options: null,
-            queryAttributes);
+            options: PopupOptions.Empty,
+            shellParameters: queryAttributes);
     }
 }
 ```

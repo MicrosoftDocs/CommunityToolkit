@@ -16,7 +16,7 @@ All of the examples in this page make use of the `SimplePopup` example that is c
 `PopupOptions` provides the `CanBeDismissedByTappingOutsideOfPopup` property which can control the whether the user can tap or click outside of the Popup bounds to dismiss the currently displayed Popup. This is `true` by default. The following example shows how to prevent a user from being able to dismiss the Popup.
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     CanBeDismissedByTappingOutsideOfPopup = false
 });
@@ -30,7 +30,7 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 `PopupOptions` provides the `PageOverlayColor` property which can control the `Color` that overlays the current page. The following example shows how to set the `PageOverlayColor` to orange.
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     PageOverlayColor = Colors.Orange
 });
@@ -41,7 +41,7 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 The above `Popup` renders with an opaque background, to control the opacity modify the alpha property of a `Color`. The following example shows how to
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     PageOverlayColor = Colors.Orange.WithAlpha(0.5f)
 });
@@ -54,7 +54,7 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 `PopupOptions` provides the `Shape` property which can control the appearance of the border around the content displayed in the `Popup`. The following example shows how to set the border to be a rounded rectangle with a corner radius of 4 and a stroke of blue.
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     Shape = new RoundRectangle
     {
@@ -74,7 +74,7 @@ For more details on how to customize the `Shape` property see [.NET MAUI Shapes]
 In order to disable the border on a Popup, simply set the `Shape` property to `null`. The following example shows how to achieve this
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     Shape = null
 });
@@ -87,7 +87,7 @@ await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
 `PopupOptions` provides the `Shadow` property which can control the shadow which is applied to the `Popup`. The following example shows how to set the shadow to be green with an opacity of 80%.
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     Shadow = new Shadow
     {
@@ -106,7 +106,7 @@ For more details on how to customize the `Shadow` property see [.NET MAUI Shadow
 In order to disable the border on a Popup, simply set the `Shape` property to `null`. The following example shows how to achieve this
 
 ```csharp
-await ShowPopupAsync<SimplePopup>(Shell.Current, new PopupOptions
+await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
     Shadow = null
 });

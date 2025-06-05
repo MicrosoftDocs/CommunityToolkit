@@ -14,7 +14,7 @@ Popups are a common way of presenting information to a user that relates to thei
 
 The `Popup` view allows developers to build their own custom UI and present it to their users.
 
-The .NET MAUI Community Toolkit provides 2 approaches to create a `Popup` that can be shown in a .NET MAUI application. These approaches will depend on the use case. This page focuses on the simplest form of `Popup` - simply rendering an overlay in an application, for the more advanced approach enabling the ability to return a result from the `Popup` please refer to [Popup - Returning a result](./popup/popup-result.md).
+The .NET MAUI Community Toolkit provides 2 approaches to create a `Popup` that can be shown in a .NET MAUI application. These approaches will depend on the use case. This page focuses on the simplest form of `Popup` - simply rendering an overlay in an application. For a more advanced approach, enabling the ability to return a result from the `Popup`, please refer to [Popup - Returning a result](./popup/popup-result.md).
 
 ## Displaying a Popup
 
@@ -135,7 +135,7 @@ There are 3 options to close a `Popup` programatically:
 3. Use the `PopupService`
     - Please refer to the [**PopupService** documentation](./popup-service.md).
 
-In the example below, we demonstrate how to use the `this.ClosePopupAsync()` in a `ContentPage`. To learn how to use `PopupService` to close a Popup, please refer to the [**PopupService** documentation](./popup-service.md). 
+In the example below, we demonstrate how to use `this.ClosePopupAsync()` in a `ContentPage`. To learn how to use `PopupService` to close a Popup, please refer to the [**PopupService** documentation](./popup-service.md). 
 
 ```csharp
 using CommunityToolkit.Maui.Views;
@@ -146,7 +146,7 @@ public class MyPage : ContentPage
     {
         var popup = new SimplePopup();
 
-        // This Popup is be closed automatically after 2 seconds
+        // This Popup is closed programmatically after 2 seconds
         this.ShowPopup(popup, new PopupOptions
         {
             CanBeDismissedByTappingOutsideOfPopup = false

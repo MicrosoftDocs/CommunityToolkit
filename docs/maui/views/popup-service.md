@@ -189,9 +189,9 @@ Expanding on the previous example the following implementation can be added to t
 
 ```csharp
 [RelayCommand]
-void OnCancel()
+async Task OnCancel()
 {
-    popupService.ClosePopupAsync(Shell.Current);
+    await popupService.ClosePopupAsync(Shell.Current);
 }
 ```
 
@@ -205,9 +205,9 @@ Expanding on the previous example the following implementation can be added to t
 
 ```csharp
 [RelayCommand(CanExecute = nameof(CanSave))]
-void OnSave()
+async Task OnSave()
 {
-    popupService.ClosePopupAsync(Shell.Current.Navigation, Name);
+    await popupService.ClosePopupAsync(Shell.Current, Name);
 }
 ```
 

@@ -400,6 +400,40 @@ The following example shows how to add a `Button` into the application and setup
 > [!NOTE]
 > In order to use the image that has been captured the `CameraView` provides the `MediaCaptured` event.
 
+The following example demonstrates how to use the `CaptureImage` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+async void HandleCaptureButtonTapped(object? sender, EventArgs e)
+{
+    // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+    Camera.MediaCaptured += HandleCameraViewMediaCaptured;
+
+    try
+    {
+        var captureImageCTS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+        await Camera.CaptureImage(captureImageCTS.Token);
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+    finally
+    {
+        Camera.MediaCaptured -= HandleCameraViewMediaCaptured;
+    }
+}
+
+void HandleCameraViewMediaCaptured(object? sender, MediaCapturedEventArgs e)
+{
+    Stream stream = e.Media;
+    // process media
+}
+```
+
 ## Start preview
 
 The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StartCameraPreview` method or the `StartCameraPreviewCommand`.
@@ -460,6 +494,30 @@ The following example shows how to add a `Button` into the application and setup
     </Grid>
 
 </ContentPage>
+```
+
+The following example demonstrates how to use the `StartCameraPreview` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
+{
+
+    try
+    {
+        var startCameraPreviewTCS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+
+        // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+        await Camera.StartCameraPreview(startCameraPreviewTCS.Token);
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
 ```
 
 ## Stop preview
@@ -528,6 +586,28 @@ The following example shows how to add a `Button` into the application and setup
     </Grid>
 
 </ContentPage>
+```
+
+The following example demonstrates how to use the `StopCameraPreview` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
+{
+
+    try
+    {
+        // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+        Camera.StopCameraPreview();
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
 ```
 
 ## Examples

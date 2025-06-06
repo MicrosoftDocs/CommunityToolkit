@@ -45,6 +45,8 @@ items:
     href: Extensions/DependencyObjectExtensions.md
   - name: DispatcherQueueExtensions
     href: Extensions/DispatcherQueueExtensions.md
+  - name: DispatcherQueueTimerExtensions
+    href: Extensions/DispatcherQueueTimerExtensions.md
   - name: EnumValuesExtensions
     href: Extensions/EnumValuesExtension.md
   - name: FrameworkElement Extensions
@@ -107,8 +109,14 @@ items:
   items: 
   - name: Attached Card Shadow
     href: Media/AttachedCardShadow.md
+  - name: Brushes
+    href: Media/Brushes.md
   - name: EffectAnimations
     href: Media/EffectAnimations.md
+  - name: PipelineBrush
+    href: Media/PipelineBrush.md
+  - name: PipelineVisualFactory
+    href: Media/PipelineVisualFactory.md
 - name: MetadataControl
   href: MetadataControl/index.md
 - name: Primitives

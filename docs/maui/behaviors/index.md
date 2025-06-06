@@ -36,3 +36,25 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable beh
 | [`TouchBehavior`](touch-behavior.md) | The `TouchBehavior` is a `Behavior` that provides the ability to interact with any `VisualElement` based on touch, mouse click and hover events. |
 | [`UriValidationBehavior`](uri-validation-behavior.md) | The `UriValidationBehavior` is a `Behavior` that allows users to determine whether or not text input is a valid URI. |
 | [`UserStoppedTypingBehavior`](user-stopped-typing-behavior.md) | The `UserStoppedTypingBehavior` is a behavior that allows the user to trigger an action when a user has stopped data input an `Entry`. |
+
+## Create a .NET MAUI Community Toolkit Behavior
+
+The .NET MAUI Community Toolkit provides the `BaseBehavior<T>` class that performs some of the boiler plate requirements around managing a `Behavior` enabling developers to focus on the purpose of the implementation. A .NET MAUI Community Toolkit behavior can be implemented by creating a class that derives from the `BaseBehavior<T>` class, and optionally overriding the `OnAttachedTo`, `OnDetachingFrom` or `OnViewPropertyChanged` methods.
+
+The following example shows the `NumericValidationBehavior` class, which highlights the value entered by the user into an `Entry` control in red if it's not a `double`:
+
+```csharp
+public class NumericValidationBehavior : Behavior<Entry>
+{
+    void OnViewPropertyChanged(Entry sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(Entry.Text))
+        {
+            bool isValid = double.TryParse(sender.Text, out double _);
+            sender.TextColor = isValid ? Colors.Black : Colors.Red;
+        }
+    }
+}
+```
+
+In this example, the `NumericValidationBehavior` class derives from the `BaseBehavior<T>` class, where `T` is an `Entry`. The `OnAttachedTo` and `OnDetachingFrom` methods are handled within the base implementation so the only requirement is to override the `OnViewPropertyChanged`. The `OnViewPropertyChanged` method will be called whenever a property changes on the `View` property which is of `Entry`. This `OnViewPropertyChanged` provides the core functionality of the behavior, which parses the value entered in the `Entry` and sets the `TextColor` property to red if the value isn't a `double`.

@@ -1,6 +1,6 @@
 ---
 title: Image extensions - .NET MAUI Community Toolkit
-author: brminnick
+author: TheCodeTraveler
 description: The Image extensions provide a series of extension methods that support configuring IImage controls
 ms.date: 03/28/2022
 ---

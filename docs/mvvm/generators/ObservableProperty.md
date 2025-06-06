@@ -127,7 +127,7 @@ Imagine you had a `FullName` property you wanted to raise a notification for whe
 ```csharp
 [ObservableProperty]
 [NotifyPropertyChangedFor(nameof(FullName))]
-public partial string? Name;
+public partial string? Name { get; set; }
 ```
 
 This will result in a generated property equivalent to this:
@@ -153,7 +153,7 @@ Imagine you had a command whose execution state was dependent on the value of th
 ```csharp
 [ObservableProperty]
 [NotifyCanExecuteChangedFor(nameof(MyCommand))]
-public partial string? Name;
+public partial string? Name { get; set; }
 ```
 
 This will result in a generated property equivalent to this:

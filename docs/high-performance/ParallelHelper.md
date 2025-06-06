@@ -11,7 +11,7 @@ dev_langs:
 
 The [`ParallelHelper`](/dotnet/api/microsoft.toolkit.highperformance.helpers.parallelhelper) contains high performance APIs to work with parallel code. It contains performance oriented methods that can be used to quickly setup and execute parallel operations over a given data set or iteration range or area.
 
-> **Platform APIs:** [`ParallelHelper`](/dotnet/api/microsoft.toolkit.highperformance.helpers.parallelhelper), [`IAction`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction), [`IAction2D`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction2D), [`IRefAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IRefAction-1), [`IInAction<T><T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IInAction-1)
+> **Platform APIs:** [`ParallelHelper`](/dotnet/api/microsoft.toolkit.highperformance.helpers.parallelhelper), [`IAction`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction), [`IAction2D`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction2D), [`IRefAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IRefAction-1), [`IInAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IInAction-1)
 
 ## How it works
 

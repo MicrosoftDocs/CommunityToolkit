@@ -82,7 +82,7 @@ For instance, here is an example of how the first two overloads can be used:
 
 ```csharp
 [ObservableProperty]
-public partial string> Name { get; set; }
+public partial string? Name { get; set; }
 
 partial void OnNameChanging(string? value)
 {

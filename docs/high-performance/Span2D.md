@@ -31,7 +31,7 @@ Span2D<int> span = array;
 // The memory directly maps the 2*3 array here
 
 span[0, 0] = 10;
-span[2, 1] = 20;
+span[1, 1] = 20;
 
 // The array is now:
 // { 10, 2, 3 },

@@ -9,12 +9,12 @@ dev_langs:
 
 # RelayCommand attribute
 
-The [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute) type is an attribute that allows generating relay command properties for annotated methods. Its purpose is to completely eliminate the boilerplate that is needed to define commands wrapping private methods in a viewmodel.
+The [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommand) type is an attribute that allows generating relay command properties for annotated methods. Its purpose is to completely eliminate the boilerplate that is needed to define commands wrapping private methods in a viewmodel.
 
 > [!NOTE]
 > In order to work, annotated methods need to be in a [partial class](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods). If the type is nested, all types in the declaration syntax tree must also be annotated as partial. Not doing so will result in a compile errors, as the generator will not be able to generate a different partial declaration of that type with the requested command.
 
-> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommandAttribute), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
+> **Platform APIs:** [`RelayCommand`](/dotnet/api/communitytoolkit.mvvm.input.RelayCommand), [`ICommand`](/dotnet/api/system.windows.input.icommand), [`IRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand), [`IRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand-1), [`IAsyncRelayCommand`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand), [`IAsyncRelayCommand<T>`](/dotnet/api/microsoft.toolkit.mvvm.input.IAsyncRelayCommand-1), [`Task`](/dotnet/api/system.threading.tasks.task), [`CancellationToken`](/dotnet/api/system.threading.cancellationtoken)
 
 ## How it works
 

@@ -160,17 +160,18 @@ remote URL with artwork for the lockscreen. It should be at least 1080P for best
 <toolkit:MediaElement 
     MetadataTitle="Title"
     MetadataArtist="Artist"
-    MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg" />
+    MetadataArtworkUrl= "http://www.myownpersonaldomain.com/image.jpg" />
 ```
 
 ```csharp
     MediaElement.MetadataTitle="Title";
     MediaElement.MetadataArtist="Artist";
-    MediaElement.MetadataArtworkUrl="http://www.myownpersonaldomain.com/image.jpg";
+    MediaElement.MetadataArtworkUrl= MediaSource.FromUri("http://www.myownpersonaldomain.com/image.jpg"); 
 ```
 
 > [!IMPORTANT]
-> You can set the metadata in either XAML or code behind. If you are setting it in code behind you need to set the source in code behind. The source should
+> You can set the metadata in either XAML or code behind. MetaData for artwork uses `MediaSource` to set source for artwork. You can use File Resource,
+a Url or embedded image from App Package. If you are setting it in code behind you need to set the source in code behind. The source should
 be set last. If you set the metadata in XAML or in constructor this note can be safely ignored.
 
 ### Using TextureView
@@ -386,6 +387,9 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | Aspect | [Aspect](xref:Microsoft.Maui.Aspect) | Determines the scaling mode for the (visual) media that is currently loaded. This is a bindable property. | `Aspect.AspectFit` |
 | CurrentState | `MediaElementState` | Indicates the current status of the control. This is a read-only, bindable property. | `MediaElementState.None` |
 | Duration | `TimeSpan` | Indicates the duration of the currently opened media. This is a read-only, bindable property. | `TimeSpan.Zero` |
+| MetadataArtist | `string` | The name of the artist of the media source. |
+| MetadataArtworkUrl | `MediaSource` | Sets the artwork for media source. | 
+| MetadataTitle | `string` | Sets the Title of the media source. |
 | Position | `TimeSpan` | Describes the current progress through the media's playback time. This is a read-only, bindable property. If you want to set the `Position` use the `SeekTo()` method. | `TimeSpan.Zero` |
 | ShouldAutoPlay | `bool` | Indicates whether media playback will begin automatically when the `Source` property is set. This is a bindable property. | `false` |
 | ShouldLoopPlayback | `bool` | Describes whether the currently loaded media source should resume playback from the start after reaching its end. This is a bindable property. | `false` |

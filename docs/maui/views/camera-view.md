@@ -408,29 +408,17 @@ The following example demonstrates how to use the `CaptureImage` method:
 ```cs
 async void HandleCaptureButtonTapped(object? sender, EventArgs e)
 {
-    // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
-    Camera.MediaCaptured += HandleCameraViewMediaCaptured;
-
     try
     {
+        // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
         var captureImageCTS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
-        await Camera.CaptureImage(captureImageCTS.Token);
+        Stream stream = await Camera.CaptureImage(captureImageCTS.Token);
     }
     catch(Exception e)
     {
         // Handle Exception
         Trace.WriteLine(e);
     }
-    finally
-    {
-        Camera.MediaCaptured -= HandleCameraViewMediaCaptured;
-    }
-}
-
-void HandleCameraViewMediaCaptured(object? sender, MediaCapturedEventArgs e)
-{
-    Stream stream = e.Media;
-    // process media
 }
 ```
 

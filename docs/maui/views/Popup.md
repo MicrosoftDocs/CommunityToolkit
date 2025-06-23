@@ -94,7 +94,7 @@ Replace the contents of _*.xaml_ with the following:
 
 The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` being displayed in the center of page that it overlays.
 
-A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
+A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better, a `Padding` of 10 has been added.
 
 ### Presenting a Popup Created in XAML
 

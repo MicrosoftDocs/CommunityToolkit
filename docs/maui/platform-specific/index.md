@@ -12,3 +12,4 @@ The .NET MAUI Community Toolkit provides a set of platform specific features as 
 | Feature | Description |
 | --------- | ----------- |
 | [`Android NavigationBar`](navigation-bar.md) | The `NavigationBar` provides the ability to customize the appearance of the Navigation Bar on the Android platform. |
+| [`DialogFragment customization`](DialogFragment-customization.md) | The `DialogFragment` is Android's view used to show modal pages, and if you want to access its platform APIs and lifecycle this is the best place to hook into.

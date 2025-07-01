@@ -215,6 +215,8 @@ items:
   items:
     - name: Overview
       href: platform-specific/index.md
+    - name: "DialogFragment (Android)"
+      href: platform-specific/DialogFragment-customization.md
     - name: "Navigation Bar (Android)"
       href: platform-specific/navigation-bar.md
 - name: "Views"

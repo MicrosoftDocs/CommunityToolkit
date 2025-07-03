@@ -9,10 +9,10 @@ ms.date: 07/03/2025
 
 This page makes use of the following features to provide a comprehensive example:
 
-* [`Popup`](../popup.md)
-* [`IPopupService`](../popup-service.md)
-* [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
-* [`Popup` - Returning a result](./popup-result.md)
+- [`Popup`](../popup.md)
+- [`IPopupService`](../popup-service.md)
+- [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
+- [`Popup` - Returning a result](./popup-result.md)
 
 The example involves creating a popup and view model pairing, registering this pair with the dependency injection services, binding the `PopupOptions` to the current pages view model, showing the Popup using the `PopupService` and finally having the `Popup` view model return a result when the button is tapped by the user.
 
@@ -274,6 +274,7 @@ You can find the source code for `Popup` over on the [.NET MAUI Community Toolki
 
 ## Additional Resources
 
-* [`Popup`](../popup.md)
-* [`IPopupService`](../popup-service.md)
-* [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
+- [`Popup`](../popup.md)
+- [`IPopupService`](../popup-service.md)
+- [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
+- [`Popup` - Returning a result](./popup-result.md)

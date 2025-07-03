@@ -1,5 +1,5 @@
 ---
-title: PopupOptions - .NET MAUI Community Toolkit
+title: Complex popup example - .NET MAUI Community Toolkit
 author: bijington
 description: Combining Popup features to provide a comprehensive example.
 ms.date: 07/03/2025

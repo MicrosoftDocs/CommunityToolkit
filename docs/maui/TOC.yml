@@ -249,6 +249,8 @@ items:
           href: views/popup/popup-options.md
         - name: "Returning a value from a Popup"
           href: views/popup/popup-result.md
+        - name: "Combining Popup features to provide a comprehensive example"
+          href: views/popup/popup-complex.md
     - name: SemanticOrderView
       href: views/semantic-order-view.md
 - name: C# Markup

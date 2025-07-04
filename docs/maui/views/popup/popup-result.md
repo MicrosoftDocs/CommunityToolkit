@@ -27,6 +27,7 @@ The easiest way to create a `Popup<T>` is to add a new `.NET MAUI ContentView (X
 <toolkit:Popup
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Padding="10"
     x:TypeArguments="system:Boolean"
@@ -134,7 +135,7 @@ public class MyPage : ContentPage
         var popup = new ReturnResultPopup();
 
         // The type parameter must match the type returned from the popup.
-        IPopupResult<bool> popupResult = await this.ShowPopupAsync(popup, CancellationToken.None);
+        IPopupResult<bool> popupResult = await this.ShowPopupAsync<bool>(popup, PopupOptions.Empty, CancellationToken.None);
 
         if (popupResult.WasDismissedByTappingOutsideOfPopup)
         {
@@ -177,3 +178,4 @@ You can find the source code for `Popup` over on the [.NET MAUI Community Toolki
 - [`Popup`](../popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
+- [`Popup` - Combining Popup features to provide a comprehensive example](./popup-complex.md)

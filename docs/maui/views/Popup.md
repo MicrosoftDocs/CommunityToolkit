@@ -179,6 +179,35 @@ By default a user can tap outside of the `Popup` to dismiss it. This can be cont
 
 The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [PopupOptions](./popup/popup-options.md) for more details.
 
+## Setting Popup Defaults
+
+To override the default values for every `Popup` in your app, you can call `.SetPopupDefaults()` and `.SetPopupOptionsDefaults()` when initializing .NET MAUI Community Toolkit.
+
+The `DefaultPopupSettings` provided will be applied as the default value for every `Popup` in your app, and the `DefaultPopupOptionsSettings` will be applied as the default value for `PopupOptions` every time `.ShowPopup()` is called.
+
+```cs
+.UseMauiCommunityToolkit(static options =>
+{
+  options.SetPopupDefaults(new DefaultPopupSettings
+  {
+	  CanBeDismissedByTappingOutsideOfPopup = true,
+	  BackgroundColor = Colors.Orange,
+	  HorizontalOptions = LayoutOptions.End,
+	  VerticalOptions = LayoutOptions.Start,
+	  Margin = 72,
+	  Padding = 4
+  });
+  options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
+  {
+	  CanBeDismissedByTappingOutsideOfPopup = true,
+	  OnTappingOutsideOfPopup = async () => await Toast.Make("Popup Dismissed").Show(CancellationToken.None),
+	  PageOverlayColor = Colors.Orange,
+	  Shadow = null,
+	  Shape = null
+  });
+})
+```
+
 ## Events
 
 The `Popup` class provides the following events that can be subscribed to.
@@ -201,3 +230,4 @@ You can find the source code for `Popup` over on the [.NET MAUI Community Toolki
 - [`IPopupService`](popup-service.md)
 - [`Popup` - Returning a result](./popup/popup-result.md)
 - [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup/popup-options.md)
+- [`Popup` - Combining Popup features to provide a comprehensive example](./popup/popup-complex.md)

@@ -137,3 +137,4 @@ You can find the source code for `PopupOptions` over on the [.NET MAUI Community
 - [`Popup`](../popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`Popup` - Returning a result](./popup-result.md)
+- [`Popup` - Combining Popup features to provide a comprehensive example](./popup-complex.md)

@@ -224,7 +224,7 @@ public string? Name
 
         if (SetProperty(ref name, value))
         {
-            Broadcast(oldValue, value);
+            Broadcast(oldValue, value, "Name");
         }
     }
 }

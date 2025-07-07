@@ -175,6 +175,15 @@ public class MyPage : ContentPage
 
 By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property. Setting this property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it. See [PopupOptions](./popup/popup-options.md) for more details.
 
+## Lifecycle behavior
+
+It is important to note that a `Popup` will be displayed inside `ContentPage` which is then shown modally in a .NET MAUI application. The impact of this will result in any calling `Page` to have the following lifecycle events to be called:
+
+| Action | Lifecycle event |
+| ------ | --------------- |
+| Show popup  | Current `Page` will receive `OnDisappearing` and `OnNavigatingFrom` |
+| Close popup  | Previous `Page` will receive `OnAppearing` and `OnNavigatedTo` |
+
 ## PopupOptions
 
 The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [PopupOptions](./popup/popup-options.md) for more details.
@@ -188,23 +197,24 @@ The `DefaultPopupSettings` provided will be applied as the default value for eve
 ```cs
 .UseMauiCommunityToolkit(static options =>
 {
-  options.SetPopupDefaults(new DefaultPopupSettings
-  {
-	  CanBeDismissedByTappingOutsideOfPopup = true,
-	  BackgroundColor = Colors.Orange,
-	  HorizontalOptions = LayoutOptions.End,
-	  VerticalOptions = LayoutOptions.Start,
-	  Margin = 72,
-	  Padding = 4
-  });
-  options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
-  {
-	  CanBeDismissedByTappingOutsideOfPopup = true,
-	  OnTappingOutsideOfPopup = async () => await Toast.Make("Popup Dismissed").Show(CancellationToken.None),
-	  PageOverlayColor = Colors.Orange,
-	  Shadow = null,
-	  Shape = null
-  });
+    options.SetPopupDefaults(new DefaultPopupSettings
+    {
+        CanBeDismissedByTappingOutsideOfPopup = true,
+        BackgroundColor = Colors.Orange,
+        HorizontalOptions = LayoutOptions.End,
+        VerticalOptions = LayoutOptions.Start,
+        Margin = 72,
+        Padding = 4
+    });
+
+    options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
+    {
+        CanBeDismissedByTappingOutsideOfPopup = true,
+        OnTappingOutsideOfPopup = async () => await Toast.Make("Popup Dismissed").Show(CancellationToken.None),
+        PageOverlayColor = Colors.Orange,
+        Shadow = null,
+        Shape = null
+    ß});
 })
 ```
 

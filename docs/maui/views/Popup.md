@@ -214,7 +214,7 @@ The `DefaultPopupSettings` provided will be applied as the default value for eve
         PageOverlayColor = Colors.Orange,
         Shadow = null,
         Shape = null
-    ß});
+    });
 })
 ```
 

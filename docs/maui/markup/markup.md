@@ -52,6 +52,8 @@ C# Markup extensions also allow developers to define names for Columns and Rows 
 C# Markup enables this to be defined using its fluent API:
 
 ```csharp
+using CommunityToolkit.Maui.Markup;
+
 using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 class SampleContentPage : ContentPage

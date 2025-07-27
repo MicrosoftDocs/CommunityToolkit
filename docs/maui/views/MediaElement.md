@@ -78,56 +78,6 @@ public class MainActivity : MauiAppCompatActivity
 }
 ```
 
-#### 2. Add the following to `AndroidManifest.xml` inside the `<application>` tag.
-
-```csharp
- <service android:name="communityToolkit.maui.media.services" android:stopWithTask="true" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-   <intent-filter>
-     <action android:name="androidx.media3.session.MediaSessionService"/>
-   </intent-filter>
- </service>
-```
-
-#### 3. Update the minimum android API version
-In the project's `.csproj` file, update the minimum android API version to 26.
-```xml
-<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
-```
-
-#### 4. Add the following permissions to `AndroidManifest.xml`
-
-```csharp
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-```
-
-#### Here is an example of required settings in `AndroidManifest.xml`
-
-```csharp
-<service android:name="communityToolkit.maui.media.services" android:stopWithTask="true" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-    <intent-filter>
-        <action android:name="androidx.media3.session.MediaSessionService"/>
-    </intent-filter>
-</service>
-</application>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
-```
-
-> [!NOTE]
-> This modification to the Android manifest enables metadata display when playing a video. It provides support for notifications and is essential
- for notifications to function across all relevant APIs. The change introduces a service and grants necessary permissions.
-
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
 ### [Mac Catalyst](#tab/mac)
@@ -223,6 +173,34 @@ remote URL with artwork for the lockscreen. It should be at least 1080P for best
 > You can set the metadata in either XAML or code behind. If you are setting it in code behind you need to set the source in code behind. The source should
 be set last. If you set the metadata in XAML or in constructor this note can be safely ignored.
 
+### Using TextureView
+
+A `MediaElement` can use `TextureView` on Android Platform. The platform default behavior is to use `SurfaceView`. Using Texture View adds support
+to allow transparencies and other effects. This is set by changing the builder to use
+
+```csharp
+.UseMauiCommunityToolkitMediaElement(static options => 
+{
+				options.SetDefaultAndroidViewType(AndroidViewType.TextureView);
+})
+```
+
+You can set `TextureView` for each media element you use as well. It can be set in `XAML` and codebehind. Using it this way will override the builder command `.UseMauiCommunityToolkitMediaElement()`.
+
+```csharp
+var mediaElement = new MediaElement
+{
+    AndroidViewType = AndroidViewType.TextureView
+}
+```
+
+```xaml
+<toolkit:MediaElement AndroidViewType="TextureView" />
+```
+
+> [!IMPORTANT]
+> We do not recommend using TextureView unless you have a specific need for it. It has possible performance related issues if enabled and is recommended only for those that need transparencies and other advanced features.
+
 ### Play local media
 
 Local media can be played from the following sources:
@@ -237,7 +215,7 @@ Local media can be played from the following sources:
 
 A `MediaElement` can play media files that are embedded in the app package, using the `embed://` URI scheme. Media files are embedded in the app package by placing them in the platform project.
 
-To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of you .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
+To enable a media file for playback from the local resources add the file to the `Resources/Raw` folder of your .NET MAUI project. When a file is added in the root, the URI would be `embed://MyFile.mp4`.
 
 You can also place files in sub folders. If `MyFile.mp4` would be in `Resources/Raw/MyVideos` then the URI to use it with `MediaElement` would be `embed://MyVideos/MyFile.mp4`.
 
@@ -400,42 +378,6 @@ In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds 
 > The `Volume` property has a validation callback that ensures that its value is greater than or equal to 0.0, and less than or equal to 1.0.
 
 For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slider) see, [.NET MAUI Slider](/dotnet/maui/user-interface/controls/slider)
-
-## Clean up `MediaElement` resources
-
-To prevent memory leaks you will have to free the resources of `MediaElement`. This can be done by disconnecting the handler.
-Where you need to do this is dependant on where and how you use `MediaElement` in your app, but typically if you have a `MediaElement` on a single page and are not playing media in the background, you want to free the resources when the user navigates away from the page.
-
-Below you can find a snippet of sample code which shows how to do this. First, make sure to hook up the `Unloaded` event on your page.
-
-```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="MediaElementDemos.FreeResourcesPage"
-             Title="Free Resources"
-             Unloaded="ContentPage_Unloaded">
-    
-    <toolkit:MediaElement x:Name="mediaElement"
-                          ShouldAutoPlay="False"
-                          ... />
-</ContentPage>
-```
-
-Then in the code-behind, call the method to disconnect the handler.
-
-```csharp
-public partial class FreeResourcesPage : ContentPage
-{
-    void ContentPage_Unloaded(object? sender, EventArgs e)
-    {
-        // Stop and cleanup MediaElement when we navigate away
-        mediaElement.Handler?.DisconnectHandler();
-    }
-}
-```
-
-To read more about handlers, please see the .NET MAUI documentation on [Handlers](/dotnet/maui/user-interface/handlers).
 
 ## Properties
 

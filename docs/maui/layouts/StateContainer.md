@@ -85,7 +85,7 @@ Content = new VerticalStackLayout()
     static (StateContainerViewModel vm) => vm.CurrentState,
     static (StateContainerViewModel vm, string currentState) => vm.CurrentState = currentState)
  .Bind(
-    StateContainer.CanStateChange,
+    StateContainer.CanStateChangeProperty,
     static (StateContainerViewModel vm) => vm.CanStateChange,
     static (StateContainerViewModel vm, bool canStateChange) => vm.CanStateChange = canStateChange)
  .Assign(out VerticalStackLayout layout);

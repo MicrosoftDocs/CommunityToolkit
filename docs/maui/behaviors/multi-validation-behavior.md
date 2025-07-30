@@ -3,6 +3,8 @@ title: MultiValidationBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: "The MultiValidationBehavior is a Behavior that allows the user to validate a given text depending on specified parameters."
 ms.date: 05/18/2022
+ms.custom: sfi-ropc-nochange
+
 ---
 
 # MultiValidationBehavior

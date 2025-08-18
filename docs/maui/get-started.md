@@ -48,7 +48,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### [CommunityToolkit.Maui.Markup](#tab/CommunityToolkitMauiMarkup)
+### [Markup](#tab/CommunityToolkitMauiMarkup)
 
 This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.
 
@@ -75,7 +75,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### [CommunityToolkit.Maui.Maps](#tab/CommunityToolkitMauiMaps)
+### [Maps](#tab/CommunityToolkitMauiMaps)
 
 This package enables you to display a map in your .NET MAUI Windows application.
 
@@ -121,7 +121,7 @@ builder
 
 For more information on how to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
 
-### [CommunityToolkit.Maui.MediaElement](#tab/CommunityToolkitMauiMediaElement)
+### [MediaElement](#tab/CommunityToolkitMauiMediaElement)
 
 This package enables you to play audio and video in your .NET MAUI application.
 
@@ -148,7 +148,7 @@ builder
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.
 
-### [CommunityToolkit.Maui.Camera](#tab/CommunityToolkitMauiCamera)
+### [Camera](#tab/CommunityToolkitMauiCamera)
 
 This package enables you to connect to a camera, display a preview from the camera and take photos.
 

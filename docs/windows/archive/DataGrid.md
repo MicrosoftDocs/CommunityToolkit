@@ -28,7 +28,7 @@ Original documentation follows below.
 
 The DataGrid control provides a flexible way to display a collection of data in rows and columns.
 
-![DataGrid control](../resources/images/Controls/DataGrid/DataGrid.gif)
+![DataGrid control](images/datagrid.gif)
 
 > [!NOTE]
 > The DataGrid control is not part of the WinUI 3 controls available in the Windows Community Toolkit version 8.0 and later yet. The control is available for UWP and Uno Platform apps in Windows Community Toolkit version 7.1.0.
@@ -73,3 +73,5 @@ See the other controls available in the **[Windows Community Toolkit Gallery app
 
 * [DataGrid source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.DataGrid/DataGrid)
 * [Silverlight DataGrid API](/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc189753(v=vs.95))
+silverlight/cc189753(v=vs.95))
+s.95))

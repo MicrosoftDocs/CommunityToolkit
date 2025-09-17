@@ -35,7 +35,7 @@ The [InfiniteCanvas](/dotnet/api/microsoft.toolkit.uwp.ui.controls.infinitecanva
 
 ## Sample Output
 
-![InfiniteCanvas animation](../resources/images/Controls/InfiniteCanvas.gif)
+![InfiniteCanvas animation](images/infinitecanvas.gif)
 
 ## Properties
 
@@ -95,3 +95,4 @@ The following sample demonstrates how to add InfiniteCanvas Control
 ## API
 
 * [InfiniteCanvas source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Media/InfiniteCanvas)
+Media/InfiniteCanvas)

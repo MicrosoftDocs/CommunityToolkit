@@ -55,7 +55,7 @@ Dim color = Await eyedropper.Open()
 
 ## Sample Output
 
-![Eyedropper animation](../resources/images/Controls/Eyedropper.png)
+![Eyedropper animation](images/eyedropper.png)
 
 ## Properties
 
@@ -135,3 +135,4 @@ Dim color = Await eyedropper.Open()
 ## API
 
 - [Eyedropper source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Media/Eyedropper)
+ontrols.Media/Eyedropper)

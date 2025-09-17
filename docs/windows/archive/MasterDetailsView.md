@@ -40,7 +40,7 @@ The [ListDetailsView](/dotnet/api/microsoft.toolkit.uwp.ui.controls.listdetailsv
 
 ## Sample Output
 
-![ListDetailsView animation](../resources/images/Controls/ListDetailsView.gif)
+![ListDetailsView animation](images/listdetailsview.gif)
 
 ## Multi Screen Devices
 
@@ -74,3 +74,4 @@ To help with back navigation, The ListDetailsView can handle back button visibil
 ## API
 
 - [ListDetailsView source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/ListDetailsView)
+s.Layout/ListDetailsView)

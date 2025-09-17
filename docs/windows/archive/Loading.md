@@ -41,7 +41,7 @@ The [Loading](/dotnet/api/microsoft.toolkit.uwp.ui.controls.loading) control is 
 
 ## Sample Output
 
-![Loading animation](../resources/images/Controls/LoadingXamlControl.gif)
+![Loading animation](images/loading.gif)
 
 ## Properties
 
@@ -97,3 +97,4 @@ LoadingControl.IsLoading = true
 ## API
 
 - [Loading source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/Loading)
+it.Uwp.UI.Controls.Core/Loading)

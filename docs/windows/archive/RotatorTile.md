@@ -40,7 +40,7 @@ The [Rotator Tile Control](/dotnet/api/microsoft.toolkit.uwp.ui.controls.rotator
 
 ## Example Image
 
-![RotatorTile animation](../resources/images/Controls/RotatorTile.gif)
+![RotatorTile animation](images/rotatortile.gif)
 
 ## Properties
 
@@ -71,3 +71,4 @@ The [Rotator Tile Control](/dotnet/api/microsoft.toolkit.uwp.ui.controls.rotator
 ## API
 
 * [RotatorTile source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/RotatorTile)
+ontrols.Core/RotatorTile)

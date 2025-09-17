@@ -9,7 +9,7 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 **Important Note:** This component has been archived and is not available in the current version of the Windows Community Toolkit.
 
-For WinUI 3 apps, notifications were superseded by the [App notifications](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/notifications/app-notifications/) feature in the Windows App SDK.
+For WinUI 3 apps, notifications were superseded by the [App notifications](/windows/apps/windows-app-sdk/notifications/app-notifications/) feature in the Windows App SDK.
 
 For UWP apps, the original notifications package was ported to [Windows Community Toolkit Labs](https://github.com/CommunityToolkit/Labs-Windows) and is available only for UWP applications.
 
@@ -33,7 +33,7 @@ Instead of having to deal with XML, you can now use Windows Community toolkit an
 
 ### Sample Output
 
-![LiveTile Image](../resources/images/Notifications/LiveTile.gif)
+![LiveTile Image](images/livetile.gif)
 
 ## Toasts
 
@@ -44,7 +44,7 @@ Instead of having to deal with XML, you can now use Windows Community toolkit an
 
 ### Sample Output
 
-![Toast](../resources/images/Notifications/PopToast.gif "Toast")
+![Toast](images/poptoast.gif "Toast")
 
 ### Sending toasts from desktop C# apps
 
@@ -64,3 +64,6 @@ If you're developing a non-UWP C# app for Windows, the Windows Community Toolkit
 ## Related Topics
 
 * [Toast Notification UX Guidance](/windows/uwp/design/shell/tiles-and-notifications/toast-ux-guidance)
+notifications/toast-ux-guidance)
+cations/toast-ux-guidance)
+cations/toast-ux-guidance)

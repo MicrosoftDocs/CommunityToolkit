@@ -41,7 +41,7 @@ You can also change the color of the gridlines using **HorizontalGridLinesBrush*
 <controls:DataGrid GridLinesVisibility="All"/>
 ```
 
-![Sample grid lines UI](../../resources/images/Controls/DataGrid/gridlines.png)
+![Sample grid lines UI](../images/datagrid/gridlines.png)
 
 ## 2. Alternating rows
 
@@ -53,7 +53,7 @@ The RowBackground and RowForeground properties are used to paint the background 
 <controls:DataGrid AlternatingRowBackground="LightGray"/>
 ```
 
-![AlternatingRowBackground](../../resources/images/Controls/DataGrid/alternaterowbackground.png)
+![AlternatingRowBackground](../images/datagrid/alternaterowbackground.png)
 
 ## 3. Headers visibility
 
@@ -70,7 +70,7 @@ Note: By default, DataGrid row headers are not displayed. To display row headers
 <controls:DataGrid HeadersVisibility="Column"/>
 ```
 
-![Headers](../../resources/images/Controls/DataGrid/gridlines.png)
+![Headers](../images/datagrid/gridlines.png)
 
 ## 4. Customizable templates and styling for cells, rows and headers
 
@@ -136,7 +136,7 @@ Frozen columns are columns that are always displayed and cannot be scrolled out 
 <controls:DataGrid FrozenColumnCount="2"/>
 ```
 
-![Frozen columns UI](../../resources/images/Controls/DataGrid/frozencolumns.png)
+![Frozen columns UI](../images/datagrid/frozencolumns.png)
 
 ## 6. Reorder and resize columns
 
@@ -150,7 +150,7 @@ You can allow users to:
 <controls:DataGrid CanUserReorderColumns="True" CanUserResizeColumns="True"/>
 ```
 
-![Sample resize columns UI](../../resources/images/Controls/DataGrid/resizecolumns.png)
+![Sample resize columns UI](../images/datagrid/resizecolumns.png)
 
 ## See Also
 
@@ -162,3 +162,4 @@ You can allow users to:
 * [Group, sort and filter data using LINQ and the DataGrid control](group_sort_filter.md)
 * [Editing and input validation in the DataGrid control](editing_inputvalidation.md)
 * [DataGrid Sample Page Source](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid)
+

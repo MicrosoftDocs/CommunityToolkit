@@ -39,7 +39,7 @@ CanvasGeometry triangleGeometry = CanvasPathGeometry.CreateGeometry(device, path
 
 ## Table of Contents
 
-- [Introduction](#win2d-path-mini-language)
+- [Introduction](#win2d-path-mini-language-archived)
   - [Requirements](#requirements)
 - [Win2D Path Mini Language](#win2d-path-mini-language-overview)
 - [Path Mini Language](#path-mini-language)
@@ -122,10 +122,10 @@ A path can be defined using the following commands
 
 ### Fill Behavior
 
-| Format |            |
-| ------ | ---------- |
-| F [01] | _Absolute_ |
-| f [01] | _Relative_ |
+| Format | Description |
+| ------ | ----------- |
+| F [01] | _Absolute_  |
+| f [01] | _Relative_  |
 
 `Fill Behavior` specifies how the intersecting areas of geometries or figures are combined to form the area of the composite geometry. It represents the `CanvasFilledRegionDetermination` enumeration which is based on `D2D1_FILL_MODE` enumeration. The Fill Behavior parameter can be either `0` or `1`.
 
@@ -139,10 +139,10 @@ The parameter value `1` indicates `CanvasFilledRegionDetermination.Winding` whic
 
 ### MoveTo
 
-| Format     |            |
-| ---------- | ---------- |
-| `M` (x y)+ | _Absolute_ |
-| `m` (x y)+ | _Relative_ |
+| Format     | Description |
+| ---------- | ----------- |
+| `M` (x y)+ | _Absolute_  |
+| `m` (x y)+ | _Relative_  |
 
 The `MoveTo` command establishes a new current point. The effect is as if the "pen" were lifted and moved to a new location. A path data segment must begin with a Move command. Subsequent "moveto" commands (i.e., when the Move is not the first command) represent the start of a new subpath.
 
@@ -159,10 +159,10 @@ treated as implicit `LineTo` commands. Hence, implicit `LineTo` commands will be
 
 ### LineTo
 
-| Format     |            |
-| ---------- | ---------- |
-| `L` (x y)+ | _Absolute_ |
-| `l` (x y)+ | _Relative_ |
+| Format     | Description |
+| ---------- | ----------- |
+| `L` (x y)+ | _Absolute_  |
+| `l` (x y)+ | _Relative_  |
 
 Draws a line from the current point to the specified (`x`,`y`) coordinate. (`x`,`y`) becomes the new current point.
 
@@ -174,10 +174,10 @@ Draws a line from the current point to the specified (`x`,`y`) coordinate. (`x`,
 
 ### Horizontal LineTo
 
-| Format |            |
-| ------ | ---------- |
-| `H` x+ | _Absolute_ |
-| `h` x+ | _Relative_ |
+| Format | Description |
+| ------ | ----------- |
+| `H` x+ | _Absolute_  |
+| `h` x+ | _Relative_  |
 
 Draws a horizontal line from the current point (`cpx`, `cpy`) to (`x`, `cpy`).
 
@@ -189,10 +189,10 @@ Draws a horizontal line from the current point (`cpx`, `cpy`) to (`x`, `cpy`).
 
 ### Vertical LineTo
 
-| Format |            |
-| ------ | ---------- |
-| `V` y+ | _Absolute_ |
-| `v` y+ | _Relative_ |
+| Format | Description |
+| ------ | ----------- |
+| `V` y+ | _Absolute_  |
+| `v` y+ | _Relative_  |
 
 Draws a vertical line from the current point (`cpx`, `cpy`) to (`cpx`, `y`).
 
@@ -204,10 +204,10 @@ Draws a vertical line from the current point (`cpx`, `cpy`) to (`cpx`, `y`).
 
 ### Cubic Bézier
 
-| Format                 |            |
-| ---------------------- | ---------- |
-| `C` (x1 y1 x2 y2 x y)+ | _Absolute_ |
-| `c` (x1 y1 x2 y2 x y)+ | _Relative_ |
+| Format                 | Description |
+| ---------------------- | ----------- |
+| `C` (x1 y1 x2 y2 x y)+ | _Absolute_  |
+| `c` (x1 y1 x2 y2 x y)+ | _Relative_  |
 
 Draws a cubic Bézier curve from the current point to (`x`,`y`) using (`x1`,`y1`) as the control point at the beginning of the curve and (`x2`,`y2`) as the control point at the end of the curve.
 
@@ -219,10 +219,10 @@ Draws a cubic Bézier curve from the current point to (`x`,`y`) using (`x1`,`y1`
 
 ### Smooth Cubic Bézier
 
-| Format           |            |
-| ---------------- | ---------- |
-| `S` (x2 y2 x y)+ | _Absolute_ |
-| `s` (x2 y2 x y)+ | _Relative_ |
+| Format           | Description |
+| ---------------- | ----------- |
+| `S` (x2 y2 x y)+ | _Absolute_  |
+| `s` (x2 y2 x y)+ | _Relative_  |
 
 Draws a cubic Bézier curve from the current point to (`x`,`y`). The first control point is assumed to be the reflection of the second control point on the previous command relative to the current point. (_If there is no previous command or if the previous command was not a `C`, `c`, `S` or `s` , assume the first control point is coincident with the current point._)
 
@@ -390,11 +390,11 @@ Denotes the opacity of the brush. The `opacity` parameter should have a value in
 
 Specifies the way in which an alpha channel affects color channels. This attribute corresponds to the [CanvasAlphaMode](https://microsoft.github.io/Win2D/WinUI3/html/T_Microsoft_Graphics_Canvas_CanvasAlphaMode.htm) enumeration. Default is `0` ( `Premultiplied` ).
 
-| Member          |     | Description                                                                                                                                                                                                                                                     |
-| --------------- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Premultiplied` | 0   | The alpha value has been premultiplied. In blending, each color is scaled by the alpha value. Note that the alpha value itself is the same in both straight and premultiplied alpha. Typically, no color channel value is greater than the alpha channel value. |
-| `Straight`      | 1   | The alpha channel indicates the transparency of the color.                                                                                                                                                                                                      |
-| `Ignore`        | 2   | The alpha value is ignored.                                                                                                                                                                                                                                     |
+| Member          | Value | Description                                                                                                                                                                                                                                                     |
+| --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Premultiplied` | 0     | The alpha value has been premultiplied. In blending, each color is scaled by the alpha value. Note that the alpha value itself is the same in both straight and premultiplied alpha. Typically, no color channel value is greater than the alpha channel value. |
+| `Straight`      | 1     | The alpha channel indicates the transparency of the color.                                                                                                                                                                                                      |
+| `Ignore`        | 2     | The alpha value is ignored.                                                                                                                                                                                                                                     |
 
 #### Buffer Precision
 
@@ -405,13 +405,13 @@ Specifies the way in which an alpha channel affects color channels. This attribu
 Specifies the bit depth used for graphical computations. This attribute corresponds to the
 [CanvasBufferPrecision](https://microsoft.github.io/Win2D/WinUI3/html/T_Microsoft_Graphics_Canvas_CanvasBufferPrecision.htm) | enumeration |. Default is `0` ( |`Precision8UIntNormalized` ).
 
-| Value                          | Member | Description                                                 |
-| ------------------------------ | ------ | ----------------------------------------------------------- |
-| `Precision8UIntNormalized`     | 0      | Use 8-bit normalized integer per channel.                   |
-| `Precision8UIntNormalizedSrgb` | 1      | Use 8-bit normalized integer standard RGB data per channel. |
-| `Precision16UIntNormalized`    | 2      | Use 16-bit normalized integer per channel.                  |
-| `Precision16Float`             | 3      | Use 16-bit floats per channel.                              |
-| `Precision32Float`             | 4      | Use 32-bit floats per channel.                              |
+| Member                         | Value | Description                                                 |
+| ------------------------------ | ----- | ----------------------------------------------------------- |
+| `Precision8UIntNormalized`     | 0     | Use 8-bit normalized integer per channel.                   |
+| `Precision8UIntNormalizedSrgb` | 1     | Use 8-bit normalized integer standard RGB data per channel. |
+| `Precision16UIntNormalized`    | 2     | Use 16-bit normalized integer per channel.                  |
+| `Precision16Float`             | 3     | Use 16-bit floats per channel.                              |
+| `Precision32Float`             | 4     | Use 32-bit floats per channel.                              |
 
 #### Edge Behavior
 

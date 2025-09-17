@@ -22,8 +22,6 @@ Original documentation follows below.
 
 ---
 
-# BladeView
-
 The [BladeView](/dotnet/api/microsoft.toolkit.uwp.ui.controls.bladeview) control provides a horizontal collection of [BladeItems](/dotnet/api/microsoft.toolkit.uwp.ui.controls.bladeitem) for drilling into detailed scenarios. The control is based on how the Azure Portal works.
 
 > [!div class="nextstepaction"]
@@ -48,7 +46,7 @@ The [BladeView](/dotnet/api/microsoft.toolkit.uwp.ui.controls.bladeview) control
 
 ## Sample Output
 
-![BladeView animation](../resources/images/Controls/BladeView.gif)
+![BladeView animation](images/bladeview.gif)
 
 ## Properties
 
@@ -125,3 +123,4 @@ The [BladeView](/dotnet/api/microsoft.toolkit.uwp.ui.controls.bladeview) control
 ## API
 
 - [BladeView source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/BladeView)
+ontrols.Layout/BladeView)

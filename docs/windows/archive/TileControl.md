@@ -34,7 +34,7 @@ The [TileControl](/dotnet/api/microsoft.toolkit.uwp.ui.controls.tilecontrol) is 
 
 ## Sample Output
 
-![TileControl animation](../resources/images/Controls/TileControl.gif)
+![TileControl animation](images/tilecontrol.gif)
 
 ## Properties
 
@@ -77,3 +77,4 @@ The [TileControl](/dotnet/api/microsoft.toolkit.uwp.ui.controls.tilecontrol) is 
 ## API
 
 * [TileControl source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/TileControl)
+ols.Core/TileControl)

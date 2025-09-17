@@ -58,7 +58,7 @@ The [OrbitView](/dotnet/api/microsoft.toolkit.uwp.ui.controls.orbitview) control
 
 ## Sample Output
 
-![OrbitView Overview](../resources/images/Controls/OrbitView.gif)
+![OrbitView Overview](images/orbitview.gif)
 
 ## Properties
 
@@ -164,3 +164,4 @@ The following sample demonstrates how to add OrbitView Control.
 ## API
 
 * [OrbitView source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/OrbitView)
+ols.Layout/OrbitView)

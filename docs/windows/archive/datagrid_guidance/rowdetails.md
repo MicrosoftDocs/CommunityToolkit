@@ -26,7 +26,7 @@ Original documentation follows below.
 
 Each row in the [DataGrid](../datagrid.md) control can be expanded to display a row details section. The row details section is defined by a [DataTemplate](/uwp/api/windows.ui.xaml.datatemplate) that specifies the appearance of the section and the data to be displayed.
 
-![Sample row details UI](../../resources/images/Controls/DataGrid/rowdetails.png)
+![Sample row details UI](../images/datagrid/rowdetails.png)
 
 The row details section can be displayed for selected rows, displayed for all rows, or it can be collapsed. The row details section can also be frozen so that it does not scroll horizontally when the DataGrid is scrolled.
 
@@ -114,3 +114,4 @@ Set the **AreRowDetailsFrozen** property to true.
 * [Customize the DataGrid control using styling and formatting options](styling_formatting_options.md)
 * [Sizing options in the DataGrid control](sizing_options.md)
 * [DataGrid Sample](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid).
+amplePages/DataGrid).

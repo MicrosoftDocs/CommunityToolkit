@@ -32,7 +32,7 @@ The [DataGrid](../datagrid.md) control supports cell and row editing functionali
 <controls:DataGrid BeginningEdit="dg_Editing" CellEditEnding="dg_CellEditEnding" RowEditEnding="dg_RowEditEnding" />
 ```
 
-![Sample edit UI](../../resources/images/Controls/DataGrid/editing.png)
+![Sample edit UI](../images/datagrid/editing.png)
 
 A cell-level edit is committed when you move to another cell in the same row. All edits in a row are committed when you press ENTER or move to another row.
 
@@ -68,7 +68,7 @@ Event | RowEditEnded | Occurs when a row edit has been committed or canceled.
 
 DataGrid control supports input validation through **INotifyDataErrorInfo** in your DataModel or ViewModel. Implement data validation logic by implementing **DataErrorsChangedEventArgs**, **HasErrors** and **GetErrors** methods. The DataGrid control automatically shows the error UI in the editing cell/row when the error conditions are met.
 
-![Sample UI with INotifyDataErrorInfo](../../resources/images/Controls/DataGrid/validation.png)
+![Sample UI with INotifyDataErrorInfo](../images/datagrid/validation.png)
 
 See [DataGrid Sample](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid) for an example of how to handle input validation in the DataGrid control.
 
@@ -78,3 +78,5 @@ See [DataGrid Sample](https://github.com/windows-toolkit/WindowsCommunityToolkit
 * [Customize the DataGrid control through UI formatting options](styling_formatting_options.md)
 * [Keyboard navigation and selection](keyboard_navigation_selection.md)
 * [DataGrid Sample Page Source](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid)
+SamplePages/DataGrid)
+SamplePages/DataGrid)

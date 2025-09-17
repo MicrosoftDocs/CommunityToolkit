@@ -34,7 +34,7 @@ The [ImageEx](/dotnet/api/microsoft.toolkit.uwp.ui.controls.imageex) control dow
 
 ## Sample Output
 
-![ImageEx animation](../resources/images/Controls/ImageEx.gif)
+![ImageEx animation](images/imageex.gif)
 
 ## ImageEx Properties
 
@@ -65,3 +65,4 @@ The [ImageEx](/dotnet/api/microsoft.toolkit.uwp.ui.controls.imageex) control dow
 ## API
 
 - [ImageEx source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/ImageEx)
+ontrols.Core/ImageEx)

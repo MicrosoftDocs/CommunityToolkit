@@ -191,7 +191,7 @@ public static CompositionGeometricClip CreateGeometricClip(this Compositor compo
 
 A [Squircle](https://en.wikipedia.org/wiki/Squircle) is an intermediate shape between a square and a circle.
 
-![Squircle Demo](../resources/images/Squircle.gif)
+![Squircle Demo](images/squircle.gif)
 
 The following extension methods help to create a Squircle in Composition layer or using Win2D.
 
@@ -225,3 +225,4 @@ public static void FillSquircle(this CanvasDrawingSession session, float x, floa
 ## API
 
 - [CanvasPathGeometry Source Code](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Media/Geometry/CanvasPathGeometry.cs)
+Geometry.cs)

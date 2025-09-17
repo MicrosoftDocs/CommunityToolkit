@@ -48,7 +48,7 @@ Here are some limitations you may encounter:
 
 Note: scrolling is smooth, the gif below is not.
 
-![MarkdownTextBlock animation](../resources/images/Controls-MarkdownTextBlock.gif "MarkdownTextBlock")
+![MarkdownTextBlock animation](images/markdowntextblock.gif "MarkdownTextBlock")
 
 ## Properties
 
@@ -248,4 +248,4 @@ This will likely require intimate knowledge of the implementation of the `Markdo
 
 ## Related Topics
 
-- [Markdown Parser](../parsers/markdownparser.md)
+- [Markdown Parser](MarkdownParser.md)

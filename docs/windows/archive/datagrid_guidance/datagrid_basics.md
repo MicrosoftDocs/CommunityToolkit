@@ -36,7 +36,7 @@ The toolkit is available as NuGet packages that can be added to any existing or 
 
 3. In Solution Explorer panel, right click on your project name and select **Manage NuGet Packages**. Search for **Microsoft.Toolkit.UWP.UI.Controls.DataGrid**, and choose the [Microsoft.Toolkit.Uwp.UI.Controls.DataGrid](https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.UI.Controls.DataGrid/) nuget package.
 
-    ![NuGet Packages](../../resources/images/ManageNugetPackages.png "Manage NuGet Packages Image")
+    ![NuGet Packages](../images/datagrid/managenugetpackages.png "Manage NuGet Packages Image")
 
 4. Add a reference to the toolkit and add the DataGrid control in your XAML page
 
@@ -297,3 +297,4 @@ The following code example demonstrates how to specify and configure a DataGridT
 * [Group, sort and filter data using LINQ and the DataGrid control](group_sort_filter.md)
 * [Editing and input validation in the DataGrid control](editing_inputvalidation.md)
 * [DataGrid Sample Page Source](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid)
+id)

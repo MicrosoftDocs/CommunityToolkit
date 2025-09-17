@@ -57,7 +57,7 @@ The `Carousel` control works fine with mouse, touch, mouse and keyboard as well.
 
 ## Sample Output
 
-![Carousel Overview](../resources/images/Controls/Carousel-Overview.gif)  
+![Carousel Overview](images/carousel-overview.gif)  
 
 ## Properties
 
@@ -99,3 +99,4 @@ The `Carousel` control works fine with mouse, touch, mouse and keyboard as well.
 ## API
 
 * [Carousel source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/Carousel)
+Controls.Layout/Carousel)

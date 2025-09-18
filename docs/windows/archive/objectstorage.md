@@ -36,7 +36,7 @@ LocalObjectStorageHelper and RoamingObjectStorageHelper have the same constructo
 
 | Constructor | Description |
 |-------------|-------------|
-| ObjectStorageHelper(IObjectSerializer = null) | Initializes a new instance of the ObjectStorageHelper class with the provided [IObjectSerializer](ObjectSerializer.md), that will be used when serializing and deserializing data in Settings or in Storage; if no serializer is provided, a default JSON serializer will be used. |
+| ObjectStorageHelper(IObjectSerializer = null) | Initializes a new instance of the ObjectStorageHelper class with the provided [IObjectSerializer](objectserializer.md), that will be used when serializing and deserializing data in Settings or in Storage; if no serializer is provided, a default JSON serializer will be used. |
 
 ## Properties
 

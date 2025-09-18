@@ -21,7 +21,7 @@ Original documentation follows below.
 ---
 
 > [!WARNING]
-> These extensions have been moved to a different type, please refer to docs page for the [`WebViewExtensions`](WebViewExtensions.md) type.
+> These extensions have been moved to a different type, please refer to docs page for the [`WebViewExtensions`](webviewextensions.md) type.
 The **WebViewExtensions** allows attaching HTML content to a WebView.
 
 ## Example

@@ -74,8 +74,8 @@ See [DataGrid Sample](https://github.com/windows-toolkit/WindowsCommunityToolkit
 
 ## See Also
 
-* [Add a DataGrid control to a page](datagrid_basics.md)
-* [Customize the DataGrid control through UI formatting options](styling_formatting_options.md)
+* [Add a DataGrid control to a page](datagrid-basics.md)
+* [Customize the DataGrid control through UI formatting options](styling-formatting-options.md)
 * [Keyboard navigation and selection](keyboard_navigation_selection.md)
 * [DataGrid Sample Page Source](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid)
 SamplePages/DataGrid)

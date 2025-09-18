@@ -23,7 +23,7 @@ Original documentation follows below.
 
 The _Win2D Path Mini Language_ is a powerful and sophisticated language based on the [SVG Path language](https://www.w3.org/TR/SVG11/paths.html) specification. It facilitates specifying complex geometries, color, brushes, strokes and stroke styles in a more compact manner.
 
-Using the Win2D Path Mini Language, the geometry from the initial [CanvasPathGeometry](CanvasPathGeometry.md) example can be created in the following way:
+Using the Win2D Path Mini Language, the geometry from the initial [CanvasPathGeometry](canvaspathgeometry.md) example can be created in the following way:
 
 ```cs
 string pathData = “M 1 1 300 300 1 300 Z”;
@@ -872,4 +872,4 @@ To create instances of CanvasGeomety, Brushes, CanvasStrokes, and CanvasStrokeSt
 
 ## Related Topics
 
-- [More details about `CanvasPathGeometry` class here.](CanvasPathGeometry.md)
+- [More details about `CanvasPathGeometry` class here.](canvaspathgeometry.md)

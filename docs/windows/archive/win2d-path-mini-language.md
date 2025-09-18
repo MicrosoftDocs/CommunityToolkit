@@ -237,7 +237,7 @@ Draws a cubic Bézier curve from the current point to (`x`,`y`). The first contr
 
 ### Quadratic Bézier
 
-| Format           |            |
+| Format           | Description |
 | ---------------- | ---------- |
 | `Q` (x1 y1 x y)+ | _Absolute_ |
 | `q` (x1 y1 x y)+ | _Relative_ |
@@ -252,10 +252,10 @@ Draws a quadratic Bézier curve from the current point to (`x`,`y`) using (`x1`,
 
 ### Smooth Quadratic Bézier
 
-| Format     |            |
-| ---------- | ---------- |
-| `T` (x y)+ | _Absolute_ |
-| `t` (x y)+ | _Relative_ |
+| Format     | Description |
+| ---------- | ----------- |
+| `T` (x y)+ | _Absolute_  |
+| `t` (x y)+ | _Relative_  |
 
 Draws a quadratic Bézier curve from the current point to (x,y). The control point is assumed to be the reflection of the control point on the previous command relative to the current point. (If there is no previous command or if the previous command was not a `Q`, `q`, `T` or `t` , assume the control point is coincident with the current
 point.)
@@ -268,10 +268,10 @@ point.)
 
 ### Arc
 
-| Format                                                     |            |
-| ---------------------------------------------------------- | ---------- |
-| `A` (radius radiusY angle IsLargeFlag SweepDirection x y)+ | _Absolute_ |
-| `a` (radius radiusY angle IsLargeFlag SweepDirection x y)+ | _Relative_ |
+| Format                                                     | Description |
+| ---------------------------------------------------------- | ----------- |
+| `A` (radius radiusY angle IsLargeFlag SweepDirection x y)+ | _Absolute_  |
+| `a` (radius radiusY angle IsLargeFlag SweepDirection x y)+ | _Relative_  |
 
 Draws an elliptical arc from the current point to ( `x` , `y` ). The size and orientation of the ellipse are defined by two radii ( `rx` , `ry` ) and an `x-axis-rotation` , which indicates how the ellipse as a whole is rotated relative to the current coordinate system. The center ( `cx` , `cy` ) of the ellipse is calculated automatically to satisfy the constraints
 imposed by the other parameters.
@@ -296,10 +296,10 @@ Closes the current subpath by drawing a straight line from the current point to 
 
 ### Ellipse Figure
 
-| Format                     |            |
-| -------------------------- | ---------- |
-| `O` (radiusX radiusY x y)+ | _Absolute_ |
-| `o` (radiusX radiusY x y)+ | _Relative_ |
+| Format                     | Description |
+| -------------------------- | ----------- |
+| `O` (radiusX radiusY x y)+ | _Absolute_  |
+| `o` (radiusX radiusY x y)+ | _Relative_  |
 
 Adds an Ellipse Figure to the path. The `radiusX` and `radiusY` parameters denote the elliptical radii on the x-axis and y-axis respectively. ( `x y` ) denotes the center of the Ellipse. _The current point remains unchanged._
 
@@ -307,10 +307,10 @@ Adds an Ellipse Figure to the path. The `radiusX` and `radiusY` parameters denot
 
 ### Polygon Figure
 
-| Format                     |            |
-| -------------------------- | ---------- |
-| `P` (numSides radius x y)+ | _Absolute_ |
-| `p` (numSides radius x y)+ | _Relative_ |
+| Format                     | Description |
+| -------------------------- | ----------- |
+| `P` (numSides radius x y)+ | _Absolute_  |
+| `p` (numSides radius x y)+ | _Relative_  |
 
 Adds an n-sided Polygon to the path. The `radius` parameter denotes the radius of the circle circumscribing the polygon vertices. ( `x y` ) denotes the center of the polygon. _The current point remains unchanged._
 
@@ -318,10 +318,10 @@ This command internally invokes the `CanvasPathBuilder.AddPolygonFigure()` exten
 
 ### Rectangle Figure
 
-| Format                  |            |
-| ----------------------- | ---------- |
-| `R` (x y width height)+ | _Absolute_ |
-| `r` (x y width height)+ | _Relative_ |
+| Format                  | Description |
+| ----------------------- | ----------- |
+| `R` (x y width height)+ | _Absolute_  |
+| `r` (x y width height)+ | _Relative_  |
 
 Adds a Rectangle to the path. ( `x y` ) denotes the top left corner of the Rectangle. The current point remains unchanged.
 
@@ -329,10 +329,10 @@ Adds a Rectangle to the path. ( `x y` ) denotes the top left corner of the Recta
 
 ### RoundedRectangle Figure
 
-| Format                                  |            |
-| --------------------------------------- | ---------- |
-| `U` (x y width height radiusX radiusY)+ | _Absolute_ |
-| `u` (x y width height radiusX radiusY)+ | _Relative_ |
+| Format                                  | Description |
+| --------------------------------------- | ----------- |
+| `U` (x y width height radiusX radiusY)+ | _Absolute_  |
+| `u` (x y width height radiusX radiusY)+ | _Relative_  |
 
 Adds a RoundedRectangle to the path. ( `x y` ) denotes the top left corner of the RoundedRectangle. `radiusX` and `radiusY` denote the radii of the corner curves on the x-axis and y-axis respectively. _The current point remains unchanged._
 

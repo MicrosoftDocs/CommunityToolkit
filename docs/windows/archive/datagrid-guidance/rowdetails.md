@@ -114,4 +114,3 @@ Set the **AreRowDetailsFrozen** property to true.
 * [Customize the DataGrid control using styling and formatting options](styling-formatting-options.md)
 * [Sizing options in the DataGrid control](sizing-options.md)
 * [DataGrid Sample](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid).
-amplePages/DataGrid).

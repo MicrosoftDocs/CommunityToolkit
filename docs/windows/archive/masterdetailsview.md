@@ -74,4 +74,3 @@ To help with back navigation, The ListDetailsView can handle back button visibil
 ## API
 
 - [ListDetailsView source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/ListDetailsView)
-s.Layout/ListDetailsView)

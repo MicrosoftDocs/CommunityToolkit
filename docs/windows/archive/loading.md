@@ -97,4 +97,3 @@ LoadingControl.IsLoading = true
 ## API
 
 - [Loading source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/Loading)
-it.Uwp.UI.Controls.Core/Loading)

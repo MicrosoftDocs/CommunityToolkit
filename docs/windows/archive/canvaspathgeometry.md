@@ -24,7 +24,6 @@ Original documentation follows below.
 The `CanvasGeometry` class (in the `Microsoft.Graphics.Canvas.Geometry` namespace) facilitates the drawing and manipulation of complex geometrical shapes. These shapes can be outlined with a stroke and filled with a brush (which can be a solid color, a bitmap pattern, or a gradient).
 
 While the `CanvasGeometry` class provides various static methods to create predefined shapes like Circle, Ellipse, Rectangle, RoundedRectangle, the `CanvasPathBuilder` class provides several methods to create freeform CanvasGeometry objects.
-
 Creation of a complex freeform geometric shape may involve invoking of several CanvasPathBuilder commands. For example, the following code shows how to create a triangle geometry using CanvasPathBuilder
 
 ```cs
@@ -225,4 +224,3 @@ public static void FillSquircle(this CanvasDrawingSession session, float x, floa
 ## API
 
 - [CanvasPathGeometry Source Code](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Media/Geometry/CanvasPathGeometry.cs)
-Geometry.cs)

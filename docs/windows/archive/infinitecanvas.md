@@ -95,4 +95,3 @@ The following sample demonstrates how to add InfiniteCanvas Control
 ## API
 
 * [InfiniteCanvas source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Media/InfiniteCanvas)
-Media/InfiniteCanvas)

@@ -123,4 +123,3 @@ The [BladeView](/dotnet/api/microsoft.toolkit.uwp.ui.controls.bladeview) control
 ## API
 
 - [BladeView source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/BladeView)
-ontrols.Layout/BladeView)

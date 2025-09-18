@@ -73,5 +73,3 @@ See the other controls available in the **[Windows Community Toolkit Gallery app
 
 * [DataGrid source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.DataGrid/DataGrid)
 * [Silverlight DataGrid API](/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc189753(v=vs.95))
-silverlight/cc189753(v=vs.95))
-s.95))

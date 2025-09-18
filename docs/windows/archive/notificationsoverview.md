@@ -64,6 +64,3 @@ If you're developing a non-UWP C# app for Windows, the Windows Community Toolkit
 ## Related Topics
 
 * [Toast Notification UX Guidance](/windows/uwp/design/shell/tiles-and-notifications/toast-ux-guidance)
-notifications/toast-ux-guidance)
-cations/toast-ux-guidance)
-cations/toast-ux-guidance)

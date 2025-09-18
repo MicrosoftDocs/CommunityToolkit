@@ -297,4 +297,3 @@ The following code example demonstrates how to specify and configure a DataGridT
 * [Group, sort and filter data using LINQ and the DataGrid control](group-sort-filter.md)
 * [Editing and input validation in the DataGrid control](editing-inputvalidation.md)
 * [DataGrid Sample Page Source](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid)
-id)

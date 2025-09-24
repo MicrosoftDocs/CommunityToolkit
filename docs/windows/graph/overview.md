@@ -45,4 +45,4 @@ Roam settings across experiences with the Graph using [Graph powered storage hel
 
 ### XAML controls
 
-Build Graph experiences with XAML controls made for UWP, such as [LoginButton](./controls/LoginButton.md) or [PersonView](./controls/PersonView.md).
+Build Graph experiences with XAML controls made for UWP, such as [LoginButton](./controls/loginbutton.md) or [PersonView](./controls/personview.md).

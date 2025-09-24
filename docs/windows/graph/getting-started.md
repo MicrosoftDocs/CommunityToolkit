@@ -23,7 +23,7 @@ Leverage the official Microsoft Authentication Library (MSAL) to enable authenti
 
     > After finishing the initial registration page, you will also need to add an additional redirect URI. Click on "Add a Redirect URI", then "Add a platform", and then on "Mobile and desktop applications". Check the `https://login.microsoftonline.com/common/oauth2/nativeclient` checkbox on that page. Then click "Configure".
 1. Install the `CommunityToolkit.Authentication.Msal` package.
-1. Set the [ProviderManager](./authentication/ProviderManager.md).GlobalProvider to a new instance of [MsalProvider](./authentication/msal.md) with clientId and pre-configured scopes:
+1. Set the [ProviderManager](./authentication/providermanager.md).GlobalProvider to a new instance of [MsalProvider](./authentication/msal.md) with clientId and pre-configured scopes:
 
     ```csharp
     using CommunityToolkit.Authentication;
@@ -42,7 +42,7 @@ Try out the [WindowsProvider](./authentication/windows.md) to enable authenticat
 
 1. Associate your app with the Microsoft Store. The app association will act as our minimal app registration for authenticating consumer MSAs. See [WindowsProvider](./authentication/windows.md) for more details.
 1. Install the `CommunityToolkit.Authentication.Uwp` package
-1. Set the [ProviderManager](./authentication/ProviderManager.md).GlobalProvider to a new instance of [WindowsProvider](./authentication/windows.md) with pre-configured scopes:
+1. Set the [ProviderManager](./authentication/providermanager.md).GlobalProvider to a new instance of [WindowsProvider](./authentication/windows.md) with pre-configured scopes:
 
     ```csharp
     using CommunityToolkit.Authentication;
@@ -62,7 +62,7 @@ using CommunityToolkit.Authentication;
 await ProviderManager.Instance.GlobalProvider.SignInAsync();
 ```
 
-You can also use the [LoginButton](./controls/LoginButton.md) control in UWP XAML apps to support the full sign in/out lifecycle and even display the user's photo and name when signed in.
+You can also use the [LoginButton](./controls/loginbutton.md) control in UWP XAML apps to support the full sign in/out lifecycle and even display the user's photo and name when signed in.
 
 ```xml
 <Grid xmlns:controls="using:CommunityToolkit.Graph.Uwp.Controls">

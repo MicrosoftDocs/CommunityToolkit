@@ -25,7 +25,7 @@ The toolkit includes the following providers:
 
 ## Initializing the GlobalProvider
 
-To use an authentication provider in your app, you need to set it as the global provider. The [ProviderManager](./ProviderManager.md) is the singleton that stores the globally accessible [IProvider](./custom.md) implementation and signals events in response to authentication state changes.
+To use an authentication provider in your app, you need to set it as the global provider. The [ProviderManager](./providermanager.md) is the singleton that stores the globally accessible [IProvider](./custom.md) implementation and signals events in response to authentication state changes.
 Set the `GlobalProvider` property at app startup and any other Graph based code will respond to any changes as users sign in and out.
 
 ```csharp

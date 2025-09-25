@@ -23,7 +23,7 @@ Available in the `CommunityToolkit.Graph.Uwp` package.
 
 ## Sample Output
 
-![PersonView Control](../../resources/images/Graph/Controls/PersonView.png)
+![PersonView Control](../assets/personview.png)
 
 ## Properties
 

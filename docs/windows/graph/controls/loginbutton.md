@@ -26,7 +26,7 @@ Available in the `CommunityToolkit.Graph.Uwp` package.
 
 ## Sample Output
 
-![LoginButton Control](../../resources/images/Graph/Controls/LoginButton.png)
+![LoginButton Control](../assets/loginbutton.png)
 
 ## Properties
 

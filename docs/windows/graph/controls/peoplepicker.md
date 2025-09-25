@@ -23,7 +23,7 @@ Available in the `CommunityToolkit.Graph.Uwp` package.
 
 ## Sample Output
 
-![PeoplePicker Control](../../resources/images/Graph/Controls/PeoplePicker.png)
+![PeoplePicker Control](../assets/peoplepicker.png)
 
 ## Properties
 

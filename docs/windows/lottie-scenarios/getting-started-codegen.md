@@ -57,7 +57,7 @@ For additional information about additional options including optimizations, use
 
 This should result in a looping Lottie animation that is visually identical to our earlier approach of using a JSON file:
 
-![Autoplay Gif](./assets/LottieDocs_Autoplay.gif)
+![Autoplay Gif](./assets/lottiedocs-autoplay.gif)
 
 ## Resources
 

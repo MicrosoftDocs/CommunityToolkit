@@ -11,7 +11,7 @@ So far, we’ve ignored the return value of the AnimatedVisualPlayer’s [PlayAs
 
 To demonstrate this, we use two AnimatedVisualPlayer instances with _LightBulb.json_ to create the following pattern of animation sequences:
 
-![Async Gif](./assets/LottieDocs_Async.gif)
+![Async Gif](./assets/lottiedocs-async.gif)
 
 ```csharp
     private async Task PlayAnimationSequencesAsync()

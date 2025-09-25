@@ -82,7 +82,7 @@ To configure the playback of the relevant animation segments based on PointerEnt
 
 This results in the following interactive animated ToggleButton icon:
 
-![Segments Gif](./assets/LottieDocs_Segments.gif)
+![Segments Gif](./assets/lottiedocs-segments.gif)
 
 ## Resources
 

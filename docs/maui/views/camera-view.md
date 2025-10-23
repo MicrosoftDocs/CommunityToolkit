@@ -503,7 +503,7 @@ The following example demonstrates how to use the `StartVideoRecording` method:
 ```cs
 async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
 {
-    using var threeSecondVideoRecordingStream = new MemoryStream();
+    using var threeSecondVideoRecordingStream = new FileStream("recording.mp4");
     await Camera.StartVideoRecording(stream, CancellationToken.None);
 
     await Task.Delay(TimeSpan.FromSeconds(3));
@@ -511,7 +511,11 @@ async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
     await Camera.StopVideoRecording(CancellationToken.None);
     await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
 }
+```
 
+In case you want to record a short video and record video in `MemoryStream` you can use the next overload of VideoRecording:
+
+```cs
 async void StartCameraRecording(object? sender, EventArgs e)
 {
     await Camera.StartVideoRecording(CancellationToken.None);
@@ -520,9 +524,8 @@ async void StartCameraRecording(object? sender, EventArgs e)
     
     var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
     await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
-    
-    await videoRecordingStream.DisposeAsync();
 }
+```
 
 ## Start preview
 

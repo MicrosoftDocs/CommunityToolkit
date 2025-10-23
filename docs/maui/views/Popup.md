@@ -184,6 +184,20 @@ It is important to note that a `Popup` will be displayed inside `ContentPage` wh
 | Show popup  | Current `Page` will receive `OnDisappearing` and `OnNavigatingFrom` |
 | Close popup  | Previous `Page` will receive `OnAppearing` and `OnNavigatedTo` |
 
+To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageAToolkitPopup()` extension method:
+
+```cs
+protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+{
+    base.OnNavigatedTo(args);
+    
+    if (args.WasPreviousPageACommunityToolkitPopupPage())
+    {
+        // If true, `OnNavigatedTo` was called by dismissing a Popup
+    }
+}
+```
+
 ## PopupOptions
 
 The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [PopupOptions](./popup/popup-options.md) for more details.

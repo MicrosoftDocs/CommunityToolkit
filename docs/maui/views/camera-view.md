@@ -501,15 +501,28 @@ The following example demonstrates how to use the `StartVideoRecording` method:
 > The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
 
 ```cs
+async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
+{
+    using var threeSecondVideoRecordingStream = new MemoryStream();
+    await Camera.StartVideoRecording(stream, CancellationToken.None);
+
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+}
+
 async void StartCameraRecording(object? sender, EventArgs e)
 {
-    using var stream = new MemoryStream();
-	await Camera.StartVideoRecording(stream);
-    //some delay
-    await Camera.StopVideoRecording();
-    await FileSaver.SaveAsync("recording.mp4", stream);
+    await Camera.StartVideoRecording(CancellationToken.None);
+    
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    
+    await videoRecordingStream.DisposeAsync();
 }
-```
 
 ## Start preview
 

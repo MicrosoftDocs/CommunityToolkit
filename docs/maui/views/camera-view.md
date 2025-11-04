@@ -177,48 +177,11 @@ The `CameraView` can be added to a .NET MAUI application in the following way.
 
 The result will be a surface rendering the output of the default camera connected to the device.
 
-## ICameraProvider
+## Access the current camera
 
-The `ICameraProvider` interface provides access to the list of cameras available on the current device, as well as methods for initializing and refreshing that list. It is registered internally as a singleton service when the `CommunityToolkit.Maui.Camera` package is used (see [Getting started](../get-started.md?tabs=CommunityToolkitMauiCamera)), so it can be injected into view models or other classes through the constructor.
+The `SelectedCamera` property provides the ability to access the currently selected camera.
 
-The following example show how to request an `ICameraProvider` through dependency injection and call `InitializeAsync` to obtain a list of available cameras. This performs a one-time discovery of cameras and populates the `AvailableCameras` property. Subsequent calls will reuse the cached results.
-
-```cs
-public class CameraViewViewModel(ICameraProvider cameraProvider) 
-{
-    readonly ICameraProvider cameraProvider = cameraProvider;
-
-    public ObservableCollection<CameraInfo> Cameras { get; } = [];
-
-    public async Task InitializeAsync()
-    {
-        await cameraProvider.InitializeAsync(CancellationToken.None);
-        foreach (var camera in cameraProvider.AvailableCameras ?? [])
-        {
-            Cameras.Add(camera);
-        }
-    }
-}
-```
-
-If camera availability changes at runtime (e.g. an external USB camera is plugged in), call `RefreshAvailableCameras` to force a refresh. Unlike `InitializeAsync`, this always re-runs camera discovery to ensure the list is up to date, at the cost of performance as it may be expensive on some platforms (e.g., Windows).
-
-```cs
-await cameraProvider.RefreshAvailableCameras(CancellationToken.None);
-Cameras.Clear();
-foreach (var camera in cameraProvider.AvailableCameras ?? [])
-{
-    Cameras.Add(camera);
-}
-```
-
-## Access and switch the current camera
-
-The `SelectedCamera` property provides the ability to get and set the currently selected camera. 
-
-It is a bindable property with default `TwoWay` binding. This means that when it is bound to a property in a view model, updating the `SelectedCamera` of the `CameraView` will also automatically update the corresponding property in the view model.
-
-The following example shows how to bind the `SelectedCamera` property from the `CameraView` to a property on the `CameraViewModel` with the same name (`SelectedCamera`), and a `Picker` to change the selected camera.
+The following example shows how to bind the `SelectedCamera` property from the `CameraView` to a property on the `CameraViewModel` with the same name (`SelectedCamera`).
 
 ```xaml
 <ContentPage
@@ -232,55 +195,10 @@ The following example shows how to bind the `SelectedCamera` property from the `
             Grid.ColumnSpan="3" 
             Grid.Row="0" 
             SelectedCamera="{Binding SelectedCamera}" />
-
-        <Picker 
-            Grid.Row="1"
-            Title="Cameras" 
-            ItemsSource="{Binding Cameras}"
-            ItemDisplayBinding="{Binding Name}" 
-            SelectedItem="{Binding SelectedCamera}" />
     </Grid>
 
 </ContentPage>
 ```
-
-```cs
-public class CameraViewViewModel(ICameraProvider cameraProvider) 
-{
-    readonly ICameraProvider cameraProvider = cameraProvider;
-
-    public ObservableCollection<CameraInfo> Cameras { get; } = [];
-
-	[ObservableProperty]
-	public partial CameraInfo? SelectedCamera { get; set; }
-
-    public async Task InitializeAsync()
-    {
-        await cameraProvider.InitializeAsync(CancellationToken.None);
-        foreach (var camera in cameraProvider.AvailableCameras ?? [])
-        {
-            Cameras.Add(camera);
-        }
-        // Optionally set an initial camera
-        SelectedCamera = Cameras.LastOrDefault();
-    }
-}
-```
-
-The following describes the different behaviors of the code:
-
-- No initial camera specified
-If `SelectedCamera` is not assigned in the view model, the `CameraView` automatically defaults to the first available camera after loading.
-Because the binding is `TwoWay`, the `Picker` will also reflect that camera as selected.
-
-- Initial camera specified in the view model
-If you assign an initial value (e.g. `SelectedCamera = Cameras.LastOrDefault();`), then both the `CameraView` and the `Picker` will start with that camera selected.
-
-- User changes selection
-When the user selects a camera from the `Picker`, the `SelectedCamera` property in the view model is updated, which in turn updates the `CameraView` to display the newly selected camera.
-
-> [!NOTE]
-> If the `SelectedCamera` is not specified an initial value, it will be set automatically to the first available camera on the device after the `CameraView` is loaded.
 
 ## Control Zoom
 
@@ -612,9 +530,6 @@ async void StartCameraRecording(object? sender, EventArgs e)
 ## Start preview
 
 The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StartCameraPreview` method or the `StartCameraPreviewCommand`.
-
-> [!NOTE]
-> The camera previw is always automatically started when the `CameraView` is loaded, so you don't need to call `StartCameraPreview` explicitly. The `StartCameraPreview` and `StopCameraPreview` is used to stop and start the camera preview after the `CameraView` is loaded and still active.
 
 The following example shows how to add a `Button` into the application and setup the following bindings:
 

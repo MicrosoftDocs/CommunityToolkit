@@ -10,19 +10,20 @@ dev_langs:
 
 # Carousel (Archived)
 
-**Important Note:** This document has been archived in the Windows Community Toolkit.
-
-While the Carousel control is not included in WCT 8.x, there are plans to introduce a modern, improved version in Community Toolkit Labs. The existing implementation from 7.x was deprecated due to its age and limitations, particularly around infinite scrolling functionality.
-
-Community interest and contributions are welcome to help accelerate this effort. You can track progress and express interest in the GitHub discussions:
-
-- [Carousel discussion in Labs](https://github.com/CommunityToolkit/Labs-Windows/discussions/498)
-
-For more information:
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived in the Windows Community Toolkit.
+>
+> While the Carousel control is not included in WCT 8.x, there are plans to introduce a modern, improved version in Community Toolkit Labs. The existing implementation from 7.x was deprecated due to its age and limitations, particularly around infinite scrolling functionality.
+>
+> Community interest and contributions are welcome to help accelerate this effort. You can track progress and express interest in the GitHub discussions:
+>
+> - [Carousel discussion in Labs](https://github.com/CommunityToolkit/Labs-Windows/discussions/498)
+>
+> For more information:
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

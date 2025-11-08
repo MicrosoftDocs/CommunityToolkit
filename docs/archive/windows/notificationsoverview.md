@@ -7,17 +7,18 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 # Notifications Overview (Archived)
 
-**Important Note:** This component has been archived and is not available in the current version of the Windows Community Toolkit.
-
-For WinUI 3 apps, notifications were superseded by the [App notifications](/windows/apps/windows-app-sdk/notifications/app-notifications/) feature in the Windows App SDK.
-
-For UWP apps, the original notifications package was ported to [Windows Community Toolkit Labs](https://github.com/CommunityToolkit/Labs-Windows) and is available only for UWP applications.
-
-For more information:
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This component has been archived and is not available in the current version of the Windows Community Toolkit.
+>
+> For WinUI 3 apps, notifications were superseded by the [App notifications](/windows/apps/windows-app-sdk/notifications/app-notifications/) feature in the Windows App SDK.
+>
+> For UWP apps, the original notifications package was ported to [Windows Community Toolkit Labs](https://github.com/CommunityToolkit/Labs-Windows) and is available only for UWP applications.
+>
+> For more information:
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

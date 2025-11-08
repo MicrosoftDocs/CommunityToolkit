@@ -7,15 +7,16 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 # ImageEx (Archived)
 
-**Important Note:** This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
-
-This component was deprecated in WCT 7.x as it can be built piecemeal using platform features. While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion.
-
-For more information:
-- [GitHub tracking issue for ImageEx port](https://github.com/CommunityToolkit/Windows/issues/51)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
+>
+> This component was deprecated in WCT 7.x as it can be built piecemeal using platform features. While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion.
+>
+> For more information:
+> - [GitHub tracking issue for ImageEx port](https://github.com/CommunityToolkit/Windows/issues/51)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

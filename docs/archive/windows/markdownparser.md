@@ -10,16 +10,17 @@ dev_langs:
 
 # MarkdownParser (Archived)
 
-**Important Note:** This component has been archived and is not available in the current version of the Windows Community Toolkit.
-- The new `MarkdownTextBlock` control in Windows Community Toolkit Labs uses Markdig under the hood, not this `MarkdownParser`.
-- For custom parsing needs, consider using Markdig directly in your application.
-
-For more information:
-- [Windows Community Toolkit Labs GitHub](https://github.com/CommunityToolkit/Labs-Windows)
-- [Windows Community Toolkit GitHub](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This component has been archived and is not available in the current version of the Windows Community Toolkit.
+> - The new `MarkdownTextBlock` control in Windows Community Toolkit Labs uses Markdig under the hood, not this `MarkdownParser`.
+> - For custom parsing needs, consider using Markdig directly in your application.
+>
+> For more information:
+> - [Windows Community Toolkit Labs GitHub](https://github.com/CommunityToolkit/Labs-Windows)
+> - [Windows Community Toolkit GitHub](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

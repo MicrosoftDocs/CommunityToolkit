@@ -10,16 +10,17 @@ dev_langs:
 
 # TextToolbar (Archived)
 
-**Important Note:** This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
-
-While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion. This control could be ported with enough community interest.
-
-For more information:
-- [GitHub tracking issue for TextToolbar port](https://github.com/CommunityToolkit/Windows/issues/81)
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
+>
+> While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion. This control could be ported with enough community interest.
+>
+> For more information:
+> - [GitHub tracking issue for TextToolbar port](https://github.com/CommunityToolkit/Windows/issues/81)
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

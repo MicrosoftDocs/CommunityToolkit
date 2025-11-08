@@ -10,15 +10,16 @@ dev_langs:
 
 # LinkedIn Service (Archived)
 
-**Important Note:** This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
-- We aren't open to porting this component to 8.x.
-- There is no known recommended substitute for this component.
-
-For more information:
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
+> - We aren't open to porting this component to 8.x.
+> - There is no known recommended substitute for this component.
+>
+> For more information:
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

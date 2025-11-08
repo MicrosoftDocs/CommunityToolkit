@@ -7,16 +7,17 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 # TileControl (Archived)
 
-**Important Note:** This component has been archived and is not available in the current version of the Windows Community Toolkit.
-
-While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion. The control could be ported with enough community interest.
-
-For more information:
-- [GitHub tracking issue for TileControl port](https://github.com/CommunityToolkit/Windows/issues/88)
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This component has been archived and is not available in the current version of the Windows Community Toolkit.
+>
+> While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion. The control could be ported with enough community interest.
+>
+> For more information:
+> - [GitHub tracking issue for TileControl port](https://github.com/CommunityToolkit/Windows/issues/88)
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

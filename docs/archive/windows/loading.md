@@ -10,16 +10,17 @@ dev_langs:
 
 # Loading (Archived)
 
-**Important Note:** This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
-
-This component was deprecated and not superseded, as it can be built piecemeal using platform features. The functionality provided by this component can be achieved through standard Windows platform features.
-
-For more information:
-- [GitHub tracking issue for Loading port (closed)](https://github.com/CommunityToolkit/Windows/issues/92)
-- [Windows Community Toolkit GitHub](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
+>
+> This component was deprecated and not superseded, as it can be built piecemeal using platform features. The functionality provided by this component can be achieved through standard Windows platform features.
+>
+> For more information:
+> - [GitHub tracking issue for Loading port (closed)](https://github.com/CommunityToolkit/Windows/issues/92)
+> - [Windows Community Toolkit GitHub](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

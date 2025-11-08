@@ -7,15 +7,16 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 # WebViewExtensions (Archived)
 
-**Important Note:** This component has been archived and is not available in the current version of the Windows Community Toolkit.
-
-While there are no immediate plans to port this component to 8.x, community interest could potentially lead to its inclusion. The component would require significant changes related to WebView2 integration.
-
-For more information:
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This component has been archived and is not available in the current version of the Windows Community Toolkit.
+>
+> While there are no immediate plans to port this component to 8.x, community interest could potentially lead to its inclusion. The component would require significant changes related to WebView2 integration.
+>
+> For more information:
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

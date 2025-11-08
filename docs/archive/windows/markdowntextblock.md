@@ -7,15 +7,16 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 # MarkdownTextBlock (Archived)
 
-**Important Note:** This component has been archived and is not available in the current version of the Windows Community Toolkit.
-- A new `MarkdownTextBlock` control is in the works in Windows Community Toolkit Labs, rebuilt from the ground up using Markdig.
-
-For more information:
-- [`MarkdownTextBlock` GitHub tracking issue in Windows Community Toolkit Labs](https://github.com/CommunityToolkit/Labs-Windows/issues/606)
-- [Windows Community Toolkit GitHub](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This component has been archived and is not available in the current version of the Windows Community Toolkit.
+> - A new `MarkdownTextBlock` control is in the works in Windows Community Toolkit Labs, rebuilt from the ground up using Markdig.
+>
+> For more information:
+> - [`MarkdownTextBlock` GitHub tracking issue in Windows Community Toolkit Labs](https://github.com/CommunityToolkit/Labs-Windows/issues/606)
+> - [Windows Community Toolkit GitHub](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

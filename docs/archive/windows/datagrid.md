@@ -7,22 +7,23 @@ keywords: windows 10, uwp, uwp community toolkit, uwp toolkit, DataGrid, xaml co
 
 # DataGrid (Archived)
 
-**Important Note:** This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
-
-While there are no immediate plans to port this component directly to 8.x, it's important to understand that:
-- The WCT 7.x DataGrid is still usable alongside WCT 8.x components for existing projects.
-- The DataGrid control has been deprecated in favor of the new DataTable component.
-
-For new development, we recommend using the DataTable component which offers improved functionality and is actively maintained.
-
-If you have specific needs that DataTable doesn't meet, please consider contributing to WCT Labs where component improvements are prototyped and incubated.
-
-For more information:
-- [DataTable discussion in Labs](https://github.com/CommunityToolkit/Labs-Windows/discussions/415)
-- [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
+>
+> While there are no immediate plans to port this component directly to 8.x, it's important to understand that:
+> - The WCT 7.x DataGrid is still usable alongside WCT 8.x components for existing projects.
+> - The DataGrid control has been deprecated in favor of the new DataTable component.
+>
+> For new development, we recommend using the DataTable component which offers improved functionality and is actively maintained.
+>
+> If you have specific needs that DataTable doesn't meet, please consider contributing to WCT Labs where component improvements are prototyped and incubated.
+>
+> For more information:
+> - [DataTable discussion in Labs](https://github.com/CommunityToolkit/Labs-Windows/discussions/415)
+> - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

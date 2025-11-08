@@ -10,15 +10,16 @@ dev_langs:
 
 # BladeView (Archived)
 
-**Important Note:** This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
-
-While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion.
-
-For more information:
-- [GitHub tracking issue for BladeView port](https://github.com/CommunityToolkit/Windows/issues/89)
-- [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
-
-Original documentation follows below.
+> [!WARNING]
+> This document has been archived and the component is not available in the current version of the Windows Community Toolkit.
+>
+> While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion.
+>
+> For more information:
+> - [GitHub tracking issue for BladeView port](https://github.com/CommunityToolkit/Windows/issues/89)
+> - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)
+>
+> Original documentation follows below.
 
 ---
 

@@ -155,6 +155,19 @@ Tizen is not currently supported.
 
 The `CameraView` can be added to a .NET MAUI application in the following way.
 
+### Request permissions
+
+Developers must manually request Permissions.Camera and/or Permissions.Microphone:
+
+```csharp
+var cameraPermissionsRequest = await Permissions.RequestAsync<Permissions.Camera>();
+var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Microphone>();
+```
+
+Camera permission is always required.
+
+Microphone Permission is required if you plan to use video recording.
+
 ### Including the XAML namespace
 
 [!INCLUDE [XAML usage guidance](../includes/xaml-usage.md)]

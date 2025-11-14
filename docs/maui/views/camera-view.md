@@ -25,6 +25,11 @@ The following permissions need to be added to the `Platforms/Android/AndroidMani
 <uses-permission android:name="android.permission.CAMERA" />
 ```
 
+In case you plan to record video, request Microphone permissions:
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
 This should be added inside the `<manifest>` element. Below shows a more complete example:
 
 ```xml
@@ -33,6 +38,9 @@ This should be added inside the `<manifest>` element. Below shows a more complet
     <application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--Optional. Only for video recording-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>
 ```
@@ -43,6 +51,12 @@ The following entries need to be added to the `Platforms/iOS/Info.plist` file:
 
 ```xml
 <key>NSCameraUsageDescription</key>
+<string>PROVIDE YOUR REASON HERE</string>
+```
+
+In case you plan to record video, request Microphone permissions:
+```xml
+<key>NSMicrophoneUsageDescription</key>
 <string>PROVIDE YOUR REASON HERE</string>
 ```
 
@@ -93,6 +107,12 @@ The following entries need to be added to the `Platforms/MacCatalyst/Info.plist`
 
 ```xml
 <key>NSCameraUsageDescription</key>
+<string>PROVIDE YOUR REASON HERE</string>
+```
+
+In case you plan to record video, request Microphone permissions:
+```xml
+<key>NSMicrophoneUsageDescription</key>
 <string>PROVIDE YOUR REASON HERE</string>
 ```
 
@@ -161,12 +181,13 @@ Developers must manually request Permissions.Camera and/or Permissions.Microphon
 
 ```csharp
 var cameraPermissionsRequest = await Permissions.RequestAsync<Permissions.Camera>();
-var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Microphone>();
 ```
 
-Camera permission is always required.
+In case you plan to record video, request Microphone permissions:
 
-Microphone Permission is required if you plan to use video recording.
+```csharp
+var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Microphone>();
+```
 
 ### Including the XAML namespace
 

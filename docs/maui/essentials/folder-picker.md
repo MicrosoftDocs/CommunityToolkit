@@ -71,14 +71,11 @@ The `FolderPicker` can be added to a .NET MAUI application in the following way.
 
 ### Request permissions
 
-Developers must manually request Permissions.StorageRead and/or Permissions.StorageWrite:
+Developers must manually request Permissions.StorageRead:
 
 ```csharp
 var readPermissionsRequest = await Permissions.RequestAsync<Permissions.StorageRead>();
-var writePermissionsRequest = await Permissions.RequestAsync<Permissions.StorageWrite>();
 ```
-
-StorageWrite permission is required in case you plan to write something in the folder.
 
 ### Pick folder
 

@@ -17,6 +17,7 @@ keywords: windows 10, uwp, windows community toolkit, windows toolkit, DataGrid,
 > For new development, we recommend using the DataTable component which offers improved functionality and is actively maintained. If you have specific needs that DataTable doesn't meet, please consider contributing to WCT Labs where component improvements are prototyped and incubated.
 >
 > For more information:
+> - [DataGrid (Archived) concept docs](../datagrid.md)
 > - [DataGrid discussion in Labs](https://github.com/CommunityToolkit/Labs-Windows/discussions/415)
 > - [Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Windows)
 > - [Documentation feedback and suggestions](https://github.com/MicrosoftDocs/CommunityToolkit/issues)

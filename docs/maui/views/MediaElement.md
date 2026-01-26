@@ -176,7 +176,7 @@ Platform provided media playback controls are enabled by default, and can be dis
 A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst, and Windows when media is playing in the background. To enable rich media notifications, the following steps are required:
 1. Enable background video playback by setting the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*.
 2. Platform specific setup as described in the [Platform specific initialization](#platform-specific-initialization) section.
-3. Set the `MetadataTitle`, `MetadataArtist`, and `MetadataArtworkUrl` properties to provide metadata for the media that is playing.
+3. Set the `MetadataTitle`, `MetadataArtist`, and `MetadataArtworkUrl` properties to provide metadata for the media that is playing as described in the [Using Metadata](#using-metadata) section.
 
 ### Foreground service on Android
 To enable background playback on Android, you must set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. If you fail to do this, an exception will be thrown when the application is run on Android.

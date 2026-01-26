@@ -49,13 +49,13 @@ First the using statement needs to be added to the top of your *MauiProgram.cs* 
 using CommunityToolkit.Maui.MediaElement;
 ```
 
-In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the _MauiProgram.cs_ file. The following example shows how to perform this. If you fail to set `enableForeGroundService` to `true` on Android, background playback will not work. If you do not need background playback, you can set this to `false`. If you fail to call this method, an exception will be thrown when trying to use the `MediaElement`.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMediaElement()
+    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true);
 ```
 
 For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.
@@ -79,6 +79,29 @@ public class MainActivity : MauiAppCompatActivity
 ```
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
+
+#### 2. Add required permissions to `AndroidManifest.xml`
+
+Add the following permissions to the `AndroidManifest.xml` file located in the `Platforms/Android` folder of your project.
+
+```xml
+<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:hardwareAccelerated="true" android:supportsRtl="true">
+
+<service android:name="communityToolkit.maui.media.services" android:stopWithTask="true" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
+    <intent-filter>
+    <action android:name="androidx.media3.session.MediaSessionService"/>
+    </intent-filter>
+</service>
+
+</application>
+
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
+```
+
+For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/AndroidManifest.xml)
 
 ### [Mac Catalyst](#tab/mac)
 

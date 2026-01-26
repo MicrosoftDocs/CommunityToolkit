@@ -82,7 +82,7 @@ For a full example of this method included in an application please refer to the
 
 #### 2. Add required permissions to `AndroidManifest.xml`
 
-Add the following permissions to the `AndroidManifest.xml` file located in the `Platforms/Android` folder of your project.
+If you are using background playback and want rich media notifications you will need to add the following permissions to the `AndroidManifest.xml` file located in the `Platforms/Android` folder of your project.
 
 ```xml
 <application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:hardwareAccelerated="true" android:supportsRtl="true">
@@ -171,6 +171,12 @@ A `MediaElement` can play remote media files using the HTTP and HTTPS URI scheme
 By default, the media that is defined by the `Source` property doesn't immediately start playing after the media is opened. To enable automatic media playback, set the `ShouldAutoPlay` property to `true`.
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
+
+### Use Rich Media Notifications
+A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst, and Windows when media is playing in the background. To enable rich media notifications, the following steps are required:
+1. Enable background audio playback by setting the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*.
+2. Platform specific setup as described in the [Platform specific initialization](#platform-specific-initialization) section.
+3. Set the `MetadataTitle`, `MetadataArtist`, and `MetadataArtworkUrl` properties to provide metadata for the media that is playing.
 
 ### Using Metadata
 

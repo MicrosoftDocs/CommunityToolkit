@@ -159,7 +159,8 @@ A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst
 ### Foreground service on Android
 To enable background playback on Android, you must set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. If you fail to do this, an exception will be thrown when the application is run on Android.
 
-You must also add the required permissions to the `AndroidManifest.xml` file as described in the [Platform specific initialization](#platform-specific-initialization) section.
+### Foreground service on Android
+To enable background playback on Android, you must set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. If you fail to do this, an exception will be thrown when the application is run on Android.
 The purpose of the foreground service is to keep the media playback active when the application is in the background. The foreground service also enables rich media notifications.
 
 ### Using Metadata

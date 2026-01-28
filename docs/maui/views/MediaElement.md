@@ -55,7 +55,7 @@ In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaEl
 var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true);
+    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true); // Set to `false` if Rich Notifications and background playback is not required
 ```
 
 For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.

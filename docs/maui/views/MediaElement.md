@@ -81,28 +81,6 @@ public class MainActivity : MauiAppCompatActivity
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
 #### 2. Add required permissions to `AndroidManifest.xml`
-
-If you are using background playback and want rich media notifications you will need to add the following permissions to the `AndroidManifest.xml` file located in the `Platforms/Android` folder of your project.
-
-```xml
-<application android:allowBackup="true" android:icon="@mipmap/appicon" android:enableOnBackInvokedCallback="true" android:hardwareAccelerated="true" android:supportsRtl="true">
-
-<service android:name="communityToolkit.maui.media.services" android:stopWithTask="true" android:exported="false" android:enabled="true" android:foregroundServiceType="mediaPlayback">
-    <intent-filter>
-    <action android:name="androidx.media3.session.MediaSessionService"/>
-    </intent-filter>
-</service>
-
-</application>
-
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
-<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
-```
-
-For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/AndroidManifest.xml)
-
 ### [Mac Catalyst](#tab/mac)
 
 Edit the `Info.plist` for `MacCatalyst` and add the following keys.

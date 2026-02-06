@@ -61,7 +61,7 @@ The `SpeechToText` can be added to a .NET MAUI application in the following way.
 
 ### Request permissions
 
-Developers must manually request permissions for Permissions.Microphone and manually call ISpeechToText.RequestPermissions():
+Developers must manually request Permissions.Microphone and also call ISpeechToText.RequestPermissions():
     
 ```csharp
 static async Task<bool> ArePermissionsGranted(ISpeechToText speechToText)

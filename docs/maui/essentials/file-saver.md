@@ -78,11 +78,26 @@ The `FileSaver` can be added to a .NET MAUI application in the following way.
 
 ### Request permissions
 
-Developers must manually request Permissions.StorageRead and Permissions.StorageWrite:
+Developers must manually request Permissions.StorageRead and Permissions.StorageWrite before saving files:
 
 ```csharp
-var readPermissionsRequest = await Permissions.RequestAsync<Permissions.StorageRead>();
-var writePermissionsRequest = await Permissions.RequestAsync<Permissions.StorageWrite>();
+async Task RequestStoragePermissionsAndSaveFile(CancellationToken cancellationToken)
+{
+    var readPermissionStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+    var writePermissionStatus = await Permissions.RequestAsync<Permissions.StorageWrite>();
+
+    if (readPermissionStatus != PermissionStatus.Granted ||
+        writePermissionStatus != PermissionStatus.Granted)
+    {
+        await Toast
+            .Make("Storage permissions are required to save files.")
+            .Show(cancellationToken);
+
+        return;
+    }
+
+    await SaveFile(cancellationToken);
+}
 ```
 
 ### Save file

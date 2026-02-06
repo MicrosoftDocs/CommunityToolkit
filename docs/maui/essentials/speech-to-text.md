@@ -55,7 +55,7 @@ Add permissions to `tizen-manifest.xml`:
 
 ---
 
-## Basic usages
+## Basic usage
 
 The `SpeechToText` can be added to a .NET MAUI application in the following way.
 

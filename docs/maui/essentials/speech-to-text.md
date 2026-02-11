@@ -55,11 +55,26 @@ Add permissions to `tizen-manifest.xml`:
 
 ---
 
-## Syntax
+## Basic usage
 
-### C#
+The `SpeechToText` can be added to a .NET MAUI application in the following way.
 
-The `SpeechToText` can be used as follows in C#:
+### Request permissions
+
+Developers must manually request Permissions.Microphone and also call ISpeechToText.RequestPermissions():
+    
+```csharp
+static async Task<bool> ArePermissionsGranted(ISpeechToText speechToText)
+{
+    var microphonePermissionStatus = await Permissions.RequestAsync<Permissions.Microphone>();
+    var isSpeechToTextRequestPermissionsGranted = await speechToText.RequestPermissions(CancellationToken.None);
+
+    return microphonePermissionStatus is PermissionStatus.Granted
+            && isSpeechToTextRequestPermissionsGranted;
+}
+```
+
+### Speech To Text
 
 ```csharp
 async Task StartListening(CancellationToken cancellationToken)

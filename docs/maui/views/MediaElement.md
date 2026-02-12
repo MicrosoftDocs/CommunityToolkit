@@ -48,8 +48,9 @@ First the using statement needs to be added to the top of your *MauiProgram.cs* 
 ```csharp
 using CommunityToolkit.Maui.MediaElement;
 ```
-
-In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this. If you fail to set `enableForeGroundService` to `true` on Android, background playback will not work. If you do not need background playback, you can set this to `false`. If you fail to call this method, an exception will be thrown when trying to use the `MediaElement`.
+ 
+> [!IMPORTANT]
+> In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this. If you fail to set `enableForeGroundService` to `true` on Android, background playback will not work. If you do not need background playback, you can set this to `false`. If you fail to call this method, an exception will be thrown when trying to use the `MediaElement`.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();

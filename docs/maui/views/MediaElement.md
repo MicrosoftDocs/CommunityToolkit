@@ -50,7 +50,7 @@ using CommunityToolkit.Maui.MediaElement;
 ```
  
 > [!IMPORTANT]
-> In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this. If you fail to set `enableForeGroundService` to `true` on Android, background playback will not work. If you do not need background playback, you can set this to `false`. If you fail to call this method, an exception will be thrown when trying to use the `MediaElement`.
+> In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this. If you require Rich Media Notifications or background playback on Android, set `enableForegroundService` to `true` when calling `UseMauiCommunityToolkitMediaElement`. MediaElement does not require adding additional `AndroidManifest.xml` permissions for the foreground service. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If you do not need background playback, you can set this to `false`. If you fail to call this method, an exception will be thrown when trying to use the `MediaElement`.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();
@@ -81,7 +81,6 @@ public class MainActivity : MauiAppCompatActivity
 
 For a full example of this method included in an application please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs)
 
-#### 2. Add required permissions to `AndroidManifest.xml`
 ### [Mac Catalyst](#tab/mac)
 
 Edit the `Info.plist` for `MacCatalyst` and add the following keys.
@@ -158,7 +157,7 @@ A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst
 3. Set the `MetadataTitle`, `MetadataArtist`, and `MetadataArtworkUrl` properties to provide metadata for the media that is playing as described in the [Using Metadata](#using-metadata) section.
 
 ### Foreground service on Android
-To enable background playback on Android, you must set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. If you fail to do this, an exception will be thrown when the application is run on Android.
+To enable background playback on Android, set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. MediaElement does not require adding additional `AndroidManifest.xml` permissions for the foreground service — calling the builder method with `enableForegroundService: true` is sufficient to enable notification and background playback features. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If `enableForegroundService` is `false` and you attempt to use background playback features, an exception may be thrown on Android.
 
 ### Using Metadata
 

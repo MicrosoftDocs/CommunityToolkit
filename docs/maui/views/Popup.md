@@ -198,6 +198,19 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 }
 ```
 
+To determine if `OnNavigatedFrom(NavigatedFromEventArgs)` was called by opening a `Popup`, you can use the `IsDestinationPageACommunityToolkitPopupPage()` extension method:
+
+```cs
+protected override async void OnNavigatedFrom(NavigatedFromEventArgs args)
+{
+    base.OnNavigatedFrom(args);
+    if (args.IsDestinationPageACommunityToolkitPopupPage())
+    {
+        // If true, `OnNavigatedFrom` was called by starting a Popup
+    }
+}
+```
+
 ## PopupOptions
 
 The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [PopupOptions](./popup/popup-options.md) for more details.

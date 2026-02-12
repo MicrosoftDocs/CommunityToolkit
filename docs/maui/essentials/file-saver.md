@@ -72,11 +72,35 @@ Add permissions to `tizen-manifest.xml`:
 
 ---
 
-## Syntax
+## Basic usage
 
-### C#
+The `FileSaver` can be added to a .NET MAUI application in the following way.
 
-The `FileSaver` can be used as follows in C#:
+### Request permissions
+
+Developers must manually request Permissions.StorageRead and Permissions.StorageWrite before saving files:
+
+```csharp
+async Task RequestStoragePermissionsAndSaveFile(CancellationToken cancellationToken)
+{
+    var readPermissionStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+    var writePermissionStatus = await Permissions.RequestAsync<Permissions.StorageWrite>();
+
+    if (readPermissionStatus != PermissionStatus.Granted ||
+        writePermissionStatus != PermissionStatus.Granted)
+    {
+        await Toast
+            .Make("Storage permissions are required to save files.")
+            .Show(cancellationToken);
+
+        return;
+    }
+
+    await SaveFile(cancellationToken);
+}
+```
+
+### Save file
 
 ```csharp
 async Task SaveFile(CancellationToken cancellationToken)

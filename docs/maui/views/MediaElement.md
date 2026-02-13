@@ -48,14 +48,18 @@ First the using statement needs to be added to the top of your *MauiProgram.cs* 
 ```csharp
 using CommunityToolkit.Maui.MediaElement;
 ```
+ 
+> In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this. 
 
-In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+
+> [!IMPORTANT]
+> If you require Rich Media Notifications or background playback on Android, set `enableForegroundService` to `true` when calling `UseMauiCommunityToolkitMediaElement`. MediaElement does not require adding additional `AndroidManifest.xml` permissions for the foreground service. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If you do not need background playback, you can set this to `false`. If you fail to call this method, an exception will be thrown when trying to use the `MediaElement`.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMediaElement()
+    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true); // Set to `false` if Rich Notifications and background playback is not required
 ```
 
 For more information on how to do this, please refer to the [Get Started](../get-started.md?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages) page.
@@ -148,6 +152,15 @@ A `MediaElement` can play remote media files using the HTTP and HTTPS URI scheme
 By default, the media that is defined by the `Source` property doesn't immediately start playing after the media is opened. To enable automatic media playback, set the `ShouldAutoPlay` property to `true`.
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
+
+### Use Rich Media Notifications
+A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst, and Windows when media is playing in the background. To enable rich media notifications, the following steps are required:
+1. Enable background video playback by setting the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. Refer to the **Initializing the package** section above for more information.
+2. Platform specific setup as described in the [Platform specific initialization](#platform-specific-initialization) section.
+3. Set the `MetadataTitle`, `MetadataArtist`, and `MetadataArtworkUrl` properties to provide metadata for the media that is playing as described in the [Using Metadata](#using-metadata) section.
+
+### Foreground service on Android
+To enable background playback on Android, set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. MediaElement does not require adding additional `AndroidManifest.xml` permissions for the foreground service — calling the builder method with `enableForegroundService: true` is sufficient to enable notification and background playback features. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If `enableForegroundService` is `false` and you attempt to use background playback features, an exception may be thrown on Android.
 
 ### Using Metadata
 

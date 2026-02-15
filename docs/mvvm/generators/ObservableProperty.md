@@ -18,26 +18,31 @@ The [`ObservableProperty`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.Obs
 
 ## How it works
 
-The `ObservableProperty` attribute can be used to annotate a field in a partial type, like so:
+The `ObservableProperty` attribute can be used to annotate a partial property in a partial type, like so:
 
 ```csharp
 [ObservableProperty]
-private string? name;
+public partial string? Name { get; set; }
 ```
 
 And it will generate an observable property like this:
 
 ```csharp
-public string? Name
+public partial string? Name
 {
-    get => name;
-    set => SetProperty(ref name, value);
+    get => field;
+    set => SetProperty(ref field, value);
 }
 ```
 
 It will also do so with an optimized implementation, so the end result will be even faster.
 
 > [!NOTE]
+> Partial properties support in MVVM Toolkit requires the .NET 9 SDK and `LangVersion` to be set to `preview`. If that's not an option, you can use `[ObservableProperty]` on a field, like so:
+> ```cs
+> [ObservableProperty]
+> private string? name;
+> ```
 > The name of the generated property will be created based on the field name. The generator assumes the field is named either `lowerCamel`, `_lowerCamel` or `m_lowerCamel`, and it will transform that to be `UpperCamel` to follow proper .NET naming conventions. The resulting property will always have public accessors, but the field can be declared with any visibility (`private` is recommended).
 
 ## Running code upon changes
@@ -47,16 +52,16 @@ The generated code is actually a bit more complex than this, and the reason for 
 ```csharp
 public string? Name
 {
-    get => name;
+    get => field;
     set
     {
-        if (!EqualityComparer<string?>.Default.Equals(name, value))
+        if (!EqualityComparer<string?>.Default.Equals(field, value))
         {
-            string? oldValue = name;
+            string? oldValue = field;
             OnNameChanging(value);
             OnNameChanging(oldValue, value);
             OnPropertyChanging();
-            name = value;
+            field = value;
             OnNameChanged(value);
             OnNameChanged(oldValue, value);
             OnPropertyChanged();
@@ -77,7 +82,7 @@ For instance, here is an example of how the first two overloads can be used:
 
 ```csharp
 [ObservableProperty]
-private string? name;
+public partial string? Name { get; set; }
 
 partial void OnNameChanging(string? value)
 {
@@ -94,7 +99,7 @@ And here is an example of how the other two overloads can be used:
 
 ```csharp
 [ObservableProperty]
-private ChildViewModel? selectedItem;
+public partial ChildViewModel? SelectedItem { get; set; }
 
 partial void OnSelectedItemChanging(ChildViewModel? oldValue, ChildViewModel? newValue)
 {
@@ -122,7 +127,7 @@ Imagine you had a `FullName` property you wanted to raise a notification for whe
 ```csharp
 [ObservableProperty]
 [NotifyPropertyChangedFor(nameof(FullName))]
-private string? name;
+public partial string? Name { get; set; }
 ```
 
 This will result in a generated property equivalent to this:
@@ -130,10 +135,10 @@ This will result in a generated property equivalent to this:
 ```csharp
 public string? Name
 {
-    get => name;
+    get => field;
     set
     {
-        if (SetProperty(ref name, value))
+        if (SetProperty(ref field, value))
         {
             OnPropertyChanged("FullName");
         }
@@ -148,7 +153,7 @@ Imagine you had a command whose execution state was dependent on the value of th
 ```csharp
 [ObservableProperty]
 [NotifyCanExecuteChangedFor(nameof(MyCommand))]
-private string? name;
+public partial string? Name { get; set; }
 ```
 
 This will result in a generated property equivalent to this:
@@ -156,10 +161,10 @@ This will result in a generated property equivalent to this:
 ```csharp
 public string? Name
 {
-    get => name;
+    get => field;
     set
     {
-        if (SetProperty(ref name, value))
+        if (SetProperty(ref field, value))
         {
             MyCommand.NotifyCanExecuteChanged();
         }
@@ -178,7 +183,7 @@ If the property is declared in a type that inherits from [ObservableValidator](/
 [NotifyDataErrorInfo]
 [Required]
 [MinLength(2)] // Any other validation attributes too...
-private string? name;
+public partial string? Name { get; set; }
 ```
 
 This will result in the following property being generated:
@@ -186,10 +191,10 @@ This will result in the following property being generated:
 ```csharp
 public string? Name
 {
-    get => name;
+    get => field;
     set
     {
-        if (SetProperty(ref name, value))
+        if (SetProperty(ref field, value))
         {
             ValidateProperty(value, "Value2");
         }
@@ -200,7 +205,7 @@ public string? Name
 That generated `ValidateProperty` call will then validate the property and update the state of the `ObservableValidator` object, so that UI components can react to it and display any validation errors appropriately.
 
 > [!NOTE]
-> By design, only field attributes that inherit from [`ValidationAttribute`](/dotnet/api/system.componentmodel.dataannotations.validationattribute) will be forwarded to the generated property. This is done specifically to support data validation scenarios. All other field attributes will be ignored, so it is not currently possible to add additional custom attributes on a field and have them also be applied to the generated property. If that is required (eg. to control serialization), consider using a traditional manual property instead.
+> By design, only field attributes that inherit from [`ValidationAttribute`](/dotnet/api/system.componentmodel.dataannotations.validationattribute) will be forwarded to the generated property. This is done specifically to support data validation scenarios. All other field attributes will be ignored, so it is not currently possible to add additional custom attributes on a field and have them also be applied to the generated property. If that is required (eg. to control serialization), consider using partial properties instead.
 
 ## Sending notification messages
 
@@ -209,7 +214,7 @@ If the property is declared in a type that inherits from [`ObservableRecipient`]
 ```csharp
 [ObservableProperty]
 [NotifyPropertyChangedRecipients]
-private string? name;
+public partial string? Name { get; set; }
 ```
 
 This will result in the following property being generated:
@@ -217,12 +222,12 @@ This will result in the following property being generated:
 ```csharp
 public string? Name
 {
-    get => name;
+    get => field;
     set
     {
-        string? oldValue = name;
+        string? oldValue = field;
 
-        if (SetProperty(ref name, value))
+        if (SetProperty(ref field, value))
         {
             Broadcast(oldValue, value);
         }
@@ -233,6 +238,9 @@ public string? Name
 That generated `Broadcast` call will then send a new [`PropertyChangedMessage<T>`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1) using the `IMessenger` instance in use in the current viewmodel, to all registered subscribers.
 
 ## Adding custom attributes
+
+> [!NOTE]
+> The following section applies only if `[ObservableProperty]` is annotated on a field. If `[ObservableProperty]` is used on a partial property, you can add the attribute on the partial property as you would a normal property.
 
 In some cases, it might be useful to also have some custom attributes over the generated properties. To achieve that, you can simply use the `[property: ]` target in attribute lists over annotated fields, and the MVVM Toolkit will automatically forward those attributes to the generated properties.
 

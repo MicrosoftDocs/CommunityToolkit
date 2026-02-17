@@ -25,6 +25,11 @@ The following permissions need to be added to the `Platforms/Android/AndroidMani
 <uses-permission android:name="android.permission.CAMERA" />
 ```
 
+In case you plan to record video, request Microphone permissions:
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
 This should be added inside the `<manifest>` element. Below shows a more complete example:
 
 ```xml
@@ -33,6 +38,9 @@ This should be added inside the `<manifest>` element. Below shows a more complet
     <application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--Optional. Only for video recording-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>
 ```
@@ -43,6 +51,12 @@ The following entries need to be added to the `Platforms/iOS/Info.plist` file:
 
 ```xml
 <key>NSCameraUsageDescription</key>
+<string>PROVIDE YOUR REASON HERE</string>
+```
+
+In case you plan to record video, request Microphone permissions:
+```xml
+<key>NSMicrophoneUsageDescription</key>
 <string>PROVIDE YOUR REASON HERE</string>
 ```
 
@@ -79,6 +93,9 @@ This should be added inside the `<dict>` element. Below shows a more complete ex
     <string>Assets.xcassets/appicon.appiconset</string>
 
     <key>NSCameraUsageDescription</key>
+    <string>PROVIDE YOUR REASON HERE</string>
+
+    <key>NSMicrophoneUsageDescription</key>
     <string>PROVIDE YOUR REASON HERE</string>
 </dict>
 </plist>
@@ -93,6 +110,12 @@ The following entries need to be added to the `Platforms/MacCatalyst/Info.plist`
 <string>PROVIDE YOUR REASON HERE</string>
 ```
 
+In case you plan to record video, request Microphone permissions:
+```xml
+<key>NSMicrophoneUsageDescription</key>
+<string>PROVIDE YOUR REASON HERE</string>
+```
+
 This should be added inside the `<dict>` element. Below shows a more complete example:
 
 ```xml
@@ -127,9 +150,14 @@ This should be added inside the `<dict>` element. Below shows a more complete ex
 
     <key>NSCameraUsageDescription</key>
     <string>PROVIDE YOUR REASON HERE</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>PROVIDE YOUR REASON HERE</string>
 </dict>
 </plist>
 ```
+
+More details can be found here: https://developer.apple.com/documentation/avfoundation/requesting-authorization-to-capture-and-save-media
 
 ### [Windows](#tab/windows)
 
@@ -146,6 +174,20 @@ Tizen is not currently supported.
 ## Basic usage
 
 The `CameraView` can be added to a .NET MAUI application in the following way.
+
+### Request permissions
+
+Developers must manually request Permissions.Camera and/or Permissions.Microphone:
+
+```csharp
+var cameraPermissionsRequest = await Permissions.RequestAsync<Permissions.Camera>();
+```
+
+In case you plan to record video, request Microphone permissions:
+
+```csharp
+var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Microphone>();
+```
 
 ### Including the XAML namespace
 
@@ -400,6 +442,125 @@ The following example shows how to add a `Button` into the application and setup
 > [!NOTE]
 > In order to use the image that has been captured the `CameraView` provides the `MediaCaptured` event.
 
+The following example demonstrates how to use the `CaptureImage` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+async void HandleCaptureButtonTapped(object? sender, EventArgs e)
+{
+    try
+    {
+        // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+        var captureImageCTS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+        Stream stream = await Camera.CaptureImage(captureImageCTS.Token);
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
+```
+
+
+## Video Recording
+
+The `CameraView` provides the ability to record videos. This is possible through both the `StartVideoRecording` method or the `StartVideoRecordingCommand`.
+
+The following example shows how to add a `Button` into the application and setup the following bindings:
+
+- Bind the `Command` property of the `Button` to the `StartVideoRecordingCommand` property on the `CameraView`.
+
+```xaml
+<ContentPage
+    x:Class="CommunityToolkit.Maui.Sample.Pages.CameraViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,30,30">
+        <toolkit:CameraView
+            x:Name="Camera" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="0"
+            SelectedCamera="{Binding SelectedCamera}"
+            ZoomFactor="{Binding CurrentZoom}"
+            CameraFlashMode="{Binding FlashMode}" />
+
+        <Slider 
+            Grid.Column="0"
+            Grid.Row="1"
+            Value="{Binding CurrentZoom}"
+            Maximum="{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}"
+            Minimum="{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}"/>
+
+        <Picker 
+            Grid.Column="1"
+            Grid.Row="1"
+            Title="Flash"
+            IsVisible="{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}"
+            ItemsSource="{Binding FlashModes}"
+            SelectedItem="{Binding FlashMode}" />
+
+        <Picker 
+            Grid.Column="2"
+            Grid.Row="1"
+            Title="Available Resolutions"
+            ItemsSource="{Binding SelectedCamera.SupportedResolutions}"
+            SelectedItem="{Binding SelectedResolution}" />
+
+        <Button Clicked="StartCameraRecording"
+                Text="StartVideoRecording" />
+
+        <Button Command="{Binding StartVideoRecordingCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}"
+                CommandParameter="{Binding Stream}"
+                Text="StartVideoRecording" />
+
+        <Button Command="{Binding StopVideoRecordingCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}"
+                CommandParameter="{Binding Token}"
+                Text="StopVideoRecording" />
+    </Grid>
+
+</ContentPage>
+```
+
+> [!NOTE]
+> You must provide a clean stream in order to record the video.
+
+The following example demonstrates how to use the `StartVideoRecording` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
+{
+    using var threeSecondVideoRecordingStream = new FileStream("recording.mp4");
+    await Camera.StartVideoRecording(stream, CancellationToken.None);
+
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+}
+```
+
+In case you want to record a short video and record video in `MemoryStream` you can use the next overload of VideoRecording:
+
+```cs
+async void StartCameraRecording(object? sender, EventArgs e)
+{
+    await Camera.StartVideoRecording(CancellationToken.None);
+    
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+}
+```
+
 ## Start preview
 
 The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StartCameraPreview` method or the `StartCameraPreviewCommand`.
@@ -460,6 +621,30 @@ The following example shows how to add a `Button` into the application and setup
     </Grid>
 
 </ContentPage>
+```
+
+The following example demonstrates how to use the `StartCameraPreview` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
+{
+
+    try
+    {
+        var startCameraPreviewTCS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+
+        // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+        await Camera.StartCameraPreview(startCameraPreviewTCS.Token);
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
 ```
 
 ## Stop preview
@@ -528,6 +713,28 @@ The following example shows how to add a `Button` into the application and setup
     </Grid>
 
 </ContentPage>
+```
+
+The following example demonstrates how to use the `StopCameraPreview` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
+{
+
+    try
+    {
+        // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+        Camera.StopCameraPreview();
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
 ```
 
 ## Examples

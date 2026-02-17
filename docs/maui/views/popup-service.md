@@ -13,17 +13,20 @@ The following sections will incrementally build on how to use the `PopupService`
 
 ## Creating a Popup
 
-In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Defining your popup](./Popup.md#defining-your-popup) the following can be created.
+In order to use the `PopupService` to present or close a `Popup` the `Popup` must first be registered. Based on the steps in [Displaying a Popup](./Popup.md#displaying-a-popup) the following can be created.
 
 The XAML contents of the `Popup` can be defined as:
 
 ```xaml
-<toolkit:Popup 
+<ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:MyProject.ViewModels"
     x:Class="MyProject.Popups.NamePopup"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
+    Padding="10"
+    Spacing="6"
     x:DataType="viewModels:NamePopupViewModel">
 
     <VerticalStackLayout>
@@ -34,18 +37,17 @@ The XAML contents of the `Popup` can be defined as:
         <Button Text="Cancel" Command="{Binding CancelCommand}" />
     </VerticalStackLayout>
     
-</toolkit:Popup>
+</ContentView>
 ```
 
 The C# contents of the `Popup` can be defined as:
 
 ```csharp
-using CommunityToolkit.Maui.Views;
 using MyProject.ViewModels;
 
 namespace MyProject.Popups;
 
-public partial class NamePopup : Popup
+public partial class NamePopup : ContentView
 {
     public NamePopup(NamePopupViewModel namePopupViewModel)
     {
@@ -61,7 +63,7 @@ The backing view model for the `Popup` can be defined as:
 public class NamePopupViewModel : ObservableObject
 {
     [ObservableProperty]
-    string name = "";
+    public partial string Name { get; set; } = string.Empty;
 
     readonly IPopupService popupService;
 
@@ -97,7 +99,7 @@ builder.Services.AddTransientPopup<NamePopup, NamePopupViewModel>();
 
 The .NET MAUI Community Toolkit provides a mechanism to instantiate and present popups in a .NET MAUI application. The popup service is automatically registered with the `MauiAppBuilder` when using the `UseMauiCommunityToolkit` initialization method. This enables you to resolve an `IPopupService` implementation in any part of your application.
 
-The `IPopupService` makes it possible to register a popup view and its associated view model. The ability to show a `Popup` can now be driven by only providing the view model making it possible to keep a clean separation between view and view model.
+The `IPopupService` makes it possible to register a popup view and its associated view model. The ability to show a `Popup` requires a developer to pass in the current `INavigation` implementation for the current window in the application. The easiest way to achieve this is through the following example.
 
 The following example shows how to use the `IPopupService` to create and display a popup in a .NET MAUI application:
 
@@ -113,7 +115,7 @@ public class MyViewModel : INotifyPropertyChanged
 
     public void DisplayPopup()
     {
-        this.popupService.ShowPopup<NamePopupViewModel>();
+        this.popupService.ShowPopup<NamePopupViewModel>(Shell.Current);
     }
 }
 ```
@@ -121,9 +123,9 @@ public class MyViewModel : INotifyPropertyChanged
 Alternatively the caller can await the ShowPopupAsync method in order to handle a [result being returned](#returning-a-result). The `DisplayPopup` method can be rewritten as:
 
 ```csharp
-public void DisplayPopup()
+public async Task DisplayPopup()
 {
-    var name = await this.popupService.ShowPopupAsync<NamePopupViewModel>();
+    var result = await this.popupService.ShowPopupAsync<NamePopupViewModel>(currentPage.Navigation);
 }
 ```
 
@@ -133,9 +135,24 @@ The `IPopupService` also provides methods to handle a result being returned from
 
 ## Passing data to a Popup view model
 
-When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. The `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `Action<TViewModel> onPresenting` parameter. This parameter has been designed to be framework agnostic and allow you as a developer to drive the loading/passing of data however best fits your architecture.
+When presenting a Popup we sometimes need to pass data across to the underlying view model to allow for dynamic content to be presented to the user. `IPopupService` makes this possible through the overloads of the `ShowPopup` and `ShowPopupAsync` methods that takes a `IDictionary<string, object> shellParameters` parameter. This makes use of the `IQueryAttributable` interface provided with .NET MAUI Shell, for more information on using this please refer to [Process navigation data using a single method](/dotnet/maui/fundamentals/shell/navigation#process-navigation-data-using-a-single-method).
 
-To extend the previous example of showing a `NamePopupViewModel` and its associated Popup, we can use the `onPresenting` parameter to pass in the users name:
+To extend the previous example of showing a `NamePopupViewModel` and its associated Popup, we can extend the `NamePopupViewModel` to implement the `IQueryAttributable` interface as follows:
+
+```csharp
+public class NamePopupViewModel : ObservableObject, IQueryAttributable
+{
+    [ObservableProperty]
+    public partial string Name { get; set; } = "";
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        Name = (string)query[nameof(NamePopupViewModel.Name)];
+    }
+}
+```
+
+Then the view model that presents the popup and passes the data can look as follows:
 
 ```csharp
 public class MyViewModel : INotifyPropertyChanged
@@ -147,16 +164,24 @@ public class MyViewModel : INotifyPropertyChanged
         this.popupService = popupService;
     }
 
-    public void DisplayPopup()
+    public async Task DisplayPopup()
     {
-        this.popupService.ShowPopup<UpdatingPopupViewModel>(onPresenting: viewModel => viewModel.Name = "Shaun");
+        var queryAttributes = new Dictionary<string, object>
+        {
+            [nameof(NamePopupViewModel.Name)] = "Shaun"
+        };
+
+        await this.popupService.ShowPopupAsync<NamePopupViewModel>(
+            Shell.Current,
+            options: PopupOptions.Empty,
+            shellParameters: queryAttributes);
     }
 }
 ```
 
 ## Closing a Popup
 
-The `PopupService` provides the `ClosePopup` and `ClosePopupAsync` methods that make it possible to close a `Popup` from a view model.
+The `PopupService` provides the `ClosePopupAsync` method that makes it possible to close a `Popup` from a view model.
 
 ### Programmatically closing a Popup
 
@@ -164,9 +189,9 @@ Expanding on the previous example the following implementation can be added to t
 
 ```csharp
 [RelayCommand]
-void OnCancel()
+async Task OnCancel()
 {
-    popupService.ClosePopup();
+    await popupService.ClosePopupAsync(Shell.Current);
 }
 ```
 
@@ -180,13 +205,13 @@ Expanding on the previous example the following implementation can be added to t
 
 ```csharp
 [RelayCommand(CanExecute = nameof(CanSave))]
-void OnSave()
+async Task OnSave()
 {
-    popupService.ClosePopup(Name);
+    await popupService.ClosePopupAsync(Shell.Current, Name);
 }
 ```
 
-This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name`.
+This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name` wrapped inside of an `IPopupResult<T>` implementation. For more information on creating a `Popup` that can return a result see [`Popup` - Returning a result](./popup/popup-result.md).
 
 ## Examples
 
@@ -195,3 +220,10 @@ You can find an example of this feature in action in the [.NET MAUI Community To
 ## API
 
 You can find the source code for `Popup` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui/Views/Popup).
+
+## Additional Resources
+
+- [`Popup` - Returning a result](./popup/popup-result.md)
+- [`IPopupService`](./popup-service.md)
+- [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup/popup-options.md)
+- [`Popup` - Combining Popup features to provide a comprehensive example](./popup/popup-complex.md)

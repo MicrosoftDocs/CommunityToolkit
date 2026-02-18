@@ -181,13 +181,13 @@ It is important to note that a `Popup` will be displayed inside `ContentPage` wh
 
 | Action | Lifecycle event |
 | ------ | --------------- |
-| Show popup  | Current `Page` will receive `OnDisappearing` and `OnNavigatingFrom` |
+| Show popup  | Current `Page` will receive `OnNavigatingFrom`, `OnDisappearing` and `OnNavigatedFrom` |
 | Close popup  | Previous `Page` will receive `OnAppearing` and `OnNavigatedTo` |
 
 To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageAToolkitPopup()` extension method:
 
 ```cs
-protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+protected override void OnNavigatedTo(NavigatedToEventArgs args)
 {
     base.OnNavigatedTo(args);
     
@@ -198,10 +198,22 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 }
 ```
 
-To determine if `OnNavigatedFrom(NavigatedFromEventArgs)` was called by opening a `Popup`, you can use the `IsDestinationPageACommunityToolkitPopupPage()` extension method:
+To determine whether `OnNavigatingFrom(NavigatingFromEventArgs)` or `OnNavigatedFrom(NavigatedFromEventArgs)` was called by opening a `Popup`, you can use the `IsDestinationPageACommunityToolkitPopupPage()` extension method:
 
-```cs
-protected override async void OnNavigatedFrom(NavigatedFromEventArgs args)
+> [!WARNING]  
+> As per [https://github.com/dotnet/maui/issues/34073](https://github.com/dotnet/maui/issues/34073), OnNavigatingFrom is currently not working properly, but will be fixed in a near future
+
+```csharp
+protected override void OnNavigatingFrom(NavigatingFromEventArgs args)
+{
+    base.OnNavigatingFrom(args);
+    if (args.IsDestinationPageACommunityToolkitPopupPage())
+    {
+        // If true, `OnNavigatingFrom` was called by starting a Popup
+    }
+}
+
+protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
 {
     base.OnNavigatedFrom(args);
     if (args.IsDestinationPageACommunityToolkitPopupPage())

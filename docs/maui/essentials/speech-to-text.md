@@ -142,6 +142,7 @@ The `SpeechToTextOptions` class provides the ability to configure the speech rec
 |---------|---------|---------|
 | Culture | `CultureInfo` | The spoken language to use for speech recognition. |
 | ShouldReportPartialResults | `bool` | Gets or sets if include partial results. `True` by default. |
+| AutoStopSilenceTimeout | `TimeSpan` | The duration of continuous silence after which speech recognition will automatically stop. `TimeSpan.MaxValue` by default indicates that auto-stop based on silence is disabled. |
 
 
 ### SpeechToTextResult

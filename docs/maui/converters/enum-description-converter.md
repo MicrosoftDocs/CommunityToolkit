@@ -126,20 +126,21 @@ Where `StatusResources` is a resource file containing:
 
 > **Note:** If the resource key is missing or not found, the converter will return the enum member name (e.g., `Active`). This ensures a string is always returned, but may not be localized or user-friendly.
 
+
 ## API
 
-You can find the source code for `EnumDescriptionConverter` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/EnumDescriptionConverter.shared.cs).
+You can find the source code for `EnumDescriptionConverter` over on the [CommunityToolkit.Maui GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/EnumDescriptionConverter.shared.cs).
 
 - If `DisplayAttribute.Name` is defined, it is used.
 - If `DescriptionAttribute.Description` is defined, it is used.
 - Otherwise, the enum name is returned.
 
-## API
+**Namespace:** `CommunityToolkit.Maui.Converters`
 
-- **Namespace:** `CommunityToolkit.Maui.Converters`
-- **Class:** `EnumDescriptionConverter`
-- **Base:** `BaseConverterOneWay<Enum, string>`
+**Class:** `EnumDescriptionConverter`
+
+**Base:** `BaseConverterOneWay<Enum, string>`
 
 ## See Also
-- [DisplayAttribute Documentation](https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.displayattribute)
-- [DescriptionAttribute Documentation](https://learn.microsoft.com/dotnet/api/system.componentmodel.descriptionattribute)
+- [DisplayAttribute Documentation](/dotnet/api/system.componentmodel.dataannotations.displayattribute)
+- [DescriptionAttribute Documentation](/dotnet/api/system.componentmodel.descriptionattribute)

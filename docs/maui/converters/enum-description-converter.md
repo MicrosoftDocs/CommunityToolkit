@@ -86,6 +86,7 @@ class EnumDescriptionConverterPage : ContentPage
 
 ## Examples
 
+
 Suppose you have an enum defined as follows:
 
 ```csharp
@@ -101,7 +102,29 @@ public enum Status
 
 Binding a value of `Status.Active` to the converter will display "Active User". If the value is `Status.Inactive`, it will display "Inactive User". If the value is `Status.Pending`, it will display "Pending" (the enum name).
 
-You can find an example of this converter in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/EnumDescriptionConverterPage.xaml).
+### Localized Enum Example
+
+You can use `DisplayAttribute` with `ResourceType` to provide localized display names:
+
+```csharp
+public enum Status
+{
+    [Display(Name = "Active_User", ResourceType = typeof(Resources.StatusResources))]
+    Active,
+    [Display(Name = "Inactive_User", ResourceType = typeof(Resources.StatusResources))]
+    Inactive,
+    Pending
+}
+```
+
+Where `StatusResources` is a resource file containing:
+
+| Key           | Value (en-US)   | Value (fr-FR)   |
+|---------------|-----------------|-----------------|
+| Active_User   | Active User     | Utilisateur Actif|
+| Inactive_User | Inactive User   | Utilisateur Inactif|
+
+> **Note:** If the resource key is missing or not found, the converter will return the enum member name (e.g., `Active`). This ensures a string is always returned, but may not be localized or user-friendly.
 
 ## API
 

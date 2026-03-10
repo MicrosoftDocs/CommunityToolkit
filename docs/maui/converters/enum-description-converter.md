@@ -9,6 +9,7 @@ ms.date: 06/10/2024
 
 
 The `EnumDescriptionConverter` is a one way converter that returns a `string` representing the display name or description of an `Enum` value. It uses the [`DisplayAttribute`](https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.displayattribute) or [`DescriptionAttribute`](https://learn.microsoft.com/dotnet/api/system.componentmodel.descriptionattribute) if present, otherwise returns the enum name.
+The `EnumDescriptionConverter` is a one way converter that returns a `string` representing the display name or description of an `Enum` value. It uses the [`DisplayAttribute`](/dotnet/api/system.componentmodel.dataannotations.displayattribute) or [`DescriptionAttribute`](/dotnet/api/system.componentmodel.descriptionattribute) if present, otherwise returns the enum name.
 
 The `Convert` method returns the value of the `DisplayAttribute.Name` if defined, otherwise the value of the `DescriptionAttribute.Description` if defined, otherwise the enum name as a string.
 

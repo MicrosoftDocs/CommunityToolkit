@@ -1,5 +1,6 @@
 ---
 title: Introduction to the Diagnostics package
+ms.date: 03/13/2026
 author: Sergio0694
 description: An overview of how to get started with the Diagnostics package and to the APIs it contains
 keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, .net community toolkit, csharp, get started, visual studio, diagnostics, exceptions, contract, net core, net standard
@@ -7,17 +8,16 @@ keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp
 
 # Introduction to the Diagnostics package
 
-The `CommunityToolkit.Diagnostics` package contains APIs to efficiently validate method parameters and to throw exceptions in faulting code paths. It is meant to be used to help simplify all argument checks and to make them more expressive and easier to read, while at the same time improving codegen quality and performance.
+The [📦 CommunityToolkit.Diagnostics package](https://www.nuget.org/packages/CommunityToolkit.Diagnostics) contains APIs to efficiently validate method parameters and to throw exceptions in faulting code paths. It's meant to be used to help simplify all argument checks and to make them more expressive and easier to read, while at the same time improving codegen quality and performance.
 
-This package can be installed through NuGet, and it has the following multi-targets:
+This package can be installed through NuGet, and it has the following multitargets:
 
 - .NET Standard 2.0
-- .NET Standard 2.1
-- .NET 6
+- .NET 8
 
-This means the package can be used on any available runtime (including .NET Framework, .NET Core, UWP, Unity, Xamarin, Uno, Blazor, etc.). The API surface is almost identical in all cases, while the internal implementation can be optimized when newer APIs are available. The Diagnostics package as a whole is meant to be self-contained and extremely small in scope and binary size.
+This means the package can be used on any available runtime (including .NET Framework, .NET, UWP, Unity, Xamarin, Uno, and Blazor). The API surface is almost identical in all cases, while the internal implementation can be optimized when newer APIs are available. The Diagnostics package as a whole is meant to be self-contained and extremely small in scope and binary size.
 
-## Getting started
+## Get started
 
 To install the package from within Visual Studio:
 

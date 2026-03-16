@@ -123,7 +123,7 @@ The `CloseAsync` method allows for a value to be supplied, this will be the resu
 
 ## Awaiting the result from a Popup
 
-In order to await the result the `ShowPopupAsync` method must be used as follows:
+In order to await the result, the `ShowPopupAsync` method must be used as follows:
 
 ```csharp
 using CommunityToolkit.Maui.Views;

@@ -1,17 +1,17 @@
 ### YamlMime:Landing
 
 title: Community Toolkits for .NET Documentation
-summary: The home for Community Toolkits for .NET which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
+summary: The home for Community Toolkits for .NET. Community Toolkits partner the .NET community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
 
 metadata:
   title: Community Toolkits for .NET Documentation
-  description: The home for Community Toolkits for .NET which are partnering the community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
+  description: The home for Community Toolkits for .NET. Community Toolkits partner the .NET community with engineers, Microsoft MVPs, and the teams working on those technologies. The Community Toolkits offer a collection of reusable implementations that aim to simplify common development tasks for a variety of .NET frameworks.
   ms.topic: landing-page
   ms.date: 02/15/2022
 
 landingContent:
   - title: .NET Community Toolkit
-    linkLists:  
+    linkLists:
       - linkListType: overview
         links:
           - text: What is the .NET Community Toolkit?
@@ -28,23 +28,9 @@ landingContent:
         links:
           - text: Installation
             url: /windows/communitytoolkit/getting-started
-  
+
   - title: .NET Aspire Community Toolkit
     linkLists:
-      - linkListType: overview
-        links:
-          - text: .NET Aspire Community Toolkit overview
-            url: /dotnet/aspire/community-toolkit/overview
-      - linkListType: get-started
-        links:
-          - text: Ollama (AI)
-            url: /dotnet/aspire/community-toolkit/ollama
-          - text: Azure Static Web Apps
-            url: /dotnet/aspire/community-toolkit/hosting-azure-static-web-apps
-          - text: Python hosting extensions
-            url: /dotnet/aspire/community-toolkit/hosting-python-extensions
-          - text: SQLite Entity Framework Core
-            url: /dotnet/aspire/community-toolkit/sqlite-entity-framework-integration
       - linkListType: sample
         links:
           - text: .NET Aspire Community Toolkit GitHub repo
@@ -70,6 +56,7 @@ landingContent:
             url: windows/getting-started.md
           - text: Using with Uno Platform
             url: https://nicksnettravels.builttoroam.com/windows-community-toolkit-prerelease/
+
   - title: .NET Multi-platform App UI (.NET MAUI) Community Toolkit
     linkLists:
       - linkListType: overview
@@ -102,6 +89,7 @@ landingContent:
             url: maui/views/index.md
           - text: C# Markup
             url: maui/markup/markup.md
+
   - title: .NET MAUI Native Library Interop
     linkLists:
       - linkListType: overview

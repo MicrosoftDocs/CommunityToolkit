@@ -7,17 +7,17 @@ dev_langs:
   - csharp
 ---
 
-# StringPool
+# StringPool class
 
-The [StringPool](/dotnet/api/microsoft.toolkit.highperformance.buffers.stringpool) type implements a configurable pool for `string` instances. This can be used to minimize allocations when creating multiple `string` instances from buffers of `char` or `byte` values. It provides a mechanism that is somewhat similar to [`string` interning](/dotnet/api/system.string.intern), with the main differences being that the pool is configurable, can be reset, is implemented with a best-effort policy and doesn't require to pre-instantiate `string` objects, so it can save the initial allocations as well when working on temporary buffers.
+The [StringPool](/dotnet/api/microsoft.toolkit.highperformance.buffers.stringpool) type implements a configurable pool for `string` instances. Use this pool to minimize allocations when you create multiple `string` instances from buffers of `char` or `byte` values. It provides a mechanism that's somewhat similar to [`string` interning](/dotnet/api/system.string.intern). The main differences are that the pool is configurable, you can reset it, it uses a best-effort policy, and it doesn't require preinstantiating `string` objects. So, it can save the initial allocations when working on temporary buffers.
 
 > **Platform APIs:** [StringPool](/dotnet/api/microsoft.toolkit.highperformance.buffers.stringpool)
 
 ## Syntax
 
-The main entry point for `StringPool` is its `GetOrAdd(ReadOnlySpan<char>)` API, which returns a `string` instance matching the contents of the input [`ReadOnlySpan<char>`](/dotnet/api/system.readonlyspan-1), possibly getting the returned object from the internal pool.
+The main entry point for `StringPool` is its `GetOrAdd(ReadOnlySpan<char>)` API. This API returns a `string` instance that matches the contents of the input [`ReadOnlySpan<char>`](/dotnet/api/system.readonlyspan-1). The API might get the returned object from the internal pool.
 
-As an example, imagine we have an input `string` representing the URL of a given web request, and we want to also retrieve a `string` with just the host name. If we get a large number of requests possibly for a small number of hosts, we might want to cache those `string` instances, we can do so by using the `StringPool` type as follows:
+For example, imagine you have an input `string` that represents the URL of a given web request, and you want to retrieve a `string` with just the host name. If you get a large number of requests, possibly for a small number of hosts, you might want to cache those `string` instances. You can do so by using the `StringPool` type as follows:
 
 ```csharp
 public static string GetHost(string url)
@@ -38,9 +38,9 @@ public static string GetHost(string url)
 }
 ```
 
-The method above does no allocations at all if the requested `string` is already present in the cache, as the lookup is done with just a `ReadOnlySpan<char>` as input, representing a view on the input URL `string`.
+The preceding method doesn't allocate at all if the requested `string` is already present in the cache. The lookup uses just a `ReadOnlySpan<char>` as input, which represents a view on the input URL `string`.
 
-The `StringPool` type can also be useful when parsing raw requests using a different encoding, for instance UTF8. There is a `GetOrAdd` overload that takes an input `ReadOnlySpan<byte>` and an [`Encoding`](/dotnet/api/system.text.encoding) instance, which uses a temporary buffer rented from the pool to retrieve a `ReadOnlySpan<char>` value to use for the lookup. This again can greatly reduce the number of allocations depending on the specific use case scenario.
+The `StringPool` type can also be useful when you parse raw requests by using a different encoding, such as UTF8. There's a `GetOrAdd` overload that takes an input `ReadOnlySpan<byte>` and an [`Encoding`](/dotnet/api/system.text.encoding) instance. This overload uses a temporary buffer rented from the pool to retrieve a `ReadOnlySpan<char>` value to use for the lookup. This approach can greatly reduce the number of allocations depending on your specific use case scenario.
 
 ## Examples
 

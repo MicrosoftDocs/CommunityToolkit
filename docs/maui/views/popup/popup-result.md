@@ -7,7 +7,7 @@ ms.date: 05/19/2025
 
 # Returning a value from a Popup
 
-The .NET MAUI Community Toolkit provides the ability to show a [Popup](../Popup.md) to a user. The Toolkit also enables a common, more complex, scenario where a developer displays a `Popup` and `await` its result to be returned when that `Popup` is dismissed. This page covers how the `Popup<T>` class can be used to achieve the desired behavior.
+The .NET MAUI Community Toolkit provides the ability to show a [Popup](../Popup.md) to a user. The Toolkit also enables a common, more complex, scenario where a developer displays a `Popup` and `await`s its result to be returned when that `Popup` is dismissed. This page covers how the `Popup<T>` class can be used to achieve the desired behavior.
 
 ## Building a Popup
 

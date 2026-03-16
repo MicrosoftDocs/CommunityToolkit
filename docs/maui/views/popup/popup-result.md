@@ -74,7 +74,7 @@ public partial class ReturnResultPopup : Popup<bool>
 The use of `Popup<bool>` must match the definition in the XAML through the use of `x:TypeArguments`.
 
 > [!IMPORTANT]
-> If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
+> If the code behind file is not created along with the call to `InitializeComponent`, then an exception will be thrown when trying to display your `Popup`.
 
 ### Building a Popup in C#
 
@@ -157,7 +157,7 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.
+> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property will always be `null` or `default`.
 
 ## PopupOptions
 The `PopupOptions` class provides the ability to customize the Border, Shadow, PageOverlayColor, and more, of the displayed `Popup`.

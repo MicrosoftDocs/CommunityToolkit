@@ -96,6 +96,9 @@ The default values for `HorizontalOptions` and `VerticalOptions` will result in 
 
 A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
 
+> [!TIP]
+> For more advanced scenarios, such as returning a result from a `Popup`, the code-behind file (_*.xaml.cs_) must inherit from `Popup` or `Popup<T>` (found in `CommunityToolkit.Maui.Views`). For a complete example demonstrating this, please refer to [Popup - Returning a result](./popup/popup-result.md).
+
 ### Presenting a Popup Created in XAML
 
 Once the `Popup` has been created in XAML, it can then be presented through the use of the `Popup` extension methods used on a `Page`, `Shell` or an `INavigation`, or through the [`IPopupService`](popup-service.md) implementation from this toolkit.

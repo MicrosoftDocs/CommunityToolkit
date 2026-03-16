@@ -10,7 +10,7 @@ ms.date: 04/12/2022
 Popups are a common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance.
 
 > [!NOTE]
-> If you wish to present something to the user that is more subtle then checkout our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
+> If you wish to present something to the user that is more subtle, then check out our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
 
 The `Popup` view allows developers to build their own custom UI and present it to their users.
 

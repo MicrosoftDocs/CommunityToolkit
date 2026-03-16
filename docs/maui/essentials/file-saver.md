@@ -14,7 +14,7 @@ The `FileSaver` provides the ability to select a target folder and save files to
 The following preconditions are required for the `FileSaver`:
 # [Android](#tab/android)
 
-If your target device API level is less than 33 add permissions to `AndroidManifest.xml`:
+If your target device API level is less than 33, add permissions to `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

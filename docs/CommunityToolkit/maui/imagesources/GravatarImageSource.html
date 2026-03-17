@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>GravatarImageSource - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="GravatarImageSource - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="`GravatarImageSource` allows you to use as an Image source, a users Gravatar registered image via their email address.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="gravatarimagesource">GravatarImageSource</h1>
+
+<p>A <em>Gravatar</em> (a &quot;globally recognized avatar&quot;) is an image that can be used on multiple websites as your avatar — that is, an image that represents you. For example, a Gravatar can identify a person in a forum post, in a blog comment, and so on. (You can register your own Gravatar at the Gravatar website at <a href="http://www.gravatar.com/">http://www.gravatar.com/</a>.) If you want to display images next to people's names or email addresses, you can use GravatarImageSource.</p>
+<h2 id="syntax">Syntax</h2>
+<h3 id="including-the-xaml-namespace">Including the XAML namespace</h3>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="using-the-gravatarimagesource">Using the GravatarImageSource</h3>
+<p>The following example shows how to use <code>GravatarImageSource</code>:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    &lt;VerticalStackLayout&gt;
+        &lt;Image&gt;
+            &lt;Image.Source&gt;
+                &lt;toolkit:GravatarImageSource
+                    CacheValidity=&quot;1&quot;
+                    CachingEnabled=&quot;True&quot;
+                    Email=&quot;youremail@here.com&quot;
+                    Image=&quot;MysteryPerson&quot; /&gt;
+            &lt;/Image.Source&gt;
+        &lt;/Image&gt;
+    &lt;/VerticalStackLayout&gt;
+&lt;/ContentPage&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.ImageSources;
+
+partial class MyPage : ContentPage
+{
+	public MyPage()
+	{
+        Image myImage = new()
+        {
+            Source = new GravatarImageSource()
+            {
+                CacheValidity = TimeSpan.FromDays(1),
+                CachingEnabled = true,
+                Email = &quot;youremail@here.com&quot;,
+                Image= DefaultImage.MysteryPerson
+            },
+        };
+		Content = myImage;
+	}
+}
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CacheValidity</td>
+<td><code>TimeSpan</code></td>
+<td>The <code>CacheValidity</code> property, of type <code>TimeSpan</code>, specifies how long the image will be stored locally for. The default value of this property is 1 day.</td>
+</tr>
+<tr>
+<td>CachingEnabled</td>
+<td><code>bool</code></td>
+<td>The <code>CachingEnabled</code> property, of type <code>bool</code>, defines whether image caching is enabled. The default value of this property is <code>true</code>.</td>
+</tr>
+<tr>
+<td>Email</td>
+<td><code>string?</code></td>
+<td>The <code>Email</code> property, of type <code>string?</code>, specifies the gravatar account email address.  If unset, the Gravatar image is rendered. If set and not found on Gravatar, the <code>Image</code> property image will be rendered.</td>
+</tr>
+<tr>
+<td>Image</td>
+<td><code>DefaultImage</code></td>
+<td>The <code>Image</code> property, of type <a href="#set-default-image"><code>DefaultImage</code></a> is an enumeration that is used to specify the default image if the <code>email</code> is not found on Gravatar.</td>
+</tr>
+</tbody>
+</table>
+<p>These properties are backed by <code>BindableProperty</code> objects, which means that they can be targets of data bindings and styled.</p>
+<h2 id="set-cache-validity">Set cache validity</h2>
+<p>The <code>CacheValidity</code> property is a <code>TimeSpan</code> that specifies how long the image will be stored locally for.</p>
+<p>The following example sets the cache validity of a <code>GravatarImageSource</code>:</p>
+<pre><code class="lang-xaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource CacheValidity=&quot;1&quot; /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        CacheValidity = TimeSpan.FromDays(1),
+    },
+};
+</code></pre>
+<h2 id="set-caching-enabled">Set caching enabled</h2>
+<p>The <code>CachingEnabled</code> property is a <code>bool</code> that defines whether image caching is enabled.</p>
+<p>The following example sets caching to enabled for a <code>GravatarImageSource</code>:</p>
+<pre><code class="lang-xaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource CachingEnabled=&quot;True&quot; /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        CachingEnabled = true,
+    },
+};
+</code></pre>
+<h2 id="set-email">Set email</h2>
+<p>The <code>Email</code> property is a nullable <code>string</code>. If the property is null or empty, the default Gravatar image is rendered. If the email address has no matching Gravatar image, the <code>Image</code> property image is rendered.</p>
+<p>The following example sets an email address that has a matching Gravatar image:</p>
+<pre><code class="lang-xaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource Email=&quot;dsiegel@avantipoint.com&quot; /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = &quot;dsiegel@avantipoint.com&quot;,
+    },
+};
+</code></pre>
+<p>The following example does not set an email address and will thus display the default Gravatar image.</p>
+<pre><code class="lang-xaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource(),
+};
+</code></pre>
+<p>The following example sets an email address that has no matching Gravatar image and will thus display the default <code>Image</code> image.</p>
+<pre><code class="lang-xaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource Email=&quot;notregistered@emailongravitar.com&quot; /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = &quot;notregistered@emailongravitar.com&quot;,
+    },
+};
+</code></pre>
+<h2 id="set-default-image">Set default image</h2>
+<p>The <code>Image</code> property is an enumeration that is used to specify the default image if the <code>email</code> address has no matching Gravatar image.  The available options are:</p>
+<ul>
+<li><code>MysteryPerson</code> (default) - A simple, cartoon-style silhouetted outline of a person (does not vary by email hash)</li>
+<li><code>FileNotFound</code> - Do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found) response.</li>
+<li><code>Identicon</code> - A geometric pattern based on an email hash.</li>
+<li><code>MonsterId</code> - A generated 'monster' with different colours, faces, etc.</li>
+<li><code>Wavatar</code> - Generated faces with differing features and backgrounds.</li>
+<li><code>Retro</code> - Awesome generated, 8-bit arcade-style pixilated faces.</li>
+<li><code>Robohash</code> - A generated robot with different colours, faces, etc.</li>
+<li><code>Blank</code> - A transparent PNG image.</li>
+</ul>
+<p>The following example sets the default image of a <code>GravatarImageSource</code>:</p>
+<pre><code class="lang-xaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource Email=&quot;notregistered@emailongravitar.com&quot; Image=&quot;Retro&quot; /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = &quot;notregistered@emailongravitar.com&quot;,
+        Image = DefaultImage.Retro
+    },
+};
+</code></pre>
+<h2 id="set-image-size">Set image size</h2>
+<p>By default, <code>GravatarImageSource</code> images are presented at 80px by 80px.  Image sizes can be between <em>1px and 2048px</em> and are taken from their parent view size properties.  Gravatar images are square, and the larger of the size properties defined will be taken.</p>
+<p>The following example sets the size of the image control and thus the size of the Gravatar image requested will be 73px.</p>
+<pre><code class="lang-xaml">&lt;Image WidthRequest=&quot;72&quot; HeightRequest=&quot;73&quot;&gt;
+    &lt;Image.Source&gt;
+        &lt;toolkit:GravatarImageSource Email=&quot;dsiegel@avantipoint.com&quot; /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">Image myImage = new()
+{
+    Source = new GravatarImageSource()
+    {
+        Email = &quot;dsiegel@avantipoint.com&quot;,
+    },
+    HeightRequest = 72,
+    HeightRequest = 73,
+};
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find examples of this control in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>GravatarImageSource</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/ImageSources/GravatarImageSource.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/imagesources/GravatarImageSource.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

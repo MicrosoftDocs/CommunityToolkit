@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>EnumToIntConverter - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="EnumToIntConverter - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The EnumToIntConverter is a converter that allows you to convert a standard Enum (extending int) to its underlying primitive int type.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="enumtointconverter">EnumToIntConverter</h1>
+
+<p>The <code>EnumToIntConverter</code> is a converter that allows you to convert a standard <code>Enum</code> (extending int) to its underlying primitive <code>int</code> type. It is useful when binding a collection of values representing an enumeration type with default numbering to a control such as a <code>Picker</code>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <code>ConverterParameter</code> property is required and it should be set to the type of the enum to convert back to, when using a <code>TwoWay</code> or <code>OneWayToSource</code> binding. Otherwise an <code>ArgumentNullException</code> will be thrown. This is to allow for validating whether the <code>int</code> is a valid value in the enum.</p>
+</div>
+<p>For localization purposes or due to other requirements, the enum values often need to be converted to a human-readable string. In this case, when the user selects a value, the resulting <code>SelectedIndex</code> can easily be converted to the underlying <code>enum</code> value without requiring additional work in the associated ViewModel.</p>
+<h3 id="baseconverter-properties">BaseConverter Properties</h3>
+<p>The following properties are implemented in the base class, <code>public abstract class BaseConverter</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DefaultConvertReturnValue</code></td>
+<td>Default value to return when <code>IValueConverter.Convert(object?, Type, object?, CultureInfo?)</code> throws an <code>Exception</code>. This value is used when <a href="../options.html">CommunityToolkit.Maui.Options</a><code>.ShouldSuppressExceptionsInConverters</code> is set to <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>DefaultConvertBackReturnValue</code></td>
+<td>Default value to return when <code>IValueConverter.ConvertBack(object?, Type, object?, CultureInfo?)</code> throws an <code>Exception</code>. This value is used when <a href="../options.html">CommunityToolkit.Maui.Options</a><code>.ShouldSuppressExceptionsInConverters</code> is set to <code>true</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="icommunitytoolkitvalueconverter-properties">ICommunityToolkitValueConverter Properties</h3>
+<p>The following properties are implemented in the <code>public interface ICommunityToolkitValueConverter</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DefaultConvertReturnValue</code></td>
+<td><code>object?</code></td>
+<td>Default value to return when <code>IValueConverter.Convert(object?, Type, object?, CultureInfo?)</code> throws an <code>Exception</code>. This value is used when <a href="../options.html">CommunityToolkit.Maui.Options</a><code>.ShouldSuppressExceptionsInConverters</code> is set to <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>DefaultConvertBackReturnValue</code></td>
+<td><code>object?</code></td>
+<td>Default value to return when <code>IValueConverter.ConvertBack(object?, Type, object?, CultureInfo?)</code> throws an <code>Exception</code>. This value is used when <a href="../options.html">CommunityToolkit.Maui.Options</a><code>.ShouldSuppressExceptionsInConverters</code> is set to <code>true</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="syntax">Syntax</h2>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-enumtointconverter">Using the EnumToIntConverter</h4>
+<p>The <code>EnumToIntConverter</code> can be used as follows in XAML:</p>
+<pre><code class="lang-xaml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+	     xmlns:vm=&quot;clr-namespace:CommunityToolkit.Maui.Sample.ViewModels.Converters&quot;
+             x:Class=&quot;MyLittleApp.MainPage&quot;&gt;
+    &lt;ContentPage.Resources&gt;
+         &lt;ResourceDictionary&gt;
+             &lt;toolkit:EnumToIntConverter x:Key=&quot;EnumToIntConverter&quot; /&gt;
+         &lt;/ResourceDictionary&gt;
+    &lt;/ContentPage.Resources&gt;
+
+    &lt;VerticalStackLayout Padding=&quot;10,10&quot; Spacing=&quot;10&quot;&gt;
+            &lt;Label Text=&quot;The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.&quot; 
+                   TextColor=&quot;{StaticResource NormalLabelTextColor}&quot; /&gt;
+            &lt;Label Text=&quot;Selecting a value from the picker will change the enum property in the view model&quot; 
+                   TextColor=&quot;{StaticResource NormalLabelTextColor}&quot; /&gt;
+            &lt;Picker ItemsSource=&quot;{Binding AllStates}&quot; 
+                    SelectedIndex=&quot;{Binding SelectedState, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type vm:IssueState}}&quot;
+                    TextColor=&quot;{StaticResource NormalLabelTextColor}&quot; /&gt;
+            &lt;Label Text=&quot;This label binds to the SelectedIndex property of the picker, both use EnumToIntConverter, so no int properties are necessary in ViewModel&quot;
+                   TextColor=&quot;{StaticResource NormalLabelTextColor}&quot; /&gt;
+            &lt;Label Text=&quot;{Binding Path=SelectedState, Converter={StaticResource EnumToIntConverter}}&quot; 
+                   TextColor=&quot;{StaticResource NormalLabelTextColor}&quot; /&gt;
+        &lt;/VerticalStackLayout&gt;
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<p>The <code>EnumToIntConverter</code> can be used as follows in C#:</p>
+<pre><code class="lang-csharp">class EnumToIntConverterPage : ContentPage
+{
+    public EnumToIntConverterPage()
+    {
+        Picker picker = new Picker { Title = &quot;EnumToIntConverter&quot; };
+        picker.SetBinding(Picker.ItemsSourceProperty, static (ViewModel vm) =&gt; vm .AllStates);
+        picker.SetBinding(Picker.SelectedItemProperty, static (ViewModel vm) =&gt; vm.SelectedState);
+
+        Content = new StackLayout
+        {
+            Margin = new Thickness(20),
+            Children = 
+            {
+                new Label 
+                {
+                    Text = &quot;The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type.&quot;,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalOptions = LayoutOptions.Center 
+                },
+                picker
+            }
+        };
+}
+</code></pre>
+<h3 id="c-markup">C# Markup</h3>
+<p>Our <a href="../markup/markup.html"><code>CommunityToolkit.Maui.Markup</code></a> package provides a much more concise way to use this converter in C#.</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Markup;
+
+class EnumToIntConverterPage : ContentPage
+{
+    public EnumToIntConverterPage()
+    {
+        Content = new StackLayout {
+          new Picker()
+            .Bind(
+                Picker.ItemSourceProperty,
+                static (ViewModel vm) =&gt; vm.AllStates)
+            .Bind(
+                Picker.SelectedIndexProperty,
+                static (ViewModel vm) =&gt; vm.SelectedState),
+
+          new Label()
+            .Bind(
+                Label.TextProperty,
+                static (ViewModel vm) =&gt; vm.SelectedState,
+                converter: new EnumToIntConverter()),
+        }
+    }
+}
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this converter in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/EnumToIntConverterPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>EnumToIntConverter</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/EnumToIntConverter.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/converters/enum-to-int-converter.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

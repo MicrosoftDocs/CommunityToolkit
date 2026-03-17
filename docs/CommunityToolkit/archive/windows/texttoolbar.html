@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>TextToolbar </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="TextToolbar ">
+    
+    <meta name="description" content="The TextToolbar Control is a universal Text Editing Control for the RichEditBox Control.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="texttoolbar-archived">TextToolbar (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<p>While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion. This control could be ported with enough community interest.</p>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Windows/issues/81">GitHub tracking issue for TextToolbar port</a></li>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<p>The <a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.texttoolbar">TextToolbar</a> control is a universal Text Editing Control for the <a href="/uwp/api/Windows.UI.Xaml.Controls.RichEditBox">RichEditBox Control</a>. It can format with Markdown Formatting, Rich Text Format (RTF) Formatting, and it also allows you to implement your own Formatter, so you can edit Text for any other format using the Toolbar.
+It supports Keyboard Shortcuts, Button Toggling for indicating whether a Format is enabled, such as putting the cursor on Bold Text in Rich Text Formatting.
+You can also Remove Default Buttons from any format, or Add Custom buttons to any format, without restyling the whole control, or inheriting a Formatter Class.</p>
+<div class="nextstepaction">
+<p><a href="uwpct://Controls?sample=TextToolbar">Try it in the sample app</a></p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-xaml">&lt;controls:TextToolbar x:Name=&quot;Toolbar&quot; Editor=&quot;{x:Bind Editor}&quot; Format=&quot;MarkDown&quot;/&gt;
+&lt;RichEditBox x:Name=&quot;Editor&quot; PlaceholderText=&quot;Enter Text Here&quot; /&gt;
+</code></pre>
+<h2 id="sample-output">Sample Output</h2>
+<p><img src="images/texttoolbar.png" alt="TextToolbar Sample"></p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ButtonModifications</td>
+<td><a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.texttoolbarbuttons.defaultbuttonmodificationlist">DefaultButtonModificationList</a></td>
+<td>Gets or sets a list of Default buttons to remove from the UI</td>
+</tr>
+<tr>
+<td>ControlKeyDown</td>
+<td>bool</td>
+<td>Gets a value indicating whether Control is pressed down</td>
+</tr>
+<tr>
+<td>CustomButtons</td>
+<td><a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.texttoolbarbuttons.buttonmap">ButtonMap</a></td>
+<td>Gets or sets a list of buttons to add to the Default Button set</td>
+</tr>
+<tr>
+<td>DefaultButtons</td>
+<td><a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.texttoolbarbuttons.buttonmap">ButtonMap</a></td>
+<td>Gets the default buttons for this format</td>
+</tr>
+<tr>
+<td>Editor</td>
+<td>RichEditBox</td>
+<td>Gets or sets the RichEditBox to Attach to, this is required for any formatting to work</td>
+</tr>
+<tr>
+<td>Format</td>
+<td><a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.texttoolbarformats.format">Format</a></td>
+<td>Gets or sets which formatter to use, and which buttons to provide</td>
+</tr>
+<tr>
+<td>Formatter</td>
+<td><a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.texttoolbarformats.formatter">Formatter</a></td>
+<td>Gets or sets the formatter which is used to format the text from the buttons</td>
+</tr>
+<tr>
+<td>LastKeyPress</td>
+<td><a href="/uwp/api/Windows.System.VirtualKey">VirtualKey</a></td>
+<td>Gets the last key pressed using the Editor</td>
+</tr>
+<tr>
+<td>ShiftKeyDown</td>
+<td>bool</td>
+<td>Gets a value indicating whether Shift is pressed down</td>
+</tr>
+<tr>
+<td>UseURIChecker</td>
+<td>bool</td>
+<td>Gets or sets a value indicating whether to enable use of URI Checker for Link Creator. This allows you to verify Absolute URIs, before creating the Link</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create-a-custom-formatter">Create a Custom Formatter</h2>
+<p>In order to create your own Formatter, you need to Inherit from the <strong>Formatter</strong> Class. Then on the TextToolbar, Set the <code>Format</code> property to <code>Custom</code> and then Set the <code>Formatter</code> property with your instantiated Custom Formatter.</p>
+<p>When you create the Class, you will need to override the <code>DefaultButtons</code> Property. This will allow you to define what buttons you want your Format to display on the <strong>Toolbar</strong>.</p>
+<p>If you want to use a Common Button Template, such as Bold, Italics, etc. You can get those by Instantiating a <code>CommonButtons</code> Instance in your Formatter Class, however, you will need to implement the <strong>ButtonActions</strong> Class, and Instantiate it in your Formatter's <code>ButtonActions</code> property, or replace the <code>Action</code>/<code>Shift Action</code> Property on each button you use.</p>
+<p><em>See the MarkDownFormatter Class for reference on how to create a Formatter:</em>
+<a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Markdown/TextToolbar/Formats/MarkDown/MarkDownFormatter.cs">MarkDownFormatter Code</a></p>
+<p><em>See the Sample Formatter Class from the Sample App:</em>
+<a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/TextToolbar/SampleFormatter.cs">SampleFormatter Code</a></p>
+<p><em>Available CommonButtons:</em>
+<a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/TextToolbar/ToolbarItems/Common/CommonButtons.cs">CommonButton Definitions</a></p>
+<h2 id="examples">Examples</h2>
+<p>Example of adding Add/Remove Buttons</p>
+<pre><code class="lang-xaml">&lt;controls:TextToolbar x:Name=&quot;Toolbar&quot; Editor=&quot;{x:Bind Editor}&quot;&gt;
+    &lt;controls:TextToolbar.ButtonModifications&gt;
+        &lt;buttons:DefaultButton Type=&quot;Headers&quot; IsVisible=&quot;False&quot;/&gt;
+    &lt;/controls:TextToolbar.ButtonModifications&gt;
+    &lt;controls:TextToolbar.CustomButtons&gt;
+        &lt;buttons:ToolbarButton
+            Name=&quot;CustomButton&quot;
+            Icon=&quot;ReportHacked&quot;
+            Position=&quot;1&quot;
+            Activation=&quot;{x:Bind System.Action&lt;ToolbarButton&gt;}&quot;
+            ShortcutKey=&quot;H&quot; /&gt;
+        &lt;buttons:ToolbarSeparator Position=&quot;2&quot; /&gt;
+    &lt;/controls:TextToolbar.CustomButtons&gt;
+&lt;/controls:TextToolbar&gt;
+&lt;RichEditBox x:Name=&quot;Editor&quot; PlaceholderText=&quot;Enter Text Here&quot; /&gt;
+</code></pre>
+<pre><code class="lang-csharp">var button = Toolbar.GetDefaultButton(ButtonType.Headers);
+button.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+Toolbar.CustomButtons.Add(new ToolbarButton
+{
+    Name = &quot;CustomButton&quot;,
+    Icon = new SymbolIcon(Symbol.ReportHacked),
+    Position = 1,
+    Activation = button =&gt; System.Diagnostics.Debug.WriteLine($&quot;{button.Name} Activated&quot;),
+    ShortcutKey = Windows.System.VirtualKey.H
+});
+Toolbar.CustomButtons.Add(new ToolbarSeparator { Position = 2 });
+</code></pre>
+<pre><code class="lang-vb">Dim button = Toolbar.GetDefaultButton(ButtonType.Headers)
+button.Visibility = Windows.UI.Xaml.Visibility.Collapsed
+Toolbar.CustomButtons.Add(New ToolbarButton With {
+                            .Name = &quot;CustomButton&quot;,
+                            .Icon = New SymbolIcon(Symbol.ReportHacked),
+                            .Position = 1,
+                            .Activation = Sub(btn) Debug.WriteLine($&quot;{btn.Name} Activated&quot;),
+                            .ShortcutKey = Windows.System.VirtualKey.H})
+Toolbar.CustomButtons.Add(New ToolbarSeparator With {.Position = 2})
+</code></pre>
+<h2 id="sample-project">Sample Project</h2>
+<p><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/TextToolbar">TextToolbar Sample Page Source</a>. You can <a href="uwpct://Controls?sample=TextToolbar">see this in action</a> in <a href="https://aka.ms/windowstoolkitapp">Windows Community Toolkit Sample App</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Uwp.UI.Controls</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.UI.Controls/">Microsoft.Toolkit.Uwp.UI.Controls</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">API</h2>
+<ul>
+<li><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Core/TextToolbar">TextToolbar source code</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/texttoolbar.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

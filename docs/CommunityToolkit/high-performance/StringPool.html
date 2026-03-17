@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>StringPool </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="StringPool ">
+    
+    <meta name="description" content="A type implementing a configurable pool for string instances">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="stringpool-class">StringPool class</h1>
+
+<p>The <a href="/dotnet/api/microsoft.toolkit.highperformance.buffers.stringpool">StringPool</a> type implements a configurable pool for <code>string</code> instances. Use this pool to minimize allocations when you create multiple <code>string</code> instances from buffers of <code>char</code> or <code>byte</code> values. It provides a mechanism that's somewhat similar to <a href="/dotnet/api/system.string.intern"><code>string</code> interning</a>. The main differences are that the pool is configurable, you can reset it, it uses a best-effort policy, and it doesn't require preinstantiating <code>string</code> objects. So, it can save the initial allocations when working on temporary buffers.</p>
+<blockquote>
+<p><strong>Platform APIs:</strong> <a href="/dotnet/api/microsoft.toolkit.highperformance.buffers.stringpool">StringPool</a></p>
+</blockquote>
+<h2 id="syntax">Syntax</h2>
+<p>The main entry point for <code>StringPool</code> is its <code>GetOrAdd(ReadOnlySpan&lt;char&gt;)</code> API. This API returns a <code>string</code> instance that matches the contents of the input <a href="/dotnet/api/system.readonlyspan-1"><code>ReadOnlySpan&lt;char&gt;</code></a>. The API might get the returned object from the internal pool.</p>
+<p>For example, imagine you have an input <code>string</code> that represents the URL of a given web request, and you want to retrieve a <code>string</code> with just the host name. If you get a large number of requests, possibly for a small number of hosts, you might want to cache those <code>string</code> instances. You can do so by using the <code>StringPool</code> type as follows:</p>
+<pre><code class="lang-csharp">public static string GetHost(string url)
+{
+    // We assume the input might start either with eg. https:// (or other prefix),
+    // or directly with the host name. Furthermore, we also assume that the input
+    // URL will always have a '/' character right after the host name.
+    // For instance: &quot;https://learn.microsoft.com/dotnet/api/system.string.intern&quot;.
+    int
+        prefixOffset = url.AsSpan().IndexOf(stackalloc char[] { ':', '/', '/' }),
+        startIndex = prefixOffset == -1 ? 0 : prefixOffset + 3,
+        endIndex = url.AsSpan(startIndex).IndexOf('/');
+
+    // In this example, it would be &quot;learn.microsoft.com&quot;
+    ReadOnlySpan&lt;char&gt; span = url.AsSpan(startIndex, endIndex);
+
+    return StringPool.Shared.GetOrAdd(span);
+}
+</code></pre>
+<p>The preceding method doesn't allocate at all if the requested <code>string</code> is already present in the cache. The lookup uses just a <code>ReadOnlySpan&lt;char&gt;</code> as input, which represents a view on the input URL <code>string</code>.</p>
+<p>The <code>StringPool</code> type can also be useful when you parse raw requests by using a different encoding, such as UTF8. There's a <code>GetOrAdd</code> overload that takes an input <code>ReadOnlySpan&lt;byte&gt;</code> and an <a href="/dotnet/api/system.text.encoding"><code>Encoding</code></a> instance. This overload uses a temporary buffer rented from the pool to retrieve a <code>ReadOnlySpan&lt;char&gt;</code> value to use for the lookup. This approach can greatly reduce the number of allocations depending on your specific use case scenario.</p>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.HighPerformance.UnitTests">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/high-performance/StringPool.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

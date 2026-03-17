@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>DispatcherQueueTimerExtensions </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="DispatcherQueueTimerExtensions ">
+    
+    <meta name="description" content="Helpers for executing code at specific times on a UI thread through a DispatcherQueue instance with a DispatcherQueueTimer.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="dispatcherqueuetimerextensions">DispatcherQueueTimerExtensions</h1>
+
+<p>The <code>DispatcherQueueTimerExtensions</code> static class provides an extension method for <a href="/windows/windows-app-sdk/api/winrt/microsoft.ui.dispatching.dispatcherqueue"><code>DispatcherQueueTimer</code></a> objects that make it easier to execute code on a specific UI thread at a specific time.</p>
+<p>The <code>DispatcherQueueTimerExtensions</code> provides a single extension method, <code>Debounce</code>. This is a standard technique used to rate-limit input from a user to not overload requests on an underlying service or query elsewhere.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>You should exclusively use the <code>DispatcherQueueTimer</code> instance calling <code>Debounce</code> for the purposes of Debouncing one specific action/scenario only and not configure it for other additional uses.</p>
+</div>
+<p>For each scenario that you want to Debounce, you'll want to create a separate <code>DispatcherQueueTimer</code> instance to track that specific scenario. For instance, if the below samples were both within your application. You'd need two separate timers to track debouncing both scenarios. One for the keyboard input, and a different one for the mouse input.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Using the <code>Debounce</code> method will set <code>DispatcherQueueTimer.IsRepeating</code> to <code>false</code> to ensure proper operation. Do not change this value.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If additionally registering to the <code>DispatcherQueueTimer.Tick</code> event (uncommon), it will be raised in one of two ways: 1. For a trailing debounce, it will be raised alongside the requested Action passed to the Debounce method. 2. For a leading debounce, it will be raised when the cooldown has expired and another call to Debounce would result in running the action.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<p>It can be used in a number of ways, but most simply like so as a keyboard limiter:</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+<p>Or for preventing multiple inputs from occuring accidentally (e.g. ignoring a double/multi-click):</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/CommunityToolkit/Windows/blob/rel/8.1.240916/components/Extensions/tests/DispatcherQueueTimerExtensionTests.cs">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Extensions/DispatcherQueueTimerExtensions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

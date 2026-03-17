@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Streams Helper </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Streams Helper ">
+    
+    <meta name="description" content="There are several operations that apps need commonly to do against their APPX, or from the Internet that are not easy.  This helper class wraps up some of the most common operations we need in multiple apps.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="streams-helper-archived">Streams Helper (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<p>While there are no immediate plans to port this component to 8.x, the community is welcome to express interest or contribute to its inclusion.</p>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<p>There are several operations that apps need commonly to do against their APPX, or from the Internet that are not easy.  <a href="/dotnet/api/microsoft.toolkit.uwp.helpers.streamhelper">Streams helper</a> class wraps up some of the most common operations we need in multiple apps.</p>
+<h2 id="some-common-scenarios">Some common scenarios</h2>
+<ul>
+<li>Get a stream from a URI using an in memory stream (rather than needing to download it first).</li>
+<li>Download a URI and write it to a local storage file.</li>
+<li>Get a packaged file stream (files included in the APPX as <em>Content - do not copy</em>).</li>
+<li>Does a file exist local folder?</li>
+<li>Read text from a file using ASCII or specified encoding.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GetHttpStreamAsync(Uri, CancellationToken)</td>
+<td>Task&lt;IRandomAccessStream&gt;</td>
+<td>Get the response stream returned by a HTTP get request</td>
+</tr>
+<tr>
+<td>GetHttpStreamToStorageFileAsync(Uri, StorageFile)</td>
+<td>Task</td>
+<td>Get the response stream returned by a HTTP get request and save it to a local file</td>
+</tr>
+<tr>
+<td>GetKnowFoldersFileStreamAsync(KnownFolderId, String, FileAccessMode)</td>
+<td>Task&lt;IRandomAccessStream&gt;</td>
+<td>Return a stream to a specified file from the application local cache folder</td>
+</tr>
+<tr>
+<td>GetLocalCacheFileStreamAsync(String, FileAccessMode)</td>
+<td>Task&lt;IRandomAccessStream&gt;</td>
+<td>Return a stream to a specified file from the application local cache folder</td>
+</tr>
+<tr>
+<td>GetLocalFileStreamAsync(String, FileAccessMode)</td>
+<td>Task&lt;IRandomAccessStream&gt;</td>
+<td>Return a stream to a specified file from the application local folder</td>
+</tr>
+<tr>
+<td>GetPackagedFileStreamAsync(String, FileAccessMode)</td>
+<td>Task&lt;IRandomAccessStream&gt;</td>
+<td>Return a stream to a specified file from the installation folder</td>
+</tr>
+<tr>
+<td>IsFileExistsAsync(StorageFolder, String)</td>
+<td>Task&lt;bool&gt;</td>
+<td>Test if a file exists in the application local folder</td>
+</tr>
+<tr>
+<td>IsKnownFolderFileExistsAsync(KnownFolderId, String)</td>
+<td>Task&lt;bool&gt;</td>
+<td>Test if a file exists in the application local cache folder</td>
+</tr>
+<tr>
+<td>IsLocalCacheFileExistsAsync(String)</td>
+<td>Task&lt;bool&gt;</td>
+<td>Test if a file exists in the application local cache folder</td>
+</tr>
+<tr>
+<td>IsLocalFileExistsAsync(String)</td>
+<td>Task&lt;bool&gt;</td>
+<td>Test if a file exists in the application local folder</td>
+</tr>
+<tr>
+<td>IsPackagedFileExistsAsync(String)</td>
+<td>Task&lt;bool&gt;</td>
+<td>Test if a file exists in the application installation folder</td>
+</tr>
+<tr>
+<td>ReadTextAsync(IRandomAccessStream, Encoding)</td>
+<td>Task&lt;string&gt;</td>
+<td>Read stream content as a string</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example</h2>
+<pre><code class="lang-csharp">// Get access to a text file that was included in solution as Content | do not copy local
+using (var stream = await StreamHelper.GetPackagedFileStreamAsync(&quot;Assets/Sub/test.txt&quot;))
+{
+    // Read the contents as ASCII text
+    var readText = await stream.ReadTextAsync();
+}
+
+// Get access to a HTTP resource
+using (var stream = await StreamHelper.GetHttpStreamAsync(new Uri(&quot;https://dev.windows.com&quot;)))
+{
+    ...
+}
+</code></pre>
+<pre><code class="lang-vb">' Get access to a text file that was included in solution as Content | do not copy local
+Using stream = Await StreamHelper.GetPackagedFileStreamAsync(&quot;Assets/Sub/test.txt&quot;)
+    '  Read the contents as ASCII text
+    Dim readText = Await stream.ReadTextAsync()
+    ...
+End Using
+
+' // Get access to a HTTP resource
+Using stream = Await StreamHelper.GetHttpStreamAsync(New Uri(&quot;https://dev.windows.com&quot;))
+    ...
+End Using
+</code></pre>
+<h2 id="sample-code">Sample Code</h2>
+<p>You can find more examples in our <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/rel/7.1.0/UnitTests/UnitTests.UWP/Helpers/Test_StreamHelper.cs">unit tests</a></p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Uwp</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Uwp/">Microsoft.Toolkit.Uwp</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api-source-code">API Source Code</h2>
+<ul>
+<li><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/rel/7.1.0/Microsoft.Toolkit.Uwp/Helpers/StreamHelper.cs">Stream Helper source code</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/streams.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

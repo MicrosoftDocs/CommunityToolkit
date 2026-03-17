@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Carousel </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Carousel ">
+    
+    <meta name="description" content="The Carousel control inherits from ItemsControl, representing a nice and smooth carousel.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="carousel-archived">Carousel (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived in the Windows Community Toolkit.</p>
+<p>While the Carousel control is not included in WCT 8.x, there are plans to introduce a modern, improved version in Community Toolkit Labs. The existing implementation from 7.x was deprecated due to its age and limitations, particularly around infinite scrolling functionality.</p>
+<p>Community interest and contributions are welcome to help accelerate this effort. You can track progress and express interest in the GitHub discussions:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Labs-Windows/discussions/498">Carousel discussion in Labs</a></li>
+</ul>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<p>The <a href="/dotnet/api/microsoft.toolkit.uwp.ui.controls.carousel">Carousel</a> control provides a new control, inherited from the <a href="/uwp/api/Windows.UI.Xaml.Controls.ItemsControl">ItemsControl</a>, representing a nice and smooth carousel.<br>
+This control lets you specify a lot of properties for a flexible layouting.<br>
+The <code>Carousel</code> control works fine with mouse, touch, mouse and keyboard as well.</p>
+<div class="nextstepaction">
+<p><a href="uwpct://Controls?sample=Carousel">Try it in the sample app</a></p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-xaml">&lt;Page ...
+    xmlns:controls=&quot;using:Microsoft.Toolkit.Uwp.UI.Controls&quot;/&gt;
+
+&lt;controls:Carousel InvertPositive=&quot;True&quot; ItemDepth=&quot;300&quot;
+                   ItemMargin=&quot;0&quot; ItemRotationX=&quot;0&quot;
+                   ItemRotationY=&quot;45&quot; ItemRotationZ=&quot;0&quot;
+                   Orientation=&quot;Horizontal&quot;&gt;
+    &lt;controls:Carousel.EasingFunction&gt;
+        &lt;CubicEase EasingMode=&quot;EaseOut&quot; /&gt;
+    &lt;/controls:Carousel.EasingFunction&gt;
+
+    &lt;controls:Carousel.ItemTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;!-- Carousel content --&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/controls:Carousel.ItemTemplate&gt;
+&lt;/controls:Carousel&gt;
+</code></pre>
+<h2 id="sample-output">Sample Output</h2>
+<p><img src="images/carousel-overview.gif" alt="Carousel Overview"></p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EasingFunction</td>
+<td>EasingFunctionBase</td>
+<td>Gets or sets easing function to apply for each Transition</td>
+</tr>
+<tr>
+<td>InvertPositive</td>
+<td>bool</td>
+<td>Gets or sets a value indicating whether the items rendered transformations should be opposite compared to the selected item If false, all the items (except the selected item) will have the exact same transformations If true, all the items where index &gt; selected index will have an opposite tranformation (Rotation X Y and Z will be multiply by -1)</td>
+</tr>
+<tr>
+<td>ItemDepth</td>
+<td>int</td>
+<td>Gets or sets depth of non Selected Index Items</td>
+</tr>
+<tr>
+<td>ItemMargin</td>
+<td>int</td>
+<td>Gets or sets the item margin</td>
+</tr>
+<tr>
+<td>ItemRotationX</td>
+<td>double</td>
+<td>Gets or sets rotation angle on X</td>
+</tr>
+<tr>
+<td>ItemRotationY</td>
+<td>double</td>
+<td>Gets or sets rotation angle on Y</td>
+</tr>
+<tr>
+<td>ItemRotationZ</td>
+<td>double</td>
+<td>Gets or sets rotation angle on Z</td>
+</tr>
+<tr>
+<td>Orientation</td>
+<td>Orientation</td>
+<td>Gets or sets the Carousel orientation. Horizontal or Vertical</td>
+</tr>
+<tr>
+<td>SelectedIndex</td>
+<td>int</td>
+<td>Gets or sets selected Index</td>
+</tr>
+<tr>
+<td>SelectedItem</td>
+<td>object</td>
+<td>Gets or sets the selected Item</td>
+</tr>
+<tr>
+<td>TransitionDuration</td>
+<td>int</td>
+<td>Gets or sets duration of the easing function animation in ms</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectionChanged</td>
+<td>Occurs when the selected item has changed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sample-project">Sample Project</h2>
+<p><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/Carousel">Carousel Sample Page Source</a>. You can <a href="uwpct://Controls?sample=Carousel">see this in action</a> in the <a href="https://aka.ms/windowstoolkitapp">Windows Community Toolkit Sample App</a>.</p>
+<h2 id="default-template">Default Template</h2>
+<p><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/Carousel/Carousel.xaml">Carousel XAML File</a> is the XAML template used in the toolkit for the default styling.</p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Uwp.UI.Controls</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.UI.Controls/">Microsoft.Toolkit.Uwp.UI.Controls</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">API</h2>
+<ul>
+<li><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.Layout/Carousel">Carousel source code</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/carousel.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

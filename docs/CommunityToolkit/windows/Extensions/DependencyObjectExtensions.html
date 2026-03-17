@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>DependencyObjectExtensions </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="DependencyObjectExtensions ">
+    
+    <meta name="description" content="The DependencyObjectExtensions type provides a collection of extensions methods for DependencyObject objects to aid in using the VisualTreeHelper class.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="dependencyobjectextensions">DependencyObjectExtensions</h1>
+
+<p>The <code>DependencyObjectExtensions</code> type provides a collection of extensions methods for <a href="/uwp/api/windows.ui.xaml.dependencyobject"><code>DependencyObject</code></a> objects. This class exposes several APIs to aid in using the <a href="/uwp/api/Windows.UI.Xaml.Media.VisualTreeHelper"><code>VisualTreeHelper</code></a> class. There are a number of reasons why walking the visual tree might be useful, which are mentioned <a href="/uwp/api/windows.ui.xaml.media.visualtreehelper?#traversing-a-visual-tree">in the docs</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-csharp">// Include the namespace to access extensions
+using Microsoft.Toolkit.Uwp.UI;
+
+// Find a visual descendant control using its name
+var control = uiElement.FindDescendant(&quot;MyTextBox&quot;);
+
+// Find the first visual descendant control of a specified type
+control = uiElement.FindDescendant&lt;ListView&gt;();
+
+// Find all visual descendant controls of the specified type.
+// We use LINQ here to filter children of a specific type.
+using System.Linq;
+
+foreach (var child in uiElement.FindDescendants().OfType&lt;ListViewItem&gt;())
+{
+    // ...
+}
+
+// Find the first visual ascendant control using its name
+control = uiElement.FindAscendant(&quot;MyScrollViewer&quot;);
+
+// Find the first visual ascendant control of a specified type
+control = uiElement.FindAscendant&lt;ScrollViewer&gt;();
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/UnitTests">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Extensions/DependencyObjectExtensions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

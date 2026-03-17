@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Facebook Service </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Facebook Service ">
+    
+    <meta name="description" content="The Facebook Service allows you to retrieve or publish data to the Facebook graph. Examples of the types of objects you can work with are Posts, Tagged Objects, and the primary user feed (outdated docs).">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="facebook-archived">Facebook (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<p>The community is welcome to express interest or contribute to its inclusion, although we want to note that:</p>
+<ul>
+<li>We aren't open to porting this component to 8.x.</li>
+<li>There is no known recommended substitute for this component.</li>
+</ul>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The Facebook Service is no longer available in the Windows Community Toolkit. The underlying dependent library was no longer maintained.</p>
+</div>
+<p>The Facebook Service allows you to retrieve or publish data to the Facebook graph. Examples of the types of objects you can work with are Posts, Tagged Objects, and the primary user feed.</p>
+<div class="nextstepaction">
+<p><a href="uwpct://Services?sample=Facebook%20Service">Try it in the sample app</a></p>
+</div>
+<h2 id="getting-windows-store-sid">Getting Windows Store SID</h2>
+<p>The Windows Store SID is a unique value per application generated, and it not tied to the actual store publication.  Creating a local application will give you a valid SID that you can use for debugging against Facebook.</p>
+<pre><code class="lang-csharp">// Put the following code in your mainform loaded event
+// Note that this will not work in the App.xaml.cs Loaded
+#if DEBUG
+    System.Diagnostics.Debug.WriteLine(&quot;Windows Store SID = &quot; + Microsoft.Toolkit.Uwp.Services.Facebook.FacebookService.Instance.WindowsStoreId);
+#endif
+</code></pre>
+<pre><code class="lang-vb">' Put the following code in your mainform loaded event
+' Note that this will not work in the App.xaml.cs Loaded
+#If DEBUG Then
+    System.Diagnostics.Debug.WriteLine(&quot;Windows Store SID = &quot; &amp; Microsoft.Toolkit.Uwp.Services.Facebook.FacebookService.Instance.WindowsStoreId)
+#End If
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You may have to turn on the Output window in Visual Studio to see this debug writeline.</p>
+</div>
+<p>The above code will output something like this:</p>
+<pre><code>Windows Store SID = ms-app://s-1-15-2-12341451-1486691014-2395677208-123421631-1234998043-1234490472-123452499/
+</code></pre>
+<p>When entering the value into the Facebook Developer site you must strip the ms-app:// and the trailing / off the string.</p>
+<h2 id="creating-a-new-application-on-facebook-developer-site">Creating a new Application on Facebook Developer Site</h2>
+<ol>
+<li>To get a <strong>Facebook.WindowsStoreID</strong>, go to: <a href="https://developers.facebook.com/apps">https://developers.facebook.com/apps</a>.</li>
+<li>Select <strong>Create a New App ID</strong>, to start integration Facebook into your app or website.</li>
+<li>Click, <strong>Create a New App</strong></li>
+<li>From the app Dashboard choose the <strong>Settings</strong> item on the left.  It should select the <em>Basic</em> item under it by default.</li>
+<li><strong>+Add Platform</strong> choose Windows App.  Leave the <em>Namespace</em> and <em>App Domains</em> entries blank.</li>
+<li>Enter the <strong>Windows Store SID</strong> from within your app (see <em>Getting Windows Store SID</em> section)</li>
+<li>From left side menu choose <strong>+Add Product</strong> Click to add <em>Facebook Login</em>.  Ensure you set the following options in the UI:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client OAuth Login</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Web OAuth Login</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Embedded Browser OAuth Login</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Force Web OAuth Redirection</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Login from Devices</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Valid OAuth redirect URIs</td>
+<td style="text-align: right;">Blank</td>
+</tr>
+</tbody>
+</table>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-csharp">// Initialize service
+FacebookService.Instance.Initialize(AppIDText.Text);
+
+// Login to Facebook
+if (!await FacebookService.Instance.LoginAsync())
+{
+    return;
+}
+
+// Get user's feed
+ListView.ItemsSource = await FacebookService.Instance.RequestAsync(FacebookDataConfig.MyFeed, 50);
+
+// Get current user profile picture
+ProfileImage.DataContext = await FacebookService.Instance.GetUserPictureInfoAsync();
+
+// Post a message on your wall using Facebook Dialog
+await FacebookService.Instance.PostToFeedWithDialogAsync(TitleText.Text, DescriptionText.Text, UrlText.Text);
+
+// Get current user's photo albums
+await FacebookService.Instance.GetUserAlbumsAsync();
+
+// Get current user's photos by album Id
+await FacebookService.Instance.GetUserPhotosByAlbumIdAsync(addedItem.Id);
+</code></pre>
+<pre><code class="lang-vb">' Initialize service
+FacebookService.Instance.Initialize(AppIDText.Text)
+
+' Login to Facebook
+If Not Await FacebookService.Instance.LoginAsync() Then
+    Return
+End If
+
+' Get user's feed
+ListView.ItemsSource = Await FacebookService.Instance.RequestAsync(FacebookDataConfig.MyFeed, 50)
+
+' Get current user profile picture
+ProfileImage.DataContext = Await FacebookService.Instance.GetUserPictureInfoAsync()
+
+' Post a message on your wall using Facebook Dialog
+Await FacebookService.Instance.PostToFeedWithDialogAsync(TitleText.Text, DescriptionText.Text, UrlText.Text)
+
+' Get current user's photo albums
+Await FacebookService.Instance.GetUserAlbumsAsync()
+
+' Get current user's photos by album Id
+Await FacebookService.Instance.GetUserPhotosByAlbumIdAsync(addedItem.Id)
+</code></pre>
+<h2 id="facebookalbum-class">FacebookAlbum Class</h2>
+<p>FacebookAlbum has properties to hold album details</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cover_Photo</td>
+<td>FacebookPhoto</td>
+<td>Gets or sets cover_photo property</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>string</td>
+<td>Gets or sets description property</td>
+</tr>
+<tr>
+<td>Id</td>
+<td>string</td>
+<td>Gets or sets id property</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td>Gets or sets name property</td>
+</tr>
+<tr>
+<td>Picture</td>
+<td>FacebookPictureData</td>
+<td>Gets or sets picture property</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookdataconfig-class">FacebookDataConfig Class</h2>
+<p>Configuration object for specifying richer query information</p>
+<h3 id="fields">Fields</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MyFeed</td>
+<td>FacebookDataConfig</td>
+<td>Gets a predefined config to get user feed. The feed of posts (including status updates) and links published by this person, or by others on this person's profile</td>
+</tr>
+<tr>
+<td>MyPosts</td>
+<td>FacebookDataConfig</td>
+<td>Gets a predefined config to show only the posts that were published by this person</td>
+</tr>
+<tr>
+<td>MyTagged</td>
+<td>FacebookDataConfig</td>
+<td>Gets a predefined config to show only the posts that this person was tagged in</td>
+</tr>
+</tbody>
+</table>
+<h3 id="properties-1">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>string</td>
+<td>Gets or sets the query string for filtering service results</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookoauthtokens-class">FacebookOAuthTokens Class</h2>
+<p>Facebook OAuth tokens</p>
+<h3 id="properties-2">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AppId</td>
+<td>string</td>
+<td>Gets or sets facebook AppId</td>
+</tr>
+<tr>
+<td>WindowsStoreId</td>
+<td>string</td>
+<td>Gets or sets Windows Store ID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookphoto-class">FacebookPhoto Class</h2>
+<p>FacebookAlbum has properties to hold photo details</p>
+<h3 id="properties-3">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Album</td>
+<td>int</td>
+<td>Gets or sets album property</td>
+</tr>
+<tr>
+<td>Created_Time</td>
+<td>int</td>
+<td>Gets or sets time the entity instance was created</td>
+</tr>
+<tr>
+<td>Id</td>
+<td>string</td>
+<td>Gets or sets id property</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>int</td>
+<td>Gets or sets images property</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>string</td>
+<td>Gets or sets a link to the entity instance</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td>Gets or sets name property</td>
+</tr>
+<tr>
+<td>Picture</td>
+<td>string</td>
+<td>Gets or sets picture property</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookpicture-class">FacebookPicture Class</h2>
+<p>Class for presenting picture data returned from service provider</p>
+<h3 id="properties-4">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>string</td>
+<td>Gets or sets the ID of the picture</td>
+</tr>
+<tr>
+<td>Is_Silhouette</td>
+<td>bool</td>
+<td>Gets or sets a value indicating whether the picture is a silhouette or not</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>string</td>
+<td>Gets or sets the url of the page with the picture</td>
+</tr>
+<tr>
+<td>Url</td>
+<td>string</td>
+<td>Gets or sets an url to the picture</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookpicturedata-class">FacebookPictureData Class</h2>
+<p>Holds picture data</p>
+<h3 id="properties-5">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data</td>
+<td>FacebookPicture</td>
+<td>Gets or sets data property</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookplatformimagesource-class">FacebookPlatformImageSource Class</h2>
+<p>Holds image details</p>
+<h3 id="properties-6">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Height</td>
+<td>string</td>
+<td>Gets or sets height property</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>string</td>
+<td>Gets or sets source property</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>string</td>
+<td>Gets or sets width property</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookpost-class">FacebookPost Class</h2>
+<p>Holds facebook post data</p>
+<h3 id="properties-7">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>string</td>
+<td>Gets or sets id property</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>string</td>
+<td>Gets or sets message or post text</td>
+</tr>
+<tr>
+<td>Created_Time</td>
+<td>DateTime</td>
+<td>Gets or sets time the entity instance was created</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>string</td>
+<td>Gets or sets a link to the entity instance</td>
+</tr>
+<tr>
+<td>Full_Picture</td>
+<td>string</td>
+<td>Gets or sets a link to the accompanying image</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookrequestsourcet-class">FacebookRequestSource&lt;T&gt; Class</h2>
+<p>Type to handle paged requests to Facebook Graph</p>
+<h3 id="constructor">Constructor</h3>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FacebookRequestSource(FacebookDataConfig, string, string, int)</td>
+<td>Initializes a new instance of the <code>FacebookRequestSource&lt;T&gt;</code> class</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods">Methods</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GetPagedItemsAsync(int, int, CancellationToken)</td>
+<td>Task&lt;IEnumerable&lt;T&gt;&gt;</td>
+<td>Returns strong typed page of data</td>
+</tr>
+</tbody>
+</table>
+<h2 id="facebookservice-class">FacebookService Class</h2>
+<p>Class for connecting to Facebook</p>
+<h3 id="properties-8">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WindowsStoreId</td>
+<td>string</td>
+<td>Gets a Windows Store ID associated with the current app</td>
+</tr>
+<tr>
+<td>Instance</td>
+<td>FacebookService</td>
+<td>Gets public singleton property</td>
+</tr>
+<tr>
+<td>LoggedUser</td>
+<td>string</td>
+<td>Gets the current logged user name</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>FBSession</td>
+<td>Gets a reference to an instance of the underlying data provider</td>
+</tr>
+<tr>
+<td>B</td>
+<td>int</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>B</td>
+<td>int</td>
+<td>Description</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods-1">Methods</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initialize(FacebookOAuthTokens, FacebookPermissions)</td>
+<td>bool</td>
+<td>Initialize underlying provider with relevant token information</td>
+</tr>
+<tr>
+<td>LoginAsync()</td>
+<td>Task&lt;bool&gt;</td>
+<td>Login with set of required requiredPermissions</td>
+</tr>
+<tr>
+<td>LogoutAsync()</td>
+<td>Task</td>
+<td>Log out of the underlying service instance</td>
+</tr>
+<tr>
+<td>RequestAsync(FacebookDataConfig, int)</td>
+<td>Task&lt;List&lt;FacebookPost&gt;&gt;</td>
+<td>Request list data from service provider based upon a given config / query</td>
+</tr>
+<tr>
+<td>RequestAsync&lt;T&gt;(FacebookDataConfig, int, string)</td>
+<td>Task&lt;List&lt;T&gt;&gt;</td>
+<td>Request list data from service provider based upon a given config / query</td>
+</tr>
+<tr>
+<td>RequestAsync(FacebookDataConfig, int, int)</td>
+<td>Task&lt;IncrementalLoadingCollection&lt;FacebookRequestSource&lt;FacebookPost&gt;, FacebookPost&gt;&gt;</td>
+<td>Request list data from service provider based upon a given config / query</td>
+</tr>
+<tr>
+<td>RequestAsync&lt;T&gt;(FacebookDataConfig, int, int, string)</td>
+<td>Task&lt;IncrementalLoadingCollection&lt;FacebookRequestSource&lt;T&gt;, T&gt;&gt;</td>
+<td>Request generic list data from service provider based upon a given config / query</td>
+</tr>
+<tr>
+<td>GetUserPictureInfoAsync()</td>
+<td>Task&lt;FacebookPicture&gt;</td>
+<td>Returns the <code>FacebookPicture</code> object associated with the logged user</td>
+</tr>
+<tr>
+<td>GetUserAlbumsAsync(int, string)</td>
+<td>Task&lt;List&lt;FacebookAlbum&gt;&gt;</td>
+<td>Retrieves list of user photo albums</td>
+</tr>
+<tr>
+<td>GetUserAlbumsAsync(int, int, string)</td>
+<td>Task&lt;IncrementalLoadingCollection&lt;FacebookRequestSource&lt;FacebookAlbum&gt;, FacebookAlbum&gt;&gt;</td>
+<td>Retrieves list of user photo albums</td>
+</tr>
+<tr>
+<td>GetUserPhotosByAlbumIdAsync(string, int, string)</td>
+<td>Task&lt;List&lt;FacebookPhoto&gt;&gt;</td>
+<td>Retrieves list of user photos by album id</td>
+</tr>
+<tr>
+<td>GetUserPhotosByAlbumIdAsync(string, int, int, string)</td>
+<td>Task&lt;IncrementalLoadingCollection&lt;FacebookRequestSource&lt;FacebookPhoto&gt;, FacebookPhoto&gt;&gt;</td>
+<td>Retrieves list of user photos by album id</td>
+</tr>
+<tr>
+<td>GetPhotoByPhotoIdAsync(string)</td>
+<td>Task&lt;FacebookPhoto&gt;</td>
+<td>Retrieves a photo by id</td>
+</tr>
+<tr>
+<td>PostToFeedWithDialogAsync(string)</td>
+<td>Task&lt;bool&gt;</td>
+<td>Enables posting data to the timeline using Facebook dialog</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sample-project">Sample Project</h2>
+<p><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/Facebook%20Service">Facebook Service Sample Page Source</a>. You can <a href="uwpct://Services?sample=Facebook%20Service">see this in action</a> in the <a href="https://aka.ms/windowstoolkitapp">Windows Community Toolkit Sample App</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Uwp.Services</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.Services/">Microsoft.Toolkit.Uwp.Services</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">API</h2>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Uwp.Services/Services/Facebook">Facebook Service source code</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/facebook.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>FlexLayout extensions - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="FlexLayout extensions - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The FlexLayout extensions provide a series of extension methods that support positioning Views in FlexLayouts.">
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="flexlayout-extensions">FlexLayout extensions</h1>
+
+<p>The FlexLayout extensions provide a series of extension methods that support positioning a <code>View</code> in a <code>FlexLayout</code>.</p>
+<p>The extensions offer the following methods:</p>
+<h2 id="alignself">AlignSelf</h2>
+<p>The <code>AlignSelf</code> extension method allows you to set how a <code>View</code> in <code>FlexLayout</code> is aligned on the cross axis. Setting this property overrides the <code>AlignItems</code> property set on the parent <code>FlexLayout</code> itself. For further detail refer to the <a href="/dotnet/maui/user-interface/layouts/flexlayout#alignself">Microsoft documentation</a>.</p>
+<p>The following example sets the <code>AlignSelfProperty</code> for a <code>Label</code> to <code>FlexAlignSelf.Stretch</code>:</p>
+<pre><code class="lang-cs">new Label().AlignSelf(FlexAlignSelf.Stretch);
+</code></pre>
+<h2 id="basis">Basis</h2>
+<p>The <code>Basis</code> extension method allows you to set the amount of space that's allocated to a <code>View</code> in <code>FlexLayout</code> on the main axis. The size can be specified in device-independent units, as a percentage of the size of the <code>FlexLayout</code> or based on the <code>View</code>'s requested width or height. For further detail refer to the <a href="/dotnet/maui/user-interface/layouts/flexlayout#basis">Microsoft documentation</a>.</p>
+<p>The following example sets the <code>BasisProperty</code> for a <code>Label</code> to <code>new FlexBasis(50)</code></p>
+<pre><code class="lang-cs">new Label().Basis(50);
+</code></pre>
+<p>There is an additional overload for <code>Basis</code> that accepts both <code>float length</code> and <code>bool isRelative</code>.</p>
+<p>The following example sets the <code>BasisProperty</code> for a <code>Label</code> to <code>new FlexBasis(50, true)</code>:</p>
+<pre><code class="lang-cs">new Label().Basis(50, true);
+</code></pre>
+<h2 id="grow">Grow</h2>
+<p>The <code>Grow</code> extension method specifies the amount of available space a <code>View</code> in <code>FlexLayout</code> should use on the main axis. For further detail refer to the <a href="/dotnet/maui/user-interface/layouts/flexlayout#grow">Microsoft documentation</a>.</p>
+<p>The following example sets the <code>GrowProperty</code> for a <code>Label</code> to <code>1f</code></p>
+<pre><code class="lang-cs">new Label().Grow(1f);
+</code></pre>
+<h2 id="order">Order</h2>
+<p>The <code>Order</code> extension method allows you to change the order that the children of the FlexLayout are arranged.  Setting this property overrides the order that it appears in the <code>Children</code> collection. For further detail refer to the <a href="/dotnet/maui/user-interface/layouts/flexlayout#order">Microsoft documentation</a>.</p>
+<p>The following example sets the <code>OrderProperty</code> for a <code>Label</code> to <code>1</code></p>
+<pre><code class="lang-cs">new Label().Order(1);
+</code></pre>
+<h2 id="shrink">Shrink</h2>
+<p>The <code>Shrink</code> extension method allows you to indicate which <code>View</code> in <code>FlexLayout</code> is given priority in being displayed at their full sizes when the aggregate size of <code>Children</code> is greater than
+on the main axis. For further detail refer to the <a href="/dotnet/maui/user-interface/layouts/flexlayout#shrink">Microsoft documentation</a>.</p>
+<p>The following example sets the <code>ShrinkProperty</code> for a <code>Label</code> to <code>0f</code></p>
+<pre><code class="lang-cs">new Label().Shrink(0f);
+</code></pre>
+<h2 id="api">API</h2>
+<p>You can find the source code for the <code>FlexLayout</code> extension methods over on the <a href="https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/FlexLayoutExtensions.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/markup/extensions/flex-layout-extensions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

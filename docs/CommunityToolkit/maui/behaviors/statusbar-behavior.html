@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>StatusBarBehavior - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="StatusBarBehavior - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The StatusBarBehavior provides the ability to customize the color and style of a devices status bar.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="statusbarbehavior">StatusBarBehavior</h1>
+
+<p>The <code>StatusBarBehavior</code> provides the ability to customize the color and style of a devices status bar.</p>
+<p>The <code>StatusBarBehavior</code> applies the color and style values when the properties are updated. The values are also applied based on the <code>ApplyOn</code> property, this property makes it possible to define which lifecycle event is used:</p>
+<ul>
+<li><code>StatusBarApplyOn.OnBehaviorAttachedTo</code> - Applies the color and style when the behavior has been attached to a page. <strong>This is the default.</strong></li>
+<li><code>StatusBarApplyOn.OnPageNavigatedTo</code> - Applies the color and style when the page has been navigated to.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If your application changes the status bar appearance on a per page basis then you should make use of the <code>StatusBarApplyOn.OnPageNavigatedTo</code> value for the <code>ApplyOn</code> property. Otherwise when navigating back the system will preserve the status bar appearance from the page the user navigated from and not to.</p>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>The .NET MAUI Community Toolkit Behaviors do not set the <code>BindingContext</code> of a behavior, because behaviors can be shared and applied to multiple controls through styles. For more information refer to <a href="/dotnet/maui/fundamentals/behaviors#net-maui-behaviors">.NET MAUI Behaviors</a></p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-statusbarbehavior">Using the StatusBarBehavior</h4>
+<p>The <code>StatusBarBehavior</code> can be used as follows in XAML:</p>
+<pre><code class="lang-xaml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+             x:Class=&quot;MyLittleApp.MainPage&quot;&gt;
+    
+    &lt;ContentPage.Behaviors&gt;
+        &lt;toolkit:StatusBarBehavior StatusBarColor=&quot;Fuchsia&quot; StatusBarStyle=&quot;LightContent&quot; /&gt;
+    &lt;/ContentPage.Behaviors&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<p>The <code>StatusBarBehavior</code> can be used as follows in C#:</p>
+<pre><code class="lang-csharp">class MyPage : ContentPage
+{
+    public MyPage()
+    {
+        this.Behaviors.Add(new StatusBarBehavior
+        {
+            StatusBarColor = Colors.Red,
+            StatusBarStyle = StatusBarStyle.LightContent
+        });
+    }
+}
+</code></pre>
+<p>There's another way to access the Statusbar APIs on C#, you can call the methods directly, as you can see in the snippet below:</p>
+<pre><code class="lang-csharp">class MyPage : ContentPage
+{
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        CommunityToolkit.Maui.Core.Platform.StatusBar.SetColor(statusBarColor);
+        CommunityToolkit.Maui.Core.Platform.StatusBar.SetStyle(StatusBarStyle.LightContent);
+    }
+}
+</code></pre>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>If you want to add this code the <code>MainPage</code>'s constructor, <code>OnAppearing</code> or <code>OnNavigatedTo</code> methods, please use the <code>Behavior</code> instead.
+Using directly on these places can crash your application since the platform-specific components may not be initialized.</p>
+</div>
+<h2 id="configuration">Configuration</h2>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_android" role="tab" aria-controls="tabpanel_1_android" data-tab="android" tabindex="0" aria-selected="true">Android</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_ios" role="tab" aria-controls="tabpanel_1_ios" data-tab="ios" tabindex="-1">iOS</a>
+</li>
+</ul>
+<section id="tabpanel_1_android" role="tabpanel" data-tab="android">
+
+<p>No changes needed.</p>
+</section>
+<section id="tabpanel_1_ios" role="tabpanel" data-tab="ios" aria-hidden="true" hidden="hidden">
+
+<p>In the <em>Platforms/iOS/Info.plist</em> file, add the following key and value:</p>
+<pre><code class="lang-xml">    &lt;key&gt;UIViewControllerBasedStatusBarAppearance&lt;/key&gt;
+    &lt;false/&gt;
+</code></pre>
+</section>
+</div>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ApplyOn</td>
+<td>StatusBarBehavior</td>
+<td>When to apply the status bar color and style.</td>
+</tr>
+<tr>
+<td>StatusBarColor</td>
+<td>Color</td>
+<td>The <code>Color</code> name from the Microsoft.Maui.Graphics namespace.</td>
+</tr>
+<tr>
+<td>StatusBarStyle</td>
+<td>StatusBarStyle</td>
+<td>The style used by statusbar, can be LightContent, DarkContent or Default.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this behavior in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/StatusBarBehaviorPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>StatusBarBehavior</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/PlatformBehaviors/StatusBar/StatusBarBehavior.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/behaviors/statusbar-behavior.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

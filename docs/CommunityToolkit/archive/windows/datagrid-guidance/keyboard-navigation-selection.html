@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Keyboard navigation and selection concepts in the DataGrid control </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Keyboard navigation and selection concepts in the DataGrid control ">
+    
+    <meta name="description" content="Guidance document that shows how to use keyboard to navigate the DataGrid control and selection models">
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../TOC.html">
+      <meta property="docfx:tocrel" content="../../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="datagrid-keyboard-navigation-and-selection-modes-archived">DataGrid keyboard navigation and selection modes (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<p>While there are no immediate plans to port this component directly to 8.x, it's important to understand that:</p>
+<ul>
+<li>The WCT 7.x DataGrid is still usable alongside WCT 8.x components for existing projects.</li>
+<li>The DataGrid control has been deprecated in favor of the new DataTable component.</li>
+</ul>
+<p>For new development, we recommend using the DataTable component which offers improved functionality and is actively maintained. If you have specific needs that DataTable doesn't meet, please consider contributing to WCT Labs where component improvements are prototyped and incubated.</p>
+<p>For more information:</p>
+<ul>
+<li><a href="../datagrid.html">DataGrid (Archived) concept docs</a></li>
+<li><a href="https://github.com/CommunityToolkit/Labs-Windows/discussions/415">DataGrid discussion in Labs</a></li>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<h2 id="keyboard-behaviors">Keyboard behaviors</h2>
+<h3 id="keyboarding-in-column-headers">Keyboarding in Column headers</h3>
+<p>The user can use TAB key to set keyboard focus to the current column headers. If the user can sort the columns, pressing ENTER key on the column header sorts that column. LEFT/RIGHT arrow keys move focus to column headers to the left and right of the currently focused column header. DOWN arrow key from a column header moves focus to the cell in the first row directly below the column header.</p>
+<h3 id="keyboarding-in-cells">Keyboarding in cells</h3>
+<p>The following table lists the default keyboard behavior within the cells of the DataGrid control.</p>
+<table>
+<thead>
+<tr>
+<th>Key or key combination</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DOWN ARROW</td>
+<td>Moves the focus to the cell directly below the current cell. If the focus is in the last row, pressing the DOWN ARROW does nothing.</td>
+</tr>
+<tr>
+<td>UP ARROW</td>
+<td>Moves the focus to the cell directly above the current cell. If the focus is in the first row, pressing the UP ARROW does nothing.</td>
+</tr>
+<tr>
+<td>LEFT ARROW</td>
+<td>Moves the focus to the previous cell in the row. If the focus is in the first cell in the row, pressing the LEFT ARROW does nothing. If the focus is on a row group header, pressing the LEFT ARROW collapses the group.</td>
+</tr>
+<tr>
+<td>RIGHT ARROW</td>
+<td>Moves the focus to the next cell in the row. If the focus is in the last cell in the row, pressing the RIGHT ARROW does nothing. If the focus is on a row group header, pressing the RIGHT ARROW expands the group.</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>Moves the focus to the first cell in the current row.</td>
+</tr>
+<tr>
+<td>END</td>
+<td>Moves the focus to the last cell in the current row.</td>
+</tr>
+<tr>
+<td>PAGE DOWN</td>
+<td>Scrolls the control downward by the number of rows that are displayed. Moves the focus to the last displayed row without changing columns. If the last row is only partially displayed, scrolls the grid to fully display the last row.</td>
+</tr>
+<tr>
+<td>PAGE UP</td>
+<td>Scrolls the control upward by the number of rows that are displayed. Moves focus to the first displayed row without changing columns. If the first row is only partially displayed, scrolls the grid to fully display the first row.</td>
+</tr>
+<tr>
+<td>TAB</td>
+<td>If the current cell is in edit mode, moves the focus to the next cell in the current row. If the focus is already in the last cell of the row, commits any changes that were made and moves the focus to the first cell in the next row. If the focus is in the last cell in the control, moves the focus to the next control in the tab order of the parent container. If the current cell is not in edit mode, moves the focus to the next control in the tab order of the parent container.</td>
+</tr>
+<tr>
+<td>SHIFT+TAB</td>
+<td>If the current cell is in edit mode, moves the focus to the previous cell in the current row. If the focus is already in the first cell of the row, commits any changes that were made and moves the focus to the last cell in the previous row. If the focus is in the first cell in the control, moves the focus to the previous control in the tab order of the parent container. If the current cell is not in edit mode, moves the focus to the previous control in the tab order of the parent container.</td>
+</tr>
+<tr>
+<td>CTRL+DOWN ARROW</td>
+<td>Moves the focus to the last cell in the current column.</td>
+</tr>
+<tr>
+<td>CTRL+UP ARROW</td>
+<td>Moves the focus to the first cell in the current column.</td>
+</tr>
+<tr>
+<td>CTRL+RIGHT ARROW</td>
+<td>Moves the focus to the last cell in the current row.</td>
+</tr>
+<tr>
+<td>CTRL+LEFT ARROW</td>
+<td>Moves the focus to the first cell in the current row.</td>
+</tr>
+<tr>
+<td>CTRL+HOME</td>
+<td>Moves the focus to the first cell in the control.</td>
+</tr>
+<tr>
+<td>CTRL+END</td>
+<td>Moves the focus to the last cell in the control.</td>
+</tr>
+<tr>
+<td>CTRL+PAGE DOWN</td>
+<td>Same as PAGE DOWN.</td>
+</tr>
+<tr>
+<td>CTRL+PAGE UP</td>
+<td>Same as PAGE UP.</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>If the DataGrid.IsReadOnly property is false and the DataGridColumn.IsReadOnly property is false for the current column, puts the current cell into cell edit mode.</td>
+</tr>
+<tr>
+<td>ENTER</td>
+<td>Commits any changes to the current cell and row and moves the focus to the cell directly below the current cell. If the focus is in the last row, commits any changes without moving the focus.</td>
+</tr>
+<tr>
+<td>ESC</td>
+<td>If the control is in edit mode, cancels the edit and reverts any changes that were made in the control. If the underlying data source implements IEditableObject, pressing ESC a second time cancels edit mode for the entire row.</td>
+</tr>
+<tr>
+<td>BACKSPACE</td>
+<td>Deletes the character before the cursor when editing a cell.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Deletes the character after the cursor when editing a cell.</td>
+</tr>
+<tr>
+<td>CTRL+ENTER</td>
+<td>Commits any changes to the current cell without moving the focus.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="selection-behaviors">Selection behaviors</h2>
+<p>The DataGrid control supports single row selection as well as multiple rows selection through the <strong>DataGrid.SelectionMode</strong> property. The <strong>DataGridSelectionMode</strong> enumeration has the following member values:</p>
+<ul>
+<li><strong>Extended</strong> : The user can select multiple items while holding down the SHIFT or CTRL keys during selection.</li>
+<li><strong>Single</strong> : The user can select only one item at a time.</li>
+</ul>
+<pre><code class="lang-xaml">&lt;controls:DataGrid SelectionMode=&quot;Extended&quot;/&gt;
+</code></pre>
+<p><img src="../images/datagrid/selection.png" alt="Sample  for SelectionMode"></p>
+<p>If the <strong>SelectionMode</strong> property is set to <strong>Extended</strong>, the navigation behavior does not change, but navigating with the keyboard while pressing SHIFT (including CTRL+SHIFT) will modify a multi-row selection. Before navigation starts, the control marks the current row as an anchor row. When you navigate while pressing SHIFT, the selection includes all rows between the anchor row and the current row.</p>
+<p>The following selection keys modify multi-row selection.</p>
+<ul>
+<li>SHIFT+DOWN ARROW</li>
+<li>SHIFT+UP ARROW</li>
+<li>SHIFT+LEFT ARROW</li>
+<li>SHIFT+RIGHT ARROW</li>
+<li>SHIFT+HOME</li>
+<li>SHIFT+END</li>
+<li>SHIFT+PAGE DOWN</li>
+<li>SHIFT+PAGE UP</li>
+<li>CTRL+SHIFT+DOWN ARROW</li>
+<li>CTRL+SHIFT+UP ARROW</li>
+<li>CTRL+SHIFT+LEFT ARROW</li>
+<li>CTRL+SHIFT+RIGHT ARROW</li>
+<li>CTRL+SHIFT+HOME</li>
+<li>CTRL+SHIFT+END</li>
+<li>CTRL+SHIFT+PAGE DOWN</li>
+<li>CTRL+SHIFT+PAGE UP</li>
+</ul>
+<h2 id="pointer-behaviors">Pointer behaviors</h2>
+<p>The following table lists the default behaviors for pointer (mouse/touch/pen) actions.</p>
+<table>
+<thead>
+<tr>
+<th>Pointer action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tap an unselected cell</td>
+<td>Makes the tapped cell's row the currently selected row with focus on the tapped cell.</td>
+</tr>
+<tr>
+<td>Double-tap a cell</td>
+<td>Puts the cell into edit mode.</td>
+</tr>
+<tr>
+<td>Drag a column header cell</td>
+<td>If the DataGrid.CanUserReorderColumns property is true and the DataGridColumn.CanUserReorder property is true for the current column, moves the column so that it can be dropped into a new position.</td>
+</tr>
+<tr>
+<td>Drag a column header separator</td>
+<td>If the DataGrid.CanUserResizeColumns property is true and the DataGridColumn.CanUserResize property is true for the current column, resizes the column.</td>
+</tr>
+<tr>
+<td>Tap a column header</td>
+<td>If the DataGrid.CanUserSortColumns property is true and the DataGridColumn.CanUserSort property is true for the current column, sorts the column. Tapping the header of a column that is already sorted will reverse the sort direction of that column.</td>
+</tr>
+<tr>
+<td>CTRL+tap a row</td>
+<td>If SelectionMode is set to Extended, modifies a non-contiguous multi-row selection. If the row is already selected, deselects the row.</td>
+</tr>
+<tr>
+<td>SHIFT+tap a row</td>
+<td>If SelectionMode is set to Extended, modifies a contiguous multi-row selection.</td>
+</tr>
+<tr>
+<td>Tap a row group header expander button</td>
+<td>Expands or collapses the group.</td>
+</tr>
+<tr>
+<td>Double-tap a row group header</td>
+<td>Expands or collapses the group.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="datagrid-basics.html">Add a DataGrid control to a page</a></li>
+<li><a href="styling-formatting-options.html">Customize the DataGrid control using styling and formatting options</a></li>
+<li><a href="sizing-options.html">Sizing options in the DataGrid control</a></li>
+<li><a href="group-sort-filter.html">Group, sort and filter data using LINQ and the DataGrid control</a></li>
+<li><a href="editing-inputvalidation.html">Editing and input validation in the DataGrid control</a></li>
+<li><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid">DataGrid Sample Page Source</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/datagrid-guidance/keyboard-navigation-selection.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

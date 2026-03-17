@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>RichSuggestBox </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="RichSuggestBox ">
+    
+    <meta name="description" content="A rich text input control that auto-suggests and stores token items in a document.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="richsuggestbox">RichSuggestBox</h1>
+
+<p>The <code>RichSuggestBox</code> is a combination of <a href="/uwp/api/windows.ui.xaml.controls.autosuggestbox">AutoSuggestBox</a> and <a href="/uwp/api/windows.ui.xaml.controls.richeditbox">RichEditBox</a> that can provide suggestions based on customizable prefixes. Selected suggestions are embedded and tracked in the document as tokens.</p>
+<p>RichSuggestBox resembles text controls commonly found in social applications where you type &quot;@&quot; to mention people.</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-xaml">&lt;controls:RichSuggestBox
+  PlaceholderText=&quot;Leave a comment&quot;
+  ItemTemplate=&quot;{StaticResource SuggestionTemplate}&quot;
+  Prefixes=&quot;@#&quot; /&gt;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>When a suggestion is selected, <code>RichSuggestBox</code> assigns the selected item a unique <a href="/dotnet/api/system.guid">Guid</a> and a display text (provided by the developer) to make up a token. The display text is then padded with <a href="https://unicode-table.com/200B/">Zero Width Space</a>s (ZWSP) and inserted into the document as a hyperlink using the identifier as the link address. These hyperlinks are tracked and validated on every text change.</p>
+<p>The token text inserted into the document has the following layout: ZWSP - Prefix character - Display text - ZWSP.</p>
+<p>For example, a token with &quot;@&quot; as the prefix and &quot;John Doe&quot; as the display text is inserted as:</p>
+<pre><code class="lang-cs">&quot;\u200b@John Doe\u200b&quot;
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Token text contains <a href="https://unicode-table.com/200B/">Zero Width Space</a>s, which are Unicode characters.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>To support Undo/Redo function, <code>RichSuggestBox</code> keeps all the tokens in an internal collection even when the token text is deleted from the document. These token are marked as inactive and are not included in the <code>Tokens</code> collection. Use <code>ClearUndoRedoSuggestionHistory()</code> method to clear inactive tokens or <code>Clear()</code> method to clear all tokens.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<h3 id="handle-multiple-token-types">Handle multiple token types</h3>
+<p>The example below creates a <code>RichSuggestBox</code> that can tokenize both mentions (query starts with <code>@</code>) and hashtags (query starts with <code>#</code>).</p>
+<pre><code class="lang-xaml">&lt;controls:RichSuggestBox
+  PlaceholderText=&quot;Leave a comment&quot;
+  ItemTemplate=&quot;{StaticResource SuggestionTemplate}&quot;
+  SuggestionChosen=&quot;OnSuggestionChosen&quot;
+  SuggestionRequested=&quot;OnSuggestionRequested&quot;
+  Prefixes=&quot;@#&quot; /&gt;
+</code></pre>
+<pre><code class="lang-cs">private void OnSuggestionChosen(RichSuggestBox sender, SuggestionChosenEventArgs args)
+{
+  if (args.Prefix == &quot;#&quot;)
+  {
+    // User selected a hashtag item
+    args.DisplayText = ((SampleHashtagDataType)args.SelectedItem).Text;
+  }
+  else
+  {
+    // User selected a mention item
+    args.DisplayText = ((SampleEmailDataType)args.SelectedItem).DisplayName;
+  }
+}
+
+private void OnSuggestionRequested(RichSuggestBox sender, SuggestionRequestedEventArgs args)
+{
+  sender.ItemsSource = args.Prefix == &quot;#&quot;
+    ? _hashtags.Where(x =&gt; x.Text.Contains(args.QueryText, StringComparison.OrdinalIgnoreCase))
+    : _emails.Where(x =&gt; x.DisplayName.Contains(args.QueryText, StringComparison.OrdinalIgnoreCase));
+}
+</code></pre>
+<h3 id="plain-text-only">Plain text only</h3>
+<p>The example below creates a <code>RichSuggestBox</code> that only allows users to enter plain text. The only formatted texts in the document are tokens.</p>
+<pre><code class="lang-xaml">&lt;controls:RichSuggestBox
+  ClipboardCopyFormat=&quot;PlainText&quot;
+  ClipboardPasteFormat=&quot;PlainText&quot;
+  DisabledFormattingAccelerators=&quot;All&quot; /&gt;
+</code></pre>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/RichSuggestBox/index.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

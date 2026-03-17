@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Grid extensions - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Grid extensions - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The Grid extensions provide a series of extension methods that support configuring a Grid.">
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="grid-extensions">Grid extensions</h1>
+
+<p>The <code>Grid</code> extensions provide a series of extension methods that support configuring a <code>Grid</code>.</p>
+<h2 id="defining-rows--columns">Defining Rows + Columns</h2>
+<p>To define rows and columns for a <code>Grid</code>, <code>CommunityToolkit.Maui.Markup</code> provides two helper methods:</p>
+<ul>
+<li><code>Columns.Define</code></li>
+<li><code>Rows.Define</code></li>
+</ul>
+<p>To leverage these helper methods, we first add the following <code>using static</code> directive to the top of our class:</p>
+<pre><code class="lang-cs">using static CommunityToolkit.Maui.Markup.GridRowsColumns;
+</code></pre>
+<p>After adding the above <code>using static</code> directive, we can then define our Row + Column sizes using the following values to set the <code>GridLength</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Microsoft.Maui.GridLength</th>
+<th>XAML</th>
+<th>CommunityToolkit.Maui.Markup.GridRowsColumns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GridLength.Auto</code></td>
+<td><code>Auto</code></td>
+<td><code>Auto</code></td>
+</tr>
+<tr>
+<td><code>GridLength.Star</code></td>
+<td><code>*</code></td>
+<td><code>Star</code></td>
+</tr>
+<tr>
+<td><code>new GridLength(2, GridLength.Star)</code></td>
+<td><code>2*</code></td>
+<td><code>Stars(2)</code></td>
+</tr>
+<tr>
+<td><code>new GridLength(20, GridLength.Absolute)</code></td>
+<td><code>20</code></td>
+<td><code>20</code></td>
+</tr>
+</tbody>
+</table>
+<p>Putting it all together, we can now define a Grid's Rows + Columns:</p>
+<pre><code class="lang-cs">new Grid
+{
+    ColumnDefinitions = Columns.Define(30, Star, Stars(2)),
+    RowDefinitions = Rows.Define(Auto, Star),   
+};
+</code></pre>
+<h3 id="example">Example</h3>
+<p>The following example demonstrates how to create a <code>Grid</code> with 2 Rows:</p>
+<ul>
+<li>Row 0 Size: <code>GridLength.Auto</code></li>
+<li>Row 1 Size:  <code>GridLength.Star</code></li>
+</ul>
+<p>The following example demonstrates how to create a <code>Grid</code> with 3 Columns:</p>
+<ul>
+<li>Column 0 Size: <code>new GridLength(30, GridLength.Absolute)</code></li>
+<li>Column 1 Size: <code>GridLength.Star</code></li>
+<li>Column 2 Size: <code>new GridLength(GridLength.Star, 2)</code>:</li>
+</ul>
+<pre><code class="lang-cs">// Add this using static to enable Columns.Define and Rows.Define 
+using static CommunityToolkit.Maui.Markup.GridRowsColumns;
+
+// ...
+
+new Grid
+{
+    ColumnDefinitions = Columns.Define(30, Star, Stars(2)),
+    RowDefinitions = Rows.Define(Auto, Star),
+
+    Children = 
+    {
+        new Label()
+            .Text(&quot;This Label is in Row 0 Column 0&quot;)
+            .Row(0).Column(0)
+
+        new Label()
+            .Text(&quot;This Label is in Row 0 Column 1&quot;)
+            .Row(0).Column(1)
+
+        new Label()
+            .Text(&quot;This Label is in Row 0 Column 2&quot;)
+            .Row(1).Column(2)
+
+        new Label()
+            .Text(&quot;This Label is in Row 1 Column 0&quot;)
+            .Row(1).Column(0)
+
+        new Label()
+            .Text(&quot;This Label is in Row 1 Column 1&quot;)
+            .Row(1).Column(1)
+
+        new Label()
+            .Text(&quot;This Label is in Row 1 Column 2&quot;)
+            .Row(1).Column(2)
+    }
+}
+</code></pre>
+<h2 id="defining-rows--columns-using-enums">Defining Rows + Columns Using Enums</h2>
+<p>We can also define and name our Rows and Columns by creating a custom <code>Enum</code>. Using an <code>Enum</code> allows us to define a name for each row and column making it easier to place our controls in the <code>Grid</code>.</p>
+<h3 id="example-1">Example</h3>
+<p>The following example demonstrates how to define rows + columns for a <code>Grid</code> using two <code>Enum</code>s.</p>
+<p>To leverage these helper methods, we first add the following <code>using static</code> directive:</p>
+<pre><code class="lang-cs">using static CommunityToolkit.Maui.Markup.GridRowsColumns;
+</code></pre>
+<p>We then define the names of our Rows and Columns by creating a custom <code>Enum</code> for each:</p>
+<pre><code class="lang-cs">enum Row { Username, Password, Submit }
+
+enum Column { Description, UserInput }
+</code></pre>
+<p>We then then populate our <code>Grid</code> using these <code>Enum</code>s to define our rows + columns and to assign each control to a row + column accordingly:</p>
+<pre><code class="lang-cs">using static CommunityToolkit.Maui.Markup.GridRowsColumns;
+
+class LoginPage : ContentPage
+{
+    public LoginPage()
+    {
+        Content = new Grid
+        {
+            RowDefinitions = Rows.Define(
+                (Row.Username, 30),
+                (Row.Password, 30),
+                (Row.Submit, Star)),
+    
+            ColumnDefinitions = Columns.Define(
+                (Column.Description, Star),
+                (Column.UserInput, Star)),
+    
+            Children = 
+            {
+                new Label()
+                    .Text(&quot;Username&quot;)
+                    .Row(Row.Username).Column(Column.Description),
+    
+                new Entry()
+                    .Placeholder(&quot;Username&quot;)
+                    .Row(Row.Username).Column(Column.UserInput),
+    
+                new Label()
+                    .Text(&quot;Password&quot;)
+                    .Row(Row.Password).Column(Column.Description),
+    
+                new Entry { IsPassword = true }
+                    .Placeholder(&quot;Password&quot;)
+                    .Row(Row.Password).Column(Column.UserInput),
+    
+                new Button()
+                    .Text(&quot;Submit&quot;)
+                    .Row(Row.Password).RowSpan(All&lt;Column&gt;())
+            }
+        }
+    }
+
+    enum Row { Username, Password, Submit }
+
+    enum Column { Description, UserInput }
+}
+</code></pre>
+<h2 id="row">Row</h2>
+<p>The <code>Row</code> method sets the <code>Grid.RowProperty</code> and <code>Grid.RowSpanProperty</code> on a <code>BindableObject</code>.</p>
+<p>The following example sets the <code>Grid.RowProperty</code> of a <code>Button</code> to <code>0</code> and its <code>Grid.RowSpanProperty</code> to <code>2</code>, then sets the <code>Grid.RowProperty</code> of a <code>Label</code> to <code>1</code>:</p>
+<pre><code class="lang-csharp">new Grid
+{
+    Children = 
+    {
+        new Button()
+            .Text(&quot;This Button is in Row 0 and spans 2 Columns&quot;)
+            .Row(0, 2),
+
+        new Label()
+            .Text(&quot;This Label is in Row 1 and does not span multiple columns&quot;)
+            .Row(1)
+    }
+};
+</code></pre>
+<h2 id="column">Column</h2>
+<p>The <code>Column</code> method sets the <code>Grid.ColumnProperty</code> and <code>Grid.ColumnSpanProperty</code> on a <code>BindableObject</code>.</p>
+<p>The following example sets the <code>Grid.ColumnProperty</code> of a <code>Button</code> to <code>0</code> and its <code>Grid.ColumnSpanProperty</code> to <code>2</code>, then sets the <code>Grid.ColumnProperty</code> of a <code>Label</code> to <code>1</code>:</p>
+<pre><code class="lang-csharp">new Grid
+{
+    Children = 
+    {
+        new Button()
+            .Text(&quot;This Button is in Row 0 and spans 2 Columns&quot;)
+            .Column(0, 2),
+
+        new Label()
+            .Text(&quot;This Label is in Row 1 and does not span multiple columns&quot;)
+            .Column(1)
+    }
+};
+</code></pre>
+<h2 id="rowspan">RowSpan</h2>
+<p>The <code>RowSpan</code> method allows us to define how many Grid Rows a control will span across. I.e. If our <code>Grid</code> has 3 Rows, <code>.RowSpan(3)</code> will ensure the control spans across all 3 Columns.</p>
+<p>Here's an example of a <code>Button</code> that spans vertically across 3 Rows:</p>
+<pre><code class="lang-cs">new Button()
+    .Text(&quot;This Button Spans Across 3 Grid Rows&quot;)
+    .RowSpan(3)
+</code></pre>
+<h3 id="alltenum">All&lt;TEnum&gt;</h3>
+<p>When defining our Rows using an <code>Enum</code>, we can use <code>All&lt;TEnum&gt;()</code> to ensure our control spans vertically across every row:</p>
+<pre><code class="lang-cs">enum Row { Username, Password, Submit }
+
+// ...
+new Button()
+    .Text(&quot;This Button Spans Vertically Across Every Row Defined in our Enum&quot;)
+    .RowSpan(All&lt;Row&gt;());
+</code></pre>
+<h2 id="columnspan">ColumnSpan</h2>
+<p>The <code>ColumnSpan</code> method allows us to define how many Grid Columns a control will span across. I.e. If our <code>Grid</code> has 3 Columns, <code>.ColumnSpan(3)</code> will ensure the control spans across all 3 Columns.</p>
+<p>Here's an example of a <code>Button</code> that spans horizontally across 3 Columns:</p>
+<pre><code class="lang-cs">new Button()
+    .Text(&quot;This Button Spans Across 3 Grid Columns&quot;)
+    .ColumnSpan(3)
+</code></pre>
+<h3 id="alltenum-1">All&lt;TEnum&gt;</h3>
+<p>When defining our Rows using an <code>Enum</code>, we can use <code>All&lt;TEnum&gt;()</code> to ensure our control spans horizontally across every column:</p>
+<pre><code class="lang-cs">enum Column { Description, UserInput }
+
+// ...
+new Button()
+    .Text(&quot;This Button Spans Vertically Across Every Row Defined in our Enum&quot;)
+    .ColumnSpan(All&lt;Column&gt;());
+</code></pre>
+<h2 id="lasttenum">Last&lt;TEnum&gt;</h2>
+<p>When defining our rows and columns using an <code>Enum</code>, we can ensure a control is added to the last Row or the last Column by using <code>.Last&lt;TEnum&gt;()</code>.</p>
+<p>This example demonstrates how to add a <code>Button</code> to the final row and column in a <code>Grid</code></p>
+<pre><code class="lang-cs">enum Row { Username, Password, Submit }
+enum Column { Description, UserInput }
+
+// ...
+new Button()
+    .Text(&quot;This Button Spans Vertically Across Every Row Defined in our Enum&quot;)
+    .Row(Last&lt;Row&gt;()).Column(Last&lt;Column&gt;());
+</code></pre>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/markup/extensions/grid-extensions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

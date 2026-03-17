@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>MediaElement - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="MediaElement - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="This article explains how to use MediaElement to play video and audio in a .NET MAUI application.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="mediaelement">MediaElement</h1>
+
+<p><code>MediaElement</code> is a control for playing video and audio. Media that's supported by the underlying platform can be played from the following sources:</p>
+<ul>
+<li>The web, using a URI (HTTP or HTTPS).</li>
+<li>A resource embedded in the platform application, using the <code>embed://</code> URI scheme.</li>
+<li>Files that come from the app's local filesystem, using the <code>filesystem://</code> URI scheme.</li>
+</ul>
+<p><code>MediaElement</code> can use the platform playback controls, which are referred to as transport controls. However, they are disabled by default and can be replaced with your own transport controls. The following screenshots show <code>MediaElement</code> playing a video with the platform transport controls:</p>
+<p><img src="../../images/mediaelement/intro.png" alt="Screenshot of a MediaElement playing a video, on Android and iOS."></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>MediaElement</code> is available on iOS, Android, Windows, macOS, and Tizen.</p>
+</div>
+<p>The <code>MediaElement</code> uses the following platform implementations.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Platform media player implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android</td>
+<td><a href="https://exoplayer.dev">ExoPlayer</a>, big thank you to the <a href="https://github.com/dotnet/android-libraries">Android Libraries</a> maintainers!</td>
+</tr>
+<tr>
+<td>iOS/macOS</td>
+<td><a href="xref:AVFoundation.AVPlayer">AVPlayer</a></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><a href="xref:Windows.Media.Playback.MediaPlayer">MediaPlayer</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="getting-started">Getting started</h2>
+<p>To use the <code>MediaElement</code> feature of the .NET MAUI Community Toolkit, the following steps are required.</p>
+<h3 id="install-nuget-package">Install NuGet package</h3>
+<p>Before you are able to use <code>MediaElement</code> inside your application you will need to install the <code>CommunityToolkit.Maui.MediaElement</code> NuGet package and add an initialization line in your <em>MauiProgram.cs</em>. As follows:</p>
+<p><strong>Package name:</strong> <code>CommunityToolkit.Maui.MediaElement</code></p>
+<p><strong>Package url:</strong> <a href="https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement">https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement</a></p>
+<h3 id="initializing-the-package">Initializing the package</h3>
+<p>First the using statement needs to be added to the top of your <em>MauiProgram.cs</em> file</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.MediaElement;
+</code></pre>
+<blockquote>
+<p>In order to use the <code>MediaElement</code> correctly the <code>UseMauiCommunityToolkitMediaElement</code> method must be called on the <code>MauiAppBuilder</code> class when bootstrapping an application the <em>MauiProgram.cs</em> file. The following example shows how to perform this.</p>
+</blockquote>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>If you require Rich Media Notifications or background playback on Android, set <code>enableForegroundService</code> to <code>true</code> when calling <code>UseMauiCommunityToolkitMediaElement</code>. MediaElement does not require adding additional <code>AndroidManifest.xml</code> permissions for the foreground service. When <code>enableForegroundService</code> is <code>true</code>, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If you do not need background playback, you can set this to <code>false</code>. If you fail to call this method, an exception will be thrown when trying to use the <code>MediaElement</code>.</p>
+</div>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true); // Set to `false` if Rich Notifications and background playback is not required
+</code></pre>
+<p>For more information on how to do this, please refer to the <a href="../get-started.html?tabs=CommunityToolkitMauiMediaElement#adding-the-nuget-packages">Get Started</a> page.</p>
+<h3 id="platform-specific-initialization">Platform specific initialization</h3>
+<p>To access the <code>MediaElement</code> functionality, the following platform specific setup is required.</p>
+<!-- markdownlint-disable MD025 -->
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_android" role="tab" aria-controls="tabpanel_1_android" data-tab="android" tabindex="0" aria-selected="true">Android</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_mac" role="tab" aria-controls="tabpanel_1_mac" data-tab="mac" tabindex="-1">Mac Catalyst</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_ios" role="tab" aria-controls="tabpanel_1_ios" data-tab="ios" tabindex="-1">iOS</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_windows" role="tab" aria-controls="tabpanel_1_windows" data-tab="windows" tabindex="-1">Windows</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_tizen" role="tab" aria-controls="tabpanel_1_tizen" data-tab="tizen" tabindex="-1">Tizen</a>
+</li>
+</ul>
+<section id="tabpanel_1_android" role="tabpanel" data-tab="android">
+
+<p>When using <code>MediaElement</code> it is essential to perform the following steps:</p>
+<h4 id="1-add-resizableactivity-and-launchmode-to-activity">1. Add <code>ResizableActivity</code> and <code>Launchmode</code> to Activity</h4>
+<pre><code class="lang-csharp">[Activity(Theme = &quot;@style/Maui.SplashTheme&quot;, ResizeableActivity = true, MainLauncher = true, LaunchMode = LaunchMode.SingleTask)]
+public class MainActivity : MauiAppCompatActivity
+{
+}
+</code></pre>
+<p>For a full example of this method included in an application please refer to the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Platforms/Android/MainActivity.cs">.NET MAUI Community Toolkit Sample Application</a></p>
+</section>
+<section id="tabpanel_1_mac" role="tabpanel" data-tab="mac" aria-hidden="true" hidden="hidden">
+
+<p>Edit the <code>Info.plist</code> for <code>MacCatalyst</code> and add the following keys.</p>
+<pre><code class="lang-csharp">&lt;key&gt;UIBackgroundModes&lt;/key&gt;
+&lt;array&gt;
+    &lt;string&gt;bluetooth-central&lt;/string&gt;
+    &lt;string&gt;audio&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;NSLocalNetworkUsageDescription&lt;/key&gt;
+&lt;string&gt;&lt;/string&gt;
+</code></pre>
+</section>
+<section id="tabpanel_1_ios" role="tabpanel" data-tab="ios" aria-hidden="true" hidden="hidden">
+
+<p>Edit the <code>Info.plist</code> for <code>iOS</code> and add the following keys.</p>
+<pre><code class="lang-csharp">&lt;key&gt;UIBackgroundModes&lt;/key&gt;
+&lt;array&gt;
+    &lt;string&gt;audio&lt;/string&gt;
+&lt;/array&gt;
+</code></pre>
+</section>
+<section id="tabpanel_1_windows" role="tabpanel" data-tab="windows" aria-hidden="true" hidden="hidden">
+
+<p>No setup is required.</p>
+</section>
+<section id="tabpanel_1_tizen" role="tabpanel" data-tab="tizen" aria-hidden="true" hidden="hidden">
+
+<p>No setup is required.</p>
+</section>
+</div>
+<!-- markdownlint-enable MD025 -->
+<h2 id="supported-formats">Supported Formats</h2>
+<p>The supported multimedia formats can be different per platform. In some cases it can even be dependant on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Link</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android</td>
+<td><a href="https://developer.android.com/guide/topics/media/exoplayer/supported-formats">ExoPlayer Supported Formats</a></td>
+<td></td>
+</tr>
+<tr>
+<td>iOS/macOS</td>
+<td><a href="https://stackoverflow.com/a/45898816/1506387">iOS/macOS Supported Formats</a></td>
+<td>No official documentation on this exists</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><a href="/windows/uwp/audio-video-camera/supported-codecs">Windows Supported Formats</a></td>
+<td>On Windows the supported formats are very much dependent on what codecs are installed on the user's machine</td>
+</tr>
+<tr>
+<td>Tizen</td>
+<td><a href="https://docs.tizen.org/application/native/tutorials/feature/app-multimedia-video">Tizen Supported Formats</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.</p>
+</div>
+<h2 id="common-scenarios">Common scenarios</h2>
+<p>The following sections covers common usage scenarios for the <code>MediaElement</code>.</p>
+<h3 id="play-remote-media">Play remote media</h3>
+<p>A <code>MediaElement</code> can play remote media files using the HTTP and HTTPS URI schemes. This is accomplished by setting the <code>Source</code> property to the URI of the media file:</p>
+<pre><code class="lang-xaml">&lt;toolkit:MediaElement Source=&quot;https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot;
+              ShouldShowPlaybackControls=&quot;True&quot; /&gt;
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>When playing remote sources from HTTP endpoints, you will likely need to disable operating system security measures that prevent access to insecure web endpoints. This is true for at least iOS and Android.</p>
+</div>
+<p>By default, the media that is defined by the <code>Source</code> property doesn't immediately start playing after the media is opened. To enable automatic media playback, set the <code>ShouldAutoPlay</code> property to <code>true</code>.</p>
+<p>Platform provided media playback controls are enabled by default, and can be disabled by setting the <code>ShouldShowPlaybackControls</code> property to <code>false</code>.</p>
+<h3 id="use-rich-media-notifications">Use Rich Media Notifications</h3>
+<p>A <code>MediaElement</code> can show rich media notifications on Android, iOS, Mac Catalyst, and Windows when media is playing in the background. To enable rich media notifications, the following steps are required:</p>
+<ol>
+<li>Enable background video playback by setting the <code>enableForegroundService</code> parameter to <code>true</code> when calling the <code>UseMauiCommunityToolkitMediaElement</code> method in <em>MauiProgram.cs</em>. Refer to the <strong>Initializing the package</strong> section above for more information.</li>
+<li>Platform specific setup as described in the <a href="#platform-specific-initialization">Platform specific initialization</a> section.</li>
+<li>Set the <code>MetadataTitle</code>, <code>MetadataArtist</code>, and <code>MetadataArtworkUrl</code> properties to provide metadata for the media that is playing as described in the <a href="#using-metadata">Using Metadata</a> section.</li>
+</ol>
+<h3 id="foreground-service-on-android">Foreground service on Android</h3>
+<p>To enable background playback on Android, set the <code>enableForegroundService</code> parameter to <code>true</code> when calling the <code>UseMauiCommunityToolkitMediaElement</code> method in <em>MauiProgram.cs</em>. MediaElement does not require adding additional <code>AndroidManifest.xml</code> permissions for the foreground service — calling the builder method with <code>enableForegroundService: true</code> is sufficient to enable notification and background playback features. When <code>enableForegroundService</code> is <code>true</code>, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If <code>enableForegroundService</code> is <code>false</code> and you attempt to use background playback features, an exception may be thrown on Android.</p>
+<h3 id="using-metadata">Using Metadata</h3>
+<p>A <code>MediaElement</code> can use metadata for <code>MediaElement.MetadataTitle</code>, <code>MediaElement.MetadataArtist</code> and <code>MediaElement.MetadataArtworkUrl</code>. You can set
+the title or artist to show what is currently playing on lockscreen controls for Windows, Mac Catalyst, iOS, and Android. You can set a local or
+remote URL with artwork for the lockscreen. It should be at least 1080P for best quality to be displayed. It must be a URL and be either <code>.jpg</code> or
+<code>.png</code></p>
+<pre><code class="lang-xaml">&lt;toolkit:MediaElement 
+    MetadataTitle=&quot;Title&quot;
+    MetadataArtist=&quot;Artist&quot;
+    MetadataArtworkUrl=&quot;http://www.myownpersonaldomain.com/image.jpg&quot; /&gt;
+</code></pre>
+<pre><code class="lang-csharp">    MediaElement.MetadataTitle=&quot;Title&quot;;
+    MediaElement.MetadataArtist=&quot;Artist&quot;;
+    MediaElement.MetadataArtworkUrl=&quot;http://www.myownpersonaldomain.com/image.jpg&quot;;
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>You can set the metadata in either XAML or code behind. If you are setting it in code behind you need to set the source in code behind. The source should
+be set last. If you set the metadata in XAML or in constructor this note can be safely ignored.</p>
+</div>
+<h3 id="using-textureview">Using TextureView</h3>
+<p>A <code>MediaElement</code> can use <code>TextureView</code> on Android Platform. The platform default behavior is to use <code>SurfaceView</code>. Using Texture View adds support
+to allow transparencies and other effects. This is set by changing the builder to use</p>
+<pre><code class="lang-csharp">.UseMauiCommunityToolkitMediaElement(static options =&gt; 
+{
+				options.SetDefaultAndroidViewType(AndroidViewType.TextureView);
+})
+</code></pre>
+<p>You can set <code>TextureView</code> for each media element you use as well. It can be set in <code>XAML</code> and codebehind. Using it this way will override the builder command <code>.UseMauiCommunityToolkitMediaElement()</code>.</p>
+<pre><code class="lang-csharp">var mediaElement = new MediaElement
+{
+    AndroidViewType = AndroidViewType.TextureView
+}
+</code></pre>
+<pre><code class="lang-xaml">&lt;toolkit:MediaElement AndroidViewType=&quot;TextureView&quot; /&gt;
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>We do not recommend using TextureView unless you have a specific need for it. It has possible performance related issues if enabled and is recommended only for those that need transparencies and other advanced features.</p>
+</div>
+<h3 id="play-local-media">Play local media</h3>
+<p>Local media can be played from the following sources:</p>
+<ul>
+<li>A resource embedded in the platform application, using the <code>embed://</code> URI scheme.</li>
+<li>Files that come from the app's local filesystem, using the <code>filesystem://</code> URI scheme.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The shorthand <code>embed://</code> and <code>filesystem://</code> only work from XAML. In code, please use <code>MediaSource.FromResource()</code> and <code>MediaSource.FromFile()</code> respectively. Using these methods, you can omit the the <code>embed://</code> and <code>filesystem://</code> prefixes. The rest of the path should be the same.</p>
+</div>
+<h3 id="play-media-embedded-in-the-app-package">Play media embedded in the app package</h3>
+<p>A <code>MediaElement</code> can play media files that are embedded in the app package, using the <code>embed://</code> URI scheme. Media files are embedded in the app package by placing them in the platform project.</p>
+<p>To enable a media file for playback from the local resources add the file to the <code>Resources/Raw</code> folder of your .NET MAUI project. When a file is added in the root, the URI would be <code>embed://MyFile.mp4</code>.</p>
+<p>You can also place files in sub folders. If <code>MyFile.mp4</code> would be in <code>Resources/Raw/MyVideos</code> then the URI to use it with <code>MediaElement</code> would be <code>embed://MyVideos/MyFile.mp4</code>.</p>
+<p>An example of how to use this syntax in XAML can be seen below.</p>
+<pre><code class="lang-xaml">&lt;toolkit:MediaElement Source=&quot;embed://MyFile.mp4&quot;
+              ShouldShowPlaybackControls=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="understand-mediasource-types">Understand MediaSource types</h2>
+<p>A <code>MediaElement</code> can play media by setting its <code>Source</code> property to a remote or local media file. The <code>Source</code> property is of type <code>MediaSource</code>, and this class defines three static methods:</p>
+<ul>
+<li><code>FromFile</code>, returns a <code>FileMediaSource</code> instance from a <code>string</code> argument.</li>
+<li><code>FromUri</code>, returns a <code>UriMediaSource</code> instance from a <code>Uri</code> argument.</li>
+<li><code>FromResource</code>, returns a <code>ResourceMediaSource</code> instance from a <code>string</code> argument.</li>
+</ul>
+<p>In addition, the <code>MediaSource</code> class also has implicit operators that return <code>MediaSource</code> instances from <code>string</code> and <code>Uri</code> arguments.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When the <code>Source</code> property is set in XAML, a type converter is invoked to return a <code>MediaSource</code> instance from a <code>string</code> or <code>Uri</code>.</p>
+</div>
+<p>The <code>MediaSource</code> class also has these derived classes:</p>
+<ul>
+<li><code>FileMediaSource</code>, which is used to specify a local media file from a <code>string</code>. This class has a <code>Path</code> property that can be set to a <code>string</code>. In addition, this class has implicit operators to convert a <code>string</code> to a <code>FileMediaSource</code> object, and a <code>FileMediaSource</code> object to a <code>string</code>.</li>
+<li><code>UriMediaSource</code>, which is used to specify a remote media file from a URI. This class has a <code>Uri</code> property that can be set to a <code>Uri</code>.</li>
+<li><code>ResourceMediaSource</code>, which is used to specify an embedded file that is provided through the app's resource files. This class has a <code>Path</code> property that can be set to a <code>string</code>.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When a <code>FileMediaSource</code> object is created in XAML, a type converter is invoked to return a <code>FileMediaSource</code> instance from a <code>string</code>.</p>
+</div>
+<h2 id="change-video-aspect-ratio">Change video aspect ratio</h2>
+<p>The <code>Aspect</code> property determines how video media will be scaled to fit the display area. By default, this property is set to the <code>AspectFit</code> enumeration member, but it can be set to any of the <a href="xref:Microsoft.Maui.Aspect"><code>Aspect</code></a> enumeration members:</p>
+<ul>
+<li><code>AspectFit</code> indicates that the video will be letterboxed, if required, to fit into the display area, while preserving the aspect ratio.</li>
+<li><code>AspectFill</code> indicates that the video will be clipped so that it fills the display area, while preserving the aspect ratio.</li>
+<li><code>Fill</code> indicates that the video will be stretched to fill the display area.</li>
+</ul>
+<h2 id="determine-mediaelement-status">Determine <code>MediaElement</code> status</h2>
+<p>The <code>MediaElement</code> class defines a read-only bindable property named <code>CurrentState</code>, of type <code>MediaElementState</code>. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.</p>
+<p>The <code>MediaElementState</code> enumeration defines the following members:</p>
+<ul>
+<li><code>None</code> indicates that the <code>MediaElement</code> contains no media.</li>
+<li><code>Opening</code> indicates that the <code>MediaElement</code> is validating and attempting to load the specified source.</li>
+<li><code>Buffering</code> indicates that the <code>MediaElement</code> is loading the media for playback. Its <code>Position</code> property does not advance during this state. If the <code>MediaElement</code> was playing video, it continues to display the last displayed frame.</li>
+<li><code>Playing</code> indicates that the <code>MediaElement</code> is playing the media source.</li>
+<li><code>Paused</code> indicates that the <code>MediaElement</code> does not advance its <code>Position</code> property. If the <code>MediaElement</code> was playing video, it continues to display the current frame.</li>
+<li><code>Stopped</code> indicates that the <code>MediaElement</code> contains media but it is not being played or paused. Its <code>Position</code> property is reset to 0 and does not advance.</li>
+<li><code>Failed</code> indicates that the <code>MediaElement</code> failed to load or play the media. This can occur while trying to load a new media item, when attempting to play the media item or when the media playback is interrupted due to a failure. Use the <code>MediaFailed</code> event to retrieve additional details.</li>
+</ul>
+<p>It's generally not necessary to examine the <code>CurrentState</code> property when using the <code>MediaElement</code> transport controls. However, this property becomes important when implementing your own transport controls.</p>
+<h2 id="implement-custom-transport-controls">Implement custom transport controls</h2>
+<p>The transport controls of a media player include the buttons that perform the functions <strong>Play</strong>, <strong>Pause</strong>, and <strong>Stop</strong>. These buttons are generally identified with familiar icons rather than text, and the <strong>Play</strong> and <strong>Pause</strong> functions are generally combined into one button.</p>
+<p>By default, the <code>MediaElement</code> playback controls are disabled. This enables you to control the <code>MediaElement</code> programmatically, or by supplying your own transport controls. In support of this, <code>MediaElement</code> includes <code>Play</code>, <code>Pause</code>, and <code>Stop</code> methods.</p>
+<p>The following XAML example shows a page that contains a <code>MediaElement</code> and custom transport controls:</p>
+<pre><code class="lang-xaml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+             x:Class=&quot;MediaElementDemos.CustomTransportPage&quot;
+             Title=&quot;Custom transport&quot;&gt;
+    &lt;Grid&gt;
+        ...
+        &lt;toolkit:MediaElement x:Name=&quot;mediaElement&quot;
+                      ShouldAutoPlay=&quot;False&quot;
+                      ... /&gt;
+        &lt;HorizontalStackLayout BindingContext=&quot;{x:Reference mediaElement}&quot;
+                     ...&gt;
+            &lt;Button Text=&quot;Play&quot;
+                    HorizontalOptions=&quot;Center&quot;
+                    Clicked=&quot;OnPlayPauseButtonClicked&quot;&gt;
+                &lt;Button.Triggers&gt;
+                    &lt;DataTrigger TargetType=&quot;Button&quot;
+                                 Binding=&quot;{Binding CurrentState}&quot;
+                                 Value=&quot;{x:Static toolkit:MediaElementState.Playing}&quot;&gt;
+                        &lt;Setter Property=&quot;Text&quot;
+                                Value=&quot;Pause&quot; /&gt;
+                    &lt;/DataTrigger&gt;
+                    &lt;DataTrigger TargetType=&quot;Button&quot;
+                                 Binding=&quot;{Binding CurrentState}&quot;
+                                 Value=&quot;{x:Static toolkit:MediaElementState.Buffering}&quot;&gt;
+                        &lt;Setter Property=&quot;IsEnabled&quot;
+                                Value=&quot;False&quot; /&gt;
+                    &lt;/DataTrigger&gt;
+                &lt;/Button.Triggers&gt;
+            &lt;/Button&gt;
+            &lt;Button Text=&quot;Stop&quot;
+                    HorizontalOptions=&quot;Center&quot;
+                    Clicked=&quot;OnStopButtonClicked&quot;&gt;
+                &lt;Button.Triggers&gt;
+                    &lt;DataTrigger TargetType=&quot;Button&quot;
+                                 Binding=&quot;{Binding CurrentState}&quot;
+                                 Value=&quot;{x:Static toolkit:MediaElementState.Stopped}&quot;&gt;
+                        &lt;Setter Property=&quot;IsEnabled&quot;
+                                Value=&quot;False&quot; /&gt;
+                    &lt;/DataTrigger&gt;
+                &lt;/Button.Triggers&gt;
+            &lt;/Button&gt;
+        &lt;/HorizontalStackLayout&gt;
+    &lt;/Grid&gt;
+&lt;/ContentPage&gt;
+</code></pre>
+<p>In this example, the custom transport controls are defined as <a href="xref:Microsoft.Maui.Controls.Button"><code>Button</code></a> objects. However, there are only two <code>Button</code> objects, with the first <code>Button</code> representing <strong>Play</strong> and <strong>Pause</strong>, and the second <code>Button</code> representing <strong>Stop</strong>. <a href="xref:Microsoft.Maui.Controls.DataTrigger"><code>DataTrigger</code></a> objects are used to enable and disable the buttons, and to switch the first button between <strong>Play</strong> and <strong>Pause</strong>. For more information about data triggers, see <a href="/dotnet/maui/fundamentals/triggers">.NET MAUI Triggers</a>.</p>
+<p>The code-behind file has the handlers for the <a href="xref:Microsoft.Maui.Controls.Button.Clicked"><code>Clicked</code></a> events:</p>
+<pre><code class="lang-csharp">void OnPlayPauseButtonClicked(object sender, EventArgs args)
+{
+    if (mediaElement.CurrentState == MediaElementState.Stopped ||
+        mediaElement.CurrentState == MediaElementState.Paused)
+    {
+        mediaElement.Play();
+    }
+    else if (mediaElement.CurrentState == MediaElementState.Playing)
+    {
+        mediaElement.Pause();
+    }
+}
+
+void OnStopButtonClicked(object sender, EventArgs args)
+{
+    mediaElement.Stop();
+}
+</code></pre>
+<p>The <strong>Play</strong> button can be pressed, once it becomes enabled, to begin playback. Pressing the <strong>Pause</strong> button results in playback pausing. Pressing the <strong>Stop</strong> button stops playback and returns the position of the media file to the beginning.</p>
+<h2 id="implement-a-custom-volume-control">Implement a custom volume control</h2>
+<p>Media playback controls implemented by each platform include a volume bar. This bar resembles a slider and shows the volume of the media. In addition, you can manipulate the volume bar to increase or decrease the volume.</p>
+<p>A custom volume bar can be implemented using a <a href="xref:Microsoft.Maui.Controls.Slider"><code>Slider</code></a>, as shown in the following example:</p>
+<pre><code class="lang-xaml">&lt;StackLayout&gt;
+    &lt;toolkit:MediaElement ShouldAutoPlay=&quot;False&quot;
+                          Source=&quot;{StaticResource AdvancedAsync}&quot; /&gt;
+    &lt;Slider Maximum=&quot;1.0&quot;
+            Minimum=&quot;0.0&quot;
+            Value=&quot;{Binding Volume}&quot;
+            Rotation=&quot;270&quot;
+            WidthRequest=&quot;100&quot; /&gt;
+&lt;/StackLayout&gt;
+</code></pre>
+<p>In this example, the <a href="xref:Microsoft.Maui.Controls.Slider"><code>Slider</code></a> data binds its <code>Value</code> property to the <code>Volume</code> property of the <code>MediaElement</code>. This is possible because the <code>Volume</code> property uses a <code>TwoWay</code> binding. Therefore, changing the <code>Value</code> property will result in the <code>Volume</code> property changing.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <code>Volume</code> property has a validation callback that ensures that its value is greater than or equal to 0.0, and less than or equal to 1.0.</p>
+</div>
+<p>For more information about using a <a href="xref:Microsoft.Maui.Controls.Slider"><code>Slider</code></a> see, <a href="/dotnet/maui/user-interface/controls/slider">.NET MAUI Slider</a></p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aspect</td>
+<td><a href="xref:Microsoft.Maui.Aspect">Aspect</a></td>
+<td>Determines the scaling mode for the (visual) media that is currently loaded. This is a bindable property.</td>
+<td><code>Aspect.AspectFit</code></td>
+</tr>
+<tr>
+<td>CurrentState</td>
+<td><code>MediaElementState</code></td>
+<td>Indicates the current status of the control. This is a read-only, bindable property.</td>
+<td><code>MediaElementState.None</code></td>
+</tr>
+<tr>
+<td>Duration</td>
+<td><code>TimeSpan</code></td>
+<td>Indicates the duration of the currently opened media. This is a read-only, bindable property.</td>
+<td><code>TimeSpan.Zero</code></td>
+</tr>
+<tr>
+<td>Position</td>
+<td><code>TimeSpan</code></td>
+<td>Describes the current progress through the media's playback time. This is a read-only, bindable property. If you want to set the <code>Position</code> use the <code>SeekTo()</code> method.</td>
+<td><code>TimeSpan.Zero</code></td>
+</tr>
+<tr>
+<td>ShouldAutoPlay</td>
+<td><code>bool</code></td>
+<td>Indicates whether media playback will begin automatically when the <code>Source</code> property is set. This is a bindable property.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>ShouldLoopPlayback</td>
+<td><code>bool</code></td>
+<td>Describes whether the currently loaded media source should resume playback from the start after reaching its end. This is a bindable property.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>ShouldKeepScreenOn</td>
+<td><code>bool</code></td>
+<td>Determines whether the device screen should stay on during media playback. This is a bindable property.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>ShouldMute</td>
+<td><code>bool</code></td>
+<td>Determines whether the audio is currently muted. This is a bindable property.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>ShouldShowPlaybackControls</td>
+<td><code>bool</code></td>
+<td>Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Source</td>
+<td><code>MediaSource?</code></td>
+<td>The source of the media loaded into the control.</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>Speed</td>
+<td><code>double</code></td>
+<td>Determines the playback speed of the media. This is a bindable property</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>MediaHeight</td>
+<td><code>int</code></td>
+<td>The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content.</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>MediaWidth</td>
+<td><code>int</code></td>
+<td>The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content.</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Volume</td>
+<td><code>double</code></td>
+<td>Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property.</td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MediaOpened</td>
+<td>Occurs when the media stream has been validated and opened.</td>
+</tr>
+<tr>
+<td>MediaEnded</td>
+<td>Occurs when the <code>MediaElement</code> finishes playing its media.</td>
+</tr>
+<tr>
+<td>MediaFailed</td>
+<td>Occurs when there's an error associated with the media source.</td>
+</tr>
+<tr>
+<td>PositionChanged</td>
+<td>Occurs when the <code>Position</code> property value has changed.</td>
+</tr>
+<tr>
+<td>SeekCompleted</td>
+<td>Occurs when the seek point of a requested seek operation is ready for playback.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Play</td>
+<td>Starts playing the loaded media.</td>
+</tr>
+<tr>
+<td>Pause</td>
+<td>Pauses playback of the current media.</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>Stops playback and resets the position of the current media.</td>
+</tr>
+<tr>
+<td>SeekTo</td>
+<td>Takes a <code>TimeSpan</code> value to set the <code>Position</code> property to and takes a <code>CancellationToken</code> to cancel the <code>Task</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>You can find examples of this control in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/MediaElement">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>MediaElement</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.MediaElement/MediaElement.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+<h2 id="related-links">Related links</h2>
+<ul>
+<li><a href="/dotnet/maui/fundamentals/triggers">.NET MAUI Triggers</a></li>
+<li><a href="/dotnet/maui/user-interface/controls/slider">.NET MAUI Slider</a></li>
+<li><a href="https://exoplayer.dev/supported-formats.html">Android ExoPlayer: Supported media formats</a></li>
+<li><a href="https://stackoverflow.com/a/45898816/1506387">iOS: Supported media formats</a></li>
+<li><a href="/windows/uwp/audio-video-camera/supported-codecs">Windows: Supported codecs</a></li>
+<li><a href="https://github.com/Baseflow/ExoPlayerXamarin">Android ExoPlayer Bindings</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/views/MediaElement.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>ThrowHelper class </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="ThrowHelper class ">
+    
+    <meta name="description" content="Helper methods to efficiently throw exceptions">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="throwhelper-class">ThrowHelper class</h1>
+
+<p>The <a href="/dotnet/api/microsoft.toolkit.diagnostics.ThrowHelper">ThrowHelper class</a> is a helper type that can be used to efficiently throw exceptions. It's meant to support the <a href="Guard.html">Guard</a> APIs, and it should primarily be used in situations where developers need fine-grained control over the exception types being thrown, or over the exact exception message to include.</p>
+<blockquote>
+<p><strong>Platform APIs:</strong> <a href="/dotnet/api/microsoft.toolkit.diagnostics.ThrowHelper"><code>ThrowHelper</code></a>, <a href="/dotnet/api/microsoft.toolkit.diagnostics.guard"><code>Guard</code></a></p>
+</blockquote>
+<h2 id="syntax">Syntax</h2>
+<p>The <code>ThrowHelper</code> class exposes a series of <code>ThrowException</code> APIs that offer a 1:1 mapping to the constructors of all the available exception types. These methods are meant to be used in place of the classic <code>throw new Exception(...)</code> statement in code, to create smaller and more efficient code. Put simply:</p>
+<pre><code class="lang-csharp">// Replace this...
+throw new InvalidOperationException(&quot;Some custom message from my library&quot;);
+
+// ...with this
+ThrowHelper.ThrowInvalidOperationException(&quot;Some custom message from my library&quot;);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This change also results in a slightly different stack trace, as the exception is thrown by this helper method instead of directly by the original caller. The practical result is still the same as throwing an exception directly.</p>
+</div>
+<p>The <code>Guard</code> APIs provide an easy-to-use abstraction over many common checks that might need to be performed, so it's recommended to first try to see if there is a <code>Guard</code> API that can be used, and only fall back on using <code>ThrowHelper</code> if that's not the case. As mentioned before, this might be if your library needs to throw a specific exception type not present in the <code>Guard</code> APIs, or if you need full control on the exact arguments being included in the exception being thrown.</p>
+<p>There are also generic overloads for all the available APIs, which can be used within expressions that require a return type of a specific type (for example, a switch expression). These overloads never return any value, but the return type is declared to allow the C# compiler to accept the usage of these APIs within expressions that wouldn't work with a method returning <code>void</code>. Consider the following example:</p>
+<pre><code class="lang-csharp">int result = text switch
+{
+    &quot;cat&quot; =&gt; 0,
+    &quot;dog&quot; =&gt; 1,
+    _ =&gt; ThrowHelper.ThrowArgumentException&lt;int&gt;(nameof(text))
+};
+</code></pre>
+<p>Here, <code>ThrowHelper</code> is used within an expression that requires a return type of type <code>int</code>, so you can use the generic overload of <code>ThrowArgumentException</code> to make this possible. The generic overload also works with patterns such as ternary operators (<code>x ? a : b</code>), null-coalescing operators (<code>x = a ?? b</code>), and null-coalescing assignment operators (<code>x ??= y</code>).</p>
+<h2 id="methods">Methods</h2>
+<p>There are lots of different methods and overloads in the <code>ThrowHelper</code> class. They provide access to the following exceptions (and map all their public constructors):</p>
+<ul>
+<li><a href="/dotnet/api/system.ArrayTypeMismatchException">ArrayTypeMismatchException</a></li>
+<li><a href="/dotnet/api/system.ArgumentException">ArgumentException</a></li>
+<li><a href="/dotnet/api/system.ArgumentNullException">ArgumentNullException</a></li>
+<li><a href="/dotnet/api/system.ArgumentOutOfRangeException">ArgumentOutOfRangeException</a></li>
+<li><a href="/dotnet/api/system.runtime.interopservices.COMException">COMException</a></li>
+<li><a href="/dotnet/api/system.runtime.interopservices.ExternalException">ExternalException</a></li>
+<li><a href="/dotnet/api/system.FormatException">FormatException</a></li>
+<li><a href="/dotnet/api/system.InsufficientMemoryException">InsufficientMemoryException</a></li>
+<li><a href="/dotnet/api/system.io.InvalidDataException">InvalidDataException</a></li>
+<li><a href="/dotnet/api/system.InvalidOperationException">InvalidOperationException</a></li>
+<li><a href="/dotnet/api/system.threading.LockRecursionException">LockRecursionException</a></li>
+<li><a href="/dotnet/api/system.MissingFieldException">MissingFieldException</a></li>
+<li><a href="/dotnet/api/system.MissingMemberException">MissingMemberException</a></li>
+<li><a href="/dotnet/api/system.MissingMethodException">MissingMethodException</a></li>
+<li><a href="/dotnet/api/system.NotSupportedException">NotSupportedException</a></li>
+<li><a href="/dotnet/api/system.ObjectDisposedException">ObjectDisposedException</a></li>
+<li><a href="/dotnet/api/system.OperationCanceledException">OperationCanceledException</a></li>
+<li><a href="/dotnet/api/system.PlatformNotSupportedException">PlatformNotSupportedException</a></li>
+<li><a href="/dotnet/api/system.threading.SynchronizationLockException">SynchronizationLockException</a></li>
+<li><a href="/dotnet/api/system.TimeoutException">TimeoutException</a></li>
+<li><a href="/dotnet/api/system.UnauthorizedAccessException">UnauthorizedAccessException</a></li>
+<li><a href="/dotnet/api/system.componentmodel.Win32Exception">Win32Exception</a></li>
+</ul>
+<p>You can see the available constructors for each of these exception types from the linked docs. The respective <code>ThrowHelper</code> APIs offer a series of overloads corresponding to the existing constructors for that specified type. Each API is simply named &quot;Throw&quot; + the exception type.</p>
+<h2 id="technical-details">Technical details</h2>
+<p>The following section describes the impact of switching to <code>ThrowHelper</code> APIs over the standard <code>throw new Exception</code> statements with respect to the codegen. As mentioned previously, knowing these details isn't necessary to use these APIs, but for developers familiar with how the runtime works or with how the JIT processes code during execution, this section provides a clearer explanation of why using the <code>ThrowHelper</code> pattern results in more compact and faster code.</p>
+<p>First, consider the code that the JIT compiler actually produces in these situations. This example uses the code generated on .NET Core 3.1 x64 as a reference, but the same concept applies to other runtimes and architectures as well.</p>
+<p>Consider this simple type:</p>
+<pre><code class="lang-csharp">public struct ExceptionTest
+{
+    private int number;
+
+    public int GetValueIfNotZeroOrThrow()
+    {
+        if (number == 0)
+        {
+            throw new InvalidOperationException(&quot;The value must be != 0&quot;);
+        }
+
+        return number;
+    }
+}
+</code></pre>
+<p>This type is only meant to showcase the use of <code>ThrowHelper</code> APIs. It checks the value of the <code>number</code> field and throws if it's 0. Inspect the generated assembly code:</p>
+<pre><code class="lang-x86asm">ExceptionTest.GetValueIfNotZeroOrThrow()
+    mov eax, [rcx]              ; read number
+    test eax, eax               ; if (number != 0)
+    je short L0011              ; jump to faulting path (if == 0)
+    ret                         ; return (number is already in eax)
+    mov rcx, 0x7ff95cbaca80     ; exception setup...
+    call 0x00007ff9bc6178f0
+    mov rsi, rax
+    mov ecx, 1
+    mov rdx, 0x7ff96590c080
+    call 0x00007ff9bc7403e0
+    mov rdx, rax
+    mov rcx, rsi
+    call System.InvalidOperationException..ctor(System.String)
+    mov rcx, rsi
+    call 0x00007ff9bc5db3a0
+    int3 ; finally throw the exception
+</code></pre>
+<p>You can see the code contains a lot of lines just dedicated to creating the exception being thrown. This can cause a large increase in the code size whenever you have many of these checks, because it reduces the efficiency of the instruction cache. In general, you want the size of your methods to be as small as possible.</p>
+<p>The previous method, rewritten using the <code>ThrowHelper</code> APIs, looks like this:</p>
+<pre><code class="lang-csharp">public int GetValueIfNotZeroOrThrow()
+{
+    if (number == 0)
+    {
+        ThrowHelper.ThrowInvalidOperationException(&quot;The value must be != 0&quot;);
+    }
+
+    return number;
+}
+</code></pre>
+<p>Which results in the following assembly:</p>
+<pre><code class="lang-x86asm">ExceptionTest.GetValueIfNotZeroOrThrow2()
+    mov eax, [rcx]          ; load number
+    test eax, eax           ; if (number != 0)
+    je short L000f          ; faulting path (if == 0)
+    ret                     ; return number (already in eax)
+    mov rcx, 0x23435d85b98  ; load the exception message
+    mov rcx, [rcx]
+    call ThrowHelper.ThrowInvalidOperationException(System.String) ; ThrowHelper call!
+    int3 ; return with fault
+</code></pre>
+<p>You can see that the resulting assembly is much smaller than before. The code to create the exception is moved out of the method, which also means you can reuse the same code from the <code>ThrowHelper</code> APIs, with different arguments, instead of inlining the exception throw in every method. Here there are only two <code>mov</code> instructions to load the <code>string</code> with the exception type, and then it jumps to the <code>ThrowHelper.ThrowInvalidOperationException</code> method. The JIT compiler is able to see that that method always throws, so it never inlines that call. And it makes sure to rewrite the conditional branches in the best way possible (specifically, knowing which branch is supposed to be executed, without faulting).</p>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Diagnostics.UnitTests">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/diagnostics/ThrowHelper.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

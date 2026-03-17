@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>TouchBehavior - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="TouchBehavior - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The TouchBehavior is a Behavior that provides the ability to interact with any VisualElement based on touch, mouse click and hover events.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="touchbehavior">TouchBehavior</h1>
+
+<p>The <code>TouchBehavior</code> is a <code>Behavior</code> that provides the ability to interact with any <code>VisualElement</code> based on touch, mouse click and hover events. The <code>TouchBehavior</code> implementation makes it possible to customize many different visual properties of the <code>VisualElement</code> that it is attached to such as the <code>BackgroundColor</code>, <code>Opacity</code>, <code>Rotation</code> and <code>Scale</code>, as well as many other properties.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The toolkit also provides the <a href="image-touch-behavior.html"><code>ImageTouchBehavior</code></a> implementation that extends this <code>TouchBehavior</code> by also providing the ability to customize the <code>Source</code> of an <code>Image</code> element.</p>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>The .NET MAUI Community Toolkit Behaviors do not set the <code>BindingContext</code> of a behavior, because behaviors can be shared and applied to multiple controls through styles. For more information refer to <a href="/dotnet/maui/fundamentals/behaviors#net-maui-behaviors">.NET MAUI Behaviors</a></p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<p>The following examples show how to add the <code>TouchBehavior</code> to a parent <code>HorizontalStackLayout</code> and perform the following animations when a user touches or clicks on the <code>HorizontalStackLayout</code> or any of its children:</p>
+<ul>
+<li>animates over a period of 250 milliseconds</li>
+<li>applies the <code>CubicInOut</code> <a href="/dotnet/maui/user-interface/animation/easing"><code>Easing</code></a></li>
+<li>changes the <code>Opacity</code> to 0.6</li>
+<li>changes the <code>Scale</code> to 0.8</li>
+</ul>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-touchbehavior">Using the TouchBehavior</h4>
+<pre><code class="lang-xaml">&lt;ContentPage 
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.Behaviors.TouchBehaviorPage&quot;&gt;
+
+   &lt;HorizontalStackLayout HorizontalOptions=&quot;Center&quot; VerticalOptions=&quot;Center&quot;&gt;
+        &lt;HorizontalStackLayout.Behaviors&gt;
+            &lt;toolkit:TouchBehavior
+                DefaultAnimationDuration=&quot;250&quot;
+                DefaultAnimationEasing=&quot;{x:Static Easing.CubicInOut}&quot;
+                PressedOpacity=&quot;0.6&quot;
+                PressedScale=&quot;0.8&quot; /&gt;
+        &lt;/HorizontalStackLayout.Behaviors&gt;
+
+        &lt;ContentView
+            HeightRequest=&quot;100&quot;
+            WidthRequest=&quot;10&quot;
+            BackgroundColor=&quot;Gold&quot; /&gt;
+        &lt;Label Text=&quot;The entire layout receives touches&quot; VerticalOptions=&quot;Center&quot; LineBreakMode=&quot;TailTruncation&quot;/&gt;
+        &lt;ContentView
+            HeightRequest=&quot;100&quot;
+            WidthRequest=&quot;10&quot;
+            BackgroundColor=&quot;Gold&quot; /&gt;
+    &lt;/HorizontalStackLayout&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<p>The <code>TouchBehavior</code> can be used as follows in C#:</p>
+<pre><code class="lang-csharp">class TouchBehaviorPage : ContentPage
+{
+    public TouchBehaviorPage()
+    {
+        var firstContent = new ContentView
+        {
+            HeightRequest = 100,
+            WidthRequest = 10,
+            BackgroundColor = Colors.Gold
+        };
+
+        var label = new Label
+        {
+            Text = &quot;The entire layout receives touches&quot;,
+            VerticalOptions = LayoutOptions.Center,
+            LineBreakMode = LineBreakMode.TailTruncation
+        };
+
+        var secondContent = new ContentView
+        {
+            HeightRequest = 100,
+            WidthRequest = 10,
+            BackgroundColor = Colors.Gold
+        };
+
+        var layout = new HorizontalStackLayout
+        {
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Center,
+            Children = 
+            {
+                firstContent,
+                label,
+                secondContent
+            }
+        }
+
+        var touchBehavior = new TouchBehavior
+        {
+            DefaultAnimationDuration = 250,
+            DefaultAnimationEasing = Easing.CubicInOut,
+            PressedOpacity = 0.6,
+            PressedScale = 0.8
+        };
+
+        layout.Behaviors.Add(touchBehavior);
+
+        Content = layout;
+    }
+}
+</code></pre>
+<h3 id="c-markup">C# Markup</h3>
+<p>Our <a href="../markup/markup.html"><code>CommunityToolkit.Maui.Markup</code></a> package provides a much more concise way to use this <code>Behavior</code> in C#.</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Markup;
+
+class TouchBehaviorPage : ContentPage
+{
+    public TouchBehaviorPage()
+    {
+        Content = new HorizontalStackLayout
+        {
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Center,
+            Children = 
+            {
+                new ContentView()
+                    .Size(10, 100)
+                    .BackgroundColor(Colors.Gold),
+
+                new Label
+                {
+                    LineBreakMode = LineBreakMode.TailTruncation
+                }
+                    .Text(&quot;The entire layout receives touches&quot;
+                    .CenterVertical(),
+
+                new ContentView()
+                    .Size(10, 100)
+                    .BackgroundColor(Colors.Gold)
+            }
+        }
+            .Behaviors(new TouchBehavior
+            {
+                DefaultAnimationDuration = 250,
+                DefaultAnimationEasing = Easing.CubicInOut,
+                PressedOpacity = 0.6,
+                PressedScale = 0.8
+            });
+    }
+}
+</code></pre>
+<h2 id="additional-examples">Additional examples</h2>
+<h3 id="handling-hover-interaction">Handling hover interaction</h3>
+<p>The <code>TouchBehavior</code> provides the ability to customize the properties of the attached <code>VisualElement</code> based on whether the mouse it hovering over the element.</p>
+<p>The following example shows how to attach the <code>TouchBehavior</code> to a <code>HorizontalStackLayout</code> and change the <code>BackgroundColor</code> and <code>Scale</code> of the <code>HorizontalStackLayout</code> when a user hovers their mouse cursor over the layout and any child elements.</p>
+<pre><code class="lang-xaml">&lt;HorizontalStackLayout
+    Padding=&quot;20&quot;
+    Background=&quot;Black&quot;
+    HorizontalOptions=&quot;Center&quot;&gt;
+    &lt;HorizontalStackLayout.Behaviors&gt;
+        &lt;toolkit:TouchBehavior
+            HoveredBackgroundColor=&quot;{StaticResource Gray900}&quot;
+            HoveredScale=&quot;1.2&quot; /&gt;
+    &lt;/HorizontalStackLayout.Behaviors&gt;
+&lt;/HorizontalStackLayout&gt;
+</code></pre>
+<h3 id="handling-long-press-interaction">Handling long press interaction</h3>
+<p>The <code>TouchBehavior</code> provides the ability to handle the scenario when a user presses for a long period of time. This period of time can be defined by the <code>LongPressDuration</code> which is in units of milliseconds.</p>
+<p>The following example shows how to add the <code>TouchBehavior</code> to a <code>HorizontalStackLayout</code>, bind the <code>LongPressCommand</code> to the <code>IncreaseLongPressCountCommand</code> defined in the backing view model and set the <code>LongPressDuration</code> to 750 milliseconds.</p>
+<pre><code class="lang-xaml">&lt;HorizontalStackLayout
+    Padding=&quot;20&quot;
+    Background=&quot;Black&quot;
+    HorizontalOptions=&quot;Center&quot;
+    x:Name=&quot;TouchableHorizontalStackLayout&quot;&gt;
+    &lt;HorizontalStackLayout.Behaviors&gt;
+        &lt;toolkit:TouchBehavior
+            BindingContext=&quot;{Binding Source={x:Reference Page}, Path=BindingContext, x:DataType=ContentPage}&quot;
+            LongPressDuration=&quot;750&quot;
+            LongPressCommand=&quot;{Binding Source={x:Reference Page}, Path=BindingContext.IncreaseLongPressCountCommand, x:DataType=ContentPage}&quot;/&gt;
+    &lt;/HorizontalStackLayout.Behaviors&gt;
+&lt;/HorizontalStackLayout&gt;
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command</td>
+<td><code>ICommand</code></td>
+<td>Gets or sets the <code>ICommand</code> to invoke when the user has completed a touch gesture.</td>
+</tr>
+<tr>
+<td>CommandParameter</td>
+<td><code>object</code></td>
+<td>Gets or sets the parameter to pass to the <code>Command</code> property.</td>
+</tr>
+<tr>
+<td>CurrentHoverState</td>
+<td><code>HoverState</code></td>
+<td>Gets or sets the current <code>HoverState</code> of the behavior.</td>
+</tr>
+<tr>
+<td>CurrentHoverStatus</td>
+<td><code>HoverStatus</code></td>
+<td>Gets or sets the current <code>HoverStatus</code> of the behavior.</td>
+</tr>
+<tr>
+<td>CurrentInteractionStatus</td>
+<td><code>TouchInteractionStatus</code></td>
+<td>Gets or sets the current <code>TouchInteractionStatus</code> of the behavior.</td>
+</tr>
+<tr>
+<td>CurrentTouchState</td>
+<td><code>TouchState</code></td>
+<td>Gets or sets the current <code>TouchState</code> of the behavior.</td>
+</tr>
+<tr>
+<td>CurrentTouchStatus</td>
+<td><code>TouchStatus</code></td>
+<td>Gets or sets the current <code>TouchStatus</code> of the behavior.</td>
+</tr>
+<tr>
+<td>DefaultAnimationDuration</td>
+<td><code>int</code></td>
+<td>Gets or sets the duration of the animation when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultAnimationEasing</td>
+<td><code>Easing</code></td>
+<td>Gets or sets the easing of the animation when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultBackgroundColor</td>
+<td><code>Color</code></td>
+<td>Gets or sets the background color of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultOpacity</td>
+<td><code>double</code></td>
+<td>Gets or sets the opacity of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultRotation</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around both the X and Y axes of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultRotationX</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around the X axis of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultRotationY</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around the Y axis of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultScale</td>
+<td><code>double</code></td>
+<td>Gets or sets the scale of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultTranslationX</td>
+<td><code>double</code></td>
+<td>Gets or sets the X translation of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DefaultTranslationY</td>
+<td><code>double</code></td>
+<td>Gets or sets the Y translation of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Default</code>.</td>
+</tr>
+<tr>
+<td>DisallowTouchThreshold</td>
+<td><code>int</code></td>
+<td>Gets or sets the threshold for disallowing touch.</td>
+</tr>
+<tr>
+<td>HoveredAnimationDuration</td>
+<td><code>int</code></td>
+<td>Gets or sets the duration of the animation when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredAnimationEasing</td>
+<td><code>Easing</code></td>
+<td>Gets or sets the easing of the animation when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredBackgroundColor</td>
+<td><code>Color</code></td>
+<td>Gets or sets the background color of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredOpacity</td>
+<td><code>double</code></td>
+<td>Gets or sets the opacity of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredRotation</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around both the X and Y axes of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredRotationX</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around the X axis of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredRotationY</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around the Y axis of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredScale</td>
+<td><code>double</code></td>
+<td>Gets or sets the scale of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredTranslationX</td>
+<td><code>double</code></td>
+<td>Gets or sets the X translation of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>HoveredTranslationY</td>
+<td><code>double</code></td>
+<td>Gets or sets the Y translation of the element when the <code>CurrentHoverState</code> property is <code>HoverState.Hovered</code>.</td>
+</tr>
+<tr>
+<td>IsEnabled</td>
+<td><code>bool</code></td>
+<td>Gets or sets a value indicating whether the behavior is enabled.</td>
+</tr>
+<tr>
+<td>LongPressCommand</td>
+<td><code>ICommand</code></td>
+<td>Gets or sets the <code>ICommand</code> to invoke when the user has completed a long press.</td>
+</tr>
+<tr>
+<td>LongPressCommandParameter</td>
+<td><code>object</code></td>
+<td>Gets or sets the parameter to pass to the <code>LongPressCommand</code> property.</td>
+</tr>
+<tr>
+<td>LongPressDuration</td>
+<td><code>int</code></td>
+<td>Gets or sets the duration in milliseconds required to trigger the long press gesture.</td>
+</tr>
+<tr>
+<td>PressedAnimationDuration</td>
+<td><code>int</code></td>
+<td>Gets or sets the duration of the animation when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedAnimationEasing</td>
+<td><code>Easing</code></td>
+<td>Gets or sets the easing of the animation when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedBackgroundColor</td>
+<td><code>Color</code></td>
+<td>Gets or sets the background color of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedOpacity</td>
+<td><code>double</code></td>
+<td>Gets or sets the opacity of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedRotation</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around both the X and Y axes of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedRotationX</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around the X axis of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedRotationY</td>
+<td><code>double</code></td>
+<td>Gets or sets the rotation around the Y axis of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedScale</td>
+<td><code>double</code></td>
+<td>Gets or sets the scale of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedTranslationX</td>
+<td><code>double</code></td>
+<td>Gets or sets the X translation of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>PressedTranslationY</td>
+<td><code>double</code></td>
+<td>Gets or sets the Y translation of the element when the <code>CurrentTouchState</code> property is <code>TouchState.Pressed</code>.</td>
+</tr>
+<tr>
+<td>ShouldMakeChildrenInputTransparent</td>
+<td><code>bool</code></td>
+<td>Gets or sets a value indicating whether the children of the element should be made input transparent.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CurrentTouchStateChanged</code></td>
+<td>Fires when <code>CurrentTouchState</code> changes.</td>
+</tr>
+<tr>
+<td><code>CurrentTouchStatusChanged</code></td>
+<td>Fires when <code>CurrentTouchStatus</code> changes.</td>
+</tr>
+<tr>
+<td><code>HoverStateChanged</code></td>
+<td>Fires when <code>CurrentHoverState</code> changes.</td>
+</tr>
+<tr>
+<td><code>HoverStatusChanged</code></td>
+<td>Fires when <code>CurrentHoverStatus</code> changes.</td>
+</tr>
+<tr>
+<td><code>InteractionStatusChanged</code></td>
+<td>Fires when <code>CurrentInteractionStatus</code> changes.</td>
+</tr>
+<tr>
+<td><code>LongPressCompleted</code></td>
+<td>Fires when a long press gesture has completed.</td>
+</tr>
+<tr>
+<td><code>TouchGestureCompleted</code></td>
+<td>Fires when a touch gesture has completed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this behavior in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Behaviors/TouchBehaviorPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>TouchBehavior</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Behaviors/TouchBehavior.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+<h2 id="migrating-from-xamarin-community-toolkit">Migrating From Xamarin Community Toolkit</h2>
+<p>In the <a href="https://github.com/xamarin/XamarinCommunityToolkit">Xamarin Community Toolkit</a>, there was the <a href="/dotnet/api/xamarin.communitytoolkit.effects.toucheffect?view=xamarin-community-toolkit-sdk&amp;preserve-view=true"><code>TouchEffect</code></a> if you are upgrading an app from Xamarin.Forms to .NET MAUI there are some breaking changes that you should be aware of:</p>
+<ol>
+<li><a href="#api-name-changes">API Name Changes</a></li>
+<li><a href="#touchbehavior-is-now-implemented-as-a-platformbehavior">TouchBehavior is now implemented as a <code>PlatformBehavior</code></a></li>
+</ol>
+<h3 id="api-name-changes">API Name Changes</h3>
+<table>
+<thead>
+<tr>
+<th>Name In Xamarin Community Toolkit</th>
+<th>Name In MAUI Community Toolkit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TouchEffect</td>
+<td>TouchBehavior</td>
+</tr>
+<tr>
+<td>NormalBackgroundColor</td>
+<td>DefaultBackgroundColor</td>
+</tr>
+<tr>
+<td>NormalScale</td>
+<td>DefaultScale</td>
+</tr>
+<tr>
+<td>NormalOpacity</td>
+<td>DefaultOpacity</td>
+</tr>
+<tr>
+<td>NormalTranslationX</td>
+<td>DefaultTranslationX</td>
+</tr>
+<tr>
+<td>NormalTranslationY</td>
+<td>DefaultTranslationY</td>
+</tr>
+<tr>
+<td>NormalRotation</td>
+<td>DefaultRotation</td>
+</tr>
+<tr>
+<td>NormalRotationX</td>
+<td>DefaultRotationX</td>
+</tr>
+<tr>
+<td>NormalRotationY</td>
+<td>DefaultRotationY</td>
+</tr>
+<tr>
+<td>NormalAnimationDuration</td>
+<td>DefaultAnimationDuration</td>
+</tr>
+<tr>
+<td>NormalAnimationEasing</td>
+<td>DefaultAnimationEasing</td>
+</tr>
+<tr>
+<td>NormalBackgroundImageSource</td>
+<td>DefaultImageSource (Moved to <code>ImageTouchBehavior</code>)</td>
+</tr>
+<tr>
+<td>NormalBackgroundImageAspect</td>
+<td>DefaultImageAspect (Moved to  <code>ImageTouchBehavior</code> )</td>
+</tr>
+</tbody>
+</table>
+<h3 id="touchbehavior-is-now-implemented-as-a-platformbehavior">TouchBehavior is now implemented as a <code>PlatformBehavior</code></h3>
+<p>In the Xamarin Community Toolkit the <code>TouchEffect</code> was implemented as an <code>AttachedEffect</code>. To use the effect you would use the attached properties and apply to any <code>VisualElement</code></p>
+<p>In .NET MAUI the <code>TouchBehavior</code> is implemented as a <code>PlatformBehavior</code> which is now applied to the elements behavior collection, see <a href="/dotnet/maui/fundamentals/behaviors#platform-behaviors">Platform Behaviors</a> for more information.</p>
+<blockquote>
+<p>Note: By default in .NET MAUI <code>PlatformBehavior</code>s will not set the <code>BindingContext</code> property, this is because Behaviors can be shared in styles. The <code>TouchBehavior</code> will set the <code>BindingContext</code> property equal to the <code>VisualElement</code> it is applied to. This means that you should <em>not</em> share the <code>TouchBehavior</code> between elements via styles.</p>
+</blockquote>
+<p>Below is an example of a <code>TouchEffect</code> being applied to a view in Xamarin.Forms:</p>
+<!-- markdownlint-disable MD025 -->
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_toucheffect-xaml" role="tab" aria-controls="tabpanel_1_toucheffect-xaml" data-tab="toucheffect-xaml" tabindex="0" aria-selected="true">XAML</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_toucheffect-csharp" role="tab" aria-controls="tabpanel_1_toucheffect-csharp" data-tab="toucheffect-csharp" tabindex="-1">C#</a>
+</li>
+</ul>
+<section id="tabpanel_1_toucheffect-xaml" role="tabpanel" data-tab="toucheffect-xaml">
+
+<pre><code class="lang-xaml">&lt;StackLayout Orientation=&quot;Horizontal&quot;
+            HorizontalOptions=&quot;CenterAndExpand&quot;
+            xct:TouchEffect.AnimationDuration=&quot;250&quot;
+            xct:TouchEffect.AnimationEasing=&quot;{x:Static Easing.CubicInOut}&quot;
+            xct:TouchEffect.PressedScale=&quot;0.8&quot;
+            xct:TouchEffect.PressedOpacity=&quot;0.6&quot;
+            xct:TouchEffect.Command=&quot;{Binding Command}&quot;&gt;
+    &lt;BoxView Color=&quot;Gold&quot; /&gt;
+    &lt;Label Text=&quot;The entire layout receives touches&quot; /&gt;
+    &lt;BoxView Color=&quot;Gold&quot;/&gt;
+&lt;/StackLayout&gt;
+</code></pre>
+</section>
+<section id="tabpanel_1_toucheffect-csharp" role="tabpanel" data-tab="toucheffect-csharp" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">var stackLayout = new StackLayout()
+{
+    HorizontalOptions = LayoutOptions.CenterAndExpand,
+    Orientation = StackOrientation.Horizontal,
+    Children =
+    {
+        new BoxView() { Color = Color.Gold, },
+        new Label() { Text = &quot;The entire layout receives touches&quot;, },
+        new BoxView() { Color = Color.Gold, },
+    }
+};
+
+TouchEffect.SetAnimationDuration(stackLayout, 250);
+TouchEffect.SetAnimationEasing(stackLayout, Easing.CubicInOut);
+TouchEffect.SetPressedScale(stackLayout, 0.8);
+TouchEffect.SetPressedOpacity(stackLayout, 0.6);
+TouchEffect.SetCommand(stackLayout, command);
+</code></pre>
+</section>
+</div>
+
+<p>The equivalent <code>TouchBehavior</code> in .NET MAUI would look like this:</p>
+<!-- markdownlint-disable MD025 -->
+<div class="tabGroup" id="tabgroup_2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2_touchbehavior-xaml" role="tab" aria-controls="tabpanel_2_touchbehavior-xaml" data-tab="touchbehavior-xaml" tabindex="0" aria-selected="true">XAML</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_touchbehavior-csharp" role="tab" aria-controls="tabpanel_2_touchbehavior-csharp" data-tab="touchbehavior-csharp" tabindex="-1">C#</a>
+</li>
+</ul>
+<section id="tabpanel_2_touchbehavior-xaml" role="tabpanel" data-tab="touchbehavior-xaml">
+
+<pre><code class="lang-xaml">&lt;HorizontalStackLayout 
+    HorizontalOptions=&quot;Center&quot; 
+    VerticalOptions=&quot;Center&quot;
+    x:Name=&quot;TouchableHorizontalLayout&quot;&gt;
+    &lt;HorizontalStackLayout.Behaviors&gt;
+        &lt;toolkit:TouchBehavior
+            DefaultAnimationDuration=&quot;250&quot;
+            DefaultAnimationEasing=&quot;{x:Static Easing.CubicInOut}&quot;
+            PressedOpacity=&quot;0.6&quot;
+            PressedScale=&quot;0.8&quot;
+            BindingContext=&quot;{Binding Path=BindingContext, Source={x:Reference TouchableHorizontalLayout}, x:DataType=HorizontalStackLayout}&quot;
+            Command=&quot;{Binding LayoutTappedCommand}&quot; /&gt;
+    &lt;/HorizontalStackLayout.Behaviors&gt;
+
+    &lt;ContentView
+        BackgroundColor=&quot;Gold&quot;
+        HeightRequest=&quot;100&quot;
+        WidthRequest=&quot;10&quot; /&gt;
+    &lt;Label
+        LineBreakMode=&quot;TailTruncation&quot;
+        Text=&quot;The entire layout receives touches&quot;
+        VerticalOptions=&quot;Center&quot; /&gt;
+    &lt;ContentView
+        BackgroundColor=&quot;Gold&quot;
+        HeightRequest=&quot;100&quot;
+        WidthRequest=&quot;10&quot; /&gt;
+&lt;/HorizontalStackLayout&gt;
+</code></pre>
+</section>
+<section id="tabpanel_2_touchbehavior-csharp" role="tabpanel" data-tab="touchbehavior-csharp" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">var stackLayout = new HorizontalStackLayout()
+{
+    HorizontalOptions = LayoutOptions.Center,
+    VerticalOptions = LayoutOptions.Center,
+    Children =
+    {
+        new ContentView()
+        {
+            BackgroundColor = Colors.Gold,
+            HeightRequest = 100,
+            WidthRequest = 10,
+        },
+        new Label()
+        {
+            LineBreakMode = LineBreakMode.TailTruncation,
+            Text = &quot;The entire layout receives touches&quot;,
+            VerticalOptions = LayoutOptions.Center,
+        },
+        new ContentView()
+        {
+            BackgroundColor = Colors.Gold,
+            HeightRequest = 100,
+            WidthRequest = 10,
+        },
+    },
+    Behaviors =
+    {
+        new TouchBehavior()
+        {
+            DefaultAnimationDuration = 250,
+            DefaultAnimationEasing = Easing.CubicInOut,
+            PressedOpacity = 0.6,
+            PressedScale = 0.8,
+            Command = command,
+            BindingContext = this.BindingContext
+        }
+    }
+};
+</code></pre>
+</section>
+</div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/behaviors/touch-behavior.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

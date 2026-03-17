@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>AvatarView - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="AvatarView - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The `AvatarView` is a control for displaying a user&#39;s avatar image or their initials.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="avatarview">AvatarView</h1>
+
+<p>The CommunityToolKit MAUI <code>AvatarView</code> is a control for displaying a user's avatar image or their initials.  Avatars can be text, image, colored, shaped and supports shadow and gestures.</p>
+<h2 id="syntax">Syntax</h2>
+<h3 id="including-the-xaml-namespace">Including the XAML namespace</h3>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="using-the-avatarview">Using the AvatarView</h3>
+<p>The following example shows how to create an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    &lt;VerticalStackLayout&gt;
+        &lt;toolkit:AvatarView Text=&quot;ZS&quot; /&gt;
+    &lt;/VerticalStackLayout&gt;
+&lt;/ContentPage&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+partial class MyPage : ContentPage
+{
+	public MyPage()
+	{
+		AvatarView avatarView = new()
+		{
+			Text = &quot;ZS&quot;,
+		};
+
+		Content = avatarView;
+	}
+}
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BackgroundColor</td>
+<td><code>Color</code></td>
+<td>The <code>BackgroundColor</code> property is a Color that determines the background color of the control. If unset, the background will be the default Color object, which renders as White.</td>
+</tr>
+<tr>
+<td>BorderColor</td>
+<td><code>Color</code></td>
+<td>The <code>BorderColor</code> property is a Color that determines the border color of the control.  If unset, the border will be the default Color object, which renders as Black.</td>
+</tr>
+<tr>
+<td>BorderWidth</td>
+<td><code>double</code></td>
+<td>The <code>BorderWidth</code> property is a double that determines the rendered width of the control border.  If unset, the border width will be the default, which renders as 1.0.</td>
+</tr>
+<tr>
+<td>CornerRadius</td>
+<td><code>CornerRadius</code></td>
+<td>The <code>CornerRadius</code> property is a CornerRadius that determines the shape of the control.  It can be set to a single <code>double</code> uniform corner radius value, or a <code>CornerRadius</code> structure defined by four <code>double</code> values that are applied to the top left, top right, bottom left, and bottom right of the control.  This property is measured in device-independent units.  If unset, the corner radius will be the default CornerRadius object, which renders as 24.</td>
+</tr>
+<tr>
+<td>ImageSource</td>
+<td><code>ImageSource</code></td>
+<td>The <code>ImageSource</code> property is an ImageSource that determines the image of the control.  It can be set to an image retrieved from a file, embedded resource, URI, or stream. If unset, the control will render the <code>Text</code> property.</td>
+</tr>
+<tr>
+<td>Padding</td>
+<td><code>Thickness</code></td>
+<td>The <code>Padding</code> property is a Thickness that represents the distance between control border and the <code>Text</code> or <code>ImageSource</code>.  If unset, the padding will be the default Thickness object, which is 1.</td>
+</tr>
+<tr>
+<td>Text</td>
+<td><code>string</code></td>
+<td>The <code>Text</code> property is a string that determines the text of the control.  If unset, the text will be the default, which renders as '?'.</td>
+</tr>
+<tr>
+<td>TextColor</td>
+<td><code>Color</code></td>
+<td>The <code>TextColor</code> property is a Color that determines the text color of the control.  If unset, the text will be the default Colour object.</td>
+</tr>
+</tbody>
+</table>
+<p>These properties are backed by <code>BindableProperty</code> objects, which means that they can be targets of data bindings and styled.</p>
+<p>For information about specifying fonts on an <code>AvatarView</code>, see <a href="/dotnet/maui/user-interface/fonts">Fonts</a>.</p>
+<p>For information about specifying shadows on an <code>AvatarView</code>, see <a href="/dotnet/maui/user-interface/shadow">Shadows</a></p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p><code>AvatarView</code> will use the default <code>WidthRequest</code> and <code>HeightRequest</code> of 48 unless the size of the <code>AvatarView</code> is constrained by its layout, or the <code>HeightRequest</code> or <code>WidthRequest</code> property of the <code>AvatarView</code> is specified. The <code>WidthRequest</code> and <code>HeightRequest</code> properties are measured in device-independent units.</p>
+</div>
+<h2 id="set-background-color">Set background color</h2>
+<p>The <code>BackgroundColor</code> property is a Color that determines the background color of the control.</p>
+<p>The following example sets the background color of an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView BackgroundColor=&quot;Red&quot; Text=&quot;BC&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	Text = &quot;BC&quot;,
+	BackgroundColor = Colors.Red,
+};
+</code></pre>
+<p>For more information about colors, see <a href="/dotnet/maui/user-interface/graphics/colors">Colors</a>.</p>
+<h2 id="set-border-color">Set border color</h2>
+<p>The <code>BorderColor</code> property is a Color that determines the border color of the control.</p>
+<p>The following example sets the border color of an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView BorderColor=&quot;Blue&quot; Text=&quot;BC&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	Text = &quot;BC&quot;,
+	BorderColor = Colors.Blue,
+};
+</code></pre>
+<p>For more information about colors, see <a href="/dotnet/maui/user-interface/graphics/colors">Colors</a>.</p>
+<h2 id="set-border-width">Set border width</h2>
+<p>The <code>BorderWidth</code> property is a double that determines the rendered width of the control border.</p>
+<p>The following example sets the border width of an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView BorderWidth=&quot;2&quot; Text=&quot;BW&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	Text = &quot;BW&quot;,
+	BorderWidth = 2,
+};
+</code></pre>
+<h2 id="set-the-corner-radius">Set the corner radius</h2>
+<p>The <code>CornerRadius</code> property is a CornerRadius that determines the shape of the control.  It can be set to a single <code>double</code> uniform corner radius value, or a <code>CornerRadius</code> structure defined by four <code>double</code> values that are applied to the top left, top right, bottom left, and bottom right of the control.</p>
+<p>The following example sets the corner radius of an <code>AvatarView</code> such that each of the four corners have a specified radius:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView CornerRadius=&quot;8, 12, 16, 20&quot; HeightRequest=&quot;48&quot; Text=&quot;CR&quot; WidthRequest=&quot;48&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	CornerRadius = new(8, 12, 16, 20),
+	HeightRequest = 48,
+	Text = &quot;CR&quot;,
+	WidthRequest = 48,
+};
+</code></pre>
+<p>The following example sets the corner radius of an <code>AvatarView</code> such that all four corners have the same radius:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView CornerRadius=&quot;8&quot; HeightRequest=&quot;48&quot; Text=&quot;CR&quot; WidthRequest=&quot;48&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	CornerRadius = new(8),
+	HeightRequest = 48,
+	Text = &quot;CR&quot;,
+	WidthRequest = 48,
+};
+</code></pre>
+<h2 id="set-image-source">Set image source</h2>
+<p>The <code>ImageSource</code> property is an ImageSource that determines the image of the control.  It can be set to an image retrieved from a file, embedded resource, URI, or stream.</p>
+<p>The following example sets the <code>ImageSource</code> of an <code>AvatarView</code> to use an embedded resource:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView ImageSource=&quot;Avatar_Icon_.png&quot; Text=&quot;IS&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	ImageSource = &quot;Avatar_Icon_.png&quot;,
+	Text = &quot;IS&quot;,
+};
+</code></pre>
+<p>The following example sets the <code>ImageSource</code> of an <code>AvatarView</code> to use a URL:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView ImageSource=&quot;https://aka.ms/campus.jpg&quot; Text=&quot;IS&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	ImageSource = &quot;https://aka.ms/campus.jpg&quot;,
+	Text = &quot;IS&quot;,
+};
+</code></pre>
+<h2 id="set-padding">Set padding</h2>
+<p>The <code>Padding</code> property is a Thickness that represents the distance between control border and the <code>Text</code> or <code>ImageSource</code>.</p>
+<p>The following example sets the <code>Padding</code> of an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView Padding=&quot;2&quot; Text=&quot;PA&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	Padding = 2,
+	Text = &quot;PA&quot;,
+};
+</code></pre>
+<h2 id="set-text">Set text</h2>
+<p>The <code>Text</code> property is a string that determines the text of the control.</p>
+<p>The following example sets the <code>Text</code> of an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView Text=&quot;ST&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	Text = &quot;ST&quot;,
+};
+</code></pre>
+<h2 id="set-text-color">Set text color</h2>
+<p>The <code>TextColor</code> property is a Color that determines the text color of the control.</p>
+<p>The following example sets the text color of an <code>AvatarView</code>:</p>
+<pre><code class="lang-xaml">&lt;toolkit:AvatarView Text=&quot;TC&quot; TextColor=&quot;Green&quot; /&gt;
+</code></pre>
+<p>The equivalent C# code is:</p>
+<pre><code class="lang-csharp">AvatarView avatarView = new()
+{
+	Text = &quot;TC&quot;,
+	TextColor = Colors.Green,
+};
+</code></pre>
+<p>For more information about colors, see <a href="/dotnet/maui/user-interface/graphics/colors">Colors</a>.</p>
+<h2 id="examples">Examples</h2>
+<p>You can find examples of this control in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/AvatarView">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>AvatarView</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Views/AvatarView.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/views/AvatarView.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

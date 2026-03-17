@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Android NavigationBar - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Android NavigationBar - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The NavigationBar provides the ability to customize the appearance of the Navigation Bar on the Android platform.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="android-navigationbar">Android NavigationBar</h1>
+
+<p>The <code>NavigationBar</code> provides the ability to customize the appearance of the <a href="https://developer.android.com/design/ui/mobile/guides/foundations/system-bars#navigation-bar">Navigation Bar</a> on the Android platform.</p>
+<p>The feature provides the ability to set:</p>
+<h2 id="bar-color">Bar Color</h2>
+<p>The <code>Color</code> property makes it possible to provide any <a href="xref:Microsoft.Maui.Graphics.Color"><code>Color</code></a> to use in setting the background color of the navigation bar.</p>
+<h2 id="bar-style">Bar Style</h2>
+<p>The <code>Style</code> property makes it possible to customize the foreground color of the navigation with the following allowed values:</p>
+<ul>
+<li><code>Default</code> - this is the default and will make use of the system theme settings.</li>
+<li><code>LightContent</code> - the foreground will apply the light theme color.</li>
+<li><code>DarkContent</code> - the foreground will apply the dark theme color.</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<p>The following examples show how to use the <code>NavigationBar</code> to set the background color to <code>DarkSlateBlue</code> and the foreground style to <code>LightContent</code>.</p>
+<p><img src="../images/navigation-bar/navigation-bar-sample.png" alt="Navigation Bar sample" title="Example of the navigation bar feature"></p>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This is a different namespace to the standard toolkit namespace due to the platform specific nature of the feature and its usage.</p>
+</div>
+<p>In order to use this feature in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:droid=&quot;clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.NavigationBarPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.NavigationBarPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:droid=&quot;clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-navigationbar">Using the NavigationBar</h4>
+<p>The <code>NavigationBar</code> can be used as follows in XAML:</p>
+<pre><code class="lang-xaml">&lt;ContentPage 
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:droid=&quot;clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui&quot;
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.NavigationBarPage&quot;
+    droid:NavigationBar.Color=&quot;DarkSlateBlue&quot;
+    droid:NavigationBar.Style=&quot;LightContent&quot;&gt;
+    
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<p>The <code>NavigationBar</code> can be used as follows in C#:</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;
+
+class NavigationBarPage : ContentPage
+{
+    public NavigationBarPage()
+    {
+	this.On&lt;Android&gt;().SetColor(Colors.Purple);
+	this.On&lt;Android&gt;().SetStyle(NavigationBarStyle.DarkContent);
+    }
+}
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this feature in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/PlatformSpecific/NavigationBarPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>NavigationBar</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/PlatformConfiguration/AndroidSpecific/NavigationBar.Impl.android.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/platform-specific/navigation-bar.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

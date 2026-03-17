@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>StackedNotificationsBehavior </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="StackedNotificationsBehavior ">
+    
+    <meta name="description" content="A behavior to add stacked notifications to a WinUI InfoBar control.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="stackednotificationsbehavior">StackedNotificationsBehavior</h1>
+
+<p>The <code>StackedNotificationsBehavior</code> allows you to provide notifications within your app using an <code>InfoBar</code> control. This is a replacement for the prior <code>InAppNotification</code> control in the Toolkit.</p>
+<p>With the default settings, a notification will be displayed until it is dismissed by the user. Any subsequent notifications will be displayed
+in the order of being sent afterwards one-by-one.</p>
+<h2 id="example">Example</h2>
+<p>Clicking on the button multiple times will queue up multiple messages to be displayed one after another.</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+<h2 id="notification-options">Notification options</h2>
+<p>By default, the properties provided on the attached <code>InfoBar</code> will be used, like <code>ContentTemplate</code> or <code>IsIconVisible</code>.</p>
+<p>However, there are a number of options available on the <code>Notification</code> class to override these. When set, these will override any defaults
+or modified properties set on the parent <code>InfoBar</code> itself. They will be restored to the previously set value on the <code>InfoBar</code> after the message has been displayed.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Properties set on the <code>InfoBar</code> will be modified directly by the behavior with notification overrides, this means any bindings will
+be broken by that change when it is overridden or restored by the notification. Therefore, it is best to only provide constants on the
+parent <code>InfoBar</code> itself that will be consistent for all messages and set any dynamic options in the <code>Notification</code> options.</p>
+</div>
+<p>When a <code>Duration</code> is provided, if the user has their pointer over the message, it will not be dismissed. It will instead reset the time before
+being dismissed once the pointer has left the active notification.</p>
+<h2 id="migrating-from-inappnotification">Migrating from InAppNotification</h2>
+<p>If you previously used the <code>InAppNotification</code> component from the Windows Community Toolkit, like so:</p>
+<pre><code class="lang-xml">&lt;controls:InAppNotification x:Name=&quot;ExampleInAppNotification&quot;/&gt;
+</code></pre>
+<p>You can simply replace it with an <code>InfoBar</code> control and add the attached behavior:</p>
+<pre><code class="lang-xml">&lt;muxc:InfoBar&gt;
+  &lt;interactivity:Interaction.Behaviors&gt;
+    &lt;behaviors:StackedNotificationsBehavior x:Name=&quot;ExampleInAppNotification&quot; /&gt;
+  &lt;/interactivity:Interaction.Behaviors&gt;
+&lt;/muxc:InfoBar&gt;
+</code></pre>
+<p>There are some changes to the <code>Show</code> method, however a simple text based one has been provided for backwards compatibility,
+otherwise it's best to construct your own <code>Notification</code> object for greater flexibility or set common properties on the
+parent <code>InfoBar</code> itself.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>There is no <code>StackMode</code> property to control the behavior of the queue. Providing a stable queue of messages one after another
+provides the best user experience as it reduces the risk when interacting with a notification for a new one to suddenly appear
+and replace the one being displayed.</p>
+</div>
+<p>The <code>ShowDismissButton</code> property should be mapped to the <code>InfoBar.IsClosable</code> property instead. Similar to any adjustments to position
+should be handled by the layout of the <code>InfoBar</code> control itself within the XAML layout.</p>
+<p>The <code>Closing</code> and <code>Closed</code> events can be mapped to those on the <code>InfoBar</code> as well.</p>
+<h3 id="complete-example">Complete example</h3>
+<p>This example shows sending simple text based notifications that will appear only for 2 seconds:</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Behaviors/StackedNotificationsBehavior.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

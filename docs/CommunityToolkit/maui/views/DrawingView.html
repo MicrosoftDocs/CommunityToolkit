@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>DrawingView - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="DrawingView - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The DrawingView allows to draw lines, save the image and restore it by settings the list of lines.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="drawingview">DrawingView</h1>
+
+<p>The <code>DrawingView</code> provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image.
+A common use case for this is to provide a signature box in an application.</p>
+<h2 id="basic-usage">Basic usage</h2>
+<p><code>DrawingView</code> allows to set line color, line width and bind to the collection of lines.</p>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-drawingview">Using the DrawingView</h4>
+<pre><code class="lang-xml">&lt;toolkit:DrawingView
+            Lines=&quot;{Binding MyLines}&quot;
+            LineColor=&quot;Red&quot;
+            LineWidth=&quot;5&quot; /&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection&lt;IDrawingLine&gt;(),
+    LineColor = Colors.Red,
+    LineWidth = 5
+};
+</code></pre>
+<p>The following screenshot shows the resulting DrawingView on Android:</p>
+<p><img src="../images/views/drawingview-android.gif" alt="Screenshot of an DrawingView on Android" title="DrawingView on Android"></p>
+<h2 id="multiline-usage">MultiLine usage</h2>
+<p>By default <code>DrawingView</code> supports only 1 line. To enable <code>MultiLine</code> set <code>IsMultiLineModeEnabled</code> to true. Make sure <code>ShouldClearOnFinish</code> is false.</p>
+<h3 id="xaml-1">XAML</h3>
+<pre><code class="lang-xaml">&lt;views:DrawingView
+            Lines=&quot;{Binding MyLines}&quot;
+            IsMultiLineModeEnabled=&quot;true&quot;
+            ShouldClearOnFinish=&quot;false&quot; /&gt;
+</code></pre>
+<h3 id="c-1">C#</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+var gestureImage = new Image();
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection&lt;IDrawingLine&gt;(),
+    IsMultiLineModeEnabled = true,
+    ShouldClearOnFinish = false,
+};
+</code></pre>
+<p>The following screenshot shows the resulting DrawingView on Android:</p>
+<p><img src="../images/views/drawingview-multiline-android.gif" alt="Screenshot of an DrawingView with multi-line on Android" title="DrawingView on Android"></p>
+<h2 id="saving-the-result-out-to-an-image">Saving the result out to an image</h2>
+<p>The .NET MAUI Community Toolkit offers several options for saving the resulting drawing out to an image, these options are as follows:</p>
+<h3 id="saving-from-the-drawingview">Saving from the <code>DrawingView</code></h3>
+<p>The <code>DrawingView</code> provides the <code>GetImageStream</code> method that will generate an image and return the contents in a <code>Stream</code>.</p>
+<p>The following example will export the drawing to an image at a desired width of 400 and a desired height of 300. The desired dimensions will be adjusted to make sure the aspect ratio of the drawing it retained.</p>
+<pre><code class="lang-csharp">await drawingView.GetImageStream(desiredWidth: 400, desiredHeight: 300);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>By default the <code>GetImageStream</code> method will return an image that contains the lines drawn, this will not match the full surface that user sees. In order to generate an image that directly matches the surface displayed in the application the <code>GetImageStream</code> method with the <code>DrawingViewOutputOption</code> parameter must be used.</p>
+</div>
+<p>The following example shows how to generate an image that directly matches the DrawingView surface displayed in an application:</p>
+<pre><code class="lang-csharp">await drawingView.GetImageStream(desiredWidth: 400, desiredHeight: 300, imageOutputOption: DrawingViewOutputOption.FullCanvas);
+</code></pre>
+<h3 id="saving-from-the-drawingviewservice">Saving from the <code>DrawingViewService</code></h3>
+<p>Using the <code>DrawingView</code> methods can make it difficult to build an application using the MVVM pattern, to help deal with this the .NET MAUI Community Toolkit also provides the <code>DrawingViewService</code> class that will also allow the ability to generate an image stream.</p>
+<h4 id="imagelineoptionsjustlines"><code>ImageLineOptions.JustLines</code></h4>
+<p>The following example shows how to generate an image stream of a desired width of 1920 and height of 1080 and a blue background. Developers can use the <code>ImageLineOptions.JustLines</code> method to provide suitable options to only export the lines drawn. To export the entire canvas see <a href="DrawingView.html#imagelineoptionsfullcanvas"><code>ImageLineOptions.FullCanvas</code></a></p>
+<pre><code class="lang-csharp">await using var stream = await DrawingViewService.GetImageStream(
+    ImageLineOptions.JustLines(Lines, new Size(1920, 1080), Brush.Blue));
+</code></pre>
+<h4 id="imagelineoptionsfullcanvas"><code>ImageLineOptions.FullCanvas</code></h4>
+<p>In order to generate an image that directly matches the DrawingView surface the <code>ImageLineOptions.FullCanvas</code> method can be used as follows.</p>
+<pre><code class="lang-csharp">await using var stream = await DrawingViewService.GetImageStream(
+    ImageLineOptions.FullCanvas(Lines, new Size(1920, 1080), Brush.Blue, new Size(CanvasWidth, CanvasHeight)));
+</code></pre>
+<p>For the purpose of this example the <code>CanvasWidth</code> and <code>CanvasHeight</code> properties have been data bound to the <code>Width</code> and <code>Height</code> properties of the <code>DrawingView</code> respectively. For the full solution please refer to the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/DrawingViewPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="handle-event-when-drawing-line-completed">Handle event when Drawing Line Completed</h2>
+<p><code>DrawingView</code> allows to subscribe to the events like <code>OnDrawingLineCompleted</code>. The corresponding command <code>DrawingLineCompletedCommand</code> is also available.</p>
+<h3 id="xaml-2">XAML</h3>
+<pre><code class="lang-xaml">&lt;views:DrawingView
+            Lines=&quot;{Binding MyLines}&quot;
+            DrawingLineCompletedCommand=&quot;{Binding DrawingLineCompletedCommand}&quot;
+            OnDrawingLineCompleted=&quot;OnDrawingLineCompletedEvent&quot; /&gt;
+</code></pre>
+<h3 id="c-2">C#</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+var gestureImage = new Image();
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection&lt;IDrawingLine&gt;(),
+    DrawingLineCompletedCommand = new Command&lt;IDrawingLine&gt;(async (line) =&gt;
+    {
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
+        gestureImage.Source = ImageSource.FromStream(() =&gt; stream);
+    })
+};
+drawingView.OnDrawingLineCompleted += async (s, e) =&gt;
+{
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
+    gestureImage.Source = ImageSource.FromStream(() =&gt; stream);
+};
+</code></pre>
+<h2 id="use-within-a-scrollview">Use within a ScrollView</h2>
+<p>When using the <code>DrawingView</code> inside a <code>ScrollView</code> the touch interaction with the <code>ScrollView</code> can sometimes be intercepted on iOS. This can be prevented by setting the <code>ShouldDelayContentTouches</code> property to <code>false</code> on iOS as per the following example:</p>
+<p>I solved this problem, by addding the ios:ScrollView.ShouldDelayContentTouches=&quot;false&quot; to the ScrollView that contains the DrawingView:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    xmlns:ios=&quot;clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls&quot;&gt;
+
+    &lt;ScrollView ios:ScrollView.ShouldDelayContentTouches=&quot;false&quot;&gt;
+
+        &lt;DrawingView /&gt;
+
+    &lt;/ScrollView&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>For more information please refer to <a href="/dotnet/maui/ios/platform-specifics/scrollview-content-touches">ScrollView content touches</a>.</p>
+<h2 id="advanced-usage">Advanced usage</h2>
+<p>To get the full benefits, the <code>DrawingView</code> provides the methods to get the image stream of the drawing lines.</p>
+<h3 id="xaml-3">XAML</h3>
+<pre><code class="lang-xml">&lt;toolkit:DrawingView
+            x:Name=&quot;DrawingViewControl&quot;
+            Lines=&quot;{Binding MyLines}&quot;
+            IsMultiLineModeEnabled=&quot;true&quot;
+            ShouldClearOnFinish=&quot;true&quot;
+            DrawingLineCompletedCommand=&quot;{Binding DrawingLineCompletedCommand}&quot;
+            OnDrawingLineCompleted=&quot;OnDrawingLineCompletedEvent&quot;
+            LineColor=&quot;Red&quot;
+            LineWidth=&quot;5&quot;
+            HorizontalOptions=&quot;Fill&quot;
+            VerticalOptions=&quot;Fill&quot;&gt;
+            &lt;toolkit:DrawingView.Background&gt;
+                    &lt;LinearGradientBrush StartPoint=&quot;0,0&quot;
+                                         EndPoint=&quot;0,1&quot;&gt;
+                        &lt;GradientStop Color=&quot;Blue&quot;
+                                      Offset=&quot;0&quot;/&gt;
+                        &lt;GradientStop Color=&quot;Yellow&quot;
+                                      Offset=&quot;1&quot;/&gt;
+                    &lt;/LinearGradientBrush&gt;
+            &lt;/toolkit:DrawingView.Background&gt;
+&lt;/toolkit:DrawingView&gt;
+</code></pre>
+<h3 id="c-3">C#</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+var gestureImage = new Image();
+var drawingView = new DrawingView
+{
+    Lines = new ObservableCollection&lt;IDrawingLine&gt;(),
+    IsMultiLineModeEnabled = true,
+    ShouldClearOnFinish = false,
+    DrawingLineCompletedCommand = new Command&lt;IDrawingLine&gt;(async (line) =&gt;
+    {
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
+        gestureImage.Source = ImageSource.FromStream(() =&gt; stream);
+    }),
+    LineColor = Colors.Red,
+    LineWidth = 5,
+    Background = Brush.Red
+};
+drawingView.OnDrawingLineCompleted += async (s, e) =&gt;
+{
+    var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint(), cts.Token);
+    gestureImage.Source = ImageSource.FromStream(() =&gt; stream);
+};
+
+// get stream from lines collection
+var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+var lines = new List&lt;IDrawingLine&gt;();
+var stream1 = await DrawingView.GetImageStream(
+                lines,
+                new Size(gestureImage.Width, gestureImage.Height),
+                Colors.Black.
+                cts.Token);
+
+// get steam from the current DrawingView
+var stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height, cts.Token);
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lines</td>
+<td><code>ObservableCollection&lt;IDrawingLine&gt;</code></td>
+<td>Collection of <code>IDrawingLine</code> that are currently on the <code>DrawingView</code></td>
+</tr>
+<tr>
+<td>IsMultiLineModeEnabled</td>
+<td><code>bool</code></td>
+<td>Toggles multi-line mode. When true, multiple lines can be drawn on the <code>DrawingView</code> while the tap/click is released in-between lines. Note: when <code>ClearOnFinish</code> is also enabled, the lines are cleared after the tap/click is released. Additionally, <code>DrawingLineCompletedCommand</code> will be fired after each line that is drawn.</td>
+</tr>
+<tr>
+<td>ShouldClearOnFinish</td>
+<td><code>bool</code></td>
+<td>Indicates whether the <code>DrawingView</code> is cleared after releasing the tap/click and a line is drawn. Note: when <code>IsMultiLineModeEnabled</code> is also enabled, this might cause unexpected behavior.</td>
+</tr>
+<tr>
+<td>DrawingLineStartedCommand</td>
+<td><code>ICommand</code></td>
+<td>This command is invoked whenever the drawing of a line on the <code>DrawingView</code> has started.</td>
+</tr>
+<tr>
+<td>DrawingLineCancelledCommand</td>
+<td><code>ICommand</code></td>
+<td>This command is invoked whenever the drawing of a line on the <code>DrawingView</code> has cancelled.</td>
+</tr>
+<tr>
+<td>DrawingLineCompletedCommand</td>
+<td><code>ICommand</code></td>
+<td>This command is invoked whenever the drawing of a line on the <code>DrawingView</code> has completed. . Note that this is fired after the tap or click is lifted. When <code>MultiLineMode</code> is enabled this command is fired multiple times.</td>
+</tr>
+<tr>
+<td>PointDrawnCommand</td>
+<td><code>ICommand</code></td>
+<td>This command is invoked whenever the drawing of a point on the <code>DrawingView</code> has completed.</td>
+</tr>
+<tr>
+<td>OnDrawingLineStarted</td>
+<td><code>EventHandler&lt;DrawingLineStartedEventArgs&gt;</code></td>
+<td><code>DrawingView</code> event occurs when drawing line started.</td>
+</tr>
+<tr>
+<td>OnDrawingLineCancelled</td>
+<td><code>EventHandler&lt;EventArgs&gt;</code></td>
+<td><code>DrawingView</code> event occurs when drawing line cancelled.</td>
+</tr>
+<tr>
+<td>OnDrawingLineCompleted</td>
+<td><code>EventHandler&lt;DrawingLineCompletedEventArgs&gt;</code></td>
+<td><code>DrawingView</code> event occurs when drawing line completed.</td>
+</tr>
+<tr>
+<td>OnPointDrawn</td>
+<td><code>EventHandler&lt;PointDrawnEventArgs&gt;</code></td>
+<td><code>DrawingView</code> event occurs when point drawn.</td>
+</tr>
+<tr>
+<td>LineColor</td>
+<td><code>Color</code></td>
+<td>The color that is used by default to draw a line on the <code>DrawingView</code>.</td>
+</tr>
+<tr>
+<td>LineWidth</td>
+<td><code>float</code></td>
+<td>The width that is used by default to draw a line on the <code>DrawingView</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="drawingline">DrawingLine</h3>
+<p>The <code>DrawingLine</code> contains the list of points and allows configuring each line style individually.</p>
+<h4 id="properties-1">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LineColor</td>
+<td><code>Color</code></td>
+<td>The color that is used to draw the line on the <code>DrawingView</code>.</td>
+<td><code>Colors.Black</code></td>
+</tr>
+<tr>
+<td>LineWidth</td>
+<td><code>float</code></td>
+<td>The width that is used to draw the line on the <code>DrawingView</code>.</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td>Points</td>
+<td><code>ObservableCollection&lt;PointF&gt;</code></td>
+<td>The collection of <code>PointF</code> that makes the line.</td>
+<td><code>new()</code></td>
+</tr>
+<tr>
+<td>Granularity</td>
+<td><code>int</code></td>
+<td>The granularity of this line. Min value is 5. The higher the value, the smoother the line, the slower the program.</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td>ShouldSmoothPathWhenDrawn</td>
+<td><code>bool</code></td>
+<td>Enables or disables if this line is smoothed (anti-aliased) when drawn.</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="custom-idrawingline">Custom IDrawingLine</h4>
+<p>There are 2 steps to replace the default <code>DrawingLine</code> with the custom implementation:</p>
+<ol>
+<li>Create custom class which implements <code>IDrawingLine</code>:
+<pre><code class="lang-csharp">public class MyDrawingLine : IDrawingLine
+{
+    public ObservableCollection&lt;PointF&gt; Points { get; } = new();
+    ...
+}
+</code></pre>
+</li>
+<li>Create custom class which implements <code>IDrawingLineAdapter</code>.
+<pre><code class="lang-csharp">public class MyDrawingLineAdapter : IDrawingLineAdapter
+{
+    public IDrawingLine(MauiDrawingLine mauiDrawingLine)
+    {
+        return new MyDrawingLine
+        {
+            Points = mauiDrawingLine.Points,
+            ...
+        }
+    }
+}
+</code></pre>
+</li>
+<li>Set custom <code>IDrawingLineAdapter</code> in <code>IDrawingViewHandler</code>:
+<pre><code class="lang-csharp">var myDrawingLineAdapter = new MyDrawingLineAdapter();
+drawingViewHandler.SetDrawingLineAdapter(myDrawingLineAdapter);
+</code></pre>
+</li>
+</ol>
+<h3 id="drawinglinestartedeventargs">DrawingLineStartedEventArgs</h3>
+<p>Event argument which contains last drawing point.</p>
+<h4 id="properties-2">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Point</td>
+<td><code>PointF</code></td>
+<td>Last drawing point.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="drawinglinecompletedeventargs">DrawingLineCompletedEventArgs</h3>
+<p>Event argument which contains last drawing line.</p>
+<h4 id="properties-3">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LastDrawingLine</td>
+<td><code>IDrawingLine</code></td>
+<td>Last drawing line.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pointdrawneventargs">PointDrawnEventArgs</h3>
+<p>Event argument which contains last drawing point.</p>
+<h4 id="properties-4">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Point</td>
+<td><code>PointF</code></td>
+<td>Last drawing point.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GetImageStream</td>
+<td>Retrieves a <code>Stream</code> containing an image of the <code>Lines</code> that are currently drawn on the <code>DrawingView</code>.</td>
+</tr>
+<tr>
+<td>GetImageStream (static)</td>
+<td>Retrieves a <code>Stream</code> containing an image of the collection of <code>IDrawingLine</code> that is provided as a parameter.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this feature in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/DrawingViewPage.xaml.cs">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>DrawingView</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Views/DrawingView">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/views/DrawingView.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

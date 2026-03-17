@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit ">
+    
+    <meta name="description" content="The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../TOC.html">
+      <meta property="docfx:tocrel" content="TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="getting-started-with-the-net-multi-platform-app-ui-net-maui-community-toolkit">Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit</h1>
+
+<p>This article covers how to get started using the packages provided as part of the .NET MAUI Community Toolkit project.</p>
+<h2 id="adding-the-nuget-packages">Adding the NuGet package(s)</h2>
+<p>The toolkit is available as a set of NuGet packages that can be added to any existing or new project using Visual Studio.</p>
+<ol>
+<li><p>Open an existing project, or create a new project as per the <a href="/dotnet/maui/get-started/first-app">.NET MAUI setup documentation</a></p>
+</li>
+<li><p>In the Solution Explorer panel, right click on your project name and select <strong>Manage NuGet Packages</strong>. Search for <strong>CommunityToolkit.Maui</strong>, and choose the desired NuGet Package from the list.</p>
+<p><img src="images/get-started/manage-nuget.png" alt="Manage NuGet Packages..." title="Right click on the solution and select 'Manage NuGet Packages...'"></p>
+</li>
+<li><p>Choose the toolkit(s) that are most appropriate for your needs from the options below:</p>
+</li>
+</ol>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_CommunityToolkitMaui" role="tab" aria-controls="tabpanel_1_CommunityToolkitMaui" data-tab="CommunityToolkitMaui" tabindex="0" aria-selected="true">CommunityToolkit.Maui</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_CommunityToolkitMauiMarkup" role="tab" aria-controls="tabpanel_1_CommunityToolkitMauiMarkup" data-tab="CommunityToolkitMauiMarkup" tabindex="-1">Markup</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_CommunityToolkitMauiMaps" role="tab" aria-controls="tabpanel_1_CommunityToolkitMauiMaps" data-tab="CommunityToolkitMauiMaps" tabindex="-1">Maps</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_CommunityToolkitMauiMediaElement" role="tab" aria-controls="tabpanel_1_CommunityToolkitMauiMediaElement" data-tab="CommunityToolkitMauiMediaElement" tabindex="-1">MediaElement</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_CommunityToolkitMauiCamera" role="tab" aria-controls="tabpanel_1_CommunityToolkitMauiCamera" data-tab="CommunityToolkitMauiCamera" tabindex="-1">Camera</a>
+</li>
+</ul>
+<section id="tabpanel_1_CommunityToolkitMaui" role="tabpanel" data-tab="CommunityToolkitMaui">
+
+<p>This package is a collection of Animations, Behaviors, Converters, and Custom Views for development with .NET MAUI. It simplifies and demonstrates common developer tasks building iOS, Android, macOS and Windows apps with .NET MAUI.</p>
+<p><strong>Package name:</strong> <code>CommunityToolkit.Maui</code></p>
+<p><strong>Package url:</strong> <a href="https://www.nuget.org/packages/CommunityToolkit.Maui">https://www.nuget.org/packages/CommunityToolkit.Maui</a></p>
+<h4 id="initializing-the-package">Initializing the package</h4>
+<p>First the using statement needs to be added to the top of your <em>MauiProgram.cs</em> file</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui;
+</code></pre>
+<p>In order to use the toolkit correctly the <code>UseMauiCommunityToolkit</code> method must be called on the <code>MauiAppBuilder</code> class when bootstrapping an application the <em>MauiProgram.cs</em> file. The following example shows how to perform this.</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+    .UseMauiCommunityToolkit()
+</code></pre>
+<p>To use the features of the toolkit please refer to the documentation pages for each specific feature.</p>
+</section>
+<section id="tabpanel_1_CommunityToolkitMauiMarkup" role="tabpanel" data-tab="CommunityToolkitMauiMarkup" aria-hidden="true" hidden="hidden">
+
+<p>This package is a set of fluent helper methods and classes to simplify building declarative .NET MAUI user interfaces in C#.</p>
+<p><strong>Package name:</strong> <code>CommunityToolkit.Maui.Markup</code></p>
+<p><strong>Package url:</strong> <a href="https://www.nuget.org/packages/CommunityToolkit.Maui.Markup">https://www.nuget.org/packages/CommunityToolkit.Maui.Markup</a></p>
+<h4 id="initializing-the-package-1">Initializing the package</h4>
+<p>First the using statement needs to be added to the top of your <em>MauiProgram.cs</em> file</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Markup;
+</code></pre>
+<p>In order to use the toolkit correctly the <code>UseMauiCommunityToolkitMarkup</code> method must be called on the <code>MauiAppBuilder</code> class when bootstrapping an application the <em>MauiProgram.cs</em> file. The following example shows how to perform this.</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+    .UseMauiCommunityToolkitMarkup()
+</code></pre>
+<p>To use the features of the toolkit please refer to the documentation pages for each specific feature.</p>
+</section>
+<section id="tabpanel_1_CommunityToolkitMauiMaps" role="tabpanel" data-tab="CommunityToolkitMauiMaps" aria-hidden="true" hidden="hidden">
+
+<p>This package enables you to display a map in your .NET MAUI Windows application.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
+For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.</p>
+</div>
+<p><strong>Package name:</strong> <code>CommunityToolkit.Maui.Maps</code></p>
+<p><strong>Package url:</strong> <a href="https://www.nuget.org/packages/CommunityToolkit.Maui.Maps">https://www.nuget.org/packages/CommunityToolkit.Maui.Maps</a></p>
+<h4 id="initializing-the-package-2">Initializing the package</h4>
+<p>First the using statement needs to be added to the top of your <em>MauiProgram.cs</em> file</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Maps;
+</code></pre>
+<p>In order to use the <code>Map</code> correctly the <code>.UseMauiCommunityToolkitMaps</code> method must be called on the <code>MauiAppBuilder</code> class when bootstrapping an application the <em>MauiProgram.cs</em> file. This method expects a valid Bing Maps API key which you can obtain through the <a href="https://www.bingmapsportal.com/">Bing Maps Portal</a>.</p>
+<p>The following example shows how to perform this.</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+    .UseMauiCommunityToolkitMaps(&quot;YOUR_API_KEY&quot;)
+</code></pre>
+<p>When using the .NET MAUI Community Toolkit Map for Windows and the regular .NET MAUI Maps together, you will need to make sure that each initialization call is only made for the relevant platform. The following example shows how to do this.</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+#if ANDROID || IOS
+    .UseMauiMaps()
+#elif WINDOWS
+    .UseMauiCommunityToolkitMaps(&quot;YOUR_API_KEY&quot;)
+#endif
+</code></pre>
+<p>For more information on how to initialize the map on iOS and Android, as well as how to work with the map control API, see the <a href="/dotnet/maui/user-interface/controls/map">.NET MAUI Maps documentation</a>.</p>
+</section>
+<section id="tabpanel_1_CommunityToolkitMauiMediaElement" role="tabpanel" data-tab="CommunityToolkitMauiMediaElement" aria-hidden="true" hidden="hidden">
+
+<p>This package enables you to play audio and video in your .NET MAUI application.</p>
+<p><strong>Package name:</strong> <code>CommunityToolkit.Maui.MediaElement</code></p>
+<p><strong>Package url:</strong> <a href="https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement">https://www.nuget.org/packages/CommunityToolkit.Maui.MediaElement</a></p>
+<h4 id="initializing-the-package-3">Initializing the package</h4>
+<p>First the using statement needs to be added to the top of your <em>MauiProgram.cs</em> file</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui;
+</code></pre>
+<p>In order to use the <code>MediaElement</code> correctly the <code>UseMauiCommunityToolkitMediaElement</code> method must be called on the <code>MauiAppBuilder</code> class when bootstrapping an application the <em>MauiProgram.cs</em> file. The following example shows how to perform this.
+You must specify whether to enable the foreground service on Android by setting the <code>enableForegroundService</code> parameter to true or false. If you require Rich Media Notifications or background playback on Android, set <code>enableForegroundService</code> to <code>true</code> when calling <code>UseMauiCommunityToolkitMediaElement</code>.</p>
+<p>Note: <code>MediaElement</code> does not require adding additional <code>AndroidManifest.xml</code> permissions for the foreground service. Calling the builder method with <code>enableForegroundService: true</code> is sufficient to enable notification and background playback features. When <code>enableForegroundService</code> is <code>true</code>, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If <code>enableForegroundService</code> is <code>false</code> and you attempt to use background playback features, an exception may be thrown on Android.</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true);
+</code></pre>
+<p>To use the features of the toolkit please refer to the documentation pages for each specific feature.</p>
+</section>
+<section id="tabpanel_1_CommunityToolkitMauiCamera" role="tabpanel" data-tab="CommunityToolkitMauiCamera" aria-hidden="true" hidden="hidden">
+
+<p>This package enables you to connect to a camera, display a preview from the camera and take photos.</p>
+<p><strong>Package name:</strong> <code>CommunityToolkit.Maui.Camera</code></p>
+<p><strong>Package url:</strong> <a href="https://www.nuget.org/packages/CommunityToolkit.Maui.Camera">https://www.nuget.org/packages/CommunityToolkit.Maui.Camera</a></p>
+<h4 id="initializing-the-package-4">Initializing the package</h4>
+<p>First the using statement needs to be added to the top of your <em>MauiProgram.cs</em> file</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui;
+</code></pre>
+<p>In order to use the <code>CameraView</code> correctly, the <code>UseMauiCommunityToolkitCamera</code> method must be called on the <code>MauiAppBuilder</code> class when bootstrapping an application the <em>MauiProgram.cs</em> file. The following example shows how to perform this.</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp&lt;App&gt;()
+    .UseMauiCommunityToolkitCamera()
+</code></pre>
+<p>To use the features of the toolkit please refer to the documentation pages for each specific feature.</p>
+</section>
+</div>
+<h2 id="using-the-nuget-packages">Using the NuGet package(s)</h2>
+<ol start="4">
+<li>Enable Toolkit in <code>MauiProgram.cs</code>:</li>
+</ol>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder();
+builder.UseMauiApp&lt;App&gt;();
+builder.UseMauiCommunityToolkit();
+</code></pre>
+<p>4.1. For advanced settings set <a href="options.html">CommunityToolkit.Maui.Options</a>:</p>
+<pre><code class="lang-csharp">builder.UseMauiCommunityToolkit(options =&gt;
+{
+    options.SetShouldSuppressExceptionsInConverters(false);
+    options.SetShouldSuppressExceptionsInBehaviors(false);
+    options.SetShouldSuppressExceptionsInAnimations(false);
+});
+</code></pre>
+<ol start="5">
+<li>Check out the rest of the documentation to learn more about implementing specific features.</li>
+</ol>
+<h2 id="other-resources">Other resources</h2>
+<p>The <a href="https://github.com/CommunityToolkit/Maui/tree/main/samples">.NET MAUI Community Toolkit GitHub Repository</a> contains the source code for a sample application that is designed to show how you can use the toolkit to build a .NET MAUI application. <strong>Please note that you will be required to clone or download the repository and compile the source code in order to run the sample application.</strong></p>
+<p>We recommend developers who are new to .NET MAUI to visit the <a href="/dotnet/maui/">.NET MAUI</a> documentation.</p>
+<p>Visit the <a href="https://github.com/CommunityToolkit/Maui">.NET MAUI Community Toolkit GitHub Repository</a> to see the current source code, what is coming next, and clone the repository.  Community contributions are welcome!</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/get-started.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>UniformItemsLayout - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="UniformItemsLayout - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The UniformItemsLayout is a layout where all rows and columns have the same size.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="uniformitemslayout">UniformItemsLayout</h1>
+
+<p>The <code>UniformItemsLayout</code> is a layout where all rows and columns have the same size.</p>
+<h2 id="building-an-uniformitemslayout">Building an UniformItemsLayout</h2>
+<p>An <code>UniformItemsLayout</code> can be created in XAML or C#:</p>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-uniformitemslayout">Using the UniformItemsLayout</h4>
+<pre><code class="lang-xml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+             x:Class=&quot;MyProject.MyContentPage&quot;&gt;
+
+    &lt;toolkit:UniformItemsLayout&gt;
+        &lt;BoxView BackgroundColor=&quot;Blue&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+        &lt;BoxView BackgroundColor=&quot;Yellow&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+        &lt;BoxView BackgroundColor=&quot;Red&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+        &lt;BoxView BackgroundColor=&quot;Black&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+    &lt;/toolkit:UniformItemsLayout&gt;
+    
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+var page = new ContentPage
+{
+    Content = new UniformItemsLayout
+    {
+        Children = 
+        {
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Blue },
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Yellow },
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Red },
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Black }
+        }
+    }
+};
+</code></pre>
+<h2 id="customizing-an-uniformitemslayout">Customizing an UniformItemsLayout</h2>
+<p>An <code>UniformItemsLayout</code> allows to limit the maximum number of columns and rows:</p>
+<h3 id="xaml-1">XAML</h3>
+<pre><code class="lang-xml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+             x:Class=&quot;MyProject.MyContentPage&quot;&gt;
+
+    &lt;toolkit:UniformItemsLayout MaxRows=&quot;1&quot; MaxColumns=&quot;1&quot;&gt;
+        &lt;BoxView BackgroundColor=&quot;Blue&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+        &lt;BoxView BackgroundColor=&quot;Yellow&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+        &lt;BoxView BackgroundColor=&quot;Red&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+        &lt;BoxView BackgroundColor=&quot;Black&quot; HeightRequest=&quot;25&quot; WidthRequest=&quot;25&quot;/&gt;
+    &lt;/toolkit:UniformItemsLayout&gt;
+    
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c-1">C#</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Views;
+
+var page = new ContentPage
+{
+    Content = new UniformItemsLayout
+    {
+        MaxRows = 1,
+        MaxColumns = 1,
+        Children = 
+        {
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Blue },
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Yellow },
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Red },
+            new BoxView { HeightRequest = 25, WidthRequest = 25, BackgroundColor = Colors.Black }
+        }
+    }
+};
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MaxColumns  </code></td>
+<td><code>int</code></td>
+<td>Gets or sets the maximum number of items in a row.</td>
+</tr>
+<tr>
+<td><code>MaxRows </code></td>
+<td><code>int</code></td>
+<td>Gets or sets the maximum number of items in a column.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this feature in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Layouts/">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>UniformItemsLayout</code> over on the <a href="https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui/Layouts/UniformItemsLayout">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/layouts/UniformItemsLayout.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

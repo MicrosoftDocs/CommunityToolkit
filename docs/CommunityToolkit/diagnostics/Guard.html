@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Guard class </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Guard class ">
+    
+    <meta name="description" content="Helper methods to verify conditions when running code">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="guard-class">Guard class</h1>
+
+<p>Use the <a href="/dotnet/api/microsoft.toolkit.diagnostics.guard">Guard class</a> to validate method arguments in a streamlined manner. This class is faster, less verbose, more expressive, and less error-prone than manually writing checks and throwing exceptions.</p>
+<blockquote>
+<p><strong>Platform APIs:</strong> <a href="/dotnet/api/microsoft.toolkit.diagnostics.guard"><code>Guard</code></a>, <a href="/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute"><code>CallerArgumentExpressionAttribute</code></a></p>
+</blockquote>
+<h2 id="how-it-works">How it works</h2>
+<p>The <code>Guard</code> APIs are built with three core principles in mind:</p>
+<ul>
+<li>Being <strong>fast</strong>. To achieve that, all the APIs have been designed to produce as little code as possible in the caller, and each single Guard API will (almost always) be inlined. Furthermore, specialized methods are generated with T4 templates to achieve the most efficient assembly code possible when working with common types (eg. primitive numeric types).</li>
+<li>Being <strong>helpful</strong>. Each <code>Guard</code> API produces a detailed exception message that clearly specifies what went wrong, along with additional info (eg. current variable values), when applicable.</li>
+<li>Being <strong>intuitive</strong>. To achieve this, all the <code>Guard</code> APIs have expressive and self-explanatory names that make it immediately clear what each API is supposed to do. This shifts the burden of writing checks away from the developers, letting them express conditions using natural language.</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<p>The following code snippet shows a sample method, with some checks being done explicitly and manual throw statements:</p>
+<pre><code class="lang-csharp">public static void SampleMethod(int[] array, int index, Span&lt;int&gt; span, string text)
+{
+    if (array is null)
+    {
+        throw new ArgumentNullException(nameof(array), &quot;The array must not be null&quot;);
+    }
+
+    if (array.Length &gt;= 10)
+    {
+        throw new ArgumentException($&quot;The array must have less than 10 items, had a size of {array.Length}&quot;, nameof(array));
+    }
+
+    if (index &lt; 0 || index &gt;= array.Length)
+    {
+        throw new ArgumentOutOfRangeException(nameof(index), $&quot;The index must be in the [0, {array.Length}) range, was {index}&quot;);
+    }
+
+    if (span.Length &lt; array.Length)
+    {
+        throw new ArgumentException($&quot;The target span is shorter than the input array, had a length of {span.Length}&quot;, nameof(span));
+    }
+
+    if (string.IsNullOrEmpty(text))
+    {
+        throw new ArgumentException(&quot;The input text can't be null or empty&quot;, nameof(text));
+    }
+}
+</code></pre>
+<p>Here is the same method, but using the <code>Guard</code> APIs to validate the input arguments:</p>
+<pre><code class="lang-csharp">public static void SampleMethod(int[] array, int index, Span&lt;int&gt; span, string text)
+{
+    Guard.IsNotNull(array);
+    Guard.HasSizeGreaterThanOrEqualTo(array, 10);
+    Guard.IsInRangeFor(index, array);
+    Guard.HasSizeLessThanOrEqualTo(array, span);
+    Guard.IsNotNullOrEmpty(text);
+}
+</code></pre>
+<p>The <code>Guard</code> APIs perform the required checks in the fastest way possible, and throw the appropriate exception with a well-formatted message if they fail.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <code>Guard</code> APIs rely on <a href="/dotnet/csharp/language-reference/proposals/csharp-10.0/caller-argument-expression"><code>[CallerArgumentExpression]</code></a> to automatically infer the name of the argument being validated. This requires C# 10 to be enabled in the project. If you're using a lower version of the language, you need to manually pass the parameter name, for instance using <code>nameof()</code> to refer to it (for example, <code>Guard.IsNotNull(array, nameof(array)))</code>).</p>
+</div>
+<h2 id="methods">Methods</h2>
+<p>There are dozens of different APIs and overloads in the <code>Guard</code> class. The following table describes some of them.</p>
+<h3 id="general">General</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsNotNull&lt;T&gt;(T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value is not null</td>
+</tr>
+<tr>
+<td><code>IsOfType&lt;T&gt;(object, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value is of a specific type</td>
+</tr>
+<tr>
+<td><code>IsAssignableToType&lt;T&gt;(object, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value can be assigned to a specified type</td>
+</tr>
+<tr>
+<td><code>IsReferenceEqualTo&lt;T&gt;(T, T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be the same instance as the target value</td>
+</tr>
+<tr>
+<td><code>IsTrue(bool, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be true</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comparisons">Comparisons</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return type</th>
+<th>Description</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsEqualTo&lt;T&gt;(T, T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be equal to a specified value</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IsBitwiseEqualTo&lt;T&gt;(T, T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be a bitwise match with a specified value</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IsLessThan&lt;T&gt;(T, T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be less than a specified value</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IsLessThanOrEqualTo&lt;T&gt;(T, T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be less than or equal to a specified value</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IsInRange&lt;T&gt;(T, T, T, string)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be in the [minimum, maximum) range</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>IsBetween&lt;T&gt;(T, T, T, string name)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be in the (minimum, maximum) interval</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>IsBetweenOrEqualTo&lt;T&gt;(T, T, T, string name)</code></td>
+<td>void</td>
+<td>Asserts that the input value must be in the [minimum, maximum] interval</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="strings">Strings</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsNotNullOrEmpty(string, string)</code></td>
+<td>void</td>
+<td>Asserts that the input string instance must not be null or empty</td>
+</tr>
+<tr>
+<td><code>IsNotNullOrWhiteSpace(string, string)</code></td>
+<td>void</td>
+<td>Asserts that the input string instance must not be null or whitespace</td>
+</tr>
+</tbody>
+</table>
+<h3 id="collections">Collections</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsNotEmpty&lt;T&gt;(T[], string)</code></td>
+<td>void</td>
+<td>Asserts that the input array instance must not be empty</td>
+</tr>
+<tr>
+<td><code>HasSizeEqualTo&lt;T&gt;(T[], int, string)</code></td>
+<td>void</td>
+<td>Asserts that the input array instance must have a size of a specified value</td>
+</tr>
+<tr>
+<td><code>HasSizeAtLeast&lt;T&gt;(T[], int, string)</code></td>
+<td>void</td>
+<td>Asserts that the input array must have a size of at least or equal to a specified value</td>
+</tr>
+<tr>
+<td><code>IsInRangeFor&lt;T&gt;(int, T[], string)</code></td>
+<td>void</td>
+<td>Asserts that the input index is valid for a given array</td>
+</tr>
+<tr>
+<td><code>HasSizeLessThanOrEqualTo&lt;T&gt;(T[], T[], string)</code></td>
+<td>void</td>
+<td>Asserts that the source array must have a size of less than or equal to that of the destination array</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tasks">Tasks</h3>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsCompleted(Task, string)</code></td>
+<td>void</td>
+<td>Asserts that the input task is in a completed state</td>
+</tr>
+<tr>
+<td><code>IsNotCanceled(Task, string)</code></td>
+<td>void</td>
+<td>Asserts that the input task is not canceled</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Diagnostics.UnitTests">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/diagnostics/Guard.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

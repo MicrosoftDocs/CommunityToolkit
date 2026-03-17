@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>MVVM source generators </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="MVVM source generators ">
+    
+    <meta name="description" content="An overview of Roslyn source generators to power MVVM scenarios">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="mvvm-source-generators">MVVM source generators</h1>
+
+<p>Starting with version 8.0, the MVVM Toolkit includes brand new Roslyn source generators that will help greatly reduce boilerplate when writing code using the MVVM architecture. They can simplify scenarios where you need to setup observable properties, commands and more. If you're not familiar with source generators, you can read more about them <a href="/dotnet/csharp/roslyn-sdk/source-generators-overview">here</a>. This is a simplified view of how they work:</p>
+<p><img src="../../images/source-generator-visualization.png" alt="Roslyn source generators" title="A diagram showing the architecture of Roslyn source generators, and the fact they generate code based on user code and add that to the existing compilation"></p>
+<p>This means that as you're writing code, the MVVM Toolkit generator will now take care of generating additional code for you behind the scenes, so you don't have to worry about it. This code will then be compiled and included in your application, so the end result is exactly the same as if you had written all that extra code manually, but without having to do all of that extra work! 🎉</p>
+<p>For instance, wouldn't it be great if instead of having to setup an observable property normally:</p>
+<pre><code class="lang-csharp">private string? name;
+
+public string? Name
+{
+    get =&gt; name;
+    set =&gt; SetProperty(ref name, value);
+}
+</code></pre>
+<p>You could just have a simple <a href="ObservableProperty.html">annotated field</a> to express the same?</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+private string? name;
+</code></pre>
+<p>What about creating a command:</p>
+<pre><code class="lang-csharp">private void SayHello()
+{
+    Console.WriteLine(&quot;Hello&quot;);
+}
+
+private ICommand? sayHelloCommand;
+
+public ICommand SayHelloCommand =&gt; sayHelloCommand ??= new RelayCommand(SayHello);
+</code></pre>
+<p>What if we could <a href="RelayCommand.html">just have our method</a>, and nothing else?</p>
+<pre><code class="lang-csharp">[RelayCommand]
+private void SayHello()
+{
+    Console.WriteLine(&quot;Hello&quot;);
+}
+</code></pre>
+<p>With the new MVVM source generators, all of this is possible, and much more! 🙌</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Source generators can be used independently from other existing features in the MVVM Toolkit, and you're free to mix and match using source generators with previous APIs as needed. That is, you're free to just gradually start using source generators in new files and eventually migrating older files to use them to reduce verbosity, but there is no obligation to always use either approach in a whole project or application.</p>
+</div>
+<p>These docs will go over exactly what features are included with the MVVM generators and how to use them:</p>
+<ul>
+<li><strong>CommunityToolkit.Mvvm.ComponentModel</strong>
+<ul>
+<li><a href="ObservableProperty.html"><code>ObservableProperty</code></a></li>
+<li><a href="INotifyPropertyChanged.html"><code>INotifyPropertyChanged</code></a></li>
+</ul>
+</li>
+<li><strong>CommunityToolkit.Mvvm.Input</strong>
+<ul>
+<li><a href="RelayCommand.html"><code>RelayCommand</code></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>Check out the <a href="https://aka.ms/mvvmtoolkit/samples">sample app</a> (for multiple UI frameworks) to see the MVVM Toolkit in action.</li>
+<li>You can also find more examples in the <a href="https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Mvvm.UnitTests">unit tests</a>.</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/mvvm/generators/Overview.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

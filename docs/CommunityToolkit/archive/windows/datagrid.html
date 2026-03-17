@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>DataGrid </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="DataGrid ">
+    
+    <meta name="description" content="The DataGrid Control presents data in a customizable table of rows and columns.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="datagrid-archived">DataGrid (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<p>While there are no immediate plans to port this component directly to 8.x, it's important to understand that:</p>
+<ul>
+<li>The WCT 7.x DataGrid is still usable alongside WCT 8.x components for existing projects.</li>
+<li>The DataGrid control has been deprecated in favor of alternatives.</li>
+</ul>
+<p>For new development, we recommend using the <code>DataTable</code> or <a href="https://github.com/w-ahmad/WinUI.TableView"><code>WinUI.TableView</code></a> component which offers improved functionality and is actively maintained.</p>
+<p>If you have specific needs that DataTable doesn't meet, please consider contributing to WCT Labs where component improvements are prototyped and incubated.</p>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Labs-Windows/discussions/415">DataTable discussion in Labs</a></li>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+<li><a href="https://github.com/w-ahmad/WinUI.TableView">WinUI.TableView Community Project</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<p>The DataGrid control provides a flexible way to display a collection of data in rows and columns.</p>
+<p><img src="images/datagrid.gif" alt="DataGrid control"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The DataGrid control is not part of the WinUI 3 controls available in the Windows Community Toolkit version 8.0 and later yet. The control is available for UWP and Uno Platform apps in Windows Community Toolkit version 7.1.0.</p>
+</div>
+<p>The built-in column types include a text column, a check box column, a combobox column and a template column for hosting custom content. The built-in row type includes a drop-down details section that you can use to display additional content below the cell values.</p>
+<p>The DataGrid control supports common table formatting options, such as alternating row backgrounds and foregrounds and the ability to show or hide headers, grid lines, and scroll bars. Additionally, the control provides several style and template properties that you can use to completely change the appearance of the control and its rows, columns, cells, and row or column headers.</p>
+<p>The DataGrid has built-in support for Narrator and Touch Narrator to help blind users to navigate and interact easily with the control. Additionally, the control has built-in support for extensive keyboard navigation through cells, headers, rows and columns.</p>
+<h2 id="how-tos">How-Tos</h2>
+<p>The following guidance sections describe the additional concepts and techniques that you can use to build DataGrid control features into your applications:</p>
+<ul>
+<li><a href="datagrid-guidance/datagrid-basics.html">Add a DataGrid control to a page</a></li>
+<li><a href="datagrid-guidance/styling-formatting-options.html">Customize the DataGrid control using styling and formatting options</a></li>
+<li><a href="datagrid-guidance/sizing-options.html">Sizing options in the DataGrid control</a></li>
+<li><a href="datagrid-guidance/keyboard-navigation-selection.html">Default keyboard navigation and selection patterns</a></li>
+<li><a href="datagrid-guidance/rowdetails.html">Display and configure Row Details</a></li>
+<li><a href="datagrid-guidance/customize-autogenerated-columns.html">Configure Auto-generated columns in the DataGrid control</a></li>
+<li><a href="datagrid-guidance/group-sort-filter.html">Group, sort and filter data using LINQ and the DataGrid control</a></li>
+<li><a href="datagrid-guidance/editing-inputvalidation.html">Editing and input validation in the DataGrid control</a></li>
+</ul>
+<h2 id="sample-project">Sample Project</h2>
+<p>Here's the <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/DataGrid">DataGrid sample source code</a>.</p>
+<p>If you have the <strong>WinUI 2 Gallery</strong> app installed, you can use the app to see the DataGrid in action.</p>
+<ul>
+<li><a href="https://apps.microsoft.com/detail/9msvh128x2zt">Get the WinUI 2 Gallery app (Microsoft Store)</a></li>
+</ul>
+<p>See the other controls available in the <strong><a href="https://apps.microsoft.com/detail/9nblggh4tlcq">Windows Community Toolkit Gallery app</a></strong> or try them with the gallery app <a href="https://toolkitlabs.dev/">in your browser</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Uwp.UI.Controls</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.UI.Controls.DataGrid/">Microsoft.Toolkit.Uwp.UI.Controls.DataGrid</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">API</h2>
+<ul>
+<li><a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/Microsoft.Toolkit.Uwp.UI.Controls.DataGrid/DataGrid">DataGrid source code</a></li>
+<li><a href="/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc189753(v=vs.95)">Silverlight DataGrid API</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/datagrid.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

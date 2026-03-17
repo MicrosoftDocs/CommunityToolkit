@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>LinkedIn Service </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="LinkedIn Service ">
+    
+    <meta name="description" content="The LinkedIn Service allows you to retrieve or publish data to the LinkedIn graph. Examples of the types of objects you can work with are User profile data and sharing Activity.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="linkedin-service-archived">LinkedIn Service (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<ul>
+<li>We aren't open to porting this component to 8.x.</li>
+<li>There is no known recommended substitute for this component.</li>
+</ul>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>(This API will be removed in the future.)</p>
+</div>
+<p>The <strong>LinkedIn Service</strong> allows you to retrieve or publish data to the LinkedIn graph. Examples of the types of objects you can work with are User profile data and sharing Activity.</p>
+<div class="nextstepaction">
+<p><a href="uwpct://Services?sample=LinkedIn%20Service">Try it in the sample app</a></p>
+</div>
+<h2 id="creating-a-new-application-on-linkedin-developer-site">Creating a new Application on LinkedIn Developer Site</h2>
+<ol>
+<li>Go to: <a href="https://www.linkedin.com/developer/apps">https://www.linkedin.com/developer/apps</a>.</li>
+<li>Select <strong>Create Application</strong>, to start integrating LinkedIn into your app.</li>
+<li>Complete all mandatory fields signified by the red star.  If you agree to the terms and conditions, hit <strong>Submit</strong>.</li>
+<li>Make a note of the <strong>Client Id</strong> and <strong>Client Secret</strong> for your app - you will need to supply these in your code.</li>
+<li>Take note of the <strong>Default Application Permissions</strong>.  You can either set these in this portal or via code.  These are the permissions your user will need to agree to for you to make calls on their behalf.</li>
+<li>Under <strong>OAuth 2.0</strong> you will need to enter a <strong>Authorized Redirect URLs</strong>.  For UWP app development purposes this is arbitrary, but it will need to match what you have in your code (e.g. <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/">https://github.com/windows-toolkit/WindowsCommunityToolkit/</a>).</li>
+<li>Once you have done, hit <strong>Update</strong>.</li>
+</ol>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-csharp">// Initialize service - use overload if you need to supply additional permissions
+LinkedInService.Instance.Initialize(ClientId.Text, ClientSecret.Text, CallbackUri.Text);
+
+// Login to LinkedIn
+if (!await LinkedInService.Instance.LoginAsync())
+{
+    return;
+}
+
+// Get current user's profile details
+await LinkedInService.Instance.GetUserProfileAsync();
+
+// Share message to LinkedIn (text should include a Url so LinkedIn can scrape preview information)
+await LinkedInService.Instance.ShareActivityAsync(ShareText.Text);
+</code></pre>
+<pre><code class="lang-vb">' Initialize service - use overload if you need to supply additional permissions
+LinkedInService.Instance.Initialize(ClientId.Text, ClientSecret.Text, CallbackUri.Text)
+
+' Login to LinkedIn
+If Not Await LinkedInService.Instance.LoginAsync() Then
+    Return
+End If
+
+' Get current user's profile details
+Await LinkedInService.Instance.GetUserProfileAsync()
+
+' Share message to LinkedIn (text should include a Url so LinkedIn can scrape preview information)
+Await LinkedInService.Instance.ShareActivityAsync(ShareText.Text)
+</code></pre>
+<p><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/LinkedIn%20Service">LinkedIn Service Sample Page Source</a>. You can see this in action in <a href="https://www.microsoft.com/store/apps/9NBLGGH4TLCQ">Windows Community Toolkit Sample App</a>.</p>
+<h2 id="using-the-service-on-non-uwp-platforms">Using the service on non-UWP platforms</h2>
+<p>This service has built-in UWP and .NET Framework support. To use the service outside of UWP and .NET Framework platform, you'll need to implement some interfaces. These interfaces are the IAuthenticationBroker, IPasswordManager and IStorageManager.</p>
+<h3 id="iauthenticationbroker">IAuthenticationBroker</h3>
+<p>The IAuthenticationBroker only has the Authenticate method. This method receives a request uri and a callback uri, which you'll use to authenticate with the API. The method returns an AuthenticationResult that tells the service the authentication result.</p>
+<h3 id="ipasswordmanager">IPasswordManager</h3>
+<p>The IPasswordManager will allow the service to manage passwords. The methods you'll have to implement are Get, Store and Remove.</p>
+<p>The Get method receives a string key and returns a PasswordCredential.</p>
+<p>The Store method receives a string resource and a PasswordCredential.</p>
+<p>The Remove method receives a string key.</p>
+<h3 id="istoragemanager">IStorageManager</h3>
+<p>Finally, the IStorageManager will allow the service to store application data. The methods you'll have to implement are Get and Set.</p>
+<p>The Get method receives a string key and returns the saved string.</p>
+<p>The Set method receives a string key and a string value.</p>
+<p>The toolkit has implementations of each of them for UWP. You can find them as UwpAuthenticationBroker, UwpPasswordManager and UwpStorageManager.</p>
+<h2 id="sample-project">Sample Project</h2>
+<p><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/LinkedIn%20Service">LinkedIn Service Sample Page Source</a>. You can <a href="uwpct://Services?sample=LinkedIn%20Service">see this in action</a> in the <a href="https://aka.ms/windowstoolkitapp">Windows Community Toolkit Sample App</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Services</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Services/">Microsoft.Toolkit.Services</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">API</h2>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Services/Services/LinkedIn">LinkedIn Service source code</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/linkedin.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

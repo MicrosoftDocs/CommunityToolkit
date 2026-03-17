@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>AsyncRelayCommand </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="AsyncRelayCommand ">
+    
+    <meta name="description" content="An asynchronous command whose sole purpose is to relay its functionality to other objects by invoking delegates">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../TOC.html">
+      <meta property="docfx:tocrel" content="TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="asyncrelaycommand-and-asyncrelaycommandt">AsyncRelayCommand and AsyncRelayCommand&lt;T&gt;</h1>
+
+<p>The <a href="/dotnet/api/communitytoolkit.mvvm.input.AsyncRelayCommand"><code>AsyncRelayCommand</code></a> and <a href="/dotnet/api/communitytoolkit.mvvm.input.AsyncRelayCommand-1"><code>AsyncRelayCommand&lt;T&gt;</code></a> are <code>ICommand</code> implementations that extend the functionalities offered by <a href="/dotnet/api/communitytoolkit.mvvm.input.RelayCommand"><code>RelayCommand</code></a>, with support for asynchronous operations.</p>
+<blockquote>
+<p><strong>Platform APIs:</strong> <a href="/dotnet/api/communitytoolkit.mvvm.input.AsyncRelayCommand"><code>AsyncRelayCommand</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.input.AsyncRelayCommand-1"><code>AsyncRelayCommand&lt;T&gt;</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.input.RelayCommand"><code>RelayCommand</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand"><code>IAsyncRelayCommand</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand-1"><code>IAsyncRelayCommand&lt;T&gt;</code></a></p>
+</blockquote>
+<h2 id="how-they-work">How they work</h2>
+<p><code>AsyncRelayCommand</code> and <code>AsyncRelayCommand&lt;T&gt;</code> have the following main features:</p>
+<ul>
+<li>They extend the functionalities of the synchronous commands included in the library, with support for <code>Task</code>-returning delegates.</li>
+<li>They can wrap asynchronous functions with an additional <code>CancellationToken</code> parameter to support cancelation, and they expose a <code>CanBeCanceled</code> and <code>IsCancellationRequested</code> properties, as well as a <code>Cancel</code> method.</li>
+<li>They expose an <code>ExecutionTask</code> property that can be used to monitor the progress of a pending operation, and an <code>IsRunning</code> that can be used to check when an operation completes. This is particularly useful to bind a command to UI elements such as loading indicators.</li>
+<li>They implement the <a href="/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand"><code>IAsyncRelayCommand</code></a> and <a href="/dotnet/api/communitytoolkit.mvvm.input.IAsyncRelayCommand-1"><code>IAsyncRelayCommand&lt;T&gt;</code></a> interfaces, which means that viewmodel can easily expose commands using these to reduce the tight coupling between types. For instance, this makes it easier to replace a command with a custom implementation exposing the same public API surface, if needed.</li>
+</ul>
+<h2 id="working-with-asynchronous-commands">Working with asynchronous commands</h2>
+<p>Let's imagine a scenario similar to the one described in the <code>RelayCommand</code> sample, but a command executing an asynchronous operation:</p>
+<pre><code class="lang-csharp">public class MyViewModel : ObservableObject
+{
+    public MyViewModel()
+    {
+        DownloadTextCommand = new AsyncRelayCommand(DownloadText);
+    }
+
+    public IAsyncRelayCommand DownloadTextCommand { get; }
+
+    private Task&lt;string&gt; DownloadText()
+    {
+        return WebService.LoadMyTextAsync();
+    }
+}
+</code></pre>
+<p>With the related UI code:</p>
+<pre><code class="lang-xml">&lt;Page
+    x:Class=&quot;MyApp.Views.MyPage&quot;
+    xmlns:viewModels=&quot;using:MyApp.ViewModels&quot;
+    xmlns:converters=&quot;using:Microsoft.Toolkit.Uwp.UI.Converters&quot;&gt;
+    &lt;Page.DataContext&gt;
+        &lt;viewModels:MyViewModel x:Name=&quot;ViewModel&quot;/&gt;
+    &lt;/Page.DataContext&gt;
+    &lt;Page.Resources&gt;
+        &lt;converters:TaskResultConverter x:Key=&quot;TaskResultConverter&quot;/&gt;
+    &lt;/Page.Resources&gt;
+
+    &lt;StackPanel Spacing=&quot;8&quot; xml:space=&quot;default&quot;&gt;
+        &lt;TextBlock&gt;
+            &lt;Run Text=&quot;Task status:&quot;/&gt;
+            &lt;Run Text=&quot;{x:Bind ViewModel.DownloadTextCommand.ExecutionTask.Status, Mode=OneWay}&quot;/&gt;
+            &lt;LineBreak/&gt;
+            &lt;Run Text=&quot;Result:&quot;/&gt;
+            &lt;Run Text=&quot;{x:Bind ViewModel.DownloadTextCommand.ExecutionTask, Converter={StaticResource TaskResultConverter}, Mode=OneWay}&quot;/&gt;
+        &lt;/TextBlock&gt;
+        &lt;Button
+            Content=&quot;Click me!&quot;
+            Command=&quot;{x:Bind ViewModel.DownloadTextCommand}&quot;/&gt;
+        &lt;ProgressRing
+            HorizontalAlignment=&quot;Left&quot;
+            IsActive=&quot;{x:Bind ViewModel.DownloadTextCommand.IsRunning, Mode=OneWay}&quot;/&gt;
+    &lt;/StackPanel&gt;
+&lt;/Page&gt;
+</code></pre>
+<p>Upon clicking the <code>Button</code>, the command is invoked, and the <code>ExecutionTask</code> updated. When the operation completes, the property raises a notification which is reflected in the UI. In this case, both the task status and the current result of the task are displayed. Note that to show the result of the task, it is necessary to use the <code>TaskExtensions.GetResultOrDefault</code> method - this provides access to the result of a task that has not yet completed without blocking the thread (and possibly causing a deadlock).</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>Check out the <a href="https://aka.ms/mvvmtoolkit/samples">sample app</a> (for multiple UI frameworks) to see the MVVM Toolkit in action.</li>
+<li>You can also find more examples in the <a href="https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Mvvm.UnitTests">unit tests</a>.</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/mvvm/AsyncRelayCommand.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

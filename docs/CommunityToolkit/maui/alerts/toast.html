@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Toast - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Toast - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The Toast is a timed alert that appears at the bottom of the screen by default.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="toast">Toast</h1>
+
+<p><code>Toast</code> is a timed alert that appears at the bottom of the screen. It is automatically dismissed after a configurable duration of time.</p>
+<p>It provides simple feedback to the user about an operation in a small alert.</p>
+<h2 id="platform-specific-initialization">Platform specific initialization</h2>
+<p>To access the <code>Toast</code> functionality, the following platform specific setup is required.</p>
+<!-- markdownlint-disable MD025 -->
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_android" role="tab" aria-controls="tabpanel_1_android" data-tab="android" tabindex="0" aria-selected="true">Android</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_macios" role="tab" aria-controls="tabpanel_1_macios" data-tab="macios" tabindex="-1">iOS/Mac Catalyst</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_windows" role="tab" aria-controls="tabpanel_1_windows" data-tab="windows" tabindex="-1">Windows</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_tizen" role="tab" aria-controls="tabpanel_1_tizen" data-tab="tizen" tabindex="-1">Tizen</a>
+</li>
+</ul>
+<section id="tabpanel_1_android" role="tabpanel" data-tab="android">
+
+<p>No setup is required.</p>
+</section>
+<section id="tabpanel_1_macios" role="tabpanel" data-tab="macios" aria-hidden="true" hidden="hidden">
+
+<p>No setup is required.</p>
+</section>
+<section id="tabpanel_1_windows" role="tabpanel" data-tab="windows" aria-hidden="true" hidden="hidden">
+
+<p>When using <code>Snackbar</code> it is essential to perform the following two steps:</p>
+<h4 id="1-enable-the-snackbar-usage-with-the-mauiappbuilder">1. Enable the snackbar usage with the MauiAppBuilder</h4>
+<p>When using the <code>UseMauiCommunityToolkit</code> make use of the <code>options</code> parameter to enable the snackbar usage on Windows as follows:</p>
+<pre><code class="lang-csharp">var builder = MauiApp.CreateBuilder()
+  .UseMauiCommunityToolkit(options =&gt;
+  {
+    options.SetShouldEnableSnackbarOnWindows(true);
+  })
+</code></pre>
+<p>The above will automatically register the required handlers by configuring lifecycle events (<code>OnLaunched</code> and <code>OnClosed</code>).</p>
+<h4 id="2-include-toastnotification-registrations-in-your-packageappxmanifest-file">2. Include ToastNotification registrations in your Package.appxmanifest file</h4>
+<p>To handle the snackbar actions you will need to modify the <code>Platform\Windows\Package.appxmanifest</code> file as follows:</p>
+<ol>
+<li>In <strong>Package.appxmanifest</strong>, in the opening <code>&lt;Package&gt;</code> tag, add the following XML Namespaces:</li>
+</ol>
+<pre><code class="lang-xml">xmlns:com=&quot;http://schemas.microsoft.com/appx/manifest/com/windows10&quot;
+xmlns:desktop=&quot;http://schemas.microsoft.com/appx/manifest/desktop/windows10&quot;
+</code></pre>
+<ol start="2">
+<li>In <strong>Package.appxmanifest</strong>, also in the opening <code>&lt;Package&gt;</code> tag, update <code>IgnorableNamespaces</code> to include <code>uap</code> <code>rescap</code> <code>com</code> and <code>desktop</code>:</li>
+</ol>
+<pre><code class="lang-xml">IgnorableNamespaces=&quot;uap rescap com desktop&quot;
+</code></pre>
+<h5 id="example-completed-package-tag">Example: Completed <code>&lt;Package&gt;</code> Tag</h5>
+<p>Here is an example of a completed opening <code>&lt;Package&gt;</code> tag that has added support for <code>Snackbar</code>:</p>
+<pre><code class="lang-xml">&lt;Package
+     xmlns=&quot;http://schemas.microsoft.com/appx/manifest/foundation/windows10&quot;
+     xmlns:uap=&quot;http://schemas.microsoft.com/appx/manifest/uap/windows10&quot;
+     xmlns:rescap=&quot;http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities&quot;
+     xmlns:com=&quot;http://schemas.microsoft.com/appx/manifest/com/windows10&quot;
+     xmlns:desktop=&quot;http://schemas.microsoft.com/appx/manifest/desktop/windows10&quot;
+     IgnorableNamespaces=&quot;uap rescap com desktop&quot;&gt;
+</code></pre>
+<ol start="3">
+<li>In <strong>Package.appxmanifest</strong>, inside of each <code>&lt;Application&gt;</code> tag, add the following extensions:</li>
+</ol>
+<pre><code class="lang-xml">&lt;Extensions&gt;
+
+   &lt;!-- Specify which CLSID to activate when notification is clicked --&gt;
+   &lt;desktop:Extension Category=&quot;windows.toastNotificationActivation&quot;&gt;
+       &lt;desktop:ToastNotificationActivation ToastActivatorCLSID=&quot;6e919706-2634-4d97-a93c-2213b2acc334&quot; /&gt;
+   &lt;/desktop:Extension&gt;
+
+   &lt;!-- Register COM CLSID --&gt;
+   &lt;com:Extension Category=&quot;windows.comServer&quot;&gt;
+       &lt;com:ComServer&gt;
+           &lt;com:ExeServer Executable=&quot;YOUR-PATH-TO-EXECUTABLE&quot; DisplayName=&quot;$targetnametoken$&quot; Arguments=&quot;----AppNotificationActivated:&quot;&gt; &lt;!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe --&gt;
+               &lt;com:Class Id=&quot;6e919706-2634-4d97-a93c-2213b2acc334&quot; /&gt;
+           &lt;/com:ExeServer&gt;
+       &lt;/com:ComServer&gt;
+   &lt;/com:Extension&gt;
+
+&lt;/Extensions&gt;
+</code></pre>
+<h5 id="example-completed-applications-tag">Example: Completed <code>&lt;Applications&gt;</code> tag</h5>
+<p>Here is an example of a completed <code>&lt;Applications&gt;</code> tag that now has added support for <code>Snackbar</code>:</p>
+<pre><code class="lang-xml">&lt;Applications&gt;
+  &lt;Application Id=&quot;App&quot; Executable=&quot;$targetnametoken$.exe&quot; EntryPoint=&quot;$targetentrypoint$&quot;&gt;
+      &lt;uap:VisualElements
+          DisplayName=&quot;$placeholder$&quot;
+          Description=&quot;$placeholder$&quot;
+          Square150x150Logo=&quot;$placeholder$.png&quot;
+          Square44x44Logo=&quot;$placeholder$.png&quot;
+          BackgroundColor=&quot;transparent&quot;&gt;
+           &lt;uap:DefaultTile Square71x71Logo=&quot;$placeholder$.png&quot; Wide310x150Logo=&quot;$placeholder$.png&quot; Square310x310Logo=&quot;$placeholder$.png&quot; /&gt;
+           &lt;uap:SplashScreen Image=&quot;$placeholder$.png&quot; /&gt;
+       &lt;/uap:VisualElements&gt;
+       &lt;Extensions&gt;
+
+         &lt;desktop:Extension Category=&quot;windows.toastNotificationActivation&quot;&gt;
+             &lt;desktop:ToastNotificationActivation ToastActivatorCLSID=&quot;6e919706-2634-4d97-a93c-2213b2acc334&quot; /&gt;
+         &lt;/desktop:Extension&gt;
+
+         &lt;com:Extension Category=&quot;windows.comServer&quot;&gt;
+             &lt;com:ComServer&gt;
+                 &lt;com:ExeServer Executable=&quot;YOUR-PATH-TO-EXECUTABLE&quot; DisplayName=&quot;$targetnametoken$&quot; Arguments=&quot;----AppNotificationActivated:&quot;&gt; &lt;!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe --&gt;
+                     &lt;com:Class Id=&quot;6e919706-2634-4d97-a93c-2213b2acc334&quot; /&gt;
+                  &lt;/com:ExeServer&gt;
+              &lt;/com:ComServer&gt;
+          &lt;/com:Extension&gt;
+
+       &lt;/Extensions&gt;
+   &lt;/Application&gt;
+&lt;/Applications&gt;
+</code></pre>
+<h5 id="example-updated-packageappxmanifest-file-to-support-snackbar">Example: Updated <code>Package.appxmanifest</code> File to Support <code>Snackbar</code></h5>
+<p>Below is an example <code>Package.appxmanifest</code> file that has been updated to support <code>Snackbar</code> on Windows:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Package
+    xmlns=&quot;http://schemas.microsoft.com/appx/manifest/foundation/windows10&quot;
+    xmlns:uap=&quot;http://schemas.microsoft.com/appx/manifest/uap/windows10&quot;
+    xmlns:rescap=&quot;http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities&quot;
+    xmlns:com=&quot;http://schemas.microsoft.com/appx/manifest/com/windows10&quot;
+    xmlns:desktop=&quot;http://schemas.microsoft.com/appx/manifest/desktop/windows10&quot;
+    IgnorableNamespaces=&quot;uap rescap com desktop&quot;&gt;
+
+    &lt;Identity Name=&quot;maui-package-name-placeholder&quot; Publisher=&quot;CN=Microsoft&quot; Version=&quot;0.0.0.0&quot; /&gt;
+
+    &lt;Properties&gt;
+        &lt;DisplayName&gt;$placeholder$&lt;/DisplayName&gt;
+        &lt;PublisherDisplayName&gt;Microsoft&lt;/PublisherDisplayName&gt;
+        &lt;Logo&gt;$placeholder$.png&lt;/Logo&gt;
+    &lt;/Properties&gt;
+
+    &lt;Dependencies&gt;
+        &lt;TargetDeviceFamily Name=&quot;Windows.Universal&quot; MinVersion=&quot;10.0.17763.0&quot; MaxVersionTested=&quot;10.0.19041.0&quot; /&gt;
+        &lt;TargetDeviceFamily Name=&quot;Windows.Desktop&quot; MinVersion=&quot;10.0.17763.0&quot; MaxVersionTested=&quot;10.0.19041.0&quot; /&gt;
+    &lt;/Dependencies&gt;
+
+    &lt;Resources&gt;
+        &lt;Resource Language=&quot;x-generate&quot; /&gt;
+    &lt;/Resources&gt;
+
+    &lt;Applications&gt;
+        &lt;Application Id=&quot;App&quot; Executable=&quot;$targetnametoken$.exe&quot; EntryPoint=&quot;$targetentrypoint$&quot;&gt;
+            &lt;uap:VisualElements
+                DisplayName=&quot;$placeholder$&quot;
+                Description=&quot;$placeholder$&quot;
+                Square150x150Logo=&quot;$placeholder$.png&quot;
+                Square44x44Logo=&quot;$placeholder$.png&quot;
+                BackgroundColor=&quot;transparent&quot;&gt;
+                &lt;uap:DefaultTile Square71x71Logo=&quot;$placeholder$.png&quot; Wide310x150Logo=&quot;$placeholder$.png&quot; Square310x310Logo=&quot;$placeholder$.png&quot; /&gt;
+                &lt;uap:SplashScreen Image=&quot;$placeholder$.png&quot; /&gt;
+            &lt;/uap:VisualElements&gt;
+            &lt;Extensions&gt;
+
+               &lt;desktop:Extension Category=&quot;windows.toastNotificationActivation&quot;&gt;
+                   &lt;desktop:ToastNotificationActivation ToastActivatorCLSID=&quot;6e919706-2634-4d97-a93c-2213b2acc334&quot; /&gt;
+               &lt;/desktop:Extension&gt;
+
+               &lt;com:Extension Category=&quot;windows.comServer&quot;&gt;
+                   &lt;com:ComServer&gt;
+                       &lt;com:ExeServer Executable=&quot;YOUR-PATH-TO-EXECUTABLE&quot; DisplayName=&quot;$targetnametoken$&quot; Arguments=&quot;----AppNotificationActivated:&quot;&gt; &lt;!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe --&gt;
+                           &lt;com:Class Id=&quot;6e919706-2634-4d97-a93c-2213b2acc334&quot; /&gt;
+                        &lt;/com:ExeServer&gt;
+                    &lt;/com:ComServer&gt;
+                &lt;/com:Extension&gt;
+
+            &lt;/Extensions&gt;
+        &lt;/Application&gt;
+    &lt;/Applications&gt;
+
+    &lt;Capabilities&gt;
+        &lt;rescap:Capability Name=&quot;runFullTrust&quot; /&gt;
+    &lt;/Capabilities&gt;
+
+&lt;/Package&gt;
+</code></pre>
+<p>For more information on handling activation: <a href="/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation">Send a local toast notification from C# apps</a></p>
+</section>
+<section id="tabpanel_1_tizen" role="tabpanel" data-tab="tizen" aria-hidden="true" hidden="hidden">
+
+<p>No setup is required.</p>
+</section>
+</div>
+<!-- markdownlint-enable MD025 -->
+<h2 id="syntax">Syntax</h2>
+<h3 id="c">C#</h3>
+<p>To display <code>Toast</code>, first create it using the static method <code>Toast.Make()</code>, then display it using its method <code>Show()</code>.</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Alerts;
+
+CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+string text = &quot;This is a Toast&quot;;
+ToastDuration duration = ToastDuration.Short;
+double fontSize = 14;
+
+var toast = Toast.Make(text, duration, fontSize);
+
+await toast.Show(cancellationTokenSource.Token);
+</code></pre>
+<p>When calling <code>Toast.Make()</code>, its parameter <code>string text</code> is required. All other parameters are optional. Its optional parameter <code>ToastDuration duration</code> uses the default duration of <code>ToastDuration.Short</code>. Its optional parameter <code>double fontSize</code> uses the default value of <code>14.0</code>.</p>
+<p>The following screenshot shows the resulting Toast:</p>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_android" role="tab" aria-controls="tabpanel_1_android" data-tab="android" tabindex="0" aria-selected="true">Android</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_ios" role="tab" aria-controls="tabpanel_1_ios" data-tab="ios" tabindex="-1">iOS</a>
+</li>
+</ul>
+<section id="tabpanel_1_android" role="tabpanel" data-tab="android">
+
+<p><img src="../images/alerts/toast-android.gif" alt="Screenshot of an Toast on Android" title="Toast on Android"></p>
+</section>
+<section id="tabpanel_1_ios" role="tabpanel" data-tab="ios" aria-hidden="true" hidden="hidden">
+
+<p><img src="../images/alerts/toast-ios.gif" alt="Screenshot of an Toast on iOS" title="Toast on iOS"></p>
+</section>
+</div>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text</td>
+<td><code>string</code></td>
+<td>Text that displayed in the <code>Toast</code>.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td>Duration</td>
+<td><code>ToastDuration</code></td>
+<td>Duration <code>Toast</code> displayed.</td>
+<td><code>ToastDuration.Short</code></td>
+</tr>
+<tr>
+<td>TextSize</td>
+<td><code>double</code></td>
+<td>Text font size.</td>
+<td><code>14.0</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="toastduration">ToastDuration</h3>
+<p>The <code>ToastDuration</code> enumeration defines the following members:</p>
+<ul>
+<li><code>Short</code> - Display <code>Toast</code> for 2 seconds</li>
+<li><code>Long</code> - Display <code>Toast</code> for 3.5 seconds</li>
+</ul>
+<p>These values adhere to the constants defined in the <a href="https://developer.android.com/reference/android/widget/Toast"><code>android.widget.Toast</code> API</a>.</p>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Show</td>
+<td>Display the requested <code>Toast</code>. If a <code>Toast</code> is currently displayed, it will automatically be dismissed before the requested <code>Toast</code> is displayed.</td>
+</tr>
+<tr>
+<td>Dismiss</td>
+<td>Dismiss the current toast.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can display only one <code>Toast</code> at a time. If you call the <code>Show</code> method a second time, the first <code>Toast</code> will automatically be dismissed.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this feature in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Alerts/ToastPage.xaml.cs">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>Toast</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Alerts/Toast">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+<h2 id="details-of-implementation-and-limitation-for-different-platforms">Details of implementation and limitation for different platforms</h2>
+<ol>
+<li>The API allows override existing methods with your own implementation or creating your own Toast, by implementing <code>IToast</code> interface.</li>
+<li>Toast is implemented on Android, created by Google. Other platforms use a custom-implemented container (<code>UIView</code> for iOS and MacCatalyst, <code>ToastNotification</code> on Windows).</li>
+<li>Toast on Tizen can't be customized with its <code>Duration</code> and <code>TextSize</code> properties.</li>
+</ol>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/alerts/toast.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

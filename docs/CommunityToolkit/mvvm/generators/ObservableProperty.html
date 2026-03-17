@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>ObservableProperty attribute </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="ObservableProperty attribute ">
+    
+    <meta name="description" content="An attribute to generate observable properties">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="observableproperty-attribute">ObservableProperty attribute</h1>
+
+<p>The <a href="/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservablePropertyAttribute"><code>ObservableProperty</code></a> type is an attribute that allows generating observable properties from annotated fields. Its purpose is to greatly reduce the amount of boilerplate that is needed to define observable properties.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>In order to work, annotated fields need to be in a <a href="/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods">partial class</a> with the necessary <code>INotifyPropertyChanged</code> infrastructure. If the type is nested, all types in the declaration syntax tree must also be annotated as partial. Not doing so will result in a compile errors, as the generator will not be able to generate a different partial declaration of that type with the requested observable property.</p>
+</div>
+<blockquote>
+<p><strong>Platform APIs:</strong> <a href="/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservablePropertyAttribute"><code>ObservableProperty</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedForAttribute"><code>NotifyPropertyChangedFor</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyCanExecuteChangedForAttribute"><code>NotifyCanExecuteChangedFor</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyDataErrorInfoAttribute"><code>NotifyDataErrorInfo</code></a>, <a href="/dotnet/api/communitytoolkit.mvvm.componentmodel.NotifyPropertyChangedRecipientsAttribute"><code>NotifyPropertyChangedRecipients</code></a>, <a href="/dotnet/api/system.windows.input.icommand"><code>ICommand</code></a>, <a href="/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand"><code>IRelayCommand</code></a>, <a href="/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableValidator">ObservableValidator</a>, <a href="/dotnet/api/microsoft.toolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1"><code>PropertyChangedMessage&lt;T&gt;</code></a>, <a href="/dotnet/api/microsoft.toolkit.mvvm.Messaging.IMessenger"><code>IMessenger</code></a></p>
+</blockquote>
+<h2 id="how-it-works">How it works</h2>
+<p>The <code>ObservableProperty</code> attribute can be used to annotate a field in a partial type, like so:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+private string? name;
+</code></pre>
+<p>And it will generate an observable property like this:</p>
+<pre><code class="lang-csharp">public string? Name
+{
+    get =&gt; name;
+    set =&gt; SetProperty(ref name, value);
+}
+</code></pre>
+<p>It will also do so with an optimized implementation, so the end result will be even faster.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The name of the generated property will be created based on the field name. The generator assumes the field is named either <code>lowerCamel</code>, <code>_lowerCamel</code> or <code>m_lowerCamel</code>, and it will transform that to be <code>UpperCamel</code> to follow proper .NET naming conventions. The resulting property will always have public accessors, but the field can be declared with any visibility (<code>private</code> is recommended).</p>
+</div>
+<h2 id="running-code-upon-changes">Running code upon changes</h2>
+<p>The generated code is actually a bit more complex than this, and the reason for that is that it also exposes some methods you can implement to hook into the notification logic, and run additional logic when the property is about to be updated and right after it is updated, if needed. That is, the generated code is actually similar to this:</p>
+<pre><code class="lang-csharp">public string? Name
+{
+    get =&gt; name;
+    set
+    {
+        if (!EqualityComparer&lt;string?&gt;.Default.Equals(name, value))
+        {
+            string? oldValue = name;
+            OnNameChanging(value);
+            OnNameChanging(oldValue, value);
+            OnPropertyChanging();
+            name = value;
+            OnNameChanged(value);
+            OnNameChanged(oldValue, value);
+            OnPropertyChanged();
+        }
+    }
+}
+
+partial void OnNameChanging(string? value);
+partial void OnNameChanged(string? value);
+
+partial void OnNameChanging(string? oldValue, string? newValue);
+partial void OnNameChanged(string? oldValue, string? newValue);
+</code></pre>
+<p>This allows you to implement any of those methods to inject additional code. The first two are useful whenever you want to run some logic that only needs to reference the new value that the property has been set to. The other two are useful whenever you have some more complex logic that also has to update some state on both the old and new value being set.</p>
+<p>For instance, here is an example of how the first two overloads can be used:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+private string? name;
+
+partial void OnNameChanging(string? value)
+{
+    Console.WriteLine($&quot;Name is about to change to {value}&quot;);
+}
+
+partial void OnNameChanged(string? value)
+{
+    Console.WriteLine($&quot;Name has changed to {value}&quot;);
+}
+</code></pre>
+<p>And here is an example of how the other two overloads can be used:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+private ChildViewModel? selectedItem;
+
+partial void OnSelectedItemChanging(ChildViewModel? oldValue, ChildViewModel? newValue)
+{
+    if (oldValue is not null)
+    {
+        oldValue.IsSelected = true;
+    }
+
+    if (newValue is not null)
+    {
+        newValue.IsSelected = true;
+    }
+}
+</code></pre>
+<p>You're free to only implement any number of methods among the ones that are available, or none of them. If they are not implemented (or if only one is), the entire call(s) will just be removed by the compiler, so there will be no performance hit at all for cases where this additional functionality is not required.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The generated methods are <a href="/dotnet/csharp/language-reference/keywords/partial-method">partial methods</a> with no implementation, meaning that if you choose to implement them, you cannot specify an explicit accessibility for them. That is, implementations of these methods should also be declared as just <code>partial</code> methods, and they will always implicitly have private accessibility. Trying to add an explicit accessibility (eg. adding <code>public</code> or <code>private</code>) will result in an error, as that is not allowed in C#.</p>
+</div>
+<h2 id="notifying-dependent-properties">Notifying dependent properties</h2>
+<p>Imagine you had a <code>FullName</code> property you wanted to raise a notification for whenever <code>Name</code> changes. You can do that by using the <code>NotifyPropertyChangedFor</code> attribute, like so:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+[NotifyPropertyChangedFor(nameof(FullName))]
+private string? name;
+</code></pre>
+<p>This will result in a generated property equivalent to this:</p>
+<pre><code class="lang-csharp">public string? Name
+{
+    get =&gt; name;
+    set
+    {
+        if (SetProperty(ref name, value))
+        {
+            OnPropertyChanged(&quot;FullName&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="notifying-dependent-commands">Notifying dependent commands</h2>
+<p>Imagine you had a command whose execution state was dependent on the value of this property. That is, whenever the property changed, the execution state of the command should be invalidated and computed again. In other words, <a href="/dotnet/api/system.windows.input.icommand.canexecutechanged"><code>ICommand.CanExecuteChanged</code></a> should be raised again. You can achieve this by using the <code>NotifyCanExecuteChangedFor</code> attribute:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+[NotifyCanExecuteChangedFor(nameof(MyCommand))]
+private string? name;
+</code></pre>
+<p>This will result in a generated property equivalent to this:</p>
+<pre><code class="lang-csharp">public string? Name
+{
+    get =&gt; name;
+    set
+    {
+        if (SetProperty(ref name, value))
+        {
+            MyCommand.NotifyCanExecuteChanged();
+        }
+    }
+}
+</code></pre>
+<p>In order for this to work, the target command has to be some <a href="/dotnet/api/microsoft.toolkit.mvvm.input.IRelayCommand"><code>IRelayCommand</code></a> property.</p>
+<h2 id="requesting-property-validation">Requesting property validation</h2>
+<p>If the property is declared in a type that inherits from <a href="/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableValidator">ObservableValidator</a>, it is also possible to annotate it with any validation attributes and then request the generated setter to trigger validation for that property. This can be achieved with the <code>NotifyDataErrorInfo</code> attribute:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+[NotifyDataErrorInfo]
+[Required]
+[MinLength(2)] // Any other validation attributes too...
+private string? name;
+</code></pre>
+<p>This will result in the following property being generated:</p>
+<pre><code class="lang-csharp">public string? Name
+{
+    get =&gt; name;
+    set
+    {
+        if (SetProperty(ref name, value))
+        {
+            ValidateProperty(value, &quot;Value2&quot;);
+        }
+    }
+}
+</code></pre>
+<p>That generated <code>ValidateProperty</code> call will then validate the property and update the state of the <code>ObservableValidator</code> object, so that UI components can react to it and display any validation errors appropriately.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>By design, only field attributes that inherit from <a href="/dotnet/api/system.componentmodel.dataannotations.validationattribute"><code>ValidationAttribute</code></a> will be forwarded to the generated property. This is done specifically to support data validation scenarios. All other field attributes will be ignored, so it is not currently possible to add additional custom attributes on a field and have them also be applied to the generated property. If that is required (eg. to control serialization), consider using a traditional manual property instead.</p>
+</div>
+<h2 id="sending-notification-messages">Sending notification messages</h2>
+<p>If the property is declared in a type that inherits from <a href="/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableRecipient"><code>ObservableRecipient</code></a>, you can use the <code>NotifyPropertyChangedRecipients</code> attribute to instruct the generator to also insert code to send a property changed message for the property change. This will allow registered recipients to dynamically react to the change. That is, consider this code:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+[NotifyPropertyChangedRecipients]
+private string? name;
+</code></pre>
+<p>This will result in the following property being generated:</p>
+<pre><code class="lang-csharp">public string? Name
+{
+    get =&gt; name;
+    set
+    {
+        string? oldValue = name;
+
+        if (SetProperty(ref name, value))
+        {
+            Broadcast(oldValue, value);
+        }
+    }
+}
+</code></pre>
+<p>That generated <code>Broadcast</code> call will then send a new <a href="/dotnet/api/microsoft.toolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1"><code>PropertyChangedMessage&lt;T&gt;</code></a> using the <code>IMessenger</code> instance in use in the current viewmodel, to all registered subscribers.</p>
+<h2 id="adding-custom-attributes">Adding custom attributes</h2>
+<p>In some cases, it might be useful to also have some custom attributes over the generated properties. To achieve that, you can simply use the <code>[property: ]</code> target in attribute lists over annotated fields, and the MVVM Toolkit will automatically forward those attributes to the generated properties.</p>
+<p>For instance, consider a field like this:</p>
+<pre><code class="lang-csharp">[ObservableProperty]
+[property: JsonRequired]
+[property: JsonPropertyName(&quot;name&quot;)]
+private string? username;
+</code></pre>
+<p>This will generate a <code>Username</code> property, with those two <code>[JsonRequired]</code> and <code>[JsonPropertyName(&quot;name&quot;)]</code> attributes over it. You can use as many attribute lists targeting the property as you want, and all of them will be forwarded to the generated properties.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>Check out the <a href="https://aka.ms/mvvmtoolkit/samples">sample app</a> (for multiple UI frameworks) to see the MVVM Toolkit in action.</li>
+<li>You can also find more examples in the <a href="https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.Mvvm.UnitTests">unit tests</a>.</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/mvvm/generators/ObservableProperty.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Weibo service </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Weibo service ">
+    
+    <meta name="description" content="Learn about the Weibo Service, which allows users to retrieve or publish data to Weibo. See app setup instructions, syntax examples, and requirements.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="weibo-service-archived">Weibo Service (Archived)</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This document has been archived and the component is not available in the current version of the Windows Community Toolkit.</p>
+<ul>
+<li>We aren't open to porting this component to 8.x.</li>
+<li>There is no known recommended substitute for this component.</li>
+</ul>
+<p>For more information:</p>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/Windows">Community Toolkit GitHub repository</a></li>
+<li><a href="https://github.com/MicrosoftDocs/CommunityToolkit/issues">Documentation feedback and suggestions</a></li>
+</ul>
+<p>Original documentation follows below.</p>
+</div>
+<hr>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>(This API will be removed in the future.)</p>
+</div>
+<p>The <strong>Weibo Service</strong> allows users to retrieve or publish data to Weibo. Visit <a href="https://open.weibo.com">https://open.weibo.com</a> to create a new app or manage existing apps.</p>
+<div class="nextstepaction">
+<p><a href="uwpct://Services?sample=Weibo%20Service">Try it in the sample app</a></p>
+</div>
+<h2 id="app-setup">App Setup</h2>
+<p>Go to <a href="https://open.weibo.com/apps">我的应用(my apps)</a> and select your app. Then click the <em>应用信息</em>(app info) tab on the left sidebar you will be able to find the following fields:</p>
+<p><strong>App Key</strong>
+Copy this from the <em>应用基本信息</em>(basic information) section on your application page.</p>
+<p><strong>App Secret</strong>
+Copy this from the <em>应用基本信息</em>(basic information) section on your application page.</p>
+<p><strong>Secure Domains</strong>
+Due to the restriction by Weibo API, a status you post must include a url which starts with &quot;http&quot;/&quot;https&quot;. You can add a url to the list of secure domains in the <em>应用基本信息</em>(basic information) section on your application page.</p>
+<p><strong>Redirect URI</strong> Enter a unique URI for your application.  This must match the <em>Redirect URL</em> field in the <em>OAuth2.0 授权设置</em>(OAuth 2.0 Authorization Settings) section on the <em>高级信息</em>(advanced Info) page. You can visit the page by clicking on the left sidebar.
+<em>Example</em>: <code>https://myapp.company.com</code> - (this does not have to be a working URL)</p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="lang-csharp">// Initialize service
+WeiboService.Instance.Initialize(AppKey, AppSecret, RedirectUri);
+
+// Login to Weibo
+if (!await WeiboService.Instance.LoginAsync())
+{
+    return;
+}
+
+// Get current user info
+var user = await WeiboService.Instance.GetUserAsync();
+
+// Get user timeline
+ListView.ItemsSource = await WeiboService.Instance.GetUserTimeLineAsync(user.ScreenName, 50);
+
+// Post a status
+await WeiboService.Instance.PostStatusAsync(StatusText.Text);
+
+// Post a status with a picture
+await WeiboService.Instance.PostStatusAsync(StatusText.Text, stream);
+
+</code></pre>
+<pre><code class="lang-vb">
+' Initialize service
+WeiboService.Instance.Initialize(AppKey, AppSecret, RedirectUri)
+
+' Login to Weibo
+If Not Await WeiboService.Instance.LoginAsync() Then
+    Return
+End If
+
+' Get current user info
+Dim user = Await WeiboService.Instance.GetUserAsync()
+
+' Get user timeline
+ListView.ItemsSource = Await WeiboService.Instance.GetUserTimeLineAsync(user.ScreenName, 50)
+
+' Post a status
+Await WeiboService.Instance.PostStatusAsync(StatusText.Text)
+
+' Post a status with a picture
+Await WeiboService.Instance.PostStatusAsync(StatusText.Text, stream)
+  
+</code></pre>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initialize(string, string, string, IAuthenticationBroker, IPasswordManager, IStorageManager)</td>
+<td>bool</td>
+<td>Initialize underlying provider with relevant token information.</td>
+</tr>
+<tr>
+<td>LoginAsync()</td>
+<td>Task&lt;bool&gt;</td>
+<td>Log user in to Weibo.</td>
+</tr>
+<tr>
+<td>GetUserAsync(string)</td>
+<td>Task&lt;WeiboUser&gt;</td>
+<td>Retrieve user data.</td>
+</tr>
+<tr>
+<td>GetUserTimeLineAsync(string, int)</td>
+<td>Task&lt;IEnumerable&lt;WeiboStatus&gt;&gt;</td>
+<td>Retrieve user timeline data.</td>
+</tr>
+<tr>
+<td>PostStatusAsync(string)</td>
+<td>Task&lt;WeiboStatus&gt;</td>
+<td>Post a status.</td>
+</tr>
+<tr>
+<td>PostStatusAsync(string, Stream)</td>
+<td>Task&lt;WeiboStatus&gt;</td>
+<td>Post a status with a picture.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sample-project">Sample Project</h2>
+<p><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/Weibo%20Service">Weibo Service Sample Page Source</a>. You can <a href="uwpct://Services?sample=Weibo%20Service">see this in action</a> in the <a href="https://aka.ms/windowstoolkitapp">Windows Community Toolkit Sample App</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Device family</th>
+<th>Universal, 10.0.16299.0 or higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>Microsoft.Toolkit.Uwp.Services</td>
+</tr>
+<tr>
+<td>NuGet package</td>
+<td><a href="https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.Services/">Microsoft.Toolkit.Uwp.Services</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">API</h2>
+<ul>
+<li><a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/tree/rel/6.1.0/Microsoft.Toolkit.Services/Services/Weibo">Weibo Service source code</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/archive/windows/weibo.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

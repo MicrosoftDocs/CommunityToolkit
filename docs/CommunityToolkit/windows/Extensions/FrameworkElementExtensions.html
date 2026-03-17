@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>FrameworkElement Extensions </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="FrameworkElement Extensions ">
+    
+    <meta name="description" content="Provides attached dependency properties and extensions for the FrameworkElement type.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="frameworkelement-extensions">FrameworkElement Extensions</h1>
+
+<p><code>FrameworkElementExtensions</code> provides a collection of attached dependency properties, helpers and extension methods to work with <a href="/uwp/api/windows.ui.xaml.frameworkelement"><code>FrameworkElement</code></a> objects. In particular, it also includes a series of extension methods to explore the logical tree from a given UI element and find child or parent objects.</p>
+<h2 id="logical-tree-extensions">Logical tree extensions</h2>
+<p>The <code>FindChild</code> and <code>FindParent</code> methods (and their overloads) provide an easy way to explore the logical tree starting from a given <code>FrameworkElement</code> instance and find other controls connected to it.</p>
+<p>These APIs differ from the <em>visual tree</em> extensions (in the <code>DependencyObjectExtensions</code> class) where extra containers and styles can wrap other elements. The logical tree instead defines how controls are directly connected through construction. These methods can also be used on controls that aren't yet connected or rendered in the visual tree.</p>
+<p>Here are some examples of how these extensions can be used:</p>
+<pre><code class="lang-csharp">// Include the namespace to access the extensions
+using CommunityToolkit.WinUI;
+
+// Find a logical child control using its name
+var control = uiElement.FindChild(&quot;MyTextBox&quot;);
+
+// Find the first logical child control of a specified type
+control = uiElement.FindChild&lt;ListView&gt;();
+
+// Find all logical child controls of the specified type.
+// The FindChildren extension will iterate through all the existing
+// child nodes of the starting control, so here we also use the
+// OfType&lt;T&gt;() LINQ extension (from System.Linq) to filter to a type.
+foreach (var child in uiElement.FindChildren().OfType&lt;ListViewItem&gt;())
+{
+    // ...
+}
+
+// Find the first logical parent using its name
+control = uiElement.FindParent(&quot;MyGrid&quot;);
+
+// Find the first logical parent control of a specified type
+control = uiElement.FindParent&lt;Grid&gt;();
+
+// Retrieves the Content for the specified control from whatever its &quot;Content&quot; property may be
+var content = uiElement.GetContentControl();
+</code></pre>
+<h2 id="enableactualsizebinding">EnableActualSizeBinding</h2>
+<p>The <code>EnableActualSizeBinding</code> property allows you to enable/disable the binding for the <code>ActualHeight</code> and <code>ActualWidth</code> extensions. The <code>ActualHeight</code> and <code>ActualWidth</code> properties then make it possible to bind to the <code>ActualHeight</code> and <code>ActualWidth</code> properties of a given object.</p>
+<p>Here is an example of how the <code>ActualWidth</code> attached property can be used in a binding:</p>
+<pre><code class="lang-xaml">&lt;Rectangle
+    x:Name=&quot;TargetObject&quot;
+    ui:FrameworkElementExtensions.EnableActualSizeBinding=&quot;true&quot;/&gt;
+...
+&lt;TextBlock Text=&quot;{Binding ElementName=TargetObject, Path=(ui:FrameworkElementExtensions.ActualHeight)}&quot; /&gt;
+</code></pre>
+<h2 id="ancestortype">AncestorType</h2>
+<p>The <code>AncestorType</code> attached property will walk the visual tree from the attached element for another element of the specified type.  That value will be stored in the attached element's <code>Ancestor</code> property.  This can then be used for binding to properties on the parent element.  This is similar to the <a href="/dotnet/api/system.windows.data.relativesourcemode"><code>FindAncestor</code></a> mode to <a href="/dotnet/desktop/wpf/advanced/relativesource-markupextension"><code>RelativeSource</code></a> data binding in WPF.</p>
+<p>Here is an example of how this can be used:</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+<p>While this example is trivial, it shows you how to properly setup and bind to the parent element's property, in this case <code>Spacing</code>.</p>
+<h2 id="cursor">Cursor</h2>
+<p>The <code>Cursor</code> attached property enables you to easily change the mouse cursor over specific Framework elements. Values of this property are values from the <a href="/uwp/api/windows.ui.core.corecursortype"><code>CoreCursorType</code></a> type.</p>
+<p>Here is how you can easily set a custom cursor type for a target <code>FrameworkElement</code> instance:</p>
+<pre><code class="lang-xaml">&lt;Page
+    x:Class=&quot;Microsoft.Toolkit.Uwp.SampleApp.SamplePages.MouseCursorPage&quot;
+    xmlns=&quot;https://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+    xmlns:x=&quot;https://schemas.microsoft.com/winfx/2006/xaml&quot;
+    xmlns:ui=&quot;using:CommunityToolkit.WinUI&quot;&gt;
+
+    &lt;Grid Background=&quot;{ThemeResource ApplicationPageBackgroundThemeBrush}&quot;&gt;
+        &lt;Border
+            ui:FrameworkElementExtensions.Cursor=&quot;Hand&quot;
+            Width=&quot;220&quot; Height=&quot;120&quot; Background=&quot;DeepSkyBlue&quot;
+            HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;/&gt;
+    &lt;/Grid&gt;
+&lt;/Page&gt;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Even though Microsoft recommends in <a href="/windows/apps/design/input/mouse-interactions#cursors">UWP Design guidelines</a> hover effects instead of custom cursors over interactive elements, custom cursors can be useful in some specific scenarios.</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Because the UWP framework does not support metadata on attached properties, specifically the <a href="/dotnet/api/system.windows.frameworkpropertymetadata.-ctor#System_Windows_FrameworkPropertyMetadata__ctor_System_Object_System_Windows_FrameworkPropertyMetadataOptions_System_Windows_PropertyChangedCallback_System_Windows_CoerceValueCallback_"><code>FrameworkPropertyMetadata.Inherits</code></a> flag, the <code>Cursor</code> property might not work properly in some very specific XAML layout scenarios when combining nested <code>FrameworkElement</code>-s with different <code>CoreCursorType</code> values set on them.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/UnitTests">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Extensions/FrameworkElementExtensions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

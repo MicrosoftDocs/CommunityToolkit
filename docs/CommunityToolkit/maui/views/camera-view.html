@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>CameraView - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="CameraView - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The CameraView provides the ability to connect to a camera, display a preview from the camera and take photos.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="cameraview">CameraView</h1>
+
+<p>The <code>CameraView</code> provides the ability to connect to a camera, display a preview from the camera and take photos. The <code>CameraView</code> also offers features to support taking photos, controlling the flash, saving captured media to a file, and offering different hooks for events.</p>
+<p>The following sections will incrementally build on how to use the <code>CameraView</code> in a .NET MAUI application. They rely on the use of a <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraView/CameraViewViewModel.cs"><code>CameraViewModel</code></a>. that will be set as the <code>BindingContext</code> of the example <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml"><code>CameraViewPage</code></a>.</p>
+<h2 id="platform-specific-initialization">Platform specific initialization</h2>
+<p>The <code>CameraView</code> is part of the <code>CommunityToolkit.Maui.Camera</code> nuget package. To first use the <code>CameraView</code> please refer to the <a href="../get-started.html?tabs=CommunityToolkitMauiCamera">Getting started</a> section. The following platform specific setup is required.</p>
+<!-- markdownlint-disable MD025 -->
+<!-- markdownlint-disable MD051 -->
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_android" role="tab" aria-controls="tabpanel_1_android" data-tab="android" tabindex="0" aria-selected="true">Android</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_ios" role="tab" aria-controls="tabpanel_1_ios" data-tab="ios" tabindex="-1">iOS</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_mac" role="tab" aria-controls="tabpanel_1_mac" data-tab="mac" tabindex="-1">Mac Catalyst</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_windows" role="tab" aria-controls="tabpanel_1_windows" data-tab="windows" tabindex="-1">Windows</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_tizen" role="tab" aria-controls="tabpanel_1_tizen" data-tab="tizen" tabindex="-1">Tizen</a>
+</li>
+</ul>
+<section id="tabpanel_1_android" role="tabpanel" data-tab="android">
+
+<p>The following permissions need to be added to the <code>Platforms/Android/AndroidManifest.xml</code> file:</p>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+</code></pre>
+<p>In case you plan to record video, request Microphone permissions:</p>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot; /&gt;
+</code></pre>
+<p>This should be added inside the <code>&lt;manifest&gt;</code> element. Below shows a more complete example:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;application android:allowBackup=&quot;true&quot; android:icon=&quot;@mipmap/appicon&quot; android:roundIcon=&quot;@mipmap/appicon_round&quot; android:supportsRtl=&quot;true&quot; /&gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+
+    &lt;!--Optional. Only for video recording--&gt;
+    &lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot; /&gt;
+
+&lt;/manifest&gt;
+</code></pre>
+</section>
+<section id="tabpanel_1_ios" role="tabpanel" data-tab="ios" aria-hidden="true" hidden="hidden">
+
+<p>The following entries need to be added to the <code>Platforms/iOS/Info.plist</code> file:</p>
+<pre><code class="lang-xml">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+&lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+</code></pre>
+<p>In case you plan to record video, request Microphone permissions:</p>
+<pre><code class="lang-xml">&lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;
+&lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+</code></pre>
+<p>This should be added inside the <code>&lt;dict&gt;</code> element. Below shows a more complete example:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+    &lt;key&gt;UIDeviceFamily&lt;/key&gt;
+    &lt;array&gt;
+        &lt;integer&gt;1&lt;/integer&gt;
+        &lt;integer&gt;2&lt;/integer&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UIRequiredDeviceCapabilities&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;arm64&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UISupportedInterfaceOrientations&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;UIInterfaceOrientationPortrait&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeLeft&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeRight&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UISupportedInterfaceOrientations~ipad&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;UIInterfaceOrientationPortrait&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationPortraitUpsideDown&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeLeft&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeRight&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;XSAppIconAssets&lt;/key&gt;
+    &lt;string&gt;Assets.xcassets/appicon.appiconset&lt;/string&gt;
+
+    &lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+    &lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+
+    &lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;
+    &lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+</section>
+<section id="tabpanel_1_mac" role="tabpanel" data-tab="mac" aria-hidden="true" hidden="hidden">
+
+<p>The following entries need to be added to the <code>Platforms/MacCatalyst/Info.plist</code> file:</p>
+<pre><code class="lang-xml">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+&lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+</code></pre>
+<p>In case you plan to record video, request Microphone permissions:</p>
+<pre><code class="lang-xml">&lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;
+&lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+</code></pre>
+<p>This should be added inside the <code>&lt;dict&gt;</code> element. Below shows a more complete example:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+    &lt;key&gt;UIDeviceFamily&lt;/key&gt;
+    &lt;array&gt;
+        &lt;integer&gt;1&lt;/integer&gt;
+        &lt;integer&gt;2&lt;/integer&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UIRequiredDeviceCapabilities&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;arm64&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UISupportedInterfaceOrientations&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;UIInterfaceOrientationPortrait&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeLeft&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeRight&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UISupportedInterfaceOrientations~ipad&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;UIInterfaceOrientationPortrait&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationPortraitUpsideDown&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeLeft&lt;/string&gt;
+        &lt;string&gt;UIInterfaceOrientationLandscapeRight&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;XSAppIconAssets&lt;/key&gt;
+    &lt;string&gt;Assets.xcassets/appicon.appiconset&lt;/string&gt;
+
+    &lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+    &lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+
+    &lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;
+    &lt;string&gt;PROVIDE YOUR REASON HERE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+<p>More details can be found here: <a href="https://developer.apple.com/documentation/avfoundation/requesting-authorization-to-capture-and-save-media">https://developer.apple.com/documentation/avfoundation/requesting-authorization-to-capture-and-save-media</a></p>
+</section>
+<section id="tabpanel_1_windows" role="tabpanel" data-tab="windows" aria-hidden="true" hidden="hidden">
+
+<p>No setup is required.</p>
+</section>
+<section id="tabpanel_1_tizen" role="tabpanel" data-tab="tizen" aria-hidden="true" hidden="hidden">
+
+<p>Tizen is not currently supported.</p>
+</section>
+</div>
+<!-- markdownlint-enable MD051 -->
+<!-- markdownlint-enable MD025 -->
+<h2 id="basic-usage">Basic usage</h2>
+<p>The <code>CameraView</code> can be added to a .NET MAUI application in the following way.</p>
+<h3 id="request-permissions">Request permissions</h3>
+<p>Developers must manually request Permissions.Camera and/or Permissions.Microphone:</p>
+<pre><code class="lang-csharp">var cameraPermissionsRequest = await Permissions.RequestAsync&lt;Permissions.Camera&gt;();
+</code></pre>
+<p>In case you plan to record video, request Microphone permissions:</p>
+<pre><code class="lang-csharp">var microphonePermissionsRequest = await Permissions.RequestAsync&lt;Permissions.Microphone&gt;();
+</code></pre>
+<h3 id="including-the-xaml-namespace">Including the XAML namespace</h3>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30&quot;&gt;
+        &lt;toolkit:CameraView 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>The result will be a surface rendering the output of the default camera connected to the device.</p>
+<h2 id="access-the-current-camera">Access the current camera</h2>
+<p>The <code>SelectedCamera</code> property provides the ability to access the currently selected camera.</p>
+<p>The following example shows how to bind the <code>SelectedCamera</code> property from the <code>CameraView</code> to a property on the <code>CameraViewModel</code> with the same name (<code>SelectedCamera</code>).</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot; 
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h2 id="control-zoom">Control Zoom</h2>
+<p>The <code>SelectedCamera</code> property provides both a <code>MinimumZoomFactor</code> and a <code>MaximumZoomFactor</code> property, these are read-only and provide developers with a programmatic way of determining what zoom can be applied to the current camera. In order to change the zoom on the current camera the <code>CameraView</code> provides the <code>ZoomFactor</code> property.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If a value is provided outside of the <code>MinimumZoomFactor</code> and <code>MaximumZoomFactor</code> the <code>CameraView</code> will clamp the value to keep it within the bounds.</p>
+</div>
+<p>The following example shows how to add a <code>Slider</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>Maximum</code> property of the <code>Slider</code> to the <code>MaximumZoomFactor</code> of the <code>SelectedCamera</code> property.</li>
+<li>Bind the <code>Minimum</code> property of the <code>Slider</code> to the <code>MinimumZoomFactor</code> of the <code>SelectedCamera</code> property.</li>
+<li>Bind the <code>Value</code> property of the <code>Slider</code> to the <code>CurrentZoom</code> property on the <code>CameraViewModel</code> class.</li>
+</ul>
+<p>The final change involves binding the <code>ZoomFactor</code> property of the <code>CameraView</code> to the <code>CurrentZoom</code> property on the <code>CameraViewModel</code> class.</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h2 id="camera-flash-mode">Camera Flash Mode</h2>
+<p>The <code>CameraView</code> provides the ability to programmatically change the flash mode on the device, the possible options are:</p>
+<ul>
+<li><code>Off</code> - the flash is off and will <strong>not</strong> be used.</li>
+<li><code>On</code> - the flash is on and will <strong>always</strong> be used.</li>
+<li><code>Auto</code> - the flash will automatically be used based on the lighting conditions.</li>
+</ul>
+<p>The <code>SelectedCamera</code> property also provides the <code>IsFlashSupported</code> which makes it possible to determine whether the currently selected camera has a flash that can be controlled.</p>
+<p>The following example shows how to add a <code>Picker</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>IsVisible</code> property of the <code>Picker</code> to the <code>IsFlashSupported</code> of the <code>SelectedCamera</code> property.</li>
+<li>Bind the <code>ItemsSource</code> property of the <code>Picker</code> to the <code>FlashModes</code> property on the <code>CameraViewModel</code> class - a simple list of the possible values of the <code>CameraFlashMode</code> enum.</li>
+<li>Bind the <code>SelectedItem</code> property of the <code>Picker</code> to the <code>FlashMode</code> property on the <code>CameraViewModel</code> class.</li>
+</ul>
+<p>The final change involves binding the <code>CameraFlashMode</code> property of the <code>CameraView</code> to the <code>FlashMode</code> property on the <code>CameraViewModel</code> class.</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot;
+            CameraFlashMode=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Flash&quot;
+            IsVisible=&quot;{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}&quot;
+            ItemsSource=&quot;{Binding FlashModes}&quot;
+            SelectedItem=&quot;{Binding FlashMode}&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h2 id="imagecaptureresolution">ImageCaptureResolution</h2>
+<p>The <code>CameraView</code> provides the ability to programmatically change resolution for images captured from the current camera.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This will not change the resolution displayed in the preview from the camera.</p>
+</div>
+<p>The <code>SelectedCamera</code> property also provides the <code>SupportedResolutions</code> which makes it possible to determine which resolutions the current camera supports.</p>
+<p>The following example shows how to add a <code>Picker</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>ItemsSource</code> property of the <code>Picker</code> to the <code>SupportedResolutions</code> of the <code>SelectedCamera</code> property.</li>
+<li>Bind the <code>SelectedItem</code> property of the <code>Picker</code> to the <code>SelectedResolution</code> property on the <code>CameraViewModel</code> class.</li>
+</ul>
+<p>The final change involves binding the <code>ImageCaptureResolution</code> property of the <code>CameraView</code> to the <code>SelectedResolution</code> property on the <code>CameraViewModel</code> class.</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot;
+            CameraFlashMode=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Flash&quot;
+            IsVisible=&quot;{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}&quot;
+            ItemsSource=&quot;{Binding FlashModes}&quot;
+            SelectedItem=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;2&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Available Resolutions&quot;
+            ItemsSource=&quot;{Binding SelectedCamera.SupportedResolutions}&quot;
+            SelectedItem=&quot;{Binding SelectedResolution}&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h2 id="captureimage">CaptureImage</h2>
+<p>The <code>CameraView</code> provides the ability to programmatically trigger an image capture. This is possible through both the <code>CaptureImage</code> method or the <code>CaptureImageCommand</code>.</p>
+<p>The following example shows how to add a <code>Button</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>Command</code> property of the <code>Button</code> to the <code>CaptureImageCommand</code> property on the <code>CameraView</code>.</li>
+</ul>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView
+            x:Name=&quot;Camera&quot; 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot;
+            CameraFlashMode=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Flash&quot;
+            IsVisible=&quot;{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}&quot;
+            ItemsSource=&quot;{Binding FlashModes}&quot;
+            SelectedItem=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;2&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Available Resolutions&quot;
+            ItemsSource=&quot;{Binding SelectedCamera.SupportedResolutions}&quot;
+            SelectedItem=&quot;{Binding SelectedResolution}&quot; /&gt;
+
+        &lt;Button
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;2&quot;
+            Command=&quot;{Binding CaptureImageCommand, Source={x:Reference Camera}}&quot;
+            Text=&quot;Capture Image&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>In order to use the image that has been captured the <code>CameraView</code> provides the <code>MediaCaptured</code> event.</p>
+</div>
+<p>The following example demonstrates how to use the <code>CaptureImage</code> method:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The C# code below uses the Camera field defined above in XAML (<code>&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;</code>)</p>
+</div>
+<pre><code class="lang-cs">async void HandleCaptureButtonTapped(object? sender, EventArgs e)
+{
+    try
+    {
+        // Use the Camera field defined above in XAML (`&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;`)
+        var captureImageCTS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+        Stream stream = await Camera.CaptureImage(captureImageCTS.Token);
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
+</code></pre>
+<h2 id="video-recording">Video Recording</h2>
+<p>The <code>CameraView</code> provides the ability to record videos. This is possible through both the <code>StartVideoRecording</code> method or the <code>StartVideoRecordingCommand</code>.</p>
+<p>The following example shows how to add a <code>Button</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>Command</code> property of the <code>Button</code> to the <code>StartVideoRecordingCommand</code> property on the <code>CameraView</code>.</li>
+</ul>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView
+            x:Name=&quot;Camera&quot; 
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot;
+            CameraFlashMode=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Flash&quot;
+            IsVisible=&quot;{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}&quot;
+            ItemsSource=&quot;{Binding FlashModes}&quot;
+            SelectedItem=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;2&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Available Resolutions&quot;
+            ItemsSource=&quot;{Binding SelectedCamera.SupportedResolutions}&quot;
+            SelectedItem=&quot;{Binding SelectedResolution}&quot; /&gt;
+
+        &lt;Button Clicked=&quot;StartCameraRecording&quot;
+                Text=&quot;StartVideoRecording&quot; /&gt;
+
+        &lt;Button Command=&quot;{Binding StartVideoRecordingCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}&quot;
+                CommandParameter=&quot;{Binding Stream}&quot;
+                Text=&quot;StartVideoRecording&quot; /&gt;
+
+        &lt;Button Command=&quot;{Binding StopVideoRecordingCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}&quot;
+                CommandParameter=&quot;{Binding Token}&quot;
+                Text=&quot;StopVideoRecording&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You must provide a clean stream in order to record the video.</p>
+</div>
+<p>The following example demonstrates how to use the <code>StartVideoRecording</code> method:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The C# code below uses the Camera field defined above in XAML (<code>&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;</code>)</p>
+</div>
+<pre><code class="lang-cs">async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
+{
+    using var threeSecondVideoRecordingStream = new FileStream(&quot;recording.mp4&quot;);
+    await Camera.StartVideoRecording(stream, CancellationToken.None);
+
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync(&quot;recording.mp4&quot;, threeSecondVideoRecordingStream);
+}
+</code></pre>
+<p>In case you want to record a short video and record video in <code>MemoryStream</code> you can use the next overload of VideoRecording:</p>
+<pre><code class="lang-cs">async void StartCameraRecording(object? sender, EventArgs e)
+{
+    await Camera.StartVideoRecording(CancellationToken.None);
+    
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync(&quot;recording.mp4&quot;, threeSecondVideoRecordingStream);
+}
+</code></pre>
+<h2 id="start-preview">Start preview</h2>
+<p>The <code>CameraView</code> provides the ability to programmatically start the preview from the camera. This is possible through both the <code>StartCameraPreview</code> method or the <code>StartCameraPreviewCommand</code>.</p>
+<p>The following example shows how to add a <code>Button</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>Command</code> property of the <code>Button</code> to the <code>StartCameraPreviewCommand</code> property on the <code>CameraView</code>.</li>
+</ul>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView
+            x:Name=&quot;Camera&quot;  
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot;
+            CameraFlashMode=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Flash&quot;
+            IsVisible=&quot;{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}&quot;
+            ItemsSource=&quot;{Binding FlashModes}&quot;
+            SelectedItem=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;2&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Available Resolutions&quot;
+            ItemsSource=&quot;{Binding SelectedCamera.SupportedResolutions}&quot;
+            SelectedItem=&quot;{Binding SelectedResolution}&quot; /&gt;
+
+        &lt;Button
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;2&quot;
+            Command=&quot;{Binding CaptureImageCommand, Source={x:Reference Camera}}&quot;
+            Text=&quot;Capture Image&quot; /&gt;
+
+        &lt;Button
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;2&quot;
+            Command=&quot;{Binding StartCameraPreviewCommand, Source={x:Reference Camera}}&quot;
+            Text=&quot;Capture Image&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>The following example demonstrates how to use the <code>StartCameraPreview</code> method:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The C# code below uses the Camera field defined above in XAML (<code>&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;</code>)</p>
+</div>
+<pre><code class="lang-cs">async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
+{
+
+    try
+    {
+        var startCameraPreviewTCS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+
+        // Use the Camera field defined above in XAML (`&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;`)
+        await Camera.StartCameraPreview(startCameraPreviewTCS.Token);
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
+</code></pre>
+<h2 id="stop-preview">Stop preview</h2>
+<p>The <code>CameraView</code> provides the ability to programmatically stop the preview from the camera. This is possible through both the <code>StopCameraPreview</code> method or the <code>StopCameraPreviewCommand</code>.</p>
+<p>The following example shows how to add a <code>Button</code> into the application and setup the following bindings:</p>
+<ul>
+<li>Bind the <code>Command</code> property of the <code>Button</code> to the <code>StopCameraPreviewCommand</code> property on the <code>CameraView</code>.</li>
+</ul>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.CameraViewPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+    
+    &lt;Grid ColumnDefinitions=&quot;*,*,*&quot; RowDefinitions=&quot;*,30,30&quot;&gt;
+        &lt;toolkit:CameraView
+            x:Name=&quot;Camera&quot;  
+            Grid.ColumnSpan=&quot;3&quot; 
+            Grid.Row=&quot;0&quot;
+            SelectedCamera=&quot;{Binding SelectedCamera}&quot;
+            ZoomFactor=&quot;{Binding CurrentZoom}&quot;
+            CameraFlashMode=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Slider 
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;1&quot;
+            Value=&quot;{Binding CurrentZoom}&quot;
+            Maximum=&quot;{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}&quot;
+            Minimum=&quot;{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}&quot;/&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Flash&quot;
+            IsVisible=&quot;{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}&quot;
+            ItemsSource=&quot;{Binding FlashModes}&quot;
+            SelectedItem=&quot;{Binding FlashMode}&quot; /&gt;
+
+        &lt;Picker 
+            Grid.Column=&quot;2&quot;
+            Grid.Row=&quot;1&quot;
+            Title=&quot;Available Resolutions&quot;
+            ItemsSource=&quot;{Binding SelectedCamera.SupportedResolutions}&quot;
+            SelectedItem=&quot;{Binding SelectedResolution}&quot; /&gt;
+
+        &lt;Button
+            Grid.Column=&quot;0&quot;
+            Grid.Row=&quot;2&quot;
+            Command=&quot;{Binding CaptureImageCommand, Source={x:Reference Camera}}&quot;
+            Text=&quot;Capture Image&quot; /&gt;
+
+        &lt;Button
+            Grid.Column=&quot;1&quot;
+            Grid.Row=&quot;2&quot;
+            Command=&quot;{Binding StartCameraPreviewCommand, Source={x:Reference Camera}}&quot;
+            Text=&quot;Capture Image&quot; /&gt;
+
+        &lt;Button
+            Grid.Column=&quot;2&quot;
+            Grid.Row=&quot;2&quot;
+            Command=&quot;{Binding StopCameraPreviewCommand, Source={x:Reference Camera}}&quot;
+            Text=&quot;Capture Image&quot; /&gt;
+    &lt;/Grid&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>The following example demonstrates how to use the <code>StopCameraPreview</code> method:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The C# code below uses the Camera field defined above in XAML (<code>&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;</code>)</p>
+</div>
+<pre><code class="lang-cs">void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
+{
+
+    try
+    {
+        // Use the Camera field defined above in XAML (`&lt;toolkit:CameraView x:Name=&quot;Camera&quot; /&gt;`)
+        Camera.StopCameraPreview();
+    }
+    catch(Exception e)
+    {
+        // Handle Exception
+        Trace.WriteLine(e);
+    }
+}
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this feature in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml.cs">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>CameraView</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Camera/Views/CameraView.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/views/camera-view.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

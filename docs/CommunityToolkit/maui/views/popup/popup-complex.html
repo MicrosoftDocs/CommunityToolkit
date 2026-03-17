@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Complex popup example - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Complex popup example - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="Combining Popup features to provide a comprehensive example.">
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="popups---combining-popup-features-to-provide-a-comprehensive-example">Popups - Combining Popup features to provide a comprehensive example</h1>
+
+<p>This page makes use of the following features to provide a comprehensive example:</p>
+<ul>
+<li><a href="../popup.md"><code>Popup</code></a></li>
+<li><a href="../popup-service.html"><code>IPopupService</code></a></li>
+<li><a href="popup-options.html"><code>PopupOptions</code> - Customizing a <code>Popup</code> behavior and appearance</a></li>
+<li><a href="popup-result.html"><code>Popup</code> - Returning a result</a></li>
+</ul>
+<p>The example involves creating a popup and view model pairing, registering this pair with the dependency injection services, binding the <code>PopupOptions</code> to the current pages view model, showing the Popup using the <code>PopupService</code> and finally having the <code>Popup</code> view model return a result when the button is tapped by the user.</p>
+<h2 id="creating-the-complexpopupviewmodel">Creating the ComplexPopupViewModel</h2>
+<p>This will serve as the view model for the popup.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Please note that this example relies on using the .NET Community Toolkit. For information on how to use this please refer to the <a href="../../../mvvm/index.html">.NET Community Toolkit</a> documentation.</p>
+</div>
+<pre><code class="lang-csharp">using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace CommunityToolkit.Maui.Sample.ViewModels.Views;
+
+public partial class ComplexPopupViewModel(IPopupService popupService) : ObservableObject
+{
+    readonly IPopupService popupService = popupService;
+    readonly INavigation navigation = 
+        Application.Current?.Windows[0].Page?.Navigation ??
+        throw new InvalidOperationException(&quot;Unable to locate INavigation&quot;);
+    
+    [ObservableProperty, NotifyCanExecuteChangedFor(nameof(ReturnButtonTappedCommand))]
+    public partial string ReturnText { get; set; } = string.Empty;
+
+    bool CanReturnButtonExecute =&gt; ReturnText?.Length &gt; 0;
+
+    [RelayCommand(CanExecute = nameof(CanReturnButtonExecute))]
+    async Task OnReturnButtonTapped(CancellationToken token)
+    {
+        await popupService.ClosePopupAsync&lt;string&gt;(navigation, ReturnText, token);
+    }
+}
+</code></pre>
+<h2 id="creating-the-complexpopup">Creating the ComplexPopup</h2>
+<p>This will serve as the content of the popup to be displayed.</p>
+<p>The easiest way to create a <code>Popup&lt;T&gt;</code> is to add a new <code>.NET MAUI ContentView (XAML)</code> to your project, this will create 2 files; a <em>*.xaml</em> file and a <em>*.xaml.cs</em> file. The contents of each file can be replaced with the following:</p>
+<h3 id="xaml-file">XAML File</h3>
+<pre><code class="lang-XAML">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;toolkit:Popup xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+           xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+           xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+           xmlns:vm=&quot;clr-namespace:CommunityToolkit.Maui.Sample.ViewModels.Views&quot;
+           xmlns:system=&quot;clr-namespace:System;assembly=System.Runtime&quot;
+           x:Class=&quot;CommunityToolkit.Maui.Sample.Views.Popups.ComplexPopup&quot;
+           x:DataType=&quot;vm:ComplexPopupViewModel&quot;
+           x:TypeArguments=&quot;system:String&quot;&gt;
+
+    &lt;toolkit:Popup.Resources&gt;
+        &lt;toolkit:AppThemeColor Light=&quot;Black&quot; Dark=&quot;Black&quot; x:Key=&quot;TextColor&quot; /&gt;
+    &lt;/toolkit:Popup.Resources&gt;
+
+    &lt;VerticalStackLayout Spacing=&quot;12&quot;&gt;
+        
+        &lt;Label Text=&quot;Complex Popup&quot;
+               TextColor=&quot;{toolkit:AppThemeResource TextColor}&quot;
+               FontSize=&quot;24&quot;
+               HorizontalTextAlignment=&quot;Center&quot;
+               VerticalTextAlignment=&quot;Center&quot;
+               HorizontalOptions=&quot;Center&quot;
+               VerticalOptions=&quot;Center&quot;
+               FontAttributes=&quot;Bold&quot; /&gt;
+
+        &lt;Label x:Name=&quot;DescriptionLabel&quot;
+               Text=&quot;This text will change upon the Opened event firing&quot;
+               TextColor=&quot;{toolkit:AppThemeResource TextColor}&quot;
+               HorizontalTextAlignment=&quot;Center&quot;
+               VerticalTextAlignment=&quot;Center&quot;
+               HorizontalOptions=&quot;Center&quot;
+               VerticalOptions=&quot;Center&quot;
+               LineBreakMode=&quot;WordWrap&quot; /&gt;
+
+        &lt;Entry Placeholder=&quot;Enter text here then click Return&quot;
+               HorizontalOptions=&quot;Center&quot;
+               VerticalOptions=&quot;Center&quot;
+               Text=&quot;{Binding ReturnText, Mode=OneWayToSource}&quot; 
+               TextColor=&quot;{toolkit:AppThemeResource TextColor}&quot;/&gt;
+
+        &lt;Button Text=&quot;Return&quot;
+                HorizontalOptions=&quot;Center&quot;
+                VerticalOptions=&quot;Center&quot;
+                Command=&quot;{Binding ReturnButtonTappedCommand}&quot; /&gt;
+
+    &lt;/VerticalStackLayout&gt;
+    
+&lt;/toolkit:Popup&gt;
+</code></pre>
+<h3 id="xaml-code-behind-file">XAML Code-Behind File</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Sample.ViewModels.Views;
+using CommunityToolkit.Maui.Views;
+
+namespace CommunityToolkit.Maui.Sample.Views.Popups;
+
+public partial class ComplexPopup : Popup&lt;string&gt;
+{
+    public ComplexPopup(ComplexPopupViewModel viewModel)
+    {
+        InitializeComponent();
+
+        CanBeDismissedByTappingOutsideOfPopup = false;
+
+        BindingContext = viewModel;
+        Opened += HandlePopupOpened;
+    }
+
+    async void HandlePopupOpened(object? sender, EventArgs e)
+    {
+        // Delay for one second to ensure the user sees the previous text
+        await Task.Delay(TimeSpan.FromSeconds(1));
+        DescriptionLabel.Text = &quot;This Popup demonstrates constructor injection to pass in a value using Dependency Injection using PopupService, demonstrates how to use the Opened event to trigger an action once the Popup appears, demonstrates how to bind to PopupOptions, and demonstrates how to return a result.&quot;;
+    }
+}
+</code></pre>
+<h2 id="registering-the-popup-with-dependency-injection">Registering the Popup with Dependency Injection</h2>
+<p>Inside the <code>MauiProgram.cs</code> file the following line needs to be added to the <code>CreateMauiApp</code> method in order to register the <code>ComplexPopup</code> and <code>ComplexPopupViewModel</code> types with dependency injection but to also make it possible to use the <code>IPopupService</code> to display the popup.</p>
+<pre><code class="lang-csharp">services.AddTransientPopup&lt;ComplexPopup, ComplexPopupViewModel&gt;();
+</code></pre>
+<h2 id="creating-the-popupspageviewmodel">Creating the PopupsPageViewModel</h2>
+<p>This will serve as the view model for the page used to display the popup.</p>
+<pre><code class="lang-csharp">using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace CommunityToolkit.Maui.Sample.ViewModels.Views;
+
+public partial class PopupsViewModel(IPopupService popupService) : BaseViewModel
+{
+    [ObservableProperty]
+    public partial Color PageOverlayBackgroundColor { get; set; } = Colors.Orange.WithAlpha(0.2f);
+
+    [RelayCommand]
+    async Task OnComplexPopupOpened(CancellationToken token)
+    {
+        // Rotate the PopupOptions.PageOverlayBackgroundColor every second
+        while (!token.IsCancellationRequested)
+        {
+            PageOverlayBackgroundColor = Color.FromRgba(Random.Shared.NextDouble(), Random.Shared.NextDouble(), Random.Shared.NextDouble(), 0.2f);
+            await Task.Delay(TimeSpan.FromSeconds(1), CancellationToken.None);
+        }
+    }
+}
+</code></pre>
+<h2 id="creating-the-popupspage">Creating the PopupsPage</h2>
+<h3 id="xaml-file-1">XAML File</h3>
+<pre><code class="lang-XAML">&lt;ContentPage
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:pages=&quot;clr-namespace:CommunityToolkit.Maui.Sample.Pages&quot;
+    xmlns:viewModels=&quot;clr-namespace:CommunityToolkit.Maui.Sample.ViewModels.Views&quot;
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.Views.PopupsPage&quot;
+    Title=&quot;Popups Page&quot;
+    x:DataType=&quot;viewModels:PopupsViewModel&quot;&gt;
+
+    &lt;Button Text=&quot;Complex Popup&quot; Clicked=&quot;HandleComplexPopupClicked&quot; /&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="xaml-code-behind-file-1">XAML Code-Behind File</h3>
+<pre><code class="lang-csharp">using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Maui.Markup;
+using CommunityToolkit.Maui.Sample.Pages.Views.Popup;
+using CommunityToolkit.Maui.Sample.ViewModels.Views;
+using CommunityToolkit.Maui.Sample.Views.Popups;
+using Microsoft.Maui.Controls.Shapes;
+
+namespace CommunityToolkit.Maui.Sample.Pages.Views;
+
+public partial class PopupsPage : ContentPage
+{
+    readonly IPopupService popupService;
+    readonly PopupsViewModel viewModel;
+
+    public PopupsPage(PopupsViewModel multiplePopupViewModel, IPopupService popupService)
+    {
+        this.popupService = popupService;
+        this.viewModel = multiplePopupViewModel;
+
+        InitializeComponent();
+
+        BindingContext = multiplePopupViewModel;
+    }
+
+    async void HandleComplexPopupClicked(object? sender, EventArgs e)
+    {
+        var complexPopupOpenedCancellationTokenSource = new CancellationTokenSource();
+        var complexPopupOptions = new PopupOptions
+        {
+            BindingContext = this.viewModel,
+            Shape = new RoundRectangle
+            {
+                CornerRadius = new CornerRadius(4),
+                StrokeThickness = 12,
+                Stroke = Colors.Orange
+            }
+        };
+        complexPopupOptions.SetBinding&lt;PopupsViewModel, Color&gt;(
+            PopupOptions.PageOverlayColorProperty,
+            static x =&gt; x.PageOverlayBackgroundColor);
+
+        var popupResultTask = popupService.ShowPopupAsync&lt;ComplexPopup, string&gt;(
+            Navigation,
+            complexPopupOptions,
+            CancellationToken.None);
+
+        // Trigger Command in ViewModel to Rotate PopupOptions.PageOverlayColorProperty
+        this.viewModel.ComplexPopupOpenedCommand.Execute(complexPopupOpenedCancellationTokenSource.Token);
+
+        var popupResult = await popupResultTask;
+        await complexPopupOpenedCancellationTokenSource.CancelAsync();
+
+        if (!popupResult.WasDismissedByTappingOutsideOfPopup)
+        {
+            // Display Popup Result as a Toast
+            await Toast.Make($&quot;You entered {popupResult.Result}&quot;).Show(CancellationToken.None);
+        }
+    }
+}
+</code></pre>
+<h2 id="the-result">The result</h2>
+<p><img src="../../images/views/popup/complex-popup.gif" alt="Animated screenshot of the complex popup" title="Complex popup"></p>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this feature in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Views/Popups/ComplexPopup.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>Popup</code> over on the <a href="https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui/Views/Popup">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="../popup.md"><code>Popup</code></a></li>
+<li><a href="../popup-service.html"><code>IPopupService</code></a></li>
+<li><a href="popup-options.html"><code>PopupOptions</code> - Customizing a <code>Popup</code> behavior and appearance</a></li>
+<li><a href="popup-result.html"><code>Popup</code> - Returning a result</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/views/popup/popup-complex.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

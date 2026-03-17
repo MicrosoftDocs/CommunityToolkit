@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>FuncMultiConverter - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="FuncMultiConverter - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The FuncMultiConverter provides the ability to define an IMultiValueConverter implementation inline when build your UI.">
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../TOC.html">
+      <meta property="docfx:tocrel" content="../../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="funcmulticonverter">FuncMultiConverter</h1>
+
+<p>The <code>FuncMultiConverter</code> provides the ability to define an <code>IMultiValueConverter</code> implementation inline when build your UI. An additional benefit of using the <code>FuncMultiConverter</code> implementation is that it provides a type safe way of performing your conversions. The C# Markup package uses the <code>FuncMultiConverter</code> internally for the <a href="../extensions/bindable-object-extensions.html#multiple-bindings">multiple bindings option</a> in the <code>Bind</code> extension method.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>FuncMultiConverter</code> only supports a <code>MultiBinding</code>, if you required <code>Binding</code> support refer to <a href="func-converter.html"><code>MultiConverter</code></a>.</p>
+</div>
+<p>The converter offers many different ways of defining your conversion based on how much information is required.</p>
+<h2 id="funcmulticonvertertsource1-tsource2-tdest">FuncMultiConverter&lt;TSource1, TSource2, TDest&gt;</h2>
+<p>The <code>FuncMultiConverter&lt;TSource1, TSource2, TDest&gt;</code> implementation allows you to define a conversion process that provides type safe incoming values and a type safe return value. This implementation expects <strong>exactly 2</strong> incoming values.</p>
+<p>The following example shows how to build a converter that will convert 2 incoming <code>string</code>s in to a semi-colon separated <code>string</code>:</p>
+<pre><code class="lang-csharp">var converter = new FuncMultiConverter&lt;string, string, string&gt;(
+    convert: ((string First, string Second) lines) =&gt; string.Join(';', lines.First, lines.Second),
+    convertBack: (text) =&gt;
+    {
+        var lines = text.Split(';');
+
+        return (lines[0], lines[1]);
+    });
+</code></pre>
+<p>Both the <code>convert</code> and <code>convertBack</code> parameters are optional to allow developers to define only what is required.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>FuncMultiConverter</code> supports up to 4 typed incoming values.</p>
+</div>
+<h2 id="funcmulticonvertertsource1-tsource2-tdest-tparam">FuncMultiConverter&lt;TSource1, TSource2, TDest, TParam&gt;</h2>
+<p>The <code>FuncMultiConverter&lt;TSource1, TSource2, TDest&gt;</code> implementation allows you to define a conversion process that provides type safe incoming values, a type safe return value and a type safe <code>ConverterParameter</code>. This implementation expects <strong>exactly 2</strong> incoming values.</p>
+<p>The following example shows how to build a converter that will convert 2 incoming <code>string</code>s in to a character supplied by the <code>ConverterParameter</code> separated <code>string</code>:</p>
+<pre><code class="lang-csharp">var converter = new FuncMultiConverter&lt;string, string, string, char&gt;(
+    convert: ((string First, string Second) lines, char separator) =&gt; string.Join(separator, lines.First, lines.Second),
+    convertBack: (text, char separator) =&gt;
+    {
+        var lines = text.Split(separator);
+
+        return (lines[0], lines[1]);
+    });
+</code></pre>
+<p>Both the <code>convert</code> and <code>convertBack</code> parameters are optional to allow developers to define only what is required.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for the <code>FuncMultiConverter</code> feature over on the <a href="https://github.com/CommunityToolkit/Maui.Markup/blob/main/src/CommunityToolkit.Maui.Markup/FuncMultiConverter.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/markup/converters/func-multi-converter.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

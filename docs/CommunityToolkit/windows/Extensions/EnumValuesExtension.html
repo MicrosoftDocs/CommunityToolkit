@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>EnumValuesExtensions </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="EnumValuesExtensions ">
+    
+    <meta name="description" content="A markup extension that returns a collection of values of a specific enum type.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="enumvaluesextensions">EnumValuesExtensions</h1>
+
+<p>The <code>EnumValuesExtensions</code> type implements a markup extension that returns a collection of values of a specific enum type. It can be useful to easily bind a collection of all possible values from a given enum type to a UI element such as a <a href="/windows/uwp/design/controls-and-patterns/combo-box"><code>ComboBox</code></a> or some other items container or selector control.</p>
+<blockquote>
+<p><strong>Platform APIs:</strong> <code>EnumValuesExtensions</code></p>
+</blockquote>
+<h2 id="syntax">Syntax</h2>
+<p>Assuming we had an <code>Animal</code> enum type and we wanted the user to pick one of the available names, here is the XAML syntax that allows us to create a <code>ComboBox</code> and display all <code>Animal</code> values, directly from XAML and with no code-behind:</p>
+<pre><code class="lang-xaml">&lt;ComboBox
+    xmlns:ui=&quot;using:CommunityToolkit.WinUI&quot;
+    xmlns:enums=&quot;using:MyApplication.Enums&quot;
+    ItemsSource=&quot;{ui:EnumValues Type=enums:Animal}&quot;
+    SelectedIndex=&quot;0&quot;/&gt;
+</code></pre>
+<p>In this example we're just relying on the default <code>ComboBox</code> item template, that will display the name of each <code>Animal</code> value in a <a href="/uwp/api/windows.ui.xaml.controls.textblock"><code>TextBlock</code></a> control. We could of course also define a custom item template if we wanted to show additional info for each individual <code>Animal</code> value, or if we wanted to further customize how each value is presented to the user.</p>
+<h2 id="examples">Examples</h2>
+<p>Binding to an enum property can be accomplished like so:</p>
+<pre><code class="lang-xaml">&lt;ComboBox
+    xmlns:ui=&quot;using:CommunityToolkit.WinUI&quot;
+    xmlns:enums=&quot;using:MyApplication.Enums&quot;
+    ItemsSource=&quot;{ui:EnumValues Type=enums:Animal}&quot;
+    SelectedItem=&quot;{x:Bind SelectedAnimal, Mode=OneWay}&quot; /&gt;
+</code></pre>
+<pre><code class="lang-csharp">private Animal selectedAnimal = Animal.Dog;
+
+public Animal SelectedAnimal
+{
+    get =&gt; selectedAnimal;
+    set
+    {
+        selectedAnimal = value;
+        OnPropertyChanged(nameof(SelectedAnimal));
+    }
+}
+</code></pre>
+<p>You can find more examples in the <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.1.0/UnitTests">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Extensions/EnumValuesExtension.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

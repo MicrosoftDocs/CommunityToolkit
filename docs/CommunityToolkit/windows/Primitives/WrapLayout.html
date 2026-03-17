@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>WrapLayout </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="WrapLayout ">
+    
+    <meta name="description" content="The WrapLayout virtualizes child elements in sequential position from left to right, breaking content to the next line at the edge of the containing box.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="wraplayout">WrapLayout</h1>
+
+<p>Subsequent ordering happens sequentially from top to bottom or from right to left, depending on the value of the Orientation property.</p>
+<p>The WrapLayout positions child controls based on orientation, horizontal orientation (default) positions controls from left to right and vertical orientation positions controls from top to bottom, and once the max-width or height is reached the control automatically creates rows or columns based on the orientation.</p>
+<p>Spacing can be automatically added between items using the HorizontalSpacing and VerticalSpacing properties. When the Orientation is Horizontal, HorizontalSpacing adds uniform horizontal spacing between each individual item, and VerticalSpacing adds uniform spacing between each row of items.</p>
+<p>When the Orientation is Vertical, HorizontalSpacing adds uniform spacing between each column of items, and VerticalSpacing adds uniform vertical spacing between individual items.</p>
+<div class="lang-xaml">
+</div>
+<div class="lang-csharp">
+</div>
+<h2 id="examples">Examples</h2>
+<p>The following example of adding the WrapLayout layout panel.</p>
+<pre><code class="lang-xaml">&lt;Page ....
+      xmlns:controls=&quot;using:CommunityToolkit.WinUI.Controls&quot;
+      xmlns:winui=&quot;using:Microsoft.UI.Xaml.Controls&quot;&gt;
+
+    &lt;Grid Background=&quot;{StaticResource Brush-Grey-05}&quot;&gt;
+        &lt;Grid.RowDefinitions&gt;
+            &lt;RowDefinition /&gt;
+            &lt;RowDefinition /&gt;
+        &lt;/Grid.RowDefinitions&gt;
+        &lt;Grid&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition Height=&quot;50&quot; /&gt;
+                &lt;RowDefinition /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+            &lt;Button Name=&quot;HorizontalButton&quot; Click=&quot;HorizontalButton_Click&quot; Content=&quot;Add Horizontal Control&quot; /&gt;
+            &lt;winui:ItemsRepeater ItemsSource=&quot;{x:Bind _horizontalItems}&quot; Grid.Row=&quot;1&quot; Margin=&quot;2&quot;&gt;
+                &lt;winui:ItemsRepeater.Layout&gt;
+                    &lt;controls:WrapLayout VerticalSpacing=&quot;10&quot;
+                                         HorizontalSpacing=&quot;10&quot;/&gt;
+                &lt;/winui:ItemsRepeater.Layout&gt;
+            &lt;/winui:ItemsRepeater&gt;
+        &lt;/Grid&gt;
+
+        &lt;Grid Grid.Row=&quot;1&quot;&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition Height=&quot;50&quot; /&gt;
+                &lt;RowDefinition /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+            &lt;Button Name=&quot;VerticalButton&quot; Click=&quot;VerticalButton_Click&quot; Content=&quot;Add Vertical Control&quot; /&gt;
+            &lt;winui:ItemsRepeater ItemsSource=&quot;{x:Bind _verticalItems}&quot; Grid.Row=&quot;1&quot; Margin=&quot;2&quot;&gt;
+                &lt;winui:ItemsRepeater.Layout&gt;
+                    &lt;controls:WrapLayout Orientation=&quot;Vertical&quot; 
+                                         VerticalSpacing=&quot;10&quot;
+                                         HorizontalSpacing=&quot;10&quot;/&gt;
+                &lt;/winui:ItemsRepeater.Layout&gt;
+            &lt;/winui:ItemsRepeater&gt;
+        &lt;/Grid&gt;
+    &lt;/Grid&gt;
+&lt;/Page&gt;
+</code></pre>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Primitives/WrapLayout.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>MultiConverter - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="MultiConverter - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The MultiConverter converts an incoming value using all of the incoming converters in sequence.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="multiconverter">MultiConverter</h1>
+
+<p>The <code>MultiConverter</code> converts an incoming value using all of the incoming converters in sequence. The order in which the converters are used is based on the order they are defined.</p>
+<h2 id="syntax">Syntax</h2>
+<p>This sample demonstrates how to use the <code>MultiConverter</code> with the <a href="is-equal-converter.html"><code>IsEqualConverter</code></a> and the <a href="text-case-converter.html"><code>TextCaseConverter</code></a>. It converts the entered text to <strong>upper case</strong> and then checks that it is <strong>equal</strong> to the string 'MAUI', this will result in a <code>boolean</code> value and is bound to the <code>IsVisible</code> property on a <code>Label</code> control.</p>
+<p>This example makes use of the <code>MultiConverterParameter</code> which allows for the ConverterParameter to be defined for the type of converter the <code>MultiConverterParameter</code> is set to.</p>
+<h3 id="xaml">XAML</h3>
+<h4 id="including-the-xaml-namespace">Including the XAML namespace</h4>
+<p>In order to use the toolkit in XAML the following <code>xmlns</code> needs to be added into your page or view:</p>
+<pre><code class="lang-xaml">xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+</code></pre>
+<p>Therefore the following:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Would be modified to include the <code>xmlns</code> as follows:</p>
+<pre><code class="lang-xaml">&lt;ContentPage
+    x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.MyPage&quot;
+    xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+    xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h4 id="using-the-multiconverter">Using the MultiConverter</h4>
+<p>The <code>MultiConverter</code> can be used as follows in XAML:</p>
+<pre><code class="lang-xaml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:toolkit=&quot;http://schemas.microsoft.com/dotnet/2022/maui/toolkit&quot;
+             x:Class=&quot;CommunityToolkit.Maui.Sample.Pages.Converters.MultiConverterPage&quot;&gt;
+
+    &lt;ContentPage.Resources&gt;
+        &lt;ResourceDictionary&gt;
+            &lt;toolkit:MultiConverter x:Key=&quot;MyMultiConverter&quot;&gt;
+                &lt;toolkit:TextCaseConverter /&gt;
+                &lt;toolkit:IsEqualConverter /&gt;
+            &lt;/toolkit:MultiConverter&gt;
+            &lt;x:Array x:Key=&quot;MultiParams&quot;
+                     Type=&quot;{x:Type toolkit:MultiConverterParameter}&quot;&gt;
+                &lt;toolkit:MultiConverterParameter
+                    ConverterType=&quot;{x:Type toolkit:TextCaseConverter}&quot;
+                    Value=&quot;{x:Static toolkit:TextCaseType.Upper}&quot; /&gt;
+                &lt;toolkit:MultiConverterParameter
+                    ConverterType=&quot;{x:Type toolkit:IsEqualConverter}&quot;
+                    Value=&quot;MAUI&quot; /&gt;
+            &lt;/x:Array&gt;
+        &lt;/ResourceDictionary&gt;
+    &lt;/ContentPage.Resources&gt;
+
+    &lt;Label IsVisible=&quot;{Binding EnteredName, Converter={StaticResource MyMultiConverter}, ConverterParameter={StaticResource MultiParams}, Mode=OneWay}&quot; 
+           Text=&quot;Well done you guessed the magic word!&quot;/&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<h3 id="c">C#</h3>
+<p>The <code>MultiConverter</code> can be used as follows in C#:</p>
+<pre><code class="lang-csharp">class MultiConverterPage : ContentPage
+{
+    public MultiConverterPage()
+    {
+        var label = new Label { Text = &quot;Well done you guessed the magic word!&quot; };
+
+        var converter = new MultiConverter
+        {
+            new TextCaseConverter(),
+            new IsEqualConverter()
+        };
+
+        var parameters = new List&lt;MultiConverterParameter&gt;
+        {
+            new MultiConverterParameter { ConverterType = typeof(TextCaseConverter), Value = TextCaseType.Upper },
+            new MultiConverterParameter { ConverterType = typeof(IsEqualConverter), Value = &quot;MAUI&quot; },
+        };
+
+        label.SetBinding(
+            Label.IsVisibleProperty,
+            new Binding(
+                static (ViewModels vm) =&gt; vm.EnteredName,
+                converter: converter,
+                converterParameter: parameters));
+
+        Content = label;
+    }
+}
+</code></pre>
+<h3 id="c-markup">C# Markup</h3>
+<p>Our <a href="../markup/markup.html"><code>CommunityToolkit.Maui.Markup</code></a> package provides a much more concise way to use this converter in C#.</p>
+<pre><code class="lang-csharp">class MultiConverterPage : ContentPage
+{
+    public MultiConverterPage()
+    {
+        var converter = new MultiConverter
+        {
+            new TextCaseConverter(),
+            new IsEqualConverter()
+        };
+
+        var parameters = new List&lt;MultiConverterParameter&gt;
+        {
+            new MultiConverterParameter { ConverterType = typeof(TextCaseConverter), Value = TextCaseType.Upper },
+            new MultiConverterParameter { ConverterType = typeof(IsEqualConverter), Value = &quot;MAUI&quot; },
+        };
+
+        Content = new Label()
+            .Text(&quot;Well done you guessed the magic word!&quot;)
+            .Bind(
+                Label.IsVisibleProperty,
+                static (ViewModel vm) =&gt; vm.EnteredName,
+                converter: converter,
+                converterParameter: parameters);
+    }
+}
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of this converter in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Converters/MultiConverterPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>MultiConverter</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui/Converters/MultiConverter.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/converters/multi-converter.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

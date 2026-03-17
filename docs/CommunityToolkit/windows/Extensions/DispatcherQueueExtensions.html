@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>DispatcherQueueExtensions </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="DispatcherQueueExtensions ">
+    
+    <meta name="description" content="Helpers for executing code on a specific UI thread through a DispatcherQueue instance.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="dispatcherqueueextensions">DispatcherQueueExtensions</h1>
+
+<p>The <code>DispatcherQueueExtensions</code> type provides a collection of extensions methods for <a href="/uwp/api/windows.system.dispatcherqueue"><code>DispatcherQueue</code></a> objects that makes it easier to execute code on a specific UI thread. A <code>DispatcherQueue</code> instance can be retrieved and cached for later use, and then used through any of the available helper methods to dispatch a delegate invocation on it.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The <code>DispatcherQueueExtensions</code> type exposes a number of overloads of its <code>EnqueueAsync</code> method to dispatch either synchronous or asynchronous delegates, and to optionally have them return a value that is then relayed back to the caller through an awaitable task. Here are some examples of how these extension methods can be used:</p>
+<pre><code class="lang-csharp">// Get a DispatcherQueue instance for later use. This has to be called on the UI thread,
+// but it can then be cached for later use and accessed from a background thread as well.
+DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+
+// Execute some code on the target dispatcher queue
+await dispatcherQueue.EnqueueAsync(() =&gt;
+{
+});
+
+// Execute some code that also returns a value
+int someValue = await dispatcherQueue.EnqueueAsync(() =&gt;
+{
+    return 42;
+});
+
+// Execute some asynchronous code
+await dispatcherQueue.EnqueueAsync(async () =&gt;
+{
+    await Task.Delay(100);
+});
+
+// Execute some asynchronous code that also returns a value
+int someOtherValue = await dispatcherQueue.EnqueueAsync(async () =&gt;
+{
+    await Task.Delay(100);
+
+    return 42;
+});
+</code></pre>
+<h2 id="migrating-from-dispatcherhelper">Migrating from DispatcherHelper</h2>
+<p>The <a href="/uwp/api/windows.ui.core.coredispatcher"><code>CoreDispatcher</code></a> is being deprecated (and it will no longer work with XAML Islands or WinUI 3) and should no longer be used, as it had a number of limitations. Specifically, it relied on the assumption that each window had its own UI thread tied to it, which is not always the case. The new <code>DispatcherQueue</code> instead can be used going forwards, and it requires some changes in code that was previously relying on <code>CoreDispatcher</code> and <code>DispatcherHelper</code>. Specifically, a background thread can no longer retrieve the <code>CoreDispatcher</code> by just accessing the dispatcher associated to the &quot;main window&quot; for the application, because this concept does not apply anymore. Instead, a <code>DispatcherQueue</code> instance needs to be retrieved on the UI thread and cached for later use in a background thread.</p>
+<p>If you were using <code>DispatcherHelper</code> on the UI thread, apply the following change (here we're using <code>Task.Run</code> to simulate some work being done in a background thread and accessing some UI component, and we're assuming for this example that there is a <code>TextBlock</code> control in our page called &quot;MyTextBlock&quot;):</p>
+<pre><code class="lang-csharp">// Before
+Task.Run(() =&gt;
+{
+    await DispatcherHelper.ExecuteOnUIThreadAsync(() =&gt;
+    {
+        MyTextBlock.Text = &quot;Hello from a background thread!&quot;;
+    });
+});
+
+// After
+DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+
+Task.Run(() =&gt;
+{
+    await dispatcherQueue.EnqueueAsync(() =&gt;
+    {
+        MyTextBlock.Text = &quot;Hello from a background thread!&quot;;
+    });
+});
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find more examples in the <a href="https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/rel/7.1.0/UnitTests/UnitTests.UWP/Extensions/Test_DispatcherQueueExtensions.cs">unit tests</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/windows/Extensions/DispatcherQueueExtensions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

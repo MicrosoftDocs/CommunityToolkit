@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>SpeechToText - .NET MAUI Community Toolkit </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="SpeechToText - .NET MAUI Community Toolkit ">
+    
+    <meta name="description" content="The SpeechToText provides the ability to convert speech to text.">
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../TOC.html">
+      <meta property="docfx:tocrel" content="../TOC.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="speechtotext">SpeechToText</h1>
+
+<p>The <code>SpeechToText</code> API provides the ability to convert speech to text using online recognition. For offline recognition, you can use the <code>OfflineSpeechToText</code>.</p>
+<p><img src="../images/essentials/speech-to-text-mac.gif" alt="Screenshot of SpeechText implemented on macOS" title="SpeechToText on macOS"></p>
+<p>The following preconditions required for the <code>SpeechToText</code>:</p>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_android" role="tab" aria-controls="tabpanel_1_android" data-tab="android" tabindex="0" aria-selected="true">Android</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_ios" role="tab" aria-controls="tabpanel_1_ios" data-tab="ios" tabindex="-1">iOS/MacCatalyst</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_windows" role="tab" aria-controls="tabpanel_1_windows" data-tab="windows" tabindex="-1">Windows</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_tizen" role="tab" aria-controls="tabpanel_1_tizen" data-tab="tizen" tabindex="-1">Tizen</a>
+</li>
+</ul>
+<section id="tabpanel_1_android" role="tabpanel" data-tab="android">
+
+<p>Add permissions to <code>AndroidManifest.xml</code>:</p>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot; /&gt;
+</code></pre>
+<p>For <code>OfflineSpeechToText</code>, Android 33.0 or higher is required.</p>
+</section>
+<section id="tabpanel_1_ios" role="tabpanel" data-tab="ios" aria-hidden="true" hidden="hidden">
+
+<p>Add permissions to <code>Info.plist</code></p>
+<pre><code class="lang-xml">&lt;key&gt;NSSpeechRecognitionUsageDescription&lt;/key&gt;  
+&lt;string&gt;SpeechToText requires speech recognition usage&lt;/string&gt;  
+&lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;  
+&lt;string&gt;SpeechToText requires microphone usage&lt;/string&gt; 
+</code></pre>
+<p>For <code>OfflineSpeechToText</code>, iOS 13.0 or higher is required.</p>
+</section>
+<section id="tabpanel_1_windows" role="tabpanel" data-tab="windows" aria-hidden="true" hidden="hidden">
+
+<p>Add permissions to <code>Package.appxmanifest</code></p>
+<pre><code class="lang-xml">&lt;Capabilities&gt;
+    &lt;DeviceCapability Name=&quot;microphone&quot; /&gt;
+&lt;/Capabilities&gt;
+</code></pre>
+</section>
+<section id="tabpanel_1_tizen" role="tabpanel" data-tab="tizen" aria-hidden="true" hidden="hidden">
+
+<p>Add permissions to <code>tizen-manifest.xml</code>:</p>
+<pre><code class="lang-xml">&lt;privilege&gt;http://tizen.org/feature/microphone&lt;/privilege&gt;
+</code></pre>
+</section>
+</div>
+<h2 id="basic-usage">Basic usage</h2>
+<p>The <code>SpeechToText</code> can be added to a .NET MAUI application in the following way.</p>
+<h3 id="request-permissions">Request permissions</h3>
+<p>Developers must manually request Permissions.Microphone and also call ISpeechToText.RequestPermissions():</p>
+<pre><code class="lang-csharp">static async Task&lt;bool&gt; ArePermissionsGranted(ISpeechToText speechToText)
+{
+    var microphonePermissionStatus = await Permissions.RequestAsync&lt;Permissions.Microphone&gt;();
+    var isSpeechToTextRequestPermissionsGranted = await speechToText.RequestPermissions(CancellationToken.None);
+
+    return microphonePermissionStatus is PermissionStatus.Granted
+            &amp;&amp; isSpeechToTextRequestPermissionsGranted;
+}
+</code></pre>
+<h3 id="speech-to-text">Speech To Text</h3>
+<pre><code class="lang-csharp">async Task StartListening(CancellationToken cancellationToken)
+{
+    var isGranted = await speechToText.RequestPermissions(cancellationToken);
+    if (!isGranted)
+    {
+        await Toast.Make(&quot;Permission not granted&quot;).Show(CancellationToken.None);
+        return;
+    }
+
+    speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
+    speechToText.RecognitionResultCompleted += OnRecognitionTextCompleted;
+    await speechToText.StartListenAsync(new SpeechToTextOptions	{ Culture = CultureInfo.CurrentCulture, ShouldReportPartialResults = true }, CancellationToken.None);
+}
+
+async Task StopListening(CancellationToken cancellationToken)
+{
+    await speechToText.StopListenAsync(CancellationToken.None);
+    speechToText.RecognitionResultUpdated -= OnRecognitionTextUpdated;
+    speechToText.RecognitionResultCompleted -= OnRecognitionTextCompleted;
+}
+
+void OnRecognitionTextUpdated(object? sender, SpeechToTextRecognitionResultUpdatedEventArgs args)
+{
+    RecognitionText += args.RecognitionResult;
+}
+
+void OnRecognitionTextCompleted(object? sender, SpeechToTextRecognitionResultCompletedEventArgs args)
+{
+    RecognitionText = args.RecognitionResult;
+}
+</code></pre>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RequestPermissions</td>
+<td>Asks for permission.</td>
+</tr>
+<tr>
+<td>StartListenAsync</td>
+<td>Starts the SpeechToText service. (Real time speech recognition results will be surfaced via RecognitionResultUpdated and RecognitionResultCompleted)</td>
+</tr>
+<tr>
+<td>StopListenAsync</td>
+<td>Stops the SpeechToText service. (Speech recognition results will be surfaced via  RecognitionResultCompleted)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CurrentState</td>
+<td><code>SpeechToTextState</code></td>
+<td>Gets a current listening state.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>EventName</th>
+<th>EventArgs</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RecognitionResultUpdated</td>
+<td><code>SpeechToTextRecognitionResultUpdatedEventArgs</code></td>
+<td>Triggers when SpeechToText has real time updates.</td>
+</tr>
+<tr>
+<td>RecognitionResultCompleted</td>
+<td><code>SpeechToTextRecognitionResultCompletedEventArgs</code></td>
+<td>Triggers when SpeechToText has completed.</td>
+</tr>
+<tr>
+<td>StateChanged</td>
+<td><code>SpeechToTextStateChangedEventArgs</code></td>
+<td>Triggers when <code>CurrentState</code> has changed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="speechtotextoptions">SpeechToTextOptions</h3>
+<p>The <code>SpeechToTextOptions</code> class provides the ability to configure the speech recognition service.</p>
+<h4 id="properties-1">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Culture</td>
+<td><code>CultureInfo</code></td>
+<td>The spoken language to use for speech recognition.</td>
+</tr>
+<tr>
+<td>ShouldReportPartialResults</td>
+<td><code>bool</code></td>
+<td>Gets or sets if include partial results. <code>True</code> by default.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="speechtotextresult">SpeechToTextResult</h3>
+<p>The result returned from the <code>RecognitionResultCompleted</code> event. This can be used to verify whether the recognition was successful, and also access any exceptions that may have ocurred during the speech recognition.</p>
+<h4 id="properties-2">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text</td>
+<td><code>string</code></td>
+<td>The recognized text.</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td><code>Exception</code></td>
+<td>Gets the <code>Exception</code> if the speech recognition operation failed.</td>
+</tr>
+<tr>
+<td>IsSuccessful</td>
+<td><code>bool</code></td>
+<td>Gets a value determining whether the operation was successful.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods-1">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EnsureSuccess</td>
+<td>Verifies whether the speech to text operation was successful.</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><code>EnsureSuccess</code> will throw an <code>Exception</code> if the recognition operation was unsuccessful.</p>
+</div>
+<h2 id="dependency-registration">Dependency Registration</h2>
+<p>In case you want to inject service, you first need to register it.
+Update <code>MauiProgram.cs</code> with the next changes:</p>
+<pre><code class="lang-csharp">public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp&lt;App&gt;()
+			.UseMauiCommunityToolkit();
+
+        builder.Services.AddSingleton&lt;ISpeechToText&gt;(SpeechToText.Default);
+        // For offline recognition
+        // builder.Services.AddSingleton&lt;ISpeechToText&gt;(OfflineSpeechToText.Default);
+        return builder.Build();
+    }
+}
+</code></pre>
+<blockquote>
+<p>In case you need to register both <code>SpeechToText</code> and <code>OfflineSpeechToText</code>, you can use <code>KeyedService</code>.</p>
+</blockquote>
+<p>Now you can inject the service like this:</p>
+<pre><code class="lang-csharp">public partial class MainPage : ContentPage
+{
+    private readonly ISpeechToText speechToText;
+
+	public MainPage(ISpeechToText speechToText)
+	{
+		InitializeComponent();
+        this.speechToText = speechToText;
+	}
+	
+	public async void Listen(object sender, EventArgs args)
+	{
+		var isGranted = await speechToText.RequestPermissions(cancellationToken);
+        if (!isGranted)
+        {
+            await Toast.Make(&quot;Permission not granted&quot;).Show(CancellationToken.None);
+            return;
+        }
+
+        await speechToText.StartListenAsync(new SpeechToTextOptions { Culture = CultureInfo.CurrentCulture, ShouldReportPartialResults = true }, CancellationToken.None);
+	}
+}
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>You can find an example of <code>SpeechToText</code> in action in the <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/SpeechToTextPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<p>For offline recognition, you can use this sample: <a href="https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/OfflineSpeechToTextPage.xaml">.NET MAUI Community Toolkit Sample Application</a>.</p>
+<h2 id="api">API</h2>
+<p>You can find the source code for <code>SpeechToText</code> over on the <a href="https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Essentials/SpeechToText/ISpeechToText.shared.cs">.NET MAUI Community Toolkit GitHub repository</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MicrosoftDocs/CommunityToolkit/blob/copilot/fix-tabs-behavior-in-platform-initialization/docs/maui/essentials/speech-to-text.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

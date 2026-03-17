@@ -59,6 +59,9 @@ Add permissions to `tizen-manifest.xml`:
 
 The `SpeechToText` can be added to a .NET MAUI application in the following way.
 
+> [!NOTE]
+> The methods in this API accept a `CancellationToken` to cancel asynchronous operations. A `CancellationToken` can be obtained by creating a [`CancellationTokenSource`](/dotnet/api/system.threading.cancellationtokensource) and accessing its `.Token` property. You can also use `CancellationToken.None` if you don't need to cancel the operation. For more detail on how to provide a `CancellationToken` refer to the [Microsoft documentation](/dotnet/standard/threading/cancellation-in-managed-threads).
+
 ### Request permissions
 
 Developers must manually request Permissions.Microphone and also call ISpeechToText.RequestPermissions():
@@ -197,6 +200,7 @@ Now you can inject the service like this:
 public partial class MainPage : ContentPage
 {
     private readonly ISpeechToText speechToText;
+    private CancellationTokenSource? cancellationTokenSource;
 
 	public MainPage(ISpeechToText speechToText)
 	{
@@ -206,14 +210,17 @@ public partial class MainPage : ContentPage
 	
 	public async void Listen(object sender, EventArgs args)
 	{
-		var isGranted = await speechToText.RequestPermissions(cancellationToken);
+		cancellationTokenSource?.Cancel();
+		cancellationTokenSource = new CancellationTokenSource();
+
+		var isGranted = await speechToText.RequestPermissions(cancellationTokenSource.Token);
         if (!isGranted)
         {
             await Toast.Make("Permission not granted").Show(CancellationToken.None);
             return;
         }
 
-        await speechToText.StartListenAsync(new SpeechToTextOptions { Culture = CultureInfo.CurrentCulture, ShouldReportPartialResults = true }, CancellationToken.None);
+        await speechToText.StartListenAsync(new SpeechToTextOptions { Culture = CultureInfo.CurrentCulture, ShouldReportPartialResults = true }, cancellationTokenSource.Token);
 	}
 }
 ```

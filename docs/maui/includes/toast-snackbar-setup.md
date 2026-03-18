@@ -73,7 +73,7 @@ Here is an example of a completed opening `<Package>` tag that has added support
    <!-- Register COM CLSID -->
    <com:Extension Category="windows.comServer">
        <com:ComServer>
-           <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
+           <com:ExeServer Executable="YOUR-PROJECT-NAME\YOUR-PROJECT-NAME.exe" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:">
                <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
            </com:ExeServer>
        </com:ComServer>
@@ -81,6 +81,9 @@ Here is an example of a completed opening `<Package>` tag that has added support
 
 </Extensions>
 ```
+
+> [!IMPORTANT]
+> Replace `YOUR-PROJECT-NAME\YOUR-PROJECT-NAME.exe` with the path to your project's executable. The format is `{.csproj file name without extension}\{.csproj file name without extension}.exe`. For example, if your project file is `MyMauiApp.csproj`, the value would be `MyMauiApp\MyMauiApp.exe`.
 
 ##### Example: Completed `<Applications>` tag
 
@@ -106,7 +109,7 @@ Here is an example of a completed `<Applications>` tag that now has added suppor
 
          <com:Extension Category="windows.comServer">
              <com:ComServer>
-                 <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
+                 <com:ExeServer Executable="YOUR-PROJECT-NAME\YOUR-PROJECT-NAME.exe" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:">
                      <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
                   </com:ExeServer>
               </com:ComServer>
@@ -167,7 +170,7 @@ Below is an example `Package.appxmanifest` file that has been updated to support
 
                <com:Extension Category="windows.comServer">
                    <com:ComServer>
-                       <com:ExeServer Executable="YOUR-PATH-TO-EXECUTABLE" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:"> <!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
+                       <com:ExeServer Executable="YOUR-PROJECT-NAME\YOUR-PROJECT-NAME.exe" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:">
                            <com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
                         </com:ExeServer>
                     </com:ComServer>
@@ -183,6 +186,9 @@ Below is an example `Package.appxmanifest` file that has been updated to support
 
 </Package>
 ```
+
+> [!NOTE]
+> You may see a schema validation warning in Visual Studio about `rescap:Capability` being an invalid child element of `Capabilities`. This warning can be safely ignored — the `rescap:Capability` element is correct and required for the app to run with full trust.
 
 For more information on handling activation: [Send a local toast notification from C# apps](/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation)
 

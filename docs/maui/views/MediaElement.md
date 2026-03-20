@@ -158,7 +158,7 @@ Platform provided media playback controls are enabled by default, and can be dis
 A `MediaElement` can send custom HTTP headers when loading remote media. This is useful for authenticated streams that require an `Authorization` header or other custom headers.
 
 ```csharp
-MediaElement.Source = new UriMediaSource
+mediaElement.Source = new UriMediaSource
 {
     Uri = new Uri("https://example.com/stream.m3u8"),
     HttpHeaders = new Dictionary<string, string>
@@ -175,7 +175,7 @@ var headers = new Dictionary<string, string>
 {
     ["Authorization"] = "Bearer my-token"
 };
-MediaElement.Source = MediaSource.FromUri(
+mediaElement.Source = MediaSource.FromUri(
     new Uri("https://example.com/stream.m3u8"), headers);
 ```
 
@@ -183,7 +183,7 @@ MediaElement.Source = MediaSource.FromUri(
 > HTTP headers are applied to all HTTP requests made for the media source, including manifest and segment downloads for adaptive streams (HLS/DASH). This feature is supported on Android, iOS, macOS, and Windows. Tizen does not support custom HTTP headers.
 
 > [!IMPORTANT]
-> On iOS and macOS, the `AVURLAssetHTTPHeaderFieldsKey` option requires iOS 16.0+ / macOS 13.0+.
+> On iOS and macOS, custom HTTP headers are set via the `AVURLAssetHTTPHeaderFieldsKey` option, which requires iOS 16.0+ / macOS 13.0+. On earlier versions, custom headers will not be applied.
 
 ### Use Rich Media Notifications
 A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst, and Windows when media is playing in the background. To enable rich media notifications, the following steps are required:
@@ -273,7 +273,7 @@ An example of how to use this syntax in XAML can be seen below.
 
 ## Understand MediaSource types
 
-A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
+A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines the following static methods:
 
 - `FromFile`, returns a `FileMediaSource` instance from a `string` argument.
 - `FromUri`, returns a `UriMediaSource` instance from a `Uri` argument.

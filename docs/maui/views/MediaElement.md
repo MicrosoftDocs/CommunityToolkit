@@ -223,7 +223,7 @@ Local media can be played from the following sources:
 - Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
 
 > [!NOTE]
-> The shorthand `embed://` and `filesystem://` only work from XAML. In code, please use `MediaSource.FromResource()` and `MediaSource.FromFile()` respectively. Using these methods, you can omit the `embed://` and `filesystem://` prefixes. The rest of the path should be the same.
+> The shorthand `embed://` and `filesystem://` only work when `Source` is set from a string in XAML. In code, please use `MediaSource.FromResource()` and `MediaSource.FromFile()` respectively. Using these methods, you can omit the `embed://` and `filesystem://` prefixes. The rest of the path should be the same. Stream-backed sources don't have an equivalent URI-style XAML shorthand. To use a stream source with XAML, bind `Source` to a `MediaSource` instance created in code.
 
 ### Play media embedded in the app package
 

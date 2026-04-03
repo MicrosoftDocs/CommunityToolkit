@@ -223,7 +223,7 @@ Local media can be played from the following sources:
 - Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
 
 > [!NOTE]
-> The shorthand `embed://` and `filesystem://` only work from XAML. In code, please use `MediaSource.FromResource()` and `MediaSource.FromFile()` respectively. Using these methods, you can omit the the `embed://` and `filesystem://` prefixes. The rest of the path should be the same.
+> The shorthand `embed://` and `filesystem://` only work from XAML. In code, please use `MediaSource.FromResource()` and `MediaSource.FromFile()` respectively. Using these methods, you can omit the `embed://` and `filesystem://` prefixes. The rest of the path should be the same.
 
 ### Play media embedded in the app package
 
@@ -251,16 +251,21 @@ var videoResult = await MediaPicker.Default.CaptureVideoAsync(new MediaPickerOpt
 {
     Title = "Capture Video"
 });
+
+if (videoResult is null)
+{
+    return;
+}
 ```
 
-`videoResult` is a `FileResult` and the stream can be read directly by a `MediaElement`.
+`videoResult` is a `FileResult`, and its stream can be read by a `MediaElement`.
 
 
 ```xaml
 <toolkit:MediaElement x:Name="MyMediaElement" />
 ```
 
-Copying it to a new stream allows you to set the position to 0 (so it can be read and controlled by the `MediaElement`) and disposed properly.
+Copying it to a new stream lets you reset the position to 0 so the `MediaElement` can read it correctly. Keep that stream alive for the duration of playback, and dispose it when it's no longer needed.
 
 ```csharp
 await using var stream = await videoResult.OpenReadAsync();
@@ -275,7 +280,7 @@ This may be particularly useful for scenarios with security requirements that do
 
 ## Understand MediaSource types
 
-A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
+A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines four static methods:
 
 - `FromFile`, returns a `FileMediaSource` instance from a `string` argument.
 - `FromUri`, returns a `UriMediaSource` instance from a `Uri` argument.
@@ -292,7 +297,7 @@ The `MediaSource` class also has these derived classes:
 - `FileMediaSource`, which is used to specify a local media file from a `string`. This class has a `Path` property that can be set to a `string`. In addition, this class has implicit operators to convert a `string` to a `FileMediaSource` object, and a `FileMediaSource` object to a `string`.
 - `UriMediaSource`, which is used to specify a remote media file from a URI. This class has a `Uri` property that can be set to a `Uri`.
 - `ResourceMediaSource`, which is used to specify an embedded file that is provided through the app's resource files. This class has a `Path` property that can be set to a `string`.
-- `StreamMediaSource`, which is ised to specify a stream that is read from incrementally from a memory, file, or remote source.
+- `StreamMediaSource`, which is used to specify a stream that is read incrementally from memory, a file, or a remote source.
 
 > [!NOTE]
 > When a `FileMediaSource` object is created in XAML, a type converter is invoked to return a `FileMediaSource` instance from a `string`.

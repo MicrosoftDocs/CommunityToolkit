@@ -13,6 +13,7 @@ ms.date: 02/15/2024
 - The web, using a URI (HTTP or HTTPS).
 - A resource embedded in the platform application, using the `embed://` URI scheme.
 - Files that come from the app's local filesystem, using the `filesystem://` URI scheme.
+- Any valid source via a `Stream`.
 
 `MediaElement` can use the platform playback controls, which are referred to as transport controls. However, they are disabled by default and can be replaced with your own transport controls. The following screenshots show `MediaElement` playing a video with the platform transport controls:
 
@@ -239,6 +240,39 @@ An example of how to use this syntax in XAML can be seen below.
               ShouldShowPlaybackControls="True" />
 ```
 
+### Play media from a Stream
+
+You can play media from a `Stream`, which enables scenarios where end-to-end capture and playback remains in memory.
+
+Consider for example capturing a video using [`MediaPicker`](https://learn.microsoft.com/dotnet/maui/platform-integration/device-media/picker):
+
+```csharp
+var videoResult = await MediaPicker.Default.CaptureVideoAsync(new MediaPickerOptions
+{
+    Title = "Capture Video"
+});
+```
+
+`videoResult` is a `FileResult` and the stream can be read directly by a `MediaElement`.
+
+
+```xaml
+<toolkit:MediaElement x:Name="MyMediaElement" />
+```
+
+Copying it to a new stream allows you to set the position to 0 (so it can be read and controlled by the `MediaElement`) and disposed properly.
+
+```csharp
+await using var stream = await videoResult.OpenReadAsync();
+var memoryStream = new MemoryStream();
+await stream.CopyToAsync(memoryStream);
+memoryStream.Position = 0;
+
+MyMediaElement.Source = MediaSource.FromStream(memoryStream);
+```
+
+This may be particularly useful for scenarios with security requirements that don't allow saving data outside the app's sandboxed environment.
+
 ## Understand MediaSource types
 
 A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
@@ -246,6 +280,7 @@ A `MediaElement` can play media by setting its `Source` property to a remote or 
 - `FromFile`, returns a `FileMediaSource` instance from a `string` argument.
 - `FromUri`, returns a `UriMediaSource` instance from a `Uri` argument.
 - `FromResource`, returns a `ResourceMediaSource` instance from a `string` argument.
+- `FromStream`, returns a `StreamMediaSource` instance from a `Stream` argument.
 
 In addition, the `MediaSource` class also has implicit operators that return `MediaSource` instances from `string` and `Uri` arguments.
 
@@ -257,6 +292,7 @@ The `MediaSource` class also has these derived classes:
 - `FileMediaSource`, which is used to specify a local media file from a `string`. This class has a `Path` property that can be set to a `string`. In addition, this class has implicit operators to convert a `string` to a `FileMediaSource` object, and a `FileMediaSource` object to a `string`.
 - `UriMediaSource`, which is used to specify a remote media file from a URI. This class has a `Uri` property that can be set to a `Uri`.
 - `ResourceMediaSource`, which is used to specify an embedded file that is provided through the app's resource files. This class has a `Path` property that can be set to a `string`.
+- `StreamMediaSource`, which is ised to specify a stream that is read from incrementally from a memory, file, or remote source.
 
 > [!NOTE]
 > When a `FileMediaSource` object is created in XAML, a type converter is invoked to return a `FileMediaSource` instance from a `string`.
@@ -374,7 +410,7 @@ Media playback controls implemented by each platform include a volume bar. This 
 A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Controls.Slider), as shown in the following example:
 
 ```xaml
-<StackLayout>
+<VerticalStackLayout>
     <toolkit:MediaElement ShouldAutoPlay="False"
                           Source="{StaticResource AdvancedAsync}" />
     <Slider Maximum="1.0"
@@ -382,7 +418,7 @@ A custom volume bar can be implemented using a [`Slider`](xref:Microsoft.Maui.Co
             Value="{Binding Volume}"
             Rotation="270"
             WidthRequest="100" />
-</StackLayout>
+</VerticalStackLayout>
 ```
 
 In this example, the [`Slider`](xref:Microsoft.Maui.Controls.Slider) data binds its `Value` property to the `Volume` property of the `MediaElement`. This is possible because the `Volume` property uses a `TwoWay` binding. Therefore, changing the `Value` property will result in the `Volume` property changing.

@@ -224,13 +224,37 @@ public string? Name
 
         if (SetProperty(ref name, value))
         {
-            Broadcast(oldValue, value);
+            Broadcast(oldValue, value, "Name");
         }
     }
 }
 ```
 
 That generated `Broadcast` call will then send a new [`PropertyChangedMessage<T>`](/dotnet/api/microsoft.toolkit.mvvm.Messaging.Messages.PropertyChangedMessage-1) using the `IMessenger` instance in use in the current viewmodel, to all registered subscribers.
+
+Example implementation using the default `WeakReferenceMessenger` implementation in `ObservableRecipient`:
+
+```csharp
+
+//This class sends a PropertyChanged message when the "Name" property changes 
+public partial class SenderViewModel : ObservableRecipient
+{
+    [ObservableObject]
+    [NotifyPropertyChangedRecipients]
+    private string? _name;
+}
+
+//This class received a PropertyChanged message 
+public class ReceiverViewModel : ObservableRecipient, IRecipient<PropertyChangedMessage<string>>
+{
+    public ReceiverViewModel() => IsActive = true;
+
+    public void Receive(PropertyChangedMessage<string> message) => Trace.WriteLine($"Name Changed to: {message.NewValue}");
+}
+
+
+```
+
 
 ## Adding custom attributes
 

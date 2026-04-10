@@ -54,11 +54,11 @@ await snackbar.Show(cancellationTokenSource.Token);
 When calling `Snackbar.Make()`, its parameter `string text` is required. All other parameters are optional.
 
 The following screenshot shows the resulting Snackbar:
-# [Android](#tab/android)
+# [Android](#tab/snackbar-preview-android)
 
 ![Screenshot of an Snackbar on Android](../images/alerts/snackbar-android.gif "Snackbar on Android")
 
-# [iOS](#tab/ios)
+# [iOS](#tab/snackbar-preview-ios)
 
 ![Screenshot of an Snackbar on iOS](../images/alerts/snackbar-ios.gif "Snackbar on iOS")
 

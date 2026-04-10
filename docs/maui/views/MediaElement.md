@@ -244,7 +244,7 @@ An example of how to use this syntax in XAML can be seen below.
 
 You can play media from a `Stream`, which enables scenarios where end-to-end capture and playback remains in memory.
 
-Consider for example capturing a video using [`MediaPicker`](https://learn.microsoft.com/dotnet/maui/platform-integration/device-media/picker):
+Consider for example capturing a video using [`MediaPicker`](/dotnet/maui/platform-integration/device-media/picker):
 
 ```csharp
 var videoResult = await MediaPicker.Default.CaptureVideoAsync(new MediaPickerOptions

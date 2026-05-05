@@ -21,7 +21,7 @@ The toolkit contains .NET Standard libraries (originally developed as part of th
 
 You can also preview the capabilities of the [MVVM Toolkit](mvvm/index.md) by running the [sample app](https://aka.ms/mvvmtoolkit/samples).
 
-## [Get started][get-started]
+## Get started
 
 For more detailed information about using the toolkit, follow the [Getting started guide](/windows/communitytoolkit/getting-started).
 

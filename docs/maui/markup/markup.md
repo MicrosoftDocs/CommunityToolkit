@@ -45,7 +45,7 @@ For further details on the possible options for the `Size` method refer to the [
 
 ### In-depth example
 
-This example creates a `Grid` object, with child `Label` and `Entry` objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. 
+This example creates a [`Grid`](xref:Microsoft.Maui.Controls.Grid) object, with child [`Label`](xref:Microsoft.Maui.Controls.Label) and [`Entry`](xref:Microsoft.Maui.Controls.Entry) objects. The `Label` displays text, and the `Entry` data binds to the `RegistrationCode` property of the viewmodel. Each child view is set to appear in a specific row in the `Grid`, and the `Entry` spans all the columns in the `Grid`. In addition, the height of the `Entry` is set, along with its keyboard, colors, the font size of its text, and its `Margin`. 
 
 C# Markup extensions also allow developers to define names for Columns and Rows (e.g. `Column.Input`) using an `enum`.
 
@@ -97,12 +97,12 @@ class SampleContentPage : ContentPage
 
 ## Converters
 
-The C# Markup package provides the ability to define `IValueConverter` and `IMultiValueConverter` implementations inline when building your applications UI.
+The C# Markup package provides the ability to define [`IValueConverter`](xref:Microsoft.Maui.Controls.IValueConverter) and [`IMultiValueConverter`](xref:Microsoft.Maui.Controls.IMultiValueConverter) implementations inline when building your applications UI.
 
 | Converter | Description |
 | --------- | ----------- |
-| [`FuncConverter`](converters/func-converter.md) | The `FuncConverter` provides the ability to define an `IValueConverter` implementation inline when build your UI. |
-| [`FuncMultiConverter`](converters/func-multi-converter.md) | The `FuncMultiConverter` provides the ability to define an `IMultiValueConverter` implementation inline when build your UI. |
+| [`FuncConverter`](converters/func-converter.md) | The `FuncConverter` provides the ability to define an [`IValueConverter`](xref:Microsoft.Maui.Controls.IValueConverter) implementation inline when build your UI. |
+| [`FuncMultiConverter`](converters/func-multi-converter.md) | The `FuncMultiConverter` provides the ability to define an [`IMultiValueConverter`](xref:Microsoft.Maui.Controls.IMultiValueConverter) implementation inline when build your UI. |
 
 ## Extensions
 
@@ -111,20 +111,20 @@ The C# Markup package provides the ability to define `IValueConverter` and `IMul
 
 | Extension | Description |
 | --------- | ----------- |
-| [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning `View`s in `AbsoluteLayout`s. |
+| [`AbsoluteLayout`](extensions/absolute-layout-extensions.md) | The AbsoluteLayout extensions provide a series of extension methods that support positioning [`View`](xref:Microsoft.Maui.Controls.View)s in [`AbsoluteLayout`](xref:Microsoft.Maui.Controls.AbsoluteLayout)s. |
 | [`AutomationProperties`](extensions/automation-properties.md) | The `AutomationProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
 | [`BindableLayout`](extensions/bindable-layout-extensions.md) | The `BindableLayout` extensions provide a series of extension methods that support configuring its `EmptyView`, `ItemSource` and `ItemTemplate`. |
-| [`BindableObject`](extensions/bindable-object-extensions.md) | The `BindableObject` extensions provide a series of extension methods that support configuring `Binding`s on a `BindableObject`. |
+| [`BindableObject`](extensions/bindable-object-extensions.md) | The [`BindableObject`](xref:Microsoft.Maui.Controls.BindableObject) extensions provide a series of extension methods that support configuring [`Binding`](xref:Microsoft.Maui.Controls.Binding)s on a [`BindableObject`](xref:Microsoft.Maui.Controls.BindableObject). |
 | [`DynamicResourceHandler`](extensions/dynamic-resource-handler-extensions.md) | The `DynamicResourceHandler` extensions provide a series of extension methods that support configuring `IDynamicResourceHandler` which can be used to theme an App. |
-| [`Element`](extensions/element-extensions.md) | The `Element` extensions provide a series of extension methods that support configuring the padding, effects, font attributes, dynamic resources, text, and text color of an `Element`. |
-| [`FlexLayout`](extensions/flex-layout-extensions.md) | The FlexLayout extensions provide a series of extension methods that support positioning a `View` in a `FlexLayout`. |
+| [`Element`](extensions/element-extensions.md) | The [`Element`](xref:Microsoft.Maui.Controls.Element) extensions provide a series of extension methods that support configuring the padding, effects, font attributes, dynamic resources, text, and text color of an [`Element`](xref:Microsoft.Maui.Controls.Element). |
+| [`FlexLayout`](extensions/flex-layout-extensions.md) | The FlexLayout extensions provide a series of extension methods that support positioning a [`View`](xref:Microsoft.Maui.Controls.View) in a [`FlexLayout`](xref:Microsoft.Maui.Controls.FlexLayout). |
 | [`Grid`](extensions/grid-extensions.md) | The Grid extensions provide a series of extension methods that support configuring a Grid. |
-| [`Image`](extensions/image-extensions.md) | The `Image` extensions provide a series of extension methods that support configuring `IImage` controls. |
-| [`ItemsView`](extensions/itemsview-extensions.md) | The `ItemsView` extensions provide a series of extension methods that support configuring `ItemsView` controls such as `CarouselView` and `CollectionView`. |
-| [`Label`](extensions/label-extensions.md) | The `Label` extensions provide a series of extension methods that support configuring `Label` controls. |
-| [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring `IPlaceholder` controls. |
+| [`Image`](extensions/image-extensions.md) | The [`Image`](xref:Microsoft.Maui.Controls.Image) extensions provide a series of extension methods that support configuring [`IImage`](xref:Microsoft.Maui.IImage) controls. |
+| [`ItemsView`](extensions/itemsview-extensions.md) | The [`ItemsView`](xref:Microsoft.Maui.Controls.ItemsView) extensions provide a series of extension methods that support configuring [`ItemsView`](xref:Microsoft.Maui.Controls.ItemsView) controls such as [`CarouselView`](xref:Microsoft.Maui.Controls.CarouselView) and [`CollectionView`](xref:Microsoft.Maui.Controls.CollectionView). |
+| [`Label`](extensions/label-extensions.md) | The [`Label`](xref:Microsoft.Maui.Controls.Label) extensions provide a series of extension methods that support configuring [`Label`](xref:Microsoft.Maui.Controls.Label) controls. |
+| [`Placeholder`](extensions/placeholder-extensions.md) | The `Placeholder` extensions provide a series of extension methods that support configuring [`IPlaceholder`](xref:Microsoft.Maui.IPlaceholder) controls. |
 | [`SemanticProperties`](extensions/semantic-properties.md) | The `SemanticProperties` extensions provide a series of extension methods that support the configuring of accessibility related settings. |
-| [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring `Microsoft.Maui.Controls.Style`. |
-| [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing `ITextAlignment`. |
-| [`View`](extensions/view-extensions.md) | The `View` extensions provide a series of extension methods that support configuring the alignment of controls inheriting from `View`. |
-| [`VisualElement`](extensions/visual-element-extensions.md) | The `VisualElement` extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a `VisualElement`. |
+| [`Style`](extensions/style.md) | `Style<T>` provides a series of fluent extension methods that support configuring [`Microsoft.Maui.Controls.Style`](xref:Microsoft.Maui.Controls.Style). |
+| [`TextAlignment`](extensions/text-alignment-extensions.md) | The `TextAlignment` extensions provide a series of extension methods that support configuring the `HorizontalTextAlignment` and `VeticalTextAlignment` properties on controls implementing [`ITextAlignment`](xref:Microsoft.Maui.ITextAlignment). |
+| [`View`](extensions/view-extensions.md) | The [`View`](xref:Microsoft.Maui.Controls.View) extensions provide a series of extension methods that support configuring the alignment of controls inheriting from [`View`](xref:Microsoft.Maui.Controls.View). |
+| [`VisualElement`](extensions/visual-element-extensions.md) | The [`VisualElement`](xref:Microsoft.Maui.Controls.VisualElement) extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of a [`VisualElement`](xref:Microsoft.Maui.Controls.VisualElement). |

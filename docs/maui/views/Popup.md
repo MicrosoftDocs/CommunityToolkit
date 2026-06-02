@@ -10,7 +10,7 @@ ms.date: 04/12/2022
 Popups are a common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance.
 
 > [!NOTE]
-> If you wish to present something to the user that is more subtle then checkout our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
+> If you wish to present something to the user that is more subtle, then check out our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
 
 The `Popup` view allows developers to build their own custom UI and present it to their users.
 
@@ -95,6 +95,9 @@ Replace the contents of _*.xaml_ with the following:
 The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` being displayed in the center of page that it overlays.
 
 A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
+
+> [!TIP]
+> For more advanced scenarios, such as returning a result from a `Popup`, the code-behind file (_*.xaml.cs_) must inherit from `Popup` or `Popup<T>` (found in `CommunityToolkit.Maui.Views`). For a complete example demonstrating this, please refer to [Popup - Returning a result](./popup/popup-result.md).
 
 ### Presenting a Popup Created in XAML
 

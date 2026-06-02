@@ -1,16 +1,16 @@
 ---
-title: Ref&lt;T> and ReadOnlyRef&lt;T>
+title: Ref\<T> and ReadOnlyRef\<T>
 author: Sergio0694
 description: Two stack-only types that can store a reference to a value of a specified type
 keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, parallel, high performance, net core, net standard
 dev_langs:
   - csharp
 ---
-# Ref&lt;T> and ReadOnlyRef&lt;T>
+# Ref\<T> and ReadOnlyRef\<T> types
 
-## Ref&lt;T>
+## Ref\<T> class
 
-The [`Ref<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1) is a stack-only type that can store a reference to a value of a specified type. It is semantically equivalent to a `ref T` value, with the difference that it can also be used as a type of field in another stack-only `struct` type. It can be used in place of proper `ref T` fields, which are currently not supported in C#.
+The [`Ref<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1) class is a stack-only type that stores a reference to a value of a specified type. It's semantically equivalent to a `ref T` value, but you can use it as a field type in another stack-only `struct` type. Use it instead of `ref T` fields, which C# doesn't currently support.
 
 > **Platform APIs:** [`Ref<T>`](/dotnet/api/microsoft.toolkit.highperformance.ref-1), [`ReadOnlyRef<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyref-1)
 
@@ -72,8 +72,8 @@ public static ref int GetDummyReference()
     int number = 42;
 
     Ref<int> byRef = new Ref<T>(ref number);
-        
-    return ref byRef.Value;        
+
+    return ref byRef.Value;
 }
 ```
 
@@ -82,9 +82,9 @@ This will compile and run fine, but the returned `ref int` will be invalid (as i
 > [!NOTE]
 > Although it is possible to create a `Ref<T>` value wrapping a `null` reference, by using the `default(Ref<T>)` expression, the `Ref<T>` type is not designed to be used with nullable references and does not include proper features to validate the internal reference. If you need to return a reference that can be set to `null`, use the `NullableRef<T>` and `NullableReadOnlyRef<T>` types.
 
-## ReadOnlyRef&lt;T>
+## ReadOnlyRef\<T> class
 
-The [`ReadOnlyRef<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyref-1) is a stack-only type that mirrors `Ref<T>`, with the exception that its constructor takes an `in T` parameter (a readonly reference), instead of a `ref T` one. Similarly, its `Value` property has a `ref readonly T` return type instead of `ref T`.
+The [`ReadOnlyRef<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyref-1) class is a stack-only type that mirrors `Ref<T>`, with the exception that its constructor takes an `in T` parameter (a readonly reference), instead of a `ref T` one. Similarly, its `Value` property has a `ref readonly T` return type instead of `ref T`.
 
 ### Examples
 

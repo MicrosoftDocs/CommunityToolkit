@@ -153,6 +153,38 @@ By default, the media that is defined by the `Source` property doesn't immediate
 
 Platform provided media playback controls are enabled by default, and can be disabled by setting the `ShouldShowPlaybackControls` property to `false`.
 
+### Play remote media with custom HTTP headers
+
+A `MediaElement` can send custom HTTP headers when loading remote media. This is useful for authenticated streams that require an `Authorization` header or other custom headers.
+
+```csharp
+mediaElement.Source = new UriMediaSource
+{
+    Uri = new Uri("https://example.com/stream.m3u8"),
+    HttpHeaders = new Dictionary<string, string>
+    {
+        ["Authorization"] = "Bearer my-token"
+    }
+};
+```
+
+Or using the `MediaSource.FromUri` overload:
+
+```csharp
+var headers = new Dictionary<string, string>
+{
+    ["Authorization"] = "Bearer my-token"
+};
+mediaElement.Source = MediaSource.FromUri(
+    new Uri("https://example.com/stream.m3u8"), headers);
+```
+
+> [!NOTE]
+> HTTP headers are applied to all HTTP requests made for the media source, including manifest and segment downloads for adaptive streams (HLS/DASH). This feature is supported on Android, iOS, macOS, and Windows. Tizen does not support custom HTTP headers.
+
+> [!IMPORTANT]
+> On iOS and macOS, custom HTTP headers are set via the `AVURLAssetHTTPHeaderFieldsKey` option, which requires iOS 16.0+ / macOS 13.0+. On earlier versions, custom headers will not be applied.
+
 ### Use Rich Media Notifications
 A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst, and Windows when media is playing in the background. To enable rich media notifications, the following steps are required:
 1. Enable background video playback by setting the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. Refer to the **Initializing the package** section above for more information.
@@ -241,10 +273,11 @@ An example of how to use this syntax in XAML can be seen below.
 
 ## Understand MediaSource types
 
-A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines three static methods:
+A `MediaElement` can play media by setting its `Source` property to a remote or local media file. The `Source` property is of type `MediaSource`, and this class defines the following static methods:
 
 - `FromFile`, returns a `FileMediaSource` instance from a `string` argument.
 - `FromUri`, returns a `UriMediaSource` instance from a `Uri` argument.
+- `FromUri(Uri, IDictionary<string, string>)`, returns a `UriMediaSource` instance from a `Uri` argument with custom HTTP headers applied to all requests.
 - `FromResource`, returns a `ResourceMediaSource` instance from a `string` argument.
 
 In addition, the `MediaSource` class also has implicit operators that return `MediaSource` instances from `string` and `Uri` arguments.
@@ -255,7 +288,7 @@ In addition, the `MediaSource` class also has implicit operators that return `Me
 The `MediaSource` class also has these derived classes:
 
 - `FileMediaSource`, which is used to specify a local media file from a `string`. This class has a `Path` property that can be set to a `string`. In addition, this class has implicit operators to convert a `string` to a `FileMediaSource` object, and a `FileMediaSource` object to a `string`.
-- `UriMediaSource`, which is used to specify a remote media file from a URI. This class has a `Uri` property that can be set to a `Uri`.
+- `UriMediaSource`, which is used to specify a remote media file from a URI. This class has a `Uri` property that can be set to a `Uri`. It also has an `HttpHeaders` property of type `IDictionary<string, string>` that allows setting custom HTTP headers (e.g. `Authorization`) sent with all HTTP requests for this media source, including manifest and segment downloads.
 - `ResourceMediaSource`, which is used to specify an embedded file that is provided through the app's resource files. This class has a `Path` property that can be set to a `string`.
 
 > [!NOTE]

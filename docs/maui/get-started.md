@@ -138,12 +138,15 @@ using CommunityToolkit.Maui;
 ```
 
 In order to use the `MediaElement` correctly the `UseMauiCommunityToolkitMediaElement` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. The following example shows how to perform this.
+You must specify whether to enable the foreground service on Android by setting the `enableForegroundService` parameter to true or false. If you require Rich Media Notifications or background playback on Android, set `enableForegroundService` to `true` when calling `UseMauiCommunityToolkitMediaElement`.
+
+Note: `MediaElement` does not require adding additional `AndroidManifest.xml` permissions for the foreground service. Calling the builder method with `enableForegroundService: true` is sufficient to enable notification and background playback features. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If `enableForegroundService` is `false` and you attempt to use background playback features, an exception may be thrown on Android.
 
 ```csharp
 var builder = MauiApp.CreateBuilder();
 builder
     .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMediaElement()
+    .UseMauiCommunityToolkitMediaElement(enableForegroundService: true);
 ```
 
 To use the features of the toolkit please refer to the documentation pages for each specific feature.

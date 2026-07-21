@@ -1,13 +1,13 @@
 ---
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
-description: "The CameraView provides the ability to connect to a camera, display a preview from the camera and take photos."
-ms.date: 05/23/2024
+description: "The CameraView provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos."
+ms.date: 03/17/2026
 ---
 
 # CameraView
 
-The `CameraView` provides the ability to connect to a camera, display a preview from the camera and take photos. The `CameraView` also offers features to support taking photos, controlling the flash, saving captured media to a file, and offering different hooks for events.
+The `CameraView` provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos. The `CameraView` also offers features to support controlling the flash and torch, adjusting zoom, saving captured media to a file, and offering different hooks for events.
 
 The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraView/CameraViewViewModel.cs). that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml).
 
@@ -25,6 +25,11 @@ The following permissions need to be added to the `Platforms/Android/AndroidMani
 <uses-permission android:name="android.permission.CAMERA" />
 ```
 
+In case you plan to record video, request Microphone permissions:
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
 This should be added inside the `<manifest>` element. Below shows a more complete example:
 
 ```xml
@@ -33,6 +38,9 @@ This should be added inside the `<manifest>` element. Below shows a more complet
     <application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--Optional. Only for video recording-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>
 ```
@@ -43,6 +51,12 @@ The following entries need to be added to the `Platforms/iOS/Info.plist` file:
 
 ```xml
 <key>NSCameraUsageDescription</key>
+<string>PROVIDE YOUR REASON HERE</string>
+```
+
+In case you plan to record video, request Microphone permissions:
+```xml
+<key>NSMicrophoneUsageDescription</key>
 <string>PROVIDE YOUR REASON HERE</string>
 ```
 
@@ -79,6 +93,9 @@ This should be added inside the `<dict>` element. Below shows a more complete ex
     <string>Assets.xcassets/appicon.appiconset</string>
 
     <key>NSCameraUsageDescription</key>
+    <string>PROVIDE YOUR REASON HERE</string>
+
+    <key>NSMicrophoneUsageDescription</key>
     <string>PROVIDE YOUR REASON HERE</string>
 </dict>
 </plist>
@@ -93,6 +110,12 @@ The following entries need to be added to the `Platforms/MacCatalyst/Info.plist`
 <string>PROVIDE YOUR REASON HERE</string>
 ```
 
+In case you plan to record video, request Microphone permissions:
+```xml
+<key>NSMicrophoneUsageDescription</key>
+<string>PROVIDE YOUR REASON HERE</string>
+```
+
 This should be added inside the `<dict>` element. Below shows a more complete example:
 
 ```xml
@@ -127,9 +150,14 @@ This should be added inside the `<dict>` element. Below shows a more complete ex
 
     <key>NSCameraUsageDescription</key>
     <string>PROVIDE YOUR REASON HERE</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>PROVIDE YOUR REASON HERE</string>
 </dict>
 </plist>
 ```
+
+More details can be found here: https://developer.apple.com/documentation/avfoundation/requesting-authorization-to-capture-and-save-media
 
 ### [Windows](#tab/windows)
 
@@ -146,6 +174,20 @@ Tizen is not currently supported.
 ## Basic usage
 
 The `CameraView` can be added to a .NET MAUI application in the following way.
+
+### Request permissions
+
+Developers must manually request Permissions.Camera and/or Permissions.Microphone:
+
+```csharp
+var cameraPermissionsRequest = await Permissions.RequestAsync<Permissions.Camera>();
+```
+
+In case you plan to record video, request Microphone permissions:
+
+```csharp
+var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Microphone>();
+```
 
 ### Including the XAML namespace
 
@@ -313,7 +355,8 @@ The final change involves binding the `ImageCaptureResolution` property of the `
             Grid.Row="0"
             SelectedCamera="{Binding SelectedCamera}"
             ZoomFactor="{Binding CurrentZoom}"
-            CameraFlashMode="{Binding FlashMode}" />
+            CameraFlashMode="{Binding FlashMode}"
+            ImageCaptureResolution="{Binding SelectedResolution}" />
 
         <Slider 
             Grid.Column="0"
@@ -422,6 +465,103 @@ async void HandleCaptureButtonTapped(object? sender, EventArgs e)
 }
 ```
 
+
+## Video Recording
+
+The `CameraView` provides the ability to record videos. This is possible through both the `StartVideoRecording` method or the `StartVideoRecordingCommand`.
+
+The following example shows how to add a `Button` into the application and setup the following bindings:
+
+- Bind the `Command` property of the `Button` to the `StartVideoRecordingCommand` property on the `CameraView`.
+
+```xaml
+<ContentPage
+    x:Class="CommunityToolkit.Maui.Sample.Pages.CameraViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,30,30">
+        <toolkit:CameraView
+            x:Name="Camera" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="0"
+            SelectedCamera="{Binding SelectedCamera}"
+            ZoomFactor="{Binding CurrentZoom}"
+            CameraFlashMode="{Binding FlashMode}" />
+
+        <Slider 
+            Grid.Column="0"
+            Grid.Row="1"
+            Value="{Binding CurrentZoom}"
+            Maximum="{Binding SelectedCamera.MaximumZoomFactor, FallbackValue=1}"
+            Minimum="{Binding SelectedCamera.MinimumZoomFactor, FallbackValue=1}"/>
+
+        <Picker 
+            Grid.Column="1"
+            Grid.Row="1"
+            Title="Flash"
+            IsVisible="{Binding Path=SelectedCamera.IsFlashSupported, FallbackValue=false}"
+            ItemsSource="{Binding FlashModes}"
+            SelectedItem="{Binding FlashMode}" />
+
+        <Picker 
+            Grid.Column="2"
+            Grid.Row="1"
+            Title="Available Resolutions"
+            ItemsSource="{Binding SelectedCamera.SupportedResolutions}"
+            SelectedItem="{Binding SelectedResolution}" />
+
+        <Button Clicked="StartCameraRecording"
+                Text="StartVideoRecording" />
+
+        <Button Command="{Binding StartVideoRecordingCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}"
+                CommandParameter="{Binding Stream}"
+                Text="StartVideoRecording" />
+
+        <Button Command="{Binding StopVideoRecordingCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}"
+                CommandParameter="{Binding Token}"
+                Text="StopVideoRecording" />
+    </Grid>
+
+</ContentPage>
+```
+
+> [!NOTE]
+> You must provide a clean stream in order to record the video.
+
+The following example demonstrates how to use the `StartVideoRecording` method:
+
+> [!NOTE]
+> The C# code below uses the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
+
+```cs
+async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
+{
+    using var threeSecondVideoRecordingStream = new FileStream("recording.mp4", FileMode.Create);
+    await Camera.StartVideoRecording(threeSecondVideoRecordingStream, CancellationToken.None);
+
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+}
+```
+
+In case you want to record a short video and record video in `MemoryStream` you can use the next overload of VideoRecording:
+
+```cs
+async void StartCameraRecording(object? sender, EventArgs e)
+{
+    await Camera.StartVideoRecording(CancellationToken.None);
+    
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    
+    var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
+    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+}
+```
+
 ## Start preview
 
 The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StartCameraPreview` method or the `StartCameraPreviewCommand`.
@@ -478,7 +618,7 @@ The following example shows how to add a `Button` into the application and setup
             Grid.Column="1"
             Grid.Row="2"
             Command="{Binding StartCameraPreviewCommand, Source={x:Reference Camera}}"
-            Text="Capture Image" />
+            Text="Start Preview" />
     </Grid>
 
 </ContentPage>
@@ -564,13 +704,13 @@ The following example shows how to add a `Button` into the application and setup
             Grid.Column="1"
             Grid.Row="2"
             Command="{Binding StartCameraPreviewCommand, Source={x:Reference Camera}}"
-            Text="Capture Image" />
+            Text="Start Preview" />
 
         <Button
             Grid.Column="2"
             Grid.Row="2"
             Command="{Binding StopCameraPreviewCommand, Source={x:Reference Camera}}"
-            Text="Capture Image" />
+            Text="Stop Preview" />
     </Grid>
 
 </ContentPage>
@@ -597,6 +737,81 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
     }
 }
 ```
+
+## Properties
+
+| Property | Type | Description | Default Value |
+|---------|---------|---------|---------|
+| `CameraFlashMode` | `CameraFlashMode` | Gets or sets the flash mode for the camera. This is a bindable property. | `CameraFlashMode.Off` |
+| `ImageCaptureResolution` | `Size` | Gets or sets the resolution for image capture. Does not affect the preview resolution. This is a bindable property. | `Size.Zero` |
+| `IsAvailable` | `bool` | Gets whether the camera is available on the device. This is a read-only bindable property. | `false` |
+| `IsBusy` | `bool` | Gets whether the camera is currently busy (e.g. capturing an image or recording). This is a read-only bindable property. | `false` |
+| `IsTorchOn` | `bool` | Gets or sets whether the camera torch (flashlight) is enabled. This is a bindable property. | `false` |
+| `SelectedCamera` | `CameraInfo?` | Gets or sets the currently selected camera device. This is a bindable property with two-way binding. | `null` |
+| `ZoomFactor` | `float` | Gets or sets the camera zoom factor. The value is automatically clamped to the selected camera's `MinimumZoomFactor` and `MaximumZoomFactor`. This is a bindable property. | `1f` |
+
+## Commands
+
+| Command | Command Parameter | Description |
+|---------|---------|---------|
+| `CaptureImageCommand` | — | Triggers an image capture. The captured image is returned via the `MediaCaptured` event. |
+| `StartCameraPreviewCommand` | — | Starts the camera preview display. |
+| `StartVideoRecordingCommand` | `Stream` (optional) | Starts video recording. Optionally pass a `Stream` to record into. |
+| `StopCameraPreviewCommand` | — | Stops the camera preview display. |
+| `StopVideoRecordingCommand` | — | Stops video recording and returns the recorded stream. |
+
+## Events
+
+| Event | Type | Description |
+|---------|---------|---------|
+| `MediaCaptured` | `EventHandler<MediaCapturedEventArgs>` | Raised when an image is successfully captured. The `MediaCapturedEventArgs` contains a `Media` property of type `Stream` with the captured image data. |
+| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
+
+## Methods
+
+| Method | Return Type | Description |
+|---------|---------|---------|
+| `CaptureImage(CancellationToken)` | `Task` | Captures a single image from the camera. The result is delivered via the `MediaCaptured` event. |
+| `GetAvailableCameras(CancellationToken)` | `ValueTask<IReadOnlyList<CameraInfo>>` | Retrieves a list of available camera devices on the device. |
+| `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. |
+| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. |
+| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. |
+| `StopCameraPreview()` | `void` | Stops displaying the camera preview. |
+| `StopVideoRecording(CancellationToken)` | `Task<Stream>` | Stops video recording and returns the recorded `Stream`. |
+
+## CameraInfo
+
+The `CameraInfo` class represents information about a camera device available on the system.
+
+| Property | Type | Description |
+|---------|---------|---------|
+| `DeviceId` | `string` | The unique identifier of the camera device. |
+| `IsFlashSupported` | `bool` | Whether the camera supports flash. |
+| `MaximumZoomFactor` | `float` | The maximum supported zoom factor. |
+| `MinimumZoomFactor` | `float` | The minimum supported zoom factor. |
+| `Name` | `string` | The name of the camera device. |
+| `Position` | `CameraPosition` | The physical position of the camera on the device (`Front`, `Rear`, or `Unknown`). |
+| `SupportedResolutions` | `IReadOnlyList<Size>` | The list of resolutions supported by the camera for image capture. |
+
+## CameraFlashMode
+
+The `CameraFlashMode` enum defines the available flash modes.
+
+| Value | Description |
+|---------|---------|
+| `Off` | The flash is off and will not be used. |
+| `On` | The flash is on and will always be used. |
+| `Auto` | The flash will automatically be used based on the lighting conditions. |
+
+## CameraPosition
+
+The `CameraPosition` enum defines the possible physical positions of a camera on a device.
+
+| Value | Description |
+|---------|---------|
+| `Unknown` | The camera position is unknown. |
+| `Front` | The camera is at the front of the device (facing the user). |
+| `Rear` | The camera is at the rear of the device (facing away from the user). |
 
 ## Examples
 

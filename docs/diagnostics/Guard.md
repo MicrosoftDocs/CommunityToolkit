@@ -1,5 +1,5 @@
 ---
-title: Guard
+title: Guard class
 author: Sergio0694
 description: Helper methods to verify conditions when running code
 keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, debug, net core, net standard
@@ -7,15 +7,15 @@ dev_langs:
   - csharp
 ---
 
-# Guard
+# Guard class
 
-The [Guard](/dotnet/api/microsoft.toolkit.diagnostics.guard) can be used to validate method arguments in a streamlined manner, which is also faster, less verbose, more expressive and less error prone than manually writing checks and throwing exceptions.
+Use the [Guard class](/dotnet/api/microsoft.toolkit.diagnostics.guard) to validate method arguments in a streamlined manner. This class is faster, less verbose, more expressive, and less error-prone than manually writing checks and throwing exceptions.
 
 > **Platform APIs:** [`Guard`](/dotnet/api/microsoft.toolkit.diagnostics.guard), [`CallerArgumentExpressionAttribute`](/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute)
 
 ## How it works
 
-These `Guard` APIs are built with three core principles in mind:
+The `Guard` APIs are built with three core principles in mind:
 
 - Being **fast**. To achieve that, all the APIs have been designed to produce as little code as possible in the caller, and each single Guard API will (almost always) be inlined. Furthermore, specialized methods are generated with T4 templates to achieve the most efficient assembly code possible when working with common types (eg. primitive numeric types).
 - Being **helpful**. Each `Guard` API produces a detailed exception message that clearly specifies what went wrong, along with additional info (eg. current variable values), when applicable.
@@ -23,7 +23,7 @@ These `Guard` APIs are built with three core principles in mind:
 
 ## Syntax
 
-Here is a sample method, with some checks being done with explicitly and with manual throw statements:
+The following code snippet shows a sample method, with some checks being done explicitly and manual throw statements:
 
 ```csharp
 public static void SampleMethod(int[] array, int index, Span<int> span, string text)
@@ -55,7 +55,7 @@ public static void SampleMethod(int[] array, int index, Span<int> span, string t
 }
 ```
 
-And here is the same method, but using the new `Guard.APIs` to validate the input arguments:
+Here is the same method, but using the `Guard` APIs to validate the input arguments:
 
 ```csharp
 public static void SampleMethod(int[] array, int index, Span<int> span, string text)
@@ -68,60 +68,60 @@ public static void SampleMethod(int[] array, int index, Span<int> span, string t
 }
 ```
 
-The `Guard` APIs will perform the required checks in the fastest way possible, and will throw the appropriate exception with a well formated message if they fail.
+The `Guard` APIs perform the required checks in the fastest way possible, and throw the appropriate exception with a well-formatted message if they fail.
 
 > [!NOTE]
-> The `Guard` APIs rely on [`[CallerArgumentExpression]`](/dotnet/csharp/language-reference/proposals/csharp-10.0/caller-argument-expression) to automatically infer the name of the argument being validated. This requires C# 10 to be enabled in the project in use. If you're using a lower version of the language, you will need to manually pass the parameter name, for instance using `nameof()` to refer to it (eg. `Guard.IsNotNull(array, nameof(array)))`).
+> The `Guard` APIs rely on [`[CallerArgumentExpression]`](/dotnet/csharp/language-reference/proposals/csharp-10.0/caller-argument-expression) to automatically infer the name of the argument being validated. This requires C# 10 to be enabled in the project. If you're using a lower version of the language, you need to manually pass the parameter name, for instance using `nameof()` to refer to it (for example, `Guard.IsNotNull(array, nameof(array)))`).
 
 ## Methods
 
-There are dozens of different APIs and overloads in the `Guard` class, here are a few of them:
+There are dozens of different APIs and overloads in the `Guard` class. The following table describes some of them.
 
 ### General
 
-| Methods | Return Type | Description |
-| -- | -- | -- |
-| IsNotNull&lt;T>(T, string) | void | Asserts that the input value is not null |
-| IsOfType&lt;T>(object, string) | void | Asserts that the input value is of a specific type |
-| IsAssignableToType&lt;T>(object, string) | void | Asserts that the input value can be assigned to a specified type |
-| IsReferenceEqualTo&lt;T>(T, T, string) | void | Asserts that the input value must be the same instance as the target value |
-| IsTrue(bool, string) | void | Asserts that the input value must be true |
+| Methods                       | Return type | Description                                        |
+|-------------------------------|-------------|----------------------------------------------------|
+| `IsNotNull<T>(T, string)`     | void        | Asserts that the input value is not null           |
+| `IsOfType<T>(object, string)` | void        | Asserts that the input value is of a specific type |
+| `IsAssignableToType<T>(object, string)` | void | Asserts that the input value can be assigned to a specified type |
+| `IsReferenceEqualTo<T>(T, T, string)` | void | Asserts that the input value must be the same instance as the target value |
+| `IsTrue(bool, string)`        | void        | Asserts that the input value must be true          |
 
 ### Comparisons
 
-| Methods | Return Type | Description |
-| -- | -- | -- |
-| IsEqualTo&lt;T>(T, T, string) | void | Asserts that the input value must be equal to a specified value |
-| IsBitwiseEqualTo&lt;T>(T, T, string) | void | Asserts that the input value must be a bitwise match with a specified value |
-| IsLessThan&lt;T>(T, T, string) | void | Asserts that the input value must be less than a specified value |
-| IsLessThanOrEqualTo&lt;T>(T, T, string) | void | Asserts that the input value must be less than or equal to a specified value |
-| IsInRange&lt;T>(T, T, T, string) | void | Asserts that the input value must be in the [minimum, maximum) range |
-| IsBetween&lt;T>(T, T, T, string name) | void | Asserts that the input value must be in the (minimum, maximum) interval |
-| IsBetweenOrEqualTo&lt;T>(T, T, T, string name) | void | Asserts that the input value must be in the [minimum, maximum] interval |
+| Methods                      | Return type | Description |
+|------------------------------|-------------|-------------|
+| `IsEqualTo<T>(T, T, string)` | void        | Asserts that the input value must be equal to a specified value |
+| `IsBitwiseEqualTo<T>(T, T, string)` | void | Asserts that the input value must be a bitwise match with a specified value |
+| `IsLessThan<T>(T, T, string)` | void | Asserts that the input value must be less than a specified value |
+| `IsLessThanOrEqualTo<T>(T, T, string)` | void | Asserts that the input value must be less than or equal to a specified value |
+| `IsInRange<T>(T, T, T, string)` | void | Asserts that the input value must be in the [minimum, maximum) range |
+| `IsBetween<T>(T, T, T, string name)` | void | Asserts that the input value must be in the (minimum, maximum) interval |
+| `IsBetweenOrEqualTo<T>(T, T, T, string name)` | void | Asserts that the input value must be in the [minimum, maximum] interval |
 
 ### Strings
 
-| Methods | Return Type | Description |
-| -- | -- | -- |
-| IsNotNullOrEmpty(string, string) | void | Asserts that the input string instance must not be null or empty |
-| IsNotNullOrWhiteSpace(string, string) | void | Asserts that the input string instance must not be null or whitespace |
+| Methods                            | Return type | Description |
+|------------------------------------|-------------|-------------|
+| `IsNotNullOrEmpty(string, string)` | void        | Asserts that the input string instance must not be null or empty |
+| `IsNotNullOrWhiteSpace(string, string)` | void | Asserts that the input string instance must not be null or whitespace |
 
 ### Collections
 
-| Methods | Return Type | Description |
-| -- | -- | -- |
-| IsNotEmpty&lt;T>(T[], string) | void | Asserts that the input array instance must not be empty |
-| HasSizeEqualTo&lt;T>(T[], int, string) | void | Asserts that the input array instance must have a size of a specified value |
-| HasSizeAtLeast&lt;T>(T[], int, string) | void | Asserts that the input array must have a size of at least or equal to a specified value |
-| IsInRangeFor&lt;T>(int, T[], string) | void | Asserts that the input index is valid for a given array |
-| HasSizeLessThanOrEqualTo&lt;T>(T[], T[], string) | void | Asserts that the source array must have a size of less than or equal to that of the destination array |
+| Methods                               | Return type | Description |
+|---------------------------------------|-------------|-------------|
+| `IsNotEmpty<T>(T[], string)`          | void        | Asserts that the input array instance must not be empty |
+| `HasSizeEqualTo<T>(T[], int, string)` | void        | Asserts that the input array instance must have a size of a specified value |
+| `HasSizeAtLeast<T>(T[], int, string)` | void        | Asserts that the input array must have a size of at least or equal to a specified value |
+| `IsInRangeFor<T>(int, T[], string)`   | void        | Asserts that the input index is valid for a given array |
+| `HasSizeLessThanOrEqualTo<T>(T[], T[], string)` | void | Asserts that the source array must have a size of less than or equal to that of the destination array |
 
 ### Tasks
 
-| Methods | Return Type | Description |
-| -- | -- | -- |
-| IsCompleted(Task, string) | void | Asserts that the input task is in a completed state |
-| IsNotCanceled(Task, string) | void | Asserts that the input task is not canceled |
+| Methods                       | Return type | Description                                         |
+|-------------------------------|-------------|-----------------------------------------------------|
+| `IsCompleted(Task, string)`   | void        | Asserts that the input task is in a completed state |
+| `IsNotCanceled(Task, string)` | void        | Asserts that the input task is not canceled         |
 
 ## Examples
 

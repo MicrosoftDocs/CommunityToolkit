@@ -7,7 +7,7 @@ ms.date: 05/19/2025
 
 # Returning a value from a Popup
 
-The .NET MAUI Community Toolkit provides the ability to show a [Popup](../Popup.md) to a user. The Toolkit also enables a common, more complex, scenario where a developer displays a `Popup` and `await` its result to be returned when that `Popup` is dismissed. This page covers how the `Popup<T>` class can be used to achieve the desired behavior.
+The .NET MAUI Community Toolkit provides the ability to show a [Popup](../Popup.md) to a user. The Toolkit also enables a common, more complex, scenario where a developer displays a `Popup` and `await`s its result to be returned when that `Popup` is dismissed. This page covers how the `Popup<T>` class can be used to achieve the desired behavior.
 
 ## Building a Popup
 
@@ -74,7 +74,7 @@ public partial class ReturnResultPopup : Popup<bool>
 The use of `Popup<bool>` must match the definition in the XAML through the use of `x:TypeArguments`.
 
 > [!IMPORTANT]
-> If the code behind file is not created along with the call to `InitializeComponent` then an exception will be thrown when trying to display your `Popup`.
+> If the code behind file is not created along with the call to `InitializeComponent`, then an exception will be thrown when trying to display your `Popup`.
 
 ### Building a Popup in C#
 
@@ -123,7 +123,7 @@ The `CloseAsync` method allows for a value to be supplied, this will be the resu
 
 ## Awaiting the result from a Popup
 
-In order to await the result the `ShowPopupAsync` method must be used as follows:
+In order to await the result, the `ShowPopupAsync` method must be used as follows:
 
 ```csharp
 using CommunityToolkit.Maui.Views;
@@ -157,7 +157,7 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> If `WasDismissedByTappingOutsideOfPopup` is `true` then the `Result` property will always be `null` or `default`.
+> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property will always be `null` or `default`.
 
 ## PopupOptions
 The `PopupOptions` class provides the ability to customize the Border, Shadow, PageOverlayColor, and more, of the displayed `Popup`.
@@ -167,7 +167,7 @@ Please refer to the [PopupOptions Documentation](./popup-options.md) to learn mo
 
 ## Examples
 
-You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/Popups/ReturnResultPopup.xaml).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Views/Popups/ReturnResultPopup.xaml).
 
 ## API
 

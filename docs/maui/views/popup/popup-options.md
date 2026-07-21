@@ -126,7 +126,7 @@ await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 
 ## Examples
 
-You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/Popups/ReturnResultPopup.xaml).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Views/Popups/ReturnResultPopup.xaml).
 
 ## API
 

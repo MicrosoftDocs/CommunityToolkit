@@ -14,7 +14,7 @@ The `FileSaver` provides the ability to select a target folder and save files to
 The following preconditions are required for the `FileSaver`:
 # [Android](#tab/android)
 
-If your target device API level is less than 33 add permissions to `AndroidManifest.xml`:
+If your target device API level is less than 33, add permissions to `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -72,11 +72,35 @@ Add permissions to `tizen-manifest.xml`:
 
 ---
 
-## Syntax
+## Basic usage
 
-### C#
+The `FileSaver` can be added to a .NET MAUI application in the following way.
 
-The `FileSaver` can be used as follows in C#:
+### Request permissions
+
+Developers must manually request Permissions.StorageRead and Permissions.StorageWrite before saving files:
+
+```csharp
+async Task RequestStoragePermissionsAndSaveFile(CancellationToken cancellationToken)
+{
+    var readPermissionStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+    var writePermissionStatus = await Permissions.RequestAsync<Permissions.StorageWrite>();
+
+    if (readPermissionStatus != PermissionStatus.Granted ||
+        writePermissionStatus != PermissionStatus.Granted)
+    {
+        await Toast
+            .Make("Storage permissions are required to save files.")
+            .Show(cancellationToken);
+
+        return;
+    }
+
+    await SaveFile(cancellationToken);
+}
+```
+
+### Save file
 
 ```csharp
 async Task SaveFile(CancellationToken cancellationToken)

@@ -10,7 +10,7 @@ ms.date: 04/12/2022
 Popups are a common way of presenting information to a user that relates to their current task. Operating systems provide a way to show a message and require a response from the user, these alerts are typically restrictive in terms of the content a developer can provide and also the layout and appearance.
 
 > [!NOTE]
-> If you wish to present something to the user that is more subtle then checkout our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
+> If you wish to present something to the user that is more subtle, then check out our [Toast](../alerts/toast.md) and [Snackbar](../alerts/snackbar.md) options.
 
 The `Popup` view allows developers to build their own custom UI and present it to their users.
 
@@ -95,6 +95,9 @@ Replace the contents of _*.xaml_ with the following:
 The default values for `HorizontalOptions` and `VerticalOptions` will result in the `Popup` being displayed in the center of page that it overlays.
 
 A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
+
+> [!TIP]
+> For more advanced scenarios, such as returning a result from a `Popup`, the code-behind file (_*.xaml.cs_) must inherit from `Popup` or `Popup<T>` (found in `CommunityToolkit.Maui.Views`). For a complete example demonstrating this, please refer to [Popup - Returning a result](./popup/popup-result.md).
 
 ### Presenting a Popup Created in XAML
 
@@ -181,8 +184,47 @@ It is important to note that a `Popup` will be displayed inside `ContentPage` wh
 
 | Action | Lifecycle event |
 | ------ | --------------- |
-| Show popup  | Current `Page` will receive `OnDisappearing` and `OnNavigatingFrom` |
+| Show popup  | Current `Page` will receive `OnNavigatingFrom`, `OnDisappearing` and `OnNavigatedFrom` |
 | Close popup  | Previous `Page` will receive `OnAppearing` and `OnNavigatedTo` |
+
+To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageAToolkitPopup()` extension method:
+
+```cs
+protected override void OnNavigatedTo(NavigatedToEventArgs args)
+{
+    base.OnNavigatedTo(args);
+    
+    if (args.WasPreviousPageACommunityToolkitPopupPage())
+    {
+        // If true, `OnNavigatedTo` was called by dismissing a Popup
+    }
+}
+```
+
+To determine whether `OnNavigatingFrom(NavigatingFromEventArgs)` or `OnNavigatedFrom(NavigatedFromEventArgs)` was called by opening a `Popup`, you can use the `IsDestinationPageACommunityToolkitPopupPage()` extension method:
+
+> [!WARNING]  
+> As per [https://github.com/dotnet/maui/issues/34073](https://github.com/dotnet/maui/issues/34073), OnNavigatingFrom is currently not working properly, but will be fixed in a near future
+
+```csharp
+protected override void OnNavigatingFrom(NavigatingFromEventArgs args)
+{
+    base.OnNavigatingFrom(args);
+    if (args.IsDestinationPageACommunityToolkitPopupPage())
+    {
+        // If true, `OnNavigatingFrom` was called by starting a Popup
+    }
+}
+
+protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
+{
+    base.OnNavigatedFrom(args);
+    if (args.IsDestinationPageACommunityToolkitPopupPage())
+    {
+        // If true, `OnNavigatedFrom` was called by starting a Popup
+    }
+}
+```
 
 ## PopupOptions
 

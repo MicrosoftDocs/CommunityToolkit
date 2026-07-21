@@ -2,7 +2,7 @@
 title: Element extensions - .NET MAUI Community Toolkit
 author: TheCodeTraveler
 description: The Element extensions provide a series of extension methods that support configuring the sizing, styling and behaviors of an Element.
-ms.date: 03/28/2022
+ms.date: 07/21/2026
 ---
 
 # Element extensions
@@ -11,7 +11,7 @@ The `Element` extensions provide a series of extension methods that support conf
 
 ## Padding
 
-The `Padding` method sets the `Padding` property on an `IPaddingElement`.
+The `Padding` method sets the `Padding` property on any element that supports padding: `Border`, `Button`, `ContentPresenter`, `ImageButton`, `Label`, `Layout`, `Page`, `ScrollView`, and `TemplatedView`.
 
 The following example sets the `Padding` to `new Thickness(5, 10)`:
 
@@ -31,7 +31,7 @@ new Button().Paddings(10, 20, 30, 40);
 
 ## RemoveDynamicResources
 
-The `RemoveDynamicResources` method removes all dynamic resources from a specified `BindableObject`.
+The `RemoveDynamicResources` method removes all dynamic resources from a specified `Element`.
 
 The following example removes the `DynamicResource` from the `BackgroundColorProperty` and `TextColorProperty`:
 
@@ -55,7 +55,7 @@ new Button().Effects(new ShadowEffect(), new TouchEffect());
 
 ## Font Size
 
-The `FontSize` method sets the `FontSize` property on an `IFontElement` element.
+The `FontSize` method sets the `FontSize` property on an `ITextStyle` element.
 
 The following example sets the `FontSize` to `12`:
 
@@ -65,7 +65,7 @@ new Button().FontSize(12);
 
 ## Bold
 
-The `Bold` method sets `FontAttributes = FontAttributes.Bold` on an `IFontElement` element.
+The `Bold` method sets `FontAttributes = FontAttributes.Bold` on an `ITextStyle` element.
 
 The following example sets the button font to bold:
 
@@ -75,7 +75,7 @@ new Button().Bold()
 
 ## Italic
 
-The `Italic` method sets `FontAttributes = FontAttributes.Italic` on an `IFontElement` element.
+The `Italic` method sets `FontAttributes = FontAttributes.Italic` on an `ITextStyle` element.
 
 The following example sets the button font to italic:
 
@@ -85,7 +85,7 @@ new Button().Italic()
 
 ## Font
 
-The `Font` method sets `FontFamily`, `FontSize`, and `FontAttributes` on an `IFontElement` element.
+The `Font` method sets `FontFamily`, `FontSize`, and `FontAttributes` on an `ITextStyle` element.
 
 The following example sets the button font to italic:
 

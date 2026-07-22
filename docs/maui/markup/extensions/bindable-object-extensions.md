@@ -42,7 +42,7 @@ new Entry()
 
 #### BindingBase binding
 
-BindingBase bindings support compiled bindings created with the [BindingBase.Create](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.bindingbase.create) method. This approach supports nested, one-way, and two-way bindings. For example, the following code creates a nested two-way binding to `ViewModel.NestedObject.Text`:
+BindingBase bindings support compiled bindings created with the [BindingBase.Create](/dotnet/api/microsoft.maui.controls.bindingbase.create) method. This approach supports nested, one-way, and two-way bindings. For example, the following code creates a nested two-way binding to `ViewModel.NestedObject.Text`:
 
 ```csharp
 new Entry().Bind(

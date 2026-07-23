@@ -40,40 +40,14 @@ new Entry()
             setter: static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code)
 ```
 
-### Complex (Nested) Bindings
+#### BindingBase binding
 
-When binding to a property inside of a property (also known as "Nested Bindings"), the `handlers` parameter is required. The `handler` parameter requires a reference to each Property in the complex binding chain.
-
-Along with the example below, you can find additonal examples of complex bindings in the [Unit Tests for `CommunityToolkit.Maui.Markup`](https://github.com/CommunityToolkit/Maui.Markup/blob/08459a7e128de0e764f4e293cc191bfa293b79bd/src/CommunityToolkit.Maui.Markup.UnitTests/TypedBindingExtensionsTests.cs#L308-L461).
-
-#### Complex (Nested) Bindings Example
-
-Using the below `ViewModel` class, we can create a nested two-way binding directly to `ViewModel.NestedObject.Text` using the `handlers` parameter:
+BindingBase bindings support compiled bindings created with the [BindingBase.Create](/dotnet/api/microsoft.maui.controls.bindingbase.create) method. This approach supports nested, one-way, and two-way bindings. For example, the following code creates a nested two-way binding to `ViewModel.NestedObject.Text`:
 
 ```csharp
 new Entry().Bind(
     Entry.TextProperty,
-    getter: static (ViewModel vm) => vm.NestedObject.Text,
-    handlers: 
-    [
-        (vm => vm, nameof(ViewModel.NestedObject)),
-        (vm => vm.NestedObject, nameof(ViewModel.NestedObject.Text)),
-    ],
-    setter: static (ViewModel vm, string text) => vm.NestedObject.Text = text);
-```
-
-```cs
-class ViewModel
-{
-    public NestedObject NestedObject { get; set; } = new();
-
-    public required string Text { get; set; }
-}
-
-class NestedObject
-{
-    public required string Text { get; set; }
-}
+    BindingBase.Create(static (ViewModel vm) => vm.NestedObject.Text, BindingMode.TwoWay));
 ```
 
 #### Default property

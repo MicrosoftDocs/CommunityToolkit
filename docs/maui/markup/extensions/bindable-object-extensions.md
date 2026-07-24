@@ -65,7 +65,7 @@ class NestedObject
 }
 ```
 
-#### BindingBase binding
+#### Compiled Bindings
 
 BindingBase bindings support compiled bindings created with the [BindingBase.Create](/dotnet/api/microsoft.maui.controls.bindingbase.create) method. This approach supports nested, one-way, and two-way bindings. For example, the following code creates a nested two-way binding to `ViewModel.NestedObject.Text`:
 

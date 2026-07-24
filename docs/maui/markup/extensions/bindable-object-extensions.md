@@ -63,6 +63,7 @@ class NestedObject
 {
     public required string Text { get; set; }
 }
+```
 
 #### BindingBase binding
 

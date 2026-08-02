@@ -73,6 +73,9 @@ await MyVisualElement.DisplaySnackbar("Snackbar is awesome. It is anchored to My
 > [!WARNING]
 > `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.
 
+> [!IMPORTANT]
+> `Snackbar` on Windows requires a **packaged (MSIX) app**. The underlying `AppNotificationManager` API is only available within a packaged app identity. If your app is not packaged, constructing a `Snackbar` will throw an `InvalidOperationException` with a descriptive message and a `HelpLink` pointing to this documentation. For unpackaged apps, consider using an alternative notification mechanism such as in-app UI alerts.
+
 `SnackBar` contains two events:
 
 - `public static event EventHandler Shown`

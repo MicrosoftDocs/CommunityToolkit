@@ -29,11 +29,11 @@ landingContent:
           - text: Installation
             url: /windows/communitytoolkit/getting-started
 
-  - title: .NET Aspire Community Toolkit
+  - title: Aspire Community Toolkit
     linkLists:
       - linkListType: sample
         links:
-          - text: .NET Aspire Community Toolkit GitHub repo
+          - text: Aspire Community Toolkit GitHub repo
             url: https://github.com/CommunityToolkit/Aspire
 
   - title: Windows Community Toolkit

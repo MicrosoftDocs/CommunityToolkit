@@ -100,7 +100,7 @@ partial void OnSelectedItemChanging(ChildViewModel? oldValue, ChildViewModel? ne
 {
     if (oldValue is not null)
     {
-        oldValue.IsSelected = true;
+        oldValue.IsSelected = false;
     }
 
     if (newValue is not null)

@@ -2,7 +2,7 @@
 title: BindableObject extensions - .NET MAUI Community Toolkit
 author: bijington
 description: The BindableObject extensions provide a series of extension methods that support configuring Bindings on a BindableObject.
-ms.date: 03/27/2022
+ms.date: 07/21/2026
 ---
 
 # BindableObject extensions
@@ -40,7 +40,32 @@ new Entry()
             setter: static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code)
 ```
 
-#### BindingBase binding
+#### Complex (Nested) Bindings Example
+
+Using the below `ViewModel` class, we can create a nested two-way binding directly to `ViewModel.NestedObject.Text`:
+
+```csharp
+new Entry().Bind(
+    Entry.TextProperty,
+    getter: static (ViewModel vm) => vm.NestedObject.Text,
+    setter: static (ViewModel vm, string text) => vm.NestedObject.Text = text);
+```
+
+```cs
+class ViewModel
+{
+    public NestedObject NestedObject { get; set; } = new();
+
+    public string Text { get; set; } = string.Empty;
+}
+
+class NestedObject
+{
+    public string Text { get; set; } = string.Empty;
+}
+```
+
+#### Compiled Bindings
 
 BindingBase bindings support compiled bindings created with the [BindingBase.Create](/dotnet/api/microsoft.maui.controls.bindingbase.create) method. This approach supports nested, one-way, and two-way bindings. For example, the following code creates a nested two-way binding to `ViewModel.NestedObject.Text`:
 
@@ -105,6 +130,19 @@ new Label()
             convert: ((bool IsBusy, string LabelText) values) => values.IsBusy ? string.Empty : values.LabelText)
 ```
 
+## RemoveTypedBinding
+
+The `RemoveTypedBinding` method removes a typed binding from a `BindableObject`. For typed bindings created with a `setter` (for example `TwoWay` or `OneWayToSource` bindings), use this method instead of `RemoveBinding` so that the handlers responsible for writing values back to the binding source are also detached.
+
+```csharp
+var entry = new Entry()
+    .Bind(Entry.TextProperty,
+            getter: static (RegistrationViewModel vm) => vm.RegistrationCode,
+            setter: static (RegistrationViewModel vm, string code) => vm.RegistrationCode = code);
+
+entry.RemoveTypedBinding(Entry.TextProperty);
+```
+
 ## BindCommand
 
 The `BindCommand` method provides a helpful way of configuring a binding to a default provided by the library with the full list at the [GitHub repository](https://github.com/CommunityToolkit/Maui.Markup/blob/523ff96160889f0806f7686e25c5d651fa7d8b7e/src/CommunityToolkit.Maui.Markup/DefaultBindableProperties.cs).
@@ -126,6 +164,17 @@ new Button()
             getter: static (RegistrationViewModel vm) => vm.SubmitCommand,
             mode: BindingMode.OneTime);
 ```
+
+A `CommandParameter` binding can also be configured by supplying the `parameterGetter` argument:
+
+```csharp
+new Button().BindCommand(
+    static (ViewModel vm) => vm.SubmitCommand,
+    parameterGetter: static (ViewModel vm) => vm.RegistrationCode);
+```
+
+> [!NOTE]
+> When a `parameterGetter` is supplied without also supplying `parameterHandlers`, a `parameterSetter` or an explicit `parameterBindingMode`, the `CommandParameter` binding defaults to `BindingMode.OneTime`.
 
 ## Gesture Binding
 

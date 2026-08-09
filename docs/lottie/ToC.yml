@@ -1,0 +1,21 @@
+items:
+- name: Lottie Animations
+  href: index.md
+- name: Getting Started
+  items:
+    - name: Getting Started with JSON
+      href: getting-started-json.md
+    - name: Using Codegen
+      href: getting-started-codegen.md
+    - name: JSON versus Codegen
+      href: json-codegen.md
+- name: Scenarios
+  items:
+    - name: Asynchronous Play Method
+      href: async-play.md
+    - name: Fallback Handling
+      href: fallback.md
+    - name: Configuring Animation Playback
+      href: playback.md
+    - name: Interactive Segments
+      href: segments.md

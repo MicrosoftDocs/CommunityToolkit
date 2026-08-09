@@ -200,7 +200,7 @@ public string? Name
 That generated `ValidateProperty` call will then validate the property and update the state of the `ObservableValidator` object, so that UI components can react to it and display any validation errors appropriately.
 
 > [!NOTE]
-> By design, only field attributes that inherit from [`ValidationAttribute`](/dotnet/api/system.componentmodel.dataannotations.validationattribute) will be forwarded to the generated property. This is done specifically to support data validation scenarios. All other field attributes will be ignored, so it is not currently possible to add additional custom attributes on a field and have them also be applied to the generated property. If that is required (eg. to control serialization), consider using a traditional manual property instead.
+> By design, only field attributes that inherit from [`ValidationAttribute`](/dotnet/api/system.componentmodel.dataannotations.validationattribute) will be forwarded to the generated property. This is done specifically to support data validation scenarios. All other field attributes will be ignored. If this is required (eg. to control serialization), refer to the [Adding custom attributes](#adding-custom-attributes) section.
 
 ## Sending notification messages
 

@@ -22,9 +22,12 @@ The toolkit is available as a set of NuGet packages that can be added to any exi
 
 2. In the Solution Explorer panel, right click on your project name and select **Manage NuGet Packages**.
 
-    For _UWP/WinUI2 or Uno.UI_ based projects, search for **CommunityToolkit.Uwp**, and choose the desired NuGet Package from the list.
+    For _UWP/WinUI2 or Uno.UI_ based projects, search for **CommunityToolkit.Uwp.** to browse available component packages (for example, `CommunityToolkit.Uwp.Animations` or `CommunityToolkit.Uwp.Controls.DataGrid`).
 
-    For _Windows App SDK/WinUI3 or Uno.WinUI_ based projects, search for **CommunityToolkit.WinUI** instead.
+    For _Windows App SDK/WinUI3 or Uno.WinUI_ based projects, search for **CommunityToolkit.WinUI.** instead (for example, `CommunityToolkit.WinUI.Animations` or `CommunityToolkit.WinUI.Controls.DataGrid`).
+
+    > [!NOTE]
+    > Since version 8.0, the toolkit ships as separate component packages rather than a single monolithic package. The previous `CommunityToolkit.Uwp` and `CommunityToolkit.WinUI` single packages are no longer maintained. Install only the components you need.
 
     ![Manage NuGet Packages...](../images/get-started/manage-nuget-packages.png "Right click on the solution and select 'Manage NuGet Packages...'")
 

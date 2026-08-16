@@ -106,6 +106,12 @@ There are dozens of different APIs and overloads in the `Guard` class. The follo
 | `IsNotNullOrEmpty(string, string)` | void        | Asserts that the input string instance must not be null or empty |
 | `IsNotNullOrWhiteSpace(string, string)` | void | Asserts that the input string instance must not be null or whitespace |
 
+### Enums
+
+| Methods                       | Return type | Description |
+|-------------------------------|-------------|-------------|
+| `IsDefined<T>(T, string)`     | void        | Asserts that the input enum value is defined in the enum type |
+
 ### Collections
 
 | Methods                               | Return type | Description |

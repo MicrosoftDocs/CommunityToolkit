@@ -243,6 +243,7 @@ The `DefaultPopupSettings` provided will be applied as the default value for eve
     {
         CanBeDismissedByTappingOutsideOfPopup = true,
         BackgroundColor = Colors.Orange,
+        BackgroundColorDark = Colors.Black,
         HorizontalOptions = LayoutOptions.End,
         VerticalOptions = LayoutOptions.Start,
         Margin = 72,
@@ -259,6 +260,52 @@ The `DefaultPopupSettings` provided will be applied as the default value for eve
     });
 })
 ```
+
+## Theming
+
+A `Popup`'s background color follows the app's `AppTheme` — it responds to `Application.UserAppTheme`. The default background is:
+
+| Theme | Default background | Set via |
+| ----- | ------------------ | ------- |
+| Light | `Colors.White` | `DefaultPopupSettings.BackgroundColor` |
+| Dark  | `Colors.Black`  | `DefaultPopupSettings.BackgroundColorDark` |
+
+Because the background is theme-aware, a `Popup` whose content uses `AppThemeBinding` (for example a `Label` bound to `Light=Black, Dark=White`) stays readable in **both** themes, instead of rendering white-on-white — and therefore invisible — in dark mode.
+
+### Overriding the theme-aware background
+
+Override either color through `SetPopupDefaults`:
+
+```cs
+options.SetPopupDefaults(new DefaultPopupSettings
+{
+    BackgroundColor = Colors.White,      // light theme
+    BackgroundColorDark = Colors.Black,  // dark theme
+});
+```
+
+> [!TIP]
+> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view does not set its own non-transparent `BackgroundColor`. A background-less view is therefore visible in dark mode.
+
+### Customizing a popup on each presentation (OnInitializing)
+
+`DefaultPopupSettings.OnInitializing` is an optional `Action<Popup>` callback that runs **each time a `Popup` is presented** — that is, when the `PopupPage` hosting it is created. It runs after the popup and its content are fully built, but before the popup is parented on the page.
+
+Unlike a constructor-time hook (which runs before XAML or a derived constructor's content exists), `OnInitializing` runs at presentation time, so the popup's `Content` is already available. Use it to customize a popup per presentation, for example adjusting its `BackgroundColor`:
+
+```cs
+options.SetPopupDefaults(new DefaultPopupSettings
+{
+    OnInitializing = popup =>
+    {
+        // Runs once per presentation, with popup.Content already available.
+        popup.BackgroundColor = Colors.Orange;
+    },
+});
+```
+
+> [!CAUTION]
+> If the `OnInitializing` callback throws, the popup is **not** presented — the exception propagates before the popup is parented.
 
 ## Events
 

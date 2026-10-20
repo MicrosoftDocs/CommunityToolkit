@@ -2,7 +2,7 @@
 title: NumericValidationBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: "The NumericValidationBehavior is a Behavior that allows the user to determine if text input is a valid numeric value."
-ms.date: 04/16/2022
+ms.date: 10/02/2026
 ---
 
 # NumericValidationBehavior
@@ -127,12 +127,63 @@ class NumericValidationBehaviorPage : ContentPage
 }
 ```
 
+## Interval validation
+
+The `Interval` property restricts valid input to multiples of a given value. For example, when `Interval` is `0.25`, the values `1.5` and `1.75` are valid but `1.6` isn't. When `Interval` is `null`, which is the default, no interval restriction is applied.
+
+The following example only considers multiples of 5 between 0 and 100 to be valid, such as 0, 5, 10, and 100:
+
+```xaml
+<Entry Keyboard="Numeric" Placeholder="Multiple of 5">
+    <Entry.Behaviors>
+        <toolkit:NumericValidationBehavior
+            InvalidStyle="{StaticResource InvalidEntryStyle}"
+            ValidStyle="{StaticResource ValidEntryStyle}"
+            Flags="ValidateOnValueChanged"
+            MinimumValue="0.0"
+            MaximumValue="100.0"
+            Interval="5.0" />
+    </Entry.Behaviors>
+</Entry>
+```
+
+The equivalent C# code is:
+
+```csharp
+var numericValidationBehavior = new NumericValidationBehavior
+{
+    InvalidStyle = invalidStyle,
+    ValidStyle = validStyle,
+    Flags = ValidationFlags.ValidateOnValueChanged,
+    MinimumValue = 0.0,
+    MaximumValue = 100.0,
+    Interval = 5.0
+};
+```
+
+When using the `Interval` property, keep the following in mind:
+
+- Multiples are counted from zero in both directions (..., -10, -5, 0, 5, 10, ...), not from `MinimumValue`. For example, when `Interval` is `5` and `MinimumValue` is `3`, the values `5` and `10` are valid but `3` and `8` aren't.
+- A value must also satisfy `MinimumValue`, `MaximumValue`, `MinimumDecimalPlaces`, and `MaximumDecimalPlaces` to be valid.
+- A negative `Interval` behaves like its absolute value. For example, an `Interval` of `-5` is the same as an `Interval` of `5`.
+- An `Interval` of `0` isn't the same as `null`. Because `0` is the only multiple of `0`, only a value of `0` is valid.
+- `Interval` must be `null` or a finite number. Assigning `double.NaN`, `double.PositiveInfinity`, or `double.NegativeInfinity` doesn't throw an exception. Instead, the assignment is ignored and `Interval` keeps its previous value.
+
+> [!NOTE]
+> Most decimal fractions can't be stored exactly in a `double`, so a small rounding tolerance is applied when checking for multiples. For example, `0.3` is considered a multiple of `0.1`. The tolerance assumes that `Interval` is the `double` closest to the intended value, such as `0.1` written in XAML or C#. An `Interval` that carries extra rounding error, such as the result of `1.1 - 1.0` (`0.10000000000000009`) or the `float` value `0.1f` (`0.10000000149011612`), rejects values such as `0.1` and `0.3`. Round such a value before assigning it, for example by using `Math.Round(interval, 2)`.
+>
+> Because a `double` holds only about 15 significant digits, very large values can be considered multiples even when they aren't exact multiples. For example, when `Interval` is `0.3`, `1000000000000000` is considered valid even though the nearest multiple is `999999999999999.9`.
+
+> [!TIP]
+> When a value fails validation, `NumericValidationBehavior` writes the reason using `System.Diagnostics.Trace`. For example, entering `7` when `Interval` is `5` writes `NumericValidationBehavior: "7" is invalid because 7 is not a multiple of Interval (5)`.
+
 ## Properties
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| `MaximumDecimalPlaces` | `double` | The maximum number of decimal places that will be allowed. |
-| `MinimumDecimalPlaces` | `double` | The minimum number of decimal places that will be allowed. |
+| `Interval` | `double?` | The interval that a valid numeric value must be a multiple of. For example, an `Interval` of `0.25` allows `1.5` and `1.75` but not `1.6`. When `null` (the default), no interval restriction is applied. For more information, see [Interval validation](#interval-validation). |
+| `MaximumDecimalPlaces` | `int` | The maximum number of decimal places that will be allowed. |
+| `MinimumDecimalPlaces` | `int` | The minimum number of decimal places that will be allowed. |
 | `MaximumValue` | `double` | The maximum numeric value that will be allowed. |
 | `MinimumValue` | `double` | The minimum numeric value that will be allowed. |
 

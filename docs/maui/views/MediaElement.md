@@ -462,7 +462,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | ShouldMute | `bool` | Determines whether the audio is currently muted. This is a bindable property. | `false` |
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
 | Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
-| Speed | `double` | Determines the playback speed of the media. This is a bindable property. On Windows, a late notification of an earlier playback rate no longer undoes a `Speed` that was set after it. | `1` |
+| Speed | `double` | Determines the playback speed of the media. This is a bindable property. On Windows, a playback rate that the player reports after a newer `Speed` was set doesn't change `Speed` back. | `1` |
 | MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |

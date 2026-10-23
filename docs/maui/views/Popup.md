@@ -332,7 +332,7 @@ The `Popup` class provides the following events that can be subscribed to.
 |Event | Description  |
 |---------|---------|
 | `Closed` | Occurs when the `Popup` is closed. |
-| `Opened` | Occurs when the `Popup` is opened. |
+| `Opened` | Occurs when the `Popup` is opened. It is raised once each time the `Popup` is shown, and not again when a page or another `Popup` that was displayed above it is closed. |
 
 ## Examples
 

@@ -53,7 +53,7 @@ The following example shows how to check if the Soft Input Keyboard is currently
 ```csharp
 using CommunityToolkit.Maui.Core.Platform;
 
-entry.IsSoftKeyboardShowing()
+bool isSoftKeyboardShowing = entry.IsSoftKeyboardShowing();
 ```
 
 ## Examples

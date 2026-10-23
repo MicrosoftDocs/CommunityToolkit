@@ -2,7 +2,7 @@
 title: KeyboardExtensions - .NET MAUI Community Toolkit
 author: PureWeen
 description: "The KeyboardExtensions provide a series of extension methods that support interacting with the Keyboard."
-ms.date: 04/12/2023
+ms.date: 10/23/2026
 ---
 
 # KeyboardExtensions
@@ -21,7 +21,7 @@ The following methods allow you to close, show, and check if the keyboard is ope
 
 ### Hide Keyboard
 
-The `HideKeyboardAsync` method will hide the Soft Input Keyboard if it is currently visible
+The `HideKeyboardAsync` method will hide the Soft Input Keyboard if it is currently visible. It returns `true` if the platform was able to hide the keyboard.
 
 The following example shows how to hide the keyboard for a given entry:
 
@@ -30,6 +30,8 @@ using CommunityToolkit.Maui.Core.Platform;
 
 entry.HideKeyboardAsync(CancellationToken.None);
 ```
+
+On Android, the keyboard is hidden through the window of the view that has the focus. That is the view itself while it has the focus, and otherwise the focused view of the activity's window. This makes `HideKeyboardAsync` work for an input inside a `Popup` or a modal page, which Android shows in a window of its own.
 
 ### Show Keyboard
 

@@ -218,6 +218,8 @@ The result will be a surface rendering the output of the default camera connecte
 
 The `SelectedCamera` property provides the ability to access the currently selected camera.
 
+Changing `SelectedCamera` while the preview runs restarts the preview with the new camera. If the new camera can't be started, for example because another app is using it, the failure is reported through the `ErrorOccurred` event, and selecting another camera starts the preview with that camera. On Android, selecting another camera while a video recording runs doesn't end the recording: the change is applied when the recording is stopped or replaced. `StopCameraPreview` cancels a camera switch that is still waiting for the platform, see [Cancel pending starts](#cancel-pending-starts).
+
 The following example shows how to bind the `SelectedCamera` property from the `CameraView` to a property on the `CameraViewModel` with the same name (`SelectedCamera`).
 
 ```xaml

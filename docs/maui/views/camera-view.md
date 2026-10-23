@@ -460,10 +460,10 @@ async void HandleCaptureButtonTapped(object? sender, EventArgs e)
         var captureImageCTS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
         Stream stream = await Camera.CaptureImage(captureImageCTS.Token);
     }
-    catch(Exception e)
+    catch(Exception ex)
     {
         // Handle Exception
-        Trace.WriteLine(e);
+        Trace.WriteLine(ex);
     }
 }
 ```
@@ -647,10 +647,10 @@ async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
     {
         // The token was cancelled, or StopCameraPreview was called, before the preview started
     }
-    catch(Exception e)
+    catch(Exception ex)
     {
         // Handle Exception
-        Trace.WriteLine(e);
+        Trace.WriteLine(ex);
     }
 }
 ```
@@ -748,10 +748,10 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
         // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
         Camera.StopCameraPreview();
     }
-    catch(Exception e)
+    catch(Exception ex)
     {
         // Handle Exception
-        Trace.WriteLine(e);
+        Trace.WriteLine(ex);
     }
 }
 ```

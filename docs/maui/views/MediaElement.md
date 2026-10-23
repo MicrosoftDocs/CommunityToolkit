@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 02/15/2024
+ms.date: 10/23/2026
 ---
 
 # MediaElement
@@ -326,6 +326,21 @@ The `MediaElementState` enumeration defines the following members:
 
 It's generally not necessary to examine the `CurrentState` property when using the `MediaElement` transport controls. However, this property becomes important when implementing your own transport controls.
 
+## Handle exceptions thrown while the source changes
+
+Changing the `Source` property raises events while the new source is applied: `StateChanged` (for example for `Opening`), `PropertyChanging` and `PropertyChanged` (for example of `CurrentState`, `Duration` and `Position`), `MediaFailed` for a source that can't be applied, and, on Android, `MediaOpened`. The code that sets `Source` is often .NET MAUI itself, from XAML or a binding, so it can't catch an exception that one of these handlers throws.
+
+For that reason, an exception that one of these handlers throws doesn't reach the code that set `Source`. The `MediaElement` logs it and applies the source anyway. Once the change has ended, it reports the first of these exceptions once through the `MediaFailed` event. The `ErrorMessage` of the `MediaFailedEventArgs` names the type and the message of the exception, and `CurrentState` isn't set to `Failed`, because the source itself didn't fail. An exception that a `MediaFailed` handler throws while it receives that report is only logged.
+
+```csharp
+mediaElement.MediaFailed += (sender, e) => Trace.WriteLine(e.ErrorMessage);
+```
+
+> [!IMPORTANT]
+> An exception thrown by one of these handlers no longer reaches the code that sets `Source`. If your code caught it around the assignment of `Source`, handle the `MediaFailed` event instead.
+
+This doesn't apply to the events that the player raises after the change has ended, for example `MediaOpened` on iOS, Mac Catalyst and Windows.
+
 ## Implement custom transport controls
 
 The transport controls of a media player include the buttons that perform the functions **Play**, **Pause**, and **Stop**. These buttons are generally identified with familiar icons rather than text, and the **Play** and **Pause** functions are generally combined into one button.
@@ -447,7 +462,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | ShouldMute | `bool` | Determines whether the audio is currently muted. This is a bindable property. | `false` |
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
 | Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
-| Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |
+| Speed | `double` | Determines the playback speed of the media. This is a bindable property. On Windows, a late notification of an earlier playback rate no longer undoes a `Speed` that was set after it. | `1` |
 | MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |
@@ -458,7 +473,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 |---------|---------|
 | MediaOpened | Occurs when the media stream has been validated and opened. |
 | MediaEnded | Occurs when the `MediaElement` finishes playing its media. |
-| MediaFailed | Occurs when there's an error associated with the media source. |
+| MediaFailed | Occurs when there's an error associated with the media source. It is also raised once when an event handler threw an exception while `Source` changed. See [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes). |
 | PositionChanged | Occurs when the `Position` property value has changed. |
 | SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
 

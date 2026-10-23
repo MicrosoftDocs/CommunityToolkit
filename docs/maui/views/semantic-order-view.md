@@ -64,6 +64,8 @@ The views that aren't in `ViewOrder` stay accessible on every platform.
 | Android | On Android 5.1 (API 22) or later, the order of `ViewOrder` determines how TalkBack traverses the views. On earlier versions the order isn't applied, and a message is written to the trace output. |
 | Windows | `ViewOrder` sets the keyboard Tab order of the views. It doesn't change the order in which Narrator reads them, which follows the visual tree. |
 
+On Windows, the views of `ViewOrder` that the `SemanticOrderView` holds come first among the Tab stops of the `SemanticOrderView`, in the order of `ViewOrder`, followed by the rest of its content in the order of the visual tree. The Tab key reaches the controls above the `SemanticOrderView` before these views, and the controls below it after them. A view of `ViewOrder` that is inside a control within the `SemanticOrderView`, such as a `ScrollView`, or outside of the `SemanticOrderView`, gets a `TabIndex` instead. That `TabIndex` orders it among the Tab stops of the nearest control that holds it.
+
 ## Examples
 
 You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/SemanticOrderView/).

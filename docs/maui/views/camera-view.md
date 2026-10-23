@@ -190,7 +190,7 @@ var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Mi
 ```
 
 > [!NOTE]
-> A `CameraView` can try to start its preview before the camera permission is granted, for example while your app is still asking for it. The failure is reported through the [`ErrorOccurred`](#events) event. On Android, the preview then starts by itself when the app resumes with the permission granted. On the other platforms, call `StartCameraPreview` again once the permission is granted. See [Start preview](#start-preview) for details.
+> A `CameraView` connects to its camera and starts its preview when it is shown, which can be before your app has the camera permission, for example while your app is still asking for it. A start that fails because the app doesn't have the permission is reported through the [`ErrorOccurred`](#events) event, and the preview stays stopped. On Android, the preview then starts by itself when the app resumes with the permission granted. On the other platforms, call `StartCameraPreview` again once the app has the permission. See [Start preview](#start-preview) for details.
 
 ### Including the XAML namespace
 
@@ -668,7 +668,7 @@ async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
 
 On Android, a `StartCameraPreview` that you call while the `CameraView` is still connecting to its camera waits for the connection, then starts the preview.
 
-A preview that can't start doesn't throw an exception. `StartCameraPreview` and `StartCameraPreviewCommand` report it through the `ErrorOccurred` event on every platform. This includes a device without a camera, a camera permission that isn't granted, and a selected camera that can't be opened, for example because another app is using it. `StartCameraPreview` throws only an `OperationCanceledException` when the start is cancelled, and an `InvalidOperationException` when the `CameraView` has no handler yet, for example before it is shown.
+A preview that can't start doesn't throw an exception. `StartCameraPreview` and `StartCameraPreviewCommand` report it through the `ErrorOccurred` event on every platform. This includes a device without a camera, a camera permission that isn't granted, and a selected camera that can't be opened, for example because another app is using it. `StartCameraPreview` throws only an `OperationCanceledException` when the start is cancelled, and an `InvalidOperationException` when the `CameraView` has no handler, for example before it is shown or after its handler was disconnected.
 
 ```cs
 Camera.ErrorOccurred += (sender, e) => Trace.WriteLine(e.Exception);
@@ -780,7 +780,7 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
 
 None of these is reported as a failure. The preview stays stopped until you call `StartCameraPreview` again.
 
-A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` gets an `OperationCanceledException`, as when its own token is cancelled. This happens, for example, when the page closes or the user taps a stop button while the camera is still starting. The commands don't report it as an error. On iOS and Mac Catalyst, `StartCameraPreview` with a token that is already cancelled also throws an `OperationCanceledException`, and doesn't start the preview. On Windows, a `StartCameraPreview` that its own token cancels after the camera has opened stops the preview that it had shown, and releases the camera.
+A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` gets an `OperationCanceledException`, as when its own token is cancelled. This happens, for example, when your app calls `StopCameraPreview` in `OnDisappearing`, or from a stop button, while the camera is still starting. The commands don't report it as an error. On iOS and Mac Catalyst, `StartCameraPreview` with a token that is already cancelled also throws an `OperationCanceledException`, and doesn't start the preview. On Windows, a `StartCameraPreview` that its own token cancels after the camera has opened stops the preview that it had shown, and releases the camera.
 
 > [!IMPORTANT]
 > Catch the `OperationCanceledException` when you await these methods, in particular in an `async void` handler, where an exception that escapes ends the app. Call the start again if you still need the preview or the recording after a `StopCameraPreview` interrupted its start.

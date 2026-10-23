@@ -21,7 +21,7 @@ This `Header` property can be provided with any view to allow for full customiza
 This is the main content that will show when the `Header` property is interacted with it (clicked or tapped) or the `IsExpanded` property is modified.
 
 > [!NOTE]
-> `Expander` may work unexpectedly if it is placed inside `ListView` or `CollectionView`. However, it can be controlled with the custom implementation by setting `public Action<TappedEventArgs>? HandleHeaderTapped { get; set; }`. This action is executed each time the header tapped. Please pay attention, by changing this action you may receive different behavior in `CollectionView` and `ListView` on all platforms.
+> `Expander` may work unexpectedly if it is placed inside `ListView` or `CollectionView`. However, it can be controlled with the custom implementation by setting `public Action<TappedEventArgs>? HandleHeaderTapped { get; set; }`. This action is executed each time the header is tapped. Please pay attention, by changing this action you may receive different behavior in `CollectionView` and `ListView` on all platforms.
 
 > [!NOTE]
 > The `Expander` lays out its `Header` and `Content` in a `Grid` of its own. An implicit `Style` for `Grid`, for example one in _App.xaml_, doesn't apply to that `Grid` unless the `Style` sets `ApplyToDerivedTypes`. Even then the `Background` and `BackgroundColor` of that `Grid` stay `null`, so the background of the `Expander` shows behind the `Header` and the `Content`.

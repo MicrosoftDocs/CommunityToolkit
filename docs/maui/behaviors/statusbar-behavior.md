@@ -1,13 +1,13 @@
 ---
 title: StatusBarBehavior - .NET MAUI Community Toolkit
 author: pictos
-description: "The StatusBarBehavior provides the ability to customize the color and style of a devices status bar."
+description: "The StatusBarBehavior provides the ability to customize the color and style of a device's status bar."
 ms.date: 10/23/2026
 ---
 
 # StatusBarBehavior
 
-The `StatusBarBehavior` provides the ability to customize the color and style of a devices status bar.
+The `StatusBarBehavior` provides the ability to customize the color and style of a device's status bar.
 
 The `StatusBarBehavior` applies the color and style values when the properties are updated. The values are also applied based on the `ApplyOn` property, this property makes it possible to define which lifecycle event is used:
 
@@ -65,7 +65,7 @@ class MyPage : ContentPage
 }
 ```
 
-There's another way to access the Statusbar APIs on C#, you can call the methods directly, as you can see in the snippet below:
+There's another way to access the status bar APIs in C#, you can call the methods directly, as you can see in the snippet below:
 
 ```csharp
 class MyPage : ContentPage
@@ -80,7 +80,7 @@ class MyPage : ContentPage
 ```
 
 > [!WARNING]
-> If you want to add this code the `MainPage`'s constructor, `OnAppearing` or `OnNavigatedTo` methods, please use the `Behavior` instead.
+> If you want to add this code to the `MainPage`'s constructor, `OnAppearing` or `OnNavigatedTo` methods, please use the `Behavior` instead.
 > Using directly on these places can crash your application since the platform-specific components may not be initialized.
 
 ## Configuration

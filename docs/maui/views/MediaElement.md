@@ -122,7 +122,7 @@ No setup is required.
 
 ## Supported Formats
 
-The supported multimedia formats can be different per platform. In some cases it can even be dependant on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
+The supported multimedia formats can be different per platform. In some cases it can even be dependent on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
 
 |Platform| Link | Notes |
 |--------|------|-------|

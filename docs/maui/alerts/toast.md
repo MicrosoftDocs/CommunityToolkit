@@ -42,11 +42,11 @@ When calling `Toast.Make()`, its parameter `string text` is required. All other 
 The following screenshot shows the resulting Toast:
 ### [Android](#tab/toast-preview-android)
 
-![Screenshot of an Toast on Android](../images/alerts/toast-android.gif "Toast on Android")
+![Screenshot of a Toast on Android](../images/alerts/toast-android.gif "Toast on Android")
 
 ### [iOS](#tab/toast-preview-ios)
 
-![Screenshot of an Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
+![Screenshot of a Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
 
 ---
 

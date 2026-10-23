@@ -9,7 +9,7 @@ ms.date: 10/23/2026
 
 The `FileSaver` provides the ability to select a target folder and save files to the file system.
 
-![Screenshot of an FileSaver on macOS](../images/essentials/file-saver-mac.png "FileSaver on macOS")
+![Screenshot of a FileSaver on macOS](../images/essentials/file-saver-mac.png "FileSaver on macOS")
 
 The following preconditions are required for the `FileSaver`:
 # [Android](#tab/android)

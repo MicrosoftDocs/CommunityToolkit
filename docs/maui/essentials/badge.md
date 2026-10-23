@@ -9,7 +9,7 @@ ms.date: 10/23/2026
 
 The `Badge` API allows developers to set the app icon badge number on the home screen.
 
-![Screenshot of an Badge on Windows](../images/essentials/badge-windows.gif "Badge on Windows")
+![Screenshot of a Badge on Windows](../images/essentials/badge-windows.gif "Badge on Windows")
 
 ---
 

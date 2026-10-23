@@ -131,7 +131,7 @@ There are 2 different ways that a `Popup` can be closed:
 
 ### 1. Programmatically closing a Popup
 
-There are 3 options to close a `Popup` programatically:
+There are 3 options to close a `Popup` programmatically:
 
 1. In a `ContentPage`, use the `this.ClosePopupAsync()` extension method
 2. In an app using `Shell`, use `Shell.Current.ClosePopupAsync()` extension method

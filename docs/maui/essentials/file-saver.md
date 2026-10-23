@@ -138,6 +138,9 @@ async Task SaveFile(CancellationToken cancellationToken)
 ```
 
 > [!NOTE]
+> Earlier versions reported the progress as a fraction from 0 to 1 while the file was saved, and then 100. If your app uses the progress as a fraction, divide it by 100, as the example above does.
+
+> [!NOTE]
 > On Android, the user can save the file with a documents provider that doesn't tell the path of the file, for example a cloud provider. `FilePath` is then the `content://` URI of the document, and the save is successful. Open the document with the `ContentResolver` of Android instead of the `System.IO` classes.
 
 ## Methods

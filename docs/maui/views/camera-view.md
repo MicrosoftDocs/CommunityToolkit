@@ -244,6 +244,9 @@ The `SelectedCamera` property provides both a `MinimumZoomFactor` and a `Maximum
 > [!NOTE]
 > If a value is provided outside of the `MinimumZoomFactor` and `MaximumZoomFactor` the `CameraView` will clamp the value to keep it within the bounds.
 
+> [!NOTE]
+> On Android, `MinimumZoomFactor` and `MaximumZoomFactor` come from CameraX for each camera, in Debug and in Release (trimmed) apps. Earlier versions reported a range of 1 to 1 for every camera in Release apps ([#2389](https://github.com/CommunityToolkit/Maui/issues/2389)), which clamped every `ZoomFactor` to 1.
+
 The following example shows how to add a `Slider` into the application and setup the following bindings:
 
 - Bind the `Maximum` property of the `Slider` to the `MaximumZoomFactor` of the `SelectedCamera` property.

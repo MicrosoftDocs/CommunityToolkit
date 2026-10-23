@@ -2,7 +2,7 @@
 title: Badge - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The Badge API allows developers to set the app icon badge number on the home screen.
-ms.date: 08/09/2023
+ms.date: 10/23/2026
 ---
 
 # Badge
@@ -21,6 +21,10 @@ Additional configuration required to support Android devices. See [Android secti
 # [iOS/MacCatalyst](#tab/ios)
 
 Authorize Badge permission for the app. It is automatically requested.
+
+# [Windows](#tab/windows)
+
+Windows shows a badge only for an app with package identity, which is a packaged app. An unpackaged app, which is the default of the .NET MAUI template (`<WindowsPackageType>None</WindowsPackageType>`), doesn't show a badge: `SetCount` writes a line to the trace output and does nothing else. To show a badge, package the app by setting `WindowsPackageType` to `MSIX` in the project file.
 
 # [Tizen](#tab/tizen)
 
@@ -49,7 +53,7 @@ void SetCount(uint value)
 
 |Method  |Description  |
 |---------|---------|
-| SetCount | Set the badge count. |
+| SetCount | Set the badge count. On Windows, only a packaged app can show a badge; an unpackaged app gets a trace line and nothing else. |
 
 ## Dependency Registration
 
@@ -91,6 +95,12 @@ public partial class MainPage : ContentPage
     }
 }
 ```
+
+## Frequently asked questions
+
+### Why doesn't the badge show on Windows?
+
+Windows shows a badge only for an app with package identity. If your app is unpackaged, which is the default of the .NET MAUI template, `SetCount` writes the message _Unable to set the badge count: Windows shows badges only for apps with package identity, and this app is unpackaged_ to the trace output and does nothing else. It doesn't throw. Package the app by setting `WindowsPackageType` to `MSIX` in the project file.
 
 ## Examples
 

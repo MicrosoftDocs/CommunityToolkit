@@ -134,7 +134,7 @@ Keyboard and screen reader users can expand and collapse an `Expander` through i
 |Platform  |Behavior  |
 |---------|---------|
 | Windows | The `Expander` is a Tab stop. Enter toggles it when it is pressed and Space when it is released, like a `Button`. The focus visual frames only the row of the `Header`. UI Automation exposes the `Expander` as a button with the class name `Expander`, and with the `ExpandCollapse` and `Invoke` patterns. Its name comes from the `Header`: the semantic description, the text, or the texts of the views a layout `Header` holds. Its help text comes from the `SemanticProperties.Hint` of the `Header`. It raises the `ExpandCollapseState` property changed event whenever `IsExpanded` changes, also when code changes it. |
-| Android | TalkBack announces the `Header` as collapsed or expanded, and lists the expand or collapse action in its actions menu. The click of a `TapGestureRecognizer` on the `Header` stays available. |
+| Android | TalkBack announces the `Header` as collapsed or expanded, and lists the expand or collapse action in its actions menu. A double tap with TalkBack still taps the `Header`, which toggles the `Expander`. |
 | iOS and Mac Catalyst | VoiceOver reads the whole `Header` as one button that a double tap toggles. The element has the button trait, and the header trait when the `Header` is a heading. Its label, hint and `AutomationId` come from the `Header`. VoiceOver announces it as collapsed or expanded from iOS and Mac Catalyst 18. A `Header` that holds a control, such as a `Button`, a `Switch` or an `Entry`, keeps the default accessibility elements of UIKit, and VoiceOver doesn't announce the state of the `Expander` for it. A `Header` with another `TapGestureRecognizer` lets VoiceOver tap it, so that every recognizer runs. |
 
 Every activation from the keyboard or from assistive technology goes through the same code as a tap, so `IsExpanded`, `Command` and `CommandParameter`, `ExpandedChanged` and `HandleHeaderTapped` behave as for a tap. In a `CollectionView` on Windows, such an activation still resizes the item that holds the `Expander`.
@@ -155,7 +155,7 @@ The accessibility support changes what UI automation finds:
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-`Command` | `ICommand` | Executes when the `Expander` header is tapped.
+`Command` | `ICommand` | Executes when `IsExpanded` changes, for example when the `Expander` header is tapped.
 `CommandParameter` | `object` | The parameter that's passed to `Command`.
 `Direction` | `ExpandDirection` | Defines the expander direction.
 `Content` | `IView?` | Defines the content to be displayed when the `Expander` expands.
@@ -169,7 +169,7 @@ The `ExpandDirection` enumeration defines the following members:
 | `Down` | Indicates that the `Expander` content is under the header. |
 | `Up` | Indicates that the `Expander` content is above the header. |
 
-The `Expander` control also defines a `ExpandedChanged` event that's fired when the `Expander` header is tapped, or activated from the keyboard or by assistive technology.
+The `Expander` control also defines an `ExpandedChanged` event that's fired when `IsExpanded` changes: when the `Expander` header is tapped, or activated from the keyboard or by assistive technology, and when code changes `IsExpanded`.
 
 ### ExpandedChangedEventArgs
 

@@ -28,7 +28,7 @@ The following example shows how to hide the keyboard for a given entry:
 ```csharp
 using CommunityToolkit.Maui.Core.Platform;
 
-entry.HideKeyboardAsync(CancellationToken.None);
+await entry.HideKeyboardAsync(CancellationToken.None);
 ```
 
 On Android, the keyboard is hidden through the window of the view that has the focus. That is the view itself while it has the focus, and otherwise the focused view of the activity's window. This makes `HideKeyboardAsync` work for an input inside a `Popup` or a modal page, which Android shows in a window of its own.
@@ -41,7 +41,7 @@ The following example shows how to show the keyboard for a given entry:
 ```csharp
 using CommunityToolkit.Maui.Core.Platform;
 
-entry.ShowKeyboardAsync(CancellationToken.None);
+await entry.ShowKeyboardAsync(CancellationToken.None);
 ```
 
 ### Is SoftKeyboard Showing

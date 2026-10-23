@@ -9,9 +9,9 @@ ms.date: 10/23/2026
 
 The `PopupOptions` class provides the ability to customize the appearance and behavior of the `Popup`.
 
-All of the examples in this page make use of the `SimplePopup` example that is covered at [`Popup`](../popup.md).
+All of the examples in this page make use of the `SimplePopup` example that is covered at [`Popup`](../Popup.md).
 
-The options that you don't set start with the values of `DefaultPopupOptionsSettings`, which you can change with `SetPopupOptionsDefaults`. A `Popup` that is shown without `PopupOptions` uses these values too. See [Setting Popup Defaults](../popup.md#setting-popup-defaults) for how they combine with the other settings of a `Popup`.
+The options that you don't set start with the values of `DefaultPopupOptionsSettings`, which you can change with `SetPopupOptionsDefaults`. A `Popup` that is shown without `PopupOptions` uses these values too. See [Setting Popup Defaults](../Popup.md#setting-popup-defaults) for how they combine with the other settings of a `Popup`.
 
 ## Controlling whether the user can dismiss the Popup
 
@@ -139,7 +139,7 @@ You can find the source code for `PopupOptions` over on the [.NET MAUI Community
 
 ## Additional Resources
 
-- [`Popup`](../popup.md)
+- [`Popup`](../Popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`Popup` - Returning a result](./popup-result.md)
 - [`Popup` - Combining Popup features to provide a comprehensive example](./popup-complex.md)

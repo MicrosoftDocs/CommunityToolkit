@@ -664,6 +664,8 @@ async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
 }
 ```
 
+On Android, a `StartCameraPreview` that you call while the `CameraView` is still connecting to its camera waits for the connection, then starts the preview.
+
 A preview that can't start doesn't throw an exception. `StartCameraPreview` and `StartCameraPreviewCommand` report it through the `ErrorOccurred` event on every platform. This includes a device without a camera, a camera permission that isn't granted, and a selected camera that can't be opened, for example because another app is using it. `StartCameraPreview` throws only an `OperationCanceledException` when the start is cancelled, and an `InvalidOperationException` when the `CameraView` has no handler yet, for example before it is shown.
 
 ```cs
@@ -776,7 +778,7 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
 
 None of these is reported as a failure. The preview stays stopped until you call `StartCameraPreview` again.
 
-A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` gets an `OperationCanceledException`, as when its own token is cancelled. This happens, for example, when the page closes or the user taps a stop button while the camera is still starting. The commands don't report it as an error. On iOS and Mac Catalyst, `StartCameraPreview` with a token that is already cancelled also throws an `OperationCanceledException`, and doesn't start the preview.
+A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` gets an `OperationCanceledException`, as when its own token is cancelled. This happens, for example, when the page closes or the user taps a stop button while the camera is still starting. The commands don't report it as an error. On iOS and Mac Catalyst, `StartCameraPreview` with a token that is already cancelled also throws an `OperationCanceledException`, and doesn't start the preview. On Windows, a `StartCameraPreview` that its own token cancels after the camera has opened stops the preview that it had shown, and releases the camera.
 
 > [!IMPORTANT]
 > Catch the `OperationCanceledException` when you await these methods, in particular in an `async void` handler, where an exception that escapes ends the app. Call the start again if you still need the preview or the recording after a `StopCameraPreview` interrupted its start.

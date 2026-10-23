@@ -549,13 +549,25 @@ The following example demonstrates how to use the `StartVideoRecording` method:
 ```cs
 async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
 {
-    using var threeSecondVideoRecordingStream = new FileStream("recording.mp4", FileMode.Create);
-    await Camera.StartVideoRecording(threeSecondVideoRecordingStream, CancellationToken.None);
+    try
+    {
+        using var threeSecondVideoRecordingStream = new FileStream("recording.mp4", FileMode.Create);
+        await Camera.StartVideoRecording(threeSecondVideoRecordingStream, CancellationToken.None);
 
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    
-    await Camera.StopVideoRecording(CancellationToken.None);
-    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+        await Task.Delay(TimeSpan.FromSeconds(3));
+
+        await Camera.StopVideoRecording(CancellationToken.None);
+        await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    }
+    catch(OperationCanceledException)
+    {
+        // StopCameraPreview was called before the recording started
+    }
+    catch(Exception ex)
+    {
+        // Handle Exception
+        Trace.WriteLine(ex);
+    }
 }
 ```
 
@@ -564,12 +576,24 @@ In case you want to record a short video and record video in `MemoryStream` you 
 ```cs
 async void StartCameraRecording(object? sender, EventArgs e)
 {
-    await Camera.StartVideoRecording(CancellationToken.None);
-    
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    
-    var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
-    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    try
+    {
+        await Camera.StartVideoRecording(CancellationToken.None);
+
+        await Task.Delay(TimeSpan.FromSeconds(3));
+
+        var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
+        await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    }
+    catch(OperationCanceledException)
+    {
+        // StopCameraPreview was called before the recording started
+    }
+    catch(Exception ex)
+    {
+        // Handle Exception
+        Trace.WriteLine(ex);
+    }
 }
 ```
 

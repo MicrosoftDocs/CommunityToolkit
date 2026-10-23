@@ -18,7 +18,7 @@ builder.UseMauiCommunityToolkit(options =>
     options.SetShouldSuppressExceptionsInConverters(false);
     options.SetShouldSuppressExceptionsInBehaviors(false);
     options.SetShouldSuppressExceptionsInAnimations(false);
-})
+});
 ```
 
 ## SetShouldSuppressExceptionsInConverters
@@ -35,7 +35,7 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldSuppressExceptionsInConverters(true);
-})
+});
 ```
 
 ### Default Return Values
@@ -87,7 +87,7 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldSuppressExceptionsInAnimations(true);
-})
+});
 ```
 
 ## SetShouldSuppressExceptionsInBehaviors
@@ -104,7 +104,7 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldSuppressExceptionsInBehaviors(true);
-})
+});
 ```
 
 ## SetPopupDefaults
@@ -122,7 +122,7 @@ builder.UseMauiCommunityToolkit(options =>
         Margin = 72,
         BackgroundColor = Colors.Orange
     });
-})
+});
 ```
 
 ## SetPopupOptionsDefaults
@@ -139,7 +139,7 @@ builder.UseMauiCommunityToolkit(options =>
     {
         PageOverlayColor = Colors.Orange
     });
-})
+});
 ```
 
 ## SetShouldUseStatusBarBehaviorOnAndroidModalPage
@@ -155,5 +155,5 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldUseStatusBarBehaviorOnAndroidModalPage(true);
-})
+});
 ```

@@ -69,7 +69,7 @@ sealed class MyDialogFragmentService : IDialogFragmentService
             return;
         }
 
-        if (dialogFragment is not { Dialog.Window: { } window })
+        if (dialogFragment.Dialog?.Window is not Android.Views.Window window)
         {
             return;
         }
@@ -102,7 +102,7 @@ public static class MauiProgram
 
  public static MauiApp CreateMauiApp()
  {
-    var builder = MauiApp.CreateBuilder()
+    var builder = MauiApp.CreateBuilder();
     builder.ConfigureLifecycleEvents(static lifecycleBuilder =>
     {
         lifecycleBuilder.AddAndroid(static androidBuilder =>

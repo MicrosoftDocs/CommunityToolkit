@@ -96,6 +96,8 @@ The default values for `HorizontalOptions` and `VerticalOptions` will result in 
 
 A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
 
+A `WidthRequest` or `HeightRequest` that is larger than the space inside the window, minus the `Margin` and the stroke of the `Shape`, is limited to that space while the `Popup` is displayed. The `Popup` then keeps its `Margin` to the edges of the window, so the user can still tap outside of it. The values of `WidthRequest` and `HeightRequest` don't change.
+
 > [!TIP]
 > For more advanced scenarios, such as returning a result from a `Popup`, the code-behind file (_*.xaml.cs_) must inherit from `Popup` or `Popup<T>` (found in `CommunityToolkit.Maui.Views`). For a complete example demonstrating this, please refer to [Popup - Returning a result](./popup/popup-result.md).
 

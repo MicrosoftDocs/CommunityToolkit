@@ -2,7 +2,7 @@
 title: AvatarView - .NET MAUI Community Toolkit
 author: GeorgeLeithead
 description: "The `AvatarView` is a control for displaying a user's avatar image or their initials."
-ms.date: 07/11/2022
+ms.date: 10/23/2026
 ---
 
 # AvatarView
@@ -57,8 +57,8 @@ partial class MyPage : ContentPage
 | BackgroundColor | `Color` | The `BackgroundColor` property is a Color that determines the background color of the control. If unset, the background will be the default Color object, which renders as White. |
 | BorderColor | `Color` | The `BorderColor` property is a Color that determines the border color of the control.  If unset, the border will be the default Color object, which renders as Black. |
 | BorderWidth | `double` | The `BorderWidth` property is a double that determines the rendered width of the control border.  If unset, the border width will be the default, which renders as 1.0. |
-| CornerRadius | `CornerRadius` | The `CornerRadius` property is a CornerRadius that determines the shape of the control.  It can be set to a single `double` uniform corner radius value, or a `CornerRadius` structure defined by four `double` values that are applied to the top left, top right, bottom left, and bottom right of the control.  This property is measured in device-independent units.  If unset, the corner radius will be the default CornerRadius object, which renders as 24. |
-| ImageSource | `ImageSource` | The `ImageSource` property is an ImageSource that determines the image of the control.  It can be set to an image retrieved from a file, embedded resource, URI, or stream. If unset, the control will render the `Text` property. |
+| CornerRadius | `CornerRadius` | The `CornerRadius` property is a CornerRadius that determines the shape of the control.  It can be set to a single `double` uniform corner radius value, or a `CornerRadius` structure defined by four `double` values that are applied to the top left, top right, bottom left, and bottom right of the control.  This property is measured in device-independent units.  If unset, the corner radius will be the default CornerRadius object, which renders as 24. Use radii of 0 or more: .NET MAUI draws a negative radius as notched shapes. |
+| ImageSource | `ImageSource` | The `ImageSource` property is an ImageSource that determines the image of the control.  It can be set to an image retrieved from a file, embedded resource, URI, or stream. If unset, empty, or the image fails to load, the control will render the `Text` property. |
 | Padding | `Thickness` | The `Padding` property is a Thickness that represents the distance between control border and the `Text` or `ImageSource`.  If unset, the padding will be the default Thickness object, which is 1. |
 | Text | `string` | The `Text` property is a string that determines the text of the control.  If unset, the text will be the default, which renders as '?'. |
 | TextColor | `Color` | The `TextColor` property is a Color that determines the text color of the control.  If unset, the text will be the default Colour object. |
@@ -141,6 +141,9 @@ AvatarView avatarView = new()
 
 The `CornerRadius` property is a CornerRadius that determines the shape of the control.  It can be set to a single `double` uniform corner radius value, or a `CornerRadius` structure defined by four `double` values that are applied to the top left, top right, bottom left, and bottom right of the control.
 
+> [!NOTE]
+> Use radii of 0 or more. The `RoundRectangle` of .NET MAUI, which draws the shape of the `AvatarView`, draws a negative radius as notched shapes.
+
 The following example sets the corner radius of an `AvatarView` such that each of the four corners have a specified radius:
 
 ```xaml
@@ -212,6 +215,8 @@ AvatarView avatarView = new()
 	Text = "IS",
 };
 ```
+
+While an `ImageSource` is set, the `AvatarView` shows the image instead of its `Text`. When the `ImageSource` is empty, which means that its `IsEmpty` property is `true`, for example a `UriImageSource` without a `Uri`, or when the image fails to load, for example because a URL can't be reached, the `AvatarView` shows its `Text` again. This holds on every platform, and until the `ImageSource` is no longer empty and loads, or another `ImageSource` is set. To show a blank circle instead, set `Text` to an empty string.
 
 ## Set padding
 

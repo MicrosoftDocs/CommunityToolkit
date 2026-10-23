@@ -83,13 +83,16 @@ class MyPage : ContentPage
 > If you want to add this code to the `MainPage`'s constructor, `OnAppearing` or `OnNavigatedTo` methods, please use the `Behavior` instead.
 > Using directly on these places can crash your application since the platform-specific components may not be initialized.
 
+> [!NOTE]
+> On iOS, call `StatusBar.SetStyle`, and change the `StatusBarStyle` of a `StatusBarBehavior`, on the main thread. A call from another thread throws a `UIKitThreadAccessException`.
+
 ## Configuration
 
 # [Android](#tab/android)
 
 No changes needed.
 
-To apply the status bar color and style of the activity to modal pages as well, see [Dialog Fragment Service](../platform-specific/DialogFragment-customization.md). That page also describes how a modal page is laid out below the status bar.
+To apply the status bar color and style of the activity to modal pages as well, see [Dialog Fragment Service](../platform-specific/DialogFragment-customization.md). That page also describes how the content of a modal page extends behind the status bar, and how to keep it clear of the status bar.
 
 # [iOS](#tab/ios)
 
@@ -105,7 +108,7 @@ If your _Platforms/iOS/Info.plist_ file contains the following entry, which earl
 > [!IMPORTANT]
 > In an app that is built with the iOS 27 SDK (Xcode 27) or later, UIKit ignores `UIApplication.SetStatusBarStyle`. With the key set to `false` the style of the status bar then doesn't change, and the toolkit writes the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false: remove the key from Info.plist_ to the trace output. An app that is built with an earlier SDK still applies the style while the key is `false`, but the key isn't needed there either.
 
-On .NET 10, the first `LightContent` or `DarkContent` that you set makes the view controllers that don't choose a style of their own return the one you set. `Default` gives every view controller its own style back. A view controller that overrides `preferredStatusBarStyle` keeps its own style, and so does `SFSafariViewController`.
+On .NET 10, the style belongs to the whole app: the status bar of every window shows it. The first `LightContent` or `DarkContent` that you set makes the view controllers that don't choose a style of their own return the one you set. `Default` gives every view controller its own style back. A view controller that overrides `preferredStatusBarStyle` keeps its own style, and so does `SFSafariViewController`.
 
 -----
 

@@ -7,7 +7,7 @@ ms.date: 10/23/2026
 
 # SemanticOrderView
 
-The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers on Android, iOS and Mac Catalyst, and the keyboard Tab order on Windows, to improve the Accessibility of an application. This can be particularly useful when building user interfaces in orders differing from the order in which users and screen readers will navigate them.
+The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers on Android, iOS and MacCatalyst, and the keyboard Tab order on Windows, to improve the Accessibility of an application. This can be particularly useful when building user interfaces in orders differing from the order in which users and screen readers will navigate them.
 
 ## Using the SemanticOrderView
 

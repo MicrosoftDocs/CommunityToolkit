@@ -54,8 +54,8 @@ partial class MyPage : ContentPage
 
 | Property | Type | Description |
 |---|---|---|
-| BackgroundColor | `Color` | The `BackgroundColor` property is a Color that determines the background color of the control. If unset, the background will be the default Color object, which renders as White. |
-| BorderColor | `Color` | The `BorderColor` property is a Color that determines the border color of the control.  If unset, the border will be the default Color object, which renders as Black. |
+| BackgroundColor | `Color` | The `BackgroundColor` property is a Color that determines the background color of the control. If unset, the control has no background color. |
+| BorderColor | `Color` | The `BorderColor` property is a Color that determines the border color of the control.  If unset, the border will be the default Color object, which renders as White. |
 | BorderWidth | `double` | The `BorderWidth` property is a double that determines the rendered width of the control border.  If unset, the border width will be the default, which renders as 1.0. |
 | CornerRadius | `CornerRadius` | The `CornerRadius` property is a CornerRadius that determines the shape of the control.  It can be set to a single `double` uniform corner radius value, or a `CornerRadius` structure defined by four `double` values that are applied to the top left, top right, bottom left, and bottom right of the control.  This property is measured in device-independent units.  If unset, the corner radius will be the default CornerRadius object, which renders as 24. Use radii of 0 or more: .NET MAUI draws a negative radius as notched shapes. |
 | ImageSource | `ImageSource` | The `ImageSource` property is an ImageSource that determines the image of the control.  It can be set to an image retrieved from a file, embedded resource, URI, or stream. If unset, empty, or the image fails to load, the control will render the `Text` property. |

@@ -7,9 +7,9 @@ ms.date: 10/23/2026
 
 # Dialog Fragment Service
 
-.NET 9.0 introduced a breaking change in how modal pages work in Android - they now use a [`DialogFragment`](https://developer.android.com/reference/android/app/DialogFragment). This breaking change resulted in broken functionality within the .NET MAUI Community Toolkit. The `DialogFragmentService` provides a mechanism to fix the breaking changes,
+.NET 9.0 introduced a breaking change in how modal pages work in Android - they now use a [`DialogFragment`](https://developer.android.com/reference/android/app/DialogFragment). This breaking change resulted in broken functionality within the .NET MAUI Community Toolkit. The `DialogFragmentService` provides a mechanism to fix the breaking changes.
 
-`IDialogFragmentService` is an interface that allows developers to customize the behavior and appearence of Modal pages in .NET MAUI for Android. The .NET MAUI Community Toolkit provides a default implementation to make sure its features, like `StatusBarColor` will work with the new Modal implementation.
+`IDialogFragmentService` is an interface that allows developers to customize the behavior and appearance of Modal pages in .NET MAUI for Android. The .NET MAUI Community Toolkit provides a default implementation to make sure its features, like `StatusBarColor` will work with the new Modal implementation.
 
 ## Usage
 
@@ -51,7 +51,7 @@ public partial class MyModalPage : ContentPage
 }
 ```
 
-## Create you own service
+## Create your own service
 
 The following example shows how to present the modals in immersive mode. In order to achieve this we need to have access to the `DialogFragment` and configure its `Window` to behave in the required way.
 
@@ -60,7 +60,7 @@ For that, first we will need to create a class that implements the `IDialogFragm
 ```csharp
 sealed class MyDialogFragmentService : IDialogFragmentService
 {
-    // Ommiting other methods
+    // Omitting other methods
     
     public void OnFragmentStarted(AndroidX.Fragment.App.FragmentManager fm, AndroidX.Fragment.App.Fragment f)
     {

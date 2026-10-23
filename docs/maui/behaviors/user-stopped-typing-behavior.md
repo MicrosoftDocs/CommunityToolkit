@@ -113,7 +113,7 @@ class UserStoppedTypingBehaviorPage : ContentPage
 | Command | [ICommand](xref:System.Windows.Input.ICommand) | The command to execute when the user has stopped providing input. |
 | MinimumLengthThreshold | int | The minimum length of the input value required before the command will be executed. |
 | ShouldDismissKeyboardAutomatically | bool | Indicates whether or not the keyboard should be dismissed automatically. Dismissing the keyboard also removes the focus from the input, and only happens while the input has the focus. |
-| StoppedTypingTimeThreshold | int | The time of inactivity in milliseconds after which the command will be executed. |
+| StoppedTypingTimeThreshold | int | The time of inactivity in milliseconds after which the command will be executed. It must be 0 or more: a negative value, also from a binding, is ignored, and the property keeps its previous value. |
 
 ## Examples
 

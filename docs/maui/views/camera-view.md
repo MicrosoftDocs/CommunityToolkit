@@ -568,6 +568,9 @@ async void StartCameraRecording(object? sender, EventArgs e)
 }
 ```
 
+> [!NOTE]
+> `StartVideoRecording` throws a `CameraException` when the recording can't start, for example on iOS and Mac Catalyst when the camera permission isn't granted. It throws an `OperationCanceledException` when its token is cancelled, or `StopCameraPreview` is called, before the recording started. See [Cancel pending starts](#cancel-pending-starts).
+
 ## Start preview
 
 The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StartCameraPreview` method or the `StartCameraPreviewCommand`.
@@ -759,6 +762,22 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
 }
 ```
 
+### Cancel pending starts
+
+`StopCameraPreview` also cancels what is still waiting for the platform to start:
+
+- A `StartCameraPreview` or `StartVideoRecording` (both overloads) that hasn't completed.
+- The start that the `CameraView` makes when it connects to its camera.
+- A camera switch, which is a change of `SelectedCamera`.
+- On Android, the restart of the preview for a new `ImageCaptureResolution`, and the automatic start that waits for the camera permission.
+
+None of these is reported as a failure. The preview stays stopped until you call `StartCameraPreview` again.
+
+A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` gets an `OperationCanceledException`, as when its own token is cancelled. This happens, for example, when the page closes or the user taps a stop button while the camera is still starting. The commands don't report it as an error. On iOS and Mac Catalyst, `StartCameraPreview` with a token that is already cancelled also throws an `OperationCanceledException`, and doesn't start the preview.
+
+> [!IMPORTANT]
+> Catch the `OperationCanceledException` when you await these methods, in particular in an `async void` handler, where an exception that escapes ends the app. Call the start again if you still need the preview or the recording after a `StopCameraPreview` interrupted its start.
+
 ## Properties
 
 | Property | Type | Description | Default Value |
@@ -778,7 +797,7 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
 | `CaptureImageCommand` | `CancellationToken` | Triggers an image capture. The captured image is returned via the `MediaCaptured` event. A capture that fails is reported through the `MediaCaptureFailed` event. |
 | `StartCameraPreviewCommand` | `CancellationToken` | Starts the camera preview display. A preview that can't start is reported through the `ErrorOccurred` event. |
 | `StartVideoRecordingCommand` | `Stream` | Starts video recording into the `Stream`. A recording that can't start is reported through the `MediaCaptureFailed` event. |
-| `StopCameraPreviewCommand` | — | Stops the camera preview display. A failure is reported through the `ErrorOccurred` event. |
+| `StopCameraPreviewCommand` | — | Stops the camera preview display, and cancels a start that is still in progress. A failure is reported through the `ErrorOccurred` event. |
 | `StopVideoRecordingCommand` | `CancellationToken` | Stops video recording. The video is written to the `Stream` that was passed to `StartVideoRecordingCommand`. A failure is reported through the `MediaCaptureFailed` event. |
 
 The commands let no exception escape. `ICommand.Execute` can't return the task of the work that a command starts, so an exception would reach no caller and end the app. Each failure is reported once, through the event in the table above. A command whose token is cancelled ends without an event, and so does a start that `StopCameraPreview` cancels.
@@ -798,9 +817,9 @@ The commands let no exception escape. `ICommand.Execute` can't return the task o
 | `CaptureImage(CancellationToken)` | `Task<Stream>` | Captures a single image from the camera and returns it. The image is also delivered via the `MediaCaptured` event. Throws a `CameraException` when the capture fails, for example when the preview hasn't started, and raises the `MediaCaptureFailed` event with the same reason. |
 | `GetAvailableCameras(CancellationToken)` | `ValueTask<IReadOnlyList<CameraInfo>>` | Retrieves a list of available camera devices on the device. |
 | `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. A preview that can't start is reported through the `ErrorOccurred` event. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the preview started. |
-| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. |
-| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. |
-| `StopCameraPreview()` | `void` | Stops displaying the camera preview. |
+| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. |
+| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. |
+| `StopCameraPreview()` | `void` | Stops displaying the camera preview, and cancels a start of the preview or of a recording that is still in progress. |
 | `StopVideoRecording(CancellationToken)` | `Task<Stream>` | Stops video recording and returns the recorded `Stream`. |
 
 ## CameraInfo

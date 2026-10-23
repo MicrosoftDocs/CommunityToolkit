@@ -2,7 +2,7 @@
 title: FileSaver - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The FileSaver provides the ability to select target folder and save files to the file system.
-ms.date: 12/11/2022
+ms.date: 10/23/2026
 ---
 
 # FileSaver
@@ -137,6 +137,9 @@ async Task SaveFile(CancellationToken cancellationToken)
 }
 ```
 
+> [!NOTE]
+> On Android, the user can save the file with a documents provider that doesn't tell the path of the file, for example a cloud provider. `FilePath` is then the `content://` URI of the document, and the save is successful. Open the document with the `ContentResolver` of Android instead of the `System.IO` classes.
+
 ## Methods
 
 |Method  |Description  |
@@ -151,7 +154,7 @@ The result returned from the `SaveAsync` method. This can be used to verify whet
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| FilePath | `string` | The location on the disk where the file was saved. |
+| FilePath | `string` | The location on the disk where the file was saved. On Android, a saved document whose file has no path that its documents provider tells, such as a document of a cloud provider, is reported by its `content://` URI. |
 | Exception | `Exception` | Gets the `Exception` if the save operation fails. |
 | IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
 

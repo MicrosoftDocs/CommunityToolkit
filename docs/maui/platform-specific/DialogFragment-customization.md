@@ -2,7 +2,7 @@
 title: Dialog Fragment Service - .NET MAUI Community Toolkit
 author: pictos
 description: The DialogFragmentService provides an easy way to control the behavior of Modal pages in Android.
-ms.date: 02/01/2025
+ms.date: 10/23/2026
 ---
 
 # Dialog Fragment Service
@@ -13,7 +13,7 @@ ms.date: 02/01/2025
 
 ## Usage
 
-By default the .NET MAUI Community Toolkit registers the `DialogFragmentService`, but you can control that as follows
+By default the .NET MAUI Community Toolkit doesn't register the `DialogFragmentService`. To let the status bar color and style of the activity apply to modal pages, enable it as follows
 
 ```csharp
 public static class MauiProgram
@@ -24,7 +24,7 @@ public static class MauiProgram
   var builder = MauiApp.CreateBuilder()
         .UseMauiCommunityToolkit(static options =>
         {
-            options.SetShouldUseStatusBarBehaviorOnAndroidModalPage(false);
+            options.SetShouldUseStatusBarBehaviorOnAndroidModalPage(true);
         });
         return builder.Build();
     }
@@ -32,6 +32,24 @@ public static class MauiProgram
 ```
 
 There will be cases where you want to fix and customize the `DialogFragment` to match your apps needs, in these scenarios you can create your own implementation of the `IDialogFragmentService` interface and use in combination with other implementations.
+
+## Modal page layout
+
+When a dialog fragment of the activity starts, such as the one that .NET MAUI shows a modal page in, the `DialogFragmentService` gives the window of its dialog the status bar color of the activity's window and, from Android 11 on, its light status bars appearance. Whatever that color is, the dialog's window is laid out like the toolkit lays out the activity's window: the content of the modal page extends behind the system bars, and the page receives the window insets that it uses to keep clear of them.
+
+Earlier versions laid the dialog out differently depending on the status bar color. With a color that wasn't transparent, the system padded the content below the status bar. On Android 10 and older, a transparent color gave the page no window insets at all. A modal page that relied on the old padding must now keep clear of the status bar itself, with the safe area. For example, set the `SafeAreaEdges` of the page:
+
+```csharp
+public partial class MyModalPage : ContentPage
+{
+    public MyModalPage()
+    {
+        InitializeComponent();
+
+        SafeAreaEdges = new SafeAreaEdges(SafeAreaRegions.Container);
+    }
+}
+```
 
 ## Create you own service
 

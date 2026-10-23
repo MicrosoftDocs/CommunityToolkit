@@ -89,6 +89,8 @@ class MyPage : ContentPage
 
 No changes needed.
 
+To apply the status bar color and style of the activity to modal pages as well, see [Dialog Fragment Service](../platform-specific/DialogFragment-customization.md). That page also describes how a modal page is laid out below the status bar.
+
 # [iOS](#tab/ios)
 
 No changes needed. UIKit takes the style of the status bar from the view controllers of your app, and the toolkit makes them return the style that you set. This works as long as the _Platforms/iOS/Info.plist_ file doesn't turn view controller-based status bar appearance off.

@@ -130,6 +130,12 @@ public static class MauiProgram
 
 And now, all modals will be showed in full-screen mode.
 
+## Frequently asked questions
+
+### Why is the content of my modal page behind the status bar on Android?
+
+When the `DialogFragmentService` is enabled, it lays out the dialog of a modal page like the window of the activity: the content of the page extends behind the status bar, whatever the status bar color is. Keep the content clear of the status bar with the safe area, for example by setting the `SafeAreaEdges` of the page to `SafeAreaRegions.Container`. See [Modal page layout](#modal-page-layout).
+
 ## API
 
 You can find the source code for `IDialogFragmentService` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Interfaces/IDialogFragmentService.android.cs) and about the `FragmentLifecycleManager` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Core/Services/FragmentLifecycleManager.android.cs).

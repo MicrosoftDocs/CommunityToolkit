@@ -446,6 +446,9 @@ The following example shows how to add a `Button` into the application and setup
 > [!NOTE]
 > In order to use the image that has been captured the `CameraView` provides the `MediaCaptured` event.
 
+> [!NOTE]
+> `CaptureImage` ends with the platform's answer to the capture. A failure that a command reports through the `MediaCaptureFailed` event while the capture waits, for example a video recording that `StartVideoRecordingCommand` can't start, doesn't end the capture.
+
 The following example demonstrates how to use the `CaptureImage` method:
 
 > [!NOTE]
@@ -772,25 +775,27 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
 
 | Command | Command Parameter | Description |
 |---------|---------|---------|
-| `CaptureImageCommand` | — | Triggers an image capture. The captured image is returned via the `MediaCaptured` event. |
-| `StartCameraPreviewCommand` | — | Starts the camera preview display. |
-| `StartVideoRecordingCommand` | `Stream` (optional) | Starts video recording. Optionally pass a `Stream` to record into. |
-| `StopCameraPreviewCommand` | — | Stops the camera preview display. |
-| `StopVideoRecordingCommand` | — | Stops video recording and returns the recorded stream. |
+| `CaptureImageCommand` | `CancellationToken` | Triggers an image capture. The captured image is returned via the `MediaCaptured` event. A capture that fails is reported through the `MediaCaptureFailed` event. |
+| `StartCameraPreviewCommand` | `CancellationToken` | Starts the camera preview display. A preview that can't start is reported through the `ErrorOccurred` event. |
+| `StartVideoRecordingCommand` | `Stream` | Starts video recording into the `Stream`. A recording that can't start is reported through the `MediaCaptureFailed` event. |
+| `StopCameraPreviewCommand` | — | Stops the camera preview display. A failure is reported through the `ErrorOccurred` event. |
+| `StopVideoRecordingCommand` | `CancellationToken` | Stops video recording. The video is written to the `Stream` that was passed to `StartVideoRecordingCommand`. A failure is reported through the `MediaCaptureFailed` event. |
+
+The commands let no exception escape. `ICommand.Execute` can't return the task of the work that a command starts, so an exception would reach no caller and end the app. Each failure is reported once, through the event in the table above. A command whose token is cancelled ends without an event, and so does a start that `StopCameraPreview` cancels.
 
 ## Events
 
 | Event | Type | Description |
 |---------|---------|---------|
 | `MediaCaptured` | `EventHandler<MediaCapturedEventArgs>` | Raised when an image is successfully captured. The `MediaCapturedEventArgs` contains a `Media` property of type `Stream` with the captured image data. |
-| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
+| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails, and when `StartVideoRecordingCommand` or `StopVideoRecordingCommand` fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
 | `ErrorOccurred` | `EventHandler<ErrorOccurredEventArgs>` | Raised when the camera reports an error that no caller can catch, or a failure that `StartCameraPreview` reports instead of throwing. This covers connecting the camera when the `CameraView` is shown, switching to the camera in `SelectedCamera`, applying `ImageCaptureResolution`, a preview that can't start, the automatic start on Android once the camera permission is granted and, on Windows, updating `IsAvailable`. The `ErrorOccurredEventArgs` contains an `Exception` property with the exception. A start that `StopCameraPreview` cancels isn't an error and isn't reported. |
 
 ## Methods
 
 | Method | Return Type | Description |
 |---------|---------|---------|
-| `CaptureImage(CancellationToken)` | `Task` | Captures a single image from the camera. The result is delivered via the `MediaCaptured` event. |
+| `CaptureImage(CancellationToken)` | `Task<Stream>` | Captures a single image from the camera and returns it. The image is also delivered via the `MediaCaptured` event. Throws a `CameraException` when the capture fails, for example when the preview hasn't started, and raises the `MediaCaptureFailed` event with the same reason. |
 | `GetAvailableCameras(CancellationToken)` | `ValueTask<IReadOnlyList<CameraInfo>>` | Retrieves a list of available camera devices on the device. |
 | `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. A preview that can't start is reported through the `ErrorOccurred` event. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the preview started. |
 | `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. |

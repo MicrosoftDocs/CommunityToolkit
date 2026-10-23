@@ -118,13 +118,13 @@ async Task SaveFile(CancellationToken cancellationToken)
 }
 ```
 
-or in case the file is rather big and takes some time to be saved, you may be interested to know the progress:
+or in case the file is rather big and takes some time to be saved, you may be interested to know the progress. The progress is reported as a percentage from 0 to 100. For a stream that can't seek, only the final 100 is reported:
 
 ```csharp
 async Task SaveFile(CancellationToken cancellationToken)
 {
     using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-    var saverProgress = new Progress<double>(percentage => ProgressBar.Value = percentage);
+    var saverProgress = new Progress<double>(percentage => ProgressBar.Progress = percentage / 100);
     var fileSaverResult = await FileSaver.Default.SaveAsync("test.txt", stream, saverProgress, cancellationToken);
     if (fileSaverResult.IsSuccessful)
     {
@@ -157,6 +157,7 @@ The result returned from the `SaveAsync` method. This can be used to verify whet
 | FilePath | `string` | The location on the disk where the file was saved. On Android, a saved document whose file has no path that its documents provider tells, such as a document of a cloud provider, is reported by its `content://` URI. |
 | Exception | `Exception` | Gets the `Exception` if the save operation fails. |
 | IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
+| IsCancelled | `bool` | Gets a value determining whether the operation was cancelled. |
 
 #### Methods
 

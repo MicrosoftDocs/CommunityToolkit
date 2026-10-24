@@ -1,7 +1,7 @@
 ---
 title: SemanticOrderView - .NET MAUI Community Toolkit
 author: bijington
-description: The SemanticOrderView provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application.
+description: The SemanticOrderView provides the ability to control the order of VisualElements for screen readers on Android, iOS and Mac Catalyst, and the keyboard Tab order on Windows, to improve the Accessibility of an application.
 ms.date: 10/23/2026
 ---
 

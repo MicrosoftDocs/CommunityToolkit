@@ -249,7 +249,7 @@ public partial class PopupsPage : ContentPage
         var popupResult = await popupResultTask;
         await complexPopupOpenedCancellationTokenSource.CancelAsync();
 
-        if (!popupResult.WasDismissedByTappingOutsideOfPopup)
+        if (!popupResult.WasDismissed)
         {
             // Display Popup Result as a Toast
             await Toast.Make($"You entered {popupResult.Result}").Show(CancellationToken.None);

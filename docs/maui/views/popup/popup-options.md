@@ -13,17 +13,42 @@ All of the examples in this page make use of the `SimplePopup` example that is c
 
 ## Controlling whether the user can dismiss the Popup
 
-`PopupOptions` provides the `CanBeDismissedByTappingOutsideOfPopup` property which can control the whether the user can tap or click outside of the Popup bounds to dismiss the currently displayed Popup. This is `true` by default. The following example shows how to prevent a user from being able to dismiss the Popup.
+`PopupOptions` provides settings for different dismissal behaviors:
+
+- `CanBeDismissedByTappingOutsideOfPopup` controls whether the user can dismiss the popup by tapping outside its bounds.
+- `CanBeDismissedByBackButtonPressed` controls whether the user can dismiss the popup by pressing the device back button on Android.
+
+Both are `true` by default.
 
 ```csharp
 await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 {
-    CanBeDismissedByTappingOutsideOfPopup = false
+    CanBeDismissedByTappingOutsideOfPopup = false,
+    CanBeDismissedByBackButtonPressed = false
 });
 ```
 
 > [!NOTE]
 > It is possible to cache `PopupOptions` to reuse on future navigation actions or with other popups that share the same configuration, that would prevent unnecessary allocations.
+
+### Responding to dismissal attempts
+
+`PopupOptions` also exposes callbacks that can be used to react when a user attempts to dismiss a popup or when the popup is actually dismissed.
+
+- `OnTappingOutsideOfPopup` runs when the user taps outside the popup.
+- `OnBackButtonPressed` runs when the user presses the back button.
+- `OnDismiss` runs when the popup is dismissed.
+
+```csharp
+    await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
+    {
+        CanBeDismissedByTappingOutsideOfPopup = true,
+        CanBeDismissedByBackButtonPressed = true,
+        OnTappingOutsideOfPopup = () => Console.WriteLine("Outside tap"),
+        OnBackButtonPressed = () => Console.WriteLine("Back button pressed"),
+        OnDismiss = () => Console.WriteLine("Popup dismissed")
+    });
+```
 
 ## Customize the Overlay Color
 
@@ -118,8 +143,11 @@ await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| `CanBeDismissedByTappingOutsideOfPopup` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the Popup. On Android - when false the hardware back button is disabled. |
-| `OnTappingOutsideOfPopup` | `Action` | Gets or sets the `Action` to be executed when the user taps outside the `Popup`. |
+| `CanBeDismissedByTappingOutsideOfPopup` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the popup. |
+| `CanBeDismissedByBackButtonPressed` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by pressing the back button. |
+| `OnTappingOutsideOfPopup` | `Action` | Gets or sets the callback executed when the user taps outside the popup. |
+| `OnBackButtonPressed` | `Action` | Gets or sets the callback executed when the user presses the back button. |
+| `OnDismiss` | `Action` | Gets or sets the callback executed when the popup is dismissed. |
 | `PageOverlayColor` | `Color` | Gets or sets the `Color` of the overlay behind the `Popup`. |
 | `Shape` | `Shape` | Gets or sets the border shape for the `Popup`. Set this to `null` to remove any border styling. |
 | `Shadow` | `Shadow` | Gets or sets the `Shadow` of the `Popup`. Set this to `null` to remove any shadow. |

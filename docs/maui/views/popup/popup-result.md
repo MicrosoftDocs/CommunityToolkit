@@ -137,7 +137,7 @@ public class MyPage : ContentPage
         // The type parameter must match the type returned from the popup.
         IPopupResult<bool> popupResult = await this.ShowPopupAsync<bool>(popup, PopupOptions.Empty, CancellationToken.None);
 
-        if (popupResult.WasDismissedByTappingOutsideOfPopup)
+        if (popupResult.WasDismissed)
         {
             return;
         }
@@ -157,7 +157,7 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property will always be `null` or `default`.
+> If `WasDismissed` is `true`, then the `Result` property will always be `null` or `default`.
 
 ## PopupOptions
 The `PopupOptions` class provides the ability to customize the Border, Shadow, PageOverlayColor, and more, of the displayed `Popup`.

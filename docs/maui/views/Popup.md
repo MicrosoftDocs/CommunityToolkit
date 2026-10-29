@@ -176,7 +176,11 @@ public class MyPage : ContentPage
 
 ### 2. Tapping outside of the Popup
 
-By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property. Setting this property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it. See [PopupOptions](./popup/popup-options.md) for more details.
+By default, a user can tap outside of the `Popup` to dismiss it. This is controlled through `PopupOptions.CanBeDismissedByTappingOutsideOfPopup`.
+
+Setting this property to `false` prevents the popup from being dismissed by outside taps. The same pattern applies to the Android back button through `PopupOptions.CanBeDismissedByBackButtonPressed`.
+
+See [PopupOptions](./popup/popup-options.md) for more details.
 
 ## Lifecycle behavior
 

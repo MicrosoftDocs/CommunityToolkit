@@ -2,7 +2,7 @@
 title: StatusBarBehavior - .NET MAUI Community Toolkit
 author: pictos
 description: "The StatusBarBehavior provides the ability to customize the color and style of a device's status bar."
-ms.date: 10/23/2026
+ms.date: 10/30/2026
 ---
 
 # StatusBarBehavior
@@ -91,6 +91,11 @@ class MyPage : ContentPage
 # [Android](#tab/android)
 
 No changes needed.
+
+> [!IMPORTANT]
+> Requires Android 6.0 (API 23) or later; on Android 5.0-5.1 (API 21-22) it does nothing. An app that supports those versions still runs on them, but its status bar keeps the default color and style there.
+>
+> In C#, an app whose minimum Android version is below 23 gets warning CA1416 for code that uses `StatusBarBehavior` or `StatusBar`, and a project that treats warnings as errors doesn't build. Raise the minimum Android version of the app to 23, or put that code inside `if (OperatingSystem.IsIOS() || OperatingSystem.IsAndroidVersionAtLeast(23))`. Don't check `OperatingSystem.IsAndroidVersionAtLeast(23)` alone in code that also runs on iOS: it's `false` on iOS, so the status bar wouldn't change there. XAML doesn't get the warning.
 
 To apply the status bar color and style of the activity to modal pages as well, see [Dialog Fragment Service](../platform-specific/DialogFragment-customization.md). That page also describes how the content of a modal page extends behind the status bar, and how to keep it clear of the status bar.
 

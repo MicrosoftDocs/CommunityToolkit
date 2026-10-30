@@ -2,7 +2,7 @@
 title: Snackbar - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The Snackbar is a timed alert that appears at the bottom of the screen by default."
-ms.date: 03/30/2022
+ms.date: 10/23/2026
 ---
 
 # Snackbar
@@ -56,11 +56,11 @@ When calling `Snackbar.Make()`, its parameter `string text` is required. All oth
 The following screenshot shows the resulting Snackbar:
 # [Android](#tab/snackbar-preview-android)
 
-![Screenshot of an Snackbar on Android](../images/alerts/snackbar-android.gif "Snackbar on Android")
+![Screenshot of a Snackbar on Android](../images/alerts/snackbar-android.gif "Snackbar on Android")
 
 # [iOS](#tab/snackbar-preview-ios)
 
-![Screenshot of an Snackbar on iOS](../images/alerts/snackbar-ios.gif "Snackbar on iOS")
+![Screenshot of a Snackbar on iOS](../images/alerts/snackbar-ios.gif "Snackbar on iOS")
 
 ---
 
@@ -73,7 +73,7 @@ await MyVisualElement.DisplaySnackbar("Snackbar is awesome. It is anchored to My
 > [!WARNING]
 > `Snackbar` on Windows can't be anchored to `VisualElement` and is always displayed as a default Windows Notification.
 
-`SnackBar` contains two events:
+`Snackbar` contains two events:
 
 - `public static event EventHandler Shown`
 - `public static event EventHandler Dismissed`
@@ -98,7 +98,7 @@ Snackbar.Dismissed += (s, e) => { Console.WriteLine(Snackbar.IsShown); };
 
 ### SnackbarOptions
 
-The `SnackbarOptions` allows customize the default `Snackbar` style.
+The `SnackbarOptions` allows you to customize the default `Snackbar` style.
 
 #### Properties
 
@@ -121,6 +121,11 @@ The `SnackbarOptions` allows customize the default `Snackbar` style.
 
 > [!NOTE]
 > You can display only 1 `Snackbar` at the same time. If you call the `Show` method a second time, the first `Snackbar` will automatically be dismissed before the second `Snackbar` is shown.
+
+On Windows, overlapping `Show` and `Dismiss` calls take effect in the order in which they are called, and the `Shown` and `Dismissed` events are raised in that order. A `Snackbar` that a later call replaced or dismissed doesn't stay on screen. The `Task` that `Show` or `Dismiss` returns completes after the earlier calls that overlap it have finished. A call whose token is cancelled before it starts to remove the displayed `Snackbar` throws an `OperationCanceledException` and removes nothing.
+
+> [!WARNING]
+> On Windows, a `Show` or `Dismiss` that you call from a `Shown` or `Dismissed` handler runs after the `Show` or `Dismiss` call that raised the event has finished. Await it. Blocking on its `Task` inside the handler, for example with `.Wait()` or `.Result`, deadlocks.
 
 ## Examples
 

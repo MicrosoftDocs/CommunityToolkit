@@ -2,14 +2,14 @@
 title: FileSaver - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The FileSaver provides the ability to select target folder and save files to the file system.
-ms.date: 12/11/2022
+ms.date: 10/23/2026
 ---
 
 # FileSaver
 
 The `FileSaver` provides the ability to select a target folder and save files to the file system.
 
-![Screenshot of an FileSaver on macOS](../images/essentials/file-saver-mac.png "FileSaver on macOS")
+![Screenshot of a FileSaver on macOS](../images/essentials/file-saver-mac.png "FileSaver on macOS")
 
 The following preconditions are required for the `FileSaver`:
 # [Android](#tab/android)
@@ -118,13 +118,13 @@ async Task SaveFile(CancellationToken cancellationToken)
 }
 ```
 
-or in case the file is rather big and takes some time to be saved, you may be interested to know the progress:
+or in case the file is rather big and takes some time to be saved, you may be interested to know the progress. The progress is reported as a percentage from 0 to 100. For a stream that can't seek, only the final 100 is reported:
 
 ```csharp
 async Task SaveFile(CancellationToken cancellationToken)
 {
     using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
-    var saverProgress = new Progress<double>(percentage => ProgressBar.Value = percentage);
+    var saverProgress = new Progress<double>(percentage => ProgressBar.Progress = percentage / 100);
     var fileSaverResult = await FileSaver.Default.SaveAsync("test.txt", stream, saverProgress, cancellationToken);
     if (fileSaverResult.IsSuccessful)
     {
@@ -136,6 +136,12 @@ async Task SaveFile(CancellationToken cancellationToken)
     }
 }
 ```
+
+> [!NOTE]
+> Earlier versions reported the progress as a fraction from 0 to 1 while the file was saved, and then 100. If your app uses the progress as a fraction, divide it by 100, as the example above does.
+
+> [!NOTE]
+> On Android, the user can save the file with a documents provider that doesn't tell the path of the file, for example a cloud provider. `FilePath` is then the `content://` URI of the document, and the save is successful. Open the document with the `ContentResolver` of Android instead of the `System.IO` classes.
 
 ## Methods
 
@@ -151,9 +157,10 @@ The result returned from the `SaveAsync` method. This can be used to verify whet
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| FilePath | `string` | The location on the disk where the file was saved. |
+| FilePath | `string` | The location on the disk where the file was saved. On Android, a saved document whose file has no path that its documents provider tells, such as a document of a cloud provider, is reported by its `content://` URI. |
 | Exception | `Exception` | Gets the `Exception` if the save operation fails. |
 | IsSuccessful | `bool` | Gets a value determining whether the operation was successful. |
+| IsCancelled | `bool` | Gets a value determining whether the operation was cancelled. |
 
 #### Methods
 

@@ -2,7 +2,7 @@
 title: Toast - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The Toast is a timed alert that appears at the bottom of the screen by default."
-ms.date: 03/30/2022
+ms.date: 10/23/2026
 ---
 
 # Toast
@@ -42,11 +42,11 @@ When calling `Toast.Make()`, its parameter `string text` is required. All other 
 The following screenshot shows the resulting Toast:
 ### [Android](#tab/toast-preview-android)
 
-![Screenshot of an Toast on Android](../images/alerts/toast-android.gif "Toast on Android")
+![Screenshot of a Toast on Android](../images/alerts/toast-android.gif "Toast on Android")
 
 ### [iOS](#tab/toast-preview-ios)
 
-![Screenshot of an Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
+![Screenshot of a Toast on iOS](../images/alerts/toast-ios.gif "Toast on iOS")
 
 ---
 
@@ -76,6 +76,8 @@ These values adhere to the constants defined in the [`android.widget.Toast` API]
 
 > [!NOTE]
 > You can display only one `Toast` at a time. If you call the `Show` method a second time, the first `Toast` will automatically be dismissed.
+
+On Windows, overlapping `Show` and `Dismiss` calls take effect in the order in which they are called: the `Toast` of the last `Show` is the one that is displayed, and a `Dismiss` after it leaves none. The `Task` that `Show` or `Dismiss` returns completes after the earlier calls that overlap it have finished. A call whose token is cancelled before it starts to remove the displayed `Toast` throws an `OperationCanceledException` and removes nothing.
 
 ## Examples
 

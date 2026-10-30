@@ -2,12 +2,14 @@
 title: UserStoppedTypingBehavior - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The UserStoppedTypingBehavior is a Behavior that will trigger an action when a user has stopped data input on controls for example Entry, SearchBar and Editor. Examples of its usage include triggering a search when a user has stopped entering their search query."
-ms.date: 04/13/2022
+ms.date: 10/23/2026
 ---
 
 # UserStoppedTypingBehavior
 
 The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when a user has stopped data input on controls for example `Entry`, `SearchBar` and `Editor`. Examples of its usage include triggering a search when a user has stopped entering their search query.
+
+When `ShouldDismissKeyboardAutomatically` is `true`, the keyboard is dismissed once the user stopped typing, which also removes the focus from the input. The keyboard is only dismissed while the input has the focus: when the user moved to another view before the `StoppedTypingTimeThreshold` elapsed, the keyboard of that view stays open.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
@@ -110,8 +112,8 @@ class UserStoppedTypingBehaviorPage : ContentPage
 |---------|---------|---------|
 | Command | [ICommand](xref:System.Windows.Input.ICommand) | The command to execute when the user has stopped providing input. |
 | MinimumLengthThreshold | int | The minimum length of the input value required before the command will be executed. |
-| ShouldDismissKeyboardAutomatically | bool | Indicates whether or not the keyboard should be dismissed automatically. |
-| StoppedTypingTimeThreshold | int | The time of inactivity in milliseconds after which the command will be executed. |
+| ShouldDismissKeyboardAutomatically | bool | Indicates whether or not the keyboard should be dismissed automatically. Dismissing the keyboard also removes the focus from the input, and only happens while the input has the focus. |
+| StoppedTypingTimeThreshold | int | The time of inactivity in milliseconds after which the command will be executed. It must be 0 or more: a negative value, also from a binding, is ignored, and the property keeps its previous value. |
 
 ## Examples
 

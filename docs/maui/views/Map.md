@@ -2,7 +2,7 @@
 title: Map - .NET MAUI Community Toolkit
 author: jfversluis
 description: "The Map control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit."
-ms.date: 06/13/2023
+ms.date: 10/23/2026
 ---
 
 # Map
@@ -22,6 +22,21 @@ Before you are able to use `Map` inside your application you will need to instal
 The API of the .NET MAUI Community Toolkit implementation for Windows is not different from the API of the .NET MAUI Maps implementation for iOS and Android.
 
 For details on how to work with this map control, please refer to the [.NET MAUI Map documentation](/dotnet/maui/user-interface/controls/map).
+
+## Map types
+
+The `MapType` of the map decides what the Windows map shows, as it does on iOS and Android:
+
+|MapType  |Windows shows  |
+|---------|---------|
+| `Street` | The road map. |
+| `Satellite` | Aerial imagery without place or road labels. |
+| `Hybrid` | Aerial imagery with labels. |
+
+A value outside of the `MapType` enumeration shows the road map.
+
+> [!NOTE]
+> Earlier versions showed the labels for `Satellite` too, so it looked the same as `Hybrid`. If your app chose `Satellite` on Windows to get labels, choose `Hybrid`.
 
 ## Examples
 

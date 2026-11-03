@@ -61,7 +61,7 @@ You can also directly create a 2D view over native memory:
 ```csharp
 int* p = stackalloc int[9];
 
-Span2D<int> span = new Span2D<int>(p, 3, 3);
+Span2D<int> span = new Span2D<int>(p, 3, 3, 1);
 ```
 
 The `Span2D<T>` type includes custom enumerator types to easily traverse a given row, column, or the entire memory area by using the standard `foreach` syntax in C#. It also supports performing bulk operations in a single call:

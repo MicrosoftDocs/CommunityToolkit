@@ -2,7 +2,7 @@
 title: Dialog Fragment Service - .NET MAUI Community Toolkit
 author: pictos
 description: The DialogFragmentService provides an easy way to control the behavior of Modal pages in Android.
-ms.date: 11/05/2026
+ms.date: 10/23/2026
 ---
 
 # Dialog Fragment Service
@@ -36,8 +36,6 @@ There will be cases where you want to fix and customize the `DialogFragment` to 
 ## Modal page layout
 
 When a dialog fragment of the activity starts, such as the one that .NET MAUI shows a modal page in, the `DialogFragmentService` gives the window of its dialog the status bar color of the activity's window and, from Android 11 on, its light status bars appearance. Whatever that color is, the dialog's window is laid out like the toolkit lays out the activity's window: the content of the modal page extends behind the system bars, and the page receives the window insets that it uses to keep clear of them.
-
-Only `Colors.Transparent` (`#00000000`) counts as transparent for the default light status bars that the dialog gets when the activity's window has no insets controller. A color with an alpha of 0 and another hue, such as `#00FF0000`, is treated like any other color.
 
 Earlier versions laid the dialog out differently depending on the status bar color. With a color that wasn't transparent, the system padded the content below the status bar. On Android 10 and older, a transparent color gave the page no window insets at all. A modal page that relied on the old padding must now keep clear of the status bar itself, with the safe area. For example, set the `SafeAreaEdges` of the page:
 

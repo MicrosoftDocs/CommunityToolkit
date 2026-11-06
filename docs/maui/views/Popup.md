@@ -2,7 +2,7 @@
 title: Popup - .NET MAUI Community Toolkit
 author: bijington
 description: The Popup view allows developers to build their own custom UI and present it to their users.
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # Popup
@@ -180,6 +180,10 @@ public class MyPage : ContentPage
 
 By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property, or the `CanBeDismissedByTappingOutsideOfPopup` property of the `Popup`. Setting either property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it: the `Popup` is dismissed only while both are `true`. See [PopupOptions](./popup/popup-options.md) for more details.
 
+### Navigation removes the Popup
+
+A `Popup` is displayed on a modal page, so navigation can remove it without a call to `CloseAsync`. For example, Shell navigates to another route, other code calls `PopModalAsync`, or the `Page` of the `Window` is replaced. The task that `ShowPopupAsync` returned then completes with an `IPopupResult` whose `WasDismissedByTappingOutsideOfPopup` is `true`, like when the user dismisses the `Popup` by tapping outside of it, and `Closed` is raised once. Earlier versions left that task pending and never raised `Closed`.
+
 ## Lifecycle behavior
 
 It is important to note that a `Popup` will be displayed inside `ContentPage` which is then shown modally in a .NET MAUI application. The impact of this will result in any calling `Page` to have the following lifecycle events to be called:
@@ -227,6 +231,8 @@ protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
     }
 }
 ```
+
+When you show a `Popup` from `OnDisappearing` of a modal page that is being removed, for example after `PopModalAsync`, the `Popup` is displayed once the modal page has been removed, on the page below it.
 
 ## PopupOptions
 
@@ -331,7 +337,7 @@ The `Popup` class provides the following events that can be subscribed to.
 
 |Event | Description  |
 |---------|---------|
-| `Closed` | Occurs when the `Popup` is closed. |
+| `Closed` | Occurs when the `Popup` is closed, also when navigation removes it without a call to `CloseAsync`. It is raised once. |
 | `Opened` | Occurs when the `Popup` is opened. It is raised once each time the `Popup` is shown, and not again when a page or another `Popup` that was displayed above it is closed. |
 
 ## Examples

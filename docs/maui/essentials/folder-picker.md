@@ -54,15 +54,6 @@ Further reading at: [https://developer.apple.com/documentation/bundleresources/e
 
 Nothing is needed.
 
-# [Tizen](#tab/tizen)
-
-Add permissions to `tizen-manifest.xml`:
-
-```xml
-<privilege>http://tizen.org/privilege/mediastorage</privilege>
-<privilege>http://tizen.org/privilege/externalstorage</privilege>
-```
-
 ---
 
 ## Basic usage

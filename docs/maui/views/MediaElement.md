@@ -20,7 +20,7 @@ ms.date: 11/05/2026
 ![Screenshot of a MediaElement playing a video, on Android and iOS.](../../images/mediaelement/intro.png#lightbox)
 
 > [!NOTE]
-> `MediaElement` is available on iOS, Android 8.0 (API 26) or higher, Windows, macOS, and Tizen.
+> `MediaElement` is available on iOS, Android 8.0 (API 26) or higher, Windows, and macOS.
 
 The `MediaElement` uses the following platform implementations.
 
@@ -112,11 +112,6 @@ Edit the `Info.plist` for `iOS` and add the following keys.
 
 No setup is required.
 
-
-### [Tizen](#tab/tizen)
-
-No setup is required.
-
 -----
 <!-- markdownlint-enable MD025 -->
 
@@ -129,7 +124,6 @@ The supported multimedia formats can be different per platform. In some cases it
 | Android | [ExoPlayer Supported Formats](https://developer.android.com/guide/topics/media/exoplayer/supported-formats) | |
 | iOS/macOS | [iOS/macOS Supported Formats](https://stackoverflow.com/a/45898816/1506387) | No official documentation on this exists |
 | Windows | [Windows Supported Formats](/windows/uwp/audio-video-camera/supported-codecs) | On Windows the supported formats are very much dependent on what codecs are installed on the user's machine |
-| Tizen | [Tizen Supported Formats](https://docs.tizen.org/application/native/tutorials/feature/app-multimedia-video) | |
 
 > [!IMPORTANT]
 > If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.

@@ -163,10 +163,6 @@ More details can be found here: https://developer.apple.com/documentation/avfoun
 
 No setup is required.
 
-### [Tizen](#tab/tizen)
-
-Tizen is not currently supported.
-
 -----
 <!-- markdownlint-enable MD051 -->
 <!-- markdownlint-enable MD025 -->

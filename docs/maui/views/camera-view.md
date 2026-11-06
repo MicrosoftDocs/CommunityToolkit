@@ -551,7 +551,7 @@ A recording starts and ends as follows:
 - **The camera is released while a start waits.** On Android, iOS and Mac Catalyst, when the handler of the `CameraView` is disconnected, for example because the page closed, a `StartVideoRecording` that still waits throws a `TaskCanceledException`.
 - **The preview was stopped.** On Android, iOS and Mac Catalyst, a `StartVideoRecording` after your app called `StopCameraPreview`, or before it called `StartCameraPreview`, starts the camera itself, and then the recording. On Windows, a `StartVideoRecording` records nothing while the preview isn't running: call `StartCameraPreview` first.
 - **Stopping returns the video.** `StopVideoRecording` returns the `Stream` that received the video. A second `StopVideoRecording`, with no recording running, returns `Stream.Null`. On Android, iOS and Mac Catalyst it throws a `CameraException` when the platform reports a recording that has no playable video.
-- **Stopping the preview ends the recording.** On Windows, `StopCameraPreview` while a recording runs ends the recording, and a later `StopVideoRecording` returns `Stream.Null`.
+- **Stopping the preview ends the recording.** On Android and Windows, `StopCameraPreview` while a recording runs ends the recording. On Android, a later `StopVideoRecording` returns the video recorded until the stop, or throws a `CameraException` when nothing playable was recorded. On Windows, it returns `Stream.Null`.
 - **A failure to restore the camera after saving.** On Android, the camera switches to a video session for the recording and back to the photo session afterwards. When that switch back fails after the video was written, `StopVideoRecording` still returns the video, and the failure is reported through the `ErrorOccurred` event.
 
 The following example demonstrates how to use the `StartVideoRecording` method:
@@ -702,15 +702,15 @@ async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
 
 On Android, a `StartCameraPreview` that you call while the `CameraView` is still connecting to its camera waits for the connection, then starts the preview.
 
-A preview that can't start doesn't throw an exception. `StartCameraPreview` and `StartCameraPreviewCommand` report it through the `ErrorOccurred` event on every platform. This includes a device without a camera, a camera permission that isn't granted, and a selected camera that can't be opened, for example because another app is using it. `StartCameraPreview` throws only an `OperationCanceledException` when the start is cancelled, an `InvalidOperationException` when the `CameraView` has no handler, for example before it is shown or after its handler was disconnected, and, on Android, the exception of the camera connection that it waited for and that failed (see below).
+A preview that can't start doesn't throw an exception. `StartCameraPreview` and `StartCameraPreviewCommand` report it through the `ErrorOccurred` event on every platform. This includes a device without a camera, a camera permission that isn't granted, and a selected camera that can't be opened, for example because another app is using it. `StartCameraPreview` throws only an `OperationCanceledException` when the start is cancelled, an `InvalidOperationException` when the `CameraView` has no handler, for example before it is shown or after its handler was disconnected, and, on Android, the failure of the camera connection that it waited for (see below).
 
 ```cs
 Camera.ErrorOccurred += (sender, e) => Trace.WriteLine(e.Exception);
 ```
 
-Each failure raises `ErrorOccurred` once. On Android, when the camera connection that a `StartCameraPreview` waited for fails, the connection raises `ErrorOccurred`, and `StartCameraPreview` throws the same exception to its caller instead of raising the event a second time.
+Each failure raises `ErrorOccurred` once. On Android, a `StartCameraPreview` that you call while the `CameraView` is still connecting to its camera waits for the connection. When the connection fails, it raises `ErrorOccurred`, and the `StartCameraPreview` that waited throws the same failure to its caller instead of raising `ErrorOccurred` a second time. `StartCameraPreviewCommand` doesn't report that failure again.
 
-On Windows, a `StartCameraPreview` while the preview runs does nothing. A `StartCameraPreview` while an earlier start still opens the camera releases the camera of that earlier start, which then ends without an error.
+On Windows, a `StartCameraPreview` while the preview runs does nothing. A `StartCameraPreview` while an earlier start is still opening the camera releases the camera of that earlier start, which ends without reporting an error.
 
 What happens next depends on why the start failed:
 

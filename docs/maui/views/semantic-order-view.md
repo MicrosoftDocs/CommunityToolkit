@@ -2,7 +2,7 @@
 title: SemanticOrderView - .NET MAUI Community Toolkit
 author: bijington
 description: The SemanticOrderView provides the ability to control the order of VisualElements for screen readers on Android, iOS and Mac Catalyst, and the keyboard Tab order on Windows, to improve the Accessibility of an application.
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # SemanticOrderView
@@ -65,6 +65,14 @@ The views that aren't in `ViewOrder` stay accessible on every platform.
 | Windows | `ViewOrder` sets the keyboard Tab order of the views. It doesn't change the order in which Narrator reads them, which follows the visual tree. Only views that can take the keyboard focus, such as a `Button` or an `Entry`, are Tab stops, so ordering `Label` views, as in the example above, has no effect on Windows. |
 
 On Windows, the views of `ViewOrder` that the `SemanticOrderView` holds come first among the Tab stops of the `SemanticOrderView`, in the order of `ViewOrder`, followed by the rest of its content in the order of the visual tree. The Tab key reaches the controls above the `SemanticOrderView` before these views, and the controls below it after them. A view of `ViewOrder` that is inside a control within the `SemanticOrderView`, such as a `ScrollView`, or outside of the `SemanticOrderView`, gets a `TabIndex` instead. That `TabIndex` orders it among the Tab stops of the nearest control that holds it.
+
+The `SemanticOrderView` builds its Tab order from `ViewOrder` each time the Tab key moves the focus, so a change to `ViewOrder` applies to the next key press. A few details of the Tab order on Windows:
+
+- A view that appears more than once in `ViewOrder` is a Tab stop once, at its first position. A `ViewOrder` that is `null`, for example through a binding that hasn't resolved yet, orders nothing.
+- A view in a part of the `SemanticOrderView` that isn't visible isn't a Tab stop until that part is visible.
+- A view that another view of `ViewOrder` holds is reached through that view.
+- A `TabIndex` that your app sets on a view that the `SemanticOrderView` holds isn't overwritten.
+- Without a `ViewOrder`, the views keep the default Tab order of Windows.
 
 ## Examples
 

@@ -2,7 +2,7 @@
 title: GravatarImageSource - .NET MAUI Community Toolkit
 author: GeorgeLeithead
 description: "`GravatarImageSource` allows you to use as an Image source, a users Gravatar registered image via their email address."
-ms.date: 09/16/2022
+ms.date: 11/05/2026
 ---
 
 # GravatarImageSource
@@ -69,7 +69,7 @@ partial class MyPage : ContentPage
 |---|---|---|
 | CacheValidity | `TimeSpan` | The `CacheValidity` property, of type `TimeSpan`, specifies how long the image will be stored locally for. The default value of this property is 1 day. |
 | CachingEnabled | `bool` | The `CachingEnabled` property, of type `bool`, defines whether image caching is enabled. The default value of this property is `true`. |
-| Email | `string?` | The `Email` property, of type `string?`, specifies the gravatar account email address.  If unset, the Gravatar image is rendered. If set and not found on Gravatar, the `Image` property image will be rendered. |
+| Email | `string?` | The `Email` property, of type `string?`, specifies the gravatar account email address.  If unset, the Gravatar image is rendered. If set and not found on Gravatar, the `Image` property image will be rendered. As Gravatar requires, the address is trimmed and converted to lower case before it is hashed, so `" User@Example.com "` and `"user@example.com"` load the same image. The value of the property doesn't change. |
 | Image | `DefaultImage` | The `Image` property, of type [`DefaultImage`](#set-default-image) is an enumeration that is used to specify the default image if the `email` is not found on Gravatar. |
 
 These properties are backed by `BindableProperty` objects, which means that they can be targets of data bindings and styled.

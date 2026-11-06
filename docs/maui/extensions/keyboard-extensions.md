@@ -2,7 +2,7 @@
 title: KeyboardExtensions - .NET MAUI Community Toolkit
 author: PureWeen
 description: "The KeyboardExtensions provide a series of extension methods that support interacting with the Keyboard."
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # KeyboardExtensions
@@ -55,6 +55,8 @@ using CommunityToolkit.Maui.Core.Platform;
 
 bool isSoftKeyboardShowing = entry.IsSoftKeyboardShowing();
 ```
+
+On iOS and Windows, the state of the keyboard is read on the UI thread. When you call `IsSoftKeyboardShowing` from another thread, it blocks until the UI thread has answered. On the same platforms, `HideKeyboardAsync` and `ShowKeyboardAsync` do their work on the UI thread, and their tasks complete once the UI thread has done it.
 
 ## Examples
 

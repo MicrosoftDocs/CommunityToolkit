@@ -2,7 +2,7 @@
 title: Badge - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The Badge API allows developers to set the app icon badge number on the home screen.
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # Badge
@@ -152,5 +152,8 @@ public MainApplication(IntPtr handle, JniHandleOwnership ownership)
 These changes are enough for your application to run on an Android based Samsung device and correctly update the app icons badge number. It also gives you a starting point and guide as to how you could start implementing support for other launchers within your application.
 
 Therefore, while our code aims to provide an ideal implementation, there may be instances where Android will not behave as expected.
+
+> [!NOTE]
+> `CommunityToolkit.Maui.Core` ships an Android library manifest that adds a `<queries>` entry for the `MAIN` action with the `HOME` category to the manifest of your app. From Android 11 (package visibility), the badge can find the launcher only when the app declares this query. You don't need to add it yourself.
 
 We strongly recommend thoroughly testing your app on a range of devices and launchers for the most accurate assessment of how app badge notifications behave in your specific use case.

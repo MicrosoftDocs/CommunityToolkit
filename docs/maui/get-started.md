@@ -2,7 +2,7 @@
 title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
-ms.date: 01/23/2023
+ms.date: 11/05/2026
 ---
 
 # Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
@@ -79,9 +79,21 @@ To use the features of the toolkit please refer to the documentation pages for e
 
 This package enables you to display a map in your .NET MAUI Windows application.
 
-> [!IMPORTANT]
-> Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
-> For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.
+> [!WARNING]
+> `CommunityToolkit.Maui.Maps` is deprecated and will be removed in a future release. Use .NET MAUI's own `Map` from the `Microsoft.Maui.Controls.Maps` package, which supports Windows starting with .NET MAUI 10. On Windows, it uses the WinUI 3 `MapControl`, which is backed by Azure Maps.
+>
+> To move to it, remove the `CommunityToolkit.Maui.Maps` package and make sure your project references the `Microsoft.Maui.Controls.Maps` package directly, because `CommunityToolkit.Maui.Maps` referenced it for you. Remove `using CommunityToolkit.Maui.Maps;` and the call to `UseMauiCommunityToolkitMaps`, and call `UseMauiMaps` on every platform. On Windows, set your Azure Maps subscription key with `builder.ConfigureEssentials(essentials => essentials.UseMapServiceToken("YOUR_AZURE_MAPS_SUBSCRIPTION_KEY"))`. Without a valid key, the map shows no map data. For more information, see [Map](/dotnet/maui/user-interface/controls/map).
+>
+> On Windows, the .NET MAUI `Map` doesn't support:
+>
+> - `IsShowingUser`
+> - Polygons, polylines and circles in `MapElements`
+> - Pin labels and info windows
+> - The `MapClicked` event
+>
+> It supports `MoveToRegion`, the `Street`, `Satellite` and `Hybrid` map types, traffic, scrolling, zooming and pins.
+>
+> This library implements `Map` on Windows with Bing Maps for Enterprise, which Microsoft is retiring: free (Basic) accounts were retired on June 30, 2025, and Enterprise accounts can use it until June 30, 2028. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
 
 **Package name:** `CommunityToolkit.Maui.Maps`
 

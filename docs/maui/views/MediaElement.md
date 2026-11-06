@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # MediaElement
@@ -461,7 +461,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | ShouldKeepScreenOn | `bool` | Determines whether the device screen should stay on during media playback. This is a bindable property. | `false` |
 | ShouldMute | `bool` | Determines whether the audio is currently muted. This is a bindable property. | `false` |
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
-| Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
+| Source | `MediaSource?` | The source of the media loaded into the control. A source without data, for example a `UriMediaSource` without a `Uri` or a `StreamMediaSource` without a stream, empties the player and reports `MediaElementState.None`, like a `null` source. | `null` |
 | Speed | `double` | Determines the playback speed of the media. This is a bindable property. On Windows, a playback rate that the player reports after a newer `Speed` was set doesn't change `Speed` back. | `1` |
 | MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
@@ -481,10 +481,10 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 
 |Event  |Description  |
 |---------|---------|
-| Play | Starts playing the loaded media. |
+| Play | Starts playing the loaded media. Media that played to its end starts again from its start. |
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
-| SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. |
+| SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. A position outside of the media is clamped to it: a position before the start seeks to the start, and a position beyond `Duration` seeks to the end. The seek then completes and raises `SeekCompleted` like any other. It throws an `InvalidOperationException` when the platform player can't seek yet, for example before it is ready. |
 
 ## Examples
 

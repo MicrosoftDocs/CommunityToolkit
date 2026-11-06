@@ -2,7 +2,7 @@
 title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
-ms.date: 01/23/2023
+ms.date: 11/05/2026
 ---
 
 # Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
@@ -79,9 +79,8 @@ To use the features of the toolkit please refer to the documentation pages for e
 
 This package enables you to display a map in your .NET MAUI Windows application.
 
-> [!IMPORTANT]
-> Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
-> For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.
+> [!WARNING]
+> `CommunityToolkit.Maui.Maps` is deprecated and will be removed in a future release. Bing Maps, which this library uses to implement `Map` on Windows, has been retired: Bing Maps for Enterprise free (Basic) accounts ended on June 30th, 2025, and Enterprise accounts can continue to use it until June 30th, 2028. Bing Maps no longer issues new API keys, so you cannot use this control on Windows without an existing key. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
 
 **Package name:** `CommunityToolkit.Maui.Maps`
 

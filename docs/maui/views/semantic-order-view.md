@@ -66,12 +66,12 @@ The views that aren't in `ViewOrder` stay accessible on every platform.
 
 On Windows, the views of `ViewOrder` that the `SemanticOrderView` holds come first among the Tab stops of the `SemanticOrderView`, in the order of `ViewOrder`, followed by the rest of its content in the order of the visual tree. The Tab key reaches the controls above the `SemanticOrderView` before these views, and the controls below it after them. A view of `ViewOrder` that is inside a control within the `SemanticOrderView`, such as a `ScrollView`, or outside of the `SemanticOrderView`, gets a `TabIndex` instead. That `TabIndex` orders it among the Tab stops of the nearest control that holds it.
 
-The `SemanticOrderView` builds its Tab order from `ViewOrder` each time the Tab key moves the focus, so a change to `ViewOrder` applies to the next key press. A few details of the Tab order on Windows:
+A new `ViewOrder` applies from the next press of the Tab key. A few details of the Tab order on Windows:
 
-- A view that appears more than once in `ViewOrder` is a Tab stop once, at its first position. A `ViewOrder` that is `null`, for example through a binding that hasn't resolved yet, orders nothing.
+- A view that appears more than once in `ViewOrder` is a Tab stop once, at its first position. A `ViewOrder` that is `null`, for example through a binding to a property whose value is still `null`, orders nothing.
 - A view in a part of the `SemanticOrderView` that isn't visible isn't a Tab stop until that part is visible.
-- A view that another view of `ViewOrder` holds is reached through that view.
-- A `TabIndex` that your app sets on a view that the `SemanticOrderView` holds isn't overwritten.
+- A view that another view of `ViewOrder` holds is reached inside that view, at that view's position in `ViewOrder` rather than at its own.
+- The `SemanticOrderView` sets a `TabIndex` only on the views of `ViewOrder` that are inside a control within it, such as a `ScrollView`, or outside of it, and that `TabIndex` replaces one that your app set. A `TabIndex` that your app sets on any other view isn't overwritten. It still applies, and orders that view among the Tab stops of the nearest control that holds it, as a `TabIndex` does without a `SemanticOrderView`.
 - Without a `ViewOrder`, the views keep the default Tab order of Windows.
 
 ## Examples

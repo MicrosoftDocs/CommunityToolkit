@@ -708,7 +708,7 @@ A preview that can't start doesn't throw an exception. `StartCameraPreview` and 
 Camera.ErrorOccurred += (sender, e) => Trace.WriteLine(e.Exception);
 ```
 
-Each failure raises `ErrorOccurred` once. On Android, a `StartCameraPreview` that you call while the `CameraView` is still connecting to its camera waits for the connection. When the connection fails, it raises `ErrorOccurred`, and the `StartCameraPreview` that waited throws the same failure to its caller instead of raising `ErrorOccurred` a second time. `StartCameraPreviewCommand` doesn't report that failure again.
+Each failure raises `ErrorOccurred` once. On Android, when the connection that such a `StartCameraPreview` waited for fails, the connection raises `ErrorOccurred`, and the `StartCameraPreview` throws the same failure to its caller instead of raising `ErrorOccurred` a second time. `StartCameraPreviewCommand` doesn't report that failure again.
 
 On Windows, a `StartCameraPreview` while the preview runs does nothing. A `StartCameraPreview` while an earlier start is still opening the camera releases the camera of that earlier start, which ends without reporting an error.
 

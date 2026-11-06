@@ -58,7 +58,7 @@ await label.TextColorTo(Colors.Red);
 
 The full argument list for the `TextColorTo` method is:
 
-- `color`, of type `Color`, is the target color to animate the `VisualElement`'s `BackgroundColor` to.
+- `color`, of type `Color`, is the target color to animate the element's `TextColor` to.
 - `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16. It must be greater than 0: a `rate` of 0 throws an `ArgumentOutOfRangeException` from the call.
 - `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
 - `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.

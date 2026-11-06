@@ -233,7 +233,7 @@ items:
       href: views/Expander.md
     - name: "LazyView"
       href: views/LazyView.md
-    - name: "Map (Windows)"
+    - name: "Map (Windows) (Deprecated)"
       href: views/Map.md 
     - name: "MediaElement"
       href: views/MediaElement.md

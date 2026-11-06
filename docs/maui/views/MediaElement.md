@@ -481,7 +481,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 
 |Event  |Description  |
 |---------|---------|
-| Play | Starts playing the loaded media. Media that played to its end starts again from its start. |
+| Play | Starts playing the loaded media. On Android, iOS and Mac Catalyst, media that played to its end starts again from its start. |
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
 | SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. A position outside of the media is clamped to it: a position before the start seeks to the start, and a position beyond `Duration` seeks to the end. The seek then completes and raises `SeekCompleted` like any other. It throws an `InvalidOperationException` when the platform player can't seek yet, for example before it is ready. |

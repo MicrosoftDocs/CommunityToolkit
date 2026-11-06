@@ -2,7 +2,7 @@
 title: Expander - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The Expander control provides an expandable container to host any content."
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # Expander
@@ -133,9 +133,9 @@ Keyboard and screen reader users can expand and collapse an `Expander` through i
 
 |Platform  |Behavior  |
 |---------|---------|
-| Windows | The `Expander` is a Tab stop. Enter toggles it when it is pressed and Space when it is released, like a `Button`. The focus visual frames only the row of the `Header`. UI Automation exposes the `Expander` as a button with the class name `Expander`, and with the `ExpandCollapse` and `Invoke` patterns. Its name comes from the `Header`: the semantic description, the text, or the texts of the views a layout `Header` holds. Its help text comes from the `SemanticProperties.Hint` of the `Header`. It raises the `ExpandCollapseState` property changed event whenever `IsExpanded` changes, also when code changes it. |
-| Android | TalkBack announces the `Header` as collapsed or expanded, and lists the expand or collapse action in its actions menu. A double tap with TalkBack still taps the `Header`, which toggles the `Expander`. |
-| iOS and Mac Catalyst | VoiceOver reads the whole `Header` as one button that a double tap toggles. The element has the button trait, and the header trait when the `Header` is a heading. Its label, hint and `AutomationId` come from the `Header`. VoiceOver announces it as collapsed or expanded from iOS and Mac Catalyst 18. A `Header` that holds a control, such as a `Button`, a `Switch` or an `Entry`, keeps the default accessibility elements of UIKit, and VoiceOver doesn't announce the state of the `Expander` for it. A `Header` with another `TapGestureRecognizer` lets VoiceOver tap it, so that every recognizer runs. |
+| Windows | The `Expander` is a Tab stop. Enter toggles it when it is pressed and Space when it is released, like a `Button`. The focus visual frames only the row of the `Header`. UI Automation exposes the `Expander` as a button with the class name `Expander`, and with the `ExpandCollapse` and `Invoke` patterns. Its name comes from the `Header`: the semantic description, the text, or the texts of the views a layout `Header` holds. Its help text comes from the `SemanticProperties.Hint` of the `Header`. The button is disabled while a tap can't toggle the `Expander`. It raises the `ExpandCollapseState` property changed event whenever `IsExpanded` changes, also when code changes it. |
+| Android | TalkBack announces the `Header` as collapsed or expanded, and lists the expand action in its actions menu while the `Expander` is collapsed, and the collapse action while it is expanded. A double tap with TalkBack still taps the `Header`, which toggles the `Expander`. |
+| iOS and Mac Catalyst | VoiceOver reads the whole `Header` as one button that a double tap toggles. The element has the button trait, the header trait when the `Header` is a heading, and the not enabled trait while a tap can't toggle the `Expander`. Its label, hint and `AutomationId` come from the `Header`. VoiceOver announces it as collapsed or expanded from iOS and Mac Catalyst 18. A `Header` that holds a control, such as a `Button`, a `Switch` or an `Entry`, keeps the default accessibility elements of UIKit, and VoiceOver doesn't announce the state of the `Expander` for it. A `Header` with another `TapGestureRecognizer` lets VoiceOver tap it, so that every recognizer runs. |
 
 Every activation from the keyboard or from assistive technology goes through the same code as a tap, so `IsExpanded`, `Command` and `CommandParameter`, `ExpandedChanged` and `HandleHeaderTapped` behave as for a tap. In a `CollectionView` on Windows, such an activation still resizes the item that holds the `Expander`.
 

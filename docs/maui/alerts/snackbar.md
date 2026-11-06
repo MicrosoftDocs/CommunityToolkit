@@ -2,7 +2,7 @@
 title: Snackbar - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The Snackbar is a timed alert that appears at the bottom of the screen by default."
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # Snackbar
@@ -93,7 +93,7 @@ Snackbar.Dismissed += (s, e) => { Console.WriteLine(Snackbar.IsShown); };
 | Action | `Action` | Action to invoke on action button click. |
 | ActionButtonText | `string` | Action button text. |
 | Anchor | `IView` | `Snackbar` anchor. `Snackbar` appears near this view. When `null`, the `Snackbar` will appear at the bottom of the screen. |
-| Duration | `TimeSpan` | `Snackbar` duration. |
+| Duration | `TimeSpan` | `Snackbar` duration. On Android, a `Duration` below 1 millisecond is shown for 1 millisecond, so the `Snackbar` goes away at once, as on the other platforms. |
 | VisualOptions | `SnackbarOptions` | `Snackbar` visual options. |
 
 ### SnackbarOptions
@@ -122,7 +122,7 @@ The `SnackbarOptions` allows you to customize the default `Snackbar` style.
 > [!NOTE]
 > You can display only 1 `Snackbar` at the same time. If you call the `Show` method a second time, the first `Snackbar` will automatically be dismissed before the second `Snackbar` is shown.
 
-On Windows, overlapping `Show` and `Dismiss` calls take effect in the order in which they are called, and the `Shown` and `Dismissed` events are raised in that order. A `Snackbar` that a later call replaced or dismissed doesn't stay on screen. The `Task` that `Show` or `Dismiss` returns completes after the earlier calls that overlap it have finished. A call whose token is cancelled before it starts to remove the displayed `Snackbar` throws an `OperationCanceledException` and removes nothing.
+On Windows, overlapping `Show` and `Dismiss` calls take effect in the order in which they are called, and the `Shown` and `Dismissed` events are raised in that order. A `Snackbar` that a later call replaced or dismissed doesn't stay on screen. The `Task` that `Show` or `Dismiss` returns completes after the earlier calls that overlap it have finished. A call whose token is cancelled before it starts to remove the displayed `Snackbar` throws an `OperationCanceledException` and removes nothing. `Show` and `Dismiss` remove only the notification of their own `Snackbar`: the other notifications that your app shows, for example those of a `Toast`, stay.
 
 > [!WARNING]
 > On Windows, a `Show` or `Dismiss` that you call from a `Shown` or `Dismissed` handler runs after the `Show` or `Dismiss` call that raised the event has finished. Await it. Blocking on its `Task` inside the handler, for example with `.Wait()` or `.Result`, deadlocks.

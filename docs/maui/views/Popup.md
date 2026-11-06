@@ -232,7 +232,7 @@ protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
 }
 ```
 
-When you show a `Popup` from `OnDisappearing` of a modal page that is being removed, for example after `PopModalAsync`, the `Popup` is displayed once the modal page has been removed, on the page below it.
+When you call the `ShowPopup` or `ShowPopupAsync` extension method on a page, for example `this.ShowPopupAsync(popup)`, from `OnDisappearing` of a modal page that is being removed, for example after `PopModalAsync`, the `Popup` is displayed once the modal page has been removed, on the page below it. The overloads that take an `INavigation` or a `Shell`, and the methods of `IPopupService`, show the `Popup` at once, and .NET MAUI removes it again while it finishes removing the modal page.
 
 ## PopupOptions
 

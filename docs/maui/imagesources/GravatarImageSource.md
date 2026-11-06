@@ -69,7 +69,7 @@ partial class MyPage : ContentPage
 |---|---|---|
 | CacheValidity | `TimeSpan` | The `CacheValidity` property, of type `TimeSpan`, specifies how long the image will be stored locally for. The default value of this property is 1 day. |
 | CachingEnabled | `bool` | The `CachingEnabled` property, of type `bool`, defines whether image caching is enabled. The default value of this property is `true`. |
-| Email | `string?` | The `Email` property, of type `string?`, specifies the gravatar account email address.  If unset, the Gravatar image is rendered. If set and not found on Gravatar, the `Image` property image will be rendered. As Gravatar requires, the address is trimmed and converted to lower case before it is hashed, so `" User@Example.com "` and `"user@example.com"` load the same image. The value of the property doesn't change. |
+| Email | `string?` | The `Email` property, of type `string?`, specifies the gravatar account email address.  If unset or empty, the source is empty (its `IsEmpty` property is `true`) and no image is rendered; an `AvatarView` shows its `Text` instead. If set and not found on Gravatar, the `Image` property image will be rendered. As Gravatar requires, the address is trimmed and converted to lower case before it is hashed, so `" User@Example.com "` and `"user@example.com"` load the same image. The value of the property doesn't change. |
 | Image | `DefaultImage` | The `Image` property, of type [`DefaultImage`](#set-default-image) is an enumeration that is used to specify the default image if the `email` is not found on Gravatar. |
 
 These properties are backed by `BindableProperty` objects, which means that they can be targets of data bindings and styled.
@@ -128,7 +128,7 @@ Image myImage = new()
 
 ## Set email
 
-The `Email` property is a nullable `string`. If the property is null or empty, the default Gravatar image is rendered. If the email address has no matching Gravatar image, the `Image` property image is rendered.
+The `Email` property is a nullable `string`. If the property is null or empty, the source is empty and no image is rendered. If the email address has no matching Gravatar image, the `Image` property image is rendered.
 
 The following example sets an email address that has a matching Gravatar image:
 
@@ -152,7 +152,7 @@ Image myImage = new()
 };
 ```
 
-The following example does not set an email address and will thus display the default Gravatar image.
+The following example does not set an email address, so the source is empty and no image is rendered.
 
 
 ```xaml
@@ -232,9 +232,9 @@ Image myImage = new()
 
 ## Set image size
 
-By default, `GravatarImageSource` images are presented at 80px by 80px.  Image sizes can be between *1px and 2048px* and are taken from their parent view size properties.  Gravatar images are square, and the larger of the size properties defined will be taken.
+By default, `GravatarImageSource` images are presented at 80px by 80px.  Image sizes can be between *1px and 2048px* and are taken from their parent view size properties.  Gravatar images are square, and the smaller of the width and the height of the image control is requested.
 
-The following example sets the size of the image control and thus the size of the Gravatar image requested will be 73px.
+The following example sets the size of the image control and thus the size of the Gravatar image requested will be 72px.
 
 ```xaml
 <Image WidthRequest="72" HeightRequest="73">
@@ -253,7 +253,7 @@ Image myImage = new()
     {
         Email = "dsiegel@avantipoint.com",
     },
-    HeightRequest = 72,
+    WidthRequest = 72,
     HeightRequest = 73,
 };
 ```

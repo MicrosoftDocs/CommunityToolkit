@@ -20,7 +20,7 @@ ms.date: 11/05/2026
 ![Screenshot of a MediaElement playing a video, on Android and iOS.](../../images/mediaelement/intro.png#lightbox)
 
 > [!NOTE]
-> `MediaElement` is available on iOS, Android, Windows, macOS, and Tizen.
+> `MediaElement` is available on iOS, Android 8.0 (API 26) or higher, Windows, macOS, and Tizen.
 
 The `MediaElement` uses the following platform implementations.
 

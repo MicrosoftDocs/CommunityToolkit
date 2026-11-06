@@ -40,7 +40,7 @@ The full argument list for the `BackgroundColorTo` method is:
 - `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16. It must be greater than 0: a `rate` of 0 throws an `ArgumentOutOfRangeException` from the call.
 - `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
 - `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.
-- `token`, of type `CancellationToken`, stops the wait for the animation: a cancelled token makes the call throw an `OperationCanceledException`, while the animation itself continues. This is an optional argument, whose default value is `default`.
+- `token`, of type `CancellationToken`, ends the wait for the animation. With a token that is already cancelled, the call throws an `OperationCanceledException` and starts no animation. When the token is cancelled during the animation, the returned task throws an `OperationCanceledException`, and the animation runs to its end. This is an optional argument, whose default value is `default`.
 
 ## TextColorTo
 
@@ -63,7 +63,7 @@ The full argument list for the `TextColorTo` method is:
 - `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16. It must be greater than 0: a `rate` of 0 throws an `ArgumentOutOfRangeException` from the call.
 - `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
 - `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.
-- `token`, of type `CancellationToken`, stops the wait for the animation: a cancelled token makes the call throw an `OperationCanceledException`, while the animation itself continues. This is an optional argument, whose default value is `default`.
+- `token`, of type `CancellationToken`, ends the wait for the animation. With a token that is already cancelled, the call throws an `OperationCanceledException` and starts no animation. When the token is cancelled during the animation, the returned task throws an `OperationCanceledException`, and the animation runs to its end. This is an optional argument, whose default value is `default`.
 
 > [!NOTE]
 > The `TextColorTo` method is generated at compilation time through the use of Source Generators. This is due to the fact that `ITextStyle.TextColor` is readonly.

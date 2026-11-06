@@ -2,16 +2,15 @@
 title: Map - .NET MAUI Community Toolkit
 author: jfversluis
 description: "The Map control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit."
-ms.date: 10/23/2026
+ms.date: 11/05/2026
 ---
 
 # Map
 
 The `Map` control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit.
 
-> [!IMPORTANT]
-> Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
-> For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.
+> [!WARNING]
+> `CommunityToolkit.Maui.Maps` is deprecated and will be removed in a future release. Bing Maps, which this library uses to implement `Map` on Windows, has been retired: Bing Maps for Enterprise free (Basic) accounts ended on June 30th, 2025, and Enterprise accounts can continue to use it until June 30th, 2028. Bing Maps no longer issues new API keys, so you cannot use this control on Windows without an existing key. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
 
 ## Setup
 

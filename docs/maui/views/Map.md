@@ -1,16 +1,18 @@
 ---
 title: Map - .NET MAUI Community Toolkit
 author: jfversluis
-description: "The Map control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit."
+description: "The Map control is a cross-platform view for displaying and annotating maps. The .NET MAUI Community Toolkit provides a Windows implementation that uses Bing Maps."
 ms.date: 11/05/2026
 ---
 
 # Map
 
-The `Map` control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit.
+The `Map` control is a cross-platform view for displaying and annotating maps. The .NET MAUI Community Toolkit provides a Windows implementation that uses Bing Maps.
 
 > [!WARNING]
-> `CommunityToolkit.Maui.Maps` is deprecated and will be removed in a future release. Bing Maps, which this library uses to implement `Map` on Windows, has been retired: Bing Maps for Enterprise free (Basic) accounts ended on June 30th, 2025, and Enterprise accounts can continue to use it until June 30th, 2028. Bing Maps no longer issues new API keys, so you cannot use this control on Windows without an existing key. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
+> `CommunityToolkit.Maui.Maps` is deprecated and will be removed in a future release. It implements `Map` on Windows with Bing Maps for Enterprise, which Microsoft is retiring: free (Basic) accounts were retired on June 30, 2025, and Enterprise accounts can use it until June 30, 2028. Bing Maps no longer issues new API keys, so you can't use this control on Windows without an existing key.
+>
+> Starting with .NET MAUI 10.0.70, the .NET MAUI `Map` supports Windows with Azure Maps. To move to it, remove the call to `UseMauiCommunityToolkitMaps`, call `UseMauiMaps` on every platform, and set your Azure Maps key with `UseMapServiceToken`. For more information, see [Map](/dotnet/maui/user-interface/controls/map) and [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
 
 ## Setup
 
@@ -43,4 +45,4 @@ You can find examples of this control in action in the [.NET MAUI Community Tool
 
 ## API
 
-You can find the source code for `Map` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Maps/AppHostBuilderExtensions.shared.cs).
+You can find the source code for `Map` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Maps/AppBuilderExtensions.shared.cs).

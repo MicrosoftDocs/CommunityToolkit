@@ -92,7 +92,7 @@ await drawingView.GetImageStream(desiredWidth: 400, desiredHeight: 300);
 ```
 
 > [!NOTE]
-> The size of the saved image is rounded to the nearest pixel on every platform. Earlier versions on Android, iOS and Mac Catalyst could give a size one pixel smaller than requested.
+> When the image is scaled to fit the desired size, its size is rounded to whole pixels, so the side that limits the scale is exactly the desired size on Android, iOS, Mac Catalyst and Windows. On Android, earlier versions could give an image one pixel smaller than the desired size.
 
 > [!NOTE]
 > By default the `GetImageStream` method will return an image that contains the lines drawn, this will not match the full surface that user sees. In order to generate an image that directly matches the surface displayed in the application the `GetImageStream` method with the `DrawingViewOutputOption` parameter must be used.
@@ -129,7 +129,7 @@ For the purpose of this example the `CanvasWidth` and `CanvasHeight` properties 
 
 ## Pointer handling
 
-On every platform, a line follows the first touch or pointer that started it. A line that is released outside the `DrawingView` still ends with `DrawingLineCompleted`. If the system takes the pointer away, the line ends with `DrawingLineCancelled`.
+A line that is released outside the `DrawingView` still ends with `DrawingLineCompleted`. If the system takes the pointer away, the line ends with `DrawingLineCancelled`. On Windows, a line follows the pointer that started it: while it is drawn, another pointer (a second finger, a palm or a pen) doesn't start a new line and doesn't extend, end or cancel the line.
 
 > [!NOTE]
 > Earlier versions of the Windows `DrawingView` never ended a line that was released outside the view, and a second pointer (a palm or a pen) started a new line that replaced the first. Apps that handled these cases themselves can remove that code.

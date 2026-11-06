@@ -2,7 +2,7 @@
 title: DrawingView - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The DrawingView allows to draw lines, save the image and restore it by settings the list of lines."
-ms.date: 04/14/2022
+ms.date: 11/05/2026
 ---
 
 # DrawingView
@@ -92,6 +92,9 @@ await drawingView.GetImageStream(desiredWidth: 400, desiredHeight: 300);
 ```
 
 > [!NOTE]
+> The size of the saved image is rounded to the nearest pixel on every platform. Earlier versions on Android, iOS and Mac Catalyst could give a size one pixel smaller than requested.
+
+> [!NOTE]
 > By default the `GetImageStream` method will return an image that contains the lines drawn, this will not match the full surface that user sees. In order to generate an image that directly matches the surface displayed in the application the `GetImageStream` method with the `DrawingViewOutputOption` parameter must be used.
 
 The following example shows how to generate an image that directly matches the DrawingView surface displayed in an application:
@@ -123,6 +126,13 @@ await using var stream = await DrawingViewService.GetImageStream(
 ```
 
 For the purpose of this example the `CanvasWidth` and `CanvasHeight` properties have been data bound to the `Width` and `Height` properties of the `DrawingView` respectively. For the full solution please refer to the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/DrawingViewPage.xaml).
+
+## Pointer handling
+
+On every platform, a line follows the first touch or pointer that started it. A line that is released outside the `DrawingView` still ends with `DrawingLineCompleted`. If the system takes the pointer away, the line ends with `DrawingLineCancelled`.
+
+> [!NOTE]
+> Earlier versions of the Windows `DrawingView` never ended a line that was released outside the view, and a second pointer (a palm or a pen) started a new line that replaced the first. Apps that handled these cases themselves can remove that code.
 
 ## Handle event when Drawing Line Completed
 

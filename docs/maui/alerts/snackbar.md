@@ -93,7 +93,7 @@ Snackbar.Dismissed += (s, e) => { Console.WriteLine(Snackbar.IsShown); };
 | Action | `Action` | Action to invoke on action button click. |
 | ActionButtonText | `string` | Action button text. |
 | Anchor | `IView` | `Snackbar` anchor. `Snackbar` appears near this view. When `null`, the `Snackbar` will appear at the bottom of the screen. |
-| Duration | `TimeSpan` | `Snackbar` duration. On Android, a `Duration` below 1 millisecond is shown for 1 millisecond, so the `Snackbar` goes away at once, as on the other platforms. |
+| Duration | `TimeSpan` | `Snackbar` duration. |
 | VisualOptions | `SnackbarOptions` | `Snackbar` visual options. |
 
 ### SnackbarOptions

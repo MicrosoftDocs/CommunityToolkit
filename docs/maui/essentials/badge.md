@@ -53,7 +53,7 @@ void SetCount(uint value)
 
 |Method  |Description  |
 |---------|---------|
-| SetCount | Set the badge count. On Windows, only a packaged app can show a badge; an unpackaged app gets a trace line and nothing else. |
+| SetCount | Set the badge count. |
 
 ## Dependency Registration
 

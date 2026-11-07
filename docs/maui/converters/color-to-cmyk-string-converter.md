@@ -17,7 +17,7 @@ The `ConvertBack` method is not supported.
 
 ## Culture
 
-The converter formats the percentages with the binding's culture. For example, the percentage separator and the space before the `%` sign follow the culture.
+The converter formats the percentages with the binding's culture. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`.
 
 ## Syntax
 

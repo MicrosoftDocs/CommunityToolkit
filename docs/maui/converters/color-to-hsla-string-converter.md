@@ -7,7 +7,7 @@ ms.date: 11/10/2026
 
 # ColorToHslaStringConverter
 
-The `ColorToHslaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSLA `string` equivalent in the format: **HSLA(hue,saturation,lightness,alpha)** where **hue** will be a value between 0 and 360, **saturation** and **lightness** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. **HSLA(0,100%,50%,1)** for `Colors.Red`.
+The `ColorToHslaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSLA `string` equivalent in the format: **HSLA(hue,saturation,lightness,alpha)** where **hue** will be a value between 0 and 360, **saturation** and **lightness** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. **HSLA(360,100%,50%,1)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its HSLA `string` equivalent.
 
@@ -17,7 +17,7 @@ The `ConvertBack` method is not supported.
 
 ## Culture
 
-The converter formats the percentages with the binding's culture. For example, the percentage separator and the space before the `%` sign follow the culture.
+The converter formats the percentages and the alpha value with the binding's culture. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`. The alpha value `0.5` is `0,5` in `de-DE`.
 
 ## Syntax
 

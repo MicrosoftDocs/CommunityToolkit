@@ -184,6 +184,13 @@ By default a user can tap outside of the `Popup` to dismiss it. This can be cont
 
 A `Popup` is displayed on a modal page, so navigation can remove it without a call to `CloseAsync`. For example, Shell navigates to another route, other code calls `PopModalAsync`, or the `Page` of the `Window` is replaced. After .NET MAUI has removed the `Popup`, the task that `ShowPopupAsync` returned completes with an `IPopupResult` whose `WasDismissedByTappingOutsideOfPopup` is `true`, like when the user dismisses the `Popup` by tapping outside of it, and `Closed` is raised once. Earlier versions left that task pending and never raised `Closed`.
 
+### Navigation that the app cancels
+
+> [!NOTE]
+> `ShowPopupAsync`, `CloseAsync` and `ClosePopupAsync` throw an `OperationCanceledException` when the app cancels the navigation that displays or removes the `Popup`, for example by calling `e.Cancel()` in a `Shell.Navigating` handler, or by setting `e.Cancel` to `true` in a `Window.ModalPopping` or `Application.ModalPopping` handler. The `Popup` is then not displayed, or stays open. Earlier versions left the call pending forever.
+>
+> A tap outside of the `Popup`, or the hardware back button on Android, that triggers a navigation the app cancels does not throw: the `Popup` stays open and a later tap or back press can close it.
+
 ## Lifecycle behavior
 
 It is important to note that a `Popup` will be displayed inside `ContentPage` which is then shown modally in a .NET MAUI application. The impact of this will result in any calling `Page` to have the following lifecycle events to be called:

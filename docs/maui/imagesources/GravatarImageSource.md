@@ -258,6 +258,13 @@ Image myImage = new()
 };
 ```
 
+## Cancellation
+
+> [!NOTE]
+> `IStreamImageSource.GetStreamAsync(CancellationToken)` and the default `Stream` function throw an `OperationCanceledException` only when the `CancellationToken` passed to them is canceled, because one load of a `GravatarImageSource` never cancels another.
+> A load that you start with `CancellationToken.None` never throws it, and .NET MAUI catches it for the loads that it cancels itself.
+> `ImageSource.Cancel()` ends the loads that were started without a cancelable token, which then return `Stream.Null`.
+
 ## Examples
 
 You can find examples of this control in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml).

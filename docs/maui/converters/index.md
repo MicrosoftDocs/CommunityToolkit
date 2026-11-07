@@ -18,10 +18,10 @@ A binding passes a culture to its converter. The culture is the `ConverterCultur
 The following example passes the `de-DE` culture to a converter:
 
 ```xaml
-<Label Text="{Binding Value, Converter={StaticResource X}, ConverterCulture=de-DE}" />
+<Label Text="{Binding Value, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x * 1.5', ConverterCulture=de-DE}" />
 ```
 
-The page of each converter describes how it uses the culture.
+The page of a converter that uses the culture describes how it uses it.
 
 ## .NET MAUI Community Toolkit Converters
 

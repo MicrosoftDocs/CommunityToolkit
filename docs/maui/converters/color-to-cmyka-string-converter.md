@@ -2,7 +2,7 @@
 title: ColorToCmykaStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToCmykaStringConverter is a one way converter that allows users to convert a Color value binding to its CMYKA string equivalent."
-ms.date: 04/15/2022
+ms.date: 11/10/2026
 ---
 
 # ColorToCmykaStringConverter
@@ -106,6 +106,10 @@ class ColorToCmykaStringConverterPage : ContentPage
     }
 }
 ```
+
+## Culture
+
+The converter formats the percentages and the alpha value with the binding's culture. For example, the alpha value `0.5` is `0,5` in `de-DE`.
 
 ## Examples
 

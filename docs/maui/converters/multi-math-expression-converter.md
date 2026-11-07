@@ -24,7 +24,7 @@ The values that are passed in to the converter will be named `x?` where ? is the
 
 ## Culture
 
-The expression syntax doesn't depend on the culture. Numbers always use `.` as the decimal separator, and function names such as `abs` and `round` work in every culture. A string input, a quoted string in the expression, and the `str()` and `len()` functions use the culture of the binding.
+The expression syntax doesn't depend on the culture. Numbers always use `.` as the decimal separator, and function and constant names are case-insensitive in every culture, so `IF` and `PI` also work in Turkish. A string input, a quoted string in the expression, and the `str()` and `len()` functions use the culture of the `MultiBinding`.
 
 ## Syntax
 

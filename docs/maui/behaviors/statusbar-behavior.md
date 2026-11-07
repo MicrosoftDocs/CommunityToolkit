@@ -106,9 +106,9 @@ If your _Platforms/iOS/Info.plist_ file contains the following entry, which earl
 ```
 
 > [!IMPORTANT]
-> In an app that is built with the iOS 27 SDK (Xcode 27) or later, UIKit ignores `UIApplication.SetStatusBarStyle`. With the key set to `false` the style of the status bar then doesn't change, and the toolkit writes the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false: remove the key from Info.plist_ to the trace output. An app that is built with an earlier SDK still applies the style while the key is `false`, but the key isn't needed there either.
+> In an app that is built with the iOS 27 SDK (Xcode 27) or later, UIKit ignores `UIApplication.SetStatusBarStyle`. With the key set to `false` the style of the status bar then doesn't change, and the toolkit writes the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false: remove the key from Info.plist_ to the trace output. An app that is built with an earlier SDK, such as a .NET 10 app, still applies the style while the key is `false`, but the key isn't needed there either.
 
-The style belongs to a window: `StatusBarBehavior` sets the `Window.StatusBarTheme` of its page's window (`LightContent` sets `StatusBarTheme.Dark`, `DarkContent` sets `StatusBarTheme.Light`, `Default` sets `StatusBarTheme.Default`), and the view controllers of .NET MAUI return the matching style. The other windows keep their theme, and a style that changes while the behavior isn't attached to a page changes no status bar. `StatusBar.SetStyle` sets the theme of every window that is open at the time of the call; a window that opens later keeps its own. `StatusBar.SetStyle` needs `UseMauiCommunityToolkit()` in _MauiProgram.cs_. A view controller that overrides `preferredStatusBarStyle` keeps its own style. Before .NET 11, the style belonged to the whole app.
+The style belongs to a window: `StatusBarBehavior` sets the `Window.StatusBarTheme` of its page's window (`LightContent` sets `StatusBarTheme.Dark`, `DarkContent` sets `StatusBarTheme.Light`, `Default` sets `StatusBarTheme.Default`), and the view controllers of .NET MAUI return the matching style. The other windows keep their theme, and a style that changes while the behavior isn't attached to a page changes no status bar. `StatusBar.SetStyle` sets the theme of every window that is open at the time of the call; a window that opens later keeps its own. `StatusBar.SetStyle` needs `UseMauiCommunityToolkit()` in _MauiProgram.cs_. A view controller that isn't one of .NET MAUI's, such as a system view controller that your app presents, keeps its own style. Before .NET 11, the style belonged to the whole app.
 
 -----
 
@@ -124,7 +124,7 @@ The style belongs to a window: `StatusBarBehavior` sets the `Window.StatusBarThe
 
 ### Why doesn't the status bar style change on iOS?
 
-Look for the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false_ in the trace output. If it's there, remove the `UIViewControllerBasedStatusBarAppearance` key from the _Platforms/iOS/Info.plist_ file, as described in [Configuration](#configuration). If it isn't, check whether a view controller that overrides `preferredStatusBarStyle` is on screen: it keeps its own style. The style also doesn't change when it was set on another window, or when it changed while the behavior wasn't attached to a page.
+Look for the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false_ in the trace output. If it's there, remove the `UIViewControllerBasedStatusBarAppearance` key from the _Platforms/iOS/Info.plist_ file, as described in [Configuration](#configuration). If it isn't, check whether a view controller that isn't one of .NET MAUI's is on screen: it keeps its own style. The style also doesn't change when it was set on another window, or when it changed while the behavior wasn't attached to a page.
 
 ### Why is a pressed navigation bar button cut off at the status bar on iOS 26 and later?
 

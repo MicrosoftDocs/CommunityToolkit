@@ -2,7 +2,7 @@
 title: MathExpressionConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The MathExpressionConverter is a converter that allows users to perform various math operations."
-ms.date: 05/16/2022
+ms.date: 11/10/2026
 ---
 
 # MathExpressionConverter
@@ -14,6 +14,10 @@ The `Convert` calculates the expression string defined in the `ConverterParamete
 The value that is passed in to the converter will be named `x`. In order to refer to this value inside the expression you must use `x` (e.g. `x / 2` will divide the incoming value by 2). Any other variable names in the expression will be ignored.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The expression syntax doesn't depend on the culture. Numbers always use `.` as the decimal separator, and function names such as `abs` and `round` work in every culture. A string input, a quoted string in the expression, and the `str()` and `len()` functions use the culture of the binding.
 
 ## Syntax
 

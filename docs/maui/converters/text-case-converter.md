@@ -2,7 +2,7 @@
 title: TextCaseConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The TextCaseConverter is a one way converter that allows users to convert the casing of an incoming string type binding."
-ms.date: 03/02/2022
+ms.date: 11/10/2026
 ---
 
 # TextCaseConverter
@@ -18,6 +18,10 @@ Note that the `ConverterParameter` option will take precedence over the `Type` p
 The `ConvertBack` method is not supported.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter changes the case with the casing rules of the binding's culture. Only the letter I differs between cultures, in Turkish and Azerbaijani. For example, `Upper` converts `i` to `İ` in `tr-TR`.
 
 ## Syntax
 

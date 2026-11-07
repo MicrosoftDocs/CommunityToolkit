@@ -2,7 +2,7 @@
 title: EventToCommandBehavior - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The EventToCommandBehavior is a behavior that allows the user to invoke a Command through an event. It is designed to associate Commands to events exposed by controls that were not designed to support Commands. It allows you to map any arbitrary event on a control to a Command."
-ms.date: 04/23/2022
+ms.date: 11/10/2026
 ---
 
 # EventToCommandBehavior
@@ -121,6 +121,22 @@ When using this `behavior` with selection or tap events exposed by `ListView` an
 * [ItemTappedEventArgsConverter](../converters/item-tapped-eventargs-converter.md)
 * [SelectedItemEventArgsConverter](../converters/selected-item-eventargs-converter.md)
 
+### Setting the culture of the EventArgsConverter
+
+By default, the `EventToCommandBehavior` passes `CultureInfo.InvariantCulture` to the `EventArgsConverter`. A binding passes `CultureInfo.CurrentUICulture` instead, so this default differs from a binding. Set `EventArgsConverterCulture` to pass a different culture:
+
+```xaml
+<Entry>
+    <Entry.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="TextChanged"
+            Command="{Binding TextChangedCommand}"
+            EventArgsConverter="{StaticResource TextChangedEventArgsConverter}"
+            EventArgsConverterCulture="de-DE" />
+    </Entry.Behaviors>
+</Entry>
+```
+
 ## Properties
 
 |Property  |Type  |Description  |
@@ -129,6 +145,7 @@ When using this `behavior` with selection or tap events exposed by `ListView` an
 | Command | [ICommand](xref:System.Windows.Input.ICommand) | The `Command` that should be executed. |
 | CommandParameter | object | An optional parameter to forward to the `Command`. |
 | EventArgsConverter | IValueConverter | An optional `IValueConverter` that can be used to convert `EventArgs` values to values passed into the `Command`. |
+| EventArgsConverterCulture | CultureInfo? | The culture passed to the `EventArgsConverter`. The default is `null`, which means `CultureInfo.InvariantCulture`. |
 
 ## Examples
 

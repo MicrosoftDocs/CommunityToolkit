@@ -2,7 +2,7 @@
 title: MultiMathExpressionConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The MultiMathExpressionConverter is a converter for multiple math expressions."
-ms.date: 05/16/2022
+ms.date: 11/10/2026
 ---
 
 # MultiMathExpressionConverter
@@ -21,6 +21,10 @@ The values that are passed in to the converter will be named `x?` where ? is the
     </MultiBinding>
 </Label.Text>
 ```
+
+## Culture
+
+The expression syntax doesn't depend on the culture. Numbers always use `.` as the decimal separator, and function names such as `abs` and `round` work in every culture. A string input, a quoted string in the expression, and the `str()` and `len()` functions use the culture of the binding.
 
 ## Syntax
 

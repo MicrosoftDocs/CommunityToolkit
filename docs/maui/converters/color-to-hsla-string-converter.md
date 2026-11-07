@@ -2,7 +2,7 @@
 title: ColorToHslaStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToHslaStringConverter is a one way converter that allows users to convert a Color value binding to its HSLA string equivalent."
-ms.date: 04/15/2022
+ms.date: 11/10/2026
 ---
 
 # ColorToHslaStringConverter
@@ -14,6 +14,10 @@ The `Convert` method returns the supplied `Color` `value` converted to its HSLA 
 The `ConvertBack` method is not supported.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter formats the percentages with the binding's culture. For example, the percentage separator and the space before the `%` sign follow the culture.
 
 ## Syntax
 

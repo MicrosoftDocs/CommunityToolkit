@@ -13,7 +13,7 @@ The `DateTimeOffsetConverter` is a converter that allows users to convert a `Dat
 
 ## Culture
 
-The converter doesn't use the culture. It no longer applies the calendar of the culture when it converts a `DateTime` back to a `DateTimeOffset`, because the components of a `DateTime` are always Gregorian.
+The converter doesn't use the culture, because the components of a `DateTime` are always Gregorian. Earlier versions applied the calendar of the culture when they converted a `DateTime` back to a `DateTimeOffset`.
 
 ## Syntax
 

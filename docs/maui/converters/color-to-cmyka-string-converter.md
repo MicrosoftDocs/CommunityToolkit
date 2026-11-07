@@ -15,6 +15,10 @@ The `ConvertBack` method is not supported.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
 
+## Culture
+
+The converter formats the percentages and the alpha value with the binding's culture. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`. The alpha value `0.5` is `0,5` in `de-DE`.
+
 ## Syntax
 
 The following examples will show how to use the `ColorToCmykaStringConverter` to display the CMYKA equivalent string of a specific `Color`.
@@ -106,10 +110,6 @@ class ColorToCmykaStringConverterPage : ContentPage
     }
 }
 ```
-
-## Culture
-
-The converter formats the percentages and the alpha value with the binding's culture. For example, the alpha value `0.5` is `0,5` in `de-DE`.
 
 ## Examples
 

@@ -5,12 +5,12 @@ description: "CommunityToolkit.Maui.Maps was removed in the .NET 11 release. Use
 ms.date: 11/10/2026
 ---
 
-# Map
+# Map (Removed)
 
 > [!WARNING]
-> `CommunityToolkit.Maui.Maps` was deprecated in the previous release and is removed in the .NET 11 release. The package has no .NET 11 version. The `Map` control for Windows that it provided used Bing Maps for Enterprise, which Microsoft is retiring. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
+> `CommunityToolkit.Maui.Maps` was deprecated in the toolkit's last .NET 10 release and is removed in the .NET 11 release. The package has no .NET 11 version. The `Map` control for Windows that it provided used Bing Maps for Enterprise, which Microsoft is retiring. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
 
-.NET MAUI includes its own `Map` control in the `Microsoft.Maui.Controls.Maps` package. It supports Android, iOS, Mac Catalyst and Windows. On Windows, it uses the WinUI 3 `MapControl`, which is backed by Azure Maps. For details on how to work with the control, see the [.NET MAUI Map documentation](/dotnet/maui/user-interface/controls/map).
+.NET MAUI includes its own `Map` control in the `Microsoft.Maui.Controls.Maps` package. It supports Android, iOS, Mac Catalyst, and Windows. On Windows, it uses the WinUI 3 `MapControl`, which is backed by Azure Maps. For details on how to work with the control, see the [.NET MAUI Map documentation](/dotnet/maui/user-interface/controls/map).
 
 ## Migrate to the .NET MAUI Map
 

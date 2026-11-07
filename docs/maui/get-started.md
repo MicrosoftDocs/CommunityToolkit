@@ -78,7 +78,7 @@ To use the features of the toolkit please refer to the documentation pages for e
 ### [Maps](#tab/CommunityToolkitMauiMaps)
 
 > [!WARNING]
-> `CommunityToolkit.Maui.Maps` was deprecated in the previous release and is removed in the .NET 11 release. The package has no .NET 11 version. Use .NET MAUI's own `Map` from the `Microsoft.Maui.Controls.Maps` package instead. For the steps to move to it, see [Map](views/Map.md).
+> `CommunityToolkit.Maui.Maps` was deprecated in the toolkit's last .NET 10 release and is removed in the .NET 11 release. The package has no .NET 11 version. Use .NET MAUI's own `Map` from the `Microsoft.Maui.Controls.Maps` package instead. For the steps to move to it, see [Map](views/Map.md).
 
 ### [MediaElement](#tab/CommunityToolkitMauiMediaElement)
 

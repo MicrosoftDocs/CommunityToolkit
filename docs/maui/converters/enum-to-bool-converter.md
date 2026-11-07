@@ -2,7 +2,7 @@
 title: EnumToBoolConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The EnumToBoolConverter is a one way converter that allows you to convert an Enum to a corresponding bool based on whether it is equal to a set of supplied enum values."
-ms.date: 05/04/2022
+ms.date: 11/10/2026
 ---
 
 # EnumToBoolConverter
@@ -34,7 +34,6 @@ public enum MyDevicePlatform
     Android,
     iOS,
     macOS,
-    Tizen,
     Windows
 }
 ```
@@ -91,8 +90,8 @@ It is also possible to pass the converter parameter:
     <VerticalStackLayout>
         <Picker ItemsSource="{Binding Platforms}"
                 SelectedItem="{Binding SelectedPlatform}" />
-        <Label IsVisible="{Binding SelectedPlatform, Converter={StaticResource PlatformConverter}, ConverterParameter={x:Static vm:MyDevicePlatform.Tizen}}"
-               Text="I am visible when the Picker value is Tizen."/>
+        <Label IsVisible="{Binding SelectedPlatform, Converter={StaticResource PlatformConverter}, ConverterParameter={x:Static vm:MyDevicePlatform.Windows}}"
+               Text="I am visible when the Picker value is Windows."/>
     </VerticalStackLayout>
 </ContentPage>
 ```
@@ -112,7 +111,7 @@ class EnumToBoolConverterPage : ContentPage
 
         var label = new Label
         {
-            Text = "I am visible when the Picker value is Tizen."
+            Text = "I am visible when the Picker value is Windows."
         };
 
         label.SetBinding(
@@ -120,7 +119,7 @@ class EnumToBoolConverterPage : ContentPage
             new Binding(
                 static (ViewModel vm) => vm.SelectedPlatform,
                 converter: new EnumToBoolConverter(),
-                converterParameter: MyDevicePlatform.Tizen));
+                converterParameter: MyDevicePlatform.Windows));
 
         Content = new VerticalStackLayout
         {
@@ -154,12 +153,12 @@ class EnumToBoolConverterPage : ContentPage
                         static (ViewModel vm) => vm.SelectedPlatform),
 
                 new Label()
-                    .Text("I am visible when the Picker value is Tizen.")
+                    .Text("I am visible when the Picker value is Windows.")
                     .Bind(
                         Label.IsVisibleProperty,
                         static (ViewModel vm) => vm.SelectedPlatform,
                         converter: new EnumToBoolConverter(),
-                        converterParameter: MyDevicePlatform.Tizen)
+                        converterParameter: MyDevicePlatform.Windows)
             }
         };
     }

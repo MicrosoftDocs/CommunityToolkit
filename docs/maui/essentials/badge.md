@@ -2,7 +2,7 @@
 title: Badge - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The Badge API allows developers to set the app icon badge number on the home screen.
-ms.date: 11/05/2026
+ms.date: 11/10/2026
 ---
 
 # Badge
@@ -25,14 +25,6 @@ Authorize Badge permission for the app. It is automatically requested.
 # [Windows](#tab/windows)
 
 Windows shows a badge only for an app with package identity, which is a packaged app. An unpackaged app, which is the default of the .NET MAUI template (`<WindowsPackageType>None</WindowsPackageType>`), doesn't show a badge: `SetCount` writes a line to the trace output and does nothing else. To show a badge, package the app by setting `WindowsPackageType` to `MSIX` in the project file.
-
-# [Tizen](#tab/tizen)
-
-Add permissions to `tizen-manifest.xml`:
-
-```xml
-<privilege>http://tizen.org/privilege/notification</privilege>
-```
 
 ---
 

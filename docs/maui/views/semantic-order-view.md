@@ -74,6 +74,12 @@ A new `ViewOrder` applies from the next press of the Tab key. A few details of t
 - The `SemanticOrderView` sets a `TabIndex` only on the views of `ViewOrder` that are inside a control within it, such as a `ScrollView`, or outside of it, and that `TabIndex` replaces one that your app set. A `TabIndex` that your app sets on any other view isn't overwritten. It still applies, and orders that view among the Tab stops of the nearest control that holds it, as a `TabIndex` does without a `SemanticOrderView`.
 - Without a `ViewOrder`, the views keep the default Tab order of Windows.
 
+## Custom platform view
+
+If your app sets `ContentViewHandler.PlatformViewFactory`, that factory doesn't create the platform view of the `SemanticOrderView`, because only a `MauiSemanticOrderView` applies `ViewOrder`. Your factory still creates the platform views of your other content views and pages, including the ones inside the `SemanticOrderView`.
+
+To change the platform view of the `SemanticOrderView`, derive a handler from `SemanticOrderViewHandler`, override `CreatePlatformView` to return a `MauiSemanticOrderView` or a class derived from it, and register your handler for `SemanticOrderView` after you call `UseMauiCommunityToolkit`.
+
 ## Examples
 
 You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/SemanticOrderView/).

@@ -2,7 +2,7 @@
 title: Expander - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The Expander control provides an expandable container to host any content."
-ms.date: 11/05/2026
+ms.date: 11/07/2026
 ---
 
 # Expander
@@ -142,7 +142,7 @@ Every activation from the keyboard or from assistive technology goes through the
 > [!IMPORTANT]
 > `HandleHeaderTapped` also runs when the `Header` is activated without a tap: from the keyboard or by UI Automation on Windows, by the expand or collapse action of TalkBack on Android, and by VoiceOver on iOS and Mac Catalyst. For these activations `TappedEventArgs.Parameter` is `null`, and `TappedEventArgs.GetPosition` returns the center of the `Header` on Windows and `null` on Android, iOS and Mac Catalyst. A custom `HandleHeaderTapped` that assumes a pointer position must handle `null`.
 
-The `UseMauiCommunityToolkit` method registers a handler for the layout of the `Expander`, which provides this on Windows, iOS and Mac Catalyst. A handler that your app registers for `Grid` no longer applies to the `Grid` of the `Expander`. Changes to `LayoutHandler.Mapper` still apply. If your app sets `LayoutHandler.PlatformViewFactory`, that factory also creates the platform view of the layout of the `Expander`, which then has no keyboard or UI Automation support on Windows, and VoiceOver doesn't read its `Header` as one button on iOS and Mac Catalyst.
+The `UseMauiCommunityToolkit` method registers a handler for the layout of the `Expander`, which provides this on Windows, iOS and Mac Catalyst. A handler that your app registers for `Grid` no longer applies to the `Grid` of the `Expander`. Changes to `LayoutHandler.Mapper` still apply. If your app sets `LayoutHandler.PlatformViewFactory`, that factory doesn't create the platform view of the layout of the `Expander` on Windows, iOS and Mac Catalyst, because only the toolkit's own platform view provides this support. Your factory still creates the platform views of your other layouts, including the ones in the `Header` and the `Content`, and on Android also the platform view of the layout of the `Expander`.
 
 ### UI tests
 

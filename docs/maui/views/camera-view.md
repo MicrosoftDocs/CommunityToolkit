@@ -2,7 +2,7 @@
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
 description: "The CameraView provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos."
-ms.date: 11/05/2026
+ms.date: 11/07/2026
 ---
 
 # CameraView
@@ -819,6 +819,16 @@ A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` g
 
 > [!IMPORTANT]
 > Catch the `OperationCanceledException` when you await these methods, in particular in an `async void` handler, where an exception that escapes ends the app. Call the start again if you still need the preview or the recording after a `StopCameraPreview` interrupted its start.
+
+## Custom platform view
+
+If your app sets `CameraViewHandler.PlatformViewFactory`, the `CameraView` shows the camera in the platform view that your factory returns:
+
+- **Android:** the `PreviewView` keeps what your app set on it, such as its `ScaleType`.
+- **iOS and Mac Catalyst:** the `CameraView` adds its preview to the `UIView`, behind the subviews of your app, and the preview follows the size of the `UIView`.
+- **Windows:** only a `MediaPlayerElement` can show the preview, and it keeps what your app set on it, such as its `Stretch`. With any other element, the camera works without a visible preview, and a warning is written to the trace output.
+
+The view stays your app's. When the handler disconnects, the `CameraView` releases the camera, and on iOS and Mac Catalyst it removes its preview from the `UIView`, but it doesn't dispose your view.
 
 ## Properties
 

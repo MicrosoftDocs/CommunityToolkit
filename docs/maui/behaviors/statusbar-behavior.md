@@ -2,7 +2,7 @@
 title: StatusBarBehavior - .NET MAUI Community Toolkit
 author: pictos
 description: "The StatusBarBehavior provides the ability to customize the color and style of a device's status bar."
-ms.date: 10/30/2026
+ms.date: 11/07/2026
 ---
 
 # StatusBarBehavior
@@ -130,6 +130,18 @@ On .NET 10, the style belongs to the whole app: the status bar of every window s
 ### Why doesn't the status bar style change on iOS?
 
 Look for the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false_ in the trace output. If it's there, remove the `UIViewControllerBasedStatusBarAppearance` key from the _Platforms/iOS/Info.plist_ file, as described in [Configuration](#configuration). If it isn't, check whether a view controller that overrides `preferredStatusBarStyle` is on screen: it keeps its own style.
+
+### Why is a pressed navigation bar button cut off at the status bar on iOS 26 and later?
+
+On iOS, `StatusBarBehavior` and `StatusBar.SetColor` draw the status bar color with a view in front of the window's other views, the navigation bar included. On iOS 26 and later, the Liquid Glass of a navigation bar button grows beyond the top of the navigation bar while the button is pressed, so a status bar color cuts it off flat at the bottom edge of the status bar area. With a transparent color, the default of `StatusBarColor`, the navigation bar's own background fills the status bar area and the glass isn't cut off.
+
+On pages that have a navigation bar, leave the status bar color transparent on iOS and color the navigation bar instead, for example with `Shell.BackgroundColor` or `NavigationPage.BarBackgroundColor`. In an app that also colors the status bar on Android:
+
+```xaml
+<toolkit:StatusBarBehavior StatusBarColor="{OnPlatform iOS=Transparent, Default=Fuchsia}" />
+```
+
+Drawing the color behind the glass instead is tracked in [#3374](https://github.com/CommunityToolkit/Maui/issues/3374).
 
 ## Examples
 

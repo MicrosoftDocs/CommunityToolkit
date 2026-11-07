@@ -2,7 +2,7 @@
 title: GravatarImageSource - .NET MAUI Community Toolkit
 author: GeorgeLeithead
 description: "`GravatarImageSource` allows you to use as an Image source, a users Gravatar registered image via their email address."
-ms.date: 11/05/2026
+ms.date: 11/07/2026
 ---
 
 # GravatarImageSource
@@ -233,6 +233,8 @@ Image myImage = new()
 ## Set image size
 
 By default, `GravatarImageSource` images are presented at 80px by 80px.  Image sizes can be between *1px and 2048px* and are taken from their parent view size properties.  Gravatar images are square, and the smaller of the width and the height of the image control is requested.
+
+A `Button` sizes itself to its image, so for a `Button` the image is requested at the smaller of the button's `WidthRequest` and `HeightRequest` that are set, or at the default 80px when neither is set, and again when those requests change. Set `HeightRequest` on the `Button` to request a smaller image.
 
 The following example sets the size of the image control and thus the size of the Gravatar image requested will be 72px.
 

@@ -33,8 +33,6 @@ Add permissions to `Info.plist`
 <string>SpeechToText requires microphone usage</string> 
 ```
 
-For `OfflineSpeechToText`, iOS 13.0 or higher is required.
-
 # [Windows](#tab/windows)
 
 Add permissions to `Package.appxmanifest`

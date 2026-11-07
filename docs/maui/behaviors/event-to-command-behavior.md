@@ -121,17 +121,20 @@ When using this `behavior` with selection or tap events exposed by `ListView` an
 * [ItemTappedEventArgsConverter](../converters/item-tapped-eventargs-converter.md)
 * [SelectedItemEventArgsConverter](../converters/selected-item-eventargs-converter.md)
 
-### Setting the culture of the EventArgsConverter
+## Set the culture of the EventArgsConverter
 
-By default, the `EventToCommandBehavior` passes `CultureInfo.InvariantCulture` to the `EventArgsConverter`. A binding passes `CultureInfo.CurrentUICulture` instead, so this default differs from a binding. Set `EventArgsConverterCulture` to pass a different culture:
+By default, the `EventToCommandBehavior` passes `CultureInfo.InvariantCulture` to the `EventArgsConverter`. A binding passes `CultureInfo.CurrentUICulture` instead, so this default differs from a binding. Set `EventArgsConverterCulture` to pass a different culture.
+
+The following example passes the `de-DE` culture to `MyTextChangedEventArgsConverter`. This converter is your own `IValueConverter`. The toolkit doesn't include it.
 
 ```xaml
-<Entry>
+<Entry x:Name="MyEntry">
     <Entry.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="TextChanged"
+            BindingContext="{Binding Path=BindingContext, Source={x:Reference MyEntry}, x:DataType=Entry}"
             Command="{Binding TextChangedCommand}"
-            EventArgsConverter="{StaticResource TextChangedEventArgsConverter}"
+            EventArgsConverter="{StaticResource MyTextChangedEventArgsConverter}"
             EventArgsConverterCulture="de-DE" />
     </Entry.Behaviors>
 </Entry>
@@ -145,7 +148,7 @@ By default, the `EventToCommandBehavior` passes `CultureInfo.InvariantCulture` t
 | Command | [ICommand](xref:System.Windows.Input.ICommand) | The `Command` that should be executed. |
 | CommandParameter | object | An optional parameter to forward to the `Command`. |
 | EventArgsConverter | IValueConverter | An optional `IValueConverter` that can be used to convert `EventArgs` values to values passed into the `Command`. |
-| EventArgsConverterCulture | CultureInfo? | The culture passed to the `EventArgsConverter`. The default is `null`, which means `CultureInfo.InvariantCulture`. |
+| EventArgsConverterCulture | [CultureInfo](xref:System.Globalization.CultureInfo)? | The culture passed to the `EventArgsConverter`. The default is `null`, which means `CultureInfo.InvariantCulture`. |
 
 ## Examples
 

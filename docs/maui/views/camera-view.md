@@ -2,7 +2,7 @@
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
 description: "The CameraView provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos."
-ms.date: 11/07/2026
+ms.date: 11/08/2026
 ---
 
 # CameraView
@@ -869,10 +869,10 @@ The commands let no exception escape. `ICommand.Execute` can't return the task o
 | `CaptureImage(CancellationToken)` | `Task<Stream>` | Captures a single image from the camera and returns it. The image is also delivered via the `MediaCaptured` event. Throws a `CameraException` when the capture fails, for example when the preview hasn't started, and raises the `MediaCaptureFailed` event with the same reason. |
 | `GetAvailableCameras(CancellationToken)` | `ValueTask<IReadOnlyList<CameraInfo>>` | Retrieves a list of available camera devices on the device. |
 | `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. A preview that can't start is reported through the `ErrorOccurred` event. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the preview started. |
-| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. |
-| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. |
+| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. When it has to turn the camera on and can't, it throws the platform's failure instead, such as an `UnauthorizedAccessException` on Windows when the privacy settings block the camera; on Android, a start without a camera returns without recording. See [Video Recording](#video-recording). |
+| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. When it has to turn the camera on and can't, it throws the platform's failure instead, such as an `UnauthorizedAccessException` on Windows when the privacy settings block the camera; on Android, a start without a camera returns without recording. See [Video Recording](#video-recording). |
 | `StopCameraPreview()` | `void` | Stops displaying the camera preview, and cancels a start of the preview or of a recording that is still in progress. |
-| `StopVideoRecording(CancellationToken)` | `Task<Stream>` | Stops video recording and returns the `Stream` that received the video, or `Stream.Null` when no recording runs. A cancelled token stops the recording that runs, then throws an `OperationCanceledException`; the next `StopVideoRecording` returns the video. On Android, iOS and Mac Catalyst, throws a `CameraException` when the recording failed without a usable video. A recording that the platform ended early returns the video recorded until then. |
+| `StopVideoRecording(CancellationToken)` | `Task<Stream>` | Stops video recording and returns the `Stream` that received the video, or `Stream.Null` when no recording runs. A cancelled token stops the recording that runs, then throws an `OperationCanceledException`; the next `StopVideoRecording` returns the video. Two exceptions: a token cancelled while a start, or an earlier stop, still waits stops nothing; and on Android, iOS and Mac Catalyst, a token cancelled while the video is copied into your stream leaves only part of it there, and the next `StopVideoRecording` returns `Stream.Null`. On Android, iOS and Mac Catalyst, throws a `CameraException` when the recording failed without a usable video. A recording that the platform ended early returns the video recorded until then. See [Video Recording](#video-recording). |
 
 ## CameraInfo
 

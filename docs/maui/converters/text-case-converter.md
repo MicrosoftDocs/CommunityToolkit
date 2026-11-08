@@ -21,7 +21,39 @@ The `ConvertBack` method is not supported.
 
 ## Culture
 
-The converter changes the case with the casing rules of the binding's culture. Only the letter I differs between cultures, in Turkish and Azerbaijani. For example, `Upper` converts `i` to `İ` in `tr-TR`.
+In .NET 11, the converter changes the case with the casing rules of the culture that .NET MAUI passes to it: the binding's `ConverterCulture`, which defaults to `CultureInfo.CurrentUICulture`. Only the letter I differs between cultures, in Turkish and Azerbaijani. For example, `Upper` converts `i` to `İ` in `tr-TR`, so `edit` becomes `EDİT` when the UI culture is Turkish.
+
+To keep ASCII casing, set `ConverterCulture` to `CultureInfo.InvariantCulture`:
+
+```xaml
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:glob="clr-namespace:System.Globalization;assembly=System.Runtime"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <ContentPage.Resources>
+        <toolkit:TextCaseConverter x:Key="TextCaseConverter" Type="Upper" />
+    </ContentPage.Resources>
+
+    <Label Text="{Binding MyValue,
+                          Converter={StaticResource TextCaseConverter},
+                          ConverterCulture={x:Static glob:CultureInfo.InvariantCulture}}" />
+
+</ContentPage>
+```
+
+The same in C#:
+
+```csharp
+label.SetBinding(
+    Label.TextProperty,
+    new Binding(nameof(ViewModel.MyValue), converter: new TextCaseConverter { Type = TextCaseType.Upper })
+    {
+        ConverterCulture = CultureInfo.InvariantCulture
+    });
+```
+
+When code calls the converter directly without a culture (`null`), the invariant culture is used.
 
 ## Syntax
 

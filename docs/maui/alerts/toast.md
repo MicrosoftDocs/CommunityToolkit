@@ -19,7 +19,7 @@ To access the `Toast` functionality, the following platform specific setup is re
 
 ## Syntax
 
-### C#
+### C #
 
 To display `Toast`, first create it using the static method `Toast.Make()`, then display it using its method `Show()`.
 
@@ -40,6 +40,7 @@ await toast.Show(cancellationTokenSource.Token);
 When calling `Toast.Make()`, its parameter `string text` is required. All other parameters are optional. Its optional parameter `ToastDuration duration` uses the default duration of `ToastDuration.Short`. Its optional parameter `double fontSize` uses the default value of `14.0`.
 
 The following screenshot shows the resulting Toast:
+
 ### [Android](#tab/toast-preview-android)
 
 ![Screenshot of an Toast on Android](../images/alerts/toast-android.gif "Toast on Android")
@@ -90,3 +91,4 @@ You can find the source code for `Toast` over on the [.NET MAUI Community Toolki
 1. The API allows override existing methods with your own implementation or creating your own Toast, by implementing `IToast` interface.
 2. Toast is implemented on Android, created by Google. Other platforms use a custom-implemented container (`UIView` for iOS and MacCatalyst, `ToastNotification` on Windows).
 3. Toast on Tizen can't be customized with its `Duration` and `TextSize` properties.
+4. `Toast` on Windows requires a **packaged (MSIX) app**. The underlying `AppNotificationManager` API is only available within a packaged app identity.

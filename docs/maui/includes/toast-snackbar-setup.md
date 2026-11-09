@@ -13,11 +13,14 @@ No setup is required.
 
 ### [Windows](#tab/windows)
 
-When using `Snackbar` it is essential to perform the following two steps:
+> [!IMPORTANT]
+> `Snackbar` and `Toast` on Windows require a **packaged (MSIX) app**. The underlying Windows App SDK `AppNotificationManager` API only works within a packaged app identity. If your app is not packaged, `Snackbar` and `Toast` are not supported on Windows.
 
-#### 1. Enable the snackbar usage with the MauiAppBuilder
+When using `Snackbar` or `Toast` on Windows, perform the following steps:
 
-When using the `UseMauiCommunityToolkit` make use of the `options` parameter to enable the snackbar usage on Windows as follows:
+#### 1. Enable snackbar/toast usage with the MauiAppBuilder
+
+When using `UseMauiCommunityToolkit`, enable snackbar and toast support on Windows as follows:
 
 ```csharp
 var builder = MauiApp.CreateBuilder()
@@ -27,7 +30,7 @@ var builder = MauiApp.CreateBuilder()
   })
 ```
 
-The above will automatically register the required handlers by configuring lifecycle events (`OnLaunched` and `OnClosed`).
+In a **packaged (MSIX)** app, this registers the required handlers by configuring lifecycle events (`OnLaunched` and `OnClosed`). In an **unpackaged** app, registration is silently skipped and a diagnostic message is emitted via `Trace.WriteLine`.
 
 #### 2. Include ToastNotification registrations in your Package.appxmanifest file
 

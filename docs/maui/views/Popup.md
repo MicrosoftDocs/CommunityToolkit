@@ -285,7 +285,7 @@ options.SetPopupDefaults(new DefaultPopupSettings
 ```
 
 > [!TIP]
-> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view does not set its own non-transparent `BackgroundColor`. A background-less view is therefore visible in dark mode.
+> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), leaving that view's `BackgroundColor` unset preserves the popup's theme-aware background. Explicitly setting `BackgroundColor`, even to `Colors.Transparent`, overrides that theme-aware default.
 
 ### Customizing a popup on each presentation (OnInitializing)
 

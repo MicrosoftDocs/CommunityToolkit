@@ -563,7 +563,7 @@ async void StartCameraRecording(object? sender, EventArgs e)
 ```
 
 > [!NOTE]
-> `StartVideoRecording` returns only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding.
+> The task returned by `StartVideoRecording` completes successfully only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding.
 
 ## Start preview
 

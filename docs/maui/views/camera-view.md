@@ -607,6 +607,9 @@ async void StartCameraRecording(object? sender, EventArgs e)
 }
 ```
 
+> [!NOTE]
+> The task returned by `StartVideoRecording` completes successfully only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding.
+
 ## Start preview
 
 The `CameraView` provides the ability to programmatically start the preview from the camera. This is possible through both the `StartCameraPreview` method or the `StartCameraPreviewCommand`.

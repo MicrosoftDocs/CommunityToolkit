@@ -2,7 +2,7 @@
 title: Popup - .NET MAUI Community Toolkit
 author: bijington
 description: The Popup view allows developers to build their own custom UI and present it to their users.
-ms.date: 11/05/2026
+ms.date: 11/11/2026
 ---
 
 # Popup
@@ -200,7 +200,7 @@ It is important to note that a `Popup` will be displayed inside `ContentPage` wh
 | Show popup  | Current `Page` will receive `OnNavigatingFrom`, `OnDisappearing` and `OnNavigatedFrom` |
 | Close popup  | Previous `Page` will receive `OnAppearing` and `OnNavigatedTo` |
 
-To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageAToolkitPopup()` extension method:
+To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageACommunityToolkitPopupPage()` extension method:
 
 ```cs
 protected override void OnNavigatedTo(NavigatedToEventArgs args)
@@ -215,9 +215,6 @@ protected override void OnNavigatedTo(NavigatedToEventArgs args)
 ```
 
 To determine whether `OnNavigatingFrom(NavigatingFromEventArgs)` or `OnNavigatedFrom(NavigatedFromEventArgs)` was called by opening a `Popup`, you can use the `IsDestinationPageACommunityToolkitPopupPage()` extension method:
-
-> [!WARNING]  
-> As per [https://github.com/dotnet/maui/issues/34073](https://github.com/dotnet/maui/issues/34073), OnNavigatingFrom is currently not working properly, but will be fixed in a near future
 
 ```csharp
 protected override void OnNavigatingFrom(NavigatingFromEventArgs args)
@@ -316,7 +313,7 @@ options.SetPopupDefaults(new DefaultPopupSettings
 ```
 
 > [!TIP]
-> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view sets neither a `BackgroundColor` nor a `Background` of its own. A background-less view is therefore visible in dark mode.
+> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view has neither a `BackgroundColor` nor a `Background`, including one that a `Style` sets. A background-less view is therefore visible in dark mode. Either one replaces the theme-aware background, even a `BackgroundColor` of `Colors.Transparent`. For example, the implicit `Label` style of the .NET MAUI app template sets `BackgroundColor` to `Transparent`, so a `Label` shown this way has no theme-aware background.
 
 ### Customizing a popup on each presentation (OnInitializing)
 

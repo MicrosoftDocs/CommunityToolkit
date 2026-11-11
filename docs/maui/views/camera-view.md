@@ -2,7 +2,7 @@
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
 description: "The CameraView provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos."
-ms.date: 11/08/2026
+ms.date: 11/11/2026
 ---
 
 # CameraView
@@ -608,7 +608,7 @@ async void StartCameraRecording(object? sender, EventArgs e)
 ```
 
 > [!NOTE]
-> The task returned by `StartVideoRecording` completes successfully only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding.
+> The task returned by `StartVideoRecording` completes successfully only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding. On Android, a `StartVideoRecording` without a camera returns without recording, and a recording without the camera permission records no video: `StopVideoRecording` then throws a `CameraException`.
 
 ## Start preview
 

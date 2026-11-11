@@ -2,7 +2,7 @@
 title: Popup - .NET MAUI Community Toolkit
 author: bijington
 description: The Popup view allows developers to build their own custom UI and present it to their users.
-ms.date: 11/05/2026
+ms.date: 11/11/2026
 ---
 
 # Popup
@@ -316,7 +316,7 @@ options.SetPopupDefaults(new DefaultPopupSettings
 ```
 
 > [!TIP]
-> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view sets neither a `BackgroundColor` nor a `Background` of its own. A background-less view is therefore visible in dark mode. Setting either one replaces the theme-aware background, even a `BackgroundColor` of `Colors.Transparent`.
+> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view has neither a `BackgroundColor` nor a `Background`, including one that a `Style` sets. A background-less view is therefore visible in dark mode. Either one replaces the theme-aware background, even a `BackgroundColor` of `Colors.Transparent`. For example, the implicit `Label` style of the .NET MAUI app template sets `BackgroundColor` to `Transparent`, so a `Label` shown this way has no theme-aware background.
 
 ### Customizing a popup on each presentation (OnInitializing)
 

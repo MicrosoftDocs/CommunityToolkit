@@ -2,14 +2,14 @@
 title: MaxLengthReachedBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: "The MaxLengthReachedBehavior is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an InputView."
-ms.date: 03/02/2022
+ms.date: 10/23/2026
 ---
 
 # MaxLengthReachedBehavior
 
 The `MaxLengthReachedBehavior` is a `Behavior` that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. It can either trigger a `Command` or an event depending on the user's preferred scenario. Both the `Command` and event will include the resulting text of the `InputView`.
 
-Additionally it is possible to dismiss the keyboard when the maximum length is reached via the `ShouldDismissKeyboardAutomatically` property which defaults to `false`.
+Additionally it is possible to dismiss the keyboard when the maximum length is reached via the `ShouldDismissKeyboardAutomatically` property which defaults to `false`. Dismissing the keyboard also removes the focus from the `InputView`. The keyboard is only dismissed while the `InputView` has the focus, so the keyboard of another view that the user types in stays open.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
@@ -104,7 +104,7 @@ class MaxLengthReachedBehaviorPage : ContentPage
 |Property  |Type  |Description  |
 |---------|---------|---------|
 | `Command` | [ICommand](xref:System.Windows.Input.ICommand) | The command that is executed when the user has reached the maximum length. The parameter of the command will contain the `Text` of the `InputView`. |
-| `ShouldDismissKeyboardAutomatically` | `bool` | Indicates whether or not the keyboard should be dismissed automatically when the maximum length is reached. |
+| `ShouldDismissKeyboardAutomatically` | `bool` | Indicates whether or not the keyboard should be dismissed automatically when the maximum length is reached. Dismissing the keyboard also removes the focus from the `InputView`, and only happens while the `InputView` has the focus. |
 
 ## Events
 

@@ -9,7 +9,7 @@ ms.date: 07/03/2025
 
 This page makes use of the following features to provide a comprehensive example:
 
-- [`Popup`](../popup.md)
+- [`Popup`](../Popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
 - [`Popup` - Returning a result](./popup-result.md)
@@ -272,7 +272,7 @@ You can find the source code for `Popup` over on the [.NET MAUI Community Toolki
 
 ## Additional Resources
 
-- [`Popup`](../popup.md)
+- [`Popup`](../Popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
 - [`Popup` - Returning a result](./popup-result.md)

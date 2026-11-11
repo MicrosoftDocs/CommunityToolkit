@@ -2,14 +2,14 @@
 title: Badge - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The Badge API allows developers to set the app icon badge number on the home screen.
-ms.date: 08/09/2023
+ms.date: 11/05/2026
 ---
 
 # Badge
 
 The `Badge` API allows developers to set the app icon badge number on the home screen.
 
-![Screenshot of an Badge on Windows](../images/essentials/badge-windows.gif "Badge on Windows")
+![Screenshot of a Badge on Windows](../images/essentials/badge-windows.gif "Badge on Windows")
 
 ---
 
@@ -21,6 +21,10 @@ Additional configuration required to support Android devices. See [Android secti
 # [iOS/MacCatalyst](#tab/ios)
 
 Authorize Badge permission for the app. It is automatically requested.
+
+# [Windows](#tab/windows)
+
+Windows shows a badge only for an app with package identity, which is a packaged app. An unpackaged app, which is the default of the .NET MAUI template (`<WindowsPackageType>None</WindowsPackageType>`), doesn't show a badge: `SetCount` writes a line to the trace output and does nothing else. To show a badge, package the app by setting `WindowsPackageType` to `MSIX` in the project file.
 
 # [Tizen](#tab/tizen)
 
@@ -92,6 +96,12 @@ public partial class MainPage : ContentPage
 }
 ```
 
+## Frequently asked questions
+
+### Why doesn't the badge show on Windows?
+
+Windows shows a badge only for an app with package identity. If your app is unpackaged, which is the default of the .NET MAUI template, `SetCount` writes the message _Unable to set the badge count: Windows shows badges only for apps with package identity, and this app is unpackaged_ to the trace output and does nothing else. It doesn't throw. Package the app by setting `WindowsPackageType` to `MSIX` in the project file.
+
 ## Examples
 
 You can find an example of the `Badge` API in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Essentials/BadgePage.xaml).
@@ -142,5 +152,8 @@ public MainApplication(IntPtr handle, JniHandleOwnership ownership)
 These changes are enough for your application to run on an Android based Samsung device and correctly update the app icons badge number. It also gives you a starting point and guide as to how you could start implementing support for other launchers within your application.
 
 Therefore, while our code aims to provide an ideal implementation, there may be instances where Android will not behave as expected.
+
+> [!NOTE]
+> `CommunityToolkit.Maui.Core` ships an Android library manifest that adds a `<queries>` entry for the `MAIN` action with the `HOME` category to the manifest of your app. From Android 11 (package visibility), the badge can find the launcher only when the app declares this query. You don't need to add it yourself.
 
 We strongly recommend thoroughly testing your app on a range of devices and launchers for the most accurate assessment of how app badge notifications behave in your specific use case.

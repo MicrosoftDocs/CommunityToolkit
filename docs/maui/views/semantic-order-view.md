@@ -1,13 +1,13 @@
 ---
 title: SemanticOrderView - .NET MAUI Community Toolkit
 author: bijington
-description: The SemanticOrderView provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application.
-ms.date: 02/28/2023
+description: The SemanticOrderView provides the ability to control the order of VisualElements for screen readers on Android, iOS and Mac Catalyst, and the keyboard Tab order on Windows, to improve the Accessibility of an application.
+ms.date: 11/07/2026
 ---
 
 # SemanticOrderView
 
-The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers and improve the Accessibility of an application. This can be particularly useful when building user interfaces in orders differing from the order in which users and screen readers will navigate them.
+The `SemanticOrderView` provides the ability to control the order of VisualElements for screen readers on Android, iOS and MacCatalyst, and the keyboard Tab order on Windows, to improve the Accessibility of an application. This can be particularly useful when building user interfaces in orders differing from the order in which users and screen readers will navigate them.
 
 ## Using the SemanticOrderView
 
@@ -34,7 +34,7 @@ The following example shows how the `SemanticOrderView` can change the order in 
 </ContentPage>
 ```
 
-To over come that, in the code behind file we can change the order that will be used by the device's screen reader as follows:
+To overcome that, in the code behind file we can change the order that will be used by the device's screen reader as follows:
 
 ```csharp
 using System.Collections.Generic;
@@ -53,6 +53,32 @@ public partial class SemanticOrderViewPage : ContentPage
 ```
 
 With this, we tell the `SemanticOrderView` that the "proper" order for these controls, when accessed through screen reader software, is to first focus the `TitleLabel` and then `DescriptionLabel`.
+
+## Platform behavior
+
+The views that aren't in `ViewOrder` stay accessible on every platform.
+
+|Platform  |Behavior  |
+|---------|---------|
+| iOS and Mac Catalyst | The views of `ViewOrder` are the first accessibility elements of the `SemanticOrderView`, in that order. Assistive technologies visit the other views after them, in the order of the view hierarchy. |
+| Android | On Android 5.1 (API 22) or later, the order of `ViewOrder` determines how TalkBack traverses the views. On earlier versions the order isn't applied, and a message is written to the trace output. |
+| Windows | `ViewOrder` sets the keyboard Tab order of the views. It doesn't change the order in which Narrator reads them, which follows the visual tree. Only views that can take the keyboard focus, such as a `Button` or an `Entry`, are Tab stops, so ordering `Label` views, as in the example above, has no effect on Windows. |
+
+On Windows, the views of `ViewOrder` that the `SemanticOrderView` holds come first among the Tab stops of the `SemanticOrderView`, in the order of `ViewOrder`, followed by the rest of its content in the order of the visual tree. The Tab key reaches the controls above the `SemanticOrderView` before these views, and the controls below it after them. A view of `ViewOrder` that is inside a control within the `SemanticOrderView`, such as a `ScrollView`, or outside of the `SemanticOrderView`, gets a `TabIndex` instead. That `TabIndex` orders it among the Tab stops of the nearest control that holds it.
+
+A new `ViewOrder` applies from the next press of the Tab key. A few details of the Tab order on Windows:
+
+- A view that appears more than once in `ViewOrder` is a Tab stop once, at its first position. A `ViewOrder` that is `null`, for example through a binding to a property whose value is still `null`, orders nothing.
+- A view in a part of the `SemanticOrderView` that isn't visible isn't a Tab stop until that part is visible.
+- A view that another view of `ViewOrder` holds is reached inside that view, at that view's position in `ViewOrder` rather than at its own.
+- The `SemanticOrderView` sets a `TabIndex` only on the views of `ViewOrder` that are inside a control within it, such as a `ScrollView`, or outside of it, and that `TabIndex` replaces one that your app set. A `TabIndex` that your app sets on any other view isn't overwritten. It still applies, and orders that view among the Tab stops of the nearest control that holds it, as a `TabIndex` does without a `SemanticOrderView`.
+- Without a `ViewOrder`, the views keep the default Tab order of Windows.
+
+## Custom platform view
+
+If your app sets `ContentViewHandler.PlatformViewFactory`, that factory doesn't create the platform view of the `SemanticOrderView`, because only a `MauiSemanticOrderView` applies `ViewOrder`. Your factory still creates the platform views of your other content views and pages, including the ones inside the `SemanticOrderView`.
+
+To change the platform view of the `SemanticOrderView`, derive a handler from `SemanticOrderViewHandler`, override `CreatePlatformView` to return a `MauiSemanticOrderView` or a class derived from it, and register your handler for `SemanticOrderView` after you call `UseMauiCommunityToolkit`.
 
 ## Examples
 

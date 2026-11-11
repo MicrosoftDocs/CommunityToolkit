@@ -2,14 +2,14 @@
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
 description: "The CameraView provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos."
-ms.date: 03/17/2026
+ms.date: 11/11/2026
 ---
 
 # CameraView
 
 The `CameraView` provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos. The `CameraView` also offers features to support controlling the flash and torch, adjusting zoom, saving captured media to a file, and offering different hooks for events.
 
-The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraView/CameraViewViewModel.cs). that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml).
+The following sections will incrementally build on how to use the `CameraView` in a .NET MAUI application. They rely on the use of a [`CameraViewModel`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/ViewModels/Views/CameraView/CameraViewViewModel.cs) that will be set as the `BindingContext` of the example [`CameraViewPage`](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/CameraView/CameraViewPage.xaml).
 
 ## Platform specific initialization
 
@@ -163,10 +163,6 @@ More details can be found here: https://developer.apple.com/documentation/avfoun
 
 No setup is required.
 
-### [Tizen](#tab/tizen)
-
-Tizen is not currently supported.
-
 -----
 <!-- markdownlint-enable MD051 -->
 <!-- markdownlint-enable MD025 -->
@@ -188,6 +184,9 @@ In case you plan to record video, request Microphone permissions:
 ```csharp
 var microphonePermissionsRequest = await Permissions.RequestAsync<Permissions.Microphone>();
 ```
+
+> [!NOTE]
+> A `CameraView` connects to its camera and starts its preview when it is shown, which can be before your app has the camera permission, for example while your app is still asking for it. A start that fails because the app doesn't have the permission is reported through the [`ErrorOccurred`](#events) event, and the preview stays stopped. On Android, the preview then starts by itself when the app resumes with the permission granted. On the other platforms, call `StartCameraPreview` again once the app has the permission. See [Start preview](#start-preview) for details.
 
 ### Including the XAML namespace
 
@@ -215,6 +214,8 @@ The result will be a surface rendering the output of the default camera connecte
 
 The `SelectedCamera` property provides the ability to access the currently selected camera.
 
+Changing `SelectedCamera` while the preview runs restarts the preview with the new camera. If the new camera can't be started, for example because another app is using it, the failure is reported through the `ErrorOccurred` event, and selecting another camera starts the preview with that camera. On Android, selecting another camera while a video recording runs doesn't end the recording: the change is applied when the recording is stopped or replaced. `StopCameraPreview` cancels a camera switch that is still waiting for the platform, see [Cancel pending starts](#cancel-pending-starts).
+
 The following example shows how to bind the `SelectedCamera` property from the `CameraView` to a property on the `CameraViewModel` with the same name (`SelectedCamera`).
 
 ```xaml
@@ -240,6 +241,9 @@ The `SelectedCamera` property provides both a `MinimumZoomFactor` and a `Maximum
 
 > [!NOTE]
 > If a value is provided outside of the `MinimumZoomFactor` and `MaximumZoomFactor` the `CameraView` will clamp the value to keep it within the bounds.
+
+> [!NOTE]
+> On Android, `MinimumZoomFactor` and `MaximumZoomFactor` come from CameraX for each camera, in Debug and in Release (trimmed) apps. Earlier versions reported a range of 1 to 1 for every camera in Release apps ([#2389](https://github.com/CommunityToolkit/Maui/issues/2389)), which clamped every `ZoomFactor` to 1.
 
 The following example shows how to add a `Slider` into the application and setup the following bindings:
 
@@ -443,6 +447,9 @@ The following example shows how to add a `Button` into the application and setup
 > [!NOTE]
 > In order to use the image that has been captured the `CameraView` provides the `MediaCaptured` event.
 
+> [!NOTE]
+> `CaptureImage` ends with the platform's answer to the capture. A failure that a command reports through the `MediaCaptureFailed` event while the capture waits, for example a video recording that `StartVideoRecordingCommand` can't start, doesn't end the capture.
+
 The following example demonstrates how to use the `CaptureImage` method:
 
 > [!NOTE]
@@ -457,10 +464,10 @@ async void HandleCaptureButtonTapped(object? sender, EventArgs e)
         var captureImageCTS = new CancellationTokenSource(TimeSpan.FromSeconds(3));
         Stream stream = await Camera.CaptureImage(captureImageCTS.Token);
     }
-    catch(Exception e)
+    catch(Exception ex)
     {
         // Handle Exception
-        Trace.WriteLine(e);
+        Trace.WriteLine(ex);
     }
 }
 ```
@@ -530,6 +537,20 @@ The following example shows how to add a `Button` into the application and setup
 > [!NOTE]
 > You must provide a clean stream in order to record the video.
 
+> [!NOTE]
+> `StartVideoRecording` throws a `CameraException` when the recording can't start, for example on iOS and Mac Catalyst when the camera permission isn't granted, or on Windows when the camera can't be opened. It throws an `OperationCanceledException` when its token is cancelled, or `StopCameraPreview` is called, before the recording started. See [Cancel pending starts](#cancel-pending-starts).
+
+A recording starts and ends as follows:
+
+- **A second start joins the first.** On Android, iOS, Mac Catalyst and Windows, a `StartVideoRecording` that you call while an earlier one still waits for the platform to start the recording waits for that recording and returns when it has started. The stream of the second call receives no video. When the first start fails, the second call throws the same exception.
+- **A start after a started recording replaces it.** The video goes to the stream of the latest `StartVideoRecording`, and the recording that ran before ends and its video is discarded. On Windows, the camera stays on between the two recordings, and the stream of the recording that ended goes back to the length and the position it had when that recording started, because Media Foundation writes into the stream while it records. On Android, an earlier version ignored the second start and kept the first recording. On Windows, an earlier version prepared a second recording without ending the first.
+- **The camera is released while a start waits.** On Android, iOS and Mac Catalyst, when the handler of the `CameraView` is disconnected, for example because the page closed, a `StartVideoRecording` that still waits throws a `TaskCanceledException`.
+- **The preview was stopped.** On Android, iOS, Mac Catalyst and Windows, a `StartVideoRecording` after your app called `StopCameraPreview`, or before it called `StartCameraPreview`, starts the camera itself, and then the recording. The camera is off again once the recording ends (`StopVideoRecording` returns or throws; on Android, iOS and Mac Catalyst a `StopVideoRecording` whose token was cancelled before the video was copied leaves it on until the next `StopVideoRecording`), unless your app started the preview: a preview that your app started keeps running, also when it calls `StartCameraPreview` while the recording runs. When the camera can't start, a preview that was stopped stays stopped. On iOS, Mac Catalyst and Windows, `StartVideoRecording` then throws the failure, for example a `CameraException` without a camera or when the camera can't be opened, and an `UnauthorizedAccessException` on Windows when the privacy settings block the camera. On Android, a `StartVideoRecording` without a camera returns without recording.
+- **Stopping returns the video.** `StopVideoRecording` returns the `Stream` that received the video. A further `StopVideoRecording` after the one that returned the video returns `Stream.Null`. On Android, iOS and Mac Catalyst it throws a `CameraException` when the platform reports a recording that has no playable video.
+- **A cancelled token doesn't keep the recording running.** The token of `StopVideoRecording` only cancels waiting for the video, not the stop. A token that is already cancelled, or that is cancelled while the stop waits for the video, still stops the recording that runs, and `StopVideoRecording` throws an `OperationCanceledException` instead of returning the video. Call `StopVideoRecording` again, with a token that isn't cancelled, to get the video. On Android, iOS and Mac Catalyst, a camera that the recording turned on stays on until then; on Windows it turns off with the cancelled stop. On Android, iOS and Mac Catalyst, a token that is cancelled while the video is being copied into your stream loses the video: the stream holds part of it, and the next `StopVideoRecording` returns `Stream.Null`. A cancelled token while nothing records returns `Stream.Null`, unless a cancelled stop left a video for the next `StopVideoRecording`: then it throws an `OperationCanceledException` again and keeps the video. A token that is cancelled while a start, or an earlier stop, still waits for the platform throws without stopping anything: a start that waits goes on and records. `StopVideoRecordingCommand` ends without an event in every one of these cases. Everything else is the same on Android, iOS, Mac Catalyst and Windows.
+- **Stopping the preview ends the recording.** `StopCameraPreview` while a recording runs ends the recording. On Android, iOS and Mac Catalyst, a later `StopVideoRecording` returns the video recorded until the stop, or throws a `CameraException` when nothing playable was recorded. On Windows, it returns `Stream.Null`.
+- **A failure to restore the camera after saving.** On Android, the camera switches to a video session for the recording and back to the photo session afterwards. When that switch back fails after the video was written, `StopVideoRecording` still returns the video, and the failure is reported through the `ErrorOccurred` event.
+
 The following example demonstrates how to use the `StartVideoRecording` method:
 
 > [!NOTE]
@@ -538,13 +559,25 @@ The following example demonstrates how to use the `StartVideoRecording` method:
 ```cs
 async void StartCameraRecordingWithCustomStream(object? sender, EventArgs e)
 {
-    using var threeSecondVideoRecordingStream = new FileStream("recording.mp4", FileMode.Create);
-    await Camera.StartVideoRecording(threeSecondVideoRecordingStream, CancellationToken.None);
+    try
+    {
+        using var threeSecondVideoRecordingStream = new FileStream("recording.mp4", FileMode.Create);
+        await Camera.StartVideoRecording(threeSecondVideoRecordingStream, CancellationToken.None);
 
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    
-    await Camera.StopVideoRecording(CancellationToken.None);
-    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+        await Task.Delay(TimeSpan.FromSeconds(3));
+
+        await Camera.StopVideoRecording(CancellationToken.None);
+        await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    }
+    catch(OperationCanceledException)
+    {
+        // StopCameraPreview was called before the recording started
+    }
+    catch(Exception ex)
+    {
+        // Handle Exception
+        Trace.WriteLine(ex);
+    }
 }
 ```
 
@@ -553,17 +586,29 @@ In case you want to record a short video and record video in `MemoryStream` you 
 ```cs
 async void StartCameraRecording(object? sender, EventArgs e)
 {
-    await Camera.StartVideoRecording(CancellationToken.None);
-    
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    
-    var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
-    await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    try
+    {
+        await Camera.StartVideoRecording(CancellationToken.None);
+
+        await Task.Delay(TimeSpan.FromSeconds(3));
+
+        var threeSecondVideoRecordingStream = await Camera.StopVideoRecording(CancellationToken.None);
+        await FileSaver.SaveAsync("recording.mp4", threeSecondVideoRecordingStream);
+    }
+    catch(OperationCanceledException)
+    {
+        // StopCameraPreview was called before the recording started
+    }
+    catch(Exception ex)
+    {
+        // Handle Exception
+        Trace.WriteLine(ex);
+    }
 }
 ```
 
 > [!NOTE]
-> The task returned by `StartVideoRecording` completes successfully only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding.
+> The task returned by `StartVideoRecording` completes successfully only after the platform confirms the recording has started, not when the start command is issued; `await` the returned task to be sure the recording is active before proceeding. On Android, a `StartVideoRecording` without a camera returns without recording, and a recording without the camera permission records no video: `StopVideoRecording` then throws a `CameraException`.
 
 ## Start preview
 
@@ -643,13 +688,34 @@ async void HandleStartCameraPreviewButtonTapped(object? sender, EventArgs e)
         // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
         await Camera.StartCameraPreview(startCameraPreviewTCS.Token);
     }
-    catch(Exception e)
+    catch(OperationCanceledException)
+    {
+        // The token was cancelled, or StopCameraPreview was called, before the preview started
+    }
+    catch(Exception ex)
     {
         // Handle Exception
-        Trace.WriteLine(e);
+        Trace.WriteLine(ex);
     }
 }
 ```
+
+On Android, a `StartCameraPreview` that you call while the `CameraView` is still connecting to its camera waits for the connection, then starts the preview.
+
+A preview that can't start doesn't throw an exception. `StartCameraPreview` and `StartCameraPreviewCommand` report it through the `ErrorOccurred` event on every platform. This includes a device without a camera, a camera permission that isn't granted, and a selected camera that can't be opened, for example because another app is using it. `StartCameraPreview` throws only an `OperationCanceledException` when the start is cancelled, an `InvalidOperationException` when the `CameraView` has no handler, for example before it is shown or after its handler was disconnected, and, on Android, the exception of a start that waited for a camera connection that failed and then failed as well (see below).
+
+```cs
+Camera.ErrorOccurred += (sender, e) => Trace.WriteLine(e.Exception);
+```
+
+Each failure raises `ErrorOccurred` once. On Android, when the camera connection that a `StartCameraPreview` waited for fails, `ErrorOccurred` reports that failure. If the `StartCameraPreview` then fails as well, for example because the camera permission isn't granted, it throws the exception to its caller instead of raising `ErrorOccurred` a second time. `StartCameraPreviewCommand` doesn't report that failure again.
+
+On Windows, a `StartCameraPreview` while the preview runs does nothing. A `StartCameraPreview` while an earlier start is still opening the camera releases the camera of that earlier start, which ends without reporting an error.
+
+What happens next depends on why the start failed:
+
+- **The selected camera can't be opened.** The preview stays stopped, but it follows `SelectedCamera`: selecting another camera starts the preview with that camera. This holds until `StopCameraPreview` is called.
+- **The camera permission isn't granted.** The preview stays stopped, and selecting another camera doesn't start it. Call `StartCameraPreview` again once the app has the permission. On Android, the preview also starts by itself when the app resumes with the permission granted, for example after the user allowed it in the permission dialog or in the app's settings. This lets a `CameraView` that connects while your app asks for the permission start its preview without another call. A failure of that automatic start is reported through `ErrorOccurred`. Only the last start counts: `StopCameraPreview`, or a later `StartCameraPreview`, cancels it.
 
 ## Stop preview
 
@@ -733,13 +799,39 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
         // Use the Camera field defined above in XAML (`<toolkit:CameraView x:Name="Camera" />`)
         Camera.StopCameraPreview();
     }
-    catch(Exception e)
+    catch(Exception ex)
     {
         // Handle Exception
-        Trace.WriteLine(e);
+        Trace.WriteLine(ex);
     }
 }
 ```
+
+### Cancel pending starts
+
+`StopCameraPreview` also cancels what is still waiting for the platform to start:
+
+- A `StartCameraPreview` or `StartVideoRecording` (both overloads) that hasn't completed.
+- The start that the `CameraView` makes when it connects to its camera.
+- A camera switch, which is a change of `SelectedCamera`.
+- On Android, the restart of the preview for a new `ImageCaptureResolution`, and the automatic start that waits for the camera permission.
+
+None of these is reported as a failure. The preview stays stopped until you call `StartCameraPreview` or `StartVideoRecording` again.
+
+A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` gets an `OperationCanceledException`, as when its own token is cancelled. This happens, for example, when your app calls `StopCameraPreview` in `OnDisappearing`, or from a stop button, while the camera is still starting. The commands don't report it as an error. On iOS and Mac Catalyst, `StartCameraPreview` with a token that is already cancelled also throws an `OperationCanceledException`, and doesn't start the preview. On Windows, a `StartCameraPreview` that its own token cancels after the camera has opened stops the preview that it had shown, and releases the camera.
+
+> [!IMPORTANT]
+> Catch the `OperationCanceledException` when you await these methods, in particular in an `async void` handler, where an exception that escapes ends the app. Call the start again if you still need the preview or the recording after a `StopCameraPreview` interrupted its start.
+
+## Custom platform view
+
+If your app sets `CameraViewHandler.PlatformViewFactory`, the `CameraView` shows the camera in the platform view that your factory returns:
+
+- **Android:** the `PreviewView` keeps what your app set on it, such as its `ScaleType`.
+- **iOS and Mac Catalyst:** the `CameraView` adds its preview to the `UIView`, behind the subviews of your app, and the preview follows the size of the `UIView`.
+- **Windows:** only a `MediaPlayerElement` can show the preview, and it keeps what your app set on it, such as its `Stretch`. With any other element, the camera works without a visible preview, and a warning is written to the trace output.
+
+The view stays your app's. When the handler disconnects, the `CameraView` releases the camera, and on iOS and Mac Catalyst it removes its preview from the `UIView`, but it doesn't dispose your view.
 
 ## Properties
 
@@ -757,30 +849,33 @@ void HandleStopCameraPreviewButtonTapped(object? sender, EventArgs e)
 
 | Command | Command Parameter | Description |
 |---------|---------|---------|
-| `CaptureImageCommand` | — | Triggers an image capture. The captured image is returned via the `MediaCaptured` event. |
-| `StartCameraPreviewCommand` | — | Starts the camera preview display. |
-| `StartVideoRecordingCommand` | `Stream` (optional) | Starts video recording. Optionally pass a `Stream` to record into. |
-| `StopCameraPreviewCommand` | — | Stops the camera preview display. |
-| `StopVideoRecordingCommand` | — | Stops video recording and returns the recorded stream. |
+| `CaptureImageCommand` | `CancellationToken` | Triggers an image capture. The captured image is returned via the `MediaCaptured` event. A capture that fails is reported through the `MediaCaptureFailed` event. |
+| `StartCameraPreviewCommand` | `CancellationToken` | Starts the camera preview display. A preview that can't start is reported through the `ErrorOccurred` event. |
+| `StartVideoRecordingCommand` | `Stream` | Starts video recording into the `Stream`. A recording that can't start is reported through the `MediaCaptureFailed` event. |
+| `StopCameraPreviewCommand` | — | Stops the camera preview display, and cancels a start that is still in progress. A failure is reported through the `ErrorOccurred` event. |
+| `StopVideoRecordingCommand` | `CancellationToken` | Stops video recording. The video is written to the `Stream` that was passed to `StartVideoRecordingCommand`. A failure is reported through the `MediaCaptureFailed` event. |
+
+The commands let no exception escape. `ICommand.Execute` can't return the task of the work that a command starts, so an exception would reach no caller and end the app. Each failure is reported once, through the event in the table above. A command whose token is cancelled ends without an event, and so does a start that `StopCameraPreview` cancels.
 
 ## Events
 
 | Event | Type | Description |
 |---------|---------|---------|
 | `MediaCaptured` | `EventHandler<MediaCapturedEventArgs>` | Raised when an image is successfully captured. The `MediaCapturedEventArgs` contains a `Media` property of type `Stream` with the captured image data. |
-| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
+| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails, and when `StartVideoRecordingCommand` or `StopVideoRecordingCommand` fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
+| `ErrorOccurred` | `EventHandler<ErrorOccurredEventArgs>` | Raised when the camera reports an error that no caller can catch, or a failure that `StartCameraPreview` reports instead of throwing. This covers connecting the camera when the `CameraView` is shown, switching to the camera in `SelectedCamera`, applying `ImageCaptureResolution`, a preview that can't start, the automatic start on Android once the camera permission is granted and, on Windows, updating `IsAvailable`. The `ErrorOccurredEventArgs` contains an `Exception` property with the exception. A start that `StopCameraPreview` cancels isn't an error and isn't reported. Each failure is reported once. On Android, it is also raised when the camera can't switch back to the photo session at the end of `StopVideoRecording`, whether or not the video could be saved. |
 
 ## Methods
 
 | Method | Return Type | Description |
 |---------|---------|---------|
-| `CaptureImage(CancellationToken)` | `Task` | Captures a single image from the camera. The result is delivered via the `MediaCaptured` event. |
+| `CaptureImage(CancellationToken)` | `Task<Stream>` | Captures a single image from the camera and returns it. The image is also delivered via the `MediaCaptured` event. Throws a `CameraException` when the capture fails, for example when the preview hasn't started, and raises the `MediaCaptureFailed` event with the same reason. |
 | `GetAvailableCameras(CancellationToken)` | `ValueTask<IReadOnlyList<CameraInfo>>` | Retrieves a list of available camera devices on the device. |
-| `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. |
-| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. |
-| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. |
-| `StopCameraPreview()` | `void` | Stops displaying the camera preview. |
-| `StopVideoRecording(CancellationToken)` | `Task<Stream>` | Stops video recording and returns the recorded `Stream`. |
+| `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. A preview that can't start is reported through the `ErrorOccurred` event. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the preview started. |
+| `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. When it has to turn the camera on and can't, it throws the platform's failure instead, such as an `UnauthorizedAccessException` on Windows when the privacy settings block the camera; on Android, a start without a camera returns without recording. See [Video Recording](#video-recording). |
+| `StartVideoRecording(Stream, CancellationToken)` | `Task` | Starts recording video to the provided `Stream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. When it has to turn the camera on and can't, it throws the platform's failure instead, such as an `UnauthorizedAccessException` on Windows when the privacy settings block the camera; on Android, a start without a camera returns without recording. See [Video Recording](#video-recording). |
+| `StopCameraPreview()` | `void` | Stops displaying the camera preview, and cancels a start of the preview or of a recording that is still in progress. |
+| `StopVideoRecording(CancellationToken)` | `Task<Stream>` | Stops video recording and returns the `Stream` that received the video, or `Stream.Null` when no recording runs. A cancelled token stops the recording that runs, then throws an `OperationCanceledException`; the next `StopVideoRecording` returns the video. Two exceptions: a token cancelled while a start, or an earlier stop, still waits stops nothing; and on Android, iOS and Mac Catalyst, a token cancelled while the video is copied into your stream leaves only part of it there, and the next `StopVideoRecording` returns `Stream.Null`. On Android, iOS and Mac Catalyst, throws a `CameraException` when the recording failed without a usable video. A recording that the platform ended early returns the video recorded until then. See [Video Recording](#video-recording). |
 
 ## CameraInfo
 

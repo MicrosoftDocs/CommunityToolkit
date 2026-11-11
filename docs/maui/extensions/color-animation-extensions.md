@@ -2,7 +2,7 @@
 title: ColorAnimationExtensions - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorAnimationExtensions provide a series of extension methods that support animating the Color related properties of a VisualElement."
-ms.date: 04/22/2022
+ms.date: 11/05/2026
 ---
 
 # ColorAnimationExtensions
@@ -37,9 +37,10 @@ await label.BackgroundColorTo(Colors.Red);
 The full argument list for the `BackgroundColorTo` method is:
 
 - `color`, of type `Color`, is the target color to animate the `VisualElement`'s `BackgroundColor` to.
-- `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16.
+- `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16. It must be greater than 0: a `rate` of 0 throws an `ArgumentOutOfRangeException` from the call.
 - `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
 - `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.
+- `token`, of type `CancellationToken`, ends the wait for the animation. With a token that is already cancelled, the call throws an `OperationCanceledException` and starts no animation. When the token is cancelled during the animation, the returned task throws an `OperationCanceledException`, and the animation runs to its end. This is an optional argument, whose default value is `default`.
 
 ## TextColorTo
 
@@ -58,10 +59,11 @@ await label.TextColorTo(Colors.Red);
 
 The full argument list for the `TextColorTo` method is:
 
-- `color`, of type `Color`, is the target color to animate the `VisualElement`'s `BackgroundColor` to.
-- `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16.
+- `color`, of type `Color`, is the target color to animate the element's `TextColor` to.
+- `rate`, of type `uint`, is the time, in milliseconds, between the frames of the animation. This is an optional argument, whose default value is 16. It must be greater than 0: a `rate` of 0 throws an `ArgumentOutOfRangeException` from the call.
 - `length`, of type `uint`, is the duration, in milliseconds, of the animation. This is an optional argument, whose default value is 250.
 - `easing`, of type `Easing`, is the easing function to be used in the animation. This is an optional argument, whose default value is `null`.
+- `token`, of type `CancellationToken`, ends the wait for the animation. With a token that is already cancelled, the call throws an `OperationCanceledException` and starts no animation. When the token is cancelled during the animation, the returned task throws an `OperationCanceledException`, and the animation runs to its end. This is an optional argument, whose default value is `default`.
 
 > [!NOTE]
 > The `TextColorTo` method is generated at compilation time through the use of Source Generators. This is due to the fact that `ITextStyle.TextColor` is readonly.

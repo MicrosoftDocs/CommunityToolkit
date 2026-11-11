@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 02/15/2024
+ms.date: 11/05/2026
 ---
 
 # MediaElement
@@ -20,7 +20,7 @@ ms.date: 02/15/2024
 ![Screenshot of a MediaElement playing a video, on Android and iOS.](../../images/mediaelement/intro.png#lightbox)
 
 > [!NOTE]
-> `MediaElement` is available on iOS, Android, Windows, macOS, and Tizen.
+> `MediaElement` is available on iOS, Android 8.0 (API 26) or higher, Windows, and macOS.
 
 The `MediaElement` uses the following platform implementations.
 
@@ -112,24 +112,18 @@ Edit the `Info.plist` for `iOS` and add the following keys.
 
 No setup is required.
 
-
-### [Tizen](#tab/tizen)
-
-No setup is required.
-
 -----
 <!-- markdownlint-enable MD025 -->
 
 ## Supported Formats
 
-The supported multimedia formats can be different per platform. In some cases it can even be dependant on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
+The supported multimedia formats can be different per platform. In some cases it can even be dependent on what decoders are available or installed on the operating system that is used while running your app. For more detailed information on which formats are supported on each platform, please refer to the links below.
 
 |Platform| Link | Notes |
 |--------|------|-------|
 | Android | [ExoPlayer Supported Formats](https://developer.android.com/guide/topics/media/exoplayer/supported-formats) | |
 | iOS/macOS | [iOS/macOS Supported Formats](https://stackoverflow.com/a/45898816/1506387) | No official documentation on this exists |
 | Windows | [Windows Supported Formats](/windows/uwp/audio-video-camera/supported-codecs) | On Windows the supported formats are very much dependent on what codecs are installed on the user's machine |
-| Tizen | [Tizen Supported Formats](https://docs.tizen.org/application/native/tutorials/feature/app-multimedia-video) | |
 
 > [!IMPORTANT]
 > If the user is using a Windows N edition, no video playback is supported by default. Windows N editions have no video playback formats installed by design.
@@ -326,6 +320,21 @@ The `MediaElementState` enumeration defines the following members:
 
 It's generally not necessary to examine the `CurrentState` property when using the `MediaElement` transport controls. However, this property becomes important when implementing your own transport controls.
 
+## Handle exceptions thrown while the source changes
+
+Changing the `Source` property raises events while the new source is applied: `StateChanged` (for example for `Opening`), `PropertyChanging` and `PropertyChanged` (for example of `CurrentState`, `Duration` and `Position`), `MediaFailed` for a source that can't be applied, and, on Android, `MediaOpened`. The code that sets `Source` is often .NET MAUI itself, from XAML or a binding, so it can't catch an exception that one of these handlers throws.
+
+For that reason, an exception that one of these handlers throws doesn't reach the code that set `Source`. The `MediaElement` logs it and applies the source anyway. Once the change has ended, it reports the first of these exceptions once through the `MediaFailed` event. The `ErrorMessage` of the `MediaFailedEventArgs` names the type and the message of the exception, and `CurrentState` isn't set to `Failed`, because the source itself didn't fail. An exception that a `MediaFailed` handler throws while it receives that report is only logged.
+
+```csharp
+mediaElement.MediaFailed += (sender, e) => Trace.WriteLine(e.ErrorMessage);
+```
+
+> [!IMPORTANT]
+> An exception thrown by one of these handlers no longer reaches the code that sets `Source`. If your code caught it around the assignment of `Source`, handle the `MediaFailed` event instead.
+
+This doesn't apply to the events that the player raises after the change has ended, for example `MediaOpened` on iOS, Mac Catalyst and Windows.
+
 ## Implement custom transport controls
 
 The transport controls of a media player include the buttons that perform the functions **Play**, **Pause**, and **Stop**. These buttons are generally identified with familiar icons rather than text, and the **Play** and **Pause** functions are generally combined into one button.
@@ -446,8 +455,8 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | ShouldKeepScreenOn | `bool` | Determines whether the device screen should stay on during media playback. This is a bindable property. | `false` |
 | ShouldMute | `bool` | Determines whether the audio is currently muted. This is a bindable property. | `false` |
 | ShouldShowPlaybackControls | `bool` | Determines whether the platforms playback controls are displayed. This is a bindable property. Note that on iOS and Windows the controls are only shown for a brief period after interacting with the screen. There is no way of keeping the controls visible at all times. | `true` |
-| Source | `MediaSource?` | The source of the media loaded into the control. | `null` |
-| Speed | `double` | Determines the playback speed of the media. This is a bindable property | `1` |
+| Source | `MediaSource?` | The source of the media loaded into the control. A source without data, for example a `UriMediaSource` without a `Uri` or a `StreamMediaSource` without a stream, empties the player and reports `MediaElementState.None`, like a `null` source. | `null` |
+| Speed | `double` | Determines the playback speed of the media. This is a bindable property. On Windows, a playback rate that the player reports after a newer `Speed` was set doesn't change `Speed` back. | `1` |
 | MediaHeight | `int` | The height of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | MediaWidth | `int` | The width of the loaded media in pixels. This is a read-only, bindable property. Not reported for non-visual media and might not always be populated on iOS/macOS for live streamed content. | `0` |
 | Volume | `double` | Determines the media's volume, which is represented on a linear scale between 0 and 1. This is a bindable property. | `1` |
@@ -458,7 +467,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 |---------|---------|
 | MediaOpened | Occurs when the media stream has been validated and opened. |
 | MediaEnded | Occurs when the `MediaElement` finishes playing its media. |
-| MediaFailed | Occurs when there's an error associated with the media source. |
+| MediaFailed | Occurs when there's an error associated with the media source. It is also raised once when an event handler threw an exception while `Source` changed. See [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes). |
 | PositionChanged | Occurs when the `Position` property value has changed. |
 | SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
 
@@ -466,10 +475,10 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 
 |Event  |Description  |
 |---------|---------|
-| Play | Starts playing the loaded media. |
+| Play | Starts playing the loaded media. On Android, iOS and Mac Catalyst, media that played to its end starts again from its start. |
 | Pause | Pauses playback of the current media. |
 | Stop | Stops playback and resets the position of the current media. |
-| SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. |
+| SeekTo | Takes a `TimeSpan` value to set the `Position` property to and takes a `CancellationToken` to cancel the `Task`. A position outside of the media is clamped to it: a position before the start seeks to the start, and a position beyond `Duration` seeks to the end. The seek then completes and raises `SeekCompleted` like any other. On iOS and Mac Catalyst, it throws an `InvalidOperationException` while the media isn't ready to play yet. On Windows, a `SeekTo` while no media is loaded, or while the loaded media can't seek, seeks nothing: its task completes, and `SeekCompleted` isn't raised. |
 
 ## Examples
 

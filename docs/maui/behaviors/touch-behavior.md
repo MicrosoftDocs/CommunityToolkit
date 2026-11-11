@@ -2,7 +2,7 @@
 title: TouchBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: The TouchBehavior is a Behavior that provides the ability to interact with any VisualElement based on touch, mouse click and hover events.
-ms.date: 03/25/2024
+ms.date: 11/05/2026
 ---
 
 # TouchBehavior
@@ -250,7 +250,7 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 | PressedScale | `double` | Gets or sets the scale of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
 | PressedTranslationX | `double` | Gets or sets the X translation of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
 | PressedTranslationY | `double` | Gets or sets the Y translation of the element when the `CurrentTouchState` property is `TouchState.Pressed`. |
-| ShouldMakeChildrenInputTransparent | `bool` | Gets or sets a value indicating whether the children of the element should be made input transparent. |
+| ShouldMakeChildrenInputTransparent | `bool` | Gets or sets a value indicating whether the children of the element should be made input transparent. A change applies while the behavior is attached: `false` gives each child back the `InputTransparent` value it had. |
 
 ## Events
 

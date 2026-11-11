@@ -2,7 +2,7 @@
 title: .NET MAUI Community Toolkit documentation
 author: bijington
 description: The .NET MAUI Community Toolkit is a collection of reusable elements for application development with .NET MAUI, including animations, behaviors, converters, effects, and helpers.
-ms.date: 01/14/2022
+ms.date: 11/05/2026
 ---
 
 # .NET Multi-platform App UI (.NET MAUI) Community Toolkit documentation
@@ -21,11 +21,10 @@ Feel free to browse the documentation using the table of contents on the left si
 
 The .NET MAUI Community Toolkit supports the platforms officially supported by [Microsoft](/dotnet/maui/supported-platforms):
 
-* Android 5.0 (API 21) or higher.
+* Android 5.0 (API 21) or higher. [MediaElement](views/MediaElement.md) requires Android 8.0 (API 26) or higher.
 * iOS 15.0 or higher is required.
 * macOS 12.0 or higher, using Mac Catalyst (15.0).
 * Windows 11 and Windows 10 version 1809 or higher, using [Windows UI Library (WinUI) 3](/windows/apps/winui/winui3/).
-* Tizen 7.0 or higher.
 
 ## [Get started][get-started]
 

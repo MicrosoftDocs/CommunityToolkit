@@ -2,7 +2,7 @@
 title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
-ms.date: 11/05/2026
+ms.date: 11/10/2026
 ---
 
 # Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
@@ -77,61 +77,8 @@ To use the features of the toolkit please refer to the documentation pages for e
 
 ### [Maps](#tab/CommunityToolkitMauiMaps)
 
-This package enables you to display a map in your .NET MAUI Windows application.
-
 > [!WARNING]
-> `CommunityToolkit.Maui.Maps` is deprecated and will be removed in a future release. Use .NET MAUI's own `Map` from the `Microsoft.Maui.Controls.Maps` package, which supports Windows starting with .NET MAUI 10. On Windows, it uses the WinUI 3 `MapControl`, which is backed by Azure Maps.
->
-> To move to it, remove the `CommunityToolkit.Maui.Maps` package and make sure your project references the `Microsoft.Maui.Controls.Maps` package directly, because `CommunityToolkit.Maui.Maps` referenced it for you. Remove `using CommunityToolkit.Maui.Maps;` and the call to `UseMauiCommunityToolkitMaps`, and call `UseMauiMaps` on every platform. On Windows, set your Azure Maps subscription key with `builder.ConfigureEssentials(essentials => essentials.UseMapServiceToken("YOUR_AZURE_MAPS_SUBSCRIPTION_KEY"))`. Without a valid key, the map shows no map data. For more information, see [Map](/dotnet/maui/user-interface/controls/map).
->
-> On Windows, the .NET MAUI `Map` doesn't support:
->
-> - `IsShowingUser`
-> - Polygons, polylines and circles in `MapElements`
-> - Pin labels and info windows
-> - The `MapClicked` event
->
-> It supports `MoveToRegion`, the `Street`, `Satellite` and `Hybrid` map types, traffic, scrolling, zooming and pins.
->
-> This library implements `Map` on Windows with Bing Maps for Enterprise, which Microsoft is retiring: free (Basic) accounts were retired on June 30, 2025, and Enterprise accounts can use it until June 30, 2028. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
-
-**Package name:** `CommunityToolkit.Maui.Maps`
-
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Maps
-
-#### Initializing the package
-
-First the using statement needs to be added to the top of your *MauiProgram.cs* file
-
-```csharp
-using CommunityToolkit.Maui.Maps;
-```
-
-In order to use the `Map` correctly the `.UseMauiCommunityToolkitMaps` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. This method expects a valid Bing Maps API key which you can obtain through the [Bing Maps Portal](https://www.bingmapsportal.com/).
-
-The following example shows how to perform this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
-```
-
-When using the .NET MAUI Community Toolkit Map for Windows and the regular .NET MAUI Maps together, you will need to make sure that each initialization call is only made for the relevant platform. The following example shows how to do this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-#if ANDROID || IOS
-    .UseMauiMaps()
-#elif WINDOWS
-    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
-#endif
-```
-
-For more information on how to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
+> `CommunityToolkit.Maui.Maps` was deprecated in the toolkit's last .NET 10 release and is removed in the .NET 11 release. The package has no .NET 11 version. Use .NET MAUI's own `Map` from the `Microsoft.Maui.Controls.Maps` package instead. For the steps to move to it, see [Map](views/Map.md).
 
 ### [MediaElement](#tab/CommunityToolkitMauiMediaElement)
 

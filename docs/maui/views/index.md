@@ -2,7 +2,7 @@
 title: Views - .NET MAUI Community Toolkit
 author: jfversluis
 description: The .NET MAUI Community Toolkit extends .NET MAUI controls.
-ms.date: 06/13/2023
+ms.date: 11/10/2026
 ---
 
 # Views
@@ -24,7 +24,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable vie
 | [`DrawingView`](DrawingView.md) | The `DrawingView` provides a surface that allows for the drawing of lines through the use of touch or mouse interaction. The result of a users drawing can be saved out as an image. |
 | [`Expander`](Expander.md) | The `Expander` control provides an expandable container to host any content. |
 | [`LazyView`](LazyView.md) | The `LazyView` control allows you to delay the initialization of a View.|
-| [`Map (Windows)`](Map.md) | The `Map` control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit. |
+| [`Map (Removed)`](Map.md) | The Windows `Map` implementation was removed in the .NET 11 release. Use the `Map` control from .NET MAUI instead. |
 | [`MediaElement`](MediaElement.md) | The `MediaElement` is a view for playing multimedia such as audio and video. |
 | [`Popup`](Popup.md) | The `Popup` view allows developers to build their own custom UI and present it to their users. |
 | [`RatingView`](RatingView.md) | The `RatingView` is an ItemTemplate designed to provide developers with a flexible and customizable rating mechanism, similar to those used on popular review and feedback platforms. |

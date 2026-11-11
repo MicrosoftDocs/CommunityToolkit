@@ -2,7 +2,7 @@
 title: StatusBarBehavior - .NET MAUI Community Toolkit
 author: pictos
 description: "The StatusBarBehavior provides the ability to customize the color and style of a device's status bar."
-ms.date: 11/07/2026
+ms.date: 11/10/2026
 ---
 
 # StatusBarBehavior
@@ -92,16 +92,11 @@ class MyPage : ContentPage
 
 No changes needed.
 
-> [!IMPORTANT]
-> Requires Android 6.0 (API 23) or later; on Android 5.0-5.1 (API 21-22) it does nothing. An app that supports those versions still runs on them, but its status bar keeps the default color and style there.
->
-> In C#, an app whose minimum Android version is below 23 gets warning CA1416 for code that uses `StatusBarBehavior` or `StatusBar`, and a project that treats warnings as errors doesn't build. Raise the minimum Android version of the app to 23, or put that code inside `if (OperatingSystem.IsIOS() || OperatingSystem.IsAndroidVersionAtLeast(23))`. Don't check `OperatingSystem.IsAndroidVersionAtLeast(23)` alone in code that also runs on iOS: it's `false` on iOS, so the status bar wouldn't change there. XAML doesn't get the warning.
-
 To apply the status bar color and style of the activity to modal pages as well, see [Dialog Fragment Service](../platform-specific/DialogFragment-customization.md). That page also describes how the content of a modal page extends behind the status bar, and how to keep it clear of the status bar.
 
 # [iOS](#tab/ios)
 
-No changes needed. UIKit takes the style of the status bar from the view controllers of your app, and the toolkit makes them return the style that you set. This works as long as the _Platforms/iOS/Info.plist_ file doesn't turn view controller-based status bar appearance off.
+No changes needed. UIKit takes the style of the status bar from the view controllers of your app, and the view controllers of .NET MAUI return the style of the window. This works as long as the _Platforms/iOS/Info.plist_ file doesn't turn view controller-based status bar appearance off.
 
 If your _Platforms/iOS/Info.plist_ file contains the following entry, which earlier versions of this page told you to add, remove it:
 
@@ -111,9 +106,9 @@ If your _Platforms/iOS/Info.plist_ file contains the following entry, which earl
 ```
 
 > [!IMPORTANT]
-> In an app that is built with the iOS 27 SDK (Xcode 27) or later, UIKit ignores `UIApplication.SetStatusBarStyle`. With the key set to `false` the style of the status bar then doesn't change, and the toolkit writes the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false: remove the key from Info.plist_ to the trace output. An app that is built with an earlier SDK still applies the style while the key is `false`, but the key isn't needed there either.
+> In an app that is built with the iOS 27 SDK (Xcode 27) or later, UIKit ignores `UIApplication.SetStatusBarStyle`. With the key set to `false` the style of the status bar then doesn't change, and the toolkit writes the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false: remove the key from Info.plist_ to the trace output. An app that is built with an earlier SDK, such as a .NET 10 app, still applies the style while the key is `false`, but the key isn't needed there either.
 
-On .NET 10, the style belongs to the whole app: the status bar of every window shows it. The first `LightContent` or `DarkContent` that you set makes the view controllers that don't choose a style of their own return the one you set. `Default` gives every view controller its own style back. A view controller that overrides `preferredStatusBarStyle` keeps its own style, and so does `SFSafariViewController`.
+The style belongs to a window: `StatusBarBehavior` sets the `Window.StatusBarTheme` of its page's window (`LightContent` sets `StatusBarTheme.Dark`, `DarkContent` sets `StatusBarTheme.Light`, `Default` sets `StatusBarTheme.Default`), and the view controllers of .NET MAUI return the matching style. The other windows keep their theme, and a style that changes while the behavior isn't attached to a page changes no status bar. `StatusBar.SetStyle` sets the theme of every window that is open at the time of the call; a window that opens later keeps its own. `StatusBar.SetStyle` needs `UseMauiCommunityToolkit()` in _MauiProgram.cs_. A view controller that isn't one of .NET MAUI's, such as a system view controller that your app presents, keeps its own style. Before .NET 11, the style belonged to the whole app.
 
 -----
 
@@ -129,7 +124,7 @@ On .NET 10, the style belongs to the whole app: the status bar of every window s
 
 ### Why doesn't the status bar style change on iOS?
 
-Look for the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false_ in the trace output. If it's there, remove the `UIViewControllerBasedStatusBarAppearance` key from the _Platforms/iOS/Info.plist_ file, as described in [Configuration](#configuration). If it isn't, check whether a view controller that overrides `preferredStatusBarStyle` is on screen: it keeps its own style.
+Look for the message _Unable to apply the Status Bar Style because Info.plist sets UIViewControllerBasedStatusBarAppearance to false_ in the trace output. If it's there, remove the `UIViewControllerBasedStatusBarAppearance` key from the _Platforms/iOS/Info.plist_ file, as described in [Configuration](#configuration). If it isn't, check whether a view controller that isn't one of .NET MAUI's is on screen: it keeps its own style. The style also doesn't change when it was set on another window, or when it changed while the behavior wasn't attached to a page.
 
 ### Why is a pressed navigation bar button cut off at the status bar on iOS 26 and later?
 

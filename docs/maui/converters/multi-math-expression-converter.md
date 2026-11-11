@@ -2,7 +2,7 @@
 title: MultiMathExpressionConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The MultiMathExpressionConverter is a converter for multiple math expressions."
-ms.date: 05/16/2022
+ms.date: 11/10/2026
 ---
 
 # MultiMathExpressionConverter
@@ -21,6 +21,14 @@ The values that are passed in to the converter will be named `x?` where ? is the
     </MultiBinding>
 </Label.Text>
 ```
+
+## Culture
+
+The expression syntax doesn't depend on the culture. Numbers in the expression always use `.` as the decimal separator, and function and constant names are case-insensitive in every culture, so `IF` and `PI` also work in Turkish.
+
+String inputs are parsed with the culture passed to the converter, the `MultiBinding`'s `ConverterCulture`, which defaults to `CultureInfo.CurrentUICulture`. Under `tr-TR` or `de-DE`, the string `"3.5"` is read as `35`, because `.` is the group separator. A quoted string in the expression, and the `str()` and `len()` functions, use that culture too.
+
+Bind numbers as numbers, or set `ConverterCulture` to `CultureInfo.InvariantCulture` when the text is invariant.
 
 ## Syntax
 

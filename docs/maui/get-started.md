@@ -2,7 +2,7 @@
 title: Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
 author: bijington
 description: The toolkit is available as a set of NuGet packages that can be added to any existing or new .NET MAUI project.
-ms.date: 01/23/2023
+ms.date: 11/10/2026
 ---
 
 # Getting Started with the .NET Multi-platform App UI (.NET MAUI) Community Toolkit
@@ -77,49 +77,8 @@ To use the features of the toolkit please refer to the documentation pages for e
 
 ### [Maps](#tab/CommunityToolkitMauiMaps)
 
-This package enables you to display a map in your .NET MAUI Windows application.
-
-> [!IMPORTANT]
-> Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
-> For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.
-
-**Package name:** `CommunityToolkit.Maui.Maps`
-
-**Package url:** https://www.nuget.org/packages/CommunityToolkit.Maui.Maps
-
-#### Initializing the package
-
-First the using statement needs to be added to the top of your *MauiProgram.cs* file
-
-```csharp
-using CommunityToolkit.Maui.Maps;
-```
-
-In order to use the `Map` correctly the `.UseMauiCommunityToolkitMaps` method must be called on the `MauiAppBuilder` class when bootstrapping an application the *MauiProgram.cs* file. This method expects a valid Bing Maps API key which you can obtain through the [Bing Maps Portal](https://www.bingmapsportal.com/).
-
-The following example shows how to perform this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
-```
-
-When using the .NET MAUI Community Toolkit Map for Windows and the regular .NET MAUI Maps together, you will need to make sure that each initialization call is only made for the relevant platform. The following example shows how to do this.
-
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-    .UseMauiApp<App>()
-#if ANDROID || IOS
-    .UseMauiMaps()
-#elif WINDOWS
-    .UseMauiCommunityToolkitMaps("YOUR_API_KEY")
-#endif
-```
-
-For more information on how to initialize the map on iOS and Android, as well as how to work with the map control API, see the [.NET MAUI Maps documentation](/dotnet/maui/user-interface/controls/map).
+> [!WARNING]
+> `CommunityToolkit.Maui.Maps` was deprecated in the toolkit's last .NET 10 release and is removed in the .NET 11 release. The package has no .NET 11 version. Use .NET MAUI's own `Map` from the `Microsoft.Maui.Controls.Maps` package instead. For the steps to move to it, see [Map](views/Map.md).
 
 ### [MediaElement](#tab/CommunityToolkitMauiMediaElement)
 

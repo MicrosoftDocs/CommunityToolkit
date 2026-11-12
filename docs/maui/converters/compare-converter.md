@@ -2,7 +2,7 @@
 title: CompareConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The CompareConverter is a one way converter that takes an incoming value implementing IComparable, compares to a specified value, and returns the comparison result."
-ms.date: 05/17/2022
+ms.date: 11/10/2026
 ---
 
 # CompareConverter
@@ -15,6 +15,10 @@ The `CompareConverter` is a one way converter that takes an incoming value imple
 The `ConvertBack` method is not supported.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter compares `string` values with the collation of the binding's culture. It compares values of other types without regard to culture.
 
 ## Syntax
 

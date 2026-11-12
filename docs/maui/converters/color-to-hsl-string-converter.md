@@ -2,18 +2,22 @@
 title: ColorToHslStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToHslStringConverter is a one way converter that allows users to convert a Color value binding to its HSL string equivalent."
-ms.date: 04/15/2022
+ms.date: 11/10/2026
 ---
 
 # ColorToHslStringConverter
 
-The `ColorToHslStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSL `string` equivalent in the format: **HSL(hue,saturation,lightness)** where **hue** will be a value between 0 and 360, and **saturation** and **lightness** will be a value between 0% and 100% (e.g. **HSL(0,100%,50%)** for `Colors.Red`.
+The `ColorToHslStringConverter` is a one way converter that allows users to convert a `Color` value binding to its HSL `string` equivalent in the format: **HSL(hue,saturation,lightness)** where **hue** will be a value between 0 and 360, and **saturation** and **lightness** will be a value between 0% and 100% (e.g. **HSL(360,100%,50%)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its HSL `string` equivalent.
 
 The `ConvertBack` method is not supported.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter formats the percentages with the binding's culture. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`.
 
 ## Syntax
 

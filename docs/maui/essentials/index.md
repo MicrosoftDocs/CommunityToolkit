@@ -2,12 +2,12 @@
 title: Essentials - .NET MAUI Community Toolkit
 author: jfversluis
 description: The .NET MAUI Community Toolkit Essentials provides developers with cross-platform APIs for their applications.
-ms.date: 08/09/2023
+ms.date: 11/10/2026
 ---
 
 # Essentials
 
-Android, iOS, MacCatalyst, Windows, and Tizen offer unique operating system and platform APIs that developers have access to all in C# leveraging .NET. Essentials provides a single cross-platform API that works with any .NET MAUI application that can be accessed from shared code no matter how the user interface is created.
+Android, iOS, MacCatalyst, and Windows offer unique operating system and platform APIs that developers have access to all in C# leveraging .NET. Essentials provides a single cross-platform API that works with any .NET MAUI application that can be accessed from shared code no matter how the user interface is created.
 
 ## .NET MAUI Community Toolkit Essentials
 

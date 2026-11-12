@@ -2,7 +2,7 @@
 title: SpeechToText - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The SpeechToText provides the ability to convert speech to text.
-ms.date: 05/26/2023
+ms.date: 11/10/2026
 ---
 
 # SpeechToText
@@ -33,8 +33,6 @@ Add permissions to `Info.plist`
 <string>SpeechToText requires microphone usage</string> 
 ```
 
-For `OfflineSpeechToText`, iOS 13.0 or higher is required.
-
 # [Windows](#tab/windows)
 
 Add permissions to `Package.appxmanifest`
@@ -43,14 +41,6 @@ Add permissions to `Package.appxmanifest`
 <Capabilities>
     <DeviceCapability Name="microphone" />
 </Capabilities>
-```
-
-# [Tizen](#tab/tizen)
-
-Add permissions to `tizen-manifest.xml`:
-
-```xml
-<privilege>http://tizen.org/feature/microphone</privilege>
 ```
 
 ---

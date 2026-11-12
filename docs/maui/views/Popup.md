@@ -2,7 +2,7 @@
 title: Popup - .NET MAUI Community Toolkit
 author: bijington
 description: The Popup view allows developers to build their own custom UI and present it to their users.
-ms.date: 04/12/2022
+ms.date: 11/11/2026
 ---
 
 # Popup
@@ -96,6 +96,8 @@ The default values for `HorizontalOptions` and `VerticalOptions` will result in 
 
 A popup will present with a default `Padding` of 15. In order to make the `SimplePopup` look better a `Padding` of 10 has been added.
 
+A `WidthRequest` or `HeightRequest` that is larger than the space inside the window, minus the `Margin` and the stroke of the `Shape`, is limited to that space while the `Popup` is displayed. The `Popup` then keeps its `Margin` to the edges of the window, so the user can still tap outside of it. The values of `WidthRequest` and `HeightRequest` don't change.
+
 > [!TIP]
 > For more advanced scenarios, such as returning a result from a `Popup`, the code-behind file (_*.xaml.cs_) must inherit from `Popup` or `Popup<T>` (found in `CommunityToolkit.Maui.Views`). For a complete example demonstrating this, please refer to [Popup - Returning a result](./popup/popup-result.md).
 
@@ -131,7 +133,7 @@ There are 2 different ways that a `Popup` can be closed:
 
 ### 1. Programmatically closing a Popup
 
-There are 3 options to close a `Popup` programatically:
+There are 3 options to close a `Popup` programmatically:
 
 1. In a `ContentPage`, use the `this.ClosePopupAsync()` extension method
 2. In an app using `Shell`, use `Shell.Current.ClosePopupAsync()` extension method
@@ -176,7 +178,18 @@ public class MyPage : ContentPage
 
 ### 2. Tapping outside of the Popup
 
-By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property. Setting this property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it. See [PopupOptions](./popup/popup-options.md) for more details.
+By default a user can tap outside of the `Popup` to dismiss it. This can be controlled through the use of the `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` property, or the `CanBeDismissedByTappingOutsideOfPopup` property of the `Popup`. Setting either property to `false` will prevent a user from being able to dismiss the `Popup` by tapping outside of it: the `Popup` is dismissed only while both are `true`. See [PopupOptions](./popup/popup-options.md) for more details.
+
+### Navigation removes the Popup
+
+A `Popup` is displayed on a modal page, so navigation can remove it without a call to `CloseAsync`. For example, Shell navigates to another route, other code calls `PopModalAsync`, or the `Page` of the `Window` is replaced. After .NET MAUI has removed the `Popup`, the task that `ShowPopupAsync` returned completes with an `IPopupResult` whose `WasDismissedByTappingOutsideOfPopup` is `true`, like when the user dismisses the `Popup` by tapping outside of it, and `Closed` is raised once. Earlier versions left that task pending and never raised `Closed`.
+
+### Navigation that the app cancels
+
+> [!NOTE]
+> `ShowPopupAsync`, `CloseAsync` and `ClosePopupAsync` throw an `OperationCanceledException` when the app cancels the navigation that displays or removes the `Popup`, for example by calling `e.Cancel()` in a `Shell.Navigating` handler, or by setting `e.Cancel` to `true` in a `Window.ModalPopping` or `Application.ModalPopping` handler. The `Popup` is then not displayed, or stays open. Earlier versions left the call pending forever.
+>
+> A tap outside of the `Popup`, or the hardware back button on Android, that triggers a navigation the app cancels does not throw: the `Popup` stays open and a later tap or back press can close it.
 
 ## Lifecycle behavior
 
@@ -187,7 +200,7 @@ It is important to note that a `Popup` will be displayed inside `ContentPage` wh
 | Show popup  | Current `Page` will receive `OnNavigatingFrom`, `OnDisappearing` and `OnNavigatedFrom` |
 | Close popup  | Previous `Page` will receive `OnAppearing` and `OnNavigatedTo` |
 
-To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageAToolkitPopup()` extension method:
+To determine if `OnNavigatedTo(NavigatedToEventArgs)` was called by dismissing `Popup`, you can use the `WasPreviousPageACommunityToolkitPopupPage()` extension method:
 
 ```cs
 protected override void OnNavigatedTo(NavigatedToEventArgs args)
@@ -202,9 +215,6 @@ protected override void OnNavigatedTo(NavigatedToEventArgs args)
 ```
 
 To determine whether `OnNavigatingFrom(NavigatingFromEventArgs)` or `OnNavigatedFrom(NavigatedFromEventArgs)` was called by opening a `Popup`, you can use the `IsDestinationPageACommunityToolkitPopupPage()` extension method:
-
-> [!WARNING]  
-> As per [https://github.com/dotnet/maui/issues/34073](https://github.com/dotnet/maui/issues/34073), OnNavigatingFrom is currently not working properly, but will be fixed in a near future
 
 ```csharp
 protected override void OnNavigatingFrom(NavigatingFromEventArgs args)
@@ -226,6 +236,8 @@ protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
 }
 ```
 
+When you call the `ShowPopup` or `ShowPopupAsync` extension method on a page, for example `this.ShowPopupAsync(popup)`, from `OnDisappearing` of a modal page that is being removed, for example after `PopModalAsync`, the `Popup` is displayed once the modal page has been removed, on the page below it. The overloads that take an `INavigation` or a `Shell`, and the methods of `IPopupService`, show the `Popup` at once, and .NET MAUI removes it again while it finishes removing the modal page.
+
 ## PopupOptions
 
 The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [PopupOptions](./popup/popup-options.md) for more details.
@@ -234,7 +246,7 @@ The `PageOverlayColor`, `Shape`, `Shadow` can all be customized for Popup. See [
 
 To override the default values for every `Popup` in your app, you can call `.SetPopupDefaults()` and `.SetPopupOptionsDefaults()` when initializing .NET MAUI Community Toolkit.
 
-The `DefaultPopupSettings` provided will be applied as the default value for every `Popup` in your app, and the `DefaultPopupOptionsSettings` will be applied as the default value for `PopupOptions` every time `.ShowPopup()` is called.
+The `DefaultPopupSettings` provided apply to every `Popup` in your app. The `DefaultPopupOptionsSettings` provided are the options of every `Popup` that is shown without `PopupOptions`, and the initial values of every `PopupOptions` that you create. A value that you set on a `Popup` or a `PopupOptions` takes precedence over them: see [Which value is used](#which-value-is-used).
 
 ```cs
 .UseMauiCommunityToolkit(static options =>
@@ -243,6 +255,7 @@ The `DefaultPopupSettings` provided will be applied as the default value for eve
     {
         CanBeDismissedByTappingOutsideOfPopup = true,
         BackgroundColor = Colors.Orange,
+        BackgroundColorDark = Colors.Black,
         HorizontalOptions = LayoutOptions.End,
         VerticalOptions = LayoutOptions.Start,
         Margin = 72,
@@ -260,14 +273,76 @@ The `DefaultPopupSettings` provided will be applied as the default value for eve
 })
 ```
 
+### Which value is used
+
+The settings above are defaults, and a value that you set on a `Popup` or a `PopupOptions` takes precedence over them. From the lowest to the highest precedence:
+
+1. **The defaults.** `DefaultPopupSettings` provides the default value of `Margin`, `Padding`, `HorizontalOptions`, `VerticalOptions` and `CanBeDismissedByTappingOutsideOfPopup` of every `Popup`. `DefaultPopupOptionsSettings` provides the options of a `Popup` that is shown with `null` options, and the initial values of every `PopupOptions` that you create.
+2. **A `Style`** of the `Popup`: explicit, implicit, `StyleClass` or `DynamicResource`. The defaults are default values, not local values, so a `Style` can set these properties.
+3. **A value that you set on the `Popup` or the `PopupOptions`**, in XAML or in code, or a binding.
+4. **[`OnInitializing`](#customizing-a-popup-on-each-presentation-oninitializing).** It isn't a default value. It runs each time a `Popup` is shown, after the `Popup` and its content are built. A value that it sets on the `Popup` replaces the value that was set before, for example in XAML, and takes precedence over a `Style`.
+
+A few cases don't follow that order:
+
+- **Margin, HorizontalOptions and VerticalOptions.** A `Popup` whose `Margin` is 0 on every side, or whose `HorizontalOptions` or `VerticalOptions` is `LayoutOptions.Fill`, is displayed with the value of `DefaultPopupSettings` instead. The properties of the `Popup` keep their value.
+- **Background.** `DefaultPopupSettings.BackgroundColor` and `DefaultPopupSettings.BackgroundColorDark` aren't default values of `BackgroundColor`: the `BackgroundColor` of a `Popup` is `null` until a value, a binding or a `Style` sets it. While a `Popup` has neither a `BackgroundColor` nor a `Background`, `DefaultPopupSettings.BackgroundColor` fills its background, or `DefaultPopupSettings.BackgroundColorDark` while the app uses the dark theme. When the `Popup` has a `Background`, that brush is drawn instead.
+- **A view that isn't a Popup.** When you show a view that isn't a `Popup`, the `Popup` that the toolkit creates for it binds its `Margin`, `HorizontalOptions`, `VerticalOptions`, `Background`, `BackgroundColor` and, when the view has a `Padding`, its `Padding` to those of the view, so a `Style` can't set them. A margin or padding of the view that is 0 on every side gives the `Popup` the `Margin` or `Padding` of `DefaultPopupSettings`.
+- **Dismissing the popup.** A tap outside of the `Popup`, or the hardware back button on Android, dismisses the `Popup` only while both `Popup.CanBeDismissedByTappingOutsideOfPopup` and `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` are `true`. While either is `false`, both do nothing.
+
+## Theming
+
+A `Popup`'s background color follows the app's `AppTheme` — it responds to `Application.UserAppTheme`. The default background is:
+
+| Theme | Default background | Set via |
+| ----- | ------------------ | ------- |
+| Light | `Colors.White` | `DefaultPopupSettings.BackgroundColor` |
+| Dark  | `Colors.Black`  | `DefaultPopupSettings.BackgroundColorDark` |
+
+Because the background is theme-aware, a `Popup` whose content uses `AppThemeBinding` (for example a `Label` bound to `Light=Black, Dark=White`) stays readable in **both** themes, instead of rendering white-on-white — and therefore invisible — in dark mode.
+
+### Overriding the theme-aware background
+
+Override either color through `SetPopupDefaults`:
+
+```cs
+options.SetPopupDefaults(new DefaultPopupSettings
+{
+    BackgroundColor = Colors.White,      // light theme
+    BackgroundColorDark = Colors.Black,  // dark theme
+});
+```
+
+> [!TIP]
+> When a popup is built from a plain `View` (for example `this.ShowPopupAsync(new ContentView())`), the popup keeps the theme-aware background as long as that view has neither a `BackgroundColor` nor a `Background`, including one that a `Style` sets. A background-less view is therefore visible in dark mode. Either one replaces the theme-aware background, even a `BackgroundColor` of `Colors.Transparent`. For example, the implicit `Label` style of the .NET MAUI app template sets `BackgroundColor` to `Transparent`, so a `Label` shown this way has no theme-aware background.
+
+### Customizing a popup on each presentation (OnInitializing)
+
+`DefaultPopupSettings.OnInitializing` is an optional `Action<Popup>` callback that runs **each time a `Popup` is presented** — that is, when the `PopupPage` hosting it is created. It runs after the popup and its content are fully built, but before the popup is parented on the page.
+
+Unlike a constructor-time hook (which runs before XAML or a derived constructor's content exists), `OnInitializing` runs at presentation time, so the popup's `Content` is already available. Use it to customize a popup per presentation, for example adjusting its `BackgroundColor`:
+
+```cs
+options.SetPopupDefaults(new DefaultPopupSettings
+{
+    OnInitializing = popup =>
+    {
+        // Runs once per presentation, with popup.Content already available.
+        popup.BackgroundColor = Colors.Orange;
+    },
+});
+```
+
+> [!CAUTION]
+> If the `OnInitializing` callback throws, the popup is **not** presented — the exception propagates before the popup is parented.
+
 ## Events
 
 The `Popup` class provides the following events that can be subscribed to.
 
 |Event | Description  |
 |---------|---------|
-| `Closed` | Occurs when the `Popup` is closed. |
-| `Opened` | Occurs when the `Popup` is opened. |
+| `Closed` | Occurs when the `Popup` is closed, also when navigation removes it without a call to `CloseAsync`. It is raised once. |
+| `Opened` | Occurs when the `Popup` is opened. It is raised once each time the `Popup` is shown, and not again when a page or another `Popup` that was displayed above it is closed. |
 
 ## Examples
 

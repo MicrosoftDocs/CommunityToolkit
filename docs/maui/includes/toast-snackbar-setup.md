@@ -192,9 +192,5 @@ Below is an example `Package.appxmanifest` file that has been updated to support
 
 For more information on handling activation: [Send a local toast notification from C# apps](/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp#step-3-handling-activation)
 
-### [Tizen](#tab/tizen)
-
-No setup is required.
-
 -----
 <!-- markdownlint-enable MD025 -->

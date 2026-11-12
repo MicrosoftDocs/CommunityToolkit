@@ -8,7 +8,7 @@ The following properties are implemented in the base class, `public abstract cla
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| `Flags` | `ValidationFlags` | Provides an enumerated value that specifies how to handle validation. |
+| `Flags` | `ValidationFlags` | Provides an enumerated value that specifies how to handle validation. Once the behavior has validated a value, a change of a validation rule, of `ValidStyle`, of `InvalidStyle` or of `Flags` validates the current `Value` again, whatever the flags, so that `IsValid` follows the current rules. `ForceMakeValidWhenFocused` still keeps a focused view valid. |
 | `ForceValidateCommand` | `ICommand` | Allows the user to provide a custom `ICommand` that handles forcing validation. |
 | `InvalidStyle` | `Style` | The `Style` to apply to the element when validation fails. |
 | `IsNotValid` | `bool` | Indicates whether or not the current value is considered not valid. |

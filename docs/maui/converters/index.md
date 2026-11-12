@@ -2,7 +2,7 @@
 title: Converters - .NET MAUI Community Toolkit
 author: bijington
 description: The .NET MAUI Community Toolkit provides a collection of pre-built, reusable converters to make developers lives easier.
-ms.date: 02/15/2024
+ms.date: 11/10/2026
 ---
 
 # .NET MAUI Converters
@@ -10,6 +10,18 @@ ms.date: 02/15/2024
 .NET Multi-platform App UI (.NET MAUI) data bindings usually transfer data from a source property to a target property, and in some cases from the target property to the source property. This transfer is straightforward when the source and target properties are of the same type, or when one type can be converted to the other type through an implicit conversion. When that is not the case, a type conversion must take place.
 
 For further information on Converters please refer to the [.NET MAUI documentation](/dotnet/maui/fundamentals/data-binding/converters).
+
+## Converter culture
+
+A binding passes a culture to its converter. The culture is the `ConverterCulture` of the binding, or `CultureInfo.CurrentUICulture` when `ConverterCulture` isn't set. In .NET MAUI 11, `Binding` and `MultiBinding` both have a `ConverterCulture` property.
+
+The following example passes the `de-DE` culture to a converter:
+
+```xaml
+<Label Text="{Binding Value, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x * 1.5', ConverterCulture=de-DE}" />
+```
+
+The page of a converter that uses the culture describes how it uses it.
 
 ## .NET MAUI Community Toolkit Converters
 

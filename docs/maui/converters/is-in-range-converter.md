@@ -2,7 +2,7 @@
 title: IsInRangeConverter - .NET MAUI Community Toolkit
 author: GeorgeLeithead
 description: "The IsInRangeConverter is a one-way converter that takes an incoming value implementing IComparable, and a minimum and maximum value, and returns the result of the value being between the minimum and maximum values."
-ms.date: 11/26/2022
+ms.date: 11/10/2026
 ---
 
 # IsInRangeConverter
@@ -15,6 +15,10 @@ The `IsInRangeConverter` is a one-way converter that takes an incoming value imp
 The `ConvertBack` method is not supported.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter compares `string` values with the collation of the binding's culture. It compares values of other types without regard to culture.
 
 ## Syntax
 

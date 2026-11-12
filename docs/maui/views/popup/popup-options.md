@@ -2,18 +2,20 @@
 title: PopupOptions - .NET MAUI Community Toolkit
 author: bijington
 description: The PopupOptions class provides the ability to customize the appearance and behavior of the Popup.
-ms.date: 05/19/2025
+ms.date: 10/23/2026
 ---
 
 # PopupOptions - Customizing the popup behavior and appearance
 
 The `PopupOptions` class provides the ability to customize the appearance and behavior of the `Popup`.
 
-All of the examples in this page make use of the `SimplePopup` example that is covered at [`Popup`](../popup.md).
+All of the examples in this page make use of the `SimplePopup` example that is covered at [`Popup`](../Popup.md).
+
+The options that you don't set start with the values of `DefaultPopupOptionsSettings`, which you can change with `SetPopupOptionsDefaults`. A `Popup` that is shown without `PopupOptions` uses these values too. See [Setting Popup Defaults](../Popup.md#setting-popup-defaults) for how they combine with the other settings of a `Popup`.
 
 ## Controlling whether the user can dismiss the Popup
 
-`PopupOptions` provides the `CanBeDismissedByTappingOutsideOfPopup` property which can control the whether the user can tap or click outside of the Popup bounds to dismiss the currently displayed Popup. This is `true` by default. The following example shows how to prevent a user from being able to dismiss the Popup.
+`PopupOptions` provides the `CanBeDismissedByTappingOutsideOfPopup` property which can control whether the user can tap or click outside of the Popup bounds to dismiss the currently displayed Popup. This is `true` by default. The following example shows how to prevent a user from being able to dismiss the Popup.
 
 ```csharp
 await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
@@ -21,6 +23,9 @@ await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
     CanBeDismissedByTappingOutsideOfPopup = false
 });
 ```
+
+> [!NOTE]
+> A tap outside of the `Popup`, or the hardware back button on Android, dismisses the `Popup` only while both `PopupOptions.CanBeDismissedByTappingOutsideOfPopup` and the `CanBeDismissedByTappingOutsideOfPopup` property of the `Popup` are `true`. While either is `false`, both do nothing.
 
 > [!NOTE]
 > It is possible to cache `PopupOptions` to reuse on future navigation actions or with other popups that share the same configuration, that would prevent unnecessary allocations.
@@ -38,7 +43,7 @@ await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 
 ![Popup page overlay](../../images/views/popup/popup-page-overlay-opaque.png "Popup rendering with an opaque orange background")
 
-The above `Popup` renders with an opaque background, to control the opacity modify the alpha property of a `Color`. The following example shows how to
+The above `Popup` renders with an opaque background, to control the opacity modify the alpha property of a `Color`. The following example shows how to set the `PageOverlayColor` to orange with an alpha of 0.5.
 
 ```csharp
 await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
@@ -103,7 +108,7 @@ For more details on how to customize the `Shadow` property see [.NET MAUI Shadow
 
 ### Disable the Popup Shadow
 
-In order to disable the border on a Popup, simply set the `Shape` property to `null`. The following example shows how to achieve this
+In order to disable the shadow on a Popup, simply set the `Shadow` property to `null`. The following example shows how to achieve this
 
 ```csharp
 await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
@@ -118,7 +123,7 @@ await this.ShowPopupAsync(new SimplePopup(), new PopupOptions
 
 |Property  |Type  |Description  |
 |---------|---------|---------|
-| `CanBeDismissedByTappingOutsideOfPopup` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the Popup. On Android - when false the hardware back button is disabled. |
+| `CanBeDismissedByTappingOutsideOfPopup` | `bool` | Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the Popup. On Android - when false the hardware back button is disabled. The popup is dismissed only while this property and the `CanBeDismissedByTappingOutsideOfPopup` property of the `Popup` are both `true`. |
 | `OnTappingOutsideOfPopup` | `Action` | Gets or sets the `Action` to be executed when the user taps outside the `Popup`. |
 | `PageOverlayColor` | `Color` | Gets or sets the `Color` of the overlay behind the `Popup`. |
 | `Shape` | `Shape` | Gets or sets the border shape for the `Popup`. Set this to `null` to remove any border styling. |
@@ -134,7 +139,7 @@ You can find the source code for `PopupOptions` over on the [.NET MAUI Community
 
 ## Additional Resources
 
-- [`Popup`](../popup.md)
+- [`Popup`](../Popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`Popup` - Returning a result](./popup-result.md)
 - [`Popup` - Combining Popup features to provide a comprehensive example](./popup-complex.md)

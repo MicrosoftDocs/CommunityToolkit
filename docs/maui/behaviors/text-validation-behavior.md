@@ -2,7 +2,7 @@
 title: TextValidationBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: "The TextValidationBehavior is a Behavior that allows the user to validate a given text depending on specified parameters."
-ms.date: 04/20/2022
+ms.date: 11/10/2026
 ---
 
 # TextValidationBehavior
@@ -133,6 +133,9 @@ The following screenshot shows the resulting TextValidationBehavior on Android:
 | `RegexPattern` | `string` | The regular expression pattern which the value will have to match before it will be allowed. |
 
 [!INCLUDE [common validation properties](../includes/validation-behavior.md)]
+
+> [!TIP]
+> `RegexOptions.IgnoreCase` follows the current culture. In Turkish, for example, `^[a-z]+$` doesn't match `TITLE`, because the capital `I` isn't the uppercase of `i`. For patterns that aren't linguistic, use `RegexOptions.IgnoreCase | RegexOptions.CultureInvariant`.
 
 ## Examples
 

@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 11/05/2026
+ms.date: 11/12/2026
 ---
 
 # MediaElement
@@ -208,6 +208,34 @@ var mediaElement = new MediaElement
 
 > [!IMPORTANT]
 > We do not recommend using TextureView unless you have a specific need for it. It has possible performance related issues if enabled and is recommended only for those that need transparencies and other advanced features.
+
+### Display video inside a `Border` on Android 10 and 11
+
+On Android 10 and 11 (API 29 and 30), the video of a `MediaElement` that uses the default `SurfaceView` isn't visible when the `MediaElement` is inside a .NET MAUI `Border`: the audio plays, but the area of the video shows the background of the page. The `Border` draws its content into a hardware layer, and on these Android versions a `SurfaceView` can't show its video through that layer. For more information, see [dotnet/maui#40186](https://github.com/dotnet/maui/issues/40186).
+
+To display the video, either:
+
+- Use `TextureView` for this `MediaElement`, as described in [Using TextureView](#using-textureview):
+
+    ```xaml
+    <Border>
+        <toolkit:MediaElement AndroidViewType="TextureView" Source="embed://video.mp4" />
+    </Border>
+    ```
+
+- Or remove the hardware layer from the `Border` on Android:
+
+    ```csharp
+    border.HandlerChanged += (sender, e) =>
+    {
+    #if ANDROID
+        if (border.Handler?.PlatformView is Android.Views.View platformView)
+        {
+            platformView.SetLayerType(Android.Views.LayerType.None, null);
+        }
+    #endif
+    };
+    ```
 
 ### Play local media
 

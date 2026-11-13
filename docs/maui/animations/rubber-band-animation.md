@@ -43,18 +43,23 @@ For use within XAML the `RubberBandAnimation` must be used in conjunction with t
 
 ### C#
 
-The `RubberBandAnimation` can be used as follows in C#:
+The `RubberBandAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new RubberBandAnimation();
+    async void OnAnimateClicked(object? sender, EventArgs e)
+    {
+        var animation = new RubberBandAnimation();
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 
@@ -68,8 +73,9 @@ public async Task Animate()
 - Changes only `ScaleX` and `ScaleY` (not `Scale`), relative to the view's own values, and returns them when it ends.
 - It has no properties other than `Length` and `Easing`.
 - A view runs one [attention seeker](index.md) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
+- Starting it stops a running `ScaleToAsync`, `ScaleXToAsync` or `ScaleYToAsync` of the view, including a running [`ScaleAnimation`](scale-animation.md).
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
-- Use an `Easing` that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. Spring and bounce easings squeeze the keyframes into part of `Length` and hold still for the rest; the view still ends at rest.
+- `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` and `BounceOut` overshoot: they play every keyframe early, then hold the view still until `Length` ends. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 
 ## Examples
 

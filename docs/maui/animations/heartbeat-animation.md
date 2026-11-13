@@ -43,21 +43,26 @@ For use within XAML the `HeartbeatAnimation` must be used in conjunction with th
 
 ### C#
 
-The `HeartbeatAnimation` can be used as follows in C#:
+The `HeartbeatAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new HeartbeatAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        MaximumScale = 1.5
-    };
+        var animation = new HeartbeatAnimation
+        {
+            MaximumScale = 1.5
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 
@@ -73,8 +78,9 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Changes only `Scale`, relative to the view's own scale, and returns it when it ends.
 - A view runs one [attention seeker](index.md) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
+- Starting it stops a running `ScaleToAsync`, `ScaleXToAsync` or `ScaleYToAsync` of the view, including a running [`ScaleAnimation`](scale-animation.md).
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
-- Use an `Easing` that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. Spring and bounce easings squeeze the keyframes into part of `Length` and hold still for the rest; the view still ends at rest.
+- `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` and `BounceOut` overshoot: they play every keyframe early, then hold the view still until `Length` ends. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 
 ## Examples
 

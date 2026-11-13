@@ -43,21 +43,26 @@ For use within XAML the `FlipHorizontalAnimation` must be used in conjunction wi
 
 ### C#
 
-The `FlipHorizontalAnimation` can be used as follows in C#:
+The `FlipHorizontalAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new FlipHorizontalAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        Rotation = 180
-    };
+        var animation = new FlipHorizontalAnimation
+        {
+            Rotation = 180
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 

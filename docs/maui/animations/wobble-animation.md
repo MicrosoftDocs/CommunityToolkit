@@ -43,29 +43,34 @@ For use within XAML the `WobbleAnimation` must be used in conjunction with the [
 
 ### C#
 
-The `WobbleAnimation` can be used as follows in C#:
+The `WobbleAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new WobbleAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        Distance = 40,
-        RotationAngle = 8
-    };
+        var animation = new WobbleAnimation
+        {
+            Distance = 40,
+            RotationAngle = 8
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
-| Distance | `double` | The distance of the first sway, in device-independent units. Later sways are 0.8, 0.6, 0.4 and 0.2 of it. | `25` |
-| RotationAngle | `double` | The angle, in degrees, of the first tilt. Later tilts are 0.6, 0.6, 0.4 and 0.2 of it. | `5` |
+| Distance | `double` | The distance of the first sway, in device-independent units. Later sways are 0.8, 0.6, 0.4 and 0.2 of it. A negative value sways to the right first. | `25` |
+| RotationAngle | `double` | The angle, in degrees, of the first tilt. Later tilts are 0.6, 0.6, 0.4 and 0.2 of it. A negative value tilts the other way first. | `5` |
 | Length | `uint` | The time, in milliseconds, over which to animate. | `1000` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the progress of the whole animation. See [Behavior](#behavior). | `Easing.Linear` |
 
@@ -75,8 +80,9 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Changes only `TranslationX` and `Rotation`, relative to the view's own values, and returns them when it ends.
 - A view runs one [attention seeker](index.md) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
+- Starting it stops a running `RotateToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md). A running `TranslateToAsync` keeps running, because that animation drives both axes in one handle.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
-- Use an `Easing` that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. Spring and bounce easings squeeze the keyframes into part of `Length` and hold still for the rest; the view still ends at rest.
+- `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` and `BounceOut` overshoot: they play every keyframe early, then hold the view still until `Length` ends. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 
 ## Examples
 

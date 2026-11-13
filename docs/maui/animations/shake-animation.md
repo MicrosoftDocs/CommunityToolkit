@@ -43,22 +43,27 @@ For use within XAML the `ShakeAnimation` must be used in conjunction with the [`
 
 ### C#
 
-The `ShakeAnimation` can be used as follows in C#:
+The `ShakeAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new ShakeAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        StartFactor = 20,
-        ReducingAmount = 4
-    };
+        var animation = new ShakeAnimation
+        {
+            StartFactor = 20,
+            ReducingAmount = 4
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 
@@ -73,8 +78,9 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 ## Behavior
 
-- Changes only `TranslationX`, around the view's own value, and returns it when it ends.
+- Changes only `TranslationX`, around the view's own value, and returns it when it ends. It plays over `Length`.
 - A view runs one [attention seeker](index.md) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
+- Starting it does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 - `Easing` shapes each movement on a linear timeline, so an overshooting easing only overshoots that one swing.
 - The shake has at most 100 swings; after the 100th the view moves straight back to rest.

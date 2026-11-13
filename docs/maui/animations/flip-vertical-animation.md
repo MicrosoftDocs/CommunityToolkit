@@ -43,21 +43,26 @@ For use within XAML the `FlipVerticalAnimation` must be used in conjunction with
 
 ### C#
 
-The `FlipVerticalAnimation` can be used as follows in C#:
+The `FlipVerticalAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new FlipVerticalAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        Rotation = 180
-    };
+        var animation = new FlipVerticalAnimation
+        {
+            Rotation = 180
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 

@@ -43,21 +43,26 @@ For use within XAML the `ScaleAnimation` must be used in conjunction with the [`
 
 ### C#
 
-The `ScaleAnimation` can be used as follows in C#:
+The `ScaleAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new ScaleAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        Scale = 1.5
-    };
+        var animation = new ScaleAnimation
+        {
+            Scale = 1.5
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 

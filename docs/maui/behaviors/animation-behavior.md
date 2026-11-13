@@ -13,6 +13,8 @@ The `AnimationType` property is required to be set, possible options for this ca
 
 > [!NOTE]
 > Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values.
+>
+> Executing `AnimateCommand` with a `CancellationToken` that you cancel mid-run returns the view to its original values and throws `OperationCanceledException`. Unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations), that exception is unhandled.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 

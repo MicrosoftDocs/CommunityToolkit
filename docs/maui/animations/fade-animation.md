@@ -43,21 +43,27 @@ For use within XAML the `FadeAnimation` must be used in conjunction with the [`A
 
 ### C#
 
-The `FadeAnimation` can be used as follows in C#:
+The `FadeAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
-    
-    var fadeAnimation = new FadeAnimation
+    public MainPage() => InitializeComponent();
+
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        Opacity = 0.5
-    };
+        var fadeAnimation = new FadeAnimation
+        {
+            Opacity = 0.5
+        };
     
-    await fadeAnimation.Animate(label);
+
+        await fadeAnimation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 

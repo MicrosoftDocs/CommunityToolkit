@@ -43,21 +43,26 @@ For use within XAML the `RotateAnimation` must be used in conjunction with the [
 
 ### C#
 
-The `RotateAnimation` can be used as follows in C#:
+The `RotateAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
-public async Task Animate()
+public partial class MainPage : ContentPage
 {
-    var label = new Label();
+    public MainPage() => InitializeComponent();
 
-    var animation = new RotateAnimation
+    async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        Rotation = 360
-    };
+        var animation = new RotateAnimation
+        {
+            Rotation = 360
+        };
 
-    await animation.Animate(label);
+        await animation.Animate(TitleLabel);
+    }
 }
 ```
+
+`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
 
 ## Properties
 
@@ -71,7 +76,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 ## Behavior
 
-- Returns the view to its original rotation when it ends.
+- Rotates to `Rotation` over `Length`, then sets the view straight back to its original rotation. Use `360` for a seamless full turn.
 - When triggered again while it runs, the new run continues from where the view is and ends at the original rotation. The run it interrupts stops where it is.
 - Cancelling the token mid-run returns the view to its original rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 

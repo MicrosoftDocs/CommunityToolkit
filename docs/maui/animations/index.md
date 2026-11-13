@@ -30,7 +30,19 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable ani
 | [`TadaAnimation`](../animations/tada-animation.md) | The `TadaAnimation` shrinks the view with a tilt, grows it while it wiggles and then settles it. |
 | [`WobbleAnimation`](../animations/wobble-animation.md) | The `WobbleAnimation` sways the view from side to side with a matching tilt, each sway smaller. |
 
-Bounce, Heartbeat, RubberBand, Shake, Swing, Tada and Wobble are attention seekers. They work relative to the view's current values, return every value they change when they end, and a view runs one attention seeker at a time.
+## Behavior shared by all animations
+
+- **Cancelling:** cancelling the token mid-run returns the view to its original values, then the awaited `Animate` throws `OperationCanceledException` and the `Task` ends canceled. A token that is already cancelled throws before the view changes.
+- **Any thread:** `Animate` can be called from any thread. The animations run on the view's dispatcher.
+
+### Attention seekers
+
+Bounce, Heartbeat, RubberBand, Shake, Swing, Tada and Wobble are attention seekers.
+
+- They work relative to the view's original values and return every value they change when they end.
+- A view runs one attention seeker at a time. Starting one ends the running one first.
+- Starting one stops a running `RotateToAsync`, `ScaleToAsync`, `ScaleXToAsync` or `ScaleYToAsync` of the properties it animates, including a running `RotateAnimation` or `ScaleAnimation`. It does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle.
+- `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` and `BounceOut` play every keyframe early, then hold the view still until `Length` ends. `SpringIn` holds the view still until late in the run. `ShakeAnimation` is the exception: its `Easing` shapes each movement.
 
 ## Creating custom animations
 

@@ -12,9 +12,9 @@ The `AnimationBehavior` is a `Behavior` that provides the ability to animate any
 The `AnimationType` property is required to be set, possible options for this can be found at [Animations](../animations/index.md).
 
 > [!NOTE]
-> Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values. Before it starts the animation, the behavior stops every running .NET MAUI animation of the view, such as `TranslateToAsync` or `FadeToAsync`, and any running attention seeker.
+> Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values. Before it starts the animation, even with a cancelled token, the behavior calls `CancelAnimations()` on the view, which stops its running `...ToAsync` animations such as `TranslateToAsync` and `FadeToAsync`, and it stops any running attention seeker. Animations under other names, such as `BackgroundColorTo`, keep running.
 >
-> With a toolkit animation, executing `AnimateCommand` with a `CancellationToken` that you cancel mid-run returns the view to its original values and throws `OperationCanceledException`. Unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations), that exception is unhandled. Previously a cancelled `FadeAnimation` ended without an exception.
+> Cancelling the token you pass to `AnimateCommand` stops a toolkit animation, which returns the view to its original values; the command ends without an exception. Previously the `OperationCanceledException` escaped the command and crashed the app unless you called [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 

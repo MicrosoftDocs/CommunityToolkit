@@ -1,13 +1,13 @@
 ---
 title: RotateAnimation - .NET MAUI Community Toolkit
 author: bijington
-description: The RotateAnimation rotates a VisualElement from its original rotation to a specified rotation and then returns it to the original.
+description: The RotateAnimation turns a VisualElement by a specified angle from its own rotation and then returns it to the original rotation.
 ms.date: 11/13/2026
 ---
 
 # RotateAnimation
 
-The `RotateAnimation` rotates a `VisualElement` around its z-axis to the specified rotation and then returns it to its original rotation.
+The `RotateAnimation` turns a `VisualElement` around its z-axis by the specified angle, measured from the view's own rotation, and then returns it to its original rotation. The default is one full 360 degree turn.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ For use within XAML the `RotateAnimation` must be used in conjunction with the [
         <Label.Behaviors>
             <toolkit:AnimationBehavior AnimateOnTap="True">
                 <toolkit:AnimationBehavior.AnimationType>
-                    <toolkit:RotateAnimation Rotation="360" />
+                    <toolkit:RotateAnimation />
                 </toolkit:AnimationBehavior.AnimationType>
             </toolkit:AnimationBehavior>
         </Label.Behaviors>
@@ -54,33 +54,32 @@ public partial class MainPage : ContentPage
 
     async void OnAnimateClicked(object? sender, EventArgs e)
     {
-        var animation = new RotateAnimation
-        {
-            Rotation = 360
-        };
+        var animation = new RotateAnimation();
 
         await animation.Animate(TitleLabel);
     }
 }
 ```
 
-The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
+`TitleLabel` and `OnAnimateClicked` come from the page's XAML: a `Label` with `x:Name="TitleLabel"` and a `Button` with `Clicked="OnAnimateClicked"`, inside a layout such as `VerticalStackLayout`. Animate a view that is on screen: a view without a handler throws `ArgumentException`.
 
 ## Properties
 
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
-| Rotation | `double` | The rotation, in degrees, to animate to. | `180` |
-| Length | `uint` | The time, in milliseconds, to rotate to `Rotation`; the view then snaps back. | `200` |
-| Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the rotation to `Rotation`. | `Easing.Linear` |
+| Rotation | `double` | The angle, in degrees, to turn the view by from its original rotation. A negative angle turns it counterclockwise. | `360` |
+| Length | `uint` | The time, in milliseconds, of the turn. The view then returns to its original rotation at once, which is invisible for a multiple of 360. | `400` |
+| Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the turn. | `Easing.Linear` |
 
 Values for `double` properties must be finite numbers: `NaN` and infinity are ignored.
 
 ## Behavior
 
-- Rotates to `Rotation` over `Length`, then sets the view straight back to its original rotation. For a view at rotation `0`, use `360` for a seamless full turn.
-- When triggered again while it runs, the new run continues from where the view is and ends at the original rotation. The run it interrupts stops where it is.
-- Cancelling the token mid-run returns the view to its original rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+- Turns the view by `Rotation` degrees from its own rotation over `Length`, then sets it straight back to its original rotation. The default 360 is a seamless full turn from any rotation.
+- When triggered again while it runs, the new run finishes the same turn, `Rotation` degrees from the rotation the view had before the first run, so repeated taps never leave it turned. The run it interrupts leaves the view to the new run.
+- Cancelling the token mid-run returns the view to its original rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
+- Stopped while nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original rotation at once and `Animate` completes.
+- With the system's animations off, also when they are switched off mid-run, the view ends at its original rotation.
 
 ## Examples
 

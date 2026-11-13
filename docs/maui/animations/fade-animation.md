@@ -64,7 +64,7 @@ public partial class MainPage : ContentPage
 }
 ```
 
-The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
+`TitleLabel` and `OnAnimateClicked` come from the page's XAML: a `Label` with `x:Name="TitleLabel"` and a `Button` with `Clicked="OnAnimateClicked"`, inside a layout such as `VerticalStackLayout`. Animate a view that is on screen: a view without a handler throws `ArgumentException`.
 
 ## Properties
 
@@ -77,11 +77,18 @@ The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on s
 > [!NOTE]
 > `Length` now covers the whole animation. Previously the animation took twice `Length`. For more information, see [the discussion on GitHub](https://github.com/CommunityToolkit/Maui/discussions/1231).
 
+> [!NOTE]
+> `Opacity` now binds `OneWay` by default. It was `TwoWay`.
+
+Values for `double` properties must be finite numbers: `NaN` and infinity are ignored.
+
 ## Behavior
 
 - Returns the view to its original opacity when it ends.
-- When triggered again while it runs, the new run continues from where the view is and ends at the original opacity. The run it interrupts stops where it is.
-- Cancelling the token mid-run returns the view to its original opacity, then the awaited `Animate` throws `OperationCanceledException`. Previously `Animate` returned without an exception and left the view partly faded. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+- When triggered again while it runs, the new run continues from where the view is and ends at the original opacity. The run it interrupts leaves the view to the new run.
+- Cancelling the token mid-run returns the view to its original opacity, then the awaited `Animate` throws `OperationCanceledException`. Previously `Animate` returned without an exception and left the view partly faded. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
+- Stopped while nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original opacity at once and `Animate` completes.
+- With the system's animations off, also when they are switched off mid-run, the view ends at its original opacity.
 
 ## Examples
 

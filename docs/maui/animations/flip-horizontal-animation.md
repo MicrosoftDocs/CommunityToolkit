@@ -64,13 +64,13 @@ public partial class MainPage : ContentPage
 }
 ```
 
-The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
+`TitleLabel` and `OnAnimateClicked` come from the page's XAML: a `Label` with `x:Name="TitleLabel"` and a `Button` with `Clicked="OnAnimateClicked"`, inside a layout such as `VerticalStackLayout`. Animate a view that is on screen: a view without a handler throws `ArgumentException`.
 
 ## Properties
 
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
-| Rotation | `double` | The rotation, in degrees, around its y-axis to animate to. | `90` |
+| Rotation | `double` | The angle, in degrees, about the y-axis to turn the view **to**, not by. | `90` |
 | Length | `uint` | The duration of the whole animation: half out, half back, in milliseconds. | `600` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to each part of the animation. | `Easing.Linear` |
 
@@ -79,8 +79,10 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 ## Behavior
 
 - Returns the view to its original y-axis rotation when it ends.
-- When triggered again while it runs, the new run continues from where the view is and ends at the original y-axis rotation. The run it interrupts stops where it is.
-- Cancelling the token mid-run returns the view to its original y-axis rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+- When triggered again while it runs, the new run continues from where the view is and ends at the original y-axis rotation. The run it interrupts leaves the view to the new run.
+- Cancelling the token mid-run returns the view to its original y-axis rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
+- Stopped while nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original y-axis rotation at once and `Animate` completes.
+- With the system's animations off, also when they are switched off mid-run, the view ends at its original y-axis rotation.
 
 ## Examples
 

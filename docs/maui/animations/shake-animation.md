@@ -65,7 +65,7 @@ public partial class MainPage : ContentPage
 }
 ```
 
-The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
+`TitleLabel` and `OnAnimateClicked` come from the page's XAML: a `Label` with `x:Name="TitleLabel"` and a `Button` with `Clicked="OnAnimateClicked"`, inside a layout such as `VerticalStackLayout`. Animate a view that is on screen: a view without a handler throws `ArgumentException`.
 
 ## Properties
 
@@ -82,8 +82,8 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Changes only `TranslationX`, around the view's own value, and returns it when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle.
-- Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+- Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle. `AnimationBehavior` does stop it; see [AnimationBehavior](../behaviors/animation-behavior.md).
+- Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - `Easing` shapes each movement on a linear timeline, so an overshooting easing overshoots within each movement and never across the whole shake.
 - The shake has at most 100 swings; after the 100th the view moves straight back to rest.
 

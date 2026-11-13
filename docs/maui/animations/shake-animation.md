@@ -46,6 +46,8 @@ For use within XAML the `ShakeAnimation` must be used in conjunction with the [`
 The `ShakeAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
+using CommunityToolkit.Maui.Animations;
+
 public partial class MainPage : ContentPage
 {
     public MainPage() => InitializeComponent();
@@ -63,13 +65,13 @@ public partial class MainPage : ContentPage
 }
 ```
 
-`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
+The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
 
 ## Properties
 
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
-| StartFactor | `double` | The biggest movement of the shake, in device-independent units. | `15` |
+| StartFactor | `double` | The biggest movement of the shake, in device-independent units. A value of `0` or less does not move the view. | `15` |
 | ReducingAmount | `double` | The amount each swing is smaller than the previous one. Must be greater than `0`, otherwise `Animate` throws an `ArgumentOutOfRangeException`. | `5` |
 | Length | `uint` | The time, in milliseconds, over which to animate. | `300` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to each movement of the shake. | `Easing.Linear` |
@@ -78,9 +80,9 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 ## Behavior
 
-- Changes only `TranslationX`, around the view's own value, and returns it when it ends. It plays over `Length`.
+- Changes only `TranslationX`, around the view's own value, and returns it when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Starting it does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle.
+- Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 - `Easing` shapes each movement on a linear timeline, so an overshooting easing overshoots within each movement and never across the whole shake.
 - The shake has at most 100 swings; after the 100th the view moves straight back to rest.

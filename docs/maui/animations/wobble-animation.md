@@ -46,6 +46,8 @@ For use within XAML the `WobbleAnimation` must be used in conjunction with the [
 The `WobbleAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
+using CommunityToolkit.Maui.Animations;
+
 public partial class MainPage : ContentPage
 {
     public MainPage() => InitializeComponent();
@@ -63,7 +65,7 @@ public partial class MainPage : ContentPage
 }
 ```
 
-`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
+The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
 
 ## Properties
 
@@ -80,7 +82,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Changes only `TranslationX` and `Rotation`, relative to the view's own values, and returns them when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Starting it stops a running `RotateToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md). A running `TranslateToAsync` keeps running, because that animation drives both axes in one handle.
+- Calling `Animate` stops a running `RotateToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md). Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` replays the end of the run as it bounces. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

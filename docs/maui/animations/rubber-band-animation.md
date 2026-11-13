@@ -46,6 +46,8 @@ For use within XAML the `RubberBandAnimation` must be used in conjunction with t
 The `RubberBandAnimation` can be used as follows in C#, here from a `Button.Clicked` handler:
 
 ```csharp
+using CommunityToolkit.Maui.Animations;
+
 public partial class MainPage : ContentPage
 {
     public MainPage() => InitializeComponent();
@@ -59,7 +61,7 @@ public partial class MainPage : ContentPage
 }
 ```
 
-`TitleLabel` is a `Label` declared in the page's XAML with `x:Name="TitleLabel"`, so it is on screen when the animation runs.
+The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on screen when the animation runs, and a `Button` whose `Clicked` event is `OnAnimateClicked`. The XAML sample above shows only the animation, so add those two elements to it.
 
 ## Properties
 

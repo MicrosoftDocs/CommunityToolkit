@@ -12,9 +12,9 @@ The `AnimationBehavior` is a `Behavior` that provides the ability to animate any
 The `AnimationType` property is required to be set, possible options for this can be found at [Animations](../animations/index.md).
 
 > [!NOTE]
-> Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values.
+> Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values. Before it starts the animation, the behavior stops every running .NET MAUI animation of the view, such as `TranslateToAsync` or `FadeToAsync`, and any running attention seeker.
 >
-> Executing `AnimateCommand` with a `CancellationToken` that you cancel mid-run returns the view to its original values and throws `OperationCanceledException`. Unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations), that exception is unhandled. Previously a cancelled `FadeAnimation` ended without an exception.
+> With a toolkit animation, executing `AnimateCommand` with a `CancellationToken` that you cancel mid-run returns the view to its original values and throws `OperationCanceledException`. Unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations), that exception is unhandled. Previously a cancelled `FadeAnimation` ended without an exception.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
@@ -154,7 +154,7 @@ public void OnThumbsUp()
 
 The `AnimationBehavior` provides the ability to trigger animations programmatically. The `AnimateCommand` can be executed to trigger the associated animation type.
 
-The following example shows how to add the `AnimationBehavior` to an `Entry`, bind the `AnimatedCommand` and then execute the command from a view model.
+The following example shows how to add the `AnimationBehavior` to an `Entry`, bind the `AnimateCommand` and then execute the command from a view model.
 
 #### View
 
@@ -255,5 +255,5 @@ You can find the source code for `AnimationBehavior` over on the [.NET MAUI Comm
 
 ## Useful links
 
-- [.NET MAUI Community Toolkit Behaviors](../animations/index.md)
+- [.NET MAUI Community Toolkit Animations](../animations/index.md)
 - [Creating custom animations](../animations/index.md#creating-custom-animations)

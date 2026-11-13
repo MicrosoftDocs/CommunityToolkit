@@ -2,7 +2,7 @@
 title: SpeechToText - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: The SpeechToText provides the ability to convert speech to text.
-ms.date: 11/10/2026
+ms.date: 11/13/2026
 ---
 
 # SpeechToText
@@ -42,6 +42,9 @@ Add permissions to `Package.appxmanifest`
     <DeviceCapability Name="microphone" />
 </Capabilities>
 ```
+
+> [!NOTE]
+> `OfflineSpeechToText` needs `<BuiltInComInteropSupport>true</BuiltInComInteropSupport>` in the project file of a trimmed app (partial or full trimming), and it isn't available with Native AOT. See [Trimming and Native AOT](../trimming-and-native-aot.md#windows-offline-speech-to-text).
 
 ---
 

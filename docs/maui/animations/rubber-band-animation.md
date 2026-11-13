@@ -73,7 +73,7 @@ public partial class MainPage : ContentPage
 - Changes only `ScaleX` and `ScaleY` (not `Scale`), relative to the view's own values, and returns them when it ends.
 - It has no properties other than `Length` and `Easing`.
 - A view runs one [attention seeker](index.md) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Starting it stops a running `ScaleToAsync`, `ScaleXToAsync` or `ScaleYToAsync` of the view, including a running [`ScaleAnimation`](scale-animation.md).
+- Starting it stops a running `ScaleXToAsync` or `ScaleYToAsync` of the view.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` and `BounceOut` overshoot: they play every keyframe early, then hold the view still until `Length` ends. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

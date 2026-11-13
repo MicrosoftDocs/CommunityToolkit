@@ -65,7 +65,7 @@ public partial class MainPage : ContentPage
 }
 ```
 
-`TitleLabel` and `OnAnimateClicked` come from the page's XAML: a `Label` with `x:Name="TitleLabel"` and a `Button` with `Clicked="OnAnimateClicked"`, inside a layout such as `VerticalStackLayout`. Animate a view that is on screen: a view without a handler throws `ArgumentException`.
+`TitleLabel` and `OnAnimateClicked` come from the page's XAML: a `Label` with `x:Name="TitleLabel"` and a `Button` with `Clicked="OnAnimateClicked"`, inside a layout such as `VerticalStackLayout`.
 
 ## Properties
 

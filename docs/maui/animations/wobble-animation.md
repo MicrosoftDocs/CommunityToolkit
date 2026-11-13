@@ -72,7 +72,7 @@ public partial class MainPage : ContentPage
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
 | Distance | `double` | The distance of the first sway, in device-independent units. Later sways are 0.8, 0.6, 0.4 and 0.2 of it. A negative value sways to the right first. | `25` |
-| RotationAngle | `double` | The angle, in degrees, of the first tilt. Later tilts are 0.6, 0.6, 0.4 and 0.2 of it. A positive value tilts counter-clockwise first, matching the sway to the left; a negative value tilts clockwise first. | `5` |
+| RotationAngle | `double` | The angle, in degrees, of the first tilt. Later tilts are 0.6, 0.6, 0.4 and 0.2 of it. A positive value tilts counterclockwise first, matching the sway to the left; a negative value tilts clockwise first. | `5` |
 | Length | `uint` | The time, in milliseconds, over which to animate. | `1000` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the progress of the whole animation. See [Behavior](#behavior). | `Easing.Linear` |
 

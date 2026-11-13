@@ -71,7 +71,7 @@ public partial class MainPage : ContentPage
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
 | Opacity | `double` | The opacity to fade to before returning to the view's original opacity. | `0.3` |
-| Length | `uint` | The duration of the whole animation, in milliseconds: half to fade out, half to fade back. | `300` |
+| Length | `uint` | The duration of the whole animation, in milliseconds: half to reach `Opacity`, half to return. | `300` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to each part of the animation. | `Easing.Linear` |
 
 > [!NOTE]
@@ -87,7 +87,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Returns the view to its original opacity when it ends.
 - When triggered again while it runs, the new run continues from where the view is and ends at the original opacity. The run it interrupts leaves the view to the new run.
 - Cancelling the token mid-run returns the view to its original opacity, then the awaited `Animate` throws `OperationCanceledException`. Previously `Animate` returned without an exception and left the view partly faded. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
-- Stopped while nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original opacity at once and `Animate` completes. Previously the view faded back over `Length`, or stayed partly faded when stopped on the way back.
+- When it is stopped and nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original opacity at once and `Animate` completes. Previously the view faded back over `Length`, or stayed partly faded when stopped on the way back.
 - With the system's animations off, also when they are switched off mid-run, the view ends at its original opacity.
 
 ## Examples

@@ -70,7 +70,7 @@ public partial class MainPage : ContentPage
 
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
-| RotationAngle | `double` | The angle, in degrees, of the first swing. The next swings are -2/3, +1/3 and -1/3 of it. A positive value swings clockwise first; a negative value swings counter-clockwise first. | `15` |
+| RotationAngle | `double` | The angle, in degrees, of the first swing. The next swings are -2/3, +1/3 and -1/3 of it. A positive value swings clockwise first; a negative value swings counterclockwise first. | `15` |
 | Length | `uint` | The time, in milliseconds, over which to animate. | `1000` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the progress of the whole animation. See [Behavior](#behavior). | `Easing.Linear` |
 

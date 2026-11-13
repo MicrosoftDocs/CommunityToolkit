@@ -81,7 +81,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Returns the view to its original x-axis rotation when it ends.
 - When triggered again while it runs, the new run continues from where the view is and ends at the original x-axis rotation. The run it interrupts leaves the view to the new run.
 - Cancelling the token mid-run returns the view to its original x-axis rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
-- Stopped while nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original x-axis rotation at once and `Animate` completes.
+- When it is stopped and nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original x-axis rotation at once and `Animate` completes.
 - With the system's animations off, also when they are switched off mid-run, the view ends at its original x-axis rotation.
 
 ## Examples

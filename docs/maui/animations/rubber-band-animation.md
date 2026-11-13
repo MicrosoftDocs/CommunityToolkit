@@ -74,7 +74,7 @@ The page's XAML must declare a `Label` with `x:Name="TitleLabel"`, so it is on s
 
 - Changes only `ScaleX` and `ScaleY` (not `Scale`), relative to the view's own values, and returns them when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Starting it stops a running `ScaleXToAsync` or `ScaleYToAsync` of the view.
+- Calling `Animate` stops a running `ScaleXToAsync` or `ScaleYToAsync` of the view.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` replays the end of the run as it bounces. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

@@ -83,7 +83,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Changes only `Scale` and `Rotation`, relative to the view's own values, and returns them when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Starting it stops a running `RotateToAsync` or `ScaleToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md) or [`ScaleAnimation`](scale-animation.md).
+- Calling `Animate` stops a running `RotateToAsync` or `ScaleToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md) or [`ScaleAnimation`](scale-animation.md).
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` replays the end of the run as it bounces. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

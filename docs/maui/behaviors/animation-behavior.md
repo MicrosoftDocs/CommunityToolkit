@@ -2,7 +2,7 @@
 title: AnimationBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: The AnimationBehavior is a Behavior that provides the ability to animation any VisualElement it is attached to.
-ms.date: 09/16/2022
+ms.date: 11/13/2026
 ---
 
 # AnimationBehavior
@@ -10,6 +10,9 @@ ms.date: 09/16/2022
 The `AnimationBehavior` is a `Behavior` that provides the ability to animate any `VisualElement` it is attached to. Setting `AnimateOnTap` to `true` adds a `TapGestureRecognizer` to the `VisualElement` and triggers the associated animation when that recognizer detects that the user has tapped or clicked on the `VisualElement`.
 
 The `AnimationType` property is required to be set, possible options for this can be found at [Animations](../animations/index.md).
+
+> [!NOTE]
+> Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
@@ -206,11 +209,11 @@ The `AnimationBehavior` provides the same underlying features as the [`EventToCo
 Using the following example animation implementation:
 
 ```csharp
-class SampleScaleToAnimation : BaseAnimation
+partial class SampleScaleToAnimation : BaseAnimation
 {
     public double Scale { get; set; }
 
-    public override Task Animate(VisualElement view) => view.ScaleTo(Scale, Length, Easing);
+    public override Task Animate(VisualElement view, CancellationToken token = default) => view.ScaleToAsync(Scale, Length, Easing, token);
 }
 ```
 

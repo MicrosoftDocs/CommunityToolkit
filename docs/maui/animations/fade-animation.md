@@ -56,7 +56,6 @@ public partial class MainPage : ContentPage
         {
             Opacity = 0.5
         };
-    
 
         await fadeAnimation.Animate(TitleLabel);
     }
@@ -74,7 +73,7 @@ public partial class MainPage : ContentPage
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to each part of the animation. | `Easing.Linear` |
 
 > [!NOTE]
-> `Length` is the duration of the whole animation: half of it to fade out and half to fade back. Previously the animation took twice `Length`. For more information, see [the discussion on GitHub](https://github.com/CommunityToolkit/Maui/discussions/1231).
+> `Length` now covers the whole animation. Previously the animation took twice `Length`. For more information, see [the discussion on GitHub](https://github.com/CommunityToolkit/Maui/discussions/1231).
 
 ## Behavior
 

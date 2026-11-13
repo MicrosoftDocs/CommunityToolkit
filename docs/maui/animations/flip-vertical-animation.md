@@ -76,9 +76,9 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 ## Behavior
 
-- Returns the view to its original rotation when it ends.
-- When triggered again while it runs, the new run continues from where the view is and ends at the original rotation. The run it interrupts stops where it is.
-- Cancelling the token mid-run returns the view to its original rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+- Returns the view to its original x-axis rotation when it ends.
+- When triggered again while it runs, the new run continues from where the view is and ends at the original x-axis rotation. The run it interrupts stops where it is.
+- Cancelling the token mid-run returns the view to its original x-axis rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
 
 ## Examples
 

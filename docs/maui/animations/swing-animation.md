@@ -68,7 +68,7 @@ public partial class MainPage : ContentPage
 
 | Property | Type | Description | Default value |
 |----------|------|-------------|---------------|
-| RotationAngle | `double` | The angle, in degrees, of the first swing. The next swings are -2/3, +1/3 and -1/3 of it. A negative value swings the other way first. | `15` |
+| RotationAngle | `double` | The angle, in degrees, of the first swing. The next swings are -2/3, +1/3 and -1/3 of it. A positive value swings clockwise first; a negative value swings counter-clockwise first. | `15` |
 | Length | `uint` | The time, in milliseconds, over which to animate. | `1000` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the progress of the whole animation. See [Behavior](#behavior). | `Easing.Linear` |
 
@@ -76,12 +76,11 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 ## Behavior
 
-- Changes `Rotation` and, while it runs, `AnchorY` (`0` during the swing, as before afterwards), relative to the view's own values; both return when it ends.
-- `AnchorY` moves to the top edge while it swings. A view whose original `Scale`, `Rotation`, `RotationX` or `RotationY` is not the identity (`1`, `0`) appears shifted while the anchor is at the top, and returns when the anchor is restored.
-- A view runs one [attention seeker](index.md) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
+- Changes `Rotation`, relative to the view's own rotation, and sets `AnchorY` to `0` (the top edge) while it runs. Both return to their original values when it ends. A view whose original `Scale`, `ScaleY`, `Rotation`, `RotationX` or `RotationY` is not the identity appears shifted while the anchor is at the top.
+- A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
 - Starting it stops a running `RotateToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md).
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior` that exception is unhandled unless you call [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
-- `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` and `BounceOut` overshoot: they play every keyframe early, then hold the view still until `Length` ends. `SpringIn` holds the view still until late in the run. The view still ends at rest.
+- `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` replays the end of the run as it bounces. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 
 ## Examples
 

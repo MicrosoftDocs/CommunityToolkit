@@ -15,6 +15,8 @@ The `AnimationType` property is required to be set, possible options for this ca
 > Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values. Before it starts the animation, even with a cancelled token, the behavior calls `CancelAnimations()` on the view, which stops its running `...ToAsync` animations such as `TranslateToAsync` and `FadeToAsync`, and it stops any running attention seeker. Animations under other names, such as `BackgroundColorTo`, keep running.
 >
 > Cancelling the token you pass to `AnimateCommand` stops a toolkit animation, which returns the view to its original values; the command ends without an exception. Previously, a token that was already cancelled, or a custom animation that throws `OperationCanceledException` when you cancel the token, crashed the app unless you called [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+>
+> You can execute `AnimateCommand` from any thread; it stops the running animations and starts the new one on the view's dispatcher.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 

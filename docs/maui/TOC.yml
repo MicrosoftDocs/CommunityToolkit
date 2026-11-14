@@ -17,8 +17,30 @@ items:
   items:   
     - name: Overview
       href: animations/index.md
+    - name: BounceAnimation
+      href: animations/bounce-animation.md
     - name: FadeAnimation
       href: animations/fade-animation.md
+    - name: FlipHorizontalAnimation
+      href: animations/flip-horizontal-animation.md
+    - name: FlipVerticalAnimation
+      href: animations/flip-vertical-animation.md
+    - name: HeartbeatAnimation
+      href: animations/heartbeat-animation.md
+    - name: RotateAnimation
+      href: animations/rotate-animation.md
+    - name: RubberBandAnimation
+      href: animations/rubber-band-animation.md
+    - name: ScaleAnimation
+      href: animations/scale-animation.md
+    - name: ShakeAnimation
+      href: animations/shake-animation.md
+    - name: SwingAnimation
+      href: animations/swing-animation.md
+    - name: TadaAnimation
+      href: animations/tada-animation.md
+    - name: WobbleAnimation
+      href: animations/wobble-animation.md
 - name: "Behaviors"
   items:
     - name: Overview

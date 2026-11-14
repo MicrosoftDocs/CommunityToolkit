@@ -75,7 +75,7 @@ var boolToColorBrushConverter = new BoolToObjectConverter
 ```
 
 ## SetShouldSuppressExceptionsInAnimations
-When set to `true`, if an `Animation` implementing `CommunityToolkit.Maui.Behaviors.AnimationBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Debug.WriteLine()`.
+When set to `true`, if an animation run by `AnimationBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Trace.TraceInformation()`. Cancelling the token you pass to `AnimateCommand` never throws, with or without this option.
 
 Default value is `false`.
 

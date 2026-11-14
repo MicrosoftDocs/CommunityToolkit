@@ -112,7 +112,7 @@ There are dozens of different APIs and overloads in the `Guard` class. The follo
 |---------------------------------------|-------------|-------------|
 | `IsNotEmpty<T>(T[], string)`          | void        | Asserts that the input array instance must not be empty |
 | `HasSizeEqualTo<T>(T[], int, string)` | void        | Asserts that the input array instance must have a size of a specified value |
-| `HasSizeAtLeast<T>(T[], int, string)` | void        | Asserts that the input array must have a size of at least or equal to a specified value |
+| `HasSizeGreaterThanOrEqualTo<T>(T[], int, string)` | void | Asserts that the input array must have a size of greater than or equal to a specified value |
 | `IsInRangeFor<T>(int, T[], string)`   | void        | Asserts that the input index is valid for a given array |
 | `HasSizeLessThanOrEqualTo<T>(T[], T[], string)` | void | Asserts that the source array must have a size of less than or equal to that of the destination array |
 

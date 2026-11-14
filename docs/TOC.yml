@@ -43,6 +43,8 @@
               href: high-performance/Ref.md
     - name: .NET Aspire Community Toolkit
       href: https://github.com/CommunityToolkit/Aspire
+    - name: AI Community Toolkit
+      href: https://github.com/CommunityToolkit/AI
     - name: Windows Community Toolkit
       items:
         - name: Introduction

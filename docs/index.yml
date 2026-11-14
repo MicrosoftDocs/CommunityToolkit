@@ -36,6 +36,13 @@ landingContent:
           - text: Aspire Community Toolkit GitHub repo
             url: https://github.com/CommunityToolkit/Aspire
 
+  - title: AI Community Toolkit
+    linkLists:
+      - linkListType: sample
+        links:
+          - text: AI Community Toolkit GitHub repo
+            url: https://github.com/CommunityToolkit/AI
+
   - title: Windows Community Toolkit
     linkLists:
       - linkListType: overview

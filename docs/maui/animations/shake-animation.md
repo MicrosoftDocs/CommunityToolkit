@@ -82,7 +82,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Changes only `TranslationX`, around the view's own value, and returns it when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
-- Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle. `AnimationBehavior` does stop it; see [AnimationBehavior](../behaviors/animation-behavior.md).
+- Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle. The translation still reaches its target, with the shake on top of it, and the view stays at the target when the animation ends. `AnimationBehavior` does stop it; see [AnimationBehavior](../behaviors/animation-behavior.md).
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - `Easing` shapes each movement on a linear timeline, so an overshooting easing overshoots within each movement and never across the whole shake.
 - The shake has at most 100 swings; after the 100th the view moves straight back to rest.

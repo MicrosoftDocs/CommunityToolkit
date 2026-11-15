@@ -77,6 +77,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 
 - Turns the view by `Rotation` degrees from its own rotation over `Length`, then sets it straight back to its original rotation. The default 360 is a seamless full turn from any rotation.
 - When triggered again while it runs, the new run finishes the same turn, `Rotation` degrees from the rotation the view had before the first run, so repeated taps never leave it turned. The run it interrupts leaves the view to the new run.
+- Starting it stops a running attention seeker that animates the rotation, such as [`SwingAnimation`](swing-animation.md), [`TadaAnimation`](tada-animation.md) or [`WobbleAnimation`](wobble-animation.md), which returns the view to its original values first.
 - Cancelling the token mid-run returns the view to its original rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - When it is stopped and nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original rotation at once and `Animate` completes.
 - With the system's animations off, also when they are switched off mid-run, the view ends at its original rotation.

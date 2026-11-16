@@ -26,7 +26,7 @@ The `ToBlackOrWhite` method converts the `Color` to a monochrome value of `Color
 The following example shows how to convert `Colors.Red` to a monochrome value:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToBlackOrWhite();
 ```
@@ -38,7 +38,7 @@ The `ToBlackOrWhiteForText` method converts the `Color` to a monochrome value of
 The following example shows how to convert `Colors.Red` to a monochrome value:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToBlackOrWhiteForText();
 ```
@@ -50,7 +50,7 @@ The `ToGrayScale` method converts the `Color` to a gray scale `Color`.
 The following example shows how to convert `Colors.Red` to a gray scale value:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToGrayScale();
 ```
@@ -62,7 +62,7 @@ The `ToInverseColor` method inverts the `Color`.
 The following example shows how to invert `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToInverseColor();
 ```
@@ -78,7 +78,7 @@ The `IsDark` method if the `Color` is dark.
 The following example shows how to determine if `Colors.Red` is considered dark:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.IsDark();
 ```
@@ -90,7 +90,7 @@ The `IsDarkForTheEye` method if the `Color` is dark for the human eye.
 The following example shows how to determine if `Colors.Red` is considered dark for the human eye:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.IsDarkForTheEye();
 ```
@@ -106,7 +106,7 @@ The `GetByteRed` method get the **red** component of `Color` as a value between 
 The following example shows how to get the red component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteRed();
 ```
@@ -118,7 +118,7 @@ The `GetByteGreen` method get the **green** component of `Color` as a value betw
 The following example shows how to get the green component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteGreen();
 ```
@@ -130,7 +130,7 @@ The `GetByteBlue` method get the **blue** component of `Color` as a value betwee
 The following example shows how to get the blue component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteBlue();
 ```
@@ -142,7 +142,7 @@ The `GetDegreeHue` method get the **hue** component of `Color` as a value betwee
 The following example shows how to get the hue component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetDegreeHue();
 ```
@@ -154,7 +154,7 @@ The `GetPercentCyan` method get the **cyan** component of `Color` as a value bet
 The following example shows how to get the cyan component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentCyan();
 ```
@@ -166,7 +166,7 @@ The `GetPercentMagenta` method get the **magenta** component of `Color` as a val
 The following example shows how to get the magenta component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentMagenta();
 ```
@@ -178,7 +178,7 @@ The `GetPercentYellow` method get the **yellow** component of `Color` as a value
 The following example shows how to get the yellow component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentYellow();
 ```
@@ -190,7 +190,7 @@ The `GetPercentBlackKey` method get the **black key** component of `Color` as a 
 The following example shows how to get the black key component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentBlackKey();
 ```
@@ -202,7 +202,7 @@ The `GetByteAlpha` method get the **alpha** component of `Color` as a value betw
 The following example shows how to get the alpha component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteAlpha();
 ```
@@ -356,7 +356,7 @@ The `WithRed` method applies the supplied `redComponent` to the `Color`. Note th
 The following example shows how to apply the red component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithRed(0.5);
 ```
@@ -368,7 +368,7 @@ The `WithGreen` method applies the supplied `greenComponent` to the `Color`. Not
 The following example shows how to apply the green component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithGreen(0.5);
 ```
@@ -380,7 +380,7 @@ The `WithBlue` method applies the supplied `blueComponent` to the `Color`. Note 
 The following example shows how to apply the blue component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithBlue(0.5);
 ```
@@ -392,7 +392,7 @@ The `WithCyan` method applies the supplied `cyanComponent` to the `Color`. Note 
 The following example shows how to apply the cyan component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithCyan(0.5);
 ```
@@ -404,7 +404,7 @@ The `WithMagenta` method applies the supplied `magentaComponent` to the `Color`.
 The following example shows how to apply the magenta component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithMagenta(0.5);
 ```
@@ -416,7 +416,7 @@ The `WithYellow` method applies the supplied `yellowComponent` to the `Color`. N
 The following example shows how to apply the yellow component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithYellow(0.5);
 ```
@@ -428,7 +428,7 @@ The `WithBlackKey` method applies the supplied `blackKeyComponent` to the `Color
 The following example shows how to apply the black key component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithBlackKey(0.5);
 ```

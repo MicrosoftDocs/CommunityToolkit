@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 11/12/2026
+ms.date: 11/15/2026
 ---
 
 # MediaElement
@@ -156,6 +156,8 @@ A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst
 
 ### Foreground service on Android
 To enable background playback on Android, set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. MediaElement does not require adding additional `AndroidManifest.xml` permissions for the foreground service — calling the builder method with `enableForegroundService: true` is sufficient to enable notification and background playback features. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If `enableForegroundService` is `false` and you attempt to use background playback features, an exception may be thrown on Android.
+
+If Android refuses to start the foreground service, for example on Android 12 and later when `Source` is set while the app is in the background, the `MediaElement` reports it once through the `MediaFailed` event without setting `CurrentState` to `Failed`, as described in [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes). The media plays without the notification, and the next change of `Source` tries to start the service again.
 
 ### Using Metadata
 

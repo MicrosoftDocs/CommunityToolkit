@@ -5,6 +5,8 @@ items:
   items:
     - name: Get started
       href: get-started.md
+    - name: Trimming and Native AOT
+      href: trimming-and-native-aot.md
 - name: "Alerts"
   items:   
     - name: Overview

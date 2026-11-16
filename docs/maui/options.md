@@ -2,7 +2,7 @@
 title: Options - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: CommunityToolkit.Maui.Options allows to customize the CommunityToolkit.Maui.
-ms.date: 10/23/2026
+ms.date: 11/13/2026
 ---
 
 # CommunityToolkit.Maui.Options
@@ -23,7 +23,7 @@ builder.UseMauiCommunityToolkit(options =>
 
 ## SetShouldSuppressExceptionsInConverters
 
-When set to `true`, if a converter implementing `CommunityToolkit.Maui.Converters.BaseConverter` throws an `Exception`, the `Exception` will be caught, logged via `Debug.WriteLine()`, and a predetermined default value will be returned.
+When set to `true`, if a converter implementing `CommunityToolkit.Maui.Converters.BaseConverter` throws an `Exception`, the `Exception` will be caught, logged via `Trace`, and a predetermined default value will be returned.
 
 Default value is `false`.
 
@@ -75,7 +75,7 @@ var boolToColorBrushConverter = new BoolToObjectConverter
 ```
 
 ## SetShouldSuppressExceptionsInAnimations
-When set to `true`, if an `Animation` implementing `CommunityToolkit.Maui.Behaviors.AnimationBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Debug.WriteLine()`.
+When set to `true`, if an `Animation` implementing `CommunityToolkit.Maui.Behaviors.AnimationBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Trace`.
 
 Default value is `false`.
 
@@ -92,7 +92,7 @@ builder.UseMauiCommunityToolkit(options =>
 
 ## SetShouldSuppressExceptionsInBehaviors
 
-When set to `true`, if a `Behavior` implementing `CommunityToolkit.Maui.Behaviors.BaseBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Debug.WriteLine()`.
+When set to `true`, if a `Behavior` implementing `CommunityToolkit.Maui.Behaviors.BaseBehavior` throws an `Exception`, the `Exception` will be caught and will be logged via `Trace`.
 
 Default value is `false`.
 

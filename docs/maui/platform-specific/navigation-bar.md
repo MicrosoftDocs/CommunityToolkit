@@ -2,7 +2,7 @@
 title: Android NavigationBar - .NET MAUI Community Toolkit
 author: bijington
 description: The NavigationBar provides the ability to customize the appearance of the Navigation Bar on the Android platform.
-ms.date: 11/05/2026
+ms.date: 11/15/2026
 ---
 
 # Android NavigationBar
@@ -24,6 +24,9 @@ The `Style` property makes it possible to customize the foreground color of the 
 * `Default` - this is the default and will make use of the system theme settings.
 * `LightContent` - the foreground will apply the light theme color.
 * `DarkContent` - the foreground will apply the dark theme color.
+
+> [!NOTE]
+> `Style` changes nothing on Android 7 (API 24 and 25). Light navigation bars need Android 8.0 (API 26).
 
 From Android 15 on, when Android enforces edge-to-edge (Android 16 does for every app that targets it), it forces light navigation bars on a window that has a light background and no navigation bar color of its own, whatever the app asks for. Setting a `Style` gives the window a transparent navigation bar color, which stops that: with three-button navigation, Android then draws a scrim behind the navigation bar that matches the style. With gesture navigation, Android may tint the gesture handle to contrast with what is behind it, whatever the style.
 

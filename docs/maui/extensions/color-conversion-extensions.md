@@ -2,7 +2,7 @@
 title: ColorConversionExtensions - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorConversionExtensions provide a series of extension methods that support converting, modifying or inspecting Colors."
-ms.date: 05/18/2022
+ms.date: 11/15/2026
 ---
 
 # ColorConversionExtensions
@@ -26,7 +26,7 @@ The `ToBlackOrWhite` method converts the `Color` to a monochrome value of `Color
 The following example shows how to convert `Colors.Red` to a monochrome value:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToBlackOrWhite();
 ```
@@ -38,7 +38,7 @@ The `ToBlackOrWhiteForText` method converts the `Color` to a monochrome value of
 The following example shows how to convert `Colors.Red` to a monochrome value:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToBlackOrWhiteForText();
 ```
@@ -50,7 +50,7 @@ The `ToGrayScale` method converts the `Color` to a gray scale `Color`.
 The following example shows how to convert `Colors.Red` to a gray scale value:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToGrayScale();
 ```
@@ -62,7 +62,7 @@ The `ToInverseColor` method inverts the `Color`.
 The following example shows how to invert `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToInverseColor();
 ```
@@ -78,7 +78,7 @@ The `IsDark` method if the `Color` is dark.
 The following example shows how to determine if `Colors.Red` is considered dark:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.IsDark();
 ```
@@ -90,7 +90,7 @@ The `IsDarkForTheEye` method if the `Color` is dark for the human eye.
 The following example shows how to determine if `Colors.Red` is considered dark for the human eye:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.IsDarkForTheEye();
 ```
@@ -106,7 +106,7 @@ The `GetByteRed` method get the **red** component of `Color` as a value between 
 The following example shows how to get the red component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteRed();
 ```
@@ -118,7 +118,7 @@ The `GetByteGreen` method get the **green** component of `Color` as a value betw
 The following example shows how to get the green component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteGreen();
 ```
@@ -130,7 +130,7 @@ The `GetByteBlue` method get the **blue** component of `Color` as a value betwee
 The following example shows how to get the blue component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteBlue();
 ```
@@ -142,7 +142,7 @@ The `GetDegreeHue` method get the **hue** component of `Color` as a value betwee
 The following example shows how to get the hue component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetDegreeHue();
 ```
@@ -154,7 +154,7 @@ The `GetPercentCyan` method get the **cyan** component of `Color` as a value bet
 The following example shows how to get the cyan component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentCyan();
 ```
@@ -166,7 +166,7 @@ The `GetPercentMagenta` method get the **magenta** component of `Color` as a val
 The following example shows how to get the magenta component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentMagenta();
 ```
@@ -178,7 +178,7 @@ The `GetPercentYellow` method get the **yellow** component of `Color` as a value
 The following example shows how to get the yellow component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentYellow();
 ```
@@ -190,7 +190,7 @@ The `GetPercentBlackKey` method get the **black key** component of `Color` as a 
 The following example shows how to get the black key component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetPercentBlackKey();
 ```
@@ -202,7 +202,7 @@ The `GetByteAlpha` method get the **alpha** component of `Color` as a value betw
 The following example shows how to get the alpha component of `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.GetByteAlpha();
 ```
@@ -211,23 +211,39 @@ Colors.Red.GetByteAlpha();
 
 The following methods allow you to convert the `Color` to a color scheme `string`.
 
+### Culture
+
+`ToCmykaString`, `ToCmykString`, `ToHslaString`, `ToHslString` and `ToRgbaString` format their numbers like this:
+
+- No culture, or `null`: the documented, culture-invariant format on every machine, whatever `CultureInfo.CurrentCulture` is. For example `CMYK(0%,100%,100%,0%)` and `RGBA(255,0,0,0.5)`.
+- `CultureInfo.InvariantCulture`, or a culture equal to it such as `new CultureInfo("")`: the same documented format. The percent sign follows the number (`100%`), where .NET's invariant culture writes `100 %`.
+- Any other culture: the culture is honored. `tr-TR` writes `%100`, and `de-DE` and `uk-UA` write the alpha value `0.5` as `0,5`.
+
+`ToRgbString` has no culture-dependent numbers.
+
+> [!IMPORTANT]
+> **Behavior change after v17.0.0:** without a culture, or with `null`, these methods now return the documented format on every machine. Through v17.0.0 they used `CultureInfo.CurrentCulture`, so on a `tr-TR` machine `Colors.Red.ToCmykString()` returned `CMYK(%0,%100,%100,%0)`, and on a `de-DE` machine `ToRgbaString()` returned `RGBA(255,0,0,0,5)` for an alpha of 0.5. Passing `CultureInfo.InvariantCulture` now returns `100%`, where v17.0.0 returned `100 %`. Code that stores, compares or snapshot-tests these strings on non-English machines, or with `InvariantCulture`, sees different text. Other output on `en-US` machines doesn't change. To keep the old output, pass `CultureInfo.CurrentCulture`, unless it is the invariant culture.
+
 ### ToCmykaString
 
-The `ToCmykaString` method converts the `Color` to a `string` containing the cyan, magenta, yellow and key components. The resulting `string` will be in the format: `CMYKA(cyan,magenta,yellow,key,alpha)` where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `CMYKA(0%,100%,100%,0%,1)` for `Colors.Red`).
+The `ToCmykaString` method converts the `Color` to a `string` containing the cyan, magenta, yellow, key and alpha components. The resulting `string` will be in the format: `CMYKA(cyan,magenta,yellow,key,alpha)` where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `CMYKA(0%,100%,100%,0%,1)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an CMYKA string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToCmykaString();
 ```
 
-Depends on the culture settings, **alpha** value may have different delimeter:
+Pass a culture to format the numbers with it, for example the **alpha** value with a different decimal separator:
 
 ```csharp
-new Color(0, 0, 0, 0.5f).ToCmykaString(new System.Globalization.CultureInfo("en-US")); // returns "CMYKA(0%,0%,0%,100%,0.5)"
-new Color(0, 0, 0, 0.5f).ToCmykaString(new System.Globalization.CultureInfo("uk-UA")); // returns "CMYKA(0%,0%,0%,100%,0,5)"
+using System.Globalization;
+
+new Color(0, 0, 0, 0.5f).ToCmykaString();                         // returns "CMYKA(0%,0%,0%,100%,0.5)" on every machine
+new Color(0, 0, 0, 0.5f).ToCmykaString(new CultureInfo("en-US")); // returns "CMYKA(0%,0%,0%,100%,0.5)"
+new Color(0, 0, 0, 0.5f).ToCmykaString(new CultureInfo("uk-UA")); // returns "CMYKA(0%,0%,0%,100%,0,5)"
 ```
 
 ### ToCmykString
@@ -237,59 +253,84 @@ The `ToCmykString` method converts the `Color` to a `string` containing the cyan
 The following example shows how to convert `Colors.Red` to an CMYK string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToCmykString();
 ```
 
+Pass a culture to format the percentages with it:
+
+```csharp
+using System.Globalization;
+
+Colors.Red.ToCmykString();                             // returns "CMYK(0%,100%,100%,0%)" on every machine
+Colors.Red.ToCmykString(CultureInfo.InvariantCulture); // returns "CMYK(0%,100%,100%,0%)"
+Colors.Red.ToCmykString(new CultureInfo("tr-TR"));     // returns "CMYK(%0,%100,%100,%0)"
+```
+
 ### ToHslaString
 
-The `ToHslaString` method converts the `Color` to a `string` containing the cyan, magenta, yellow and key components. The resulting `string` will be in the format: `HSLA(hue,saturation,lightness,alpha)` where **hue** will be a value between 0 and 360, **saturation** and **saturation** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `HSLA(0,100%,50%,1)` for `Colors.Red`).
+The `ToHslaString` method converts the `Color` to a `string` containing the hue, saturation, lightness and alpha components. The resulting `string` will be in the format: `HSLA(hue,saturation,lightness,alpha)` where **hue** will be a value between 0 and 360, **saturation** and **lightness** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `HSLA(360,100%,50%,1)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an HSLA string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToHslaString();
 ```
 
-Depends on the culture settings, **alpha** value may have different delimeter:
+Pass a culture to format the numbers with it, for example the **alpha** value with a different decimal separator:
 
 ```csharp
-new Color(0, 0, 0, 0.5f).ToHslaString(new System.Globalization.CultureInfo("en-US")); // returns "HSLA(0%,0%,0%,100%,0.5)"
-new Color(0, 0, 0, 0.5f).ToHslaString(new System.Globalization.CultureInfo("uk-UA")); // returns "HSLA(0%,0%,0%,100%,0,5)"
+using System.Globalization;
+
+new Color(0, 0, 0, 0.5f).ToHslaString();                         // returns "HSLA(0,0%,0%,0.5)" on every machine
+new Color(0, 0, 0, 0.5f).ToHslaString(new CultureInfo("en-US")); // returns "HSLA(0,0%,0%,0.5)"
+new Color(0, 0, 0, 0.5f).ToHslaString(new CultureInfo("uk-UA")); // returns "HSLA(0,0%,0%,0,5)"
 ```
 
 ### ToHslString
 
-The `ToHslString` method converts the `Color` to a `string` containing the cyan, magenta, yellow and key components. The resulting `string` will be in the format: `HSL(hue,saturation,lightness)` where **hue** will be a value between 0 and 360, **saturation** and **saturation** will be a value between 0% and 100% (e.g. `HSL(0,100%,50%)` for `Colors.Red`).
+The `ToHslString` method converts the `Color` to a `string` containing the hue, saturation and lightness components. The resulting `string` will be in the format: `HSL(hue,saturation,lightness)` where **hue** will be a value between 0 and 360, and **saturation** and **lightness** will be a value between 0% and 100% (e.g. `HSL(360,100%,50%)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an HSL string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToHslString();
 ```
 
+Pass a culture to format the percentages with it:
+
+```csharp
+using System.Globalization;
+
+Colors.Red.ToHslString();                         // returns "HSL(360,100%,50%)" on every machine
+Colors.Red.ToHslString(new CultureInfo("tr-TR")); // returns "HSL(360,%100,%50)"
+```
+
 ### ToRgbaString
 
-The `ToRgbaString` method converts the `Color` to a `string` containing the red, green, blue and alpha components. The resulting `string` will be in the format: `RGB(red,green,blue,alpha)` where **red**, **green** and **blue** will be a value between 0 and 255, and **alpha** will be a value between 0 and 1 (e.g. `RGBA(255,0,0,1)` for `Colors.Red`).
+The `ToRgbaString` method converts the `Color` to a `string` containing the red, green, blue and alpha components. The resulting `string` will be in the format: `RGBA(red,green,blue,alpha)` where **red**, **green** and **blue** will be a value between 0 and 255, and **alpha** will be a value between 0 and 1 (e.g. `RGBA(255,0,0,1)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an RGBA string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToRgbaString();
 ```
 
-Depends on the culture settings, **alpha** value may have different delimeter:
+Pass a culture to format the numbers with it, for example the **alpha** value with a different decimal separator:
 
 ```csharp
-new Color(0, 0, 0, 0.5f).ToRgbaString(new System.Globalization.CultureInfo("en-US")); // returns "RGBA(0,0,0,0.5)"
-new Color(0, 0, 0, 0.5f).ToRgbaString(new System.Globalization.CultureInfo("uk-UA")); // returns "RGBA(0,0,0,0,5)"
+using System.Globalization;
+
+new Color(0, 0, 0, 0.5f).ToRgbaString();                         // returns "RGBA(0,0,0,0.5)" on every machine
+new Color(0, 0, 0, 0.5f).ToRgbaString(new CultureInfo("en-US")); // returns "RGBA(0,0,0,0.5)"
+new Color(0, 0, 0, 0.5f).ToRgbaString(new CultureInfo("uk-UA")); // returns "RGBA(0,0,0,0,5)"
 ```
 
 ### ToRgbString
@@ -299,7 +340,7 @@ The `ToRgbString` method converts the `Color` to a `string` containing the red, 
 The following example shows how to convert `Colors.Red` to an RGB string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToRgbString();
 ```
@@ -315,7 +356,7 @@ The `WithRed` method applies the supplied `redComponent` to the `Color`. Note th
 The following example shows how to apply the red component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithRed(0.5);
 ```
@@ -327,7 +368,7 @@ The `WithGreen` method applies the supplied `greenComponent` to the `Color`. Not
 The following example shows how to apply the green component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithGreen(0.5);
 ```
@@ -339,7 +380,7 @@ The `WithBlue` method applies the supplied `blueComponent` to the `Color`. Note 
 The following example shows how to apply the blue component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithBlue(0.5);
 ```
@@ -351,7 +392,7 @@ The `WithCyan` method applies the supplied `cyanComponent` to the `Color`. Note 
 The following example shows how to apply the cyan component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithCyan(0.5);
 ```
@@ -363,7 +404,7 @@ The `WithMagenta` method applies the supplied `magentaComponent` to the `Color`.
 The following example shows how to apply the magenta component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithMagenta(0.5);
 ```
@@ -375,7 +416,7 @@ The `WithYellow` method applies the supplied `yellowComponent` to the `Color`. N
 The following example shows how to apply the yellow component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithYellow(0.5);
 ```
@@ -387,7 +428,7 @@ The `WithBlackKey` method applies the supplied `blackKeyComponent` to the `Color
 The following example shows how to apply the black key component to `Colors.Red`:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.WithBlackKey(0.5);
 ```

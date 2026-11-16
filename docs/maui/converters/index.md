@@ -2,7 +2,7 @@
 title: Converters - .NET MAUI Community Toolkit
 author: bijington
 description: The .NET MAUI Community Toolkit provides a collection of pre-built, reusable converters to make developers lives easier.
-ms.date: 11/10/2026
+ms.date: 11/15/2026
 ---
 
 # .NET MAUI Converters
@@ -51,7 +51,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable con
 | [`ColorToPercentMagentaConverter`](color-to-percent-magenta-converter.md) | The `ColorToPercentMagentaConverter` is a one-way converter that allows users to convert an incoming `Color` to the **magenta** component as a value between 0 and 1. |
 | [`ColorToPercentYellowConverter`](color-to-percent-yellow-converter.md) | The `ColorToPercentYellowConverter` is a one-way converter that allows users to convert an incoming `Color` to the **yellow** component as a value between 0 and 1. |
 | [`ColorToRgbStringConverter`](color-to-rgb-string-converter.md) | The `ColorToRgbStringConverter` is a converter that allows users to convert a `Color` value binding to its RGB `string` equivalent. |
-| [`ColorToRgbaStringConverter`](color-to-rgba-string-converter.md) | The `ColorToRgbaStringConverter` is a one-way converter that allows users to convert a `Color` value binding to its RGBA `string` equivalent. |
+| [`ColorToRgbaStringConverter`](color-to-rgba-string-converter.md) | The `ColorToRgbaStringConverter` is a converter that allows users to convert a `Color` value binding to its RGBA `string` equivalent and back. |
 | [`CompareConverter`](compare-converter.md) | The `CompareConverter` is a one-way converter that take an incoming value implementing `IComparable`, compares to a specified value, and returns the comparison result. |
 | [`DateTimeOffsetConverter`](datetimeoffsetconverter.md) | The `DateTimeOffsetConverter` is a converter that allows users to convert a `DateTimeOffset` to a `DateTime` |
 | [`DoubleToIntConverter`](double-to-int-converter.md) | The `DoubleToIntConverter` is a converter that allows users to convert an incoming `double` value to an `int` and vice-versa. Optionally the user can provide a multiplier to the conversion through the `Ratio` property. |

@@ -225,13 +225,13 @@ The following example shows how to add the `TouchBehavior` to a `HorizontalStack
 - **A state with a color:** the behavior sets its own `SolidColorBrush` as `Background` and animates it. Reading `Background` returns that brush.
 - **A state without a color:** the brush animates to the element's `BackgroundColor`, then is removed.
 - **`BackgroundColor` keeps your value:** bindings, `DynamicResource`, `AppThemeBinding` and `Style` keep working, except in the case under Exception below. A change made while a state color shows appears when the state ends.
-- **The element's own `Background`:** an element with one shows no state colors. A `Background` you set while a state color shows replaces the behavior's brush and stays.
+- **The element's own `Background`:** an element with one shows no state colors. A `Background` you set while a state color shows replaces the behavior's brush and stays. A binding or `DynamicResource` on `Background` that gives no brush when a state color is painted stays hidden until the brush is removed. A binding then shows its latest brush, but .NET MAUI removes the `DynamicResource` when the brush is set.
 - **Setters:**
   - On `BackgroundColor`, they are hidden while a state color is painted.
   - On `Background`, they win while they apply. No state color shows then, pressed and hovered included.
 - **`BackgroundColorTo`:** a state change no longer stops your animation. It runs hidden under the brush and shows once no state color is painted.
 - **Detach:** removing the behavior or unloading the element (for example a recycled `CollectionView` item) removes the brush and stops the behavior's animation, so `BackgroundColor` shows again. Re-attaching repaints at once.
-- **Exception:** an element with no `BackgroundColor` gets `Colors.Transparent` as its own value at the first state update after attach when that state has no color, and keeps it after detach. That value hides a binding, `Style` or `DynamicResource` on `BackgroundColor` that had no color yet.
+- **Exception:** an element with nothing set on `BackgroundColor` gets `Colors.Transparent` as its own value at the first state update after attach when that state has no color, and keeps it after detach. A binding, `AppThemeBinding`, `Style` or found `DynamicResource` on `BackgroundColor` prevents this, even while it gives no color. A `DynamicResource` whose key isn't found yet is replaced.
 - **Platforms:** the color logic is the same on every platform. On Android and Windows the behavior selects the tapped `CollectionView` item. On iOS and Mac Catalyst the platform does. The `Selected` visual state applies either way.
 
 ### Migrate from v17.0.0

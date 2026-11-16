@@ -26,10 +26,10 @@ Set `ConverterCulture` to `InvariantCulture` for the documented format, for exam
 <Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToCmykaStringConverter}, ConverterCulture={x:Static globalization:CultureInfo.InvariantCulture}}" />
 ```
 
-Called directly, `ConvertFrom` without a culture, or with `null`, returns the same invariant format.
+Calling `ConvertFrom` directly without a culture, or with `null`, returns the same invariant format.
 
 > [!IMPORTANT]
-> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`. Bindings are unchanged: they still use `ConverterCulture`, or `CurrentUICulture`. Passing `CultureInfo.InvariantCulture` now returns `100%` where .NET's invariant culture writes `100 %`.
+> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`. Bindings still use `ConverterCulture`, or `CurrentUICulture`. Passing `CultureInfo.InvariantCulture`, directly or through a binding, now returns `100%`, where .NET's invariant culture writes `100 %`.
 
 ## Syntax
 

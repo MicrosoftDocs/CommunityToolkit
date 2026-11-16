@@ -19,17 +19,17 @@ The `ConvertBack` method is not supported.
 
 In a binding, the converter formats the percentages with the binding's `ConverterCulture`, or with `CurrentUICulture` when `ConverterCulture` isn't set. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`.
 
-Set `ConverterCulture` to `InvariantCulture` for the documented format, `CMYK(0%,100%,100%,0%)`:
+Set `ConverterCulture` to `InvariantCulture` for the documented format, for example `CMYK(0%,100%,100%,0%)` for `Colors.Red`:
 
 ```xaml
 <!-- xmlns:globalization="clr-namespace:System.Globalization;assembly=System.Runtime" -->
 <Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToCmykStringConverter}, ConverterCulture={x:Static globalization:CultureInfo.InvariantCulture}}" />
 ```
 
-Called directly, `ConvertFrom` without a culture, or with `null`, returns the same invariant format.
+Calling `ConvertFrom` directly without a culture, or with `null`, returns the same invariant format.
 
 > [!IMPORTANT]
-> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`. Bindings are unchanged: they still use `ConverterCulture`, or `CurrentUICulture`. Passing `CultureInfo.InvariantCulture` now returns `100%` where .NET's invariant culture writes `100 %`.
+> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`. Bindings still use `ConverterCulture`, or `CurrentUICulture`. Passing `CultureInfo.InvariantCulture`, directly or through a binding, now returns `100%`, where .NET's invariant culture writes `100 %`.
 
 ## Syntax
 

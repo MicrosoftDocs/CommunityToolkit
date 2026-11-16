@@ -26,7 +26,7 @@ Set `ConverterCulture` to `InvariantCulture` for the documented format, for exam
 <Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToRgbaStringConverter}, ConverterCulture={x:Static globalization:CultureInfo.InvariantCulture}}" />
 ```
 
-Called directly, `ConvertFrom` without a culture, or with `null`, returns the same invariant format.
+Calling `ConvertFrom` directly without a culture, or with `null`, returns the same invariant format.
 
 When it converts back, the converter reads strings in the documented format (`RGBA(255,0,0,0.5)`) in every culture. It also reads a comma-decimal alpha, such as `RGBA(255,0,0,0,5)`, using the culture that it is given. With no culture, or `null`, it uses `CurrentCulture`, so strings that v17.0.0 wrote on a comma-decimal machine still convert back.
 

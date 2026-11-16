@@ -61,6 +61,8 @@ Partial trimming trims the toolkit as hard as full trimming does, because the to
 
 Warnings that point into `CommunityToolkit.Maui.*` assemblies are bugs in the toolkit. Please [open an issue](https://github.com/CommunityToolkit/Maui/issues/new/choose).
 
+Code that the toolkit's source generators add to your project (`[BindableProperty]`, `[AttachedBindableProperty]`, `TextColorTo`) keeps trim and AOT warnings visible. If it calls something of yours that isn't trim-safe, for example a `DefaultValueCreatorMethodName` method marked `[RequiresUnreferencedCode]`, the warning shows in the generated file when you build. Earlier versions showed it only when you published. Fix it in your own code. Other warnings in generated code stay hidden, so they can't break a `TreatWarningsAsErrors` build.
+
 ## Validate a property that is not a BindableProperty
 
 The validation behaviors (for example `TextValidationBehavior`, `EmailValidationBehavior`, `NumericValidationBehavior`) read the value to validate from a `BindableProperty` named by `ValuePropertyName`. The name must belong to a `BindableProperty`, including inherited ones and your own, declared in a `public static` field named `<Name>Property`, such as `TextProperty` for `Text`. An `internal` field, or one with a different name, makes the behavior throw.

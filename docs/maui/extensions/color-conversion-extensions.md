@@ -222,7 +222,7 @@ The following methods allow you to convert the `Color` to a color scheme `string
 `ToRgbString` has no culture-dependent numbers.
 
 > [!IMPORTANT]
-> **Behavior change after v17.0.0:** without a culture, or with `null`, these methods now return the documented format on every machine. Through v17.0.0 they used `CultureInfo.CurrentCulture`, so on a `tr-TR` machine `Colors.Red.ToCmykString()` returned `CMYK(%0,%100,%100,%0)`, and on a `de-DE` machine `ToRgbaString()` returned `RGBA(255,0,0,0,5)` for an alpha of 0.5. Code that stores, compares or snapshot-tests these strings on non-English machines sees different text. Output on `en-US` machines doesn't change. To keep the old output, pass `CultureInfo.CurrentCulture`.
+> **Behavior change after v17.0.0:** without a culture, or with `null`, these methods now return the documented format on every machine. Through v17.0.0 they used `CultureInfo.CurrentCulture`, so on a `tr-TR` machine `Colors.Red.ToCmykString()` returned `CMYK(%0,%100,%100,%0)`, and on a `de-DE` machine `ToRgbaString()` returned `RGBA(255,0,0,0,5)` for an alpha of 0.5. Passing `CultureInfo.InvariantCulture` now returns `100%`, where v17.0.0 returned `100 %`. Code that stores, compares or snapshot-tests these strings on non-English machines, or with `InvariantCulture`, sees different text. Other output on `en-US` machines doesn't change. To keep the old output, pass `CultureInfo.CurrentCulture`, unless it is the invariant culture.
 
 ### ToCmykaString
 

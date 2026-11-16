@@ -2,22 +2,36 @@
 title: ColorToRgbaStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToRgbaStringConverter is a converter that allows users to convert a Color value binding to its RGBA string equivalent."
-ms.date: 11/10/2026
+ms.date: 11/15/2026
 ---
 
 # ColorToRgbaStringConverter
 
-The `ColorToRgbaStringConverter` is a converter that allows users to convert a `Color` value binding to its RGBA `string` equivalent in the format: **RGB(red,green,blue,alpha)** where **red**, **green** and **blue** will be a value between 0 and 255, and **alpha** is a value between 0 and 1 (e.g. **RGB(255,0,0,1)** for `Colors.Red`.
+The `ColorToRgbaStringConverter` is a converter that allows users to convert a `Color` value binding to its RGBA `string` equivalent in the format: **RGBA(red,green,blue,alpha)** where **red**, **green** and **blue** will be a value between 0 and 255, and **alpha** is a value between 0 and 1 (e.g. **RGBA(255,0,0,1)** for `Colors.Red`.
 
-The `Convert` method returns the supplied `Color` `value` converted to its RGB `string` equivalent.
+The `Convert` method returns the supplied `Color` `value` converted to its RGBA `string` equivalent.
 
-The `ConvertBack` method returns the RGB `string` `value` converted to a `Color`.
+The `ConvertBack` method returns the RGBA `string` `value` converted to a `Color`.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
 
 ## Culture
 
-The converter formats the alpha value with the binding's culture. In a culture that uses a comma as the decimal separator, such as `de-DE`, the alpha value of 0.5 is written as `0,5`. When it converts back, the converter reads the string that it formats itself, using the same culture.
+In a binding, the converter formats the alpha value with the binding's `ConverterCulture`, or with `CurrentUICulture` when `ConverterCulture` isn't set. In a culture that uses a comma as the decimal separator, such as `de-DE`, an alpha value of 0.5 is written as `0,5`: `RGBA(255,0,0,0,5)`.
+
+Set `ConverterCulture` to `InvariantCulture` for the documented format, for example `RGBA(255,0,0,0.5)` for `Colors.Red` with an alpha of 0.5:
+
+```xaml
+<!-- xmlns:globalization="clr-namespace:System.Globalization;assembly=System.Runtime" -->
+<Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToRgbaStringConverter}, ConverterCulture={x:Static globalization:CultureInfo.InvariantCulture}}" />
+```
+
+Called directly, `ConvertFrom` without a culture, or with `null`, returns the same invariant format.
+
+When it converts back, the converter reads strings in the documented format (`RGBA(255,0,0,0.5)`) in every culture. It also reads a comma-decimal alpha, such as `RGBA(255,0,0,0,5)`, using the culture that it is given. With no culture, or `null`, it uses `CurrentCulture`, so strings that v17.0.0 wrote on a comma-decimal machine still convert back.
+
+> [!IMPORTANT]
+> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`, so on a comma-decimal machine it returned `RGBA(255,0,0,0,5)`, which `Color.Parse` can't read back. Bindings are unchanged: they still use `ConverterCulture`, or `CurrentUICulture`.
 
 ## Syntax
 

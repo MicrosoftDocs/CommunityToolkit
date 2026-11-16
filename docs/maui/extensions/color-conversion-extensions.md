@@ -2,7 +2,7 @@
 title: ColorConversionExtensions - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorConversionExtensions provide a series of extension methods that support converting, modifying or inspecting Colors."
-ms.date: 05/18/2022
+ms.date: 11/15/2026
 ---
 
 # ColorConversionExtensions
@@ -211,23 +211,39 @@ Colors.Red.GetByteAlpha();
 
 The following methods allow you to convert the `Color` to a color scheme `string`.
 
+### Culture
+
+`ToCmykaString`, `ToCmykString`, `ToHslaString`, `ToHslString` and `ToRgbaString` format their numbers like this:
+
+- No culture, or `null`: the documented, culture-invariant format on every machine, whatever `CultureInfo.CurrentCulture` is. For example `CMYK(0%,100%,100%,0%)` and `RGBA(255,0,0,0.5)`.
+- `CultureInfo.InvariantCulture`, or a culture equal to it such as `new CultureInfo("")`: the same documented format. The percent sign follows the number (`100%`), where .NET's invariant culture writes `100 %`.
+- Any other culture: the culture is honored. `tr-TR` writes `%100`, and `de-DE` and `uk-UA` write the alpha value `0.5` as `0,5`.
+
+`ToRgbString` has no culture-dependent numbers.
+
+> [!IMPORTANT]
+> **Behavior change after v17.0.0:** without a culture, or with `null`, these methods now return the documented format on every machine. Through v17.0.0 they used `CultureInfo.CurrentCulture`, so on a `tr-TR` machine `Colors.Red.ToCmykString()` returned `CMYK(%0,%100,%100,%0)`, and on a `de-DE` machine `ToRgbaString()` returned `RGBA(255,0,0,0,5)` for an alpha of 0.5. Code that stores, compares or snapshot-tests these strings on non-English machines sees different text. Output on `en-US` machines doesn't change. To keep the old output, pass `CultureInfo.CurrentCulture`.
+
 ### ToCmykaString
 
-The `ToCmykaString` method converts the `Color` to a `string` containing the cyan, magenta, yellow and key components. The resulting `string` will be in the format: `CMYKA(cyan,magenta,yellow,key,alpha)` where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `CMYKA(0%,100%,100%,0%,1)` for `Colors.Red`).
+The `ToCmykaString` method converts the `Color` to a `string` containing the cyan, magenta, yellow, key and alpha components. The resulting `string` will be in the format: `CMYKA(cyan,magenta,yellow,key,alpha)` where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `CMYKA(0%,100%,100%,0%,1)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an CMYKA string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToCmykaString();
 ```
 
-Depends on the culture settings, **alpha** value may have different delimeter:
+Pass a culture to format the numbers with it, for example the **alpha** value with a different decimal separator:
 
 ```csharp
-new Color(0, 0, 0, 0.5f).ToCmykaString(new System.Globalization.CultureInfo("en-US")); // returns "CMYKA(0%,0%,0%,100%,0.5)"
-new Color(0, 0, 0, 0.5f).ToCmykaString(new System.Globalization.CultureInfo("uk-UA")); // returns "CMYKA(0%,0%,0%,100%,0,5)"
+using System.Globalization;
+
+new Color(0, 0, 0, 0.5f).ToCmykaString();                         // returns "CMYKA(0%,0%,0%,100%,0.5)" on every machine
+new Color(0, 0, 0, 0.5f).ToCmykaString(new CultureInfo("en-US")); // returns "CMYKA(0%,0%,0%,100%,0.5)"
+new Color(0, 0, 0, 0.5f).ToCmykaString(new CultureInfo("uk-UA")); // returns "CMYKA(0%,0%,0%,100%,0,5)"
 ```
 
 ### ToCmykString
@@ -237,59 +253,84 @@ The `ToCmykString` method converts the `Color` to a `string` containing the cyan
 The following example shows how to convert `Colors.Red` to an CMYK string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToCmykString();
 ```
 
+Pass a culture to format the percentages with it:
+
+```csharp
+using System.Globalization;
+
+Colors.Red.ToCmykString();                             // returns "CMYK(0%,100%,100%,0%)" on every machine
+Colors.Red.ToCmykString(CultureInfo.InvariantCulture); // returns "CMYK(0%,100%,100%,0%)"
+Colors.Red.ToCmykString(new CultureInfo("tr-TR"));     // returns "CMYK(%0,%100,%100,%0)"
+```
+
 ### ToHslaString
 
-The `ToHslaString` method converts the `Color` to a `string` containing the cyan, magenta, yellow and key components. The resulting `string` will be in the format: `HSLA(hue,saturation,lightness,alpha)` where **hue** will be a value between 0 and 360, **saturation** and **saturation** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `HSLA(0,100%,50%,1)` for `Colors.Red`).
+The `ToHslaString` method converts the `Color` to a `string` containing the hue, saturation, lightness and alpha components. The resulting `string` will be in the format: `HSLA(hue,saturation,lightness,alpha)` where **hue** will be a value between 0 and 360, **saturation** and **lightness** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. `HSLA(360,100%,50%,1)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an HSLA string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToHslaString();
 ```
 
-Depends on the culture settings, **alpha** value may have different delimeter:
+Pass a culture to format the numbers with it, for example the **alpha** value with a different decimal separator:
 
 ```csharp
-new Color(0, 0, 0, 0.5f).ToHslaString(new System.Globalization.CultureInfo("en-US")); // returns "HSLA(0%,0%,0%,100%,0.5)"
-new Color(0, 0, 0, 0.5f).ToHslaString(new System.Globalization.CultureInfo("uk-UA")); // returns "HSLA(0%,0%,0%,100%,0,5)"
+using System.Globalization;
+
+new Color(0, 0, 0, 0.5f).ToHslaString();                         // returns "HSLA(0,0%,0%,0.5)" on every machine
+new Color(0, 0, 0, 0.5f).ToHslaString(new CultureInfo("en-US")); // returns "HSLA(0,0%,0%,0.5)"
+new Color(0, 0, 0, 0.5f).ToHslaString(new CultureInfo("uk-UA")); // returns "HSLA(0,0%,0%,0,5)"
 ```
 
 ### ToHslString
 
-The `ToHslString` method converts the `Color` to a `string` containing the cyan, magenta, yellow and key components. The resulting `string` will be in the format: `HSL(hue,saturation,lightness)` where **hue** will be a value between 0 and 360, **saturation** and **saturation** will be a value between 0% and 100% (e.g. `HSL(0,100%,50%)` for `Colors.Red`).
+The `ToHslString` method converts the `Color` to a `string` containing the hue, saturation and lightness components. The resulting `string` will be in the format: `HSL(hue,saturation,lightness)` where **hue** will be a value between 0 and 360, and **saturation** and **lightness** will be a value between 0% and 100% (e.g. `HSL(360,100%,50%)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an HSL string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToHslString();
 ```
 
+Pass a culture to format the percentages with it:
+
+```csharp
+using System.Globalization;
+
+Colors.Red.ToHslString();                         // returns "HSL(360,100%,50%)" on every machine
+Colors.Red.ToHslString(new CultureInfo("tr-TR")); // returns "HSL(360,%100,%50)"
+```
+
 ### ToRgbaString
 
-The `ToRgbaString` method converts the `Color` to a `string` containing the red, green, blue and alpha components. The resulting `string` will be in the format: `RGB(red,green,blue,alpha)` where **red**, **green** and **blue** will be a value between 0 and 255, and **alpha** will be a value between 0 and 1 (e.g. `RGBA(255,0,0,1)` for `Colors.Red`).
+The `ToRgbaString` method converts the `Color` to a `string` containing the red, green, blue and alpha components. The resulting `string` will be in the format: `RGBA(red,green,blue,alpha)` where **red**, **green** and **blue** will be a value between 0 and 255, and **alpha** will be a value between 0 and 1 (e.g. `RGBA(255,0,0,1)` for `Colors.Red`).
 
 The following example shows how to convert `Colors.Red` to an RGBA string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToRgbaString();
 ```
 
-Depends on the culture settings, **alpha** value may have different delimeter:
+Pass a culture to format the numbers with it, for example the **alpha** value with a different decimal separator:
 
 ```csharp
-new Color(0, 0, 0, 0.5f).ToRgbaString(new System.Globalization.CultureInfo("en-US")); // returns "RGBA(0,0,0,0.5)"
-new Color(0, 0, 0, 0.5f).ToRgbaString(new System.Globalization.CultureInfo("uk-UA")); // returns "RGBA(0,0,0,0,5)"
+using System.Globalization;
+
+new Color(0, 0, 0, 0.5f).ToRgbaString();                         // returns "RGBA(0,0,0,0.5)" on every machine
+new Color(0, 0, 0, 0.5f).ToRgbaString(new CultureInfo("en-US")); // returns "RGBA(0,0,0,0.5)"
+new Color(0, 0, 0, 0.5f).ToRgbaString(new CultureInfo("uk-UA")); // returns "RGBA(0,0,0,0,5)"
 ```
 
 ### ToRgbString
@@ -299,7 +340,7 @@ The `ToRgbString` method converts the `Color` to a `string` containing the red, 
 The following example shows how to convert `Colors.Red` to an RGB string:
 
 ```csharp
-using CommunityToolkit.Maui.Extensions.Core;
+using CommunityToolkit.Maui.Core.Extensions;
 
 Colors.Red.ToRgbString();
 ```

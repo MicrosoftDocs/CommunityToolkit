@@ -2,12 +2,12 @@
 title: ColorToCmykaStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToCmykaStringConverter is a one way converter that allows users to convert a Color value binding to its CMYKA string equivalent."
-ms.date: 11/10/2026
+ms.date: 11/15/2026
 ---
 
 # ColorToCmykaStringConverter
 
-The `ColorToCmykaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its CMYKA `string` equivalent in the format: **CMYKA(cyan,magenta,yellow,key,alpha)** where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between o and 1 (e.g. **CMYKA(0%,100%,100%,0%,1)** for `Colors.Red`.
+The `ColorToCmykaStringConverter` is a one way converter that allows users to convert a `Color` value binding to its CMYKA `string` equivalent in the format: **CMYKA(cyan,magenta,yellow,key,alpha)** where **cyan**, **magenta**, **yellow** and **key** will be a value between 0% and 100%, and **alpha** will be a value between 0 and 1 (e.g. **CMYKA(0%,100%,100%,0%,1)** for `Colors.Red`.
 
 The `Convert` method returns the supplied `Color` `value` converted to its CMYKA `string` equivalent.
 
@@ -17,7 +17,19 @@ The `ConvertBack` method is not supported.
 
 ## Culture
 
-The converter formats the percentages and the alpha value with the binding's culture. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`. The alpha value `0.5` is `0,5` in `de-DE`.
+In a binding, the converter formats the percentages and the alpha value with the binding's `ConverterCulture`, or with `CurrentUICulture` when `ConverterCulture` isn't set. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`. The alpha value `0.5` is `0,5` in `de-DE`.
+
+Set `ConverterCulture` to `InvariantCulture` for the documented format, for example `CMYKA(0%,100%,100%,0%,0.5)` for `Colors.Red` with an alpha of 0.5:
+
+```xaml
+<!-- xmlns:globalization="clr-namespace:System.Globalization;assembly=System.Runtime" -->
+<Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToCmykaStringConverter}, ConverterCulture={x:Static globalization:CultureInfo.InvariantCulture}}" />
+```
+
+Called directly, `ConvertFrom` without a culture, or with `null`, returns the same invariant format.
+
+> [!IMPORTANT]
+> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`. Bindings are unchanged: they still use `ConverterCulture`, or `CurrentUICulture`. Passing `CultureInfo.InvariantCulture` now returns `100%` where .NET's invariant culture writes `100 %`.
 
 ## Syntax
 

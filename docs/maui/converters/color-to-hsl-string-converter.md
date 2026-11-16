@@ -2,7 +2,7 @@
 title: ColorToHslStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToHslStringConverter is a one way converter that allows users to convert a Color value binding to its HSL string equivalent."
-ms.date: 11/10/2026
+ms.date: 11/15/2026
 ---
 
 # ColorToHslStringConverter
@@ -17,7 +17,19 @@ The `ConvertBack` method is not supported.
 
 ## Culture
 
-The converter formats the percentages with the binding's culture. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`.
+In a binding, the converter formats the percentages with the binding's `ConverterCulture`, or with `CurrentUICulture` when `ConverterCulture` isn't set. For example, `de-DE` writes `100 %` with a space before the `%` sign, and `tr-TR` writes `%100`.
+
+Set `ConverterCulture` to `InvariantCulture` for the documented format, `HSL(360,100%,50%)`:
+
+```xaml
+<!-- xmlns:globalization="clr-namespace:System.Globalization;assembly=System.Runtime" -->
+<Label Text="{Binding MyFavoriteColor, Converter={StaticResource ColorToHslStringConverter}, ConverterCulture={x:Static globalization:CultureInfo.InvariantCulture}}" />
+```
+
+Called directly, `ConvertFrom` without a culture, or with `null`, returns the same invariant format.
+
+> [!IMPORTANT]
+> **Behavior change after v17.0.0:** called directly with no culture, or with `null`, the converter now returns the invariant format. Through v17.0.0 it used `CultureInfo.CurrentCulture`. Bindings are unchanged: they still use `ConverterCulture`, or `CurrentUICulture`. Passing `CultureInfo.InvariantCulture` now returns `100%` where .NET's invariant culture writes `100 %`.
 
 ## Syntax
 

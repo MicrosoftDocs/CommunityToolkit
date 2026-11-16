@@ -109,6 +109,7 @@ When `ValuePropertyName` names something that isn't a `BindableProperty`, such a
 
 - The behavior throws an `ArgumentException` when it attaches, or when you change `ValuePropertyName` while it's attached. The message names the property, says no `public static` `BindableProperty` field `<Name>Property` exists on the view, and shows this fix.
 - When exceptions in behaviors are suppressed (you call `options.SetShouldSuppressExceptionsInBehaviors(true)`, see [Options](options.md#setshouldsuppressexceptionsinbehaviors)), the behavior writes a `Trace` message instead and leaves `Value` unbound.
+- While `ValuePropertyName` still has its default (`Text`, or a custom behavior's `DefaultValuePropertyName`), for example before its binding delivers a name, a view without that `BindableProperty` doesn't throw. The behavior writes a `Trace` message and leaves `Value` unbound until the name changes.
 
 > [!IMPORTANT]
 > Earlier versions accepted plain CLR property names and dotted paths. They no longer work and now throw on attach. Replace them with the compiled `Value` binding above.
@@ -132,6 +133,8 @@ In a trimmed Windows app, with partial or full trimming, add this to the project
 Without it, `OfflineSpeechToText` throws a `NotSupportedException` naming this setting when you start listening.
 
 No other setting is needed with `TrimMode` set to `full`: the toolkit keeps the COM interfaces of `System.Speech`. It keeps them only when your app uses `OfflineSpeechToText`. If your app calls `System.Speech` directly in a fully trimmed build, for example `SpeechRecognitionEngine` or `SpeechSynthesizer`, it must keep those COM interfaces itself.
+
+With `TrimMode` set to `full`, the trimmer also reports warnings from `System.Speech` itself, which isn't annotated for trimming. They don't come from the toolkit's code, and the toolkit's device tests run `OfflineSpeechToText` in a fully trimmed Windows app on every change.
 
 `OfflineSpeechToText` isn't available with Native AOT, which doesn't support built-in COM. Windows Native AOT isn't supported for another reason too (see [Supported platforms](#supported-platforms)). The online `SpeechToText` isn't affected.
 

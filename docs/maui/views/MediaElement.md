@@ -332,6 +332,33 @@ The `Aspect` property determines how video media will be scaled to fit the displ
 - `AspectFill` indicates that the video will be clipped so that it fills the display area, while preserving the aspect ratio.
 - `Fill` indicates that the video will be stretched to fill the display area.
 
+## Determine Media Screen status
+
+The `MediaElement` class defines a read-only bindable property named `ScreenState` of type `MediaElementScreenState`. This property indicates the current status of the control, such as whether the player is in full screen or default state.
+
+The `MediaElementScreenState` enumeration defines the following members:
+- `FullScreen` indicates the `MediaElement` is in full screen mode.
+- `Default` indicates the `MediaElement` is in default mode.
+
+## Implement Media Screen status controls
+
+To retrieve the current `MediaElement` screen status, you can use the `ScreenState` property. The screen status is a read-only property. You cannot enter or exit full screen mode programmatically. To track the change in `MediaElementScreenState`, you can use the `MediaElement.ScreenStateChanged` event, whose `ScreenStateChangedEventArgs` has the `PreviousState` and the `NewState`. The following XAML shows a page that contains a `MediaElement` and an event handler that is invoked when the `MediaElement` enters or exits full screen mode. 
+
+```xaml
+<toolkit:MediaElement
+    x:Name="MediaElement"
+    ShouldAutoPlay="True"
+    Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    ScreenStateChanged="OnScreenStateChanged"/>
+```
+
+The code-behind file has the handlers for the `MediaElement` events.
+
+```csharp
+void OnScreenStateChanged(object? sender, ScreenStateChangedEventArgs e) =>
+	logger.LogInformation("Screen State Changed. Old State: {PreviousState}, New State: {NewState}", e.PreviousState, e.NewState);
+```
+
 ## Determine `MediaElement` status
 
 The `MediaElement` class defines a read-only bindable property named `CurrentState`, of type `MediaElementState`. This property indicates the current status of the control, such as whether the media is playing or paused, or if it's not yet ready to play the media.
@@ -477,6 +504,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | Aspect | [Aspect](xref:Microsoft.Maui.Aspect) | Determines the scaling mode for the (visual) media that is currently loaded. This is a bindable property. | `Aspect.AspectFit` |
 | CurrentState | `MediaElementState` | Indicates the current status of the control. This is a read-only, bindable property. | `MediaElementState.None` |
 | Duration | `TimeSpan` | Indicates the duration of the currently opened media. This is a read-only, bindable property. | `TimeSpan.Zero` |
+| ScreenState | `MediaElementScreenState` | Indicates whether the control is shown full screen. This is a read-only, bindable property. | `MediaElementScreenState.Default` |
 | Position | `TimeSpan` | Describes the current progress through the media's playback time. This is a read-only, bindable property. If you want to set the `Position` use the `SeekTo()` method. | `TimeSpan.Zero` |
 | ShouldAutoPlay | `bool` | Indicates whether media playback will begin automatically when the `Source` property is set. This is a bindable property. | `false` |
 | ShouldLoopPlayback | `bool` | Describes whether the currently loaded media source should resume playback from the start after reaching its end. This is a bindable property. | `false` |
@@ -498,6 +526,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 | MediaFailed | Occurs when there's an error associated with the media source. It is also raised once when an event handler threw an exception while `Source` changed. See [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes). |
 | PositionChanged | Occurs when the `Position` property value has changed. |
 | SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
+| ScreenStateChanged | Occurs when entering or exiting full screen mode. |
 
 ## Methods
 

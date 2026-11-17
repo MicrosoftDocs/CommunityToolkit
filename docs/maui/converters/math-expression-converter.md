@@ -2,7 +2,7 @@
 title: MathExpressionConverter - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: "The MathExpressionConverter is a converter that allows users to perform various math operations."
-ms.date: 05/16/2022
+ms.date: 11/10/2026
 ---
 
 # MathExpressionConverter
@@ -14,6 +14,14 @@ The `Convert` calculates the expression string defined in the `ConverterParamete
 The value that is passed in to the converter will be named `x`. In order to refer to this value inside the expression you must use `x` (e.g. `x / 2` will divide the incoming value by 2). Any other variable names in the expression will be ignored.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The expression syntax doesn't depend on the culture. Numbers in the expression always use `.` as the decimal separator, and function and constant names are case-insensitive in every culture, so `IF` and `PI` also work in Turkish.
+
+String inputs are parsed with the culture passed to the converter, the binding's `ConverterCulture`, which defaults to `CultureInfo.CurrentUICulture`. Under `tr-TR` or `de-DE`, the string `"3.5"` is read as `35`, because `.` is the group separator. A quoted string in the expression, and the `str()` and `len()` functions, use that culture too.
+
+Bind numbers as numbers, or set `ConverterCulture` to `CultureInfo.InvariantCulture` when the text is invariant.
 
 ## Syntax
 

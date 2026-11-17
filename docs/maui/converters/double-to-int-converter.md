@@ -2,7 +2,7 @@
 title: DoubleToIntConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The DoubleToIntConverter is a converter that allows users to convert an incoming double value to an int and vice-versa."
-ms.date: 03/09/2022
+ms.date: 11/10/2026
 ---
 
 # DoubleToIntConverter
@@ -21,6 +21,10 @@ The `ConvertBack` method returns the supplied `value` converted to a `double` an
 > Note that the `ConverterParameter` option will take precedence over the `Ratio` property.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+When the `ConverterParameter` is a `string`, the converter parses it with the invariant culture first, so `2.5` in XAML means the same number for every user. If that fails, it parses the string with the binding's culture, so `2,5` works in `de-DE`.
 
 ## Syntax
 

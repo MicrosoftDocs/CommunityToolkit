@@ -2,7 +2,7 @@
 title: DateTimeOffsetConverter - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The DateTimeOffsetConverter is a converter that allows users to convert a DateTimeOffset to a DateTime "
-ms.date: 03/22/2022
+ms.date: 11/10/2026
 ---
 
 # DateTimeOffsetConverter
@@ -10,6 +10,10 @@ ms.date: 03/22/2022
 The `DateTimeOffsetConverter` is a converter that allows users to convert a `DateTimeOffset` to a `DateTime`. Sometimes a `DateTime` value is stored with the offset on a backend to allow for storing the timezone in which a `DateTime` originated from. Controls like the `Microsoft.Maui.Controls.DatePicker` only work with `DateTime`. This converter can be used in those scenarios.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter doesn't use the culture, because the components of a `DateTime` are always Gregorian. Earlier versions applied the calendar of the culture when they converted a `DateTime` back to a `DateTimeOffset`.
 
 ## Syntax
 

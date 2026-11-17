@@ -19,8 +19,8 @@ Install prerequisites:
 - [.NET MAUI workload](https://github.com/dotnet/core/blob/main/release-notes/6.0/install-maui.md#cli-installation) (via Visual Studio or CLI ```dotnet workload install maui```)
 - [Android SDK](https://developer.android.com/tools)
 - [Android Studio](https://developer.android.com/studio)
-- [Objective-Sharpie](https://aka.ms/objective-sharpie) (used to manually generate the C# APIs)
-    - [Xamarin.iOS](https://download.visualstudio.microsoft.com/download/pr/ceb0ea3f-4db8-46b4-8dc3-8049d27c0107/3960868aa9b1946a6c77668c3f3334ee/xamarin.ios-16.4.0.23.pkg) (required for Objective-Sharpie to work)
+- [Objective Sharpie](/dotnet/maui/ios/objective-sharpie/get-started) (used to manually generate the C# APIs on macOS with Apple Silicon; install with `dotnet tool install -g Sharpie.Bind.Tool`)
+    - Install the .NET workload for the Apple platform you're targeting, for example `dotnet workload install ios` for iOS. The .NET MAUI workload also includes the .NET for iOS workload on macOS.
 - [Visual Studio](https://visualstudio.microsoft.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/download)
 - [Xcode](https://developer.apple.com/xcode/)
 - [Xcode Command Line Tools](https://developer.apple.com/download/all/?q=command%20line%20tools) (```xcode-select --install```)
@@ -93,17 +93,17 @@ On the native side, make updates in _template/macios/native/NewBinding/NewBindin
 Back on the .NET side, we are now ready to interop with the native library:
 
 1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ to test everything is plugged in correctly and good to go.
-1. Use objective sharpie to generate the C# bindings for your Swift API updates:
+1. Use Objective Sharpie to generate the C# bindings for your Swift API updates:
     1. Navigate to _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework_ in your MaciOS binding projects output folder.
-    1. Run `sharpie xcode -sdks` to get a list of valid target SDK values for the bind command. Select the value that aligns with the platform and version you are targeting to use with the next command, for example `iphoneos18.0`.
-    1. Run `sharpie bind` against the header files in the xcframework created by the binding project:
+    1. Run `xcodebuild -showsdks` to get a list of installed SDKs. Select the SDK that aligns with the platform you are targeting, for example `iphoneos` for an iOS device.
+    1. Run `sharpie bind` against the Swift-generated Objective-C header in the xcframework created by the binding project. Use `--header` with an absolute path so Objective Sharpie parses the header as Objective-C and includes its declarations when applying `--scope`:
+        ```bash
+        sharpie bind --output=sharpie-out --namespace=NewBindingMaciOS --sdk=iphoneos --scope=Headers --header="$PWD/Headers/NewBinding-Swift.h"
         ```
-        sharpie bind --output=sharpie-out --namespace=NewBindingMaciOS --sdk=iphoneos18.0 --scope=Headers Headers/NewBinding-Swift.h
-        ```
-    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinitions.cs_ and tweaking as desired (e.g. naming).
+    1. Update the contents of _template/macios/NewBinding.MaciOS.Binding/ApiDefinition.cs_ by replacing it with the contents of _template/macios/NewBinding.MaciOS.Binding/bin/Debug/net9.0-ios/NewBinding.MaciOS.Binding.resources/NewBindingiOS.xcframework/ios-arm64/NewBinding.framework/sharpie-out/ApiDefinition.cs_ and tweaking as desired (e.g. naming).
     1. Run `dotnet build` from _template/macios/NewBinding.MaciOS.Binding_ again.
 
-See also the [objective-sharpie](/previous-versions/xamarin/cross-platform/macios/binding/objective-sharpie/tools) documentation to learn more about this tool.
+See also the [Objective Sharpie documentation](/dotnet/maui/ios/objective-sharpie/get-started) to learn more about this tool.
 
 #### API Definition: Android
 
@@ -210,7 +210,7 @@ public static func unregister(completion: @escaping (NSError?) -> Void) {
 The other half will be to update the _ApiDefinitions.cs_ file in the binding project to expose this new method.  There are two ways you can go about this:
 
 1. You can manually add the required code
-2. After building the binding project, you can run the objective sharpie tool to generate an _ApiDefinitions.cs_ file.  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
+2. After building the binding project, you can run Objective Sharpie to generate an _ApiDefinition.cs_ file.  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
 
 In this case, the changes to _ApiDefinitions.cs_ would be:
 

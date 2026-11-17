@@ -2,7 +2,7 @@
 title: Android NavigationBar - .NET MAUI Community Toolkit
 author: bijington
 description: The NavigationBar provides the ability to customize the appearance of the Navigation Bar on the Android platform.
-ms.date: 02/15/2024
+ms.date: 11/05/2026
 ---
 
 # Android NavigationBar
@@ -15,6 +15,8 @@ The feature provides the ability to set:
 
 The `Color` property makes it possible to provide any [`Color`](xref:Microsoft.Maui.Graphics.Color) to use in setting the background color of the navigation bar.
 
+Before Android 15 (API 35), the color is the navigation bar color of the window. From Android 15 on, Android draws the window behind the navigation bar and ignores that color, so the toolkit shows the color in a view on top of the window that covers the navigation bar: at the bottom, or, with three-button navigation in landscape, at the right or left edge. The view follows the navigation bar when the window rotates, or when the navigation bar is hidden or shown.
+
 ## Bar Style
 
 The `Style` property makes it possible to customize the foreground color of the navigation with the following allowed values:
@@ -22,6 +24,10 @@ The `Style` property makes it possible to customize the foreground color of the 
 * `Default` - this is the default and will make use of the system theme settings.
 * `LightContent` - the foreground will apply the light theme color.
 * `DarkContent` - the foreground will apply the dark theme color.
+
+From Android 15 on, when Android enforces edge-to-edge (Android 16 does for every app that targets it), it forces light navigation bars on a window that has a light background and no navigation bar color of its own, whatever the app asks for. Setting a `Style` gives the window a transparent navigation bar color, which stops that: with three-button navigation, Android then draws a scrim behind the navigation bar that matches the style. With gesture navigation, Android may tint the gesture handle to contrast with what is behind it, whatever the style.
+
+When a page clears its `Color` or `Style` (`ClearValue`), every window that still shows that value gets back the navigation bar color or appearance it had before the `NavigationBar` first changed it.
 
 ## Syntax
 

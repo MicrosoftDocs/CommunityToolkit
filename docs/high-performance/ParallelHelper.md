@@ -1,5 +1,5 @@
 ---
-title: ParallelHelper
+title: ParallelHelper class
 author: Sergio0694
 description: Helpers to work with parallel code in a highly optimized manner
 keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, parallel, high performance, net core, net standard
@@ -7,19 +7,19 @@ dev_langs:
   - csharp
 ---
 
-# ParallelHelper
+# ParallelHelper class
 
-The [`ParallelHelper`](/dotnet/api/microsoft.toolkit.highperformance.helpers.parallelhelper) contains high performance APIs to work with parallel code. It contains performance oriented methods that can be used to quickly setup and execute parallel operations over a given data set or iteration range or area.
+The [`ParallelHelper`](/dotnet/api/microsoft.toolkit.highperformance.helpers.parallelhelper) class contains high performance APIs to work with parallel code. It contains performance oriented methods that can be used to quickly set up and execute parallel operations over a given data set or iteration range or area.
 
 > **Platform APIs:** [`ParallelHelper`](/dotnet/api/microsoft.toolkit.highperformance.helpers.parallelhelper), [`IAction`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction), [`IAction2D`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction2D), [`IRefAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IRefAction-1), [`IInAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IInAction-1)
 
 ## How it works
 
-`ParallelHelper` type is built around three main concepts:
+The `ParallelHelper` type is built around three main concepts:
 
-- It performs automatic batching over the target iteration range. This means that it automatically schedules the right number of working units based on the number of available CPU cores. This is done to reduce the overhead of invoking the parallel callback once for every single parallel iteration.
-- It heavily leverages the way generic types are implemented in C#, and uses `struct` types implementing specific interfaces instead of delegates like [`Action<T>`](/dotnet/api/system.action-1). This is done so that the JIT compiler will be able to "see" each individual callback type being used, which allows it to inline the callback entirely, when possible. This can greatly reduce the overhead of each parallel iteration, especially when using very small callbacks, which would have a trivial cost with respect to the delegate invocation alone. Additionally, using a `struct` type as callback requires developers to manually handle variables that are being captured in the closure, which prevents accidental captures of the `this` pointer from instance methods and other values that could considerably slowdown each callback invocation. This is the same approach that is used in other performance-oriented libraries such as [`ImageSharp`](https://github.com/SixLabors/ImageSharp).
-- It exposes 4 types of APIs that represent 4 different types of iterations: 1D and 2D loops, items iteration with side effect and items iteration without side effect. Each type of action has a corresponding `interface` type that needs to be applied to the `struct` callbacks being passed to the `ParallelHelper` APIs: these are [`IAction`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction), [`IAction2D`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction2D), [`IRefAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IRefAction-1) and [`IInAction<T><T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IInAction-1). This helps developers to write code that is clearer regarding its intent, and allows the APIs to perform further optimizations internally.
+- It performs automatic batching over the target iteration range. This feature automatically schedules the right number of working units based on the number of available CPU cores. This feature reduces the overhead of invoking the parallel callback once for every single parallel iteration.
+- It heavily leverages the way generic types are implemented in C#. It uses `struct` types that implement specific interfaces instead of delegates like [`Action<T>`](/dotnet/api/system.action-1). By using this approach, the JIT compiler can "see" each individual callback type being used, which means it can inline the callback entirely when possible. This approach greatly reduces the overhead of each parallel iteration, especially when you use very small callbacks. The delegate invocation overhead would otherwise be trivial. Additionally, by using a `struct` type as the callback, you need to manually handle variables that are captured in the closure. This requirement prevents accidental captures of the `this` pointer from instance methods and other values that could considerably slow down each callback invocation. This approach is the same one used in other performance-oriented libraries such as [`ImageSharp`](https://github.com/SixLabors/ImageSharp).
+- It exposes four types of APIs that represent four different types of iterations: 1D and 2D loops, items iteration with side effect, and items iteration without side effect. Each type of action has a corresponding `interface` type that you need to apply to the `struct` callbacks that you pass to the `ParallelHelper` APIs. These interfaces are [`IAction`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction), [`IAction2D`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IAction2D), [`IRefAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IRefAction-1), and [`IInAction<T>`](/dotnet/api/microsoft.toolkit.highperformance.helpers.IInAction-1). By using these interfaces, you can write code that clearly expresses its intent, and the APIs can perform further optimizations internally.
 
 ## Syntax
 
@@ -49,7 +49,7 @@ To introduce the concept of closures, suppose we want to multiply the array elem
 public readonly struct ItemsMultiplier : IRefAction<float>
 {
     private readonly float factor;
-    
+
     public ItemsMultiplier(float factor)
     {
         this.factor = factor;

@@ -2,7 +2,7 @@
 title: ListToStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ListToStringConverter is a one way converter that returns a concatenation of the members of a collection, using the specified separator between each member."
-ms.date: 03/30/2022
+ms.date: 11/10/2026
 ---
 
 # ListToStringConverter
@@ -21,6 +21,10 @@ The `Convert` method returns a concatenation of the members of a collection, usi
 The `ConvertBack` method is not supported. For the opposite behavior see the [`StringToListConverter`](string-to-list-converter.md).
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter formats the items that implement `IFormattable`, such as numbers and dates, with the binding's culture. It calls `ToString()` on all other items.
 
 ## Syntax
 

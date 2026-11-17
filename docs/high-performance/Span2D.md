@@ -1,23 +1,23 @@
 ---
-title: Span2D&lt;T> and ReadOnlySpan2D&lt;T>
+title: Span2D\<T> and ReadOnlySpan2D\<T>
 author: Sergio0694
-description: A stack-only type that mirrors the behavior of Span&lt;T> and ReadOnlySpan&lt;T>, but supporting arbitrary 2D memory locations
+description: A stack-only type that mirrors the behavior of Span\<T> and ReadOnlySpan\<T>, but supporting arbitrary 2D memory locations
 keywords: windows 10, uwp, windows community toolkit, uwp community toolkit, uwp toolkit, parallel, high performance, net core, net standard
 dev_langs:
   - csharp
 ---
 
-# Span2D&lt;T>
+# Span2D\<T> class
 
-The [`Span2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.span2d-1) is a type that mirrors the functionality of the [`Span<T>`](/dotnet/api/system.span-1) type, but it supports 2D memory regions. Just like [`Memory2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.memory2d-1), it is extremely flexible and can wrap a number of different objects, as well as native pointers or GC references.
+The [`Span2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.span2d-1) class mirrors the functionality of the [`Span<T>`](/dotnet/api/system.span-1) type, but it supports 2D memory regions. Like [`Memory2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.memory2d-1), it's extremely flexible and can wrap a number of different objects, as well as native pointers or GC references.
 
-The internal layout is similar to that used by the [`Memory2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.Memory2D-1) type, including a pitch parameter that is used to enable support for discontiguous memory buffers. You can read more info on this in the `Memory2D<T>` docs.
+The internal layout is similar to the layout used by the [`Memory2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.Memory2D-1) type. It includes a pitch parameter that enables support for discontiguous memory buffers. You can read more about this in the `Memory2D<T>` docs.
 
 > **Platform APIs:** [`Span2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.span2d-1), [`Memory2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.Memory2D-1), [`ReadOnlySpan2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyspan2d-1)
 
 ## Syntax
 
-Here's how you can create a `Span2D<T>` instance from a 2D array:
+Here's how you create a `Span2D<T>` instance from a 2D array:
 
 ```csharp
 int[,] array =
@@ -56,7 +56,7 @@ int[,] copy = slice.ToArray();
 // { 20, 6 }
 ```
 
-We can also directly create a 2D view over native memory:
+You can also directly create a 2D view over native memory:
 
 ```csharp
 int* p = stackalloc int[9];
@@ -64,7 +64,7 @@ int* p = stackalloc int[9];
 Span2D<int> span = new Span2D<int>(p, 3, 3);
 ```
 
-The `Span2D<T>` type also includes custom enumerator types to easily traverse a given row, column or the entire memory area using the standard `foreach` syntax in C#, as well as performing bulk operations in a single call:
+The `Span2D<T>` type includes custom enumerator types to easily traverse a given row, column, or the entire memory area by using the standard `foreach` syntax in C#. It also supports performing bulk operations in a single call:
 
 ```csharp
 int[,] array =
@@ -107,10 +107,10 @@ span.GetColumn(2).CopyTo(copy);
 int[] array = span.GetRow(1).ToArray();
 ```
 
-## ReadOnlySpan2D&lt;T>
+## ReadOnlySpan2D\<T>
 
-The [`ReadOnlySpan2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyspan2d-1) is to the `Span2D<T>` type what `ReadOnlySpan<T>` is to `Span<T>`. It exposes a similar set of APIs but provides no way to directly modify the contents of the underlying memory area.
+The [`ReadOnlySpan2D<T>`](/dotnet/api/microsoft.toolkit.highperformance.readonlyspan2d-1) type is to the `Span2D<T>` type what `ReadOnlySpan<T>` is to `Span<T>`. It exposes a similar set of APIs but provides no way to directly modify the contents of the underlying memory area.
 
-## Sample Code
+## Sample code
 
 You can find more examples in the [unit tests](https://github.com/CommunityToolkit/dotnet/tree/main/tests/CommunityToolkit.HighPerformance.UnitTests).

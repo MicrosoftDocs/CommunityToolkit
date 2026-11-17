@@ -2,7 +2,7 @@
 title: Options - .NET MAUI Community Toolkit
 author: VladislavAntonyuk
 description: CommunityToolkit.Maui.Options allows to customize the CommunityToolkit.Maui.
-ms.date: 09/14/2022
+ms.date: 10/23/2026
 ---
 
 # CommunityToolkit.Maui.Options
@@ -18,7 +18,7 @@ builder.UseMauiCommunityToolkit(options =>
     options.SetShouldSuppressExceptionsInConverters(false);
     options.SetShouldSuppressExceptionsInBehaviors(false);
     options.SetShouldSuppressExceptionsInAnimations(false);
-})
+});
 ```
 
 ## SetShouldSuppressExceptionsInConverters
@@ -35,7 +35,7 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldSuppressExceptionsInConverters(true);
-})
+});
 ```
 
 ### Default Return Values
@@ -87,7 +87,7 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldSuppressExceptionsInAnimations(true);
-})
+});
 ```
 
 ## SetShouldSuppressExceptionsInBehaviors
@@ -104,5 +104,56 @@ var builder = MauiApp.CreateBuilder();
 builder.UseMauiCommunityToolkit(options =>
 {
     options.SetShouldSuppressExceptionsInBehaviors(true);
-})
+});
+```
+
+## SetPopupDefaults
+
+Sets the default settings of every `Popup`: its `Margin`, `Padding`, `HorizontalOptions`, `VerticalOptions` and `CanBeDismissedByTappingOutsideOfPopup`, the background color for the light and the dark theme, and the `OnInitializing` callback that runs each time a `Popup` is shown. A value that you set on a `Popup` takes precedence over the default values. See [Setting Popup Defaults](views/Popup.md#setting-popup-defaults) for the settings and for which value is used.
+
+### Example
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder.UseMauiCommunityToolkit(options =>
+{
+    options.SetPopupDefaults(new DefaultPopupSettings
+    {
+        Margin = 72,
+        BackgroundColor = Colors.Orange
+    });
+});
+```
+
+## SetPopupOptionsDefaults
+
+Sets the default `PopupOptions`: the options of a `Popup` that is shown without `PopupOptions`, and the initial values of every `PopupOptions` that you create. See [Setting Popup Defaults](views/Popup.md#setting-popup-defaults).
+
+### Example
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder.UseMauiCommunityToolkit(options =>
+{
+    options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
+    {
+        PageOverlayColor = Colors.Orange
+    });
+});
+```
+
+## SetShouldUseStatusBarBehaviorOnAndroidModalPage
+
+When set to `true`, the toolkit registers the `DialogFragmentService`, which gives the dialog of a modal page on Android the status bar color and style of the activity, and lays it out like the activity's window. See [Dialog Fragment Service](platform-specific/DialogFragment-customization.md).
+
+Default value is `false`.
+
+### Example
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder.UseMauiCommunityToolkit(options =>
+{
+    options.SetShouldUseStatusBarBehaviorOnAndroidModalPage(true);
+});
 ```

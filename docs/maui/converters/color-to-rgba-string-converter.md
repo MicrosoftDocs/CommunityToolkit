@@ -2,7 +2,7 @@
 title: ColorToRgbaStringConverter - .NET MAUI Community Toolkit
 author: bijington
 description: "The ColorToRgbaStringConverter is a converter that allows users to convert a Color value binding to its RGBA string equivalent."
-ms.date: 02/15/2024
+ms.date: 11/10/2026
 ---
 
 # ColorToRgbaStringConverter
@@ -14,6 +14,10 @@ The `Convert` method returns the supplied `Color` `value` converted to its RGB `
 The `ConvertBack` method returns the RGB `string` `value` converted to a `Color`.
 
 [!INCLUDE [common converter properties](../includes/communitytoolkit-converter.md)]
+
+## Culture
+
+The converter formats the alpha value with the binding's culture. In a culture that uses a comma as the decimal separator, such as `de-DE`, the alpha value of 0.5 is written as `0,5`. When it converts back, the converter reads the string that it formats itself, using the same culture.
 
 ## Syntax
 

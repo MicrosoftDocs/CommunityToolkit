@@ -1,32 +1,43 @@
 ---
-title: Map - .NET MAUI Community Toolkit
+title: Map (Removed) - .NET MAUI Community Toolkit
 author: jfversluis
-description: "The Map control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit."
-ms.date: 06/13/2023
+description: "CommunityToolkit.Maui.Maps was removed in the .NET 11 release. Use the Map control from Microsoft.Maui.Controls.Maps instead."
+ms.date: 11/10/2026
 ---
 
-# Map
+# Map (Removed)
 
-The `Map` control is a cross-platform view for displaying and annotating maps. The Windows implementation is available through the .NET MAUI Community Toolkit.
+> [!WARNING]
+> `CommunityToolkit.Maui.Maps` was deprecated in the toolkit's last .NET 10 release and is removed in the .NET 11 release. The package has no .NET 11 version. The `Map` control for Windows that it provided used Bing Maps for Enterprise, which Microsoft is retiring. For more information, see [Deprecate Map Control in favor of MAUI Map implementation](https://github.com/CommunityToolkit/Maui/issues/3190).
 
-> [!IMPORTANT]
-> Bing Maps has stopped giving out new API keys that are needed for this control to work. We are currently deciding if we should update this control to use the WinUI control that uses Azure Maps or that we will wait for the official .NET MAUI first-party implementation for this.
-> For the time being that means you cannot use this control if you do not already have a Bing Maps API key. Bing Maps as a whole will be discontinued entirely on June 30th, 2025.
+.NET MAUI includes its own `Map` control in the `Microsoft.Maui.Controls.Maps` package. It supports Android, iOS, Mac Catalyst, and Windows. On Windows, it uses the WinUI 3 `MapControl`, which is backed by Azure Maps. For details on how to work with the control, see the [.NET MAUI Map documentation](/dotnet/maui/user-interface/controls/map).
 
-## Setup
+## Migrate to the .NET MAUI Map
 
-Before you are able to use `Map` inside your application you will need to install the NuGet package and add an initialization line in your *MauiProgram.cs*. For more information on how to do this, please refer to the [Get Started](../get-started.md) page.
+1. Remove the `CommunityToolkit.Maui.Maps` package from your project.
+1. Add the `Microsoft.Maui.Controls.Maps` package to your project. `CommunityToolkit.Maui.Maps` referenced it for you, so your project might not reference it directly yet.
+1. Remove `using CommunityToolkit.Maui.Maps;` and the call to `UseMauiCommunityToolkitMaps` from *MauiProgram.cs*.
+1. Call `UseMauiMaps` on the `MauiAppBuilder` for every platform.
+1. On Windows, set your Azure Maps subscription key. Without a valid key, the map shows no map data.
 
-## Usage
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiMaps();
 
-The API of the .NET MAUI Community Toolkit implementation for Windows is not different from the API of the .NET MAUI Maps implementation for iOS and Android.
+#if WINDOWS
+builder.ConfigureEssentials(essentials => essentials.UseMapServiceToken("YOUR_AZURE_MAPS_SUBSCRIPTION_KEY"));
+#endif
+```
 
-For details on how to work with this map control, please refer to the [.NET MAUI Map documentation](/dotnet/maui/user-interface/controls/map).
+## Windows limitations
 
-## Examples
+On Windows, the .NET MAUI `Map` doesn't support:
 
-You can find examples of this control in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/tree/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/Maps).
+- `IsShowingUser`
+- Polygons, polylines and circles in `MapElements`
+- Pin labels and info windows
+- The `MapClicked` event
 
-## API
-
-You can find the source code for `Map` over on the [.NET MAUI Community Toolkit GitHub repository](https://github.com/CommunityToolkit/Maui/blob/main/src/CommunityToolkit.Maui.Maps/AppHostBuilderExtensions.shared.cs).
+It supports `MoveToRegion`, the `Street`, `Satellite` and `Hybrid` map types, traffic, scrolling, zooming and pins.

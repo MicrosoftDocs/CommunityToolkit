@@ -9,7 +9,7 @@ ms.date: 07/03/2025
 
 This page makes use of the following features to provide a comprehensive example:
 
-- [`Popup`](../popup.md)
+- [`Popup`](../Popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
 - [`Popup` - Returning a result](./popup-result.md)
@@ -264,7 +264,7 @@ public partial class PopupsPage : ContentPage
 
 ## Examples
 
-You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/Views/Popups/ComplexPopup.xaml).
+You can find an example of this feature in action in the [.NET MAUI Community Toolkit Sample Application](https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Views/Popups/ComplexPopup.xaml).
 
 ## API
 
@@ -272,7 +272,7 @@ You can find the source code for `Popup` over on the [.NET MAUI Community Toolki
 
 ## Additional Resources
 
-- [`Popup`](../popup.md)
+- [`Popup`](../Popup.md)
 - [`IPopupService`](../popup-service.md)
 - [`PopupOptions` - Customizing a `Popup` behavior and appearance](./popup-options.md)
 - [`Popup` - Returning a result](./popup-result.md)

@@ -2,7 +2,7 @@
 title: FadeAnimation - .NET MAUI Community Toolkit
 author: bijington
 description: The FadeAnimation provides the ability to animate the opacity of a VisualElement from its original opacity to a specified new opacity and then back to the original.
-ms.date: 11/13/2026
+ms.date: 11/16/2026
 ---
 
 # FadeAnimation
@@ -88,6 +88,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - When triggered again while it runs, the new run continues from where the view is and ends at the original opacity. The run it interrupts leaves the view to the new run.
 - Cancelling the token mid-run returns the view to its original opacity, then the awaited `Animate` throws `OperationCanceledException`. Previously `Animate` returned without an exception and left the view partly faded. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - When it is stopped and nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original opacity at once and `Animate` completes. Previously the view faded back over `Length`, or stayed partly faded when stopped on the way back.
+- Setting the opacity yourself as you stop it also takes over, except setting exactly the opacity the animation had reached: that changes nothing, so the view still returns to its original opacity.
 - With the system's animations off, also when they are switched off mid-run, the view ends at its original opacity.
 
 ## Examples

@@ -2,7 +2,7 @@
 title: ScaleAnimation - .NET MAUI Community Toolkit
 author: bijington
 description: The ScaleAnimation scales a VisualElement from its original scale to a specified scale and then back to the original.
-ms.date: 11/13/2026
+ms.date: 11/16/2026
 ---
 
 # ScaleAnimation
@@ -83,6 +83,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Starting it stops a running attention seeker that animates the scale, such as [`HeartbeatAnimation`](heartbeat-animation.md) or [`TadaAnimation`](tada-animation.md), which returns the view to its original values first.
 - Cancelling the token mid-run returns the view to its original scale, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - When it is stopped and nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original scale at once and `Animate` completes.
+- Setting the scale yourself as you stop it also takes over, except setting exactly the scale the animation had reached: that changes nothing, so the view still returns to its original scale.
 - With the system's animations off, also when they are switched off mid-run, the view ends at its original scale.
 
 ## Examples

@@ -2,7 +2,7 @@
 title: Animations - .NET MAUI Community Toolkit
 author: bijington
 description: The .NET MAUI Community Toolkit provides a collection of pre-built, reusable animations to make developers lives easier.
-ms.date: 11/13/2026
+ms.date: 11/16/2026
 ---
 
 # Animations
@@ -33,7 +33,7 @@ The .NET MAUI Community Toolkit provides a collection of pre-built, reusable ani
 ## Behavior shared by the toolkit's animations
 
 - **Cancelling:** cancelling the token mid-run returns the view to its original values, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
-- **Interrupted:** `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips return the view to its original values at once when they are stopped, for example by `CancelAnimations()`, unless another animation of that property takes over (a new run, an attention seeker, or your own `...ToAsync`) or you set the property yourself.
+- **Interrupted:** `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips return the view to its original values at once when they are stopped, for example by `CancelAnimations()`, unless another animation of that property takes over (a new run, an attention seeker, or your own `...ToAsync`) or you set the property yourself. Setting it to exactly the value the animation had reached doesn't count: that changes nothing, so the view still returns to its original value.
 - **Setting a value back fails:** if setting a property back throws, for example because a `PropertyChanged` handler of yours throws, every other property is still set back, and the awaited `Animate` throws that exception. It does not reach `Cancel()` or the animation that stopped the run, and through `AnimationBehavior` it is the exception that [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations) applies to.
 - **Any thread:** `Animate` can be called from any thread. The animations run on the view's dispatcher.
 - **System animations off:** with the system's animations off (for example Reduce Motion on iOS and Mac Catalyst, "Remove animations" on Android, or "Animation effects" off on Windows), `Animate` completes at once and leaves the view at its original values, also when they are switched off while an animation runs.

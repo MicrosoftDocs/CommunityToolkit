@@ -2,7 +2,7 @@
 title: RotateAnimation - .NET MAUI Community Toolkit
 author: bijington
 description: The RotateAnimation turns a VisualElement by a specified angle from its own rotation and then returns it to the original rotation.
-ms.date: 11/13/2026
+ms.date: 11/16/2026
 ---
 
 # RotateAnimation
@@ -80,6 +80,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Starting it stops a running attention seeker that animates the rotation, such as [`SwingAnimation`](swing-animation.md), [`TadaAnimation`](tada-animation.md) or [`WobbleAnimation`](wobble-animation.md), which returns the view to its original values first.
 - Cancelling the token mid-run returns the view to its original rotation, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - When it is stopped and nothing takes over, for example by `CancelAnimations()` or another `AnimationBehavior` on the same view, the view returns to its original rotation at once and `Animate` completes.
+- Setting the rotation yourself as you stop it also takes over, except setting exactly the rotation the animation had reached: that changes nothing, so the view still returns to its original rotation.
 - With the system's animations off, also when they are switched off mid-run, the view ends at its original rotation.
 
 ## Examples

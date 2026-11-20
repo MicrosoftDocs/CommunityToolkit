@@ -2,7 +2,7 @@
 title: RubberBandAnimation - .NET MAUI Community Toolkit
 author: TheCodeTraveler
 description: The RubberBandAnimation stretches a VisualElement wide and flat, then tall and thin, and wobbles it back to rest like a plucked rubber band.
-ms.date: 11/19/2026
+ms.date: 11/20/2026
 ---
 
 # RubberBandAnimation
@@ -69,6 +69,9 @@ public partial class MainPage : ContentPage
 |----------|------|-------------|---------------|
 | Length | `uint` | The time, in milliseconds, over which to animate. | `1000` |
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to the progress of the whole animation. See [Behavior](#behavior). | `Easing.Linear` |
+
+> [!WARNING]
+> On Android, a custom `Easing` that returns `NaN` crashes the app, because Android rejects a `NaN` scale. Use an easing that returns only finite numbers. A fix is planned in [CommunityToolkit/Maui#3449](https://github.com/CommunityToolkit/Maui/issues/3449).
 
 ## Behavior
 

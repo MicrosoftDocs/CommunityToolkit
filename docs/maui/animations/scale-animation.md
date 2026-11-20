@@ -2,7 +2,7 @@
 title: ScaleAnimation - .NET MAUI Community Toolkit
 author: bijington
 description: The ScaleAnimation scales a VisualElement from its original scale to a specified scale and then back to the original.
-ms.date: 11/16/2026
+ms.date: 11/20/2026
 ---
 
 # ScaleAnimation
@@ -75,6 +75,9 @@ public partial class MainPage : ContentPage
 | Easing | [Easing](xref:Microsoft.Maui.Easing) | The easing function applied to each part of the animation. | `Easing.Linear` |
 
 Values for `double` properties must be finite numbers: `NaN` and infinity are ignored.
+
+> [!WARNING]
+> On Android, a custom `Easing` that returns infinity crashes the app, because Android rejects an infinite scale. Use an easing that returns only finite numbers. A fix is planned in [CommunityToolkit/Maui#3449](https://github.com/CommunityToolkit/Maui/issues/3449).
 
 ## Behavior
 

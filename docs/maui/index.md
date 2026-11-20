@@ -2,7 +2,7 @@
 title: .NET MAUI Community Toolkit documentation
 author: bijington
 description: The .NET MAUI Community Toolkit is a collection of reusable elements for application development with .NET MAUI, including animations, behaviors, converters, effects, and helpers.
-ms.date: 11/10/2026
+ms.date: 11/20/2026
 ---
 
 # .NET Multi-platform App UI (.NET MAUI) Community Toolkit documentation
@@ -27,6 +27,8 @@ The .NET MAUI Community Toolkit supports the platforms officially supported by [
 * Windows 10 version 1809 (10.0.17763) or higher, using [Windows UI Library (WinUI) 3](/windows/apps/winui/winui3/).
 
 These versions match the minimum versions of .NET MAUI 11.
+
+From the release after v17.0.0, the toolkit needs .NET MAUI 11.0.10 or later, because .NET MAUI 11.0.0 crashes on iOS 17 and earlier ([dotnet/maui#38662](https://github.com/dotnet/maui/pull/38662)). An app that references `Microsoft.Maui.Controls` 11.0.0 directly fails to restore with NU1605. Reference 11.0.10 or later.
 
 ## [Get started][get-started]
 

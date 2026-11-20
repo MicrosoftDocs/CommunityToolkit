@@ -2,7 +2,7 @@
 title: ShakeAnimation - .NET MAUI Community Toolkit
 author: bijington
 description: The ShakeAnimation shakes a VisualElement sideways around its original position, with each swing smaller than the last.
-ms.date: 11/19/2026
+ms.date: 11/20/2026
 ---
 
 # ShakeAnimation
@@ -83,6 +83,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Changes only `TranslationX`, around the view's own value, and returns it when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
 - Calling `Animate` does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle. The translation still reaches its target, with the shake on top of it, and the view stays at the target when the animation ends. A `TranslateToAsync` that starts while the animation runs also gets the shake on top of it. `AnimationBehavior` does stop it; see [AnimationBehavior](../behaviors/animation-behavior.md).
+- A `TranslateToAsync` that begins mid-shake starts from the view's current `TranslationX`, which already includes the shake, so the shake's offset shows twice at first. The extra offset shrinks as the translation moves and is gone when it reaches its target, where the view ends. To avoid it, start the `TranslateToAsync` before the animation or after it ends.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - `Easing` shapes each movement on a linear timeline, so an overshooting easing overshoots within each movement and never across the whole shake.
 - The shake has at most 100 swings; after the 100th the view moves straight back to rest.

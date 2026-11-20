@@ -2,7 +2,7 @@
 title: Animations - .NET MAUI Community Toolkit
 author: bijington
 description: The .NET MAUI Community Toolkit provides a collection of pre-built, reusable animations to make developers lives easier.
-ms.date: 11/19/2026
+ms.date: 11/20/2026
 ---
 
 # Animations
@@ -46,6 +46,7 @@ Bounce, Heartbeat, RubberBand, Shake, Swing, Tada and Wobble are attention seeke
 - A view runs one attention seeker at a time. Starting one ends the running one first.
 - Starting `ScaleAnimation` or `RotateAnimation` stops a running attention seeker that animates the same property (`HeartbeatAnimation` or `TadaAnimation` for the scale, `SwingAnimation`, `TadaAnimation` or `WobbleAnimation` for the rotation), which returns the view to its original values first. A seeker that animates other properties keeps running.
 - Calling `Animate` on one stops a running `RotateToAsync`, `ScaleToAsync`, `ScaleXToAsync` or `ScaleYToAsync` of the properties it animates, including a running `RotateAnimation` or `ScaleAnimation`. It does not stop a running `TranslateToAsync`, because that animation drives both axes in one handle: `BounceAnimation`, `ShakeAnimation` and `WobbleAnimation` add their offset on top of it, so it still reaches its target and the view stays there when the seeker ends. The same holds for a `TranslateToAsync` that starts while the seeker runs. `AnimationBehavior` does stop it, because the behavior stops the view's running `...ToAsync` animations before it starts one (see [AnimationBehavior](../behaviors/animation-behavior.md)).
+- A `TranslateToAsync` that begins partway through `BounceAnimation`, `ShakeAnimation` or `WobbleAnimation` starts from the view's current translation, which already includes the seeker's offset, so the offset shows twice at first. The extra offset shrinks as the translation moves and is gone when it reaches its target, where the view ends. To avoid it, start the `TranslateToAsync` before the seeker or after it ends.
 - Your own `ScaleToAsync`, `ScaleXToAsync`, `ScaleYToAsync` or `RotateToAsync` that starts while a seeker animates the same property takes over, like `ScaleAnimation` and `RotateAnimation`. The seeker ends in its next frame, the awaited `Animate` completes, its other properties return to rest, and the view keeps the value your animation reaches. Setting the property yourself does not stop the seeker.
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` runs through the keyframes in about the first third of `Length`, then moves the view back and forth within the last keyframe. `SpringIn` holds the view still until late in the run. `ShakeAnimation` is the exception: its `Easing` shapes each movement.
 

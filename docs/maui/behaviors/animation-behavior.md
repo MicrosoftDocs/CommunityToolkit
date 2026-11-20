@@ -1,8 +1,8 @@
 ---
 title: AnimationBehavior - .NET MAUI Community Toolkit
 author: bijington
-description: The AnimationBehavior is a Behavior that provides the ability to animation any VisualElement it is attached to.
-ms.date: 09/16/2022
+description: The AnimationBehavior is a Behavior that provides the ability to animate any VisualElement it is attached to.
+ms.date: 11/13/2026
 ---
 
 # AnimationBehavior
@@ -10,6 +10,13 @@ ms.date: 09/16/2022
 The `AnimationBehavior` is a `Behavior` that provides the ability to animate any `VisualElement` it is attached to. Setting `AnimateOnTap` to `true` adds a `TapGestureRecognizer` to the `VisualElement` and triggers the associated animation when that recognizer detects that the user has tapped or clicked on the `VisualElement`.
 
 The `AnimationType` property is required to be set, possible options for this can be found at [Animations](../animations/index.md).
+
+> [!NOTE]
+> Triggering the behavior while its animation runs starts it again. `FadeAnimation`, `ScaleAnimation`, `RotateAnimation` and the flips continue from where the view is. An attention seeker first returns the view to rest. Either way the view ends at its original values. Before it starts the animation, even with a cancelled token, the behavior calls `CancelAnimations()` on the view, which stops its running `...ToAsync` animations such as `TranslateToAsync` and `FadeToAsync`, and it stops any running attention seeker. Animations under other names, such as `BackgroundColorTo`, keep running.
+>
+> Cancelling the token you pass to `AnimateCommand` stops a toolkit animation, which returns the view to its original values; the command ends without an exception. Previously, a token that was already cancelled, or a custom animation that throws `OperationCanceledException` when you cancel the token, crashed the app unless you called [`SetShouldSuppressExceptionsInAnimations(true)`](../options.md#setshouldsuppressexceptionsinanimations).
+>
+> You can execute `AnimateCommand` from any thread; it stops the running animations and starts the new one on the view's dispatcher.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 
@@ -136,7 +143,7 @@ public ICommand ThumbsUpCommand { get; }
 
 public MyViewModel()
 {
-    ThumbsUpCommand = new Command(() => OnThumbsUp())
+    ThumbsUpCommand = new Command(() => OnThumbsUp());
 }
 
 public void OnThumbsUp()
@@ -149,7 +156,7 @@ public void OnThumbsUp()
 
 The `AnimationBehavior` provides the ability to trigger animations programmatically. The `AnimateCommand` can be executed to trigger the associated animation type.
 
-The following example shows how to add the `AnimationBehavior` to an `Entry`, bind the `AnimatedCommand` and then execute the command from a view model.
+The following example shows how to add the `AnimationBehavior` to an `Entry`, bind the `AnimateCommand` and then execute the command from a view model.
 
 #### View
 
@@ -206,11 +213,11 @@ The `AnimationBehavior` provides the same underlying features as the [`EventToCo
 Using the following example animation implementation:
 
 ```csharp
-class SampleScaleToAnimation : BaseAnimation
+partial class SampleScaleToAnimation : BaseAnimation
 {
     public double Scale { get; set; }
 
-    public override Task Animate(VisualElement view) => view.ScaleTo(Scale, Length, Easing);
+    public override Task Animate(VisualElement view, CancellationToken token = default) => view.ScaleToAsync(Scale, Length, Easing, token);
 }
 ```
 
@@ -250,5 +257,5 @@ You can find the source code for `AnimationBehavior` over on the [.NET MAUI Comm
 
 ## Useful links
 
-- [.NET MAUI Community Toolkit Behaviors](../animations/index.md)
+- [.NET MAUI Community Toolkit Animations](../animations/index.md)
 - [Creating custom animations](../animations/index.md#creating-custom-animations)

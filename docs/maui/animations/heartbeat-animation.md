@@ -2,7 +2,7 @@
 title: HeartbeatAnimation - .NET MAUI Community Toolkit
 author: TheCodeTraveler
 description: The HeartbeatAnimation beats a VisualElement twice like a heart and then lets it relax.
-ms.date: 11/13/2026
+ms.date: 11/19/2026
 ---
 
 # HeartbeatAnimation
@@ -81,6 +81,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Changes only `Scale`, relative to the view's own scale, and returns it when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
 - Calling `Animate` stops a running `ScaleToAsync` of the view, including a running [`ScaleAnimation`](scale-animation.md).
+- A `ScaleToAsync` of yours that starts while the animation runs takes over: the animation ends in its next frame, `Animate` completes, and the view keeps the scale your `ScaleToAsync` reaches.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` runs through the keyframes in about the first third of `Length`, then moves the view back and forth within the last keyframe. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

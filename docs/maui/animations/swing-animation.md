@@ -2,7 +2,7 @@
 title: SwingAnimation - .NET MAUI Community Toolkit
 author: TheCodeTraveler
 description: The SwingAnimation swings a VisualElement like a sign hanging from its top edge.
-ms.date: 11/13/2026
+ms.date: 11/19/2026
 ---
 
 # SwingAnimation
@@ -81,6 +81,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Changes `Rotation`, relative to the view's own rotation, and sets `AnchorY` to `0` (the top edge) while it runs. Both return to their original values when it ends. A view whose original `Scale`, `ScaleY`, `Rotation`, `RotationX` or `RotationY` is not the identity appears shifted while the anchor is at the top.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
 - Calling `Animate` stops a running `RotateToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md).
+- A `RotateToAsync` of yours that starts while the animation runs takes over: the animation ends in its next frame, `Animate` completes, `AnchorY` returns to its original value, and the view keeps the rotation your `RotateToAsync` reaches.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` runs through the keyframes in about the first third of `Length`, then moves the view back and forth within the last keyframe. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

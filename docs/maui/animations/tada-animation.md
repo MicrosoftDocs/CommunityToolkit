@@ -2,7 +2,7 @@
 title: TadaAnimation - .NET MAUI Community Toolkit
 author: TheCodeTraveler
 description: The TadaAnimation shrinks a VisualElement with a tilt, grows it while it wiggles and then settles it back to rest.
-ms.date: 11/13/2026
+ms.date: 11/19/2026
 ---
 
 # TadaAnimation
@@ -84,6 +84,7 @@ Values for `double` properties must be finite numbers: `NaN` and infinity are ig
 - Changes only `Scale` and `Rotation`, relative to the view's own values, and returns them when it ends.
 - A view runs one [attention seeker](index.md#attention-seekers) at a time. Starting one, or triggering this one again, ends the running one and returns the view to rest first.
 - Calling `Animate` stops a running `RotateToAsync` or `ScaleToAsync` of the view, including a running [`RotateAnimation`](rotate-animation.md) or [`ScaleAnimation`](scale-animation.md).
+- A `ScaleToAsync` or `RotateToAsync` of yours that starts while the animation runs takes over: the animation ends in its next frame, `Animate` completes, the other property returns to its original value, and the view keeps the value your animation reaches.
 - Cancelling the token mid-run returns the view to rest, then the awaited `Animate` throws `OperationCanceledException`. A token that is already cancelled throws before the view changes. Through `AnimationBehavior`, the command ends without an exception.
 - `Easing` warps the whole run, so use one that stays within 0..1 and only increases, such as `Linear`, `SinInOut` or `CubicOut`. `SpringOut` plays every keyframe early, then holds the view still until `Length` ends. `BounceOut` runs through the keyframes in about the first third of `Length`, then moves the view back and forth within the last keyframe. `SpringIn` holds the view still until late in the run. The view still ends at rest.
 

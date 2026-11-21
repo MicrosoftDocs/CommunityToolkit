@@ -45,6 +45,9 @@ This should be added inside the `<manifest>` element. Below shows a more complet
 </manifest>
 ```
 
+> [!NOTE]
+> From the release after v17.0.0, the `CameraView` uses CameraX 1.5.3.1 (the `Xamarin.AndroidX.Camera.*` packages). If your app references a CameraX package directly, use version 1.5.3.1: an older version fails to restore with NU1605, and version 1.6 or later causes NU1608 warnings.
+
 ### [iOS](#tab/ios)
 
 The following entries need to be added to the `Platforms/iOS/Info.plist` file:

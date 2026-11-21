@@ -3,7 +3,7 @@ title: MediaElement - .NET MAUI Community Toolkit
 description: "This article explains how to use MediaElement to play video and audio in a .NET MAUI application."
 author: jfversluis
 ms.author: joverslu
-ms.date: 11/12/2026
+ms.date: 11/20/2026
 ---
 
 # MediaElement
@@ -156,6 +156,8 @@ A `MediaElement` can show rich media notifications on Android, iOS, Mac Catalyst
 
 ### Foreground service on Android
 To enable background playback on Android, set the `enableForegroundService` parameter to `true` when calling the `UseMauiCommunityToolkitMediaElement` method in *MauiProgram.cs*. MediaElement does not require adding additional `AndroidManifest.xml` permissions for the foreground service — calling the builder method with `enableForegroundService: true` is sufficient to enable notification and background playback features. When `enableForegroundService` is `true`, the toolkit will automatically add any required Android manifest entries for the foreground service and notifications. If `enableForegroundService` is `false` and you attempt to use background playback features, an exception may be thrown on Android.
+
+If Android refuses to start the foreground service while a `Source` is applied, for example on Android 12 and later when the app is in the background, the `MediaElement` reports it once through the `MediaFailed` event without setting `CurrentState` to `Failed`, as described in [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes). The media plays without the notification, and the next change of `Source` tries to start the service again. Through v17.0.0, setting `Source` threw the exception, for example `ForegroundServiceStartNotAllowedException`. If your code caught it around the assignment of `Source`, handle the `MediaFailed` event instead.
 
 ### Using Metadata
 
@@ -495,7 +497,7 @@ For more information about using a [`Slider`](xref:Microsoft.Maui.Controls.Slide
 |---------|---------|
 | MediaOpened | Occurs when the media stream has been validated and opened. |
 | MediaEnded | Occurs when the `MediaElement` finishes playing its media. |
-| MediaFailed | Occurs when there's an error associated with the media source. It is also raised once when an event handler threw an exception while `Source` changed. See [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes). |
+| MediaFailed | Occurs when there's an error associated with the media source. It is also raised once when an event handler threw an exception while `Source` changed, and on Android when the system refused to start the foreground service while `Source` changed. See [Handle exceptions thrown while the source changes](#handle-exceptions-thrown-while-the-source-changes) and [Foreground service on Android](#foreground-service-on-android). |
 | PositionChanged | Occurs when the `Position` property value has changed. |
 | SeekCompleted | Occurs when the seek point of a requested seek operation is ready for playback. |
 

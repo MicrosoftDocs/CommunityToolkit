@@ -2,7 +2,7 @@
 title: CameraView - .NET MAUI Community Toolkit
 author: bijington
 description: "The CameraView provides the ability to connect to a camera, display a preview from the camera, take photos, and record videos."
-ms.date: 11/11/2026
+ms.date: 11/20/2026
 ---
 
 # CameraView
@@ -44,6 +44,9 @@ This should be added inside the `<manifest>` element. Below shows a more complet
 
 </manifest>
 ```
+
+> [!NOTE]
+> From the release after v17.0.0, the `CameraView` uses CameraX 1.5.3.1 (the `Xamarin.AndroidX.Camera.*` packages). If your app references a CameraX package directly, use version 1.5.3.1: an older version fails to restore with NU1605, and version 1.6 or later causes NU1608 warnings.
 
 ### [iOS](#tab/ios)
 
@@ -450,6 +453,18 @@ The following example shows how to add a `Button` into the application and setup
 > [!NOTE]
 > `CaptureImage` ends with the platform's answer to the capture. A failure that a command reports through the `MediaCaptureFailed` event while the capture waits, for example a video recording that `StartVideoRecordingCommand` can't start, doesn't end the capture.
 
+> [!NOTE]
+> An exception that a `MediaCaptured` handler throws doesn't end the capture. The `CameraView` raises `MediaCaptureFailed` once, with that exception's message, and `CaptureImage` still returns the image. Handlers that subscribed after the one that threw aren't called for that image.
+
+> [!IMPORTANT]
+> **Breaking change after v17.0.0:** a `MediaCaptured` handler that throws is now reported the same way on every platform. Through v17.0.0:
+>
+> - iOS and Mac Catalyst: `CaptureImage` threw a `TargetInvocationException` that wrapped it, and `MediaCaptureFailed` wasn't raised.
+> - Android: the exception ended the app.
+> - Windows: `MediaCaptureFailed` reported "Exception has been thrown by the target of an invocation." instead of the handler's message.
+>
+> If your code caught that exception around `CaptureImage`, handle `MediaCaptureFailed` instead, or catch the exception in your handler.
+
 The following example demonstrates how to use the `CaptureImage` method:
 
 > [!NOTE]
@@ -827,7 +842,7 @@ A caller that awaits a cancelled `StartCameraPreview` or `StartVideoRecording` g
 
 If your app sets `CameraViewHandler.PlatformViewFactory`, the `CameraView` shows the camera in the platform view that your factory returns:
 
-- **Android:** the `PreviewView` keeps what your app set on it, such as its `ScaleType`.
+- **Android:** the `PreviewView` keeps what your app set on it, such as its `ScaleType` and `ImplementationMode`. On Android 8.0 and 8.1 (API 26 and 27), the `PreviewView` that the `CameraView` creates itself renders through a `TextureView` (`ImplementationMode.Compatible`), because removing a `SurfaceView` preview there can crash the app. To use a `SurfaceView` there anyway, return your own `PreviewView` from the factory.
 - **iOS and Mac Catalyst:** the `CameraView` adds its preview to the `UIView`, behind the subviews of your app, and the preview follows the size of the `UIView`.
 - **Windows:** only a `MediaPlayerElement` can show the preview, and it keeps what your app set on it, such as its `Stretch`. With any other element, the camera works without a visible preview, and a warning is written to the trace output.
 
@@ -862,14 +877,14 @@ The commands let no exception escape. `ICommand.Execute` can't return the task o
 | Event | Type | Description |
 |---------|---------|---------|
 | `MediaCaptured` | `EventHandler<MediaCapturedEventArgs>` | Raised when an image is successfully captured. The `MediaCapturedEventArgs` contains a `Media` property of type `Stream` with the captured image data. |
-| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails, and when `StartVideoRecordingCommand` or `StopVideoRecordingCommand` fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
+| `MediaCaptureFailed` | `EventHandler<MediaCaptureFailedEventArgs>` | Raised when an image capture fails, when a `MediaCaptured` handler throws (with that exception's message), and when `StartVideoRecordingCommand` or `StopVideoRecordingCommand` fails. The `MediaCaptureFailedEventArgs` contains a `FailureReason` property with the error message. |
 | `ErrorOccurred` | `EventHandler<ErrorOccurredEventArgs>` | Raised when the camera reports an error that no caller can catch, or a failure that `StartCameraPreview` reports instead of throwing. This covers connecting the camera when the `CameraView` is shown, switching to the camera in `SelectedCamera`, applying `ImageCaptureResolution`, a preview that can't start, the automatic start on Android once the camera permission is granted and, on Windows, updating `IsAvailable`. The `ErrorOccurredEventArgs` contains an `Exception` property with the exception. A start that `StopCameraPreview` cancels isn't an error and isn't reported. Each failure is reported once. On Android, it is also raised when the camera can't switch back to the photo session at the end of `StopVideoRecording`, whether or not the video could be saved. |
 
 ## Methods
 
 | Method | Return Type | Description |
 |---------|---------|---------|
-| `CaptureImage(CancellationToken)` | `Task<Stream>` | Captures a single image from the camera and returns it. The image is also delivered via the `MediaCaptured` event. Throws a `CameraException` when the capture fails, for example when the preview hasn't started, and raises the `MediaCaptureFailed` event with the same reason. |
+| `CaptureImage(CancellationToken)` | `Task<Stream>` | Captures a single image from the camera and returns it. The image is also delivered via the `MediaCaptured` event. Throws a `CameraException` when the capture fails, for example when the preview hasn't started, and raises the `MediaCaptureFailed` event with the same reason. A `MediaCaptured` handler that throws doesn't make it throw: it returns the image. |
 | `GetAvailableCameras(CancellationToken)` | `ValueTask<IReadOnlyList<CameraInfo>>` | Retrieves a list of available camera devices on the device. |
 | `StartCameraPreview(CancellationToken)` | `Task` | Starts displaying the camera preview. A preview that can't start is reported through the `ErrorOccurred` event. Throws an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the preview started. |
 | `StartVideoRecording(CancellationToken)` | `Task` | Starts recording video to an internal `MemoryStream`. Throws a `CameraException` when the recording can't start, and an `OperationCanceledException` when the token is cancelled, or `StopCameraPreview` is called, before the recording started. When it has to turn the camera on and can't, it throws the platform's failure instead, such as an `UnauthorizedAccessException` on Windows when the privacy settings block the camera; on Android, a start without a camera returns without recording. See [Video Recording](#video-recording). |

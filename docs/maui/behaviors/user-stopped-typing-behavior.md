@@ -2,7 +2,7 @@
 title: UserStoppedTypingBehavior - .NET MAUI Community Toolkit
 author: cliffagius
 description: "The UserStoppedTypingBehavior is a Behavior that will trigger an action when a user has stopped data input on controls for example Entry, SearchBar and Editor. Examples of its usage include triggering a search when a user has stopped entering their search query."
-ms.date: 10/23/2026
+ms.date: 11/15/2026
 ---
 
 # UserStoppedTypingBehavior
@@ -10,6 +10,9 @@ ms.date: 10/23/2026
 The `UserStoppedTypingBehavior` is a `Behavior` that will trigger an action when a user has stopped data input on controls for example `Entry`, `SearchBar` and `Editor`. Examples of its usage include triggering a search when a user has stopped entering their search query.
 
 When `ShouldDismissKeyboardAutomatically` is `true`, the keyboard is dismissed once the user stopped typing, which also removes the focus from the input. The keyboard is only dismissed while the input has the focus: when the user moved to another view before the `StoppedTypingTimeThreshold` elapsed, the keyboard of that view stays open.
+
+> [!NOTE]
+> On Android 8.1 and earlier, and on later versions outside touch mode, Android moves the focus to the first focusable view of the window when the keyboard is dismissed. When no focusable view comes before the input, the input keeps the focus.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 

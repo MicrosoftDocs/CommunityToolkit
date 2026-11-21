@@ -2,7 +2,7 @@
 title: MaxLengthReachedBehavior - .NET MAUI Community Toolkit
 author: bijington
 description: "The MaxLengthReachedBehavior is a behavior that allows the user to trigger an action when a user has reached the maximum length allowed on an InputView."
-ms.date: 10/23/2026
+ms.date: 11/15/2026
 ---
 
 # MaxLengthReachedBehavior
@@ -10,6 +10,9 @@ ms.date: 10/23/2026
 The `MaxLengthReachedBehavior` is a `Behavior` that allows the user to trigger an action when a user has reached the maximum length allowed on an `InputView`. It can either trigger a `Command` or an event depending on the user's preferred scenario. Both the `Command` and event will include the resulting text of the `InputView`.
 
 Additionally it is possible to dismiss the keyboard when the maximum length is reached via the `ShouldDismissKeyboardAutomatically` property which defaults to `false`. Dismissing the keyboard also removes the focus from the `InputView`. The keyboard is only dismissed while the `InputView` has the focus, so the keyboard of another view that the user types in stays open.
+
+> [!NOTE]
+> On Android 8.1 and earlier, and on later versions outside touch mode, Android moves the focus to the first focusable view of the window when the keyboard is dismissed. When no focusable view comes before the input, the input keeps the focus.
 
 [!INCLUDE [important note on bindings within behaviors](../includes/behavior-bindings.md)]
 

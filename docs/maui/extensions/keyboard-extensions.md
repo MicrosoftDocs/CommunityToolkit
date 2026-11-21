@@ -2,7 +2,7 @@
 title: KeyboardExtensions - .NET MAUI Community Toolkit
 author: PureWeen
 description: "The KeyboardExtensions provide a series of extension methods that support interacting with the Keyboard."
-ms.date: 11/05/2026
+ms.date: 11/20/2026
 ---
 
 # KeyboardExtensions
@@ -43,6 +43,8 @@ using CommunityToolkit.Maui.Core.Platform;
 
 await entry.ShowKeyboardAsync(CancellationToken.None);
 ```
+
+On Android 11 to 12L (API 30 to 32), the keyboard can close again right after `ShowKeyboardAsync` when an earlier hide is still animating. So when you call `ShowKeyboardAsync` within 2 seconds of a hide by the toolkit (`HideKeyboardAsync`, or a behavior that dismisses the keyboard), the toolkit checks the keyboard every 0.4 seconds for up to 2 seconds and shows it again if it has closed. It stops once the keyboard is open at two checks in a row (0.8 seconds at the earliest). Until then, it also undoes the user pressing Back. Calling `HideKeyboardAsync` or moving the focus away stops it.
 
 ### Is SoftKeyboard Showing
 

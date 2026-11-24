@@ -9,9 +9,30 @@ dev_langs:
 
 # ObservableObject
 
-The [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject) is a base class for objects that are observable by implementing the [`INotifyPropertyChanged`](/dotnet/api/system.componentmodel.inotifypropertychanged) and [`INotifyPropertyChanging`](/dotnet/api/system.componentmodel.inotifypropertychanging) interfaces. It can be used as a starting point for all kinds of objects that need to support property change notifications.
+The [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject) (and the [`[INotifyPropertyChanged]` attribute](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.observablepropertyattribute)) are helpers that simplify implementing observable objects. They implement the [`INotifyPropertyChanged`](/dotnet/api/system.componentmodel.inotifypropertychanged) and [`INotifyPropertyChanging`](/dotnet/api/system.componentmodel.inotifypropertychanging) interfaces for you.
 
-> **Platform APIs:** [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject), [`TaskNotifier`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject.TaskNotifier), [`TaskNotifier<T>`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject.TaskNotifier-1)
+Combined with the [`[ObservableProperty]` attribute](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.observablepropertyattribute), they make it simple to implement property change notifications. They can be used for any object that needs to support property change notifications, for example WinAppSDK and UWP ViewModels.
+
+> **Platform APIs:** [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject), [`INotifyPropertyChangedAttribute`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.observablepropertyattribute), [`ObservablePropertyAttribute`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.observablepropertyattribute), [`TaskNotifier`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject.TaskNotifier), [`TaskNotifier<T>`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject.TaskNotifier-1)
+
+## Example
+
+In C# 13 (which supports [partial members](/dotnet/csharp/language-reference/keywords/partial-member)), you can use [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.ObservableObject) and the [`[ObservableProperty]` attribute](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.observablepropertyattribute) to create properties that automatically fire [`PropertyChanged`](/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged) and [`PropertyChanging`](/dotnet/api/system.componentmodel.inotifypropertychanging.propertychanging) events when changed:
+
+```csharp
+// Requires C# 13
+public partial class User : ObservableObject
+{
+    [ObservableProperty]
+    public partial string Name { get; private set; }
+
+    public void SomeAction()
+    {
+        // Fires PropertyChanged and PropertyChanging!
+        Name = "Jimmy";
+    }
+}
+```
 
 ## How it works
 
@@ -21,6 +42,10 @@ The [`ObservableObject`](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.Obser
 - It provides a series of `SetProperty` methods that can be used to easily set property values from types inheriting from `ObservableObject`, and to automatically raise the appropriate events.
 - It provides the `SetPropertyAndNotifyOnCompletion` method, which is analogous to `SetProperty` but with the ability to set `Task` properties and raise the notification events automatically when the assigned tasks are completed.
 - It exposes the `OnPropertyChanged` and `OnPropertyChanging` methods, which can be overridden in derived types to customize how the notification events are raised.
+
+The `INotifyPropertyChanged` attribute does the same things, but can be used in classes that already inherit from a different class.
+
+The `ObservableProperty` attribute augments a partial property to automatically fire `PropertyChanged` and `PropertyChanging` events when changed.
 
 ## Simple property
 
@@ -73,6 +98,28 @@ The `SetProperty<TModel, T>(T, T, TModel, Action<TModel, T>, string)` method mak
 
 > [!NOTE]
 > Compared to the implementation of this method using LINQ expressions, specifically through a parameter of type `Expression<Func<T>>` instead of the state and callback parameters, the performance improvements that can be achieved this way are really significant. In particular, this version is ~200x faster than the one using LINQ expressions, and does not make any memory allocations at all.
+
+## Working with subclasses
+
+If your class already inherits from another class, you can use the [`[INotifyPropertyChanged]` attribute](/dotnet/api/microsoft.toolkit.mvvm.componentmodel.observablepropertyattribute) instead:
+
+```csharp
+[INotifyPropertyChanged]
+public class User : MyBaseClass
+{
+    // Everything as normal...
+
+    private string name;
+
+    public string Name
+    {
+        get => name;
+        set => SetProperty(ref name, value);
+    }
+}
+```
+
+Prefer inheriting `ObservableObject` when possible.
 
 ## Handling `Task<T>` properties
 

@@ -1,0 +1,33 @@
+items:
+- name: Windows Community Toolkit - Authentication and Graph
+  href: index.md
+- name: Getting Started
+  href: getting-started.md
+- name: Authentication
+  items:
+    - name: Overview
+      href: authentication/overview.md
+    - name: Custom Provider
+      href: authentication/custom.md
+    - name: MSAL Provider
+      href: authentication/msal.md
+    - name: Provider Manager
+      href: authentication/providermanager.md
+    - name: Windows Provider
+      href: authentication/windows.md
+- name: Helpers
+  items:
+    - name: Extensions
+      href: helpers/extensions.md
+    - name: Roaming Settings
+      href: helpers/roaming-settings.md
+- name: Controls
+  items:
+    - name: Graph Presenter
+      href: controls/graphpresenter.md
+    - name: Login Button
+      href: controls/loginbutton.md
+    - name: People Picker
+      href: controls/peoplepicker.md
+    - name: Person View
+      href: controls/personview.md

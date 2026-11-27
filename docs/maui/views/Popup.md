@@ -191,12 +191,19 @@ A `Popup` is displayed on a modal page, so navigation can remove it without a ca
 >
 > A tap outside of the `Popup`, or the hardware back button on Android, that triggers a navigation the app cancels does not throw: the `Popup` stays open and a later tap or back press can close it.
 
+### Closing on the INavigation you pass
+
+`ClosePopupAsync` and `TryClosePopupAsync` close the most recent popup on the `INavigation` that you pass in. They don't fall back to `Shell.Current`. When the `INavigation` is stale or belongs to another window, the popup isn't found: `ClosePopupAsync` throws `PopupNotFoundException` and `TryClosePopupAsync` returns it.
+
+> [!IMPORTANT]
+> This is a behavior change for `ClosePopupAsync` and `IPopupService.ClosePopupAsync`, which could previously close a popup found through `Shell.Current`.
+
 ## Showing and closing a Popup without exceptions
 
 `ShowPopupAsync` and `ClosePopupAsync` throw when they fail. The `Try` methods return the failure instead, so a failed popup never needs a `try`/`catch`.
 
 > [!NOTE]
-> The `Try` methods return a C# 15 union. Pattern matching on it needs the .NET 11 SDK, where C# 15 is the default `LangVersion`. See [Older C# versions](#older-c-versions).
+> The `Try` methods return a C# 15 union. Pattern matching on it needs C# 15, the default for `net11.0`. See [Older C# versions](#older-c-versions).
 
 Each `Try` method returns a `PopupResultOrException` (or `PopupResultOrException<T>`). It holds either the `IPopupResult` of the closed popup or the `Exception` the operation failed with.
 
@@ -221,7 +228,9 @@ To use the `Try` methods with the `IPopupService`, see [PopupService](popup-serv
 Put the dismissed arm before the `IPopupResult<T>` arm. For a non-nullable `T`, reading `Result` of a dismissed popup throws `PopupResultException`. Reversing the arms is also compiler error CS8510, because the first arm already matches every `IPopupResult<T>`.
 
 ```csharp
+using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 
 public class MyPage : ContentPage
@@ -250,19 +259,12 @@ The `switch` is exhaustive without a discard arm.
 | The popup closes | The `IPopupResult` or `IPopupResult<T>` |
 | Navigation removes the popup without `CloseAsync` | A dismissed result (`WasDismissedByTappingOutsideOfPopup` is `true`), not an exception |
 | No popup is shown when closing | `PopupNotFoundException` |
-| Another page is displayed above the popup | `PopupBlockedException` |
+| Another page is displayed above the popup when closing | `PopupBlockedException` |
 | The `CancellationToken` is canceled | `OperationCanceledException`. The popup stays open. |
 | The app cancels the navigation, for example in `Shell.Navigating`, `Window.ModalPopping` or `Application.ModalPopping` | `OperationCanceledException` |
 | An exception is thrown while the popup starts, for example in `OnInitializing` | That exception |
 
 Invalid arguments, such as a `null` page or view, still throw `ArgumentNullException` at the call. They are never returned.
-
-### Closing on the INavigation you pass
-
-`ClosePopupAsync` and `TryClosePopupAsync` close the most recent popup on the `INavigation` that you pass in. They don't fall back to `Shell.Current`. When the `INavigation` is stale or belongs to another window, the popup isn't found: `ClosePopupAsync` throws `PopupNotFoundException` and `TryClosePopupAsync` returns it.
-
-> [!IMPORTANT]
-> This is a behavior change for `ClosePopupAsync` and `IPopupService.ClosePopupAsync`, which could previously close a popup found through `Shell.Current`.
 
 ### Results of another type
 
@@ -291,7 +293,7 @@ A `default` union, such as an unassigned field, holds a `null` `Value`. The `Try
 
 ### Using Try from OnDisappearing of a modal page
 
-.NET MAUI removes a modal page that is pushed while another modal page is being popped. When you call a `Try` method on the `Page` in `OnDisappearing` after `PopModalAsync`, it waits until the modal page is removed. The popup then shows on the page below. The `INavigation` and `Shell` overloads don't wait, so use the `Page` overloads there.
+.NET MAUI removes a modal page that is pushed while another modal page is being popped. When you call `TryShowPopupAsync` on the `Page` in `OnDisappearing` after `PopModalAsync`, it waits until the modal page is removed. The popup then shows on the page below. The `INavigation` and `Shell` overloads don't wait, so use the `Page` overloads of `TryShowPopupAsync` there.
 
 ## Lifecycle behavior
 

@@ -227,17 +227,18 @@ The `Try` extension methods for `IPopupService` return the failure instead of th
 | `TryShowPopupAsync<T, TResult>(Shell, ...)` | |
 
 ```csharp
+using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Extensions;
 
-public async Task<string?> AskForNameAsync(INavigation navigation, CancellationToken token)
+public async Task<string> AskForNameAsync(INavigation navigation, CancellationToken token)
 {
     return await popupService.TryShowPopupAsync<NamePopupViewModel, string>(navigation, PopupOptions.Empty, token) switch
     {
-        IPopupResult<string> { WasDismissedByTappingOutsideOfPopup: true } => null,
-        IPopupResult<string> popupResult => popupResult.Result,
-        OperationCanceledException => null,
-        Exception exception => throw exception
+        IPopupResult<string> { WasDismissedByTappingOutsideOfPopup: true } => "Dismissed",
+        IPopupResult<string> popupResult => $"Hello, {popupResult.Result}",
+        OperationCanceledException => "Canceled",
+        Exception exception => $"Failed: {exception.Message}"
     };
 }
 ```

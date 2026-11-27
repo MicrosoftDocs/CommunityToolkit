@@ -157,10 +157,10 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property will always be `null` or `default`.
+> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property is `null` or `default`. For a non-nullable `T`, reading it throws an `InvalidCastException`.
 
 > [!NOTE]
-> When the popup closes with a result whose type isn't `T`, `Result` is `default(T)`.
+> When the popup closes with a result whose type isn't exactly `T`, even a derived type, `Result` is `default(T)`.
 
 To get a failure back instead of an exception, use `TryShowPopupAsync<T>`. It returns a `PopupResultOrException<T>` that you handle with a `switch`. See [Showing and closing a Popup without exceptions](../Popup.md#showing-and-closing-a-popup-without-exceptions).
 

@@ -193,7 +193,7 @@ A `Popup` is displayed on a modal page, so navigation can remove it without a ca
 
 ### Closing on the INavigation you pass
 
-`ClosePopupAsync` and `TryClosePopupAsync` close the most recent popup on the `INavigation` that you pass in. They don't fall back to `Shell.Current`. When the `INavigation` is stale or belongs to another window, the popup isn't found: `ClosePopupAsync` throws `PopupNotFoundException` and `TryClosePopupAsync` returns it.
+`ClosePopupAsync` and `TryClosePopupAsync` close the most recent popup on the `INavigation` that you pass in. They don't fall back to `Shell.Current`. An `INavigation` that shows no modal page (for example a stale one) gives `PopupNotFoundException`. One whose top modal page isn't a popup gives `PopupBlockedException`. `ClosePopupAsync` throws the exception and `TryClosePopupAsync` returns it.
 
 > [!IMPORTANT]
 > This is a behavior change for `ClosePopupAsync` and `IPopupService.ClosePopupAsync`, which could previously close a popup found through `Shell.Current`.
@@ -225,7 +225,7 @@ To use the `Try` methods with the `IPopupService`, see [PopupService](popup-serv
 
 ### Handling every case
 
-Put the dismissed arm before the `IPopupResult<T>` arm. For a non-nullable `T`, reading `Result` of a dismissed popup throws `PopupResultException`. Reversing the arms is also compiler error CS8510, because the first arm already matches every `IPopupResult<T>`.
+Put the dismissed arm before the `IPopupResult<T>` arm. For a non-nullable `T`, reading `Result` of a dismissed popup throws an `InvalidCastException`. Reversing the arms is also compiler error CS8510, because the first arm already matches every `IPopupResult<T>`.
 
 ```csharp
 using CommunityToolkit.Maui;
@@ -258,9 +258,9 @@ The `switch` is exhaustive without a discard arm.
 | --- | --- |
 | The popup closes | The `IPopupResult` or `IPopupResult<T>` |
 | Navigation removes the popup without `CloseAsync` | A dismissed result (`WasDismissedByTappingOutsideOfPopup` is `true`), not an exception |
-| No popup is shown when closing | `PopupNotFoundException` |
-| Another page is displayed above the popup when closing | `PopupBlockedException` |
-| The `CancellationToken` is canceled | `OperationCanceledException`. The popup stays open. |
+| The `INavigation` shows no modal page when closing | `PopupNotFoundException` |
+| The top modal page isn't a popup when closing, for example another page is above the popup | `PopupBlockedException` |
+| The `CancellationToken` is canceled | `OperationCanceledException`. A popup that is already shown stays open. |
 | The app cancels the navigation, for example in `Shell.Navigating`, `Window.ModalPopping` or `Application.ModalPopping` | `OperationCanceledException` |
 | An exception is thrown while the popup starts, for example in `OnInitializing` | That exception |
 
@@ -268,7 +268,7 @@ Invalid arguments, such as a `null` page or view, still throw `ArgumentNullExcep
 
 ### Results of another type
 
-When a popup closes with a result whose type isn't `TResult`, `Result` is `default(TResult)`.
+When a popup closes with a result whose type isn't exactly `TResult`, even a derived type, `Result` is `default(TResult)`.
 
 ### Converting to the non-generic union
 

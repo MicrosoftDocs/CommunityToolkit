@@ -157,7 +157,7 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property is `null` or `default`. For a non-nullable `T`, reading it throws an `InvalidCastException`.
+> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property is `null` when `T` is a reference type or `Nullable<T>`. When `T` is a non-nullable value type, reading `Result` throws an `InvalidCastException`.
 
 > [!NOTE]
 > When the popup closes with a result whose type isn't exactly `T`, even a derived type, `Result` is `default(T)`.

@@ -2,7 +2,7 @@
 title: Popup - .NET MAUI Community Toolkit
 author: bijington
 description: The Popup view allows developers to build their own custom UI and present it to their users.
-ms.date: 11/11/2026
+ms.date: 11/26/2026
 ---
 
 # Popup
@@ -190,6 +190,110 @@ A `Popup` is displayed on a modal page, so navigation can remove it without a ca
 > `ShowPopupAsync`, `CloseAsync` and `ClosePopupAsync` throw an `OperationCanceledException` when the app cancels the navigation that displays or removes the `Popup`, for example by calling `e.Cancel()` in a `Shell.Navigating` handler, or by setting `e.Cancel` to `true` in a `Window.ModalPopping` or `Application.ModalPopping` handler. The `Popup` is then not displayed, or stays open. Earlier versions left the call pending forever.
 >
 > A tap outside of the `Popup`, or the hardware back button on Android, that triggers a navigation the app cancels does not throw: the `Popup` stays open and a later tap or back press can close it.
+
+### Closing on the INavigation you pass
+
+`ClosePopupAsync` and `TryClosePopupAsync` close the most recent popup on the `INavigation` that you pass in. They don't fall back to `Shell.Current`. An `INavigation` that shows no modal page (for example a stale one) gives `PopupNotFoundException`. One whose top modal page isn't a popup gives `PopupBlockedException`. `ClosePopupAsync` throws the exception and `TryClosePopupAsync` returns it.
+
+> [!IMPORTANT]
+> This is a behavior change for `ClosePopupAsync` and `IPopupService.ClosePopupAsync`, which could previously close a popup found through `Shell.Current`.
+
+## Showing and closing a Popup without exceptions
+
+`ShowPopupAsync` and `ClosePopupAsync` throw when they fail. The `Try` methods return the failure instead, so a failed popup never needs a `try`/`catch`.
+
+> [!NOTE]
+> The `Try` methods return a C# 15 union. Pattern matching on it needs C# 15, the default for `net11.0`. See [Older C# versions](#older-c-versions).
+
+Each `Try` method returns a `PopupResultOrException` (or `PopupResultOrException<T>`). It holds either the `IPopupResult` of the closed popup or the `Exception` the operation failed with.
+
+| Show | Close |
+| --- | --- |
+| `TryShowPopupAsync(this Page, View, IPopupOptions?, CancellationToken)` | `TryClosePopupAsync(this Page, CancellationToken)` |
+| `TryShowPopupAsync(this INavigation, View, IPopupOptions?, CancellationToken)` | `TryClosePopupAsync(this INavigation, CancellationToken)` |
+| `TryShowPopupAsync(this Shell, View, IPopupOptions?, IDictionary<string, object>?, CancellationToken)` | `TryClosePopupAsync<TResult>(this Page, TResult, CancellationToken)` |
+| `TryShowPopupAsync<TResult>(this Page, ...)` | `TryClosePopupAsync<TResult>(this INavigation, TResult, CancellationToken)` |
+| `TryShowPopupAsync<TResult>(this INavigation, ...)` | |
+| `TryShowPopupAsync<TResult>(this Shell, ...)` | |
+
+To use the `Try` methods with the `IPopupService`, see [PopupService](popup-service.md#showing-and-closing-a-popup-without-exceptions).
+
+### Choosing between Try and Show/Close
+
+- Use `TryShowPopupAsync` or `TryClosePopupAsync` when a failure is expected and the app reacts to it, for example when a popup can be blocked by another page or canceled by the user.
+- Use `ShowPopupAsync` or `ClosePopupAsync` when a failure is a bug that should surface as an exception.
+
+### Handling every case
+
+Put the dismissed arm before the `IPopupResult<T>` arm. For a non-nullable `T`, reading `Result` of a dismissed popup throws an `InvalidCastException`. Reversing the arms is also compiler error CS8510, because the first arm already matches every `IPopupResult<T>`.
+
+```csharp
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Maui.Views;
+
+public class MyPage : ContentPage
+{
+    public async Task<string> DisplayPopup(CancellationToken token)
+    {
+        var popup = new ReturnResultPopup();
+
+        return await this.TryShowPopupAsync<bool>(popup, PopupOptions.Empty, token) switch
+        {
+            IPopupResult<bool> { WasDismissedByTappingOutsideOfPopup: true } => "Dismissed",
+            IPopupResult<bool> popupResult => $"Closed with {popupResult.Result}",
+            OperationCanceledException => "Canceled",
+            Exception exception => $"Failed: {exception.Message}"
+        };
+    }
+}
+```
+
+The `switch` is exhaustive without a discard arm.
+
+### What comes back for each failure
+
+| Situation | Returned |
+| --- | --- |
+| The popup closes | The `IPopupResult` or `IPopupResult<T>` |
+| Navigation removes the popup without `CloseAsync` | A dismissed result (`WasDismissedByTappingOutsideOfPopup` is `true`), not an exception |
+| The `INavigation` shows no modal page when closing | `PopupNotFoundException` |
+| The top modal page isn't a popup when closing, for example another page is above the popup | `PopupBlockedException` |
+| The `CancellationToken` is canceled | `OperationCanceledException`. A popup that is already shown stays open. |
+| The app cancels the navigation, for example in `Shell.Navigating`, `Window.ModalPopping` or `Application.ModalPopping` | `OperationCanceledException` |
+| An exception is thrown while the popup starts, for example in `OnInitializing` | That exception |
+
+Invalid arguments, such as a `null` page or view, still throw `ArgumentNullException` at the call. They are never returned.
+
+### Results of another type
+
+When a popup closes with a result whose type isn't exactly `TResult`, even a derived type, `Result` is `default(TResult)`.
+
+### Converting to the non-generic union
+
+A `PopupResultOrException<T>` converts implicitly to `PopupResultOrException`, so a method that returns the non-generic union can return the generic one.
+
+### Older C# versions
+
+With a `LangVersion` older than C# 15, switch on `Value` and add a discard arm:
+
+```csharp
+var message = (await this.TryShowPopupAsync(popup)).Value switch
+{
+    IPopupResult { WasDismissedByTappingOutsideOfPopup: true } => "Dismissed",
+    IPopupResult => "Closed",
+    OperationCanceledException => "Canceled",
+    Exception exception => $"Failed: {exception.Message}",
+    _ => "No value"
+};
+```
+
+A `default` union, such as an unassigned field, holds a `null` `Value`. The `Try` methods never return one.
+
+### Using Try from OnDisappearing of a modal page
+
+.NET MAUI removes a modal page that is pushed while another modal page is being popped. When you call `TryShowPopupAsync` on the `Page` in `OnDisappearing` after `PopModalAsync`, it waits until the modal page is removed. The popup then shows on the page below. The `INavigation` and `Shell` overloads don't wait, so use the `Page` overloads of `TryShowPopupAsync` there.
 
 ## Lifecycle behavior
 

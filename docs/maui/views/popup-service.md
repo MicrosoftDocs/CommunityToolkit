@@ -2,7 +2,7 @@
 title: PopupService - .NET MAUI Community Toolkit
 author: bijington
 description: The PopupService provides a mechanism for displaying Popups within an application using the MVVM pattern.
-ms.date: 04/12/2022
+ms.date: 11/26/2026
 ---
 
 # PopupService
@@ -212,6 +212,44 @@ async Task OnSave()
 ```
 
 This will result in the most recently displayed `Popup` being closed and the caller being return the value in `Name` wrapped inside of an `IPopupResult<T>` implementation. For more information on creating a `Popup` that can return a result see [`Popup` - Returning a result](./popup/popup-result.md).
+
+## Showing and closing a Popup without exceptions
+
+The `Try` extension methods for `IPopupService` return the failure instead of throwing it. They are extension methods in the `CommunityToolkit.Maui.Extensions` namespace, so existing `IPopupService` implementations keep compiling. Each overload of `ShowPopupAsync` and `ClosePopupAsync` has a `Try` counterpart:
+
+| Show | Close |
+| --- | --- |
+| `TryShowPopupAsync<T>(Page, IPopupOptions?, CancellationToken)` | `TryClosePopupAsync(Page, CancellationToken)` |
+| `TryShowPopupAsync<T>(INavigation, IPopupOptions?, CancellationToken)` | `TryClosePopupAsync<T>(Page, T, CancellationToken)` |
+| `TryShowPopupAsync<T>(Shell, IPopupOptions?, IDictionary<string, object>?, CancellationToken)` | `TryClosePopupAsync(INavigation, CancellationToken)` |
+| `TryShowPopupAsync<T, TResult>(Page, ...)` | `TryClosePopupAsync<T>(INavigation, T, CancellationToken)` |
+| `TryShowPopupAsync<T, TResult>(INavigation, ...)` | |
+| `TryShowPopupAsync<T, TResult>(Shell, ...)` | |
+
+```csharp
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Extensions;
+
+public async Task<string> AskForNameAsync(INavigation navigation, CancellationToken token)
+{
+    return await popupService.TryShowPopupAsync<NamePopupViewModel, string>(navigation, PopupOptions.Empty, token) switch
+    {
+        IPopupResult<string> { WasDismissedByTappingOutsideOfPopup: true } => "Dismissed",
+        IPopupResult<string> popupResult => $"Hello, {popupResult.Result}",
+        OperationCanceledException => "Canceled",
+        Exception exception => $"Failed: {exception.Message}"
+    };
+}
+```
+
+- Invalid arguments throw `ArgumentNullException` at the call.
+- Every other exception comes back in the union, including the `InvalidOperationException` for a popup type that isn't registered.
+- When navigation removes the popup, the result is a dismissed result.
+
+`PopupResultOrException` and the failures it returns work the same as for the `Page`, `INavigation` and `Shell` extension methods. See [Showing and closing a Popup without exceptions](Popup.md#showing-and-closing-a-popup-without-exceptions) for the full `switch`, what comes back for each failure, and the C# 15 requirement.
+
+Like `ClosePopupAsync`, `TryClosePopupAsync` closes the popup on the `INavigation` that you pass in. See [Closing on the INavigation you pass](Popup.md#closing-on-the-inavigation-you-pass).
 
 ## Examples
 

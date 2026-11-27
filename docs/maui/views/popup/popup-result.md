@@ -2,7 +2,7 @@
 title: Popup<T> - .NET MAUI Community Toolkit
 author: bijington
 description: Popup<T> enables developers to return a value from a popup when it is dismissed.
-ms.date: 05/19/2025
+ms.date: 11/26/2026
 ---
 
 # Returning a value from a Popup
@@ -157,7 +157,12 @@ public class MyPage : ContentPage
 ![Popup with result](../../images/views/popup/popup-result.png "Popup rendering with two buttons that allow for a result to be returned")
 
 > [!NOTE]
-> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property will always be `null` or `default`.
+> If `WasDismissedByTappingOutsideOfPopup` is `true`, then the `Result` property is `null` when `T` is a reference type or `Nullable<T>`. When `T` is a non-nullable value type, reading `Result` throws an `InvalidCastException`.
+
+> [!NOTE]
+> When the popup closes with a result whose type isn't exactly `T`, even a derived type, `Result` is `default(T)`.
+
+To get a failure back instead of an exception, use `TryShowPopupAsync<T>`. It returns a `PopupResultOrException<T>` that you handle with a `switch`. See [Showing and closing a Popup without exceptions](../Popup.md#showing-and-closing-a-popup-without-exceptions).
 
 ## PopupOptions
 The `PopupOptions` class provides the ability to customize the Border, Shadow, PageOverlayColor, and more, of the displayed `Popup`.
